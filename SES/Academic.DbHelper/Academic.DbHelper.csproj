@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B178C763-C997-49F9-87FE-BF09F6E00636}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Academic.DbHelper</RootNamespace>
+    <AssemblyName>Academic.DbHelper</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\CustomMembershipUser.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="DbHelper.AcademicPlacement.cs" />
+    <Compile Include="DbHelper.AcademicYear.cs" />
+    <Compile Include="DbHelper.ActAndRes.cs" />
+    <Compile Include="DbHelper.Activity.cs" />
+    <Compile Include="DbHelper.Assignment.cs" />
+    <Compile Include="DbHelper.Batch.cs" />
+    <Compile Include="DbHelper.ComboLoader.cs" />
+    <Compile Include="DbHelper.CustomAccount.cs" />
+    <Compile Include="DbHelper.Exam.cs" />
+    <Compile Include="DbHelper.Notice.cs" />
+    <Compile Include="DbHelper.Staff.cs" />
+    <Compile Include="DbHelper.Structure.cs" />
+    <Compile Include="DbHelper.Office.cs" />
+    <Compile Include="DbHelper.Resource.cs" />
+    <Compile Include="DbHelper.Student.cs" />
+    <Compile Include="DbHelper.Subject.cs" />
+    <Compile Include="DbHelper.SubjectSection.cs" />
+    <Compile Include="DbHelper.Teacher.cs" />
+    <Compile Include="DbHelper.User.cs" />
+    <Compile Include="DbHelper.WorkingWithFiles.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Academic.Database\Academic.Database.csproj">
+      <Project>{a4527567-d413-40e4-b498-6ba5c0638b22}</Project>
+      <Name>Academic.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Academic.DbEntities\Academic.DbEntities.csproj">
+      <Project>{0e622a6c-c728-430d-bc74-27054cba41f8}</Project>
+      <Name>Academic.DbEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Academic.ViewModel\Academic.ViewModel.csproj">
+      <Project>{48695c61-f60a-49e5-ad33-948b6b682a30}</Project>
+      <Name>Academic.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

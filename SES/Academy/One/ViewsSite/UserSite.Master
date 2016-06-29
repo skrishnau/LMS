@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UserSite.master.cs" Inherits="One.ViewsSite.UserSite" %>
+
+<%@ Register Src="~/Views/CreateUC.ascx" TagPrefix="uc1" TagName="CreateUC" %>
+<%@ Register Src="~/ViewsSite/UserControls/ListItemUC.ascx" TagPrefix="uc1" TagName="ListItemUC" %>
+<%@ Register Src="~/ViewsSite/UserControls/LeftSideBar.ascx" TagPrefix="uc1" TagName="LeftSideBar" %>
+
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <%-- Pick a Day --%>
+    <%--<link href="../Content/PickADay/css/pikaday.css" rel="stylesheet" />--%>
+    <%--<link href="../Content/PickADay/css/site.css" rel="stylesheet" />--%>
+    <%--<link href="../Content/PickADay/css/theme.css" rel="stylesheet" />--%>
+    <%--<script src="../Content/PickADay/pikaday.js"></script>--%>
+    <%--<link href="../Content/PickADay/css/triangle.css" rel="stylesheet" />--%>
+    <%-- End of Pick a Day --%>
+    <link href="../Content/CSSes/All.css" rel="stylesheet" />
+    
+
+     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+       <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <div id="menuDiv" style="float: none; width: 100%;">
+            <div style="float: right;">
+                <asp:ImageButton ID="ImageButton1" runat="server"
+                    ImageUrl="~/Content/Icons/setting_1.png" Height="26px" />
+            </div>
+            <asp:ContentPlaceHolder ID="Menu" runat="server">
+                <div style="float: right;">
+                    <asp:LoginName ID="LoginName1" runat="server" />
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                </div>
+            </asp:ContentPlaceHolder>
+
+
+        </div>
+        <div class="left-sidebar" style="float: left; width: 200px;">
+            <asp:ContentPlaceHolder ID="LeftSideBar" runat="server">
+                <uc1:CreateUC runat="server" ID="CreateUC" />
+            </asp:ContentPlaceHolder>
+
+            <div class="left-sidebar">
+
+                <asp:ContentPlaceHolder runat="server" ID="LeftSideBarPlaceHolder">
+
+                    <uc1:LeftSideBar runat="server" ID="leftSideBarUC" />
+
+                </asp:ContentPlaceHolder>
+
+            </div>
+        </div>
+
+
+
+
+
+        <div id="bodyDiv" style="float: left; width: 78%; overflow: hidden;">
+            <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
+                <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
+            </asp:Panel>
+
+            <div class="body-inner-left">
+                <asp:ContentPlaceHolder runat="server" ID="BodyInnerLeft">
+                </asp:ContentPlaceHolder>
+            </div>
+            
+
+            <asp:Panel ID="Panel1" runat="server" BackColor="#CC99FF">
+                <asp:Label ID="Label1" runat="server" Text="___" Visible="False"></asp:Label>
+            </asp:Panel>
+            
+
+            <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
+            </asp:ContentPlaceHolder>
+            
+
+            <asp:ContentPlaceHolder ID="Body" runat="server">
+            </asp:ContentPlaceHolder>
+
+        </div>
+        <div id="CreateDive" style="float: none; width: 10%">
+            <%--<asp:Menu ID="Menu1" runat="server">
+                <DynamicItemTemplate>
+                    one<br /> two<br /> three<br /> four<br />
+                    
+                </DynamicItemTemplate>
+            </asp:Menu>--%>
+        </div>
+
+    </form>
+</body>
+</html>

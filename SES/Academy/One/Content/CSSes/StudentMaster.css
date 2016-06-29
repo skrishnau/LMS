@@ -1,0 +1,126 @@
+﻿body {
+}
+.menu-div {
+    padding: 3px;
+    height: 30px;
+    -webkit-border-radius: 2px;
+    background-color: #eef1ff;
+}
+
+.menu-right {
+    float: right;
+    font: 1.2em bold;
+}
+
+ .main-content {
+        /*background: url("../Images/accent.png") no-repeat;*/
+     float: left;
+     width: 100%;
+        padding-left: 10px;
+        padding-top: 30px;
+    }
+
+.menu-left {
+    float: left;
+    font: 1.2em bold;
+}
+
+.float_left {
+    float: left;
+    
+}
+
+.float_right {
+    float: right;
+    width: auto;
+}
+
+
+
+h1, h2, h3,
+h4, h5, h6 {
+    color: #000;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.75em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+    h5 a:link, h5 a:visited, h5 a:active {
+        padding: 0;
+        text-decoration: none;
+    }
+
+/* Items display */
+.item {
+    margin: 10px 5px 10px;
+    /*background-color: #e0e0e0;*/
+    border: 1.8px solid darkgray;
+
+}
+.item-heading {
+    font: 2em bold;
+    padding: 10px 10px 15px;
+    margin: 10px 10px 10px;
+    /*background-color: #f0fff0;*/
+    /*//font-size: 2em;*/
+}
+.item-Option {
+    font: 1em serif;
+}
+.item-summary {
+    font: 1em inherit;
+    padding: 10px 10px;
+    margin: 10px 10px;
+}
+
+.item-detail {
+    font-size: 1em;
+    /*background-color: green;*/
+}
+
+
+/* Sidebar */
+.left-sidebar {
+   float: left; 
+   width: 206px;
+}
+
+/* page titles */
+hgroup.title {
+    margin-bottom: 10px;
+}
+
+hgroup.title h1, hgroup.title h2 {
+    display: inline;
+}
+
+hgroup.title h2 {
+    font-weight: normal;
+    margin-left: 3px;
+}
+
+/* features */
+section.feature {
+    width: 300px;
+    float: left;
+    padding: 10px;
+}

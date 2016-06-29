@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MySite.master.cs" Inherits="One.Login.MySite" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Form Authentication</title>
+    <%--<link href="~/"/>--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="wrapper">
+        <form id="form1" runat="server">
+            <div id="header">
+                <span class="title">User Account Tutorial</span>
+            </div>
+            
+            
+            <div id="navigation" style="float: left; width: 300px; height: 500px; background-color: lightsteelblue;">
+                
+                <asp:ContentPlaceHolder runat="server" ID="LoginContent">
+                    
+                     <asp:LoginStatus ID="LoginStatus1" runat="server"
+                          LoginText="I want to be authorized."
+                        LogoutText="I want to be out of this."
+                         LogoutAction="Redirect"
+                         LogoutPageUrl="~/Login/Logout.aspx"
+                         
+                    />
+                    <br/><br/>
+                    <asp:LoginView ID="LoginView1" runat="server">
+                        <AnonymousTemplate>
+                            Hello stranger!
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Login/Login.aspx">Login</asp:HyperLink>
+                        </AnonymousTemplate>
+
+                        <LoggedInTemplate>
+                            WelcomeBacklkdsjlf
+                            <asp:LoginName ID="LoginName1" runat="server" />
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                    <br/> <br/>
+                </asp:ContentPlaceHolder>
+                TODO: Menu will go here
+               
+            </div>
+            <div id="content" style="float: left;">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    <!--Page specifice content will go here-->
+                    Hello
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

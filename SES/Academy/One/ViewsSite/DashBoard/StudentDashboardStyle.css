@@ -1,0 +1,22 @@
+﻿body {
+}
+/*.item-heading {
+    display: block;
+    background-color: #e9967a;
+    border: solid 1px #f0f0b0;
+}*/
+
+/*.item-heading :hover {
+    background-color: #bfbfbf;
+    border-bottom: 2px solid black;
+}*/
+
+.item-message :hover {
+    display: block;
+    background-color: #b0c4de;
+}
+
+.item-detail select {
+    background-color: #b0e0e6;
+}
+

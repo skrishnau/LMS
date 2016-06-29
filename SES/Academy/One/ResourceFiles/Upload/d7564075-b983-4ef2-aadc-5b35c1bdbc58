@@ -1,0 +1,213 @@
+
+
+	DECLARE @FROM_DATE DATE ='2015/7/17'
+	DECLARE @TO_DATE DATE ='2016/2/17'
+	declare  @WithTotal bit = 1
+
+	DECLARE @TYPE VARCHAR(20)='POS'
+	--DECLARE @TYPE VARCHAR(20)='LAUNDRY'
+	--DECLARE @TYPE VARCHAR(20)='Tariff and Plan'
+	--DECLARE @TYPE VARCHAR(20)='Others'
+
+    DECLARE @outletName nvarchar(100)='the cafe garden'
+
+		 --DECLARE @DATE_FILTER_TYPE nvarchar(100)='ACC_DATE'
+   DECLARE @DATE_FILTER_TYPE nvarchar(100)='TRNS_DATE'
+
+	DECLARE @RESULT TABLE(
+                                FISCAL_yEAR VARCHAR(100)
+                                ,DATE VARCHAR(50)
+                                ,ACC_DATE VARCHAR(50)
+								, INVOICENO VARCHAR(50) DEFAULT ''
+								, BUYERNAME NVARCHAR(100) DEFAULT ''
+								,TPIN VARCHAR(20) DEFAULT ''
+								, TOTALAMT VARCHAR(20) DEFAULT ''
+								, SALES VARCHAR(20) DEFAULT ''
+								, SC VARCHAR(20) DEFAULT ''
+								, VATABLE VARCHAR(20) DEFAULT ''
+								,VAT VARCHAR(20) DEFAULT ''
+								,DISCOUNT NVARCHAR(20) DEFAULT ''
+                                 ,refId BIGINT DEFAULT 0
+
+                                ,Is_printed NVARCHAR(10)
+                                ,Is_Active NVARCHAR(10)
+                                ,Printed_Time VARCHAR(50)
+                                ,Entered_by NVARCHAR(100)
+                                ,Printed_by NVARCHAR(100)
+
+								,bold bit default 0 
+								,TransactionRefId BIGINT DEFAULT 0
+								)
+	DECLARE @RESULT_TEMP TABLE(DATE VARCHAR(50)
+                                ,ACC_DATE VARCHAR(50)
+								, INVOICENO VARCHAR(50) DEFAULT ''
+								, BUYERNAME NVARCHAR(100) DEFAULT ''
+								,TPIN VARCHAR(20) DEFAULT ''
+								, TOTALAMT NUMERIC(18,4) DEFAULT 0
+								, SALES NUMERIC(18,4)
+								, SC NUMERIC(18,4)
+								, VATABLE NUMERIC(18,4) DEFAULT 0
+								,VAT NUMERIC(18,4)
+								,DISCOUNT  NUMERIC(18,4) DEFAULT 0
+								,EXCH_RATE NUMERIC(18,4) DEFAULT 1
+								,bold bit default 0
+								,filter NUMERIC(18,4) DEFAULT 0
+                                ,refId BIGINT DEFAULT 0
+                                
+
+                               --  ,Is_printed NVARCHAR(10)
+                                ,Is_Active NVARCHAR(10)
+                                --,Printed_Time VARCHAR(50)
+                                ,Entered_by NVARCHAR(100)
+                                --,Printed_by NVARCHAR(100)
+                                ,TransactionRefId BIGINT DEFAULT 0
+								 )
+	DECLARE @RESULT_TEMP_ORDER TABLE(DATE VARCHAR(50)
+                                ,ACC_DATE VARCHAR(50)
+								, INVOICENO VARCHAR(50) DEFAULT ''
+								, BUYERNAME NVARCHAR(100) DEFAULT ''
+								,TPIN VARCHAR(20) DEFAULT ''
+								, TOTALAMT NUMERIC(18,4) DEFAULT 0
+								, SALES NUMERIC(18,4)
+								, SC NUMERIC(18,4)
+								, VATABLE NUMERIC(18,4) DEFAULT 0
+								,VAT NUMERIC(18,4)
+								,DISCOUNT  NUMERIC(18,4) DEFAULT 0
+								,EXCH_RATE NUMERIC(18,4) DEFAULT 1
+								,bold bit default 0
+								,filter NUMERIC(18,4) DEFAULT 0
+                                ,refId BIGINT DEFAULT 0
+                                 
+
+                               --  ,Is_printed NVARCHAR(10)
+                                ,Is_Active NVARCHAR(10)
+                                --,Printed_Time VARCHAR(50)
+                                ,Entered_by NVARCHAR(100)
+                                --,Printed_by NVARCHAR(100)
+                                ,TransactionRefId BIGINT DEFAULT 0
+								 )
+	DECLARE @RESULT_TEMP_noVoid TABLE(DATE VARCHAR(50)
+                                ,ACC_DATE VARCHAR(50)
+								, INVOICENO VARCHAR(50) DEFAULT ''
+								, BUYERNAME NVARCHAR(100) DEFAULT ''
+								,TPIN VARCHAR(20) DEFAULT ''
+								, TOTALAMT NUMERIC(18,4) DEFAULT 0
+								, SALES NUMERIC(18,4)
+								, SC NUMERIC(18,4)
+								, VATABLE NUMERIC(18,4) DEFAULT 0
+								,VAT NUMERIC(18,4)
+								,DISCOUNT  NUMERIC(18,4) DEFAULT 0
+								,EXCH_RATE NUMERIC(18,4) DEFAULT 1
+								,bold bit default 0
+								,filter NUMERIC(18,4) DEFAULT 0
+                                ,refId BIGINT DEFAULT 0
+
+                               --  ,Is_printed NVARCHAR(10)
+                                ,Is_Active NVARCHAR(10)
+                                --,Printed_Time VARCHAR(50)
+                                ,Entered_by NVARCHAR(100)
+                                --,Printed_by NVARCHAR(100)
+                                ,TransactionRefId BIGINT DEFAULT 0
+								 )
+	DECLARE @TEMP_TABLE TABLE(
+        DATE VARCHAR(20) DEFAULT ''
+        ,RECEIPT VARCHAR(50)DEFAULT ''
+        , SALES NUMERIC(18,4)DEFAULT 0
+        ,SC NUMERIC(18,4)DEFAULT 0
+        ,VAT NUMERIC(18,4)DEFAULT 0 
+        , DSC NUMERIC(18,4) DEFAULT 0
+      
+    )
+
+		BEGIN --MINIBAR
+			SELECT 
+			CONVERT(DATE,   bill.mb_bill_date) DATE  
+			--,CONVERT(DATE,  ACC_TRANS.TransactionDate ) ACC_DATE
+			,bill.mb_bill_billno 
+			--,GST.GUEST_TITLE +' ' + GUEST_NAME  + ISNULL(GST.GUEST_MID_NAME,'') + ISNULL( GST.GUEST_MID_NAME,'') GUESTNAME
+			--,case when isnull(bill.mb_bill_is_void,0) =0 then 
+			--	post.post_chrg_amt
+			--	else 0 end	
+			--,ISNULL( (SELECT 
+			--	(CASE WHEN ISNULL(TX.TAXTN_PERCTG ,0)=0  THEN TX.TAXTN_CHRGAMT ELSE TX.TAXTN_CHRGAMT/100 * POST.POST_CHRG_AMT END )
+			--	FROM FO_POSTING_TAXATION TX
+			--	INNER JOIN G_TAX_SLAB TXITEM ON TX.TAXTN_SERV_ID = TXITEM.TAX_SLAB_ID
+			--	WHERE TXITEM.TAX_SLAB_CODE ='SC' AND TX.TAXTN_POSTIN_ID = POST.POSTING_ID),0) SC
+			--,ISNULL((SELECT 
+			--	(CASE WHEN ISNULL(TX.TAXTN_PERCTG ,0)=0  THEN TX.TAXTN_CHRGAMT ELSE TX.TAXTN_CHRGAMT/100 * POST.POST_CHRG_AMT END )
+			--	FROM FO_POSTING_TAXATION TX
+			--	INNER JOIN G_TAX_SLAB TXITEM ON TX.TAXTN_SERV_ID = TXITEM.TAX_SLAB_ID
+			--	WHERE TXITEM.TAX_SLAB_CODE ='VAT' AND TX.TAXTN_POSTIN_ID = POST.POSTING_ID),0 )VAT
+			--,ISNULL( COMP.COMPANY_PAN,'') Comp
+			--,ISNULL( POST.POST_CURR_EXHC_RATE,1) exch
+			--,CAST(SUBSTRING( bill.mb_bill_billno,(select len(doc_prefix)from g_docnumbering where doc_type = 'Minibar_Bill')+1,len( bill.mb_bill_billno)) AS integer)
+   --         ,CASE WHEN ISNULL(bill.mb_bill_is_void,0)=0 THEN 'YES' ELSE 'NO' END
+   --         ,USR.UserName
+   --         , bill.mb_bill_id 
+   --         ,ACC_TRANS.TransactionId
+			
+			FROM fo_hk_mb_bill  bill
+			
+			left JOIN  FO_POSTING POST  ON POST_TYPE = 'REVENUE' AND POST_SUB_TYPE = 'MINIBAR' --con.hk_Inv_con_id = POST.POST_REF_ID and 
+            left  JOIN FO_POSTING POST_SETT ON POST.post_bill_no = POST_SETT.POST_BILL_NO AND (POST_SETT.POST_TYPE = 'AMOUNTCOLLECTION'  and  POST_SETT.POST_SUB_TYPE='CHECKOUTPAYMENT')
+		 --  left  JOIN dbo.[Transaction] ACC_TRANS ON  ACC_TRANS.RefId = POST_SETT.posting_id AND (ACC_TRANS.RefSource = 'CHKOTPMT_SETT' OR ACC_TRANS.RefSource = 'BILLTOCMP_SETT')
+			--LEFT JOIN FO_FOLIO_MASTER FOLIO ON (FOLIO.FOLIO_TYPE='GuestFolio' AND FOLIO.FOLIO_ID = POST.POST_FOLIO_ID)
+			--left JOIN FO_RESV_GUEST_RESERVATION_DETAIL GST_RESV ON Folio.folio_gst_id = GST_RESV.RESV_GUEST_ID
+			--left JOIN FO_G_GUEST GST ON GST_RESV.GUEST_ID=GST.GUEST_ID
+			--LEFT JOIN AR_G_COMPANY COMP ON FOLIO.FOLIO_CMP_ID = COMP.COMPANY_ID
+			--LEFT JOIN dbo.Prl_Employee EMP ON EMP.Id = bill.mb_bill_userid
+   --         LEFT JOIN dbo.aspnet_Users USR ON EMP.user_id = USR.UserId
+        --    WHERE 
+        --(
+        --( @DATE_FILTER_TYPE = 'TRNS_DATE' AND  CONVERT(DATE,bill.mb_bill_date) BETWEEN @FROM_DATE AND @TO_DATE)
+        --OR ( @DATE_FILTER_TYPE = 'ACC_DATE' AND CONVERT(DATE,ACC_TRANS.TransactionDate) BETWEEN @FROM_DATE AND @TO_DATE)
+        --)
+		END --MINIBAR
+
+
+--IF(@TYPE ='LAUNDRY')					
+	BEGIN --LAUNDRY
+
+		--INSERT INTO @RESULT_TEMP (DATE,ACC_DATE,INVOICENO,BUYERNAME,SALES,SC,VAT,TPIN,EXCH_RATE,filter,Is_Active,Entered_by,refId,TransactionRefId)
+		SELECT 
+			CONVERT(DATE,  LAUN.laun_TransactionDate ) DATE
+			,CONVERT(DATE,  ACC_TRANS.TransactionDate ) ACC_DATE
+			, LAUN.LAUN_BILL_NO 
+			,GST.GUEST_TITLE +' ' + GUEST_NAME  + ISNULL(GST.GUEST_MID_NAME,'') + ISNULL( GST.GUEST_MID_NAME,'') GUESTNAME
+			,case when isnull(LAUN.laun_void,0) = 0 THEN 
+            LAUN.laun_total_amount -
+			CONVERT(numeric(18,2),  round(case when  isnull(LAUN.laun_discount_isPer,0)=1 then isnull(LAUN.laun_discount,0)/100*LAUN.laun_total_amount else isnull( LAUN.laun_discount,0) end,2)) 
+            ELSE 0 END 
+			,ISNULL( (SELECT 
+				(CASE WHEN ISNULL(TX.TAXTN_PERCTG ,0)=0  THEN TX.TAXTN_CHRGAMT ELSE TX.TAXTN_CHRGAMT/100 * POST.POST_CHRG_AMT END )
+				FROM FO_POSTING_TAXATION TX
+				INNER JOIN G_TAX_SLAB TXITEM ON TX.TAXTN_SERV_ID = TXITEM.TAX_SLAB_ID
+				WHERE TXITEM.TAX_SLAB_CODE ='SC' AND TX.TAXTN_POSTIN_ID = POST.POSTING_ID),0) SC
+			,ISNULL((SELECT 
+				(CASE WHEN ISNULL(TX.TAXTN_PERCTG ,0)=0  THEN TX.TAXTN_CHRGAMT ELSE TX.TAXTN_CHRGAMT/100 * POST.POST_CHRG_AMT END )
+				FROM FO_POSTING_TAXATION TX
+				INNER JOIN G_TAX_SLAB TXITEM ON TX.TAXTN_SERV_ID = TXITEM.TAX_SLAB_ID
+				WHERE TXITEM.TAX_SLAB_CODE ='VAT' AND TX.TAXTN_POSTIN_ID = POST.POSTING_ID),0 )VAT
+			,ISNULL( COMP.COMPANY_PAN,'')
+			,ISNULL( POST.POST_CURR_EXHC_RATE,1)
+			,CAST(SUBSTRING( LAUN.LAUN_BILL_NO,(select len(doc_prefix)from g_docnumbering where doc_type = 'Laundry_Bill')+1,len( LAUN.LAUN_BILL_NO)) AS integer)
+            ,CASE WHEN ISNULL(LAUN.laun_void,0)=0 THEN 'YES' ELSE 'NO' END
+            ,USR.UserName
+            ,LAUN.laun_serviceTransID
+            ,ACC_TRANS.TransactionId
+		FROM FO_G_LAUN_SERVICETRANSACTIONMASTER LAUN
+			left JOIN  FO_POSTING POST  ON LAUN.LAUN_SERVICETRANSID = POST.POST_REF_ID and POST_TYPE = 'REVENUE' AND POST_SUB_TYPE = 'LAUNDRY' 
+            left  JOIN FO_POSTING POST_SETT ON POST.post_bill_no = POST_SETT.POST_BILL_NO AND (POST_SETT.POST_TYPE = 'AMOUNTCOLLECTION'  and  POST_SETT.POST_SUB_TYPE='CHECKOUTPAYMENT')
+		    left  JOIN dbo.[Transaction] ACC_TRANS ON  ACC_TRANS.RefId = POST_SETT.posting_id AND (ACC_TRANS.RefSource = 'CHKOTPMT_SETT' OR ACC_TRANS.RefSource = 'BILLTOCMP_SETT')
+			left JOIN FO_RESV_GUEST_RESERVATION_DETAIL GST_RESV ON LAUN.LAU_RESV_GUEST_ID = GST_RESV.RESV_GUEST_ID
+			left JOIN FO_G_GUEST GST ON GST_RESV.GUEST_ID=GST.GUEST_ID
+			LEFT JOIN FO_FOLIO_MASTER FOLIO ON (FOLIO.FOLIO_TYPE='COMPANYFOLIO' AND FOLIO.FOLIO_ID = POST.POST_FOLIO_ID)
+			LEFT JOIN AR_G_COMPANY COMP ON FOLIO.FOLIO_CMP_ID = COMP.COMPANY_ID
+            LEFT JOIN dbo.Prl_Employee EMP ON EMP.Id = LAUN.create_user
+            LEFT JOIN dbo.aspnet_Users USR ON EMP.user_id = USR.UserId
+		WHERE 
+        (
+        ( @DATE_FILTER_TYPE = 'TRNS_DATE' AND  CONVERT(DATE,LAUN.laun_TransactionDate ) BETWEEN @FROM_DATE AND @TO_DATE)
+        OR ( @DATE_FILTER_TYPE = 'ACC_DATE' AND CONVERT(DATE,ACC_TRANS.TransactionDate) BETWEEN @FROM_DATE AND @TO_DATE)
+        )
+	END

@@ -1,0 +1,1868 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{60D4D407-AF5C-4FC5-B25B-23DCCFDB8BEA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>One</RootNamespace>
+    <AssemblyName>One</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.7.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.20\lib\net45\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.0\lib\net45\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\CSSes\All.css" />
+    <Content Include="Content\CSSes\StudentMaster.css" />
+    <Content Include="Content\Icons\Action\action-do.png" />
+    <Content Include="Content\Icons\Action\action-undo.png" />
+    <Content Include="Content\Icons\Action\assign.png" />
+    <Content Include="Content\Icons\Action\backward.png" />
+    <Content Include="Content\Icons\Action\forward.png" />
+    <Content Include="Content\Icons\AddEditDelete\add.ico" />
+    <Content Include="Content\Icons\AddEditDelete\add_small.png" />
+    <Content Include="Content\Icons\AddEditDelete\delete-13.ico" />
+    <Content Include="Content\Icons\AddEditDelete\delete-history.png" />
+    <Content Include="Content\Icons\AddEditDelete\delete.ico" />
+    <Content Include="Content\Icons\AddEditDelete\delete.png" />
+    <Content Include="Content\Icons\AddEditDelete\document_add.png" />
+    <Content Include="Content\Icons\AddEditDelete\document_edit.png" />
+    <Content Include="Content\Icons\AddEditDelete\edit.png" />
+    <Content Include="Content\Icons\AddEditDelete\edit1.png" />
+    <Content Include="Content\Icons\AddEditDelete\edit_3.png" />
+    <Content Include="Content\Icons\AddEditDelete\file_edit_kashan.png" />
+    <Content Include="Content\Icons\AddEditDelete\images.png" />
+    <Content Include="Content\Icons\AddEditDelete\order_form_online_offer-128.png" />
+    <Content Include="Content\Icons\Add\Add-icon.png" />
+    <Content Include="Content\Icons\Add\add_bevel.png" />
+    <Content Include="Content\Icons\Arrow\arrow_down.png" />
+    <Content Include="Content\Icons\Arrow\arrow_left.png" />
+    <Content Include="Content\Icons\Arrow\arrow_right.png" />
+    <Content Include="Content\Icons\astreeview-node.gif" />
+    <Content Include="Content\Icons\calendar_image.png" />
+    <Content Include="Content\Icons\Close\dialog_close.png" />
+    <Content Include="Content\Icons\delete\trash.gif" />
+    <Content Include="Content\Icons\Done_Save\basic-save.png" />
+    <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
+    <Content Include="Content\Icons\Indent\circle_dot.png" />
+    <Content Include="Content\Icons\Indent\square_dot.png" />
+    <Content Include="Content\Icons\Participation\degree_icon.jpg" />
+    <Content Include="Content\Icons\Participation\in.png" />
+    <Content Include="Content\Icons\Participation\out.png" />
+    <Content Include="Content\Icons\plus.png" />
+    <Content Include="Content\Icons\plus2.png" />
+    <Content Include="Content\Icons\Refresh\refresh.png" />
+    <Content Include="Content\Icons\req.gif" />
+    <Content Include="Content\Icons\req.jpg" />
+    <Content Include="Content\Icons\req.png" />
+    <Content Include="Content\Icons\Search\search2.png" />
+    <Content Include="Content\Icons\setting_1.png" />
+    <Content Include="Content\Icons\Star\star_red.png" />
+    <Content Include="Content\Icons\Users\40x40\group.png" />
+    <Content Include="Content\Icons\Users\40x40\single.png" />
+    <Content Include="Content\Icons\Users\single.png" />
+    <Content Include="Content\Icons\Users\users-icon.png" />
+    <Content Include="Content\Images\company-logo.jpg" />
+    <Content Include="Content\PickADay\css\pikaday.css" />
+    <Content Include="Content\PickADay\css\site.css" />
+    <Content Include="Content\PickADay\css\theme.css" />
+    <Content Include="Content\PickADay\css\triangle.css" />
+    <Content Include="Content\PickADay\pikaday.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Course\Index.aspx" />
+    <Content Include="Course\List.aspx" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Login\default.aspx" />
+    <Content Include="Login\Login.aspx" />
+    <Content Include="Login\Logout.aspx" />
+    <Content Include="packages.config" />
+    <Content Include="Login\MySite.Master" />
+    <Content Include="ResourceFiles\Upload\205c5abc-a6fa-4245-ba8a-dbb52ad46ddf" />
+    <Content Include="ResourceFiles\Upload\2af02c8e-e305-4b1a-8409-fff20152fc95" />
+    <Content Include="ResourceFiles\Upload\d7564075-b983-4ef2-aadc-5b35c1bdbc58" />
+    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="ResourceFiles\Upload\.jpg" />
+    <Content Include="ResourceFiles\Upload\.png" />
+    <Content Include="ResourceFiles\Upload\08f83118-ade5-42fa-be7b-1b8ef909f38e.jpg" />
+    <Content Include="ResourceFiles\Upload\17b3b867-6532-44ca-b092-9a1cb9e11d1dlast_update_4.sql" />
+    <Content Include="ResourceFiles\Upload\4487e572-c0cc-45e3-836f-059f6449a902.jpg" />
+    <Content Include="ResourceFiles\Upload\50b20f2e-ef03-43c0-9be5-e797051b870b.jpg" />
+    <Content Include="ResourceFiles\Upload\526eefa6-2a9f-4471-a61d-d3f32f24be2e.jpg" />
+    <Content Include="ResourceFiles\Upload\78633816-5122-4679-8b3b-f8026d6a1684.jpg" />
+    <Content Include="ResourceFiles\Upload\cc255a82-11c3-4f42-bd52-ed8d94613f45.jpg" />
+    <Content Include="ResourceFiles\Upload\d778ad7b-48b4-4daa-ba55-e10ce5692e66.jpg" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\WorkingJquery\jquery-1.10.2.js" />
+    <Content Include="Scripts\WorkingJquery\jquery-ui.css" />
+    <Content Include="Scripts\WorkingJquery\jquery-ui.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ViewsSite\Account\Login.aspx" />
+    <Content Include="ViewsSite\DashBoard\StudentDashboardStyle.css" />
+    <Content Include="ViewsSite\DashBoard\Student\CourseOverView\LstUc.ascx" />
+    <Content Include="ViewsSite\DashBoard\Student\CourseOverView\CourseMessageUC.ascx" />
+    <Content Include="ViewsSite\DashBoard\Student\CourseOverView\CourseUc.ascx" />
+    <Content Include="ViewsSite\DashBoard\Student\CourseSection\CourseSectionListing.aspx" />
+    <Content Include="ViewsSite\DashBoard\Student\Dashboard.aspx" />
+    <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\CourseMessageUC.ascx" />
+    <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\ItemUc.ascx" />
+    <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\JoinedLstUc.ascx" />
+    <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\UnjoinedListUc.ascx" />
+    <Content Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCourses.aspx" />
+    <Content Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCoursesUc.ascx" />
+    <Content Include="ViewsSite\Default.aspx" />
+    <Content Include="ViewsSite\UserControls\LeftSideBar.ascx" />
+    <Content Include="ViewsSite\UserControls\ListItemUC.ascx" />
+    <Content Include="ViewsSite\User\Dashboard\Dashboard.aspx" />
+    <Content Include="ViewsSite\User\ModulesUc\CoursesUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\EarlierUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\EventsUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\FilesUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\NewsUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\NoticeBoardUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\SettingsUc.ascx" />
+    <Content Include="ViewsSite\User\UserStyles.css" />
+    <Content Include="Views\AcademicPlacement\Master\List.aspx" />
+    <Content Include="Views\AcademicPlacement\Master\ListingUserControls\TreeNodeUC.ascx" />
+    <Content Include="Views\AcademicPlacement\Master\ListingUserControls\TreeViewUC.ascx" />
+    <Content Include="Views\AcademicPlacement\RunningClass\AddClasses\AddClasses.aspx" />
+    <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeNodeUC.ascx" />
+    <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeViewUC.ascx" />
+    <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\WebForm1.aspx" />
+    <Content Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx" />
+    <Content Include="Views\AcademicPlacement\StudentClass\SingleStudentEntry.ascx" />
+    <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx" />
+    <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChooseUc.ascx" />
+    <Content Include="Views\Course\ActivityAndResource\Chooseer\AutoCloseSolution.aspx" />
+    <Content Include="Views\Course\ActivityAndResource\Chooseer\ChooserJQueryTest.aspx" />
+    <Content Include="Views\Course\ActivityAndResource\Chooseer\ChooseTypesUc.ascx" />
+    <Content Include="Views\Course\ActivityAndResource\Chooseer\CopyPaste.aspx" />
+    <Content Include="Views\Course\ActivityAndResource\Chooseer\test2.aspx" />
+    <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignmentUc.ascx" />
+    <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignWF.aspx" />
+    <Content Include="Views\Course\CourseCreate\CreateCourse.aspx" />
+    <Content Include="Views\Course\ListingMain\CourseMain\ListItemUc.ascx" />
+    <Content Include="Views\Course\ListingMain\CourseMain\ListSubjectGroup.aspx" />
+    <Content Include="Views\Course\ListingMain\CourseMain\ListUc.ascx" />
+    <Content Include="Views\Course\ListingMain\CourseMain\NewGroup.aspx" />
+    <Content Include="Views\Course\CourseCreate\CourseCreateUc.ascx" />
+    <Content Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListItemUc.ascx" />
+    <Content Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListUc.ascx" />
+    <Content Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\RegularCourseListing.aspx" />
+    <Content Include="Views\Course\ListingMain\CoursesOfGroup\CoursesOfGroupListing.aspx" />
+    <Content Include="Views\Course\ListingMain\CoursesOfGroup\ListUc.ascx" />
+    <Content Include="Views\Course\Section\Master\CourseSectionListing.aspx" />
+    <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx" />
+    <Content Include="Views\NoticeBoard\CreateUc.ascx" />
+    <Content Include="Views\NoticeBoard\ListUc.ascx" />
+    <Content Include="Views\NoticeBoard\WebForm1.aspx" />
+    <Content Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx" />
+    <Content Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx" />
+    <Content Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx" />
+    <Content Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeViewUc.ascx" />
+    <Content Include="Views\Student\Batch\StudentDisplay\Students\ListOfStudents.aspx" />
+    <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentCreate\StudentCreate.aspx" />
+    <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentCreate\StudentCreateUc.ascx" />
+    <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentListUc.ascx" />
+    <Content Include="Views\Student\Batch\StudentEntries\StudentEntr.ascx" />
+    <Content Include="Views\Academy\AcademicYear\Create.aspx" />
+    <Content Include="Views\Academy\List.aspx" />
+    <Content Include="Views\Academy\Session\Create.aspx" />
+    <Content Include="Views\Academy\Session\CreateUC.ascx" />
+    <Content Include="Views\Account\Login.aspx" />
+    <Content Include="Views\Activity\List.aspx" />
+    <Content Include="Views\Activity\Teach\Create.ascx" />
+    <Content Include="Views\Activity\Teach\TeachCreate.aspx" />
+    <Content Include="Views\Course\ActivityAndResource\CreateActNResUc.ascx" />
+    <Content Include="Views\Course\ActivityAndResource\CreteActNRes.aspx" />
+    <Content Include="Views\Course\Category\Create.ascx" />
+    <Content Include="Views\Course\Category\Create.aspx" />
+    <Content Include="Views\Course\Category\List.aspx" />
+    <Content Include="Views\Course\CourseEntryForm.aspx" />
+    <Content Include="Views\Course\CourseGroup\GroupUc.ascx" />
+    <Content Include="Views\Course\Display\CourseDetails.aspx" />
+    <Content Include="Views\Course\Display\CourseList\CourseList.aspx" />
+    <Content Include="Views\Course\Display\EachCourse\CourseDetailUc.ascx" />
+    <Content Include="Views\Course\List.aspx" />
+    <Content Include="Views\Course\Section\ActivityAndResourceUc.ascx" />
+    <Content Include="Views\Course\Section\CreateSection.aspx" />
+    <Content Include="Views\Course\Section\CreateSectionUc.ascx" />
+    <Content Include="Views\Course\Section\Master\Section.aspx" />
+    <Content Include="Views\Course\Section\Master\test_uc_delete_on_unused.ascx" />
+    <Content Include="Views\Course\Section\SectionUc.ascx" />
+    <Content Include="Views\Course\Section\Test_For_Server_.aspx" />
+    <Content Include="Views\CreatedUser\Create.aspx" />
+    <Content Include="Views\CreateUC.ascx" />
+    <Content Include="Views\Dashboard.aspx" />
+    <Content Include="Views\Exam\Create.aspx" />
+    <Content Include="Views\Exam\Exam\Create\Assign_Class_Teacher_Student.ascx" />
+    <Content Include="Views\Exam\Exam\Create\CreateExamUc.ascx" />
+    <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeNodeUC.ascx" />
+    <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeViewUC.ascx" />
+    <Content Include="Views\Exam\Exam\ExamList\ItemsOfListUc.ascx" />
+    <Content Include="Views\Exam\Exam\ExamList\ListUc.ascx" />
+    <Content Include="Views\Exam\Exam\Master\CreateExam.aspx" />
+    <Content Include="Views\Exam\Exam\Master\ListExams.aspx" />
+    <Content Include="Views\Office\Institution\Create.aspx" />
+    <Content Include="Views\Office\School\Create.aspx" />
+    <Content Include="Views\Office\School\Dashboard.aspx" />
+    <Content Include="Views\Office\School\SchoolTypeUC.ascx" />
+    <Content Include="Views\Resource\ResourceCreate.ascx" />
+    <Content Include="Views\Role\Assign.ascx" />
+    <Content Include="Views\Role\Assign.aspx" />
+    <Content Include="Views\Role\Create.ascx" />
+    <Content Include="Views\Role\Create.aspx" />
+    <Content Include="Views\Role\Dashboard.aspx" />
+    <Content Include="Views\Role\Delete.ascx" />
+    <Content Include="Views\Structure\All\Create.aspx" />
+    <Content Include="Views\Structure\All\Master\List.aspx" />
+    <Content Include="Views\Structure\All\UserControls\CreateUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\FacultyCreateUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\LevelCreate.ascx" />
+    <Content Include="Views\Structure\All\UserControls\ProgramCreateUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\SubYearCreateUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\YearCreateUC.ascx" />
+    <Content Include="Views\Structure\Faculty\Create.aspx" />
+    <Content Include="Views\Structure\Level\Create.aspx" />
+    <Content Include="Views\Structure\Program\Create.aspx" />
+    <Content Include="Views\Structure\Section\Create.aspx" />
+    <Content Include="Views\Structure\Year\Create.aspx" />
+    <Content Include="Views\Student\Batch\AddProgramsTreeNodes\TreeNodeUC.ascx" />
+    <Content Include="Views\Student\Batch\AddProgramsTreeNodes\TreeViewUC.ascx" />
+    <Content Include="Views\Student\Batch\BatchDetail\Detail.aspx" />
+    <Content Include="Views\Student\Batch\BatchDetail\DetailUc.ascx" />
+    <Content Include="Views\Student\Batch\Create\AddProgramsUc.ascx" />
+    <Content Include="Views\Student\Batch\Create\BatchCreate.aspx" />
+    <Content Include="Views\Student\Batch\Create\CreateBatchUc.ascx" />
+    <Content Include="Views\Student\Batch\List\ItemUc.ascx" />
+    <Content Include="Views\Student\Batch\List\listUc.ascx" />
+    <Content Include="Views\Student\Batch\StudentEntries\StudentGroupAssignUC.ascx" />
+    <Content Include="Views\Student\Create\Student.aspx" />
+    <Content Include="Views\Student\Create\StudentCreateUc.ascx" />
+    <Content Include="Views\Student\Create\StudentGroup.aspx" />
+    <Content Include="Views\Student\Create\StudentGroupUc.ascx" />
+    <Content Include="Views\Student\Batch\ListBatch.aspx" />
+    <Content Include="Views\Student\StudentGroupAssignUC.ascx" />
+    <Content Include="Views\Student\StudentGroup\EachGroupDetail\DetailUc.ascx" />
+    <Content Include="Views\Student\StudentGroup\GroupAssign.aspx" />
+    <Content Include="Views\Student\StudentGroup\List.aspx" />
+    <Content Include="Views\Student\StudentGroup\Listing\ListItemUc.ascx" />
+    <Content Include="Views\Student\StudentGroup\Listing\ListUc.ascx" />
+    <Content Include="Views\Student\StudentList.aspx" />
+    <Content Include="Views\Student\StudentStructure\SingleStudentAssignUC.ascx" />
+    <Content Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx" />
+    <Content Include="Views\Test\RedirectToAnotherSoln.aspx" />
+    <Content Include="Views\UserControls\DateChooser.ascx" />
+    <Content Include="Views\UserControls\ReqImageUC.ascx" />
+    <Content Include="Views\UserControls\Structure\StructureSelection.ascx" />
+    <Content Include="Views\UserControls\Structure\TreeViewOverriden\TreeView.aspx" />
+    <Content Include="Views\UserControls\Structure\TreeViewOverriden\TreeViewUc.ascx" />
+    <Content Include="Views\UserControls\TreeTest\ThreButtonColorful\NodeUc.ascx" />
+    <Content Include="Views\UserControls\TreeTest\ThreButtonColorful\ThreeButtonTest.aspx" />
+    <Content Include="Views\User\Create.aspx" />
+    <Content Include="Views\User\List.aspx" />
+    <Content Include="Views\User\UserCreateUC.ascx" />
+    <Content Include="Web.config" />
+    <Content Include="Bundle.config" />
+    <Content Include="ViewsSite\UserSite.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesAndFunctions\WorkingWithFiles.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Course\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Course\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Course\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Course\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\MySite.Master.cs">
+      <DependentUpon>MySite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\MySite.Master.designer.cs">
+      <DependentUpon>MySite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Values\Classes.cs" />
+    <Compile Include="Values\DateTime.cs" />
+    <Compile Include="Values\Enums.cs" />
+    <Compile Include="Values\MemberShip\CustomMembershipUser.cs" />
+    <Compile Include="Values\MemberShip\CustomPrincipal.cs" />
+    <Compile Include="Values\MemberShip\OdbcMembershipUser.cs" />
+    <Compile Include="Values\Paths.cs" />
+    <Compile Include="Values\Session.cs" />
+    <Compile Include="Values\StaticValues.cs" />
+    <Compile Include="ViewsSite\Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\CourseOverView\LstUc.ascx.cs">
+      <DependentUpon>LstUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\CourseOverView\LstUc.ascx.designer.cs">
+      <DependentUpon>LstUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\CourseOverView\CourseMessageUC.ascx.cs">
+      <DependentUpon>CourseMessageUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\CourseOverView\CourseMessageUC.ascx.designer.cs">
+      <DependentUpon>CourseMessageUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\CourseOverView\CourseUc.ascx.cs">
+      <DependentUpon>CourseUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\CourseOverView\CourseUc.ascx.designer.cs">
+      <DependentUpon>CourseUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\CourseSection\CourseSectionListing.aspx.cs">
+      <DependentUpon>CourseSectionListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\CourseSection\CourseSectionListing.aspx.designer.cs">
+      <DependentUpon>CourseSectionListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\StudentMaster.Master.cs">
+      <DependentUpon>StudentMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\StudentMaster.Master.designer.cs">
+      <DependentUpon>StudentMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\CourseMessageUC.ascx.cs">
+      <DependentUpon>CourseMessageUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\CourseMessageUC.ascx.designer.cs">
+      <DependentUpon>CourseMessageUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\ItemUc.ascx.cs">
+      <DependentUpon>ItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\ItemUc.ascx.designer.cs">
+      <DependentUpon>ItemUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\JoinedLstUc.ascx.cs">
+      <DependentUpon>JoinedLstUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\JoinedLstUc.ascx.designer.cs">
+      <DependentUpon>JoinedLstUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\UnjoinedListUc.ascx.cs">
+      <DependentUpon>UnjoinedListUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\UnjoinedListUc.ascx.designer.cs">
+      <DependentUpon>UnjoinedListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCourses.aspx.cs">
+      <DependentUpon>UnjoinedCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCourses.aspx.designer.cs">
+      <DependentUpon>UnjoinedCourses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCoursesUc.ascx.cs">
+      <DependentUpon>UnjoinedCoursesUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCoursesUc.ascx.designer.cs">
+      <DependentUpon>UnjoinedCoursesUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\DefaultSite.Master.cs">
+      <DependentUpon>DefaultSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\DefaultSite.Master.designer.cs">
+      <DependentUpon>DefaultSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\Teacher\TeacherMaster.Master.cs">
+      <DependentUpon>TeacherMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\Teacher\TeacherMaster.Master.designer.cs">
+      <DependentUpon>TeacherMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\UserControls\LeftSideBar.ascx.cs">
+      <DependentUpon>LeftSideBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\UserControls\LeftSideBar.ascx.designer.cs">
+      <DependentUpon>LeftSideBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\UserControls\ListItemUC.ascx.cs">
+      <DependentUpon>ListItemUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\UserControls\ListItemUC.ascx.designer.cs">
+      <DependentUpon>ListItemUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\UserSite.Master.cs">
+      <DependentUpon>UserSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\UserSite.Master.designer.cs">
+      <DependentUpon>UserSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\Dashboard\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\Dashboard\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\CoursesUc.ascx.cs">
+      <DependentUpon>CoursesUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\CoursesUc.ascx.designer.cs">
+      <DependentUpon>CoursesUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\EarlierUc.ascx.cs">
+      <DependentUpon>EarlierUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\EarlierUc.ascx.designer.cs">
+      <DependentUpon>EarlierUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\EventsUc.ascx.cs">
+      <DependentUpon>EventsUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\EventsUc.ascx.designer.cs">
+      <DependentUpon>EventsUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\FilesUc.ascx.cs">
+      <DependentUpon>FilesUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\FilesUc.ascx.designer.cs">
+      <DependentUpon>FilesUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\NewsUc.ascx.cs">
+      <DependentUpon>NewsUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\NewsUc.ascx.designer.cs">
+      <DependentUpon>NewsUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\NoticeBoardUc.ascx.cs">
+      <DependentUpon>NoticeBoardUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\NoticeBoardUc.ascx.designer.cs">
+      <DependentUpon>NoticeBoardUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx.cs">
+      <DependentUpon>OnlineUsersUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx.designer.cs">
+      <DependentUpon>OnlineUsersUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\SettingsUc.ascx.cs">
+      <DependentUpon>SettingsUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\SettingsUc.ascx.designer.cs">
+      <DependentUpon>SettingsUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\UserMaster.Master.cs">
+      <DependentUpon>UserMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\UserMaster.Master.designer.cs">
+      <DependentUpon>UserMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\Master\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\Master\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\Master\ListingUserControls\TreeNodeUC.ascx.cs">
+      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\Master\ListingUserControls\TreeNodeUC.ascx.designer.cs">
+      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\Master\ListingUserControls\TreeViewUC.ascx.cs">
+      <DependentUpon>TreeViewUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\Master\ListingUserControls\TreeViewUC.ascx.designer.cs">
+      <DependentUpon>TreeViewUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\RunningClass\AddClasses\AddClasses.aspx.cs">
+      <DependentUpon>AddClasses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\RunningClass\AddClasses\AddClasses.aspx.designer.cs">
+      <DependentUpon>AddClasses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeNodeUC.ascx.cs">
+      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeNodeUC.ascx.designer.cs">
+      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeViewUC.ascx.cs">
+      <DependentUpon>TreeViewUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeViewUC.ascx.designer.cs">
+      <DependentUpon>TreeViewUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx.cs">
+      <DependentUpon>BatchSelectUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx.designer.cs">
+      <DependentUpon>BatchSelectUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\StudentClass\SingleStudentEntry.ascx.cs">
+      <DependentUpon>SingleStudentEntry.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AcademicPlacement\StudentClass\SingleStudentEntry.ascx.designer.cs">
+      <DependentUpon>SingleStudentEntry.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx.cs">
+      <DependentUpon>ActResChoose.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx.designer.cs">
+      <DependentUpon>ActResChoose.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\ActResChoose\ActResChooseUc.ascx.cs">
+      <DependentUpon>ActResChooseUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\ActResChoose\ActResChooseUc.ascx.designer.cs">
+      <DependentUpon>ActResChooseUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\AutoCloseSolution.aspx.cs">
+      <DependentUpon>AutoCloseSolution.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\AutoCloseSolution.aspx.designer.cs">
+      <DependentUpon>AutoCloseSolution.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\ChooserJQueryTest.aspx.cs">
+      <DependentUpon>ChooserJQueryTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\ChooserJQueryTest.aspx.designer.cs">
+      <DependentUpon>ChooserJQueryTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\ChooseTypesUc.ascx.cs">
+      <DependentUpon>ChooseTypesUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\ChooseTypesUc.ascx.designer.cs">
+      <DependentUpon>ChooseTypesUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\CopyPaste.aspx.cs">
+      <DependentUpon>CopyPaste.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\CopyPaste.aspx.designer.cs">
+      <DependentUpon>CopyPaste.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\test2.aspx.cs">
+      <DependentUpon>test2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\Chooseer\test2.aspx.designer.cs">
+      <DependentUpon>test2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignmentUc.ascx.cs">
+      <DependentUpon>AssignmentUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignmentUc.ascx.designer.cs">
+      <DependentUpon>AssignmentUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignWF.aspx.cs">
+      <DependentUpon>AssignWF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignWF.aspx.designer.cs">
+      <DependentUpon>AssignWF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\CourseCreate\CreateCourse.aspx.cs">
+      <DependentUpon>CreateCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\CourseCreate\CreateCourse.aspx.designer.cs">
+      <DependentUpon>CreateCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\ListItemUc.ascx.cs">
+      <DependentUpon>ListItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\ListItemUc.ascx.designer.cs">
+      <DependentUpon>ListItemUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\ListSubjectGroup.aspx.cs">
+      <DependentUpon>ListSubjectGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\ListSubjectGroup.aspx.designer.cs">
+      <DependentUpon>ListSubjectGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\ListUc.ascx.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\ListUc.ascx.designer.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\NewGroup.aspx.cs">
+      <DependentUpon>NewGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\NewGroup.aspx.designer.cs">
+      <DependentUpon>NewGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\CourseCreate\CourseCreateUc.ascx.cs">
+      <DependentUpon>CourseCreateUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\CourseCreate\CourseCreateUc.ascx.designer.cs">
+      <DependentUpon>CourseCreateUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListItemUc.ascx.cs">
+      <DependentUpon>ListItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListItemUc.ascx.designer.cs">
+      <DependentUpon>ListItemUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListUc.ascx.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListUc.ascx.designer.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\RegularCourseListing.aspx.cs">
+      <DependentUpon>RegularCourseListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\RegularCourseListing.aspx.designer.cs">
+      <DependentUpon>RegularCourseListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CoursesOfGroup\CoursesOfGroupListing.aspx.cs">
+      <DependentUpon>CoursesOfGroupListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CoursesOfGroup\CoursesOfGroupListing.aspx.designer.cs">
+      <DependentUpon>CoursesOfGroupListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CoursesOfGroup\ListUc.ascx.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ListingMain\CoursesOfGroup\ListUc.ascx.designer.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Section\Master\CourseSectionListing.aspx.cs">
+      <DependentUpon>CourseSectionListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\Master\CourseSectionListing.aspx.designer.cs">
+      <DependentUpon>CourseSectionListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx.cs">
+      <DependentUpon>StudentEntry.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx.designer.cs">
+      <DependentUpon>StudentEntry.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoticeBoard\CreateUc.ascx.cs">
+      <DependentUpon>CreateUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\NoticeBoard\CreateUc.ascx.designer.cs">
+      <DependentUpon>CreateUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoticeBoard\ListUc.ascx.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\NoticeBoard\ListUc.ascx.designer.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoticeBoard\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\NoticeBoard\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx.cs">
+      <DependentUpon>AddPrograms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx.designer.cs">
+      <DependentUpon>AddPrograms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx.cs">
+      <DependentUpon>DetailItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx.designer.cs">
+      <DependentUpon>DetailItemUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx.cs">
+      <DependentUpon>TreeNodeUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx.designer.cs">
+      <DependentUpon>TreeNodeUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeViewUc.ascx.cs">
+      <DependentUpon>TreeViewUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeViewUc.ascx.designer.cs">
+      <DependentUpon>TreeViewUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentDisplay\Students\ListOfStudents.aspx.cs">
+      <DependentUpon>ListOfStudents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentDisplay\Students\ListOfStudents.aspx.designer.cs">
+      <DependentUpon>ListOfStudents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentDisplay\Students\StudentCreate\StudentCreate.aspx.cs">
+      <DependentUpon>StudentCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentDisplay\Students\StudentCreate\StudentCreate.aspx.designer.cs">
+      <DependentUpon>StudentCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentDisplay\Students\StudentCreate\StudentCreateUc.ascx.cs">
+      <DependentUpon>StudentCreateUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentDisplay\Students\StudentCreate\StudentCreateUc.ascx.designer.cs">
+      <DependentUpon>StudentCreateUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentDisplay\Students\StudentListUc.ascx.cs">
+      <DependentUpon>StudentListUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentDisplay\Students\StudentListUc.ascx.designer.cs">
+      <DependentUpon>StudentListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentEntries\StudentEntr.ascx.cs">
+      <DependentUpon>StudentEntr.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentEntries\StudentEntr.ascx.designer.cs">
+      <DependentUpon>StudentEntr.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\AcademicYear\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\AcademicYear\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\Session\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Session\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\Session\CreateUC.ascx.cs">
+      <DependentUpon>CreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Session\CreateUC.ascx.designer.cs">
+      <DependentUpon>CreateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Activity\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Activity\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Activity\Teach\Create.ascx.cs">
+      <DependentUpon>Create.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Activity\Teach\Create.ascx.designer.cs">
+      <DependentUpon>Create.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Activity\Teach\TeachCreate.aspx.cs">
+      <DependentUpon>TeachCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Activity\Teach\TeachCreate.aspx.designer.cs">
+      <DependentUpon>TeachCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\CreateActNResUc.ascx.cs">
+      <DependentUpon>CreateActNResUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\CreateActNResUc.ascx.designer.cs">
+      <DependentUpon>CreateActNResUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\CreteActNRes.aspx.cs">
+      <DependentUpon>CreteActNRes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\CreteActNRes.aspx.designer.cs">
+      <DependentUpon>CreteActNRes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Category\Create.ascx.cs">
+      <DependentUpon>Create.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Category\Create.ascx.designer.cs">
+      <DependentUpon>Create.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Category\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Category\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Category\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Category\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\CourseEntryForm.aspx.cs">
+      <DependentUpon>CourseEntryForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\CourseEntryForm.aspx.designer.cs">
+      <DependentUpon>CourseEntryForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\CourseGroup\GroupUc.ascx.cs">
+      <DependentUpon>GroupUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\CourseGroup\GroupUc.ascx.designer.cs">
+      <DependentUpon>GroupUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Display\CourseDetails.aspx.cs">
+      <DependentUpon>CourseDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Display\CourseDetails.aspx.designer.cs">
+      <DependentUpon>CourseDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Display\CourseList\CourseList.aspx.cs">
+      <DependentUpon>CourseList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Display\CourseList\CourseList.aspx.designer.cs">
+      <DependentUpon>CourseList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Display\EachCourse\CourseDetailUc.ascx.cs">
+      <DependentUpon>CourseDetailUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Display\EachCourse\CourseDetailUc.ascx.designer.cs">
+      <DependentUpon>CourseDetailUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Section\ActivityAndResourceUc.ascx.cs">
+      <DependentUpon>ActivityAndResourceUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\ActivityAndResourceUc.ascx.designer.cs">
+      <DependentUpon>ActivityAndResourceUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Section\CreateSection.aspx.cs">
+      <DependentUpon>CreateSection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\CreateSection.aspx.designer.cs">
+      <DependentUpon>CreateSection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Section\CreateSectionUc.ascx.cs">
+      <DependentUpon>CreateSectionUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\CreateSectionUc.ascx.designer.cs">
+      <DependentUpon>CreateSectionUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Section\Master\Section.aspx.cs">
+      <DependentUpon>Section.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\Master\Section.aspx.designer.cs">
+      <DependentUpon>Section.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Section\Master\test_uc_delete_on_unused.ascx.cs">
+      <DependentUpon>test_uc_delete_on_unused.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\Master\test_uc_delete_on_unused.ascx.designer.cs">
+      <DependentUpon>test_uc_delete_on_unused.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Section\SectionUc.ascx.cs">
+      <DependentUpon>SectionUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\SectionUc.ascx.designer.cs">
+      <DependentUpon>SectionUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Section\Test_For_Server_.aspx.cs">
+      <DependentUpon>Test_For_Server_.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\Test_For_Server_.aspx.designer.cs">
+      <DependentUpon>Test_For_Server_.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreatedUser\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CreatedUser\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateUC.ascx.cs">
+      <DependentUpon>CreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CreateUC.ascx.designer.cs">
+      <DependentUpon>CreateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\Assign_Class_Teacher_Student.ascx.cs">
+      <DependentUpon>Assign_Class_Teacher_Student.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\Assign_Class_Teacher_Student.ascx.designer.cs">
+      <DependentUpon>Assign_Class_Teacher_Student.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\CreateExamUc.ascx.cs">
+      <DependentUpon>CreateExamUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\CreateExamUc.ascx.designer.cs">
+      <DependentUpon>CreateExamUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeNodeUC.ascx.cs">
+      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeNodeUC.ascx.designer.cs">
+      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeViewUC.ascx.cs">
+      <DependentUpon>TreeViewUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeViewUC.ascx.designer.cs">
+      <DependentUpon>TreeViewUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\ExamList\ItemsOfListUc.ascx.cs">
+      <DependentUpon>ItemsOfListUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\ExamList\ItemsOfListUc.ascx.designer.cs">
+      <DependentUpon>ItemsOfListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\ExamList\ListUc.ascx.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\ExamList\ListUc.ascx.designer.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Master\CreateExam.aspx.cs">
+      <DependentUpon>CreateExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Master\CreateExam.aspx.designer.cs">
+      <DependentUpon>CreateExam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Master\ListExams.aspx.cs">
+      <DependentUpon>ListExams.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\Master\ListExams.aspx.designer.cs">
+      <DependentUpon>ListExams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Office\Institution\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Office\Institution\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Office\School\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Office\School\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Office\School\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Office\School\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Office\School\SchoolTypeUC.ascx.cs">
+      <DependentUpon>SchoolTypeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Office\School\SchoolTypeUC.ascx.designer.cs">
+      <DependentUpon>SchoolTypeUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Resource\ResourceCreate.ascx.cs">
+      <DependentUpon>ResourceCreate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Resource\ResourceCreate.ascx.designer.cs">
+      <DependentUpon>ResourceCreate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Role\Assign.ascx.cs">
+      <DependentUpon>Assign.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Role\Assign.ascx.designer.cs">
+      <DependentUpon>Assign.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Role\Assign.aspx.cs">
+      <DependentUpon>Assign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Role\Assign.aspx.designer.cs">
+      <DependentUpon>Assign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Role\Create.ascx.cs">
+      <DependentUpon>Create.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Role\Create.ascx.designer.cs">
+      <DependentUpon>Create.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Role\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Role\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Role\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Role\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Role\Delete.ascx.cs">
+      <DependentUpon>Delete.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Role\Delete.ascx.designer.cs">
+      <DependentUpon>Delete.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\Master\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\Master\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CreateUC.ascx.cs">
+      <DependentUpon>CreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CreateUC.ascx.designer.cs">
+      <DependentUpon>CreateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\FacultyCreateUC.ascx.cs">
+      <DependentUpon>FacultyCreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\FacultyCreateUC.ascx.designer.cs">
+      <DependentUpon>FacultyCreateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\LevelCreate.ascx.cs">
+      <DependentUpon>LevelCreate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\LevelCreate.ascx.designer.cs">
+      <DependentUpon>LevelCreate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ProgramCreateUC.ascx.cs">
+      <DependentUpon>ProgramCreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ProgramCreateUC.ascx.designer.cs">
+      <DependentUpon>ProgramCreateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\SubYearCreateUC.ascx.cs">
+      <DependentUpon>SubYearCreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\SubYearCreateUC.ascx.designer.cs">
+      <DependentUpon>SubYearCreateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\YearCreateUC.ascx.cs">
+      <DependentUpon>YearCreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\YearCreateUC.ascx.designer.cs">
+      <DependentUpon>YearCreateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Faculty\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\Faculty\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Level\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\Level\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Program\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\Program\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Section\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\Section\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Year\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\Year\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\AddProgramsTreeNodes\TreeNodeUC.ascx.cs">
+      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\AddProgramsTreeNodes\TreeNodeUC.ascx.designer.cs">
+      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\AddProgramsTreeNodes\TreeViewUC.ascx.cs">
+      <DependentUpon>TreeViewUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\AddProgramsTreeNodes\TreeViewUC.ascx.designer.cs">
+      <DependentUpon>TreeViewUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\Detail.aspx.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\Detail.aspx.designer.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\DetailUc.ascx.cs">
+      <DependentUpon>DetailUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\BatchDetail\DetailUc.ascx.designer.cs">
+      <DependentUpon>DetailUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Create\AddProgramsUc.ascx.cs">
+      <DependentUpon>AddProgramsUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Create\AddProgramsUc.ascx.designer.cs">
+      <DependentUpon>AddProgramsUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Create\BatchCreate.aspx.cs">
+      <DependentUpon>BatchCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Create\BatchCreate.aspx.designer.cs">
+      <DependentUpon>BatchCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Create\CreateBatchUc.ascx.cs">
+      <DependentUpon>CreateBatchUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Create\CreateBatchUc.ascx.designer.cs">
+      <DependentUpon>CreateBatchUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\List\ItemUc.ascx.cs">
+      <DependentUpon>ItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\List\ItemUc.ascx.designer.cs">
+      <DependentUpon>ItemUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\List\listUc.ascx.cs">
+      <DependentUpon>listUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\List\listUc.ascx.designer.cs">
+      <DependentUpon>listUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentEntries\StudentGroupAssignUC.ascx.cs">
+      <DependentUpon>StudentGroupAssignUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\StudentEntries\StudentGroupAssignUC.ascx.designer.cs">
+      <DependentUpon>StudentGroupAssignUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Create\Student.aspx.cs">
+      <DependentUpon>Student.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Create\Student.aspx.designer.cs">
+      <DependentUpon>Student.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Create\StudentCreateUc.ascx.cs">
+      <DependentUpon>StudentCreateUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Create\StudentCreateUc.ascx.designer.cs">
+      <DependentUpon>StudentCreateUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Create\StudentGroup.aspx.cs">
+      <DependentUpon>StudentGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Create\StudentGroup.aspx.designer.cs">
+      <DependentUpon>StudentGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Create\StudentGroupUc.ascx.cs">
+      <DependentUpon>StudentGroupUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Create\StudentGroupUc.ascx.designer.cs">
+      <DependentUpon>StudentGroupUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\ListBatch.aspx.cs">
+      <DependentUpon>ListBatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\ListBatch.aspx.designer.cs">
+      <DependentUpon>ListBatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroupAssignUC.ascx.cs">
+      <DependentUpon>StudentGroupAssignUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroupAssignUC.ascx.designer.cs">
+      <DependentUpon>StudentGroupAssignUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\EachGroupDetail\DetailUc.ascx.cs">
+      <DependentUpon>DetailUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\EachGroupDetail\DetailUc.ascx.designer.cs">
+      <DependentUpon>DetailUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\GroupAssign.aspx.cs">
+      <DependentUpon>GroupAssign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\GroupAssign.aspx.designer.cs">
+      <DependentUpon>GroupAssign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\Listing\ListItemUc.ascx.cs">
+      <DependentUpon>ListItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\Listing\ListItemUc.ascx.designer.cs">
+      <DependentUpon>ListItemUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\Listing\ListUc.ascx.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\StudentGroup\Listing\ListUc.ascx.designer.cs">
+      <DependentUpon>ListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\StudentList.aspx.cs">
+      <DependentUpon>StudentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\StudentList.aspx.designer.cs">
+      <DependentUpon>StudentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\StudentStructure\SingleStudentAssignUC.ascx.cs">
+      <DependentUpon>SingleStudentAssignUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\StudentStructure\SingleStudentAssignUC.ascx.designer.cs">
+      <DependentUpon>SingleStudentAssignUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx.cs">
+      <DependentUpon>StudentAssignToAStructure.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx.designer.cs">
+      <DependentUpon>StudentAssignToAStructure.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Test\RedirectToAnotherSoln.aspx.cs">
+      <DependentUpon>RedirectToAnotherSoln.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Test\RedirectToAnotherSoln.aspx.designer.cs">
+      <DependentUpon>RedirectToAnotherSoln.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DateChooser.ascx.cs">
+      <DependentUpon>DateChooser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\DateChooser.ascx.designer.cs">
+      <DependentUpon>DateChooser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ReqImageUC.ascx.cs">
+      <DependentUpon>ReqImageUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\ReqImageUC.ascx.designer.cs">
+      <DependentUpon>ReqImageUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Structure\StructureSelection.ascx.cs">
+      <DependentUpon>StructureSelection.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Structure\StructureSelection.ascx.designer.cs">
+      <DependentUpon>StructureSelection.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Structure\TreeViewOverriden\TreeView.aspx.cs">
+      <DependentUpon>TreeView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Structure\TreeViewOverriden\TreeView.aspx.designer.cs">
+      <DependentUpon>TreeView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Structure\TreeViewOverriden\TreeViewUc.ascx.cs">
+      <DependentUpon>TreeViewUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Structure\TreeViewOverriden\TreeViewUc.ascx.designer.cs">
+      <DependentUpon>TreeViewUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TreeTest\ThreButtonColorful\NodeUc.ascx.cs">
+      <DependentUpon>NodeUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\TreeTest\ThreButtonColorful\NodeUc.ascx.designer.cs">
+      <DependentUpon>NodeUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TreeTest\ThreButtonColorful\ThreeButtonTest.aspx.cs">
+      <DependentUpon>ThreeButtonTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\TreeTest\ThreButtonColorful\ThreeButtonTest.aspx.designer.cs">
+      <DependentUpon>ThreeButtonTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\UserCreateUC.ascx.cs">
+      <DependentUpon>UserCreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\UserCreateUC.ascx.designer.cs">
+      <DependentUpon>UserCreateUC.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\AcademicPlacement\All\" />
+    <Folder Include="Views\AcademicPlacement\SubjectClass\" />
+    <Folder Include="Views\AcademicPlacement\SubjectSubscription\" />
+    <Folder Include="Views\AcademicPlacement\TeacherClass\" />
+    <Folder Include="Views\Assignments\" />
+    <Folder Include="Views\Student\StudentGroup\UserControls\" />
+    <Folder Include="Views\Teacher\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ViewsSite\DashBoard\StudentMaster.Master" />
+    <Content Include="ViewsSite\DefaultSite.Master" />
+    <Content Include="ViewsSite\DashBoard\Web.config" />
+    <Content Include="ViewsSite\Teacher\TeacherMaster.Master" />
+    <Content Include="ViewsSite\Teacher\Web.config" />
+    <Content Include="ViewsSite\User\UserMaster.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Academic.Database\Academic.Database.csproj">
+      <Project>{a4527567-d413-40e4-b498-6ba5c0638b22}</Project>
+      <Name>Academic.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Academic.DbEntities\Academic.DbEntities.csproj">
+      <Project>{0e622a6c-c728-430d-bc74-27054cba41f8}</Project>
+      <Name>Academic.DbEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Academic.DbHelper\Academic.DbHelper.csproj">
+      <Project>{b178c763-c997-49f9-87fe-bf09f6e00636}</Project>
+      <Name>Academic.DbHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Academic.InitialValues\Academic.InitialValues.csproj">
+      <Project>{cfec66c8-d22c-435a-a639-3ea8dbcf466c}</Project>
+      <Name>Academic.InitialValues</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Academic.ViewModel\Academic.ViewModel.csproj">
+      <Project>{48695c61-f60a-49e5-ad33-948b6b682a30}</Project>
+      <Name>Academic.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1240/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

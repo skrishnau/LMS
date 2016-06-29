@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ReqImageUC.ascx.cs" Inherits="One.Views.UserControls.ReqImageUC" %>
+<span><img class="req" src="~/Content/Icons/req.jpg" alt="" height="12" width="10" title=""/></span>

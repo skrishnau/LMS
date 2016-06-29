@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0E622A6C-C728-430D-BC74-27054CBA41F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Academic.DbEntities</RootNamespace>
+    <AssemblyName>Academic.DbEntities</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcacemicPlacements\RegularSubjectClass.cs" />
+    <Compile Include="AcacemicPlacements\RunningClass.cs" />
+    <Compile Include="AcacemicPlacements\StudentClass.cs" />
+    <Compile Include="AcacemicPlacements\StudentsOpinionAboutSubject.cs" />
+    <Compile Include="AcacemicPlacements\SubjectClass.cs" />
+    <Compile Include="AcacemicPlacements\SubjectSubscription.cs" />
+    <Compile Include="AcacemicPlacements\TeacherClass.cs" />
+    <Compile Include="AcacemicPlacements\UserClass.cs" />
+    <Compile Include="AcademicYear.cs" />
+    <Compile Include="AccessPermission\Restriction.cs" />
+    <Compile Include="Account\CustomUsers.cs" />
+    <Compile Include="Activities\Study.cs" />
+    <Compile Include="Admins.cs" />
+    <Compile Include="AdminTitle.cs" />
+    <Compile Include="Assignments\AssignedTask.cs" />
+    <Compile Include="Assignments\Assignment.cs" />
+    <Compile Include="Assignments\AssignmentAnswer.cs" />
+    <Compile Include="Assignments\AssignmentAnswerFile.cs" />
+    <Compile Include="Assignments\Task.cs" />
+    <Compile Include="Attendances\Attendance.cs" />
+    <Compile Include="Attendances\AttendanceDay.cs" />
+    <Compile Include="Attendances\PresenceStatus.cs" />
+    <Compile Include="Batches\ProgramBatch.cs" />
+    <Compile Include="Batches\SectionBatch.cs" />
+    <Compile Include="Batches\SectionStudent.cs" />
+    <Compile Include="Batches\StudentBatch.cs" />
+    <Compile Include="Exams\Exam.cs" />
+    <Compile Include="Exams\ExamStudent.cs" />
+    <Compile Include="Exams\ExamSubjectTeacher.cs" />
+    <Compile Include="Exams\ExamSubType.cs" />
+    <Compile Include="File.cs" />
+    <Compile Include="FileCategory.cs" />
+    <Compile Include="Libraries\BookReturnCategory.cs" />
+    <Compile Include="Libraries\fine.cs" />
+    <Compile Include="Libraries\MemberShip.cs" />
+    <Compile Include="Libraries\MembershipType.cs" />
+    <Compile Include="Marks\AssignmentMarks.cs" />
+    <Compile Include="Marks\ExamMarks.cs" />
+    <Compile Include="Exams\ExamType.cs" />
+    <Compile Include="Exams\ExamSubject.cs" />
+    <Compile Include="Libraries\Book.cs" />
+    <Compile Include="Libraries\BookAuthor.cs" />
+    <Compile Include="Libraries\BookCategory.cs" />
+    <Compile Include="Libraries\Issue.cs" />
+    <Compile Include="Libraries\Library.cs" />
+    <Compile Include="Libraries\Return.cs" />
+    <Compile Include="Libraries\UsefulnessCategory.cs" />
+    <Compile Include="Marks\Grade.cs" />
+    <Compile Include="Batches\Batch.cs" />
+    <Compile Include="Notices\Notice.cs" />
+    <Compile Include="Notices\NoticeNotification.cs" />
+    <Compile Include="Notices\NoticeTo.cs" />
+    <Compile Include="Students\OtherGroup.cs" />
+    <Compile Include="Students\StudentGroupStudent.cs" />
+    <Compile Include="Office\Award.cs" />
+    <Compile Include="Office\Branch.cs" />
+    <Compile Include="Office\Institution.cs" />
+    <Compile Include="Office\School.cs" />
+    <Compile Include="Office\SchoolType.cs" />
+    <Compile Include="OtherAdmins.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AccessPermission.cs" />
+    <Compile Include="Resources\ResourceFile.cs" />
+    <Compile Include="Resources\file_resources.cs" />
+    <Compile Include="Resources\Links.cs" />
+    <Compile Include="Resources\Photo.cs" />
+    <Compile Include="Resources\Resource.cs" />
+    <Compile Include="Resources\ResourcesSend\StudentGroupResourceShare.cs" />
+    <Compile Include="Resources\ResourcesSend\StudentResourceShare.cs" />
+    <Compile Include="Resources\ResourcesSend\TeacherResourceShare.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="SessionAdmins.cs" />
+    <Compile Include="Structure\Faculty.cs" />
+    <Compile Include="Structure\FacultyCategory.cs" />
+    <Compile Include="Structure\Level.cs" />
+    <Compile Include="Structure\LevelCategory.cs" />
+    <Compile Include="Structure\Program.cs" />
+    <Compile Include="Structure\SubYear.cs" />
+    <Compile Include="Structure\Year.cs" />
+    <Compile Include="Students\Admission.cs" />
+    <Compile Include="Students\Fee.cs" />
+    <Compile Include="Students\Scholarship.cs" />
+    <Compile Include="Students\Student.cs" />
+    <Compile Include="Students\StudentFile.cs" />
+    <Compile Include="Students\StudentGroup.cs" />
+    <Compile Include="Students\StudentGroupResource.cs" />
+    <Compile Include="Students\StudentNotification.cs" />
+    <Compile Include="Students\StudentSubject.cs" />
+    <Compile Include="Students\StudentPreviousStudies.cs" />
+    <Compile Include="Students\StudentTransfer.cs" />
+    <Compile Include="Students\StudentTransferType.cs" />
+    <Compile Include="Subjects\Detail\SubjectActivityAndResource.cs" />
+    <Compile Include="Subjects\Detail\SubjectSection.cs" />
+    <Compile Include="Subjects\RegularSubject.cs" />
+    <Compile Include="Subjects\SubjectCategory.cs" />
+    <Compile Include="Subjects\SubjectGroupSubject.cs" />
+    <Compile Include="Subjects\SubjectGroup.cs" />
+    <Compile Include="Subjects\Subject.cs" />
+    <Compile Include="Activities\Teach.cs" />
+    <Compile Include="SystemModules\Module.cs" />
+    <Compile Include="SystemModules\ModuleAccess.cs" />
+    <Compile Include="SystemModules\ModuleAccessPermission.cs" />
+    <Compile Include="SystemModules\modules_modulesaccess.cs" />
+    <Compile Include="Teachers\Appointment.cs" />
+    <Compile Include="Teachers\Teacher.cs" />
+    <Compile Include="Teachers\TeacherExperience.cs" />
+    <Compile Include="Teachers\TeacherJobTitle.cs" />
+    <Compile Include="Teachers\TeacherNotification.cs" />
+    <Compile Include="Teachers\TeacherQualification.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserImage.cs" />
+    <Compile Include="User\Capability.cs" />
+    <Compile Include="User\CreatedUser.cs" />
+    <Compile Include="User\Display.cs" />
+    <Compile Include="User\Division.cs" />
+    <Compile Include="User\Gender.cs" />
+    <Compile Include="User\Nation.cs" />
+    <Compile Include="User\Relation.cs" />
+    <Compile Include="User\RelationShip.cs" />
+    <Compile Include="User\Role.cs" />
+    <Compile Include="User\RoleCapability.cs" />
+    <Compile Include="User\UserAssociation.cs" />
+    <Compile Include="User\UserDivision.cs" />
+    <Compile Include="User\UserLastLogin.cs" />
+    <Compile Include="User\UserRole.cs" />
+    <Compile Include="User\Users.cs" />
+    <Compile Include="User\UserTransfer.cs" />
+    <Compile Include="User\UserType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Global\" />
+    <Folder Include="Subjects\ActAndRes\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

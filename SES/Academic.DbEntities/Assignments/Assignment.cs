@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Academic.DbEntities.Assignments
+{
+    public class Assignment
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public int SectionId { get; set; }
+        public virtual Subjects.Detail.SubjectSection Section { get; set; }
+
+        public bool? DispalyDescriptionOnPage { get; set; }
+
+        public DateTime? SubmissionFrom { get; set; }
+        public DateTime? DueDate { get; set; }
+        public DateTime? CutOffDate { get; set; }
+        //next version see moodle orange
+        //public bool? AlwaysShowDescription { get; set; }
+
+        //types: online = true , file= false
+        public string SubmissionType { get; set; }
+        public int? WordLimit { get; set; }
+
+        public int? MaximumNoOfUploadedFiles { get; set; }
+        public int? MaximumSubmissionSize { get; set; } //1 MB
+
+        //next version
+        //Maximum attempts
+        //group subm
+
+        //next version : settings for notifactation to student and teacher
+
+
+        //Grading: types: None, Point, and Scale
+        public string GradeType { get; set; }
+        public string MaximumGrade { get; set; }
+        public string GradeToPass { get; set; }
+        //next version: blind marking
+
+        //Restriction
+        //for now restriction on current students
+
+
+        //next version: activity completion
+
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int CreatedBy { get; set; }
+        public int ModifiedBy { get; set; }
+
+        //Student Group for whom the assignment is given
+
+
+        //public virtual Subjects.Subject Subject { get; set; }
+        //public virtual ICollection<Resources.Resource> Resources { get; set; }
+        public virtual ICollection<AssignmentAnswer> AssignmentAnswers { get; set; }
+        //public virtual ICollection<Task> Tasks { get; set; }
+    }
+}

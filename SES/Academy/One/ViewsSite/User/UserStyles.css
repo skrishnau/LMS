@@ -1,0 +1,42 @@
+﻿body {
+}
+
+.dashboard-modules {
+    background-color: whitesmoke;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid darkgray;
+}
+
+.height-25percent {
+    height: 25%;
+}
+
+.width-100percent {
+    width: 100%;
+}
+
+
+/*-------------Start--------------*/
+/* side bar*/
+.right-sidebar {
+    float: right;
+    width: 20%;
+    height: 100%;
+    overflow: hidden;
+    padding: 20px 10px 20px;
+}
+
+.left-sidebar {
+    float: left;
+    width: 15%;
+    overflow: hidden;
+    padding: 20px 10px 20px;
+}
+.leftsidebar {
+    float: left;
+    width: 15%;
+    overflow: hidden;
+    padding: 20px 10px 20px;
+}
+/*---------------END---------------*/

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4527567-D413-40E4-B498-6BA5C0638B22}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Academic.Database</RootNamespace>
+    <AssemblyName>Academic.Database</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcademicContext.cs" />
+    <Compile Include="Migrations\201604230959025_newAll.cs" />
+    <Compile Include="Migrations\201604230959025_newAll.Designer.cs">
+      <DependentUpon>201604230959025_newAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604231020320_schoolType.cs" />
+    <Compile Include="Migrations\201604231020320_schoolType.Designer.cs">
+      <DependentUpon>201604231020320_schoolType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604271728342_void_add_in_student_group.cs" />
+    <Compile Include="Migrations\201604271728342_void_add_in_student_group.Designer.cs">
+      <DependentUpon>201604271728342_void_add_in_student_group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604300431507_studentGroup_StaratedStudying_field_added.cs" />
+    <Compile Include="Migrations\201604300431507_studentGroup_StaratedStudying_field_added.Designer.cs">
+      <DependentUpon>201604300431507_studentGroup_StaratedStudying_field_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604300934220_studentGroup_batch_added.cs" />
+    <Compile Include="Migrations\201604300934220_studentGroup_batch_added.Designer.cs">
+      <DependentUpon>201604300934220_studentGroup_batch_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605010436024_programBatch_added.cs" />
+    <Compile Include="Migrations\201605010436024_programBatch_added.Designer.cs">
+      <DependentUpon>201605010436024_programBatch_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605010553230_commenceDateAdded.cs" />
+    <Compile Include="Migrations\201605010553230_commenceDateAdded.Designer.cs">
+      <DependentUpon>201605010553230_commenceDateAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605032026023_many_updates.cs" />
+    <Compile Include="Migrations\201605032026023_many_updates.Designer.cs">
+      <DependentUpon>201605032026023_many_updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605041310106_whats_added_no_idea.cs" />
+    <Compile Include="Migrations\201605041310106_whats_added_no_idea.Designer.cs">
+      <DependentUpon>201605041310106_whats_added_no_idea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605070708224_voidAddedInManyTAbles.cs" />
+    <Compile Include="Migrations\201605070708224_voidAddedInManyTAbles.Designer.cs">
+      <DependentUpon>201605070708224_voidAddedInManyTAbles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605071326594_student_table_updated.cs" />
+    <Compile Include="Migrations\201605071326594_student_table_updated.Designer.cs">
+      <DependentUpon>201605071326594_student_table_updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605080007364_user_file_updated.cs" />
+    <Compile Include="Migrations\201605080007364_user_file_updated.Designer.cs">
+      <DependentUpon>201605080007364_user_file_updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605080728075__void_added_in_studentBatch.cs" />
+    <Compile Include="Migrations\201605080728075__void_added_in_studentBatch.Designer.cs">
+      <DependentUpon>201605080728075__void_added_in_studentBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605090803008_abc.cs" />
+    <Compile Include="Migrations\201605090803008_abc.Designer.cs">
+      <DependentUpon>201605090803008_abc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605132214414_regularSubjectsGroup_Table_Added.cs" />
+    <Compile Include="Migrations\201605132214414_regularSubjectsGroup_Table_Added.Designer.cs">
+      <DependentUpon>201605132214414_regularSubjectsGroup_Table_Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605140823348_no_idea.cs" />
+    <Compile Include="Migrations\201605140823348_no_idea.Designer.cs">
+      <DependentUpon>201605140823348_no_idea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605220612406_regularSubjectTecher_table_added.cs" />
+    <Compile Include="Migrations\201605220612406_regularSubjectTecher_table_added.Designer.cs">
+      <DependentUpon>201605220612406_regularSubjectTecher_table_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605221134569_tables_added_RegularSubjectClass_and_UserClass.cs" />
+    <Compile Include="Migrations\201605221134569_tables_added_RegularSubjectClass_and_UserClass.Designer.cs">
+      <DependentUpon>201605221134569_tables_added_RegularSubjectClass_and_UserClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605221155532_table_rename.cs" />
+    <Compile Include="Migrations\201605221155532_table_rename.Designer.cs">
+      <DependentUpon>201605221155532_table_rename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605221159348_arr.cs" />
+    <Compile Include="Migrations\201605221159348_arr.Designer.cs">
+      <DependentUpon>201605221159348_arr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605221308528_ccc.cs" />
+    <Compile Include="Migrations\201605221308528_ccc.Designer.cs">
+      <DependentUpon>201605221308528_ccc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605232016116_no_idea__.cs" />
+    <Compile Include="Migrations\201605232016116_no_idea__.Designer.cs">
+      <DependentUpon>201605232016116_no_idea__.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605252027551_void_added_in_Notice.cs" />
+    <Compile Include="Migrations\201605252027551_void_added_in_Notice.Designer.cs">
+      <DependentUpon>201605252027551_void_added_in_Notice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605271818579_no_idea1.cs" />
+    <Compile Include="Migrations\201605271818579_no_idea1.Designer.cs">
+      <DependentUpon>201605271818579_no_idea1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606061058097_assignment_added.cs" />
+    <Compile Include="Migrations\201606061058097_assignment_added.Designer.cs">
+      <DependentUpon>201606061058097_assignment_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606062022448_nullableInAssignment.cs" />
+    <Compile Include="Migrations\201606062022448_nullableInAssignment.Designer.cs">
+      <DependentUpon>201606062022448_nullableInAssignment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Academic.DbEntities\Academic.DbEntities.csproj">
+      <Project>{0e622a6c-c728-430d-bc74-27054cba41f8}</Project>
+      <Name>Academic.DbEntities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604230959025_newAll.resx">
+      <DependentUpon>201604230959025_newAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604231020320_schoolType.resx">
+      <DependentUpon>201604231020320_schoolType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604271728342_void_add_in_student_group.resx">
+      <DependentUpon>201604271728342_void_add_in_student_group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604300431507_studentGroup_StaratedStudying_field_added.resx">
+      <DependentUpon>201604300431507_studentGroup_StaratedStudying_field_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604300934220_studentGroup_batch_added.resx">
+      <DependentUpon>201604300934220_studentGroup_batch_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605010436024_programBatch_added.resx">
+      <DependentUpon>201605010436024_programBatch_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605010553230_commenceDateAdded.resx">
+      <DependentUpon>201605010553230_commenceDateAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605032026023_many_updates.resx">
+      <DependentUpon>201605032026023_many_updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041310106_whats_added_no_idea.resx">
+      <DependentUpon>201605041310106_whats_added_no_idea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605070708224_voidAddedInManyTAbles.resx">
+      <DependentUpon>201605070708224_voidAddedInManyTAbles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605071326594_student_table_updated.resx">
+      <DependentUpon>201605071326594_student_table_updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605080007364_user_file_updated.resx">
+      <DependentUpon>201605080007364_user_file_updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605080728075__void_added_in_studentBatch.resx">
+      <DependentUpon>201605080728075__void_added_in_studentBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605090803008_abc.resx">
+      <DependentUpon>201605090803008_abc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605132214414_regularSubjectsGroup_Table_Added.resx">
+      <DependentUpon>201605132214414_regularSubjectsGroup_Table_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605140823348_no_idea.resx">
+      <DependentUpon>201605140823348_no_idea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605220612406_regularSubjectTecher_table_added.resx">
+      <DependentUpon>201605220612406_regularSubjectTecher_table_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605221134569_tables_added_RegularSubjectClass_and_UserClass.resx">
+      <DependentUpon>201605221134569_tables_added_RegularSubjectClass_and_UserClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605221155532_table_rename.resx">
+      <DependentUpon>201605221155532_table_rename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605221159348_arr.resx">
+      <DependentUpon>201605221159348_arr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605221308528_ccc.resx">
+      <DependentUpon>201605221308528_ccc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605232016116_no_idea__.resx">
+      <DependentUpon>201605232016116_no_idea__.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605252027551_void_added_in_Notice.resx">
+      <DependentUpon>201605252027551_void_added_in_Notice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605271818579_no_idea1.resx">
+      <DependentUpon>201605271818579_no_idea1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606061058097_assignment_added.resx">
+      <DependentUpon>201606061058097_assignment_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606062022448_nullableInAssignment.resx">
+      <DependentUpon>201606062022448_nullableInAssignment.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

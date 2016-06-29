@@ -1,0 +1,238 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="StudentMaster.master.cs" Inherits="One.ViewsSite.DashBoard.Student.StudentMaster" %>
+
+
+<%--<%@ Register TagPrefix="uc1" TagName="LeftSideBar" Src="~/ViewsSite/UserControls/LeftSideBar.ascx" %>
+<%@ Register TagPrefix="uc1" TagName="CreateUC" Src="~/Views/CreateUC.ascx" %>--%>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="Title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+
+    <%--<link href="../../../Content/CSSes/StudentMaster.css" rel="stylesheet" />--%>
+    <link href="../../Content/CSSes/StudentMaster.css" rel="stylesheet" />
+    <%--<link href="../StudentDashboardStyle.css" rel="stylesheet" />--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <div id="menuDiv" class="menu-div" style="float: none; width: 100%;">
+            <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal"></asp:Menu>
+            <asp:ContentPlaceHolder ID="Menu" runat="server">
+                <div style="float: right;">
+                    <asp:LoginName ID="LoginName1" runat="server" />
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                </div>
+            </asp:ContentPlaceHolder>
+
+
+        </div>
+        <div class="left-sidebar" style="float: left; width: 15%; overflow: hidden; padding: 20px 15px 0 0;">
+            <div>
+                <%-- <asp:ContentPlaceHolder runat="server" ID="LeftSideBarPlaceHolder">
+                    <%--<uc1:LeftSideBar runat="server" ID="leftSideBarUC" />
+                </asp:ContentPlaceHolder>--%>
+                <div>
+                    <asp:HyperLink ID="HyperLink2" NavigateUrl="~/ViewsSite/DashBoard/Student/Dashboard.aspx" runat="server">
+                                Regular Courses
+                        <hr />
+                    </asp:HyperLink>
+                    <div>
+                        <asp:DataList ID="dListCourses" runat="server" DataSourceID="RegularCourseDS">
+                            <ItemTemplate>
+                                <div style="margin: 0 5px 0  20px;">
+                                    <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("SubjectId") %>' />
+                                    <asp:HyperLink ID="HyperLink5" runat="server"
+                                        NavigateUrl='<%# "~/ViewsSite/DashBoard/Student/CourseSection/CourseSectionListing.aspx?SubId="+Eval("SubjectId") %>' Font-Underline="False">
+                                        ■&nbsp;<%# Eval("SubjectName") %>
+                                    </asp:HyperLink>
+                                </div>
+                            </ItemTemplate>
+                        </asp:DataList>
+                        <asp:ObjectDataSource ID="RegularCourseDS" runat="server" SelectMethod="GetCurrentRegularSubjectsOfUser" TypeName="Academic.DbHelper.DbHelper+Subject">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="hidUserId" DefaultValue="0" Name="userId" PropertyName="Value" Type="Int32" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </div>
+
+                    <%-- ========= Extra Courses ========== --%>
+                    <br />
+                    <asp:HyperLink ID="HyperLink6" NavigateUrl="~/ViewsSite/DashBoard/Student/Dashboard.aspx"
+                        runat="server">
+                                Extra Courses
+                    </asp:HyperLink>
+                    <hr />
+                    <div>
+                        <asp:DataList ID="dListExtraCourses" runat="server" DataSourceID="ExtraCoursesDS">
+                            <ItemTemplate>
+                                <div style="margin: 0 5px 0  20px;">
+                                    <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("SubjectId") %>' />
+                                    <asp:HyperLink ID="HyperLink5" runat="server"
+                                        NavigateUrl='<%# "~/ViewsSite/DashBoard/Student/CourseSection/CourseSectionListing.aspx?SubId="+Eval("SubjectId") %>' Font-Underline="False">
+                                        ■&nbsp;<%# Eval("SubjectName") %>
+                                    </asp:HyperLink>
+                                </div>
+                            </ItemTemplate>
+                        </asp:DataList>
+                        <asp:ObjectDataSource ID="ExtraCoursesDS" runat="server" SelectMethod="GetExtraSubjectsOfUser" TypeName="Academic.DbHelper.DbHelper+Subject">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="hidUserId" DefaultValue="0" Name="userId" PropertyName="Value" Type="Int32" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </div>
+                    <br />
+                    <asp:HyperLink ID="HyperLink4" NavigateUrl="~/ViewsSite/DashBoard/Student/Dashboard.aspx"
+                        runat="server">
+                                Earlier
+                    </asp:HyperLink>
+                    <hr />
+                    <div>
+                        <asp:DataList ID="DataList2" runat="server" DataSourceID="EarlierYearsAndSubYearsDS">
+                            <ItemTemplate>
+
+                                <%--Id:--%>
+                                <%--<asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />--%>
+                                <%--<br />--%>
+                                <%
+                                    var name = "";
+                                    var id = 0;
+                                    var type = "";
+                                    // if (IsYear(DataBinder.Eval(System.ComponentModel.Container.DataItem, "Year")))// Eval("Year")
+                                    //{
+                                    //    //its a year
+                                    //    name = GetYearName(Eval("Year"));
+                                    //    id = (int)Eval("YearId");
+                                    //    type = "year";
+                                    //}
+                                    //else
+                                    //{
+                                    //    //its a subyear
+                                    //    name = Eval("Name").ToString();
+                                    //    id = (int) Eval("Id");
+                                    //    type = "subyear";
+                                    //}
+                                %>
+                                <asp:HiddenField ID="IdLabel1" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Id") %>' />
+                                <%--Name:--%>
+                                
+                               
+                                
+                              
+                                <div>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# GetYearName(Eval("Year")) %>' />
+                                </div>
+                               <div style="margin-left: 20px;">
+                                    <asp:Label ID="NameLabel" runat="server" Text='<%# Eval("Name") %>' />
+                                </div>
+                                <asp:HiddenField ID="TypeLabel" runat="server" Value='<%# Eval("Description") %>' />
+
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                        <asp:ObjectDataSource ID="EarlierYearsAndSubYearsDS" runat="server" SelectMethod="GetEarlierYearsAndSubYearsOfStudent" TypeName="Academic.DbHelper.DbHelper+Student">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="hidUserId" DefaultValue="0" Name="userId" PropertyName="Value" Type="Int32" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+
+
+
+                    </div>
+
+                    <br />
+                    <asp:HyperLink ID="HyperLink3" NavigateUrl="~/ViewsSite/DashBoard/Student/Dashboard.aspx"
+                        runat="server">
+                                Files
+                    </asp:HyperLink>
+                    <hr />
+                    <div>
+                        <asp:DataList ID="DataList1" runat="server" DataSourceID="ExtraCoursesDS">
+                            <ItemTemplate>
+                                <div style="margin: 0 5px 0  20px;">
+                                    <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("SubjectId") %>' />
+                                    <asp:HyperLink ID="HyperLink5" runat="server"
+                                        NavigateUrl='<%# "~/ViewsSite/DashBoard/Student/CourseSection/CourseSectionListing.aspx?SubId="+Eval("SubjectId") %>' Font-Underline="False">
+                                        ■&nbsp;<%# Eval("SubjectName") %>
+                                    </asp:HyperLink>
+                                </div>
+                            </ItemTemplate>
+                        </asp:DataList>
+                        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetExtraSubjectsOfUser" TypeName="Academic.DbHelper.DbHelper+Subject">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="hidUserId" DefaultValue="0" Name="userId" PropertyName="Value" Type="Int32" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </div>
+                    <%--<ul>
+                        <li>
+                            <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Views/Exam/Exam/Master/ListExams.aspx" runat="server">
+                                Extra Courses
+                            </asp:HyperLink>
+                        </li>
+                        <li>
+                            <asp:HyperLink ID="HyperLink4" NavigateUrl="~/Views/Exam/Exam/Master/ListExams.aspx" runat="server">
+                               Compose Message
+                            </asp:HyperLink>
+                        </li>
+                    </ul>--%>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="bodyDiv" style="float: left; width: 60%; overflow: hidden; margin: 15px 5px 20px;">
+            <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
+                <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
+            </asp:Panel>
+            <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Body" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+        </div>
+
+        <div style="float: right; width: 20%; height: 100%; margin: 10px 2px 0;">
+            <strong>Notice Board</strong>
+            <hr />
+            <div style="margin: 5px 10px 5px 5px; padding: 5px; border: 2px solid lightgray; width: 100%; height: 25%; background-color: lightgray;">
+                
+            </div>
+            <br />
+            <strong>News</strong>
+            <hr />
+            <div style="margin: 5px; padding: 5px; border: 2px solid lightgray; width: 100%; height: 25%; background-color: lightgray;">
+                
+            </div>
+            
+             <br />
+            <strong>Events</strong>
+            <hr />
+            <div style="margin: 5px; padding: 5px; border: 2px solid lightgray; width: 100%; height: 25%; background-color: lightgray;">
+                
+            </div>
+
+            <br />
+            <strong>Online Users</strong>
+            <hr />
+            <div style="margin: 5px; padding: 5px; border: 2px solid lightgray; width: 100%; height: 25%; background-color: lightgray;">
+                
+            </div>
+            <br />
+        </div>
+
+        <div style="clear: both;">
+            <hr style="color: white; height: 2px;" />
+            @copyright 2000
+        </div>
+    </form>
+</body>
+</html>

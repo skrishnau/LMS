@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UserMaster.master.cs" Inherits="One.ViewsSite.User.UserMaster" %>
+
+<%@ Register Src="~/ViewsSite/User/ModulesUc/CoursesUc.ascx" TagPrefix="uc1" TagName="CoursesUc" %>
+<%@ Register Src="~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx" TagPrefix="uc1" TagName="NoticeBoardUc" %>
+<%@ Register Src="~/ViewsSite/User/ModulesUc/NewsUc.ascx" TagPrefix="uc1" TagName="NewsUc" %>
+<%@ Register Src="~/ViewsSite/User/ModulesUc/EventsUc.ascx" TagPrefix="uc1" TagName="EventsUc" %>
+<%@ Register Src="~/ViewsSite/User/ModulesUc/OnlineUsersUc.ascx" TagPrefix="uc1" TagName="OnlineUsersUc" %>
+<%@ Register Src="~/ViewsSite/User/ModulesUc/EarlierUc.ascx" TagPrefix="uc1" TagName="EarlierUc" %>
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="UserStyles.css" rel="stylesheet" />
+    <link href="../../Content/CSSes/All.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <div id="menuDiv" class="menu-div" style="float: none; width: 100%;">
+            <asp:ContentPlaceHolder ID="Menu" runat="server">
+                <div style="float: right;">
+                    <asp:LoginName ID="LoginName1" runat="server" />
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                </div>
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <div class="leftsidebar">
+            <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
+            <%-- Subjects --%>
+            <uc1:CoursesUc runat="server" ID="CoursesUc" />
+            <uc1:EarlierUc runat="server" ID="EarlierUc" />
+            <%--<uc1:EventsUc runat="server" ID="EventsUc1" />--%>
+            <%--  --%>
+        </div>
+
+        <%-- Body   --%>
+
+        <div id="bodyDiv" style="float: left; width: 60%; overflow: hidden; margin: 15px 5px 20px;">
+            <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
+                <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
+            </asp:Panel>
+            <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Body" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+        </div>
+
+        <%-- Right --%>
+        <div class="right-sidebar">
+            <%--  style="overflow: auto; margin-top: 5px; height:180px;" --%>
+            <div class="dashboard-modules">
+                <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
+            </div>
+            <uc1:NewsUc runat="server" ID="NewsUc" />
+            <uc1:EventsUc runat="server" ID="EventsUc" />
+            <uc1:OnlineUsersUc runat="server" ID="OnlineUsersUc" />
+        </div>
+
+
+        <%-- Clear Both --%>
+        <div style="clear: both;">
+            <hr style="color: white; height: 2px;" />
+            @copyright 2000
+        </div>
+    </form>
+</body>
+</html>
