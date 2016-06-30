@@ -116,8 +116,8 @@ namespace One.ViewsSite.Account
                         serializeModel.FirstName = user.FirstName;
                         serializeModel.LastName = user.LastName;
                         
-                        serializeModel.SchoolId = user.SchoolId;
-                        var  acaId = acaHelper.GetCurrentAcademicYear(user.SchoolId);
+                        serializeModel.SchoolId = user.SchoolId??0;
+                        var  acaId = acaHelper.GetCurrentAcademicYear(user.SchoolId??0);
                         if (acaId != null)
                         {
                             serializeModel.AcademicYearId = acaId.Id;

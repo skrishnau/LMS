@@ -3,7 +3,9 @@
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="MainContent">
     <asp:Login ID="Login1" runat="server" OnAuthenticate="Login1_Authenticate"></asp:Login>
-    <asp:LoginView ID="LoginView1" runat="server">
+    <a id="registerLink" runat="server" href="~/ViewsSite/Account/Register.aspx">Register</a>
+
+    <%--<asp:LoginView ID="LoginView1" runat="server">
         <AnonymousTemplate>
             
         </AnonymousTemplate>
@@ -13,5 +15,5 @@
                 <asp:LoginStatus ID="LoginStatus1" runat="server" />
             </div>
         </LoggedInTemplate>
-    </asp:LoginView>
+    </asp:LoginView>--%>
 </asp:Content>
