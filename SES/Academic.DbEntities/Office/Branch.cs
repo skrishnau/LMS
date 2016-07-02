@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Academic.DbEntities.Office
 {
-    public class Branch
+    public class Branch1
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -20,6 +20,6 @@ namespace Academic.DbEntities.Office
         //foreign key
         public int InstitutionId { get; set; }
 
-        public virtual Institution Institution { get; set; }
+        //public virtual Institution Institution { get; set; }
     }
 }

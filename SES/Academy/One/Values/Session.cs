@@ -60,6 +60,7 @@ namespace One.Values
 
         public static int GetUser( HttpSessionState session)
         {
+            
             int sch = (int)
                             (session["UserId"] ?? 5);//1
             return sch;

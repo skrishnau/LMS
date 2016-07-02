@@ -150,6 +150,10 @@
     <Compile Include="Migrations\201606062022448_nullableInAssignment.Designer.cs">
       <DependentUpon>201606062022448_nullableInAssignment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606291323440_security_que_ans_added_in_user.cs" />
+    <Compile Include="Migrations\201606291323440_security_que_ans_added_in_user.Designer.cs">
+      <DependentUpon>201606291323440_security_que_ans_added_in_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -241,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606062022448_nullableInAssignment.resx">
       <DependentUpon>201606062022448_nullableInAssignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606291323440_security_que_ans_added_in_user.resx">
+      <DependentUpon>201606291323440_security_que_ans_added_in_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

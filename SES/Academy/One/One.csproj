@@ -308,6 +308,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ViewsSite\Account\Login.aspx" />
+    <Content Include="ViewsSite\Account\Register.aspx" />
     <Content Include="ViewsSite\DashBoard\StudentDashboardStyle.css" />
     <Content Include="ViewsSite\DashBoard\Student\CourseOverView\LstUc.ascx" />
     <Content Include="ViewsSite\DashBoard\Student\CourseOverView\CourseMessageUC.ascx" />
@@ -473,7 +474,9 @@
     <Content Include="Views\User\Create.aspx" />
     <Content Include="Views\User\List.aspx" />
     <Content Include="Views\User\UserCreateUC.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="ViewsSite\UserSite.Master" />
   </ItemGroup>
@@ -605,6 +608,13 @@
     </Compile>
     <Compile Include="ViewsSite\Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewsSite\DashBoard\Student\CourseOverView\LstUc.ascx.cs">
       <DependentUpon>LstUc.ascx</DependentUpon>

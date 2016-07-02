@@ -34,7 +34,7 @@ namespace Academic.DbEntities.User
         public virtual Gender Gender { get; set; }
 
 
-        public int SchoolId { get; set; }
+        public int? SchoolId { get; set; }
         public virtual School School { get; set; }
 
         public byte[] Image { get; set; }
@@ -49,6 +49,9 @@ namespace Academic.DbEntities.User
         {
             get { return FirstName ?? "" + " "+LastName ?? ""; }
         }
+
+        public string SecurityQuestion { get; set; }
+        public string SecurityAnswer { get; set; }
 
     }
 }

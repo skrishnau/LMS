@@ -7,6 +7,7 @@ using Academic.DbEntities.Office;
 
 namespace Academic.ViewModel.SystemControl.Office
 {
+    /*
     public class InstitutionSetup
     {
         public Institution Institution { get; set; }
@@ -33,5 +34,5 @@ namespace Academic.ViewModel.SystemControl.Office
         public School School { get; set; }
     }
 
-    
+    */
 }

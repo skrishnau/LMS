@@ -49,6 +49,23 @@ namespace Academic.DbHelper
                 }
             }
 
+            public bool Register(DbEntities.User.Users  user)
+            {
+                try
+                {
+                    Context.Users.Add(user);
+                    Context.SaveChanges();
+
+
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+
             public void Dispose()
             {
                 Context.Dispose();

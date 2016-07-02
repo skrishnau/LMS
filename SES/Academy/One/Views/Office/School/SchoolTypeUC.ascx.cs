@@ -15,7 +15,7 @@ namespace One.Views.Office.School
         {
             if (!IsPostBack)
             {
-                DbHelper.ComboLoader.LoadInstitution(ref cmbInstitution,InstitutionId);
+                //DbHelper.ComboLoader.LoadInstitution(ref cmbInstitution,InstitutionId);
             }
             lblVali.Visible = false;
         }

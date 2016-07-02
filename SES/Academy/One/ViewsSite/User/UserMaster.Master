@@ -69,9 +69,15 @@
             <div class="dashboard-modules">
                 <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
             </div>
-            <uc1:NewsUc runat="server" ID="NewsUc" />
-            <uc1:EventsUc runat="server" ID="EventsUc" />
-            <uc1:OnlineUsersUc runat="server" ID="OnlineUsersUc" />
+            <div class="dashboard-modules">
+                <uc1:NewsUc runat="server" ID="NewsUc" />
+            </div>
+            <div class="dashboard-modules">
+                <uc1:EventsUc runat="server" ID="EventsUc" />
+            </div>
+            <div class="dashboard-modules">
+                <uc1:OnlineUsersUc runat="server" ID="OnlineUsersUc" />
+            </div>
         </div>
 
 

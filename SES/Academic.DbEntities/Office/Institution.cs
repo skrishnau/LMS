@@ -7,7 +7,7 @@ using Academic.DbEntities.User;
 
 namespace Academic.DbEntities.Office
 {
-    public class Institution
+    public class Institution1
     {
         public int Id { get; set; }
         public string Name { get; set; }

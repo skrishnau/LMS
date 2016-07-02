@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EventsUc.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.EventsUc" %>
 
 
-<div class="dashboard-modules width-100percent height-25percent">
+<div class="dashboard-modules ">
     <strong>Events</strong>
     <hr />
     

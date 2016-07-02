@@ -418,7 +418,7 @@ namespace Academic.DbHelper
                     return schooltype.ToList();
                 }
             }
-
+/*
             public static void LoadInstitution(ref DropDownList cmbInstitution, int selectedId = 0)
             {
                 cmbInstitution.DataTextField = "Name";
@@ -451,7 +451,7 @@ namespace Academic.DbHelper
                     }
                 }
             }
-
+            */
             public static List<DbEntities.Subjects.SubjectCategory> LoadSubjectCategory(ref DropDownList cmbCategory,
                 int schoolId, bool includeTopAlso = false, bool includeEmptyField = false, int selectedValue=0)
             {

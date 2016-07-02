@@ -14,7 +14,7 @@ namespace Academic.DbEntities.Teachers
         public string Name { get; set; }
         public int InstitutionId { get; set; }
 
-        public virtual  Institution Institution { get; set; }
+        //public virtual  Institution Institution { get; set; }
         //public decimal AverageSalary { get; set; }
     }
 }

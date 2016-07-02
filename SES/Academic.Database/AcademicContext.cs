@@ -154,9 +154,12 @@ namespace Academic.Database
         public DbSet<DbEntities.Teachers.TeacherJobTitle> TeacherJobTitles { get; set; }
 
 
-        public DbSet<DbEntities.Office.Institution> Institution { get; set; }
+        //public DbSet<DbEntities.Office.Institution> Institution { get; set; }
+
         public DbSet<DbEntities.Office.Award> Award { get; set; }
-        public DbSet<DbEntities.Office.Branch> Branch { get; set; }
+
+        //public DbSet<DbEntities.Office.Branch> Branch { get; set; }
+
         public DbSet<DbEntities.Office.School> School { get; set; }
         public DbSet<DbEntities.Office.SchoolType> SchoolType { get; set; }
 
@@ -167,7 +170,9 @@ namespace Academic.Database
         public DbSet<RelationShip> RelationShip { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<UserTransfer> UserTransfer { get; set; }
-        public DbSet<UserAssociation> UserAssociation { get; set; }
+
+        //public DbSet<UserAssociation> UserAssociation { get; set; }
+
         public DbSet<UserType> UserType { get; set; }
         public DbSet<UserRole> UserRole { get; set; }
         public DbSet<UserLastLogin> UserLastLogin { get; set; }

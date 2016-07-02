@@ -32,8 +32,10 @@ namespace Academic.DbHelper
             }
 
             //=======================================================================//
-            //For WebForm controls
 
+            //For WebForm controls
+            /*
+            //not needed
             public DbEntities.Office.Institution GetInstitution(int id)
             {
                 return Context.Institution.Find(id);
@@ -110,6 +112,14 @@ namespace Academic.DbHelper
                 }
             }
 
+            public List<Institution> GetAllInstitution()
+            {
+                return Context.Institution.ToList();
+            }
+
+            */
+
+
             public List<IdAndName> GetSchoolForCombo(int instId)
             {
                 List<IdAndName> ss = new List<IdAndName>();
@@ -152,6 +162,23 @@ namespace Academic.DbHelper
                     else
                     {
                         //update later
+                        ent.Name = school.Name;
+                        ent.Email = school.Email;
+                        ent.Fax = school.Fax;
+                        ent.Phone = school.Phone;
+                        ent.RegNo = school.RegNo;
+                        ent.Street = school.Street;
+                        ent.Website = school.Website;
+                        ent.City = school.City;
+                        ent.Code = school.Code;
+                        ent.Country = school.Country;
+                        ent.Image = school.Image;
+                        ent.ImageType = school.ImageType;
+                        ent.IsActive = school.IsActive;
+                        ent.IsDeleted = school.IsDeleted;
+                        Context.SaveChanges();
+                        return ent;
+
                         return null;
                     }
 
@@ -179,10 +206,7 @@ namespace Academic.DbHelper
                 return list;
             }
 
-            public List<Institution> GetAllInstitution()
-            {
-                return Context.Institution.ToList();
-            }
+           
 
             public SchoolType AddOrUpdateSchoolType(SchoolType schTyp)
             {
@@ -218,16 +242,20 @@ namespace Academic.DbHelper
                 var user = Context.Users.Include(x => x.School).FirstOrDefault(x => x.Id == userId);
                 if (user != null)
                 {
-                    if (((int)(user.SchoolId )) > 0)
+                    if ((user.SchoolId ?? 0) > 0)
                     {
                         return user.School;
                     }
-                    else
-                    {
-                        var sch = Context.School.FirstOrDefault(x => x.UserId == userId);
-
-                        return sch;
-                    }
+                    //if (((int)(user.SchoolId )) > 0)
+                    //{
+                    //    return user.School;
+                    //}
+                    return null;
+                    //else
+                    //{
+                    //    var sch = Context.School.FirstOrDefault(x => x.UserId == userId);
+                    //    return sch;
+                    //}
                 }
                 return null;
             }

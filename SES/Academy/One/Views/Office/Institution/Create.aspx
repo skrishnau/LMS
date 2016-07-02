@@ -99,7 +99,8 @@
             <asp:FileUpload ID="FileUpload1" runat="server" />
         </div>
         <div style="float: right; width: 100%;">
-            <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+            <asp:Button ID="btnSave" runat="server" Text="Save"  />
+            <%-- OnClick="btnSave_Click" --%>
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblMsg" runat="server" ForeColor="#000066" Text="Label" Visible="False"></asp:Label>

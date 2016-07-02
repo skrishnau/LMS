@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using Academic.InitialValues;
+using One.Values.MemberShip;
 
 namespace One.Views.Office.School
 {
@@ -15,6 +16,36 @@ namespace One.Views.Office.School
         {
             if (!IsPostBack)
             {
+                var user = User as CustomPrincipal;
+                if (user != null)
+                {
+                    if (user.SchoolId > 0)
+                    {
+                        using (var helper = new DbHelper.Office())
+                        {
+                            var sch = helper.GetSchoolOfUser(user.Id);
+                            if (sch != null)
+                            {
+                                hidSchoolId.Value = sch.Id.ToString();
+                                txtCity.Text = sch.City;
+                                txtCode.Text = sch.Code;
+                                txtName.Text = sch.Name;
+                                txtCountry.Text = sch.Country;
+                                txtEmail.Text = sch.Email;
+                                txtFax.Text = sch.Fax;
+                                txtPhone.Text = sch.Phone;
+                                txtRegNo.Text = sch.RegNo;
+                                txtStreet.Text = sch.Street;
+                                txtWeb.Text = sch.Website;
+                                hidUserId.Value = sch.UserId.ToString();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        hidUserId.Value = user.Id.ToString();
+                    }
+                }
                 if (InitialValues.CustomSession["InstitutionId"] <= 0)
                 {
                     Response.Redirect("~/Views/Office/Institution/Create.aspx");
@@ -57,8 +88,13 @@ namespace One.Views.Office.School
             }
             if (IsValid)
             {
+                var user = User as CustomPrincipal;
+                if (user == null)
+                    return;
+                
                 var school = new Academic.DbEntities.Office.School()
                 {
+                    Id = Convert.ToInt32(hidSchoolId.Value),
                     Name = txtName.Text
                     ,
                     City = txtCity.Text
@@ -85,7 +121,7 @@ namespace One.Views.Office.School
                     ,
                     Website = txtWeb.Text
                     ,
-                    UserId = Values.Session.GetUser(Session)
+                    UserId = Convert.ToInt32(hidUserId.Value)
                     ,
                     CreatedDate = DateTime.Now
                    ,
