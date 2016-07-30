@@ -20,11 +20,11 @@ namespace One.Views.Office.School
             lblVali.Visible = false;
         }
 
-        public bool AdminView
-        {
-            get { return this.phAdminView.Visible; }
-            set { this.phAdminView.Visible = value; }
-        }
+        //public bool AdminView
+        //{
+        //    get { return this.phAdminView.Visible; }
+        //    set { this.phAdminView.Visible = value; }
+        //}
 
         public int InstitutionId
         {
@@ -34,7 +34,7 @@ namespace One.Views.Office.School
             }
             set
             {
-                AdminView = false;                
+                //AdminView = false;                
                 this.txtInstId.Text = value.ToString();
             }
         }

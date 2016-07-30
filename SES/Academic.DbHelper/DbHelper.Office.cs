@@ -139,7 +139,7 @@ namespace Academic.DbHelper
             {
                 try
                 {
-
+                    int earlierSchoolId = school.Id;
                     var ent = Context.School.Find(school.Id);
 
                     byte[] imgBytes = null;
@@ -157,6 +157,19 @@ namespace Academic.DbHelper
                     {
                         var saved = Context.School.Add(school);
                         Context.SaveChanges();
+
+                        //if this is newly created school (by the user) then add schoolId to the user
+                        if (earlierSchoolId <= 0 && school.UserId > 0)
+                        {
+                            var user = Context.Users.Find(school.UserId);
+                            if (user != null)
+                            {
+                                user.SchoolId = saved.Id;
+                                Context.SaveChanges();
+
+                            }
+                        }
+
                         return saved;
                     }
                     else
@@ -188,11 +201,13 @@ namespace Academic.DbHelper
                     return null;
                 }
             }
-            public IEnumerable<SchoolType> GetSchoolTypes(int instId)
+
+            //int instId
+            public IEnumerable<SchoolType> GetSchoolTypes()
             {
                 var schTypes = Context.SchoolType.AsEnumerable();
-                    //.Where(x => x.InstitutionId == instId
-                    //        || x.InstitutionId == null).AsEnumerable();
+                //.Where(x => x.InstitutionId == instId
+                //        || x.InstitutionId == null).AsEnumerable();
                 List<SchoolType> list = new List<SchoolType>();
                 foreach (var schoolType in schTypes)
                 {
@@ -206,7 +221,7 @@ namespace Academic.DbHelper
                 return list;
             }
 
-           
+
 
             public SchoolType AddOrUpdateSchoolType(SchoolType schTyp)
             {

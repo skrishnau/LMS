@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Course.ActivityAndResource.EntryUserConrols {
+namespace One.Views.Course.ActivityAndResource.EntryUserConrols.Activity {
     
     
-    public partial class AssignWF {
+    public partial class ChatWF {
         
         /// <summary>
-        /// AssignmentUc control.
+        /// ChatUc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.Course.ActivityAndResource.EntryUserConrols.AssignmentUc AssignmentUc;
+        protected global::One.Views.Course.ActivityAndResource.EntryUserConrols.Activity.ChatUc ChatUc;
     }
 }

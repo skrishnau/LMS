@@ -8,7 +8,7 @@
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
      
-    <asp:TextBox ID="datepicker_text" runat="server" ClientIDMode="Static"></asp:TextBox>
+    <%--<asp:TextBox ID="datepicker_text" runat="server" ClientIDMode="Static"></asp:TextBox>--%>
     <uc1:AssignmentUc runat="server" ID="AssignmentUc" />
       <script type="text/javascript">
           $(function () {

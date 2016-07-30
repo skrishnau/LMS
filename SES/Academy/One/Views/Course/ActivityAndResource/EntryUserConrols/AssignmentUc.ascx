@@ -23,12 +23,15 @@
      });
     </script>
 <div>
-    <strong>New Assignment</strong>
+    <div class="form-title">
+    <strong >New Assignment</strong>
+        </div>
     <br />
     <asp:HiddenField ID="hidAssignmentId" runat="server" Value="0"/>
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0"/>
     <br />
-    <div style="margin: 0 25px 0;">
+    <%-- style="margin: 0 25px 0;" --%>
+    <div class="form-body">
         <strong>General</strong>
         <hr />
         <table style="margin: 0 20px 0;">
@@ -136,6 +139,8 @@
             </tr>
         </table>
         <br />
+        <hr />
+        <br/>
         <div  style="text-align: left; padding:5px 20px 5px">
             <asp:Label ID="txtErrorMsg" runat="server" Text="Sorry, Couldn't Save !" ForeColor="#FF3300" Visible="False"></asp:Label>
             &nbsp;&nbsp;

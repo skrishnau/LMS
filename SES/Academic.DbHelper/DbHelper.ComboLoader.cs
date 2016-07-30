@@ -383,14 +383,15 @@ namespace Academic.DbHelper
 
 
 
-            public static List<SchoolType> LoadSchoolType(ref DropDownList cmbSchoolType, int instId,
+            public static List<SchoolType> LoadSchoolType(ref DropDownList cmbSchoolType, 
                 int selectedValue = 0, bool createNewField = false)
             {
+                //int instId,
                 cmbSchoolType.DataTextField = "Name";
                 cmbSchoolType.DataValueField = "Id";
                 using (var helper = new DbHelper.Office())
                 {
-                    var schooltype = helper.GetSchoolTypes(instId).ToList();
+                    var schooltype = helper.GetSchoolTypes().ToList();
                     if (schooltype.Count > 0)
                     {
                         schooltype.Insert(0,

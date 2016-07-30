@@ -321,3 +321,18 @@ tr.pager td {
 }
 
 
+/*==================== FORM STYLES START====================*/
+/*added recent , will be used in all input forms */
+
+.form-title {
+    font-size: 1.5em;
+    text-align: center
+}
+.form-body {
+    margin: 10px 20px 0; padding: 10px; border: 2px solid lightgray;
+}
+.form-content {
+    margin: 0 20px 0;
+}
+
+/*==================== FORM STYLES END ========================*/

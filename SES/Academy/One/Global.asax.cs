@@ -91,6 +91,8 @@ namespace One
                             newUser.Id = serializeModel.Id;
                             newUser.FirstName = serializeModel.FirstName;
                             newUser.LastName = serializeModel.LastName;
+                            newUser.UserName = serializeModel.UserName;
+                            newUser.SchoolId = serializeModel.SchoolId;
                         }
                         HttpContext.Current.User = newUser;
                         

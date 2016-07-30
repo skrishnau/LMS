@@ -154,6 +154,10 @@
     <Compile Include="Migrations\201606291323440_security_que_ans_added_in_user.Designer.cs">
       <DependentUpon>201606291323440_security_que_ans_added_in_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607021329413_institution_removed.cs" />
+    <Compile Include="Migrations\201607021329413_institution_removed.Designer.cs">
+      <DependentUpon>201607021329413_institution_removed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -248,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606291323440_security_que_ans_added_in_user.resx">
       <DependentUpon>201606291323440_security_que_ans_added_in_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607021329413_institution_removed.resx">
+      <DependentUpon>201607021329413_institution_removed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

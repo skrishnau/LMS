@@ -350,6 +350,9 @@
     <Content Include="Views\Course\ActivityAndResource\Chooseer\ChooseTypesUc.ascx" />
     <Content Include="Views\Course\ActivityAndResource\Chooseer\CopyPaste.aspx" />
     <Content Include="Views\Course\ActivityAndResource\Chooseer\test2.aspx" />
+    <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatUc.ascx" />
+    <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatViews\ChatRoom.ascx" />
+    <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatWF.aspx" />
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignmentUc.ascx" />
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignWF.aspx" />
     <Content Include="Views\Course\CourseCreate\CreateCourse.aspx" />
@@ -368,6 +371,7 @@
     <Content Include="Views\NoticeBoard\CreateUc.ascx" />
     <Content Include="Views\NoticeBoard\ListUc.ascx" />
     <Content Include="Views\NoticeBoard\WebForm1.aspx" />
+    <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx" />
     <Content Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx" />
     <Content Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx" />
@@ -924,6 +928,27 @@
     <Compile Include="Views\Course\ActivityAndResource\Chooseer\test2.aspx.designer.cs">
       <DependentUpon>test2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatUc.ascx.cs">
+      <DependentUpon>ChatUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatUc.ascx.designer.cs">
+      <DependentUpon>ChatUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatViews\ChatRoom.ascx.cs">
+      <DependentUpon>ChatRoom.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatViews\ChatRoom.ascx.designer.cs">
+      <DependentUpon>ChatRoom.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatWF.aspx.cs">
+      <DependentUpon>ChatWF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatWF.aspx.designer.cs">
+      <DependentUpon>ChatWF.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignmentUc.ascx.cs">
       <DependentUpon>AssignmentUc.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1049,6 +1074,13 @@
     </Compile>
     <Compile Include="Views\NoticeBoard\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Office\School\SchoolType\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Office\School\SchoolType\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx.cs">
       <DependentUpon>AddPrograms.aspx</DependentUpon>

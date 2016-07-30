@@ -13,6 +13,7 @@ namespace One.Values.MemberShip
     interface ICustomPrincipal : IPrincipal
     {
         int Id { get; set; }
+        string UserName { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
         List<string> UserRoles { get; set; } 
@@ -49,6 +50,7 @@ namespace One.Values.MemberShip
 
 
         public int Id { get; set; }
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<string> UserRoles { get; set; }
@@ -63,6 +65,7 @@ namespace One.Values.MemberShip
     public class CustomPrincipalSerializeModel
     {
         public int Id { get; set; }
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 

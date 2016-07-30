@@ -113,10 +113,11 @@ namespace One.ViewsSite.Account
 
                         CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
                         serializeModel.Id = user.Id;
+                        serializeModel.UserName = user.UserName;
                         serializeModel.FirstName = user.FirstName;
                         serializeModel.LastName = user.LastName;
-                        
-                        serializeModel.SchoolId = user.SchoolId??0;
+                        serializeModel.SchoolId = user.SchoolId ?? 0;
+
                         var  acaId = acaHelper.GetCurrentAcademicYear(user.SchoolId??0);
                         if (acaId != null)
                         {
