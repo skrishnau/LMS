@@ -111,7 +111,9 @@ namespace One.ViewsSite.Account
                         }
                         else
                         {
-                            Response.Redirect("~/ViewsSite/Default.aspx");
+                            //Response.Redirect("~/ViewsSite/Default.aspx");
+                            Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
+
                         }
                     }
                 }

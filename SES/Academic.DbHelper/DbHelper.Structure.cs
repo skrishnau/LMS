@@ -123,6 +123,56 @@ namespace Academic.DbHelper
 
             #endregion
 
+
+            #region List Fucntions
+
+            public List<TreeNode> ListStructure(int schoolId)
+            {
+                List<TreeNode> list = new List<TreeNode>();
+                //TreeNode node = new TreeNode("main", "main");
+
+                if (schoolId > 0)
+                {
+                    GetLevels(schoolId).ForEach(x =>
+                    {
+                        var lnode = new TreeNode(x.Name, x.Id.ToString());
+                        list.Add(lnode);
+                        //node.ChildNodes.Add(lnode);
+
+                        GetFaculties(x.Id).ForEach(f =>
+                        {
+                            var fnode = new TreeNode(f.Name, f.Id.ToString());
+                            lnode.ChildNodes.Add(fnode);
+
+                            GetPrograms(f.Id).ForEach(p =>
+                            {
+                                var pnode = new TreeNode(p.Name, p.Id.ToString());
+                                fnode.ChildNodes.Add(pnode);
+
+                                GetYears(p.Id).ForEach(y =>
+                                {
+                                    var ynode = new TreeNode(y.Name, y.Id.ToString());
+                                    pnode.ChildNodes.Add(ynode);
+
+                                     GetSubYears(y.Id).ForEach(s =>
+                                    {
+                                        var snode = new TreeNode(s.Name, s.Id.ToString());
+                                        ynode.ChildNodes.Add(snode);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                    return list;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+            #endregion
+
             #region Get Functions
 
             public List<Academic.ViewModel.IdAndName> GetLevels(int schoolId)
@@ -336,44 +386,44 @@ namespace Academic.DbHelper
 
             public object GetEarlierYearSubYear(int yearId, int subyearId = 0)
             {
-                
-                    if (subyearId > 0)
-                    {
-                        var prevsubYear = GetEarlierSubYear(yearId, subyearId);
-                        //if (Context.RunningClass.Any(x => (x.SubYearId ?? 0) == subyearId))
-                        {
-                            return prevsubYear;
-                        }
 
-                    }
-                    else
+                if (subyearId > 0)
+                {
+                    var prevsubYear = GetEarlierSubYear(yearId, subyearId);
+                    //if (Context.RunningClass.Any(x => (x.SubYearId ?? 0) == subyearId))
                     {
-                        var prevYear = GetEarlierYear(yearId);
-                        //if (Context.RunningClass.Any(x => x.YearId == yearId))
-                        {
-                            return prevYear;
-                        }
-                        
+                        return prevsubYear;
                     }
-                    return null;
+
+                }
+                else
+                {
+                    var prevYear = GetEarlierYear(yearId);
+                    //if (Context.RunningClass.Any(x => x.YearId == yearId))
+                    {
+                        return prevYear;
+                    }
+
+                }
+                return null;
             }
 
             public DbEntities.Structure.Year GetEarlierYear(int yearId)
+            {
+                var year = Context.Year.Find(yearId);
+                if (year != null)
                 {
-                    var year = Context.Year.Find(yearId);
-                    if (year != null)
+                    var min = year.Program.Year.Where(x => (x.IsActive ?? true) && !(x.Void ?? false)
+                                                           && x.Position < year.Position)
+                        .OrderByDescending(x => x.Position);
+                    var mn = min.First();
+                    if (mn != null)
                     {
-                        var min = year.Program.Year.Where(x => (x.IsActive ?? true) && !(x.Void ?? false)
-                                                               && x.Position < year.Position)
-                            .OrderByDescending(x => x.Position);
-                        var mn = min.First();
-                        if (mn != null)
-                        {
-                            return mn;
-                        }
+                        return mn;
                     }
-                    return null;
-                
+                }
+                return null;
+
             }
 
             public DbEntities.Structure.SubYear GetEarlierSubYear(int yearId, int subyearId = 0)
@@ -424,7 +474,7 @@ namespace Academic.DbHelper
                 var prog =
                     Context.Program.Include(x => x.Faculty)
                         .Include(x => x.Faculty.Level)
-                        .Include(x=>x.Faculty.Level.School)
+                        .Include(x => x.Faculty.Level.School)
                         .FirstOrDefault(x => x.Id == programId);
                 return prog;
             }

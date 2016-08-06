@@ -333,6 +333,7 @@
     <Content Include="ViewsSite\User\ModulesUc\NoticeBoardUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\SettingsUc.ascx" />
+    <Content Include="ViewsSite\User\Settings\Setting.aspx" />
     <Content Include="ViewsSite\User\UserStyles.css" />
     <Content Include="Views\AcademicPlacement\Master\List.aspx" />
     <Content Include="Views\AcademicPlacement\Master\ListingUserControls\TreeNodeUC.ascx" />
@@ -372,6 +373,7 @@
     <Content Include="Views\NoticeBoard\ListUc.ascx" />
     <Content Include="Views\NoticeBoard\WebForm1.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
+    <Content Include="Views\Office\School\View.aspx" />
     <Content Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx" />
     <Content Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx" />
     <Content Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx" />
@@ -809,6 +811,13 @@
     <Compile Include="ViewsSite\User\ModulesUc\SettingsUc.ascx.designer.cs">
       <DependentUpon>SettingsUc.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ViewsSite\User\Settings\Setting.aspx.cs">
+      <DependentUpon>Setting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\Settings\Setting.aspx.designer.cs">
+      <DependentUpon>Setting.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewsSite\User\UserMaster.Master.cs">
       <DependentUpon>UserMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1081,6 +1090,13 @@
     </Compile>
     <Compile Include="Views\Office\School\SchoolType\Create.aspx.designer.cs">
       <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Office\School\View.aspx.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Office\School\View.aspx.designer.cs">
+      <DependentUpon>View.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx.cs">
       <DependentUpon>AddPrograms.aspx</DependentUpon>

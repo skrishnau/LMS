@@ -9,7 +9,8 @@
     </div>
     <div class="float-left">
         <div>
-            List
+            List of structure
+            <asp:TreeView ID="TreeView1" runat="server"></asp:TreeView>
         </div>
     </div>
 </asp:Content>

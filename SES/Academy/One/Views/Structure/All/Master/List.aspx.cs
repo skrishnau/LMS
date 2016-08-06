@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
+using One.Values.MemberShip;
 
 namespace One.Views.Structure.All.Master
 {
@@ -11,7 +13,25 @@ namespace One.Views.Structure.All.Master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                var user = User as CustomPrincipal;
+                if (user != null)
+                {
+                    if (user.SchoolId > 0)
+                    {
+                        using (var helper = new DbHelper.Structure())
+                        {
+                            var node = helper.ListStructure(user.SchoolId);
+                            foreach (var n in node)
+                            {
+                                TreeView1.Nodes.Add(n);
+                            }
+                        }
+                    }
+                }
 
+            }
         }
     }
 }
