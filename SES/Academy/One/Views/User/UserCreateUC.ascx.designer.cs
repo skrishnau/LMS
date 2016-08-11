@@ -220,6 +220,24 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
+        /// pnlInterest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlInterest;
+        
+        /// <summary>
+        /// txtInterest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtInterest;
+        
+        /// <summary>
         /// cmbGender control.
         /// </summary>
         /// <remarks>

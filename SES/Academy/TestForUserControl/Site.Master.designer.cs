@@ -7,45 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Structure.All.Master {
-    
-    
-    public partial class List {
-        
+namespace TestForUserControl
+{
+
+
+    public partial class SiteMaster
+    {
+
         /// <summary>
-        /// HyperLink1 control.
+        /// HeadContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
-        
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+
         /// <summary>
-        /// HyperLink2 control.
+        /// FeaturedContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
-        
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder FeaturedContent;
+
         /// <summary>
-        /// TreeView1 control.
+        /// MainContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TreeView TreeView1;
-        
-        /// <summary>
-        /// pnlListing control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder pnlListing;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }

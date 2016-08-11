@@ -7,54 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.User {
+namespace One.Views.Course.Category {
     
     
-    public partial class List {
+    public partial class ListUC {
         
         /// <summary>
-        /// GridView1 control.
+        /// pnlName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Panel pnlName;
         
         /// <summary>
-        /// ObjectDataSource1 control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        protected global::System.Web.UI.WebControls.LinkButton lblName;
         
         /// <summary>
-        /// hidPageNo control.
+        /// hidCategoryId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidPageNo;
+        protected global::System.Web.UI.WebControls.HiddenField hidCategoryId;
         
         /// <summary>
-        /// hidPerPage control.
+        /// pnlSubCategories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidPerPage;
-        
-        /// <summary>
-        /// hidSchoolId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSchoolId;
+        protected global::System.Web.UI.WebControls.PlaceHolder pnlSubCategories;
     }
 }

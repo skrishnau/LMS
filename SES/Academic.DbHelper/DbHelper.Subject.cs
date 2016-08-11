@@ -541,6 +541,43 @@ namespace Academic.DbHelper
                 regular.AddRange(extra);
                 return regular;
             }
+
+
+            //===========================Listing Codes =================================//
+            #region Category Listing
+
+            public List<SubjectCategory> ListAllCategories(int schoolId)
+            {
+               return  Context.SubjectCategory
+                   .Where(x => x.SchoolId == schoolId && (x.ParentId??0) == 0)
+                   .OrderBy(x=>x.Name).ToList();
+            }
+
+            public List<SubjectCategory> ListSubCategories(int schoolId , int categoryId)
+            {
+                return Context.SubjectCategory.Where(x =>x.SchoolId==schoolId && x.ParentId == categoryId)
+                    .OrderBy(y=>y.Name).ToList();
+            }
+            #endregion
+
+            #region Course Listing
+
+            public List<DbEntities.Subjects.Subject> ListCourses(int schoolId, int categoryId)
+            {
+                return Context.Subject.Where(x => x.SubjectCategoryId == categoryId)
+                    .OrderBy(y=>y.Name).ToList();
+            }
+
+            public List<DbEntities.Subjects.Subject> ListCourses( int categoryId)
+            {
+                return Context.Subject.Where(x => x.SubjectCategoryId == categoryId)
+                    .OrderBy(y => y.Name).ToList();
+            }
+
+            #endregion
+            //==============================End of Listing==========================//
+            //=========================================================================//
+
         }
     }
 }

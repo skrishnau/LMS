@@ -13,18 +13,35 @@ namespace One.ViewsSite.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            //if (!IsPostBack)
             {
+
                 var user = Page.User as CustomPrincipal;
+                var loginUrl = "ViewsSite/Account/Login.aspx";
                 if (user != null)
                 {
+                    //check for school
+
+
                     CoursesUc.UserId = user.Id;
                     if (user.IsInRole("manager"))
                     {
-                        SettingsUc settings = (SettingsUc)Page.LoadControl("~/ViewsSite/User/ModulesUc/SettingsUc.ascx");
+                        var schoolCreateUrl = "Views/Office/School/Create.aspx";
+                        var isSchoolUrl = Request.Url.AbsolutePath.Contains(schoolCreateUrl);
+                        if (user.SchoolId <= 0 && !isSchoolUrl)
+                        {
+                            Response.Redirect("~/" + schoolCreateUrl);
+                        }
+
+                        SettingsUc settings =
+                            (SettingsUc) Page.LoadControl("~/ViewsSite/User/ModulesUc/SettingsUc.ascx");
                         settings.UserId = user.Id;
                         pnlSettings.Controls.Add(settings);
                     }
+                }
+                else if(!Request.Url.AbsolutePath.Contains(loginUrl))
+                {
+                    Response.Redirect("~/"+loginUrl);
                 }
 
             }

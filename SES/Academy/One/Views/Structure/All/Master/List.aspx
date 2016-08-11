@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/UserSite.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="One.Views.Structure.All.Master.List" %>
-
+﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="One.Views.Structure.All.Master.List" %>
+<%-- ~/ViewsSite/UserSite.Master --%>
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <div>
         <div class="float-left">
@@ -10,7 +10,16 @@
     <div class="float-left">
         <div>
             List of structure
-            <asp:TreeView ID="TreeView1" runat="server"></asp:TreeView>
+            <asp:TreeView ID="TreeView1" runat="server" ShowLines="True"></asp:TreeView>
         </div>
+
+    </div>
+    
+    <div id="listStructureDiv" >
+        <strong>Index</strong>
+        <br/>
+        <asp:PlaceHolder ID="pnlListing" runat="server">
+            
+        </asp:PlaceHolder>
     </div>
 </asp:Content>

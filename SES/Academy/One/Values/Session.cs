@@ -48,6 +48,7 @@ namespace One.Values
 
         public static int GetSchool(HttpSessionState session)
         {
+            
             int sch = (int)
                             (session["SchoolId"] ?? 1);
             return sch;

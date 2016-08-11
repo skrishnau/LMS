@@ -179,6 +179,7 @@
     <Content Include="Content\Icons\Users\single.png" />
     <Content Include="Content\Icons\Users\users-icon.png" />
     <Content Include="Content\Images\company-logo.jpg" />
+    <Content Include="Content\Images\UserImage\company-logo.jpg" />
     <Content Include="Content\PickADay\css\pikaday.css" />
     <Content Include="Content\PickADay\css\site.css" />
     <Content Include="Content\PickADay\css\theme.css" />
@@ -356,7 +357,11 @@
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatWF.aspx" />
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignmentUc.ascx" />
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignWF.aspx" />
+    <Content Include="Views\Course\Category\ListUC.ascx" />
     <Content Include="Views\Course\CourseCreate\CreateCourse.aspx" />
+    <Content Include="Views\Course\CourseDetail.aspx" />
+    <Content Include="Views\Course\Course\CourseListUC.ascx" />
+    <Content Include="Views\Course\Course\CreateUC.ascx" />
     <Content Include="Views\Course\ListingMain\CourseMain\ListItemUc.ascx" />
     <Content Include="Views\Course\ListingMain\CourseMain\ListSubjectGroup.aspx" />
     <Content Include="Views\Course\ListingMain\CourseMain\ListUc.ascx" />
@@ -374,6 +379,7 @@
     <Content Include="Views\NoticeBoard\WebForm1.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
+    <Content Include="Views\Structure\All\UserControls\ListUC.ascx" />
     <Content Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx" />
     <Content Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx" />
     <Content Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx" />
@@ -972,12 +978,40 @@
     <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignWF.aspx.designer.cs">
       <DependentUpon>AssignWF.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Course\Category\ListUC.ascx.cs">
+      <DependentUpon>ListUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Category\ListUC.ascx.designer.cs">
+      <DependentUpon>ListUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Course\CourseCreate\CreateCourse.aspx.cs">
       <DependentUpon>CreateCourse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Course\CourseCreate\CreateCourse.aspx.designer.cs">
       <DependentUpon>CreateCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\CourseDetail.aspx.cs">
+      <DependentUpon>CourseDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\CourseDetail.aspx.designer.cs">
+      <DependentUpon>CourseDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Course\CourseListUC.ascx.cs">
+      <DependentUpon>CourseListUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Course\CourseListUC.ascx.designer.cs">
+      <DependentUpon>CourseListUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Course\CreateUC.ascx.cs">
+      <DependentUpon>CreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Course\CreateUC.ascx.designer.cs">
+      <DependentUpon>CreateUC.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\ListingMain\CourseMain\ListItemUc.ascx.cs">
       <DependentUpon>ListItemUc.ascx</DependentUpon>
@@ -1097,6 +1131,13 @@
     </Compile>
     <Compile Include="Views\Office\School\View.aspx.designer.cs">
       <DependentUpon>View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ListUC.ascx.cs">
+      <DependentUpon>ListUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ListUC.ascx.designer.cs">
+      <DependentUpon>ListUC.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx.cs">
       <DependentUpon>AddPrograms.aspx</DependentUpon>

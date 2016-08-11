@@ -13,6 +13,7 @@ namespace Academic.DbEntities
         public string FileName { get; set; }
         public string FileDirectory { get; set; }
         public long FileSizeInBytes { get; set; }
+        public string FileType { get; set; }//Extension
 
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }

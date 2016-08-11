@@ -42,11 +42,11 @@
         </div>
 
         <div class="leftsidebar">
-            <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
             <%-- Subjects --%>
             <uc1:CoursesUc runat="server" ID="CoursesUc" />
             <uc1:EarlierUc runat="server" ID="EarlierUc" />
             <%--<uc1:EventsUc runat="server" ID="EventsUc1" />--%>
+            <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
             <%--  --%>
         </div>
 

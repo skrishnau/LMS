@@ -7,180 +7,180 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.ViewsSite.User {
+namespace One.Views.Course.Course {
     
     
-    public partial class UserMaster {
+    public partial class CreateUC {
         
         /// <summary>
-        /// title control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder title;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// head control.
+        /// lblCategoryName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.Label lblCategoryName;
         
         /// <summary>
-        /// form1 control.
+        /// hidCategoryId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.HiddenField hidCategoryId;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
-        /// Menu control.
+        /// RequiredFieldValidator2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Menu;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// LoginName1 control.
+        /// txtCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginName LoginName1;
+        protected global::System.Web.UI.WebControls.TextBox txtCode;
         
         /// <summary>
-        /// LoginStatus1 control.
+        /// RequiredFieldValidator3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginStatus LoginStatus1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
-        /// CoursesUc control.
+        /// txtCredit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.CoursesUc CoursesUc;
+        protected global::System.Web.UI.WebControls.TextBox txtCredit;
         
         /// <summary>
-        /// EarlierUc control.
+        /// RequiredFieldValidator4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.EarlierUc EarlierUc;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// pnlSettings control.
+        /// txtCompletionHours control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder pnlSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtCompletionHours;
         
         /// <summary>
-        /// pnlBodyMessage control.
+        /// txtFullMarks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlBodyMessage;
+        protected global::System.Web.UI.WebControls.TextBox txtFullMarks;
         
         /// <summary>
-        /// lblBodyMessage control.
+        /// txtPassPercent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBodyMessage;
+        protected global::System.Web.UI.WebControls.TextBox txtPassPercent;
         
         /// <summary>
-        /// BodyTitle control.
+        /// pnlOpt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyTitle;
+        protected global::System.Web.UI.WebControls.Panel pnlOpt;
         
         /// <summary>
-        /// Body control.
+        /// chkListHas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Body;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkListHas;
         
         /// <summary>
-        /// hidUserId control.
+        /// chkListIs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidUserId;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkListIs;
         
         /// <summary>
-        /// NoticeBoardUc control.
+        /// ckhIsActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.NoticeBoardUc NoticeBoardUc;
+        protected global::System.Web.UI.WebControls.CheckBox ckhIsActive;
         
         /// <summary>
-        /// NewsUc control.
+        /// chkIsVoid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.NewsUc NewsUc;
+        protected global::System.Web.UI.WebControls.CheckBox chkIsVoid;
         
         /// <summary>
-        /// EventsUc control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.EventsUc EventsUc;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// OnlineUsersUc control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.OnlineUsersUc OnlineUsersUc;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

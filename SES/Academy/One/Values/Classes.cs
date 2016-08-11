@@ -18,6 +18,12 @@ namespace One.Values
 
     }
 
+    public class DataEventArgs:EventArgs
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
     public class MessageEventArgs : EventArgs
     {
         public string Message { get; set; }
@@ -30,6 +36,8 @@ namespace One.Values
 
         public int SavedId { get; set; }
         public string SavedName { get; set; }
+
+        public int RefId { get; set; }
     }
 
     public class RunningClassEventArgs : EventArgs

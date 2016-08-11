@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Profile;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using One.Values;
+using One.Values.MemberShip;
 
 namespace One.Views.Course.Category
 {
@@ -19,7 +21,13 @@ namespace One.Views.Course.Category
         {
             if (!IsPostBack)
             {
-                DbHelper.ComboLoader.LoadSubjectCategory(ref cmbCategory, Values.Session.GetSchool(Session), true, false);
+                var user = Page.User as CustomPrincipal;
+                if (user != null)
+                {
+                    //DbHelper.ComboLoader.LoadSubjectCategory(ref cmbCategory,user.SchoolId, true, false);                    
+                    DbHelper.ComboLoader.LoadSubjectCategory(ref cmbCategory, SchoolId, true, false);                    
+
+                }
                 if (!String.IsNullOrEmpty(hidRetUrl.Value) || CancelClicked != null)
                 {
                     btnCancel.Visible = true;

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Web;
 using Academic.Database;
+using Academic.DbEntities;
 using Academic.DbEntities.User;
 
 namespace Academic.DbHelper
@@ -41,14 +42,14 @@ namespace Academic.DbHelper
 
             public List<DbEntities.User.UserType> GetUserTypes(int schoolId)
             {
-                var type= Context.UserType.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId
+                var type = Context.UserType.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId
                     || x.SchoolId == null)).ToList();
                 if (type.Count == 0)
                 {
                     var stdType = new UserType()
                     {
                         Name = "Student"
-                        
+
 
                     };
                     var teachType = new UserType()
@@ -177,20 +178,55 @@ namespace Academic.DbHelper
                     {
                         byte[] imgBytes = null;
 
-                        using (var filehelper = new DbHelper.WorkingWithFiles())
-                        {
-                            if (file != null)
-                            {
-                                imgBytes = filehelper.ConvertToBytes(file);
-                                user.Image = imgBytes;
-                                user.ImageType = file.ContentType;
-                            }
-                        }
+                        //using (var filehelper = new DbHelper.WorkingWithFiles())
+                        //{
+                        //    if (file != null)
+                        //    {
+                        //        imgBytes = filehelper.ConvertToBytes(file);
+                        //        user.Image = imgBytes;
+                        //        user.ImageType = file.ContentType;
+                        //    }
+                        //}
+
+
+
                         var ent = Context.Users.Find(user.Id);
                         if (ent == null)
                         {
                             var entity = Context.Users.Add(user);
                             Context.SaveChanges();
+
+                            //save  image
+                            //file.SaveAs();
+                            if (file != null)
+                            {
+                                var image = new File()
+                                {
+                                    CreatedBy = entity.Id
+                                    ,
+                                    CreatedDate = DateTime.Now
+                                    ,
+                                    DisplayName = file.FileName
+                                    ,
+                                    FileDirectory = InitialValues.StaticValue.UserImageDirectory
+                                    ,
+                                    FileName = Guid.NewGuid().GetHashCode().ToString()
+                                    ,
+                                    FileSizeInBytes = file.ContentLength
+                                    ,
+                                    FileType = file.ContentType
+                                    ,
+                                };
+                                GetNewGuid(image);
+                                file.SaveAs(image.FileDirectory + image.FileName);
+
+                                var savedImage = Context.File.Add(image);
+                                Context.SaveChanges();
+
+                                entity.UserImageId = savedImage.Id;
+                            }
+
+
 
                             //new ma matra role Admin hunxa other wise there are many roles for a user
                             if (roleId != "")
@@ -223,11 +259,11 @@ namespace Academic.DbHelper
                             ent.FirstName = user.FirstName;
                             ent.EmailDisplay = user.EmailDisplay;
                             ent.Email = user.Email;
-                            if (imgBytes != null)
-                            {
-                                ent.Image = imgBytes;
-                                ent.ImageType = file.ContentType;
-                            }
+                            //if (imgBytes != null)
+                            //{
+                            //    ent.Image = imgBytes;
+                            //    ent.ImageType = file.ContentType;
+                            //}
                             ent.UserName = user.UserName;
                             // ent.RoleId = user.RoleId;
                             ent.Phone = user.Phone;
@@ -248,10 +284,20 @@ namespace Academic.DbHelper
                 }
             }
 
-            private Users GetUser(int i)
+            private void GetNewGuid(File image)
             {
-                return Context.Users.Find(i);
+                var existingFile = Context.File.FirstOrDefault(x => x.FileName == image.FileName);
+                if (existingFile != null)
+                {
+                    image.FileName = Guid.NewGuid().GetHashCode().ToString();
+                    GetNewGuid(image);
+                }
+            }
 
+
+            private Users GetUser(int userId)
+            {
+                return Context.Users.Find(userId);
             }
 
             public void SaveCreatedUser(DbEntities.User.CreatedUser createdUser, List<int> DivisonsAssigned, HttpPostedFile file)
@@ -296,6 +342,15 @@ namespace Academic.DbHelper
             }
 
 
+            //listing of users
+            public List<Users> ListAllUsers(int schoolId, int perPage, int pageNo)
+            {
+                var list = Context.Users.Where(x => x.SchoolId == schoolId)
+                    .OrderBy(y => y.FirstName).ThenBy(t => t.LastName)
+                    .Skip(perPage * (pageNo - 1)).Take(perPage);
+                return list.ToList();
+            }
+
 
             //gender
             public List<DbEntities.User.Gender> GetGender()
@@ -303,8 +358,8 @@ namespace Academic.DbHelper
                 var gender = Context.Gender.ToList();
                 if (gender.Count == 0)
                 {
-                    var male = new Gender(){Name = "Male"};
-                    var female = new Gender(){Name = "Female"};
+                    var male = new Gender() { Name = "Male" };
+                    var female = new Gender() { Name = "Female" };
                     //var other = new Gender(){Name = "Other"};
                     Context.Gender.Add(male);
                     Context.Gender.Add(female);
@@ -312,7 +367,6 @@ namespace Academic.DbHelper
                 }
                 return Context.Gender.ToList();
             }
-
 
             //divisions
             public List<Division> GetDivisionsForCombo(int schoolId)

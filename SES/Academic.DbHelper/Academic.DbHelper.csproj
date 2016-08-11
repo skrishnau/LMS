@@ -83,6 +83,10 @@
       <Project>{0e622a6c-c728-430d-bc74-27054cba41f8}</Project>
       <Name>Academic.DbEntities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Academic.InitialValues\Academic.InitialValues.csproj">
+      <Project>{CFEC66C8-D22C-435A-A639-3EA8DBCF466C}</Project>
+      <Name>Academic.InitialValues</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Academic.ViewModel\Academic.ViewModel.csproj">
       <Project>{48695c61-f60a-49e5-ad33-948b6b682a30}</Project>
       <Name>Academic.ViewModel</Name>

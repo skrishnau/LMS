@@ -21,7 +21,7 @@
                 <td>
                     <asp:TextBox ID="txtName" runat="server" Width="115px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                        ControlToValidate="txtName"
+                        ControlToValidate="txtName" ValidationGroup="categoryCreateGroup"
                         ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                 </td>
             </tr>
@@ -35,7 +35,8 @@
         </table>
         <asp:CheckBox ID="chkIsActive" runat="server" Text="Is Active" Visible="false" Checked="True" />
         <asp:CheckBox ID="chkVoid" runat="server" Visible="false" Text="Void" />
-        <asp:Button ID="btnSave" runat="server" Text="Save" Width="73px" OnClick="btnSave_Click" />
+        <asp:Button ID="btnSave" runat="server" Text="Save" Width="73px" OnClick="btnSave_Click" 
+            ValidationGroup="categoryCreateGroup" />
         &nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" Visible="False" Width="69px" />
 

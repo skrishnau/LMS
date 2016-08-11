@@ -7,54 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.User {
+namespace One.Views.Structure.All.UserControls {
     
     
-    public partial class List {
+    public partial class ListUC {
         
         /// <summary>
-        /// GridView1 control.
+        /// panel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl panel;
         
         /// <summary>
-        /// ObjectDataSource1 control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// hidPageNo control.
+        /// hidStructureId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidPageNo;
+        protected global::System.Web.UI.WebControls.HiddenField hidStructureId;
         
         /// <summary>
-        /// hidPerPage control.
+        /// pnlSubControls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidPerPage;
-        
-        /// <summary>
-        /// hidSchoolId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSchoolId;
+        protected global::System.Web.UI.WebControls.PlaceHolder pnlSubControls;
     }
 }

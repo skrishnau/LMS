@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Academic.Database;
+using Academic.DbEntities.User;
 
 namespace Academic.DbHelper
 {
@@ -53,10 +54,27 @@ namespace Academic.DbHelper
             {
                 try
                 {
-                    Context.Users.Add(user);
+                    var savedUser = Context.Users.Add(user);
                     Context.SaveChanges();
+                    var roleId = Context.Role.FirstOrDefault(x => x.Name.ToLower() == "manager");
+                    if (roleId == null)
+                    {
+                        roleId = Context.Role.Add(new Role()
+                        {
+                            Name = "manager"
+                            ,Description = "'Manager' has complete access over all of the settings."
+                        });
+                        Context.SaveChanges();
+                    }
+                    var urole = new UserRole()
+                    {
+                        AssignedDate = DateTime.Now
+                        ,UserId = savedUser.Id
+                        ,RoleId = roleId.Id
+                    };
 
-
+                    Context.UserRole.Add(urole);
+                    Context.SaveChanges();
                     return true;
                 }
                 catch (Exception e)

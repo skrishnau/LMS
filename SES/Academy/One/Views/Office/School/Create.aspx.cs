@@ -73,7 +73,7 @@ namespace One.Views.Office.School
                     if (sch != null)
                     {
                         //Give to update or edit but not add new.
-                        Response.Redirect("~/Views/Dashboard.aspx");                        
+                        Response.Redirect("~/Views/Dashboard.aspx");
                     }
                 }
                 //redirect to login page.
@@ -136,14 +136,24 @@ namespace One.Views.Office.School
                     var saved = helper.AddOrUpdateSchool(school, FileUpload1.PostedFile);
 
                     //update cookie -- add school Id to the cookie
-                    if(user.SchoolId<=0)
-                        UpdateSchoolInfoInCookie(user,saved.Id);
                     //Page.User.Identity.Name;
-                    if (saved != null)
+                    if (user.SchoolId <= 0 && saved != null)
                     {
-                        SchoolTypeUC.SavedId = 0;
-                        lblMsg.Visible = true;
-                        lblMsg.Text = "Save Successful.";
+                        var ok = UpdateSchoolInfoInCookie(user, saved.Id);
+                        if (ok)
+                        {
+                            Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
+                        }
+                        else
+                        {
+                            lblMsg.Text = "Error while saving.";
+                        }
+
+                        //---not needed, since redirect is done above
+
+                        //SchoolTypeUC.SavedId = 0;
+                        //lblMsg.Visible = true;
+                        //lblMsg.Text = "Save Successful.";
                     }
                     else
                     {
@@ -156,13 +166,15 @@ namespace One.Views.Office.School
 
 
 
-        public void UpdateSchoolInfoInCookie(CustomPrincipal user,int schoolId)
+        public bool UpdateSchoolInfoInCookie(CustomPrincipal user, int schoolId)
         {
-            using (var acchelper = new DbHelper.CustomAccount())
+            try
             {
-                //if (Membership.ValidateUser(viewModel.UserName, viewModel.Password))
-                //if (acchelper.CheckUser(viewModel.UserName, viewModel.Password))
-                //{
+                using (var acchelper = new DbHelper.CustomAccount())
+                {
+                    //if (Membership.ValidateUser(viewModel.UserName, viewModel.Password))
+                    //if (acchelper.CheckUser(viewModel.UserName, viewModel.Password))
+                    //{
                     //Response.Cookies.Remove(FormsAuthentication.FormsCookieName);
 
                     using (var acaHelper = new DbHelper.AcademicYear())
@@ -225,7 +237,13 @@ namespace One.Views.Office.School
                             Response.Redirect("~/ViewsSite/Default.aspx");
                         }*/
                     }
-                //}
+                    //}
+                }
+                return true;
+            }
+            catch (Exception exee)
+            {
+                return false;
             }
         }
 

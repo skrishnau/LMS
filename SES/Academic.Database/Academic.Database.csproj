@@ -158,6 +158,14 @@
     <Compile Include="Migrations\201607021329413_institution_removed.Designer.cs">
       <DependentUpon>201607021329413_institution_removed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608110816586_middleName_in_Users_table.cs" />
+    <Compile Include="Migrations\201608110816586_middleName_in_Users_table.Designer.cs">
+      <DependentUpon>201608110816586_middleName_in_Users_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608110918578_user_table_image_now_saved_as_file.cs" />
+    <Compile Include="Migrations\201608110918578_user_table_image_now_saved_as_file.Designer.cs">
+      <DependentUpon>201608110918578_user_table_image_now_saved_as_file.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -255,6 +263,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607021329413_institution_removed.resx">
       <DependentUpon>201607021329413_institution_removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608110816586_middleName_in_Users_table.resx">
+      <DependentUpon>201608110816586_middleName_in_Users_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608110918578_user_table_image_now_saved_as_file.resx">
+      <DependentUpon>201608110918578_user_table_image_now_saved_as_file.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

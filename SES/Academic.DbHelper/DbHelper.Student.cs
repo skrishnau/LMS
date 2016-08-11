@@ -128,8 +128,9 @@ namespace Academic.DbHelper
                             if (file != null)
                             {
                                 imgBytes = filehelper.ConvertToBytes(file);
-                                user.Image = imgBytes;
-                                user.ImageType = file.ContentType;
+                                //below comented due to changed in database.. now image is saved as file.
+                                //user.Image = imgBytes;
+                                //user.ImageType = file.ContentType;
                             }
                         }
                         var prev = Context.Users.Find(user.Id);
@@ -182,8 +183,11 @@ namespace Academic.DbHelper
                             prev.CreatedDate = user.CreatedDate;
                             prev.DOB = user.DOB;
                             prev.FirstName = user.FirstName;
-                            prev.Image = user.Image;
-                            prev.ImageType = user.ImageType;
+
+                            //below two lines commnented due to changes in database: now image saved as file.
+                            //prev.Image = user.Image;
+                            //prev.ImageType = user.ImageType;
+                            
                             //prev.InstitutionId = createdUser.InstitutionId;
                             prev.SchoolId = user.SchoolId;
                             //prev.BarcodeNo = createdUser.BarcodeNo;

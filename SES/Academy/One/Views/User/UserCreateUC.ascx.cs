@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using Academic.InitialValues;
+using One.Values.MemberShip;
 
 namespace One.Views.User
 {
@@ -59,7 +60,7 @@ namespace One.Views.User
                         cmbRole.Enabled = false;
                         break;
                     case "Create":
-                        DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session),"");
+                        DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "");
 
                         break;
                     case "ProfileEdit":
@@ -116,7 +117,7 @@ namespace One.Views.User
                     DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "");
                 }
                 return cmbRole.SelectedItem.Text;
-                    //Convert.ToInt32(String.IsNullOrEmpty(cmbRole.SelectedValue) ? "0" : cmbRole.SelectedValue);
+                //Convert.ToInt32(String.IsNullOrEmpty(cmbRole.SelectedValue) ? "0" : cmbRole.SelectedValue);
             }
             set
             {
@@ -189,93 +190,103 @@ namespace One.Views.User
             //                && RequiredFieldValidator6.IsValid
             //                && RequiredFieldValidator7.IsValid);
             //if()
-            if (Page.IsValid)
-            {
-                List<int> DivisonsAssigned = new List<int>();
-                using (var helper = new DbHelper.Student())
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
+                if (Page.IsValid)
                 {
-                    //helper.
-                }
-                int role = (cmbRole.SelectedValue == "") ? 0 : Convert.ToInt32(cmbRole.SelectedValue.ToString());
-                var dob = DateTime.MinValue;
-                try
-                {
-                    if (DateChooser1.SelectedDate != DateTime.MinValue)
-                        dob = (DateChooser1.SelectedDate).Date;
-                }
-                catch { }
-                var date = DateTime.Now.Date;
-                var createdUser = new Academic.DbEntities.User.Users()
-                {
-                    City = txtCity.Text
-                    ,
-                    Country = txtCountry.Text
-                    ,
-                    CreatedDate = date
-                    ,
-                    Email = txtEmail.Text
-                    ,
-                    FirstName = txtFirstName.Text
-                    ,
-                    LastName = txtLastName.Text
-                    ,
-
-                    IsActive = true
-                    ,
-                    IsDeleted = false
-                    ,
-                    UserName = txtUserName.Text
-                    ,
-                    Password = txtPassword.Text
-                    ,
-                    Description = txtDescription.Text
-                    ,
-                    EmailDisplay = cmbEmailDisplay.SelectedValue
-                };
-                if (!(cmbGender.SelectedValue == "0" || cmbGender.SelectedValue != ""))
-                {
-                    createdUser.GenderId = Convert.ToInt32(cmbGender.SelectedValue);
-                }
-                if (dob != DateTime.MinValue)
-                    createdUser.DOB = dob;
-                var SchoolId = Values.Session.GetSchool(Session); // Convert.ToInt32(cmbSchool.SelectedValue);
-                if (SchoolId > 0)
-                {
-                    createdUser.SchoolId = SchoolId;
-                }
-                //foreach (ListItem divisions in CheckBoxList1.Items)
-                //{
-                //    if (divisions.Selected)
-                //    {
-                //        DivisonsAssigned.Add(Convert.ToInt32(divisions.Value));
-                //    }
-                //}
-                using (var helper = new DbHelper.User())
-                {
-                    var saved = helper.AddOrUpdateUser(createdUser, cmbRole.SelectedValue, FileUpload1.PostedFile);
-                    Label label = (Label)this.Page.FindControl("lblBodyMessage");
-                    //if (label != null)
+                    List<int> DivisonsAssigned = new List<int>();
+                    using (var helper = new DbHelper.Student())
                     {
-                        if (saved)
-                        {
-                            //label.Text = "Save Successful.";
-                            Page.Response.Redirect("List.aspx");
-                            ResetTextAndCombos();
-                        }
-                        else
-                            label.Text = "Error while saving.";
+                        //helper.
                     }
+                    int role = (cmbRole.SelectedValue == "") ? 0 : Convert.ToInt32(cmbRole.SelectedValue.ToString());
+                    var dob = DateTime.MinValue;
+                    try
+                    {
+                        if (DateChooser1.SelectedDate != DateTime.MinValue)
+                            dob = (DateChooser1.SelectedDate).Date;
+                    }
+                    catch { }
+                    var date = DateTime.Now.Date;
+                    var createdUser = new Academic.DbEntities.User.Users()
+                    {
+                        SchoolId = user.SchoolId
+                        ,
+                        City = txtCity.Text
+                        ,
+                        Country = txtCountry.Text
+                        ,
+                        CreatedDate = date
+                        ,
+                        Email = txtEmail.Text
+                        ,
+                        FirstName = txtFirstName.Text
+                        ,
+                        MiddleName = txtMidName.Text,
+                        LastName = txtLastName.Text
+                        ,
+
+                        IsActive = true
+                        ,
+                        IsDeleted = false
+                        ,
+                        UserName = txtUserName.Text
+                        ,
+                        Password = txtPassword.Text
+                        ,
+                        Description = txtDescription.Text
+                        ,
+                        EmailDisplay = cmbEmailDisplay.SelectedValue
+                    };
+                    if (!(cmbGender.SelectedValue == "0" || cmbGender.SelectedValue != ""))
+                    {
+                        createdUser.GenderId = Convert.ToInt32(cmbGender.SelectedValue);
+                    }
+                    if (dob != DateTime.MinValue)
+                        createdUser.DOB = dob;
+                    //var SchoolId = Values.Session.GetSchool(Session); // Convert.ToInt32(cmbSchool.SelectedValue);
+                    //if (SchoolId > 0)
+                    //{
+                    //    createdUser.SchoolId = SchoolId;
+                    //}
+                    //foreach (ListItem divisions in CheckBoxList1.Items)
+                    //{
+                    //    if (divisions.Selected)
+                    //    {
+                    //        DivisonsAssigned.Add(Convert.ToInt32(divisions.Value));
+                    //    }
+                    //}
+                    using (var helper = new DbHelper.User())
+                    {
+                        var saved = helper.AddOrUpdateUser(createdUser, cmbRole.SelectedValue, FileUpload1.PostedFile);
+                        Label label = (Label)this.Page.FindControl("lblBodyMessage");
+                        //if (label != null)
+                        {
+                            if (saved)
+                            {
+                                //label.Text = "Save Successful.";
+                                Page.Response.Redirect("List.aspx");
+                                ResetTextAndCombos();
+                            }
+                            else
+                                label.Text = "Error while saving.";
+                        }
+                    }
+
+                    //lblSaveStatus.Text = ("Save Successful.");
+                    //lblSaveStatus.Visible = true;
+
                 }
-
-                //lblSaveStatus.Text = ("Save Successful.");
-                //lblSaveStatus.Visible = true;
-
-            }
 
 
         }
 
         #endregion
+
+        protected void txtInterest_TextChanged(object sender, EventArgs e)
+        {
+            //if(e.)
+        }
 
 
     }

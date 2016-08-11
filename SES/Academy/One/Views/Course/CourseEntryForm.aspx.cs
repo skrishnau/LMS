@@ -12,7 +12,7 @@ namespace One.Views.Course
 {
     public partial class CourseEntryForm : System.Web.UI.Page
     {
-        AcademicContext context = new AcademicContext();
+        //AcademicContext context = new AcademicContext();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

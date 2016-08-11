@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using One.Values.MemberShip;
 
 namespace One.Views.Course.Category
 {
@@ -13,10 +14,13 @@ namespace One.Views.Course.Category
         {
             if (!IsPostBack)
             {
+                var user = User as CustomPrincipal;
+                Create.SchoolId = user.SchoolId;
                 var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
                 if (!String.IsNullOrEmpty(returnUrl))
                 {
                     Create.ReturnUrl = HttpUtility.UrlDecode(returnUrl);
+
                     //RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
                 }
             }

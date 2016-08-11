@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using One.Values.MemberShip;
+using One.Views.Structure.All.UserControls;
 
 namespace One.Views.Structure.All.Master
 {
@@ -27,8 +28,24 @@ namespace One.Views.Structure.All.Master
                             {
                                 TreeView1.Nodes.Add(n);
                             }
+
+                            //for custom listing
+
+                            //var list = helper.ListStructure(user.SchoolId);
+                            //foreach (var l in list)
+                            //{
+                            //    var uc = Page.LoadControl("~/Views/Structure/All/UserControls/ListUC.ascx")
+                            //        as ListUC;
+                            //    //uc.
+                            //    pnlListing.Controls.Add(uc);
+
+                            //}
                         }
+
                     }
+
+                    
+
                 }
 
             }

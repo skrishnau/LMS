@@ -8,7 +8,7 @@
                 <asp:Label ID="lblSaveStatus" runat="server" Text="Label" BackColor="#6666FF" Visible="False"></asp:Label>
                 <asp:HiddenField ID="hidEditMode" runat="server" Value="New" />
                 <asp:DropDownList ID="cmbRole" runat="server" Height="20px" Width="126px" Visible="false"></asp:DropDownList>
-                <asp:HiddenField ID="hidSchoolId" runat="server" Value="0"/>
+                <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
             </div>
             <div style="float: none">
                 <div style="float: none;">
@@ -18,6 +18,7 @@
 
                         <tr>
                             <td>First Name*<uc1:ReqImageUC ID="ReqImageUC1" runat="server" />
+                                <img src="~/Content/Icons/req.gif" alt="" />
                             </td>
                             <td>
                                 <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
@@ -95,6 +96,7 @@
                 <div>
                     <strong>Image</strong>
                     <hr />
+
                     <a href="#">
                         <img src="~/Images/user.png" style="width: 57px" /><br />
                         <asp:FileUpload ID="FileUpload1" runat="server" />
@@ -104,6 +106,18 @@
                 <div class="user-optional">
                     <strong>Interest</strong>
                     <hr />
+                    <div style="margin: 0 5px 0 20px;">
+                        <div >
+                            <div style="float: left">
+                                List of Interest
+                            </div>
+                            <div style="float: left">
+                                <asp:Panel ID="pnlInterest" runat="server"></asp:Panel>
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                        <asp:TextBox ID="txtInterest" runat="server" OnTextChanged="txtInterest_TextChanged"></asp:TextBox>
+                    </div>
                 </div>
                 <br />
                 <div>

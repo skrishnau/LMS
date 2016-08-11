@@ -38,6 +38,8 @@ namespace Academic.Database
         public DbSet<SessionAdmins> SessionAdmins { get; set; }
 
         public DbSet<FileCategory> FileCategory { get; set; }
+        public DbSet<File> File { get; set; }
+       
 
         //--------Academic Placement--------------//
         public DbSet<Academic.DbEntities.AcacemicPlacements.RunningClass> RunningClass { get; set; }

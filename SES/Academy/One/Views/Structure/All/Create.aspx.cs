@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using One.Values.MemberShip;
 
 namespace One.Views.Structure.All
 {
@@ -13,7 +14,16 @@ namespace One.Views.Structure.All
         {
             if (!IsPostBack)
             {
-                CreateUC.SchoolId = Values.Session.GetSchool(Session);
+
+                var user = User as CustomPrincipal;
+                if (user != null)
+                {
+                    if (user.SchoolId > 0)
+                    {
+                        CreateUC.SchoolId = user.SchoolId;
+                        //Values.Session.GetSchool(Session);
+                    }
+                }
             }
         }
     }

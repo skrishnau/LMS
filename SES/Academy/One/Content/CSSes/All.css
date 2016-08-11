@@ -336,3 +336,12 @@ tr.pager td {
 }
 
 /*==================== FORM STYLES END ========================*/
+
+/*selection*/
+.selected {
+    background-color: lightblue;
+}
+
+.block {
+    display: block;
+}

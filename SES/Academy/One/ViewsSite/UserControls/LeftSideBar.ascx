@@ -4,7 +4,8 @@
         <ContentTemplate>
             <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
 
-            <asp:TreeView ID="TreeView1" runat="server" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" OnTreeNodeExpanded="TreeView1_TreeNodeExpanded" ViewStateMode="Enabled">
+            <asp:TreeView ID="TreeView1" runat="server" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged"  ViewStateMode="Enabled">
+                <%-- OnTreeNodeExpanded="TreeView1_TreeNodeExpanded" --%>
                
             </asp:TreeView>
 

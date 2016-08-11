@@ -11,6 +11,7 @@ namespace Academic.DbEntities.User
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
+        public string MiddleName { get; set; }
         public string LastName { get; set; }
 
         public string UserName { get; set; }
@@ -37,8 +38,12 @@ namespace Academic.DbEntities.User
         public int? SchoolId { get; set; }
         public virtual School School { get; set; }
 
-        public byte[] Image { get; set; }
-        public string ImageType { get; set; }
+        //public byte[] Image { get; set; }
+        //public string ImageType { get; set; }
+        public int? UserImageId { get; set; }
+        public File UserImage { get; set; }
+
+
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastOnline { get; set; }
 
@@ -47,7 +52,7 @@ namespace Academic.DbEntities.User
 
         public string FullName
         {
-            get { return FirstName ?? "" + " "+LastName ?? ""; }
+            get { return (FirstName ?? "") +((MiddleName==null)?"":" "+MiddleName+" ")+ " "+LastName ?? ""; }
         }
 
         public string SecurityQuestion { get; set; }
