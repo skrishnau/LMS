@@ -158,6 +158,7 @@
     <Content Include="Content\Icons\calendar_image.png" />
     <Content Include="Content\Icons\Close\dialog_close.png" />
     <Content Include="Content\Icons\delete\trash.gif" />
+    <Content Include="Content\Icons\delete\undo_delete.png" />
     <Content Include="Content\Icons\Done_Save\basic-save.png" />
     <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
     <Content Include="Content\Icons\Indent\circle_dot.png" />
@@ -379,7 +380,18 @@
     <Content Include="Views\NoticeBoard\WebForm1.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
+    <Content Include="Views\Structure\All\Master\AddCourses.aspx" />
+    <Content Include="Views\Structure\All\Master\CoursesList.aspx" />
+    <Content Include="Views\Structure\All\UserControls\CourseLinkage\AddCourses.ascx" />
+    <Content Include="Views\Structure\All\UserControls\CourseLinkage\CourseListItemUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\CourseLinkage\CourseListUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\CourseLinkage\EachSelectedCourseUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\ListLevelUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\ListSubYearUC.ascx" />
     <Content Include="Views\Structure\All\UserControls\ListUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\ListYearUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\StructureView\LabelAndCheckBoxUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\StructureView\TreeViewWithCheckBoxInLeft.ascx" />
     <Content Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx" />
     <Content Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx" />
     <Content Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx" />
@@ -1132,12 +1144,89 @@
     <Compile Include="Views\Office\School\View.aspx.designer.cs">
       <DependentUpon>View.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Structure\All\Master\AddCourses.aspx.cs">
+      <DependentUpon>AddCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\Master\AddCourses.aspx.designer.cs">
+      <DependentUpon>AddCourses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\Master\CoursesList.aspx.cs">
+      <DependentUpon>CoursesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\Master\CoursesList.aspx.designer.cs">
+      <DependentUpon>CoursesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CourseLinkage\AddCourses.ascx.cs">
+      <DependentUpon>AddCourses.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CourseLinkage\AddCourses.ascx.designer.cs">
+      <DependentUpon>AddCourses.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CourseLinkage\CourseListItemUC.ascx.cs">
+      <DependentUpon>CourseListItemUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CourseLinkage\CourseListItemUC.ascx.designer.cs">
+      <DependentUpon>CourseListItemUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CourseLinkage\CourseListUC.ascx.cs">
+      <DependentUpon>CourseListUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CourseLinkage\CourseListUC.ascx.designer.cs">
+      <DependentUpon>CourseListUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CourseLinkage\EachSelectedCourseUC.ascx.cs">
+      <DependentUpon>EachSelectedCourseUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\CourseLinkage\EachSelectedCourseUC.ascx.designer.cs">
+      <DependentUpon>EachSelectedCourseUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ListLevelUC.ascx.cs">
+      <DependentUpon>ListLevelUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ListLevelUC.ascx.designer.cs">
+      <DependentUpon>ListLevelUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ListSubYearUC.ascx.cs">
+      <DependentUpon>ListSubYearUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ListSubYearUC.ascx.designer.cs">
+      <DependentUpon>ListSubYearUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Structure\All\UserControls\ListUC.ascx.cs">
       <DependentUpon>ListUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Structure\All\UserControls\ListUC.ascx.designer.cs">
       <DependentUpon>ListUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ListYearUC.ascx.cs">
+      <DependentUpon>ListYearUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\ListYearUC.ascx.designer.cs">
+      <DependentUpon>ListYearUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\StructureView\LabelAndCheckBoxUC.ascx.cs">
+      <DependentUpon>LabelAndCheckBoxUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\StructureView\LabelAndCheckBoxUC.ascx.designer.cs">
+      <DependentUpon>LabelAndCheckBoxUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\StructureView\TreeViewWithCheckBoxInLeft.ascx.cs">
+      <DependentUpon>TreeViewWithCheckBoxInLeft.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\All\UserControls\StructureView\TreeViewWithCheckBoxInLeft.ascx.designer.cs">
+      <DependentUpon>TreeViewWithCheckBoxInLeft.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx.cs">
       <DependentUpon>AddPrograms.aspx</DependentUpon>

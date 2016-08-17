@@ -21,6 +21,9 @@
         <asp:HyperLink ID="HyperLink5" runat="server"
             NavigateUrl="~/Views/User/List.aspx">Users</asp:HyperLink>
         <br />
+        <asp:HyperLink ID="HyperLink6" runat="server"
+            NavigateUrl="~/Views/User/List.aspx">Exams</asp:HyperLink>
+        <br />
     </div>
 
 

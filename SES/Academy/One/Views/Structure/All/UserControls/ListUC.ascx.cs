@@ -19,9 +19,18 @@ namespace One.Views.Structure.All.UserControls
             this.pnlSubControls.Controls.Add(uc);
         }
 
-        public void SetName(int id, string name)
+        public void AddControl(UserControl uc)
         {
-            
+            this.pnlSubControls.Controls.Add(uc);
+        }
+
+
+
+        public void SetName(int id, string name, string url)
+        {
+            this.hidStructureId.Value = id.ToString();
+            this.lblName.Text = name;
+            this.lblName.NavigateUrl = url;
         }
     }
 }

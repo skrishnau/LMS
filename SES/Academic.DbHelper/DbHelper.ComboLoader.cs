@@ -130,7 +130,7 @@ namespace Academic.DbHelper
                 }
             }
 
-            public static void LoadLevelWithFirstElementSelected(ref DropDownList cmbLevel, int schoolId, int selectedValue=0)
+            public static void LoadLevelWithFirstElementSelected(ref DropDownList cmbLevel, int schoolId, int selectedValue = 0)
             {
                 cmbLevel.DataTextField = "Name";
                 cmbLevel.DataValueField = "Id";
@@ -138,7 +138,7 @@ namespace Academic.DbHelper
                 {
                     var lev = helper.GetLevels(schoolId);
 
-                    if (lev.Count > 1 || lev.Count==0)
+                    if (lev.Count > 1 || lev.Count == 0)
                     {
                         lev.Insert(0, new IdAndName() { Id = 0, Name = "" });
                     }
@@ -178,7 +178,7 @@ namespace Academic.DbHelper
                 }
             }
 
-            public static void LoadFacultyWithFirstElementSelected(ref DropDownList cmbFaculty, int levelId, int selectedValue=0)
+            public static void LoadFacultyWithFirstElementSelected(ref DropDownList cmbFaculty, int levelId, int selectedValue = 0)
             {
                 cmbFaculty.DataTextField = "Name";
                 cmbFaculty.DataValueField = "Id";
@@ -187,7 +187,7 @@ namespace Academic.DbHelper
                 using (var helper = new DbHelper.Structure())
                 {
                     var fac = helper.GetFaculties(levelId);
-                    if (fac.Count > 1 || fac.Count==0)
+                    if (fac.Count > 1 || fac.Count == 0)
                     {
                         fac.Insert(0, new IdAndName() { Id = 0, Name = "" });
                     }
@@ -229,7 +229,7 @@ namespace Academic.DbHelper
                 }
             }
 
-            public static void LoadProgramWithEmptyAsFirstElement(ref DropDownList cmbProgram, int facultyId, int selectedValue =0)
+            public static void LoadProgramWithEmptyAsFirstElement(ref DropDownList cmbProgram, int facultyId, int selectedValue = 0)
             {
                 cmbProgram.DataTextField = "Name";
                 cmbProgram.DataValueField = "Id";
@@ -240,7 +240,7 @@ namespace Academic.DbHelper
                     var prog = helper.GetPrograms(facultyId);
                     if (prog.Count > 1 || prog.Count == 0)
                         prog.Insert(0, new IdAndName() { Id = 0, Name = "" });
-                    
+
                     cmbProgram.DataSource = prog;
                     cmbProgram.DataBind();
 
@@ -373,9 +373,14 @@ namespace Academic.DbHelper
                     }
                     else
                     {
-                        var index = acaYear.IndexOf(acaYear.First(x => x.IsActive));
-                        if (index >= 0)
-                            cmbAcademicYear.SelectedIndex = index;
+                        try
+                        {
+                            var index = acaYear.IndexOf(acaYear.First(x => x.IsActive));
+                            if (index >= 0)
+                                cmbAcademicYear.SelectedIndex = index;
+                        }
+                        catch { }
+
                     }
                     return acaYear.ToList();
                 }
@@ -383,7 +388,7 @@ namespace Academic.DbHelper
 
 
 
-            public static List<SchoolType> LoadSchoolType(ref DropDownList cmbSchoolType, 
+            public static List<SchoolType> LoadSchoolType(ref DropDownList cmbSchoolType,
                 int selectedValue = 0, bool createNewField = false)
             {
                 //int instId,
@@ -419,42 +424,42 @@ namespace Academic.DbHelper
                     return schooltype.ToList();
                 }
             }
-/*
-            public static void LoadInstitution(ref DropDownList cmbInstitution, int selectedId = 0)
-            {
-                cmbInstitution.DataTextField = "Name";
-                cmbInstitution.DataValueField = "Id";
-                using (var helper = new DbHelper.Office())
-                {
-                    if (selectedId != 0)
-                    {
-                        List<Institution> list = new List<Institution>();
-                        var inst = helper.GetInstitution(selectedId);
-                        list.Add(inst);
-                        cmbInstitution.DataSource = list;
-                        cmbInstitution.DataBind();
-                    }
-                    else
-                    {
-                        //for admin
-                        var instList = helper.GetAllInstitution().ToList();
-                        if (instList.Count >= 0)
+            /*
+                        public static void LoadInstitution(ref DropDownList cmbInstitution, int selectedId = 0)
                         {
-                            instList.Insert(0, new DbEntities.Office.Institution()
+                            cmbInstitution.DataTextField = "Name";
+                            cmbInstitution.DataValueField = "Id";
+                            using (var helper = new DbHelper.Office())
                             {
-                                Id = 0,
-                                Name = ""
-                            });
-                        }
-                        cmbInstitution.DataSource = instList;
-                        cmbInstitution.DataBind();
+                                if (selectedId != 0)
+                                {
+                                    List<Institution> list = new List<Institution>();
+                                    var inst = helper.GetInstitution(selectedId);
+                                    list.Add(inst);
+                                    cmbInstitution.DataSource = list;
+                                    cmbInstitution.DataBind();
+                                }
+                                else
+                                {
+                                    //for admin
+                                    var instList = helper.GetAllInstitution().ToList();
+                                    if (instList.Count >= 0)
+                                    {
+                                        instList.Insert(0, new DbEntities.Office.Institution()
+                                        {
+                                            Id = 0,
+                                            Name = ""
+                                        });
+                                    }
+                                    cmbInstitution.DataSource = instList;
+                                    cmbInstitution.DataBind();
 
-                    }
-                }
-            }
-            */
+                                }
+                            }
+                        }
+                        */
             public static List<DbEntities.Subjects.SubjectCategory> LoadSubjectCategory(ref DropDownList cmbCategory,
-                int schoolId, bool includeTopAlso = false, bool includeEmptyField = false, int selectedValue=0)
+                int schoolId, bool includeTopAlso = false, bool includeEmptyField = false, int selectedValue = 0)
             {
                 cmbCategory.DataTextField = "Name";
                 cmbCategory.DataValueField = "Id";

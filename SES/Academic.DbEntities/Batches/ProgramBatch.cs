@@ -13,6 +13,7 @@ namespace Academic.DbEntities.Batches
     public class ProgramBatch
     {
         public int Id { get; set; }
+
         public int BatchId { get; set; }
         public int ProgramId { get; set; }
       

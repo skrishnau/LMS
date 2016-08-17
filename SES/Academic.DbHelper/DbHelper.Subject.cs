@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
+using System.Web.Caching;
 using Academic.Database;
 using Academic.DbEntities.Batches;
 using Academic.DbEntities.Students;
@@ -548,15 +550,15 @@ namespace Academic.DbHelper
 
             public List<SubjectCategory> ListAllCategories(int schoolId)
             {
-               return  Context.SubjectCategory
-                   .Where(x => x.SchoolId == schoolId && (x.ParentId??0) == 0)
-                   .OrderBy(x=>x.Name).ToList();
+                return Context.SubjectCategory
+                    .Where(x => x.SchoolId == schoolId && (x.ParentId ?? 0) == 0)
+                    .OrderBy(x => x.Name).ToList();
             }
 
-            public List<SubjectCategory> ListSubCategories(int schoolId , int categoryId)
+            public List<SubjectCategory> ListSubCategories(int schoolId, int categoryId)
             {
-                return Context.SubjectCategory.Where(x =>x.SchoolId==schoolId && x.ParentId == categoryId)
-                    .OrderBy(y=>y.Name).ToList();
+                return Context.SubjectCategory.Where(x => x.SchoolId == schoolId && x.ParentId == categoryId)
+                    .OrderBy(y => y.Name).ToList();
             }
             #endregion
 
@@ -565,19 +567,87 @@ namespace Academic.DbHelper
             public List<DbEntities.Subjects.Subject> ListCourses(int schoolId, int categoryId)
             {
                 return Context.Subject.Where(x => x.SubjectCategoryId == categoryId)
-                    .OrderBy(y=>y.Name).ToList();
+                    .OrderBy(y => y.Name).ToList();
             }
 
-            public List<DbEntities.Subjects.Subject> ListCourses( int categoryId)
+            public List<DbEntities.Subjects.Subject> ListCourses(int categoryId)
             {
                 return Context.Subject.Where(x => x.SubjectCategoryId == categoryId)
                     .OrderBy(y => y.Name).ToList();
+            }
+
+            public List<ViewModel.Subject.Subject> ListCoursesOfStructure(
+                int yearId, int subyearId = 0, bool returnVoidAlso = false)
+            {
+                var list = new List<ViewModel.Subject.Subject>();
+                Context.SubjectStructure
+                   .Where(x => x.YearId == yearId && (x.SubYearId ?? 0) == subyearId
+                       && (!(x.Void ?? false) || returnVoidAlso))
+                   .ToList().ForEach(x =>
+                            {
+                                list.Add(new ViewModel.Subject.Subject()
+                                {
+                                    Id = x.Subject.Id
+                                    ,
+                                    CategoryId = x.Subject.SubjectCategoryId
+                                    ,
+                                    SubjectStructureId = x.Id
+                                    ,
+                                    Name = x.Subject.Name
+                                    ,
+                                    Checked = false
+                                    ,CategoryName = x.Subject.SubjectCategory.Name
+                                    ,Code = x.Subject.Code
+                                });
+                            });
+                return list;
             }
 
             #endregion
             //==============================End of Listing==========================//
             //=========================================================================//
 
+
+            public bool AddOrUpdateStructureCourse(
+                List<Academic.DbEntities.Subjects.SubjectStructure> savedList,
+                List<Academic.DbEntities.Subjects.SubjectStructure> selectedList)
+            {
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        // remove the deleted subjects
+                        //savedlist must be ViewModel.Subjects.Subject
+                        foreach (var ss in savedList)
+                        {
+                            var ent = Context.SubjectStructure.Find(ss.Id);
+                            if (ent != null)
+                            {
+                                ent.UpdateDate = ss.UpdateDate;
+                                ent.UpdatedBy = ss.UpdatedBy;
+                                ent.Void = ss.Void;
+                                ent.VoidBy = ss.VoidBy;
+                                ent.VoidDate = ss.VoidDate;
+                            }
+                            Context.SaveChanges();
+                        }
+
+                        foreach (var ss in selectedList)
+                        {
+                            Context.SubjectStructure
+                                .Add(ss);
+                            Context.SaveChanges();
+                        }
+                        scope.Complete();
+                    }
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return false;
+            }
         }
     }
 }

@@ -40,6 +40,26 @@ namespace One.Values
         public int RefId { get; set; }
     }
 
+    public class SubjectEventArgs : EventArgs
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public bool Checked { get; set; }
+    }
+
+    /// <summary>
+    /// Used for structure
+    /// </summary>
+    public class StructureEventArgs : EventArgs
+    {
+        public int ProgramId { get; set; }
+        public int YearId { get; set; }
+        public int SubYearId { get; set; }
+        
+        public int RefId { get; set; }
+    }
+
     public class RunningClassEventArgs : EventArgs
     {
         public int ProgramId { get; set; }

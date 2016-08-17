@@ -12,7 +12,7 @@ namespace Academic.DbHelper
 {
     public partial class DbHelper
     {
-        public class WorkingWithFiles:IDisposable
+        public class WorkingWithFiles : IDisposable
         {
             private AcademicContext Context;
 
@@ -27,6 +27,10 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
+
+            #region ImageSaveToDatabase
+
+
             public int UploadImageToDB(HttpPostedFileBase file)
             {
                 if (file == null) return 0;
@@ -40,7 +44,7 @@ namespace Academic.DbHelper
                 return im.Id;
             }
 
-          
+
 
             private byte[] ConvertToBytes(HttpPostedFileBase file)
             {
@@ -72,12 +76,60 @@ namespace Academic.DbHelper
                 Context.SaveChanges();
                 return im.Id;
             }
+
             public byte[] ConvertToBytes(HttpPostedFile file)
             {
                 Byte[] imageBytes = null;
                 BinaryReader reader = new BinaryReader(file.InputStream);
                 imageBytes = reader.ReadBytes((int)file.ContentLength);
                 return imageBytes;
+            }
+
+            #endregion
+
+            #region Get file information
+
+            public bool DoesFileExists(string fileName)
+            {
+                var file = Context.File.FirstOrDefault(x => x.FileName == fileName);
+                return (file != null);
+            }
+
+            #endregion
+
+
+            public DbEntities.UserFile AddOrUpdateFile(DbEntities.UserFile image)
+            {
+                try
+                {
+                    var ent = Context.File.Find(image.Id);
+                    if (ent == null)
+                    {
+                        var saved = Context.File.Add(image);
+                        Context.SaveChanges();
+                        return saved;
+                    }
+                    ent.DisplayName = image.DisplayName;
+                    ent.ModifiedBy = image.ModifiedBy;
+                    ent.ModifiedDate = image.ModifiedDate;
+                    ent.Void = image.Void;
+                    Context.SaveChanges();
+                    return ent;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+
+            public string GetImageUrl(int imageId)
+            {
+                var ent = Context.File.Find(imageId);
+                if (ent != null)
+                {
+                    return ent.FileDirectory + ent.FileName;//+ "." + extension;
+                }
+                return "";
             }
         }
     }

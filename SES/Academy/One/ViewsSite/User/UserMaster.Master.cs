@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using One.Values.MemberShip;
 using One.ViewsSite.User.ModulesUc;
 
@@ -22,6 +23,7 @@ namespace One.ViewsSite.User
                 {
                     //check for school
 
+                    UpdateLoginTime(user.Id);
 
                     CoursesUc.UserId = user.Id;
                     if (user.IsInRole("manager"))
@@ -44,6 +46,13 @@ namespace One.ViewsSite.User
                     Response.Redirect("~/"+loginUrl);
                 }
 
+            }
+        }
+        void UpdateLoginTime(int userId)
+        {
+            using (var helper = new DbHelper.User())
+            {
+                helper.UpadateUsersLoginTime(userId);
             }
         }
     }

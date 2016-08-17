@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using One.Values.MemberShip;
 
 namespace One.Views.Student.Batch.Create
 {
@@ -13,8 +14,11 @@ namespace One.Views.Student.Batch.Create
         {
             if (!IsPostBack)
             {
-
-                CreateBatchUc.SchoolId = Values.Session.GetSchool(Session);
+                var user = User as CustomPrincipal;
+                if (user != null)
+                {
+                    CreateBatchUc.SchoolId = user.SchoolId;
+                }
 
                 ////For Server.Transfer method
                 //var batchId = Context.Items["BatchId"];

@@ -154,11 +154,11 @@ namespace Academic.DbHelper
                                     var ynode = new TreeNode(y.Name, y.Id.ToString());
                                     pnode.ChildNodes.Add(ynode);
 
-                                     GetSubYears(y.Id).ForEach(s =>
-                                    {
-                                        var snode = new TreeNode(s.Name, s.Id.ToString());
-                                        ynode.ChildNodes.Add(snode);
-                                    });
+                                    GetSubYears(y.Id).ForEach(s =>
+                                   {
+                                       var snode = new TreeNode(s.Name, s.Id.ToString());
+                                       ynode.ChildNodes.Add(snode);
+                                   });
                                 });
                             });
                         });
@@ -480,6 +480,35 @@ namespace Academic.DbHelper
             }
 
 
+
+            public string GetSructureDirectory(int yearId, int subyearId = 0)
+            {
+                string dir = "";
+                if (subyearId != 0)
+                {
+                    var sub = Context.SubYear.Find(subyearId);
+                    if (sub != null)
+                    {
+                        dir = sub.Year.Program.Faculty.Level.Name + ">"
+                              + sub.Year.Program.Faculty.Name + ">"
+                              + sub.Year.Program.Name + ">"
+                              + sub.Year.Name + ">"
+                              + sub.Name;
+                    }
+                }
+                else
+                {
+                    var year = Context.Year.Find(yearId);
+                    if (year != null)
+                    {
+                        dir = year.Program.Faculty.Level.Name + ">"
+                              + year.Program.Faculty.Name + ">"
+                              + year.Program.Name + ">"
+                              + year.Name;
+                    }
+                }
+                return dir;
+            }
         }
     }
 }

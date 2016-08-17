@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace Academic.ViewModel.Subject
 {
+    [Serializable]
     public class Subject
     {
-        public String Name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string CategoryName { get; set; }
 
-        public int LevelId { get; set; }
+        public int CategoryId { get; set; }
+        public bool Checked { get; set; }
+        public int SubjectStructureId { get; set; }
     }
 }

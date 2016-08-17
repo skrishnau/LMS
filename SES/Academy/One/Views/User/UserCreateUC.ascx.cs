@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using Academic.InitialValues;
 using One.Values.MemberShip;
+using System.IO;
 
 namespace One.Views.User
 {
@@ -258,18 +259,87 @@ namespace One.Views.User
                     //}
                     using (var helper = new DbHelper.User())
                     {
-                        var saved = helper.AddOrUpdateUser(createdUser, cmbRole.SelectedValue, FileUpload1.PostedFile);
+                        var savedUser = helper.AddOrUpdateUser(createdUser, cmbRole.SelectedValue, FileUpload1.PostedFile);
+
+                        if (savedUser != null)
+                        {
+                            //public bool UploadToFolder(HttpPostedFileBase file)
+                            //{
+                            //    var filename = Path.GetFileName(file.FileName);
+                            //    var path = Path.Combine(Server.MapPath("~/Content/Upload"), filename);
+                            //    file.SaveAs(path);
+                            //    return true;
+                            //}
+
+                            //save image
+                            //first entry to database : table File --its image
+                            if (FileUpload1.HasFile)
+                            {
+                                var imageFile = FileUpload1.PostedFile;
+
+
+                                var image = new Academic.DbEntities.UserFile()
+                                {
+                                    CreatedBy = user.Id
+                                    ,
+                                    CreatedDate = DateTime.Now
+                                    ,
+                                    DisplayName = Path.GetFileName(imageFile.FileName)
+                                    ,
+                                    FileDirectory = StaticValue.UserImageDirectory
+                                    ,
+                                    FileName = Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
+                                    ,
+                                    FileSizeInBytes = imageFile.ContentLength
+                                    ,
+                                    FileType = imageFile.ContentType
+                                    ,
+                                };
+                                using (var fhelper = new DbHelper.WorkingWithFiles())
+                                {
+                                    GetNewGuid(fhelper, image);
+                                    //TrimFirstLetterFromImageFileName(image);
+                                    if (trimLoop > 9 || guidLoop > 9)
+                                    {
+                                        //cancel all save
+                                    }
+                                    else
+                                    {
+                                        var savedFile = fhelper.AddOrUpdateFile(image);
+
+                                        if (savedFile != null)
+                                        {
+                                            //save the image with this name
+                                            //var filename = Path.GetFileName(file.FileName);
+                                            var path = Path.Combine(Server.MapPath(StaticValue.UserImageDirectory),
+                                                image.FileName);
+                                            imageFile.SaveAs(path);
+
+                                            //add the image Id to user 
+                                            helper.UpdateUsersImage(savedUser.Id, savedFile.Id);
+
+
+                                            //    return true;
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+                        }
+
                         Label label = (Label)this.Page.FindControl("lblBodyMessage");
                         //if (label != null)
                         {
-                            if (saved)
+                            if (savedUser != null)
                             {
                                 //label.Text = "Save Successful.";
                                 Page.Response.Redirect("List.aspx");
                                 ResetTextAndCombos();
                             }
-                            else
-                                label.Text = "Error while saving.";
+                            //else
+                            //    label.Text = "Error while saving.";
                         }
                     }
 
@@ -280,8 +350,85 @@ namespace One.Views.User
 
 
         }
+        public string GetExtension(string fileName, string contentType)
+        {
+            //var ent = Context.File.Find(imageId);
+
+            int dotpos = 0;
+            int slashPos = 0;
+            try
+            {
+                dotpos = fileName.LastIndexOf(".");
+            }
+            catch
+            {
+                try
+                {
+                    slashPos = contentType.IndexOf("/");
+                }
+                catch
+                {
+                    return "";
+                }
+            }
+            if (dotpos != 0)
+            {
+                var extension = fileName.Substring(dotpos + 1);
+                return "." + extension;
+            }
+            else if (slashPos != 0)
+            {
+                var extension = contentType.Substring(slashPos + 1);
+                return "." + extension;
+            }
+            return "";
+
+        }
+
+
+        private int guidLoop = 0;
+        int trimLoop = 0;
+
+        private void GetNewGuid(DbHelper.WorkingWithFiles fhelper, Academic.DbEntities.UserFile image)
+        {
+            //var existingFile = Context.File.FirstOrDefault(x => x.FileName == image.FileName);
+
+            if (guidLoop < 10)
+            {
+                if (fhelper.DoesFileExists(image.FileName))
+                {
+                    image.FileName = Guid.NewGuid().ToString() + GetExtension(image.DisplayName, image.FileType);//.GetHashCode().ToString();
+                    GetNewGuid(fhelper, image);
+                    TrimFirstLetterFromImageFileName(fhelper, image);
+                }
+                guidLoop++;
+            }
+
+        }
+
+
+
+        private void TrimFirstLetterFromImageFileName(DbHelper.WorkingWithFiles fhelper, Academic.DbEntities.UserFile image)
+        {
+            if (trimLoop < 10)
+            {
+                if (!char.IsLetterOrDigit(image.FileName[0]))
+                {
+                    image.FileName = image.FileName.Substring(1);
+                    TrimFirstLetterFromImageFileName(fhelper, image);
+                    GetNewGuid(fhelper, image);
+                }
+                trimLoop++;
+            }
+
+        }
+
 
         #endregion
+
+
+       
+
 
         protected void txtInterest_TextChanged(object sender, EventArgs e)
         {

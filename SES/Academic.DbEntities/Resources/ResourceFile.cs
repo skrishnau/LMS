@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Resources
 {
-    public class ResourceFile : DbEntities.File
+    public class ResourceFile : DbEntities.UserFile
     {
         public int? SubjectId { get; set; }
         

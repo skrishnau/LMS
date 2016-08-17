@@ -10,6 +10,7 @@ using Academic.DbEntities.Subjects.Detail;
 
 namespace Academic.DbEntities.Subjects
 {
+   
     public class Subject
     {
         public int Id { get; set; }

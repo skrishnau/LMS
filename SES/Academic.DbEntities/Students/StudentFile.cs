@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Students
 {
-    public class StudentFile : DbEntities.File
+    public class StudentFile : DbEntities.UserFile
     {
         //public int Id { get; set; }
         //public string DisplayName { get; set; }

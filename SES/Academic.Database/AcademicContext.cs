@@ -38,7 +38,7 @@ namespace Academic.Database
         public DbSet<SessionAdmins> SessionAdmins { get; set; }
 
         public DbSet<FileCategory> FileCategory { get; set; }
-        public DbSet<File> File { get; set; }
+        public DbSet<UserFile> File { get; set; }
        
 
         //--------Academic Placement--------------//
@@ -135,6 +135,8 @@ namespace Academic.Database
         public DbSet<DbEntities.Subjects.SubjectCategory> SubjectCategory { get; set; }
         public DbSet<DbEntities.Subjects.SubjectGroupSubject> SubjectGroupSubject { get; set; }
         public DbSet<DbEntities.Subjects.RegularSubject> RegularSubjectsGrouping { get; set; }
+        public DbSet<DbEntities.Subjects.SubjectStructure> SubjectStructure { get; set; }
+
         //public DbSet<DbEntities.Subjects.RegularSubjectsTeacher> RegularSubjectsTeacher { get; set; }
         //public DbSet<DbEntities.AcacemicPlacements.RegularSubjectClass>  RegularSubjectClass { get; set; }
         //public DbSet<DbEntities.AcacemicPlacements.UserClass>  UserClass { get; set; }

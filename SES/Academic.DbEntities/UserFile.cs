@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities
 {
-    public class File
+    public class UserFile
     {
         public int Id { get; set; }
         public string DisplayName { get; set; }
@@ -16,11 +16,11 @@ namespace Academic.DbEntities
         public string FileType { get; set; }//Extension
 
         public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public int CreatedBy { get; set; }
-        public int ModifiedBy { get; set; }
+        public int? ModifiedBy { get; set; }
 
-        public bool Void { get; set; }
+        public bool? Void { get; set; }
 
         
 

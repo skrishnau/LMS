@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Resources
 {
-    public class Photo:DbEntities.File
+    public class Photo:DbEntities.UserFile
     {
         
     }

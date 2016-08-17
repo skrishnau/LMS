@@ -41,7 +41,7 @@ namespace Academic.DbEntities.User
         //public byte[] Image { get; set; }
         //public string ImageType { get; set; }
         public int? UserImageId { get; set; }
-        public File UserImage { get; set; }
+        public UserFile UserImage { get; set; }
 
 
         public DateTime? CreatedDate { get; set; }

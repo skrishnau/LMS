@@ -166,6 +166,14 @@
     <Compile Include="Migrations\201608110918578_user_table_image_now_saved_as_file.Designer.cs">
       <DependentUpon>201608110918578_user_table_image_now_saved_as_file.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608111138439_file_renamed_to_userfile.cs" />
+    <Compile Include="Migrations\201608111138439_file_renamed_to_userfile.Designer.cs">
+      <DependentUpon>201608111138439_file_renamed_to_userfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608121316148_subjectStructre_table_added.cs" />
+    <Compile Include="Migrations\201608121316148_subjectStructre_table_added.Designer.cs">
+      <DependentUpon>201608121316148_subjectStructre_table_added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -269,6 +277,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608110918578_user_table_image_now_saved_as_file.resx">
       <DependentUpon>201608110918578_user_table_image_now_saved_as_file.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608111138439_file_renamed_to_userfile.resx">
+      <DependentUpon>201608111138439_file_renamed_to_userfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608121316148_subjectStructre_table_added.resx">
+      <DependentUpon>201608121316148_subjectStructre_table_added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -17,7 +17,7 @@
 
     <div>
         <div style="float: right;">
-            <asp:HyperLink  runat="server" NavigateUrl="~/Views/User/Create.aspx">
+            <asp:HyperLink runat="server" NavigateUrl="~/Views/User/Create.aspx">
                 Add New User
             </asp:HyperLink>
             &nbsp;&nbsp;&nbsp;
@@ -185,6 +185,22 @@
                 <%--<asp:BoundField DataField="SecurityAnswer" HeaderText="SecurityAnswer" SortExpression="SecurityAnswer" />--%>
                 <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
 
+                <asp:TemplateField HeaderText="Image">
+                    <EditItemTemplate>
+
+                        <%--<asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:TextBox>--%>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>'>
+                            <asp:Image ID="Image1" runat="server"
+                                Height="20" Width="20"
+                                ImageUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>' />
+                        </asp:HyperLink>
+                        <%--<asp:Label ID="Label8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:Label>--%>
+                    </ItemTemplate>
+                    <ItemStyle Width="30"></ItemStyle>
+                </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="FirstName" SortExpression="FirstName">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("FirstName") %>'></asp:TextBox>
@@ -255,12 +271,13 @@
                         <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:Label>
+                        <span style="font-size: 0.8em">
+                            <asp:Label ID="Label8" runat="server" Text='<%# GetLastOnline(DataBinder.Eval(Container.DataItem,"LastOnline"))  %>'></asp:Label>
+                        </span>
                     </ItemTemplate>
                     <ItemStyle Width="50"></ItemStyle>
                 </asp:TemplateField>
-                <asp:ImageField>
-                </asp:ImageField>
+
             </Columns>
 
             <EditRowStyle BackColor="#999999" />

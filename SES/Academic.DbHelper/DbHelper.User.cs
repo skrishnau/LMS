@@ -11,6 +11,8 @@ using System.Web;
 using Academic.Database;
 using Academic.DbEntities;
 using Academic.DbEntities.User;
+using Academic.InitialValues;
+using System.IO;
 
 namespace Academic.DbHelper
 {
@@ -168,7 +170,7 @@ namespace Academic.DbHelper
 
 
             //User
-            public bool AddOrUpdateUser(DbEntities.User.Users user, string roleId, HttpPostedFile file)
+            public DbEntities.User.Users AddOrUpdateUser(DbEntities.User.Users user, string roleId, HttpPostedFile file)
             {
                 try
                 {
@@ -193,39 +195,13 @@ namespace Academic.DbHelper
                         var ent = Context.Users.Find(user.Id);
                         if (ent == null)
                         {
-                            var entity = Context.Users.Add(user);
+                            ent = Context.Users.Add(user);
                             Context.SaveChanges();
 
                             //save  image
+                            //var path = Path.Combine(Server.MapPath(StaticValue.UserImageDirectory), image.FileName);
+
                             //file.SaveAs();
-                            if (file != null)
-                            {
-                                var image = new File()
-                                {
-                                    CreatedBy = entity.Id
-                                    ,
-                                    CreatedDate = DateTime.Now
-                                    ,
-                                    DisplayName = file.FileName
-                                    ,
-                                    FileDirectory = InitialValues.StaticValue.UserImageDirectory
-                                    ,
-                                    FileName = Guid.NewGuid().GetHashCode().ToString()
-                                    ,
-                                    FileSizeInBytes = file.ContentLength
-                                    ,
-                                    FileType = file.ContentType
-                                    ,
-                                };
-                                GetNewGuid(image);
-                                file.SaveAs(image.FileDirectory + image.FileName);
-
-                                var savedImage = Context.File.Add(image);
-                                Context.SaveChanges();
-
-                                entity.UserImageId = savedImage.Id;
-                            }
-
 
 
                             //new ma matra role Admin hunxa other wise there are many roles for a user
@@ -234,7 +210,7 @@ namespace Academic.DbHelper
                                 int rolei = Convert.ToInt32(roleId);
                                 if (rolei > 0)
                                 {
-                                    SaveUsersRole(new List<int>() { entity.Id }, rolei);
+                                    SaveUsersRole(new List<int>() { ent.Id }, rolei);
                                     //var role = new UserRole()
                                     //{
                                     //    RoleId = rolei,
@@ -272,26 +248,30 @@ namespace Academic.DbHelper
                             ent.Password = user.Password;
                             ent.LastName = user.LastName;
                             Context.SaveChanges();
+                            //return ent;
                         }
                         scope.Complete();
-                        return true;
+                        return ent;
+                        //return true;
                     }
                 }
                 catch (Exception)
                 {
 
-                    return false;
+                    return null;
                 }
             }
 
-            private void GetNewGuid(File image)
+            public bool UpdateUsersImage(int userId, int imageId)
             {
-                var existingFile = Context.File.FirstOrDefault(x => x.FileName == image.FileName);
-                if (existingFile != null)
+                var ent = Context.Users.Find(userId);
+                if (ent != null)
                 {
-                    image.FileName = Guid.NewGuid().GetHashCode().ToString();
-                    GetNewGuid(image);
+                    ent.UserImageId = imageId;
+                    Context.SaveChanges();
+                    return true;
                 }
+                return false;
             }
 
 
@@ -395,6 +375,16 @@ namespace Academic.DbHelper
 
 
 
+
+            public void UpadateUsersLoginTime(int userId)
+            {
+                var ent = Context.Users.Find(userId);
+                if (ent != null)
+                {
+                    ent.LastOnline = DateTime.Now;
+                    Context.SaveChanges();
+                }
+            }
         }
     }
 }

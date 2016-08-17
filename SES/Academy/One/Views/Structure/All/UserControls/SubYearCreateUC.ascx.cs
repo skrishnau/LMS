@@ -73,6 +73,8 @@ namespace One.Views.Structure.All.UserControls
             {
                 hidYear.Value = value.ToString();
                 cmbYear.ClearSelection();
+
+                //error: cmbYear does not exist
                 cmbYear.SelectedValue = value.ToString();
                 cmbYear.Enabled = false;
 

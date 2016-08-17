@@ -7,6 +7,7 @@ using Academic.DbEntities.Office;
 
 namespace Academic.DbEntities.Subjects
 {
+   
     public class SubjectCategory
     {
         public int Id { get; set; }

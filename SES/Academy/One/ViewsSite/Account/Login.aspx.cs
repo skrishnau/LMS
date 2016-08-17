@@ -159,15 +159,25 @@ namespace One.ViewsSite.Account
                             //{
 
                             //}
+                            UpdateLoginTime(user.Id);
                             Response.Redirect(returnUrl);
                         }
                         else
                         {
                             //Response.Redirect("~/ViewsSite/Default.aspx");
+                            UpdateLoginTime(user.Id);
                             Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
                         }
                     }
                 }
+            }
+        }
+
+        void UpdateLoginTime(int userId)
+        {
+            using (var helper = new DbHelper.User())
+            {
+                helper.UpadateUsersLoginTime(userId);
             }
         }
     }

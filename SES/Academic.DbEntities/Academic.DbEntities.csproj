@@ -75,7 +75,8 @@
     <Compile Include="Exams\ExamStudent.cs" />
     <Compile Include="Exams\ExamSubjectTeacher.cs" />
     <Compile Include="Exams\ExamSubType.cs" />
-    <Compile Include="File.cs" />
+    <Compile Include="Subjects\SubjectStructure.cs" />
+    <Compile Include="UserFile.cs" />
     <Compile Include="FileCategory.cs" />
     <Compile Include="Libraries\BookReturnCategory.cs" />
     <Compile Include="Libraries\fine.cs" />

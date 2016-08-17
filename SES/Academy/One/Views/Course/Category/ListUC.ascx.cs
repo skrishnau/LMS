@@ -19,7 +19,7 @@ namespace One.Views.Course.Category
 
         public int CategoryId
         {
-            get { return Convert.ToInt32(this.hidCategoryId); }
+            get { return Convert.ToInt32(this.hidCategoryId.Value); }
             set { this.hidCategoryId.Value = value.ToString(); }
         }
 
@@ -38,7 +38,6 @@ namespace One.Views.Course.Category
         public void Deselect()
         {
             pnlName.BackColor= Color.White;
-            
         }
 
         public void SetNameAndIdOfCategory(int id, string name)
