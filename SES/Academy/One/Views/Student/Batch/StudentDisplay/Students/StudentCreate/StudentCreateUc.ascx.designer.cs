@@ -13,22 +13,13 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate {
     public partial class StudentCreateUc {
         
         /// <summary>
-        /// lblSaveStatus control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSaveStatus;
-        
-        /// <summary>
-        /// hidId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidId;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// txtFirstName control.
@@ -49,6 +40,15 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
+        /// txtMiddleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMiddleName;
+        
+        /// <summary>
         /// txtLastName control.
         /// </summary>
         /// <remarks>
@@ -56,24 +56,6 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLastName;
-        
-        /// <summary>
-        /// cmbGender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbGender;
-        
-        /// <summary>
-        /// RequiredFieldValidator9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
         
         /// <summary>
         /// txtCRN control.
@@ -148,6 +130,33 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate {
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// hidProgramBatchId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidProgramBatchId;
+        
+        /// <summary>
+        /// hidId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidId;
+        
+        /// <summary>
         /// btnSaveNAddMore control.
         /// </summary>
         /// <remarks>
@@ -166,21 +175,12 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate {
         protected global::System.Web.UI.WebControls.Button btnSaveNReturn;
         
         /// <summary>
-        /// hidProgramBatchId control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidProgramBatchId;
-        
-        /// <summary>
-        /// hidSchoolId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSchoolId;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

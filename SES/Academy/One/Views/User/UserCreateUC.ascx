@@ -97,10 +97,10 @@
                     <strong>Image</strong>
                     <hr />
 
-                    <a href="#">
-                        <img src="~/Images/user.png" style="width: 57px" /><br />
+                   <%-- <a href="#">--%>
+                        <%--<img src="~/Images/user.png" style="width: 57px" />--%><br />
                         <asp:FileUpload ID="FileUpload1" runat="server" />
-                    </a>
+                    <%--</a>--%>
                 </div>
                 <br />
                 <div class="user-optional">

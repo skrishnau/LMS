@@ -25,8 +25,9 @@ namespace One.Views.Student.Batch.List
             BatchId = id;
             lblName.Text = name;
             //lblCurrentlyIn.Text = batch.
-            lblStartYear.Text = classCommenceDate==null?"":classCommenceDate.Value.ToShortDateString();
-            lblNumberOfPrograms.Text = noOfPrograms.ToString();
+            //lblStartYear.Text = classCommenceDate==null?"":classCommenceDate.Value.ToShortDateString();
+
+            //lblNumberOfPrograms.Text = noOfPrograms.ToString();
             
         }
 

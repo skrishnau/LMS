@@ -34,9 +34,9 @@ namespace One.Views.Structure.All.Master
             //    }
             //}
 
+            if (user != null)
+                LoadStructure(user.SchoolId);
 
-            LoadStructure(user.SchoolId);
-            
 
         }
 
@@ -89,7 +89,7 @@ namespace One.Views.Structure.All.Master
                                         var yuc = (ListSubYearUC)Page
                                                 .LoadControl("~/Views/Structure/All/UserControls/ListSubYearUC.ascx");
                                         //yuc.CourseClicked+=subYear_CourseClicked;
-                                        yuc.SetName(y.Id,0, y.Name, "");
+                                        yuc.SetName(y.Id, 0, y.Name, "");
                                         puc.AddControl(yuc);
                                     }
                                     else
@@ -124,7 +124,7 @@ namespace One.Views.Structure.All.Master
                 string dir = helper.GetSructureDirectory(e.YearId, e.SubYearId);
                 CourseListUC.SetProgramDirectory(dir);
             }
-            CourseListUC.LoadCourseList(e.YearId,e.SubYearId);
+            CourseListUC.LoadCourseList(e.YearId, e.SubYearId);
             MultiView1.ActiveViewIndex = 1;
         }
     }

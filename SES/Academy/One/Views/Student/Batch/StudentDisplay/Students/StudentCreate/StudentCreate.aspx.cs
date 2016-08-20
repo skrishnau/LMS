@@ -25,7 +25,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                         lblProgramBatchName.Text = pb.NameFromBatch;
                     }
                     StudentCreateUc.ProgramBatchId = pbId;
-                    StudentCreateUc.SchoolId = Values.Session.GetSchool(Session);
+                    //StudentCreateUc.SchoolId = Values.Session.GetSchool(Session);
                 }
             }
             StudentCreateUc.CloseClicked += StudentCreateUc_CloseClicked;

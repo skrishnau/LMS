@@ -3,15 +3,18 @@
 
 <div class="item">
     <asp:Panel ID="pnlBody" runat="server">
-        <div class="item-heading">
-            <asp:LinkButton ID="lblProgramName" runat="server" Text="" OnClick="lblProgramName_Click" CausesValidation="False"></asp:LinkButton>
-             </div>
-        <div class="item-detail">
-            Currently in:
-        <asp:Label ID="lblCurrentYear" runat="server" Text=""></asp:Label>
-            <asp:Label ID="lblCurrentSubYear" runat="server" Text=""></asp:Label>
-            <br />
-            <asp:Label ID="lblCourseCompleted" runat="server" Text="Course Completed" BackColor="lightgreen"></asp:Label>
+        <div style="font-size: 1.1em ; font-weight: 700; padding: 5px; margin: 5px;">
+            <asp:HyperLink ID="lnkProgrameName" runat="server" Text="" 
+                 ></asp:HyperLink>
+        </div>
+        <div style="margin-left: 30px; padding-bottom: 10px;">
+            No. Of Students:&nbsp;
+            <asp:HyperLink ID="lblNoOfStudents" runat="server" Text="0"></asp:HyperLink>
+
+            <asp:Label ID="lblCurrentYear" runat="server" ></asp:Label>
+            <asp:Label ID="lblCurrentSubYear" runat="server" ></asp:Label>
+           
+            <asp:Label ID="lblCourseCompleted" runat="server" BackColor="lightgreen"></asp:Label>
         </div>
     </asp:Panel>
 </div>

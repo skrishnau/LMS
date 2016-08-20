@@ -12,7 +12,12 @@ namespace One.Views.Student.Batch.BatchDetail
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                lnkProgrameName.NavigateUrl =
+                    "~/Views/Student/Batch/StudentDisplay/Students/StudentListInProgramBatch.aspx?pbId=" +
+                    ProgramBatchId;
+            }
         }
         #region Properties
 
@@ -68,21 +73,14 @@ namespace One.Views.Student.Batch.BatchDetail
         #endregion
 
 
-        public void LoadData(int id, int batchId, string namefromBatch, int programId,string programName
-            , bool? startedStudying, bool? studyCompleted, bool? Void )
+        public void LoadData(int id, int batchId, string namefromBatch, int programId, string programName
+            , bool? startedStudying, bool? studyCompleted, bool? Void)
         {
-            lblProgramName.Text = programName;
+            lnkProgrameName.Text = programName;
             CourseCompleted = studyCompleted ?? false;
             BatchId = batchId;
             ProgramBatchId = id;
             ProgramId = programId;
         }
-
-        protected void lblProgramName_Click(object sender, EventArgs e)
-        {
-            //DetailItemUc item = (DetailItemUc) sender;
-            Response.Redirect("~/Views/Student/Batch/StudentDisplay/Students/ListOfStudents.aspx"+"?Id="+ProgramBatchId);
-        }
-
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="AcademicPlacement\StudentSubjectModel.cs" />
     <Compile Include="AcademicViewModel.cs" />
     <Compile Include="Account\AccountViewModel.cs" />
+    <Compile Include="Batch\BatchViewModel.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="FileViewModel.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Resources\ResourceFileViewModel.cs" />
     <Compile Include="Resources\ResourceViewModel.cs" />
     <Compile Include="Student\StudentViewModel.cs" />
+    <Compile Include="Student\StudentViewModelWithAllParam.cs" />
     <Compile Include="Subject\Subject.cs" />
     <Compile Include="SystemControl.Office\InstitutionSetup.cs" />
     <Compile Include="SystemControl.Office\OfficeViewModel.cs" />

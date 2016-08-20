@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using One.Values.MemberShip;
 
 namespace One.Views.Student.Batch
 {
@@ -11,7 +12,12 @@ namespace One.Views.Student.Batch
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            listUc.SchoolId = Values.Session.GetSchool(Session);
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
+            {
+                listUc.SchoolId = user.SchoolId; //Values.Session.GetSchool(Session);
+
+            }
         }
     }
 }

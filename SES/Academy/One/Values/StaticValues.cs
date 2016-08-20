@@ -128,5 +128,14 @@ namespace One.Values
                     new ListItem("Files","Files")
         };
         #endregion
+
+        public static List<string> TreeLinkImage = new List<string>()
+        {
+            "",
+            "~/Content/Icons/TreeView/three_ends.png",
+            "~/Content/Icons/TreeView/up_left.png",
+            "~/Content/Icons/TreeView/left_down.png",
+            "~/Content/Icons/TreeView/up_down.png"
+        };
     }
 }

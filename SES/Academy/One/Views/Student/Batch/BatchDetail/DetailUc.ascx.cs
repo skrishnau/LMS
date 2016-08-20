@@ -14,7 +14,7 @@ namespace One.Views.Student.Batch.BatchDetail
         {
             if (!IsPostBack)
             {
-
+                lnkEdit.NavigateUrl = "~/Views/Student/Batch/Create/BatchCreate.aspx?Id=" + BatchId;
             }
             LoadData();
         }
@@ -29,10 +29,10 @@ namespace One.Views.Student.Batch.BatchDetail
 
         #endregion
 
-        protected void lnkAddPrograms_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Views/Student/Batch/BatchDetail/AddPrograms.aspx"+"?Id="+BatchId);
-        }
+        //protected void lnkAddPrograms_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("~/Views/Student/Batch/BatchDetail/AddPrograms.aspx"+"?Id="+BatchId);
+        //}
 
         public void LoadData()
         {

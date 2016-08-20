@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/UserSite.Master" AutoEventWireup="true" CodeBehind="Detail.aspx.cs" Inherits="One.Views.Student.Batch.BatchDetail.Detail" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="Detail.aspx.cs" Inherits="One.Views.Student.Batch.BatchDetail.Detail" %>
 
 <%@ Register Src="~/Views/Student/Batch/BatchDetail/DetailUc.ascx" TagPrefix="uc1" TagName="DetailUc" %>
 

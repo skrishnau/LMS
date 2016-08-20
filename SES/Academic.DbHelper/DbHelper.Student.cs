@@ -114,36 +114,38 @@ namespace Academic.DbHelper
             //    return model;
             //}
 
-            public bool AddOrUpdateStudent(DbEntities.User.Users user,
-                DbEntities.Students.Student student, System.Web.HttpPostedFile file, int programBatchId = 0)
+
+            //used 
+            public DbEntities.User.Users AddOrUpdateStudent(DbEntities.User.Users user,
+                DbEntities.Students.Student student, int programBatchId = 0)
             {
                 try
                 {
                     using (var scope = new TransactionScope())
                     {
-                        byte[] imgBytes = null;
+                        //byte[] imgBytes = null;
 
-                        using (var filehelper = new DbHelper.WorkingWithFiles())
-                        {
-                            if (file != null)
-                            {
-                                imgBytes = filehelper.ConvertToBytes(file);
-                                //below comented due to changed in database.. now image is saved as file.
-                                //user.Image = imgBytes;
-                                //user.ImageType = file.ContentType;
-                            }
-                        }
+                        //using (var filehelper = new DbHelper.WorkingWithFiles())
+                        //{
+                        //    //if (file != null)
+                        //    //{
+                        //    //    //imgBytes = filehelper.ConvertToBytes(file);
+                        //    //    //below comented due to changed in database.. now image is saved as file.
+                        //    //    //user.Image = imgBytes;
+                        //    //    //user.ImageType = file.ContentType;
+                        //    //}
+                        //}
                         var prev = Context.Users.Find(user.Id);
                         if (prev == null)
                         {
                             user.FirstName = user.FirstName.Trim();
                             user.LastName = user.LastName.Trim();
-                            var ent = Context.Users.Add(user);
+                            prev = Context.Users.Add(user);
                             Context.SaveChanges();
-                            if (ent != null)
+                            if (prev != null)
                             {
-                                student.UserId = ent.Id;
-                                student.Name = ent.FullName;
+                                student.UserId = prev.Id;
+                                student.Name = prev.FullName;
                                 var std = Context.Student.Add(student);
                                 Context.SaveChanges();
                                 if (std != null)
@@ -157,7 +159,7 @@ namespace Academic.DbHelper
                                             ,
                                             RoleId = role.Id
                                             ,
-                                            UserId = ent.Id
+                                            UserId = prev.Id
                                         };
                                         Context.UserRole.Add(userRole);
                                         Context.SaveChanges();
@@ -187,7 +189,7 @@ namespace Academic.DbHelper
                             //below two lines commnented due to changes in database: now image saved as file.
                             //prev.Image = user.Image;
                             //prev.ImageType = user.ImageType;
-                            
+
                             //prev.InstitutionId = createdUser.InstitutionId;
                             prev.SchoolId = user.SchoolId;
                             //prev.BarcodeNo = createdUser.BarcodeNo;
@@ -220,13 +222,12 @@ namespace Academic.DbHelper
                         }
 
                         scope.Complete();
-                        return true;
+                        return prev;
                     }
-                    return false;
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return null;
                 }
             }
 
@@ -458,7 +459,7 @@ namespace Academic.DbHelper
                 //subyear.year.Name empty xa bhane tyo year ho other wise tyo subyear ho
                 foreach (var ym in y.GroupBy(x => x.Year))
                 {
-                    if (ym.Any()|| ym.Any(x=>x.SubYear==null))
+                    if (ym.Any() || ym.Any(x => x.SubYear == null))
                     {
                         var ymEmt = new SubYear()
                         {
@@ -471,13 +472,13 @@ namespace Academic.DbHelper
                             ,
                             YearId = ym.Key.Id
                             ,
-                            Year = new Year() {Name = ym.Key.Name}
+                            Year = new Year() { Name = ym.Key.Name }
                         };
                         lst.Add(ymEmt);
                     }
                     foreach (var runningClass in ym)
                     {
-                        
+
                         if (runningClass.SubYear != null)
                         {
                             var subEmt = new SubYear()

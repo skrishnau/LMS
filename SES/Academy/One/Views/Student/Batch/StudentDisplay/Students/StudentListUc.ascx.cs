@@ -43,5 +43,17 @@ namespace One.Views.Student.Batch.StudentDisplay.Students
                 return "";
             return user.Phone;
         }
+        public string GetImageUrl(object imageId)
+        {
+            if (imageId != null)
+            {
+                var id = Convert.ToInt32(imageId.ToString());
+                using (var helper = new DbHelper.WorkingWithFiles())
+                {
+                    return helper.GetImageUrl(id);
+                }
+            }
+            return "";
+        }
     }
 }

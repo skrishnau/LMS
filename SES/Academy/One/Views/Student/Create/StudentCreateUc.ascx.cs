@@ -95,8 +95,8 @@ namespace One.Views.Student.Create
 
                 using (var helper = new DbHelper.Student())
                 {
-                    bool saved = helper.AddOrUpdateStudent(createdUser, student, FileUpload1.PostedFile);
-                    if (saved)
+                    var saved = helper.AddOrUpdateStudent(createdUser, student);
+                    if (saved!=null)
                     {
                         lblSaveStatus.Text = ("Save Successful.");
                         Button btn = (Button) sender;

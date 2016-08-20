@@ -14,7 +14,7 @@ namespace One.Views.Student.Batch.List
         {
             if (!IsPostBack)
             {
-                
+
             }
             LoadBatches();
         }
@@ -36,11 +36,11 @@ namespace One.Views.Student.Batch.List
             using (var helper = new DbHelper.Batch())
             {
                 var lst = helper.GetBatchList(SchoolId, 10
-                    , Convert.ToInt32(String.IsNullOrEmpty(txtPageNo.Text) ? "0" : txtPageNo.Text));
+                    , 0);//Convert.ToInt32(String.IsNullOrEmpty(txtPageNo.Text) ? "0" : txtPageNo.Text));
                 foreach (var batch in lst)
                 {
-                    ItemUc itemUc = (ItemUc) Page.LoadControl("~/Views/Student/Batch/List/ItemUc.ascx");
-                    itemUc.LoadData(batch.Id,batch.Name,batch.Description,batch.ProgramBatches.Count,batch.ClassCommenceDate);
+                    ItemUc itemUc = (ItemUc)Page.LoadControl("~/Views/Student/Batch/List/ItemUc.ascx");
+                    itemUc.LoadData(batch.Id, batch.Name, batch.Description, batch.ProgramBatches.Count, batch.ClassCommenceDate);
                     pnlItems.Controls.Add(itemUc);
                 }
             }

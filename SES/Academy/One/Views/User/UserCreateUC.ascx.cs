@@ -191,15 +191,16 @@ namespace One.Views.User
             //                && RequiredFieldValidator6.IsValid
             //                && RequiredFieldValidator7.IsValid);
             //if()
+
             var user = Page.User as CustomPrincipal;
             if (user != null)
                 if (Page.IsValid)
                 {
-                    List<int> DivisonsAssigned = new List<int>();
-                    using (var helper = new DbHelper.Student())
-                    {
-                        //helper.
-                    }
+                    //List<int> DivisonsAssigned = new List<int>();
+                    //using (var helper = new DbHelper.Student())
+                    //{
+                    //    //helper.
+                    //}
                     int role = (cmbRole.SelectedValue == "") ? 0 : Convert.ToInt32(cmbRole.SelectedValue.ToString());
                     var dob = DateTime.MinValue;
                     try
@@ -329,7 +330,7 @@ namespace One.Views.User
                             }
                         }
 
-                        Label label = (Label)this.Page.FindControl("lblBodyMessage");
+                        //Label label = (Label)this.Page.FindControl("lblBodyMessage");
                         //if (label != null)
                         {
                             if (savedUser != null)
@@ -350,6 +351,7 @@ namespace One.Views.User
 
 
         }
+
         public string GetExtension(string fileName, string contentType)
         {
             //var ent = Context.File.Find(imageId);

@@ -22,21 +22,55 @@ namespace Academic.DbHelper
                 Context = new AcademicContext();
             }
 
-            public Academic.DbEntities.Batches.Batch AddOrUpdateBatch(DbEntities.Batches.Batch batch)
+            public Academic.DbEntities.Batches.Batch AddOrUpdateBatch(DbEntities.Batches.Batch batch
+                , List<Academic.ViewModel.Batch.BatchViewModel> progBatchList)
             {
-                var ent = Context.Batch.Find(batch.Id);
-                if (ent == null)
+                using (var scope = new TransactionScope())
                 {
-                    var added = Context.Batch.Add(batch);
-                    Context.SaveChanges();
-                    return added;
-                }
+                    var ent = Context.Batch.Find(batch.Id);
+                    if (ent == null)
+                    {
+                        ent = Context.Batch.Add(batch);
+                        Context.SaveChanges();
+                        //return ent;
+                    }
 
-                //update
-                ent.Name = batch.Name;
-                ent.Description = batch.Description;
-                Context.SaveChanges();
-                return ent;
+                    //update
+                    ent.Name = batch.Name;
+                    ent.Description = batch.Description;
+                    Context.SaveChanges();
+
+                    //save programbatches
+                    var list = new List<Academic.DbEntities.Batches.ProgramBatch>();
+                    if (progBatchList != null)
+                    {
+                        foreach (var bvm in progBatchList)
+                        {
+                            var found = Context.ProgramBatch.Find(bvm.ProgramBatchId);
+                            if (found == null)
+                            {
+                                Context.ProgramBatch.Add(new ProgramBatch()
+                                {
+                                    ProgramId = bvm.ProgramId
+                                    ,
+                                    BatchId = ent.Id
+
+                                });
+                                Context.SaveChanges();
+                            }
+                            else
+                            {
+                                found.Void = !bvm.Check;
+                                Context.SaveChanges();
+
+
+                            }
+                        }
+                    }
+
+                    scope.Complete();
+                    return ent;
+                }
 
             }
 
@@ -66,7 +100,7 @@ namespace Academic.DbHelper
             public List<DbEntities.Batches.ProgramBatch> GetProgramBatchList(int batchId)
             {
                 var programs = Context.ProgramBatch.Include(i => i.Batch).Include(i => i.Program)
-                    .Where(x => x.BatchId == batchId) // && !(x.Void ?? false)
+                    .Where(x => x.BatchId == batchId && !(x.Void ?? false)) // && !(x.Void ?? false)
                     .ToList();
                 return programs;
             }
@@ -160,7 +194,7 @@ namespace Academic.DbHelper
 
             public List<ProgramBatch> GetNewProgramBatchList(int programId)
             {
-                return Context.ProgramBatch.Where(x =>x.ProgramId==programId && !(x.StartedStudying ?? false) && !(x.Void ?? false)).ToList();
+                return Context.ProgramBatch.Where(x => x.ProgramId == programId && !(x.StartedStudying ?? false) && !(x.Void ?? false)).ToList();
             }
 
 
@@ -171,11 +205,98 @@ namespace Academic.DbHelper
 
             public List<DbEntities.Students.Student> GetStudentsOfProgramBatch(int programBatchId)
             {
-                var stdas = Context.StudentBatch.Include(i => i.Student).Include(i=>i.Student.User)
+                var stdas = Context.StudentBatch.Include(i => i.Student).Include(i => i.Student.User)
                     .Where(x => x.ProgramBatchId == programBatchId)
-                    .Select(s=>s.Student).Include(i=>i.User).Where(m=>!(m.Void??false)).ToList();
+                    .Select(s => s.Student).Include(i => i.User).Where(m => !(m.Void ?? false)).ToList();
                 return stdas;
             }
+
+            public List<DbEntities.User.Users> GetStudentsOfProgramBatch_AsUser(int programBatchId)
+            {
+                var stdas = Context.StudentBatch.Include(i => i.Student).Include(i => i.Student.User)
+                    .Where(x => x.ProgramBatchId == programBatchId)
+                    .Select(s => s.Student.User).Where(m => !(m.IsDeleted ?? false)).ToList();//Include(i => i.User).
+                return stdas;
+            }
+
+            public List<ViewModel.Student.StudentViewModelWithAllParam> ListStudentsOfProgramBatch(int programBatchId)
+            {
+                var list = new List<ViewModel.Student.StudentViewModelWithAllParam>();
+                var stdList = Context.StudentBatch.Include(i => i.Student).Include(i => i.Student.User)
+                    .Where(x => x.ProgramBatchId == programBatchId)
+                    .Select(x=>x.Student).ToList();
+                stdList.ForEach(s =>
+                {
+                    var std = new ViewModel.Student.StudentViewModelWithAllParam()
+                    {
+                        UserId = s.UserId
+                        ,Name = s.Name
+                        ,UserName = s.User.UserName
+                        ,ImageUrl = GetImageUrl(s.User.UserImageId??0)
+                        ,LastOnline = GetLastOnline(s.User.LastOnline)
+                        ,Email = s.User.Email
+                        ,Phone = s.User.Phone
+                    };
+                    list.Add(std);
+                });
+                return list;
+            }
+
+
+            public string GetImageUrl(int imageId)
+            {
+                //if (imageId != null)
+                {
+                    var id = Convert.ToInt32(imageId.ToString());
+                    using (var helper = new DbHelper.WorkingWithFiles())
+                    {
+                        return helper.GetImageUrl(id);
+                    }
+                }
+                return "";
+            }
+
+            public string GetLastOnline(DateTime? onlineDate)
+            {
+                if (onlineDate != null)
+                {
+                    try
+                    {
+                        var date = Convert.ToDateTime(onlineDate.ToString());
+                        var difference = DateTime.Now.Subtract(date);// - date;
+
+                        var days = (difference.Days > 0) ?
+                            (difference.Days == 1) ? "a Day " : difference.Days + " Days " : "";
+                        if (days != "")
+                        {
+                            return days + "ago";
+                        }
+
+                        var hours = (difference.Hours != 0) ? (difference
+                            .Hours == 1) ? "an Hour " : difference.Hours + " Hours " : "";
+                        if (hours != "")
+                        {
+                            return hours + "ago";
+                        }
+                        var minutes = (difference.Minutes > 0) ?
+                            (difference.Minutes == 1) ? "a Minute " : difference.Minutes + " Minutes " : "";
+                        if (minutes != "")
+                            return minutes;
+
+                        var seconds = (difference.Seconds <= 5) ?
+                            "5 Seconds " : difference.Seconds + " Seconds ";
+                        return seconds + "ago";
+                    }
+                    catch
+                    {
+
+                        return "Never Online";
+                    }
+
+                }
+                return "Never Online";
+            }
+            
         }
     }
 }

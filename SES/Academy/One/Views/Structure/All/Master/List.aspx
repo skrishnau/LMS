@@ -31,14 +31,15 @@
 
 
 
+               <%-- <br />
+                <div class="float-left">
+                    <div>
+                        List of structure
+                         <asp:TreeView ID="TreeView1" runat="server" ShowLines="True"></asp:TreeView>
+                    </div>
 
-                <%--<div class="float-left">
-        <div>
-            List of structure
-            <asp:TreeView ID="TreeView1" runat="server" ShowLines="True"></asp:TreeView>
-        </div>
-
-    </div>--%>
+                </div>
+                <br />--%>
                 <%-- ==================Start of Listing --%>
 
 

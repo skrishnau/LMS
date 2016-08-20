@@ -80,6 +80,15 @@ namespace One.Values
         public string ProgramBatchName { get; set; }
     }
 
+    
+    public class BatchEventArgs : EventArgs
+    {
+        public int ProgramId { get; set; }
+        public int ProgramBatchId { get; set; }
+
+        public bool Checked { get; set; }
+    }
+
     public class ProgramBatchEventArgs : EventArgs
     {
         public int ProgramBatchId { get; set; }

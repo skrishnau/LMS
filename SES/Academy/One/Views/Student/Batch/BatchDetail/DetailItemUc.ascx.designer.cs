@@ -22,13 +22,22 @@ namespace One.Views.Student.Batch.BatchDetail {
         protected global::System.Web.UI.WebControls.Panel pnlBody;
         
         /// <summary>
-        /// lblProgramName control.
+        /// lnkProgrameName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lblProgramName;
+        protected global::System.Web.UI.WebControls.HyperLink lnkProgrameName;
+        
+        /// <summary>
+        /// lblNoOfStudents control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lblNoOfStudents;
         
         /// <summary>
         /// lblCurrentYear control.

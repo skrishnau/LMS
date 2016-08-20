@@ -22,33 +22,6 @@ namespace One.Views.Student.Batch.List {
         protected global::System.Web.UI.WebControls.PlaceHolder pnlItems;
         
         /// <summary>
-        /// btnLeft control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnLeft;
-        
-        /// <summary>
-        /// txtPageNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPageNo;
-        
-        /// <summary>
-        /// btnRight control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnRight;
-        
-        /// <summary>
         /// hidSchoolId control.
         /// </summary>
         /// <remarks>

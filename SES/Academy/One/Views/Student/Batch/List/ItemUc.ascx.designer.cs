@@ -56,23 +56,5 @@ namespace One.Views.Student.Batch.List {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lblNumberOfPrograms;
-        
-        /// <summary>
-        /// lblStartYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblStartYear;
-        
-        /// <summary>
-        /// lblCurrentlyIn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblCurrentlyIn;
     }
 }

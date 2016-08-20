@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/UserSite.Master" AutoEventWireup="true" CodeBehind="StudentCreate.aspx.cs" Inherits="One.Views.Student.Batch.StudentDisplay.Students.StudentCreate.StudentCreate" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="StudentCreate.aspx.cs" Inherits="One.Views.Student.Batch.StudentDisplay.Students.StudentCreate.StudentCreate" %>
 
 <%@ Register Src="~/Views/Student/Batch/StudentDisplay/Students/StudentCreate/StudentCreateUc.ascx" TagPrefix="uc1" TagName="StudentCreateUc" %>
 
