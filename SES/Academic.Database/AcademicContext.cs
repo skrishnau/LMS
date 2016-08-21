@@ -39,7 +39,15 @@ namespace Academic.Database
 
         public DbSet<FileCategory> FileCategory { get; set; }
         public DbSet<UserFile> File { get; set; }
-       
+
+
+        // ---------------- ClassUser, ClassSubject ----------------//
+
+        public DbSet<Academic.DbEntities.Class.SubjectSessionUser> SubjectSessionUser { get; set; }
+        public DbSet<DbEntities.Class.SubjectSession> SubjectSession { get; set; }
+
+        //---------------------------------------------------------//
+
 
         //--------Academic Placement--------------//
         public DbSet<Academic.DbEntities.AcacemicPlacements.RunningClass> RunningClass { get; set; }

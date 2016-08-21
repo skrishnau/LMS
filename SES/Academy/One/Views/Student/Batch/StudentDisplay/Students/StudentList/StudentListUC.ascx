@@ -49,8 +49,18 @@
                 </ItemTemplate>
                 <ItemStyle Width="30"></ItemStyle>
             </asp:TemplateField>
+            
+               <asp:TemplateField HeaderText="Name" SortExpression="FirstName">
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("FirstName") %>'></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server" Text='<%# GetName(DataBinder.Eval(Container.DataItem,"FirstName"),Eval("MiddleName"),Eval("LastName"))  %>'></asp:Label>
+                </ItemTemplate>
+                <ItemStyle Width="100"></ItemStyle>
+            </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="FirstName" SortExpression="FirstName">
+           <%-- <asp:TemplateField HeaderText="FirstName" SortExpression="FirstName">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("FirstName") %>'></asp:TextBox>
                 </EditItemTemplate>
@@ -67,7 +77,7 @@
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("LastName") %>'></asp:Label>
                 </ItemTemplate>
                 <ItemStyle Width="100"></ItemStyle>
-            </asp:TemplateField>
+            </asp:TemplateField>--%>
             <%-- <asp:TemplateField HeaderText="UserName" SortExpression="UserName">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("UserName") %>'></asp:TextBox>
@@ -105,7 +115,7 @@
                 <ItemStyle Width="100"></ItemStyle>
             </asp:TemplateField>
             <%--<asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />--%>
-            <asp:TemplateField HeaderText="Country" SortExpression="Country">
+          <%--  <asp:TemplateField HeaderText="Country" SortExpression="Country">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Country") %>'></asp:TextBox>
                 </EditItemTemplate>
@@ -114,7 +124,7 @@
                 </ItemTemplate>
                 <ItemStyle></ItemStyle>
                 <ItemStyle Width="100"></ItemStyle>
-            </asp:TemplateField>
+            </asp:TemplateField>--%>
             <asp:TemplateField HeaderText="LastOnline" SortExpression="LastOnline">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:TextBox>

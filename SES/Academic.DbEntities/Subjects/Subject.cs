@@ -18,6 +18,12 @@ namespace Academic.DbEntities.Subjects
 
         public string Summary { get; set; }
 
+
+        //enrolment methods in subject 
+//================????? ============================//
+        //Enrolmment method
+
+
         public string Code { get; set; }
         public byte? Credit { get; set; }
 

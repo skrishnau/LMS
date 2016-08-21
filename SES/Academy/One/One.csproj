@@ -178,9 +178,17 @@
     <Content Include="Content\Icons\setting_1.png" />
     <Content Include="Content\Icons\Star\star_red.png" />
     <Content Include="Content\Icons\TreeView\left_down.png" />
+    <Content Include="Content\Icons\TreeView\left_down_black.png" />
+    <Content Include="Content\Icons\TreeView\left_down_full.png" />
     <Content Include="Content\Icons\TreeView\three_ends.png" />
+    <Content Include="Content\Icons\TreeView\three_ends_black.png" />
+    <Content Include="Content\Icons\TreeView\three_ends_full.png" />
     <Content Include="Content\Icons\TreeView\up_down.png" />
+    <Content Include="Content\Icons\TreeView\up_down_black.png" />
+    <Content Include="Content\Icons\TreeView\up_down_full.png" />
     <Content Include="Content\Icons\TreeView\up_left.png" />
+    <Content Include="Content\Icons\TreeView\up_left_black.png" />
+    <Content Include="Content\Icons\TreeView\up_left_full.png" />
     <Content Include="Content\Icons\Users\40x40\group.png" />
     <Content Include="Content\Icons\Users\40x40\single.png" />
     <Content Include="Content\Icons\Users\single.png" />
@@ -352,6 +360,7 @@
     <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\WebForm1.aspx" />
     <Content Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx" />
     <Content Include="Views\AcademicPlacement\StudentClass\SingleStudentEntry.ascx" />
+    <Content Include="Views\Class\ClassUserUC.ascx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChooseUc.ascx" />
     <Content Include="Views\Course\ActivityAndResource\Chooseer\AutoCloseSolution.aspx" />
@@ -918,6 +927,13 @@
     </Compile>
     <Compile Include="Views\AcademicPlacement\StudentClass\SingleStudentEntry.ascx.designer.cs">
       <DependentUpon>SingleStudentEntry.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Class\ClassUserUC.ascx.cs">
+      <DependentUpon>ClassUserUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\ClassUserUC.ascx.designer.cs">
+      <DependentUpon>ClassUserUC.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx.cs">
       <DependentUpon>ActResChoose.aspx</DependentUpon>

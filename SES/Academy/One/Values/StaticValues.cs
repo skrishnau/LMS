@@ -137,5 +137,21 @@ namespace One.Values
             "~/Content/Icons/TreeView/left_down.png",
             "~/Content/Icons/TreeView/up_down.png"
         };
+        public static List<string> TreeLinkImageBlack = new List<string>()
+        {
+            "",
+            "~/Content/Icons/TreeView/three_ends_black.png",
+            "~/Content/Icons/TreeView/up_left_black.png",
+            "~/Content/Icons/TreeView/left_down_black.png",
+            "~/Content/Icons/TreeView/up_down_black.png"
+        };
+        public static List<string> TreeLinkImageFull = new List<string>()
+        {
+             "",
+            "~/Content/Icons/TreeView/three_ends_full.png",
+            "~/Content/Icons/TreeView/up_left_full.png",
+            "~/Content/Icons/TreeView/left_down_full.png",
+            "~/Content/Icons/TreeView/up_down_full.png"
+        };
     }
 }

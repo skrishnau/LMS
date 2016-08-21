@@ -7,6 +7,11 @@ using Academic.DbEntities.Structure;
 
 namespace Academic.DbEntities.Subjects
 {
+    /// <summary>
+    /// Used: its gives the subjects linked to each year/subyear
+    /// Its just the setting part and is static 
+    /// 
+    /// </summary>
     public class SubjectStructure
     {
         //[Key(), Column(Order=1)]
@@ -22,6 +27,8 @@ namespace Academic.DbEntities.Subjects
 
         public int SubjectId { get; set; }
         public virtual Subject Subject { get; set; }
+
+        public bool? Obsolete { get; set; }
 
         public bool? Void { get; set; }
 

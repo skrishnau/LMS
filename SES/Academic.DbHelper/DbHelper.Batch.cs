@@ -236,6 +236,7 @@ namespace Academic.DbHelper
                         ,LastOnline = GetLastOnline(s.User.LastOnline)
                         ,Email = s.User.Email
                         ,Phone = s.User.Phone
+                        ,CRN = s.CRN
                     };
                     list.Add(std);
                 });

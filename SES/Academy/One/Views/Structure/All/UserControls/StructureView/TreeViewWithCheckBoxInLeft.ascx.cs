@@ -30,6 +30,8 @@ namespace One.Views.Structure.All.UserControls.StructureView
             set { hidBatchId.Value = value.ToString(); }
         }
 
+
+        //  // Note :: ├ ==>1 ,    └ ==> 2 .   ┌ ==> 3 ,   │ ==> 4 ,  empty ==> 0
        public  void LoadStructure(int schoolId, List<Academic.ViewModel.Batch.BatchViewModel> progList)
         {
             //var progList = ViewState["SelectedProgramBatchList"] as List<Academic.ViewModel.Batch.BatchViewModel>;

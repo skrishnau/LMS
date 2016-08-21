@@ -71,10 +71,13 @@
     <Compile Include="Batches\SectionBatch.cs" />
     <Compile Include="Batches\SectionStudent.cs" />
     <Compile Include="Batches\StudentBatch.cs" />
+    <Compile Include="Class\SubjectSessionUser.cs" />
     <Compile Include="Exams\Exam.cs" />
     <Compile Include="Exams\ExamStudent.cs" />
     <Compile Include="Exams\ExamSubjectTeacher.cs" />
     <Compile Include="Exams\ExamSubType.cs" />
+    <Compile Include="Subjects\EnrolmentMethods.cs" />
+    <Compile Include="Class\SubjectSession.cs" />
     <Compile Include="Subjects\SubjectStructure.cs" />
     <Compile Include="UserFile.cs" />
     <Compile Include="FileCategory.cs" />

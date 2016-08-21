@@ -28,9 +28,9 @@
                         <div style="width: 100%;">
 
                             <div style="margin: 5px;">
-                                <div id="categoryDiv" style="float: left; width: 28%; 
-                                                background-color: white; border: 1px solid grey; 
-                                                padding: 5px 10px 10px 0;">
+                                <%-- 28% --%>
+                                <div id="categoryDiv" style="float: left; width: 28%; overflow-x: auto;
+                                                background-color: white; padding: 5px 10px 10px 0;">
                                     <%-- list of categories --%>
                                     <div style="text-align: center; font-weight: bold;">Categories</div>
                                     <br />
