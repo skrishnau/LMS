@@ -12,6 +12,20 @@ namespace Academic.DbEntities.Class
     {
        public int Id { get; set; }
 
+       public string GetName
+       {
+           get
+           {
+               if (ProgramBatchId != null)
+               {
+                   return ProgramBatch.NameFromBatch;
+               }
+               else
+               {
+                   return Name;
+               }
+           }
+       }
        /// <summary>
        /// indicates if this is regular subject of students
        /// false: means that all the values of subjectStructureId, ProgramBatchId, AcademicYearId
@@ -35,21 +49,31 @@ namespace Academic.DbEntities.Class
        public int? SessionId { get; set; }
        public virtual Session Session { get; set; }
 
-       //IsRegular false cases:
+       //IsRegular false case: i.e. if IsRegular=false then SubjectId != null and others all Id are null
+       //Name is given if the course is independent of above ids i.e. above Ids are null
        public int? SubjectId { get; set; }
-
+       public string Name { get; set; }
 
        //overall Part.
+       public DateTime? StartDate { get; set; }
+       public DateTime? EndDate { get; set; }
+
+       //grouping of students
+       //if false: then use the subject's grouping to group students
+       public bool UseDefaultGrouping { get; set; }
+
+
        public bool? Void { get; set; }
        public int? VoidBy { get; set; }
        public DateTime? VoidDate { get; set; }
 
-       public bool? CompleteForThisTime { get; set; }
+       public bool? SessionComplete { get; set; }
 
        //Its the date in which this class-subjectt is opened.
        //i.e the date of create
-       public DateTime OpenedDate { get; set; }
-       public DateTime? CompleteDate { get; set; }
+       public DateTime CreatedDate { get; set; }
+       public string CreatedTime { get; set; }
+       public DateTime? CompletionMarkedDate { get; set; }
        public int? CompleteMarkedByUserId { get; set; }
 
        //gives all the users for this session of the course.

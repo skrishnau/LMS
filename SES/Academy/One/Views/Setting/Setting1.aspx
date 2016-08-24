@@ -19,7 +19,27 @@
         </div>
         
         <div>
+            <strong>User Grouping Settings</strong>
+            <hr />
             
+            <div style="padding:0 10px;">
+                here will be the settings to select the default group in each program-batch
+                i.e Group A and Group B for all the strudents in a program batch or say:
+                Group-A and Group-B for all Year/Subyear
+            </div>
         </div>
+        
+         <div>
+            <strong>Name Settings</strong>
+            <hr />
+            
+            <div style="padding:0 10px;">
+                here will be the settings to change the Name of the defaults.
+                <br />
+                for e.g. Subyear is inappropriate so Give to change Subyear to SEMESTER
+                and give to change all other Naming conventions of the system
+            </div>
+        </div>
+
     </div>
 </asp:Content>

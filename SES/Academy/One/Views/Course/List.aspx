@@ -107,7 +107,7 @@
                                                     
                                                     ●&nbsp;
                                                     <asp:HyperLink ID="HyperLink1" runat="server"
-                                                        NavigateUrl='<%# "~/Views/Course/CourseDetail.aspx?id="+Eval("Id") %>'><%# Eval("Name") %></asp:HyperLink>
+                                                        NavigateUrl='<%# "~/Views/Course/CourseDetail.aspx?cId="+Eval("Id") %>'><%# Eval("Name") %></asp:HyperLink>
                                                         &nbsp;(
                                 <asp:Label ID="CodeLabel" runat="server" Text='<%# Eval("Code") %>' />
                                                         )

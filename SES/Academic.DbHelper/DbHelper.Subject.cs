@@ -648,6 +648,11 @@ namespace Academic.DbHelper
                 }
                 return false;
             }
+
+            public DbEntities.Subjects.Subject GetCourse(int cId)
+            {
+                return Context.Subject.Find(cId);
+            }
         }
     }
 }

@@ -14,7 +14,13 @@ namespace Academic.DbEntities.Subjects
     public class Subject
     {
         public int Id { get; set; }
+        /// <summary>
+        /// It is FullName
+        /// </summary>
         public string Name { get; set; }
+
+        public string ShortName { get; set; }
+
 
         public string Summary { get; set; }
 

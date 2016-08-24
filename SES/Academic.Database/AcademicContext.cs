@@ -144,6 +144,7 @@ namespace Academic.Database
         public DbSet<DbEntities.Subjects.SubjectGroupSubject> SubjectGroupSubject { get; set; }
         public DbSet<DbEntities.Subjects.RegularSubject> RegularSubjectsGrouping { get; set; }
         public DbSet<DbEntities.Subjects.SubjectStructure> SubjectStructure { get; set; }
+        public DbSet<DbEntities.Subjects.SubjectUserGroup> SubjectUserGroup { get; set; }
 
         //public DbSet<DbEntities.Subjects.RegularSubjectsTeacher> RegularSubjectsTeacher { get; set; }
         //public DbSet<DbEntities.AcacemicPlacements.RegularSubjectClass>  RegularSubjectClass { get; set; }

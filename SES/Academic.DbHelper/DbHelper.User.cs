@@ -385,6 +385,19 @@ namespace Academic.DbHelper
                     Context.SaveChanges();
                 }
             }
+
+            //Used
+            //======listing 
+            public void ListUsersWithFilter(
+                string fullName,string fullName_crieteria,
+                string firstName, string firstName_crieteria,
+                string midName,string midName_crieteria,
+                string lastName, string lastName_crieteria,
+                int batchId, int programId, int yearId, int subYearId,
+                string crn, int roleId, string userName, string email, int countryId, string guardianFullName)
+            {
+                return;
+            }
         }
     }
 }

@@ -7,171 +7,153 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Course {
+namespace One.Views.Class.Enrollment {
     
     
-    public partial class CourseDetail {
+    public partial class UserEnrollUC {
         
         /// <summary>
-        /// lblHeading control.
+        /// grdEnrolled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblHeading;
+        protected global::System.Web.UI.WebControls.GridView grdEnrolled;
         
         /// <summary>
-        /// lblFullName control.
+        /// lblSearchEnroll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblFullName;
+        protected global::System.Web.UI.WebControls.Label lblSearchEnroll;
         
         /// <summary>
-        /// lblShortName control.
+        /// txtSearchEnroll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblShortName;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchEnroll;
         
         /// <summary>
-        /// lblCategory control.
+        /// btnClearEnroll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblCategory;
+        protected global::System.Web.UI.WebControls.Button btnClearEnroll;
         
         /// <summary>
-        /// lblNoOfGlobalSections control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblNoOfGlobalSections;
+        protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// lblAssignRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Label lblAssignRole;
         
         /// <summary>
-        /// lnkNewClass control.
+        /// ddlAssignRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkNewClass;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAssignRole;
         
         /// <summary>
-        /// Image1 control.
+        /// lblEnrollmentDuration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Label lblEnrollmentDuration;
         
         /// <summary>
-        /// lnkClassFilter control.
+        /// ddlEnrollmentDuration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkClassFilter;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEnrollmentDuration;
         
         /// <summary>
-        /// imgFilter control.
+        /// lblStartingFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgFilter;
+        protected global::System.Web.UI.WebControls.Label lblStartingFrom;
         
         /// <summary>
-        /// pnlClassFilter control.
+        /// ddlStartingFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlClassFilter;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStartingFrom;
         
         /// <summary>
-        /// btnAll control.
+        /// btnRemove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAll;
+        protected global::System.Web.UI.WebControls.Button btnRemove;
         
         /// <summary>
-        /// btnCurrentlyRunning control.
+        /// grdNotEnrolled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCurrentlyRunning;
+        protected global::System.Web.UI.WebControls.GridView grdNotEnrolled;
         
         /// <summary>
-        /// btnDue control.
+        /// lblSearchNotEnrolled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDue;
+        protected global::System.Web.UI.WebControls.Label lblSearchNotEnrolled;
         
         /// <summary>
-        /// btnNotStartedYet control.
+        /// tstSearchNotEnroll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnNotStartedYet;
+        protected global::System.Web.UI.WebControls.TextBox tstSearchNotEnroll;
         
         /// <summary>
-        /// btnCompleted control.
+        /// btnClearNotEnroll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCompleted;
-        
-        /// <summary>
-        /// dlistClasses control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlistClasses;
-        
-        /// <summary>
-        /// hidCourseId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidCourseId;
+        protected global::System.Web.UI.WebControls.Button btnClearNotEnroll;
     }
 }

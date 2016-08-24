@@ -58,6 +58,7 @@
     <Compile Include="DbHelper.Activity.cs" />
     <Compile Include="DbHelper.Assignment.cs" />
     <Compile Include="DbHelper.Batch.cs" />
+    <Compile Include="DbHelper.Classes.cs" />
     <Compile Include="DbHelper.ComboLoader.cs" />
     <Compile Include="DbHelper.CustomAccount.cs" />
     <Compile Include="DbHelper.Exam.cs" />

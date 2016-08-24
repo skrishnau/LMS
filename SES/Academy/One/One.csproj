@@ -361,6 +361,12 @@
     <Content Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx" />
     <Content Include="Views\AcademicPlacement\StudentClass\SingleStudentEntry.ascx" />
     <Content Include="Views\Class\ClassUserUC.ascx" />
+    <Content Include="Views\Class\CourseClassDetail.aspx" />
+    <Content Include="Views\Class\CourseSessionCreate.aspx" />
+    <Content Include="Views\Class\CourseSessionCreateUC.ascx" />
+    <Content Include="Views\Class\Enrollment\testForm.aspx" />
+    <Content Include="Views\Class\Enrollment\UserEnrollUC.ascx" />
+    <Content Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChooseUc.ascx" />
     <Content Include="Views\Course\ActivityAndResource\Chooseer\AutoCloseSolution.aspx" />
@@ -518,7 +524,10 @@
     <Content Include="Views\UserControls\TreeTest\ThreButtonColorful\NodeUc.ascx" />
     <Content Include="Views\UserControls\TreeTest\ThreButtonColorful\ThreeButtonTest.aspx" />
     <Content Include="Views\User\Create.aspx" />
+    <Content Include="Views\User\Enroll\UserEnrollUC.ascx" />
     <Content Include="Views\User\List.aspx" />
+    <Content Include="Views\User\Searching\ListingTest.aspx" />
+    <Content Include="Views\User\Searching\UserSearchAndList.ascx" />
     <Content Include="Views\User\UserCreateUC.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -934,6 +943,48 @@
     </Compile>
     <Compile Include="Views\Class\ClassUserUC.ascx.designer.cs">
       <DependentUpon>ClassUserUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Class\CourseClassDetail.aspx.cs">
+      <DependentUpon>CourseClassDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\CourseClassDetail.aspx.designer.cs">
+      <DependentUpon>CourseClassDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Class\CourseSessionCreate.aspx.cs">
+      <DependentUpon>CourseSessionCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\CourseSessionCreate.aspx.designer.cs">
+      <DependentUpon>CourseSessionCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Class\CourseSessionCreateUC.ascx.cs">
+      <DependentUpon>CourseSessionCreateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\CourseSessionCreateUC.ascx.designer.cs">
+      <DependentUpon>CourseSessionCreateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Class\Enrollment\testForm.aspx.cs">
+      <DependentUpon>testForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\Enrollment\testForm.aspx.designer.cs">
+      <DependentUpon>testForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Class\Enrollment\UserEnrollUC.ascx.cs">
+      <DependentUpon>UserEnrollUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\Enrollment\UserEnrollUC.ascx.designer.cs">
+      <DependentUpon>UserEnrollUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx.cs">
+      <DependentUpon>UserEnrollUC_ListDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx.designer.cs">
+      <DependentUpon>UserEnrollUC_ListDisplay.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx.cs">
       <DependentUpon>ActResChoose.aspx</DependentUpon>
@@ -2034,12 +2085,33 @@
     <Compile Include="Views\User\Create.aspx.designer.cs">
       <DependentUpon>Create.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\User\Enroll\UserEnrollUC.ascx.cs">
+      <DependentUpon>UserEnrollUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\Enroll\UserEnrollUC.ascx.designer.cs">
+      <DependentUpon>UserEnrollUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\User\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\User\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\Searching\ListingTest.aspx.cs">
+      <DependentUpon>ListingTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\Searching\ListingTest.aspx.designer.cs">
+      <DependentUpon>ListingTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\Searching\UserSearchAndList.ascx.cs">
+      <DependentUpon>UserSearchAndList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\Searching\UserSearchAndList.ascx.designer.cs">
+      <DependentUpon>UserSearchAndList.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\User\UserCreateUC.ascx.cs">
       <DependentUpon>UserCreateUC.ascx</DependentUpon>

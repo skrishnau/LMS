@@ -79,6 +79,7 @@
     <Compile Include="Subjects\EnrolmentMethods.cs" />
     <Compile Include="Class\SubjectSession.cs" />
     <Compile Include="Subjects\SubjectStructure.cs" />
+    <Compile Include="Subjects\SubjectUserGroup.cs" />
     <Compile Include="UserFile.cs" />
     <Compile Include="FileCategory.cs" />
     <Compile Include="Libraries\BookReturnCategory.cs" />

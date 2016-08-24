@@ -182,6 +182,22 @@
     <Compile Include="Migrations\201608211309424_renamingOf_SubjectSession_and_SubjectSessionUser.Designer.cs">
       <DependentUpon>201608211309424_renamingOf_SubjectSession_and_SubjectSessionUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608211416045_subjectSession_and_SubjectUserGroup.cs" />
+    <Compile Include="Migrations\201608211416045_subjectSession_and_SubjectUserGroup.Designer.cs">
+      <DependentUpon>201608211416045_subjectSession_and_SubjectUserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608211613457_minor_changes_no_idea_what.cs" />
+    <Compile Include="Migrations\201608211613457_minor_changes_no_idea_what.Designer.cs">
+      <DependentUpon>201608211613457_minor_changes_no_idea_what.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608222212442_minor_changes.cs" />
+    <Compile Include="Migrations\201608222212442_minor_changes.Designer.cs">
+      <DependentUpon>201608222212442_minor_changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608231601069_created_date_added_in_subjectSession.cs" />
+    <Compile Include="Migrations\201608231601069_created_date_added_in_subjectSession.Designer.cs">
+      <DependentUpon>201608231601069_created_date_added_in_subjectSession.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -297,6 +313,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608211309424_renamingOf_SubjectSession_and_SubjectSessionUser.resx">
       <DependentUpon>201608211309424_renamingOf_SubjectSession_and_SubjectSessionUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608211416045_subjectSession_and_SubjectUserGroup.resx">
+      <DependentUpon>201608211416045_subjectSession_and_SubjectUserGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608211613457_minor_changes_no_idea_what.resx">
+      <DependentUpon>201608211613457_minor_changes_no_idea_what.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608222212442_minor_changes.resx">
+      <DependentUpon>201608222212442_minor_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608231601069_created_date_added_in_subjectSession.resx">
+      <DependentUpon>201608231601069_created_date_added_in_subjectSession.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -153,10 +153,10 @@
 
         </asp:DataList>--%>
 
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="GridView1"  runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None">
 
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-
+            
             <Columns>
                 <%--<asp:BoundField DataField="EmailDisplay" HeaderText="EmailDisplay" SortExpression="EmailDisplay" Visible="False" />--%>
                 <%--<asp:BoundField DataField="City" HeaderText="City" SortExpression="City" Visible="False" />--%>
@@ -185,7 +185,7 @@
                 <%--<asp:BoundField DataField="SecurityAnswer" HeaderText="SecurityAnswer" SortExpression="SecurityAnswer" />--%>
                 <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
 
-                <asp:TemplateField HeaderText="Image">
+                <asp:TemplateField HeaderText="Image" >
                     <EditItemTemplate>
 
                         <%--<asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:TextBox>--%>
@@ -201,7 +201,7 @@
                     <ItemStyle Width="30"></ItemStyle>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="FirstName" SortExpression="FirstName">
+                <asp:TemplateField HeaderText="First Name" SortExpression="FirstName" >
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("FirstName") %>'></asp:TextBox>
                     </EditItemTemplate>
@@ -210,7 +210,7 @@
                     </ItemTemplate>
                     <ItemStyle Width="100"></ItemStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="LastName" SortExpression="LastName">
+                <asp:TemplateField HeaderText="Last Name" SortExpression="LastName">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("LastName") %>'></asp:TextBox>
                     </EditItemTemplate>
@@ -219,7 +219,7 @@
                     </ItemTemplate>
                     <ItemStyle Width="100"></ItemStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="UserName" SortExpression="UserName">
+                <asp:TemplateField HeaderText="Username" SortExpression="UserName">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("UserName") %>'></asp:TextBox>
                     </EditItemTemplate>
@@ -266,7 +266,7 @@
                     <ItemStyle></ItemStyle>
                     <ItemStyle Width="100"></ItemStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="LastOnline" SortExpression="LastOnline">
+                <asp:TemplateField HeaderText="Last Online" SortExpression="LastOnline">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:TextBox>
                     </EditItemTemplate>
