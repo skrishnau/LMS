@@ -42,7 +42,7 @@ namespace Academic.DbHelper
                 try
                 {
                     var roles = Context.UserRole.Where(x => x.User.UserName == username);
-                    return roles.Select(x => x.Role.Name).ToList();
+                    return roles.Select(x => x.Role.RoleName).ToList();
                 }
                 catch (Exception)
                 {
@@ -56,12 +56,12 @@ namespace Academic.DbHelper
                 {
                     var savedUser = Context.Users.Add(user);
                     Context.SaveChanges();
-                    var roleId = Context.Role.FirstOrDefault(x => x.Name.ToLower() == "manager");
+                    var roleId = Context.Role.FirstOrDefault(x => x.RoleName.ToLower() == "manager");
                     if (roleId == null)
                     {
                         roleId = Context.Role.Add(new Role()
                         {
-                            Name = "manager"
+                            RoleName = "manager"
                             ,Description = "'Manager' has complete access over all of the settings."
                         });
                         Context.SaveChanges();

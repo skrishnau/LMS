@@ -8,11 +8,17 @@ namespace Academic.DbEntities.Subjects
 {
     /// <summary>
     /// Self Enrolment
+    /// :: This is not used now.. The enrollments are: Auto, Manual and Self
+    ///  _ Auto: automatic enrollment--> for regular students
+    /// _ Manual: enrollment done by manager/Teacher etc.
+    /// _ Self: enrollment done by the user/student him/herself.
     /// </summary>
     public class EnrolmentMethods
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+
         public bool AllowExistingEnrolments { get; set; }
         public bool AllowNewEnrolments { get; set; }
 

@@ -430,7 +430,7 @@ namespace Academic.DbHelper
                 var user = Context.Users.Find(userId);
                 if (user != null)
                 {
-                    var roles = Context.UserRole.Where(x => x.UserId == userId).Select(x => x.Role.Name);
+                    var roles = Context.UserRole.Where(x => x.UserId == userId).Select(x => x.Role.RoleName);
                     if (roles.Contains("teacher"))
                     {
                         //get running class and subjects, etc from RegularSubjectClass and UserClass

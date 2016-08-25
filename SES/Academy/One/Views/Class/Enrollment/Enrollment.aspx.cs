@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace One.Views.AcademicPlacement.StudentClass
+namespace One.Views.Class.Enrollment
 {
-    public partial class SingleStudentEntry : System.Web.UI.UserControl
+    public partial class Enrollment : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

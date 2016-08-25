@@ -17,7 +17,7 @@ namespace Academic.DbEntities.Class
         public int UserId { get; set; }
         public virtual User.Users User { get; set; }
 
-        public int RoleId { get; set; }
+        public int? RoleId { get; set; }
         public virtual User.Role Role { get; set; }
 
         public bool? Void { get; set; }

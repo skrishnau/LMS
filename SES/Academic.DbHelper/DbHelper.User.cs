@@ -42,6 +42,20 @@ namespace Academic.DbHelper
                 return Context.Role.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId || x.SchoolId == null)).ToList();
             }
 
+            public List<Role> GetRolesForUserEnrollOption(int schoolId)
+            {
+                var rolesToSelect = new List<string>()
+                {
+                  "student",  "manager","teacher"
+                };
+                //var r = Context.Role.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId || x.SchoolId == null)).ToList();
+                //return r.Where(x => rolesToSelect.Contains(x.RoleName)).ToList();
+
+                var roles = Context.Role.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId || x.SchoolId == null)
+                    && rolesToSelect.Contains(x.RoleName)).ToList();
+                return roles;
+            }
+
             public List<DbEntities.User.UserType> GetUserTypes(int schoolId)
             {
                 var type = Context.UserType.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId
@@ -78,7 +92,7 @@ namespace Academic.DbHelper
                     }
                     else
                     {
-                        r.Name = role.Name;
+                        r.RoleName = role.RoleName;
                         r.Description = role.Description;
                         r.SchoolId = role.SchoolId;
                     }
@@ -102,7 +116,7 @@ namespace Academic.DbHelper
                     {
                         using (var scope = new TransactionScope())
                         {
-                            if (role.Name.ToLower() == "teacher")
+                            if (role.RoleName.ToLower() == "teacher")
                             {
                                 foreach (var i in userList)
                                 {
@@ -128,7 +142,7 @@ namespace Academic.DbHelper
                                     Context.SaveChanges();
                                 }
                             }
-                            else if (role.Name.ToLower() == "student")
+                            else if (role.RoleName.ToLower() == "student")
                             {
                                 foreach (var i in userList)
                                 {
@@ -331,7 +345,10 @@ namespace Academic.DbHelper
                 return list.ToList();
             }
 
-
+            public List<Users> ListAllUsers()
+            {
+                return Context.Users.ToList();
+            }
             //gender
             public List<DbEntities.User.Gender> GetGender()
             {
@@ -389,9 +406,9 @@ namespace Academic.DbHelper
             //Used
             //======listing 
             public void ListUsersWithFilter(
-                string fullName,string fullName_crieteria,
+                string fullName, string fullName_crieteria,
                 string firstName, string firstName_crieteria,
-                string midName,string midName_crieteria,
+                string midName, string midName_crieteria,
                 string lastName, string lastName_crieteria,
                 int batchId, int programId, int yearId, int subYearId,
                 string crn, int roleId, string userName, string email, int countryId, string guardianFullName)

@@ -12,13 +12,28 @@ namespace One.Views.Class
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                UserEnrollUC_ListDisplay.SubjectSessionId = SubjectSessionId;
+            }
+        }
 
+        public int SubjectSessionId
+        {
+            get { return Convert.ToInt32(hidSubjectSessionId.Value); }
+            set { hidSubjectSessionId.Value = value.ToString(); }
         }
 
         public int CourseId
         {
             get { return Convert.ToInt32(hidCourseId.Value); }
             set { hidCourseId.Value = value.ToString(); }
+        }
+
+        public string CourseName
+        {
+            get { return lblCourseName.Text; }
+            set { lblCourseName.Text = value; }
         }
 
         public void SetCourseId(string courseId)

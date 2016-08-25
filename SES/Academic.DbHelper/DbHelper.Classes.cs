@@ -4,7 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Academic.Database;
+using Academic.DbEntities.Class;
+using Academic.DbEntities.User;
 
 namespace Academic.DbHelper
 {
@@ -42,10 +45,10 @@ namespace Academic.DbHelper
             public List<Academic.DbEntities.Class.SubjectSession> ListSessionsOfSubject(int subjectId, string courseCompletionType)
             {
                 var regular = new List<Academic.DbEntities.Class.SubjectSession>();
-                    //Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
+                //Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
 
                 var notRegular = new List<Academic.DbEntities.Class.SubjectSession>();
-                    //Context.SubjectSession.Where(s => (!s.IsRegular)).Where(x => x.SubjectId == subjectId);
+                //Context.SubjectSession.Where(s => (!s.IsRegular)).Where(x => x.SubjectId == subjectId);
                 var now = DateTime.Now.Date;
                 var min = DateTime.MinValue.Date;
                 var max = DateTime.MaxValue.Date;
@@ -56,9 +59,9 @@ namespace Academic.DbHelper
                             .Where(s => s.IsRegular
                                 && (s.StartDate ?? min) <= now
                                 && (s.EndDate ?? max) >= now
-                                &&!(s.SessionComplete??false))
+                                && !(s.SessionComplete ?? false))
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
-                            .OrderByDescending(o=>o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t=>t.ProgramBatch.Program.Name)
+                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t => t.ProgramBatch.Program.Name)
                             .ToList();
 
                         notRegular = Context.SubjectSession
@@ -74,9 +77,9 @@ namespace Academic.DbHelper
                         regular = Context.SubjectSession
                             .Where(s => s.IsRegular
                                && (s.EndDate ?? max) < now
-                                && !(s.SessionComplete??false))
+                                && !(s.SessionComplete ?? false))
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
-                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t=>t.ProgramBatch.Program.Name)
+                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t => t.ProgramBatch.Program.Name)
                             .ToList();
 
                         notRegular = Context.SubjectSession
@@ -92,14 +95,14 @@ namespace Academic.DbHelper
                         regular = Context.SubjectSession
                             .Where(s => s.IsRegular
                                 && (s.StartDate ?? min) > now
-                                && !(s.SessionComplete??false))
+                                && !(s.SessionComplete ?? false))
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
                             .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t => t.ProgramBatch.Program.Name)
                             .ToList();
 
                         notRegular = Context.SubjectSession
                             .Where(s => (!s.IsRegular)
-                                && (s.StartDate ?? min) >now
+                                && (s.StartDate ?? min) > now
                                 && !(s.SessionComplete ?? false))
                             .Where(x => x.SubjectId == subjectId)
                             .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.Name)
@@ -109,7 +112,7 @@ namespace Academic.DbHelper
                     case "btnCompleted":
                         regular = Context.SubjectSession
                             .Where(s => s.IsRegular
-                                && (s.SessionComplete??false))
+                                && (s.SessionComplete ?? false))
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
                             .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t => t.ProgramBatch.Program.Name)
                             .ToList();
@@ -121,7 +124,7 @@ namespace Academic.DbHelper
                             .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.Name)
                             .ToList();
                         break;
-                     default:
+                    default:
                         regular = Context.SubjectSession
                             .Where(s => s.IsRegular)
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
@@ -159,6 +162,96 @@ namespace Academic.DbHelper
                     Context.SaveChanges();
                 }
                 return false;
+            }
+
+            public List<Academic.DbEntities.User.Users> ListUsersOfSubjectSession(int subjectSessionId)
+            {
+                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                if (subsession != null)
+                {
+                    return subsession.ClassUsers.Select(x => x.User).ToList();
+                }
+                return new List<Users>();
+            }
+
+            public List<Academic.DbEntities.User.Users> ListUsersNotInSubjectSession(int subjectSessionId, List<int> asignedList)
+            {
+                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                if (subsession != null)
+                {
+                    var users = Context.Users.Where(x => !asignedList.Contains(x.Id))
+                        .OrderBy(y => y.FirstName)
+                        .ThenBy(t => t.MiddleName)
+                        .ThenBy(y => y.LastName);
+                    return users.Take(50).ToList();
+                }
+                return Context.Users
+                    .OrderBy(y => y.FirstName)
+                    .ThenBy(t => t.MiddleName)
+                    .ThenBy(y => y.LastName).Take(50).ToList();
+            }
+
+            public bool AddOrUpdateUsersList(List<Academic.DbEntities.Class.SubjectSessionUser> userList)
+            {
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        foreach (var sessUser in userList)
+                        {
+                            var userFound = Context.SubjectSessionUser.Find(sessUser.Id);
+                            if (userFound == null)
+                            {
+                                Context.SubjectSessionUser.Add(sessUser);
+                            }
+                            else
+                            {
+                                userFound.Void = sessUser.Void;
+                            }
+                            Context.SaveChanges();
+                        }
+                        scope.Complete();
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+
+            }
+
+            public void AddOrUpdateUsersList(List<int> userList, int subjectSessionId, int p)
+            {
+                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                if (subsession != null)
+                {
+                    foreach (var i in userList)
+                    {
+                        var userFound =
+                            Context.SubjectSessionUser.FirstOrDefault(x => x.UserId == i && !(x.Void ?? false));
+                        if (userFound == null)
+                        {
+                            Context.SubjectSessionUser.Add(new SubjectSessionUser()
+                            {
+                                UserId = i
+                                    //,JoinedDate = 
+                                ,
+                            });
+
+                        }
+                    }
+                }
+            }
+
+            public List<SubjectSessionUser> GetSessionUsers(int subjectSessionId)
+            {
+                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                if (subsession != null)
+                {
+                    return subsession.ClassUsers.ToList();
+                }
+                return new List<SubjectSessionUser>();
             }
         }
     }

@@ -13,10 +13,15 @@ namespace Academic.DbEntities.User
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string DisplayName { get; set; }
+
+        [Required]
+        public string RoleName { get; set; }
+
+
 
         public int? SchoolId { get; set; }
-        public virtual School School { get; set; } 
+        public virtual School School { get; set; }
 
         public string Description { get; set; }
 

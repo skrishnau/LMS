@@ -26,6 +26,7 @@ namespace One.Views.Class.Enrollment
                         //ListView1.DataSource = helper.ListAllUsers(user.SchoolId, 100, 1);
                         //ListView1.DataBind();
                         var list = helper.ListAllUsers(user.SchoolId, 100, 1);
+                        list.AddRange(list);
                         grdNotEnrolled.DataSource = list;
                         grdNotEnrolled.DataBind();
                         list.RemoveRange(0, 4);
@@ -168,6 +169,11 @@ namespace One.Views.Class.Enrollment
         protected void btnRemove_Click(object sender, EventArgs e)
         {
 
+            foreach (TableCell cell in grdEnrolled.Rows[grdEnrolled.SelectedIndex].Cells)
+            {
+                grdEnrolled.Rows[grdEnrolled.SelectedIndex].Cells.Remove(cell);
+            }
+            
         }
     }
 }

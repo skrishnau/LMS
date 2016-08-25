@@ -150,7 +150,7 @@ namespace Academic.DbHelper
                                 Context.SaveChanges();
                                 if (std != null)
                                 {
-                                    var role = Context.Role.FirstOrDefault(x => x.Name == "student");
+                                    var role = Context.Role.FirstOrDefault(x => x.RoleName == "student");
                                     if (role != null)
                                     {
                                         var userRole = new UserRole()

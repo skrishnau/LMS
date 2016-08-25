@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201608231601069_created_date_added_in_subjectSession.Designer.cs">
       <DependentUpon>201608231601069_created_date_added_in_subjectSession.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608242345571_roleName_added_in_role_table_also_roleId_isNull_in_sessionUser.cs" />
+    <Compile Include="Migrations\201608242345571_roleName_added_in_role_table_also_roleId_isNull_in_sessionUser.Designer.cs">
+      <DependentUpon>201608242345571_roleName_added_in_role_table_also_roleId_isNull_in_sessionUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -325,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608231601069_created_date_added_in_subjectSession.resx">
       <DependentUpon>201608231601069_created_date_added_in_subjectSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608242345571_roleName_added_in_role_table_also_roleId_isNull_in_sessionUser.resx">
+      <DependentUpon>201608242345571_roleName_added_in_role_table_also_roleId_isNull_in_sessionUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,7 +2,9 @@
 
 <div style="margin: 5px;">
 
+
     <div class="main-div" id="maindiv">
+
         <table style="margin: auto;">
             <tbody style="vertical-align: top;">
                 <tr>
@@ -23,7 +25,7 @@
                                 Height="100%"
                                 GridLines="None">
 
-                                <AlternatingRowStyle BackColor="White" />
+                                <%--<AlternatingRowStyle BackColor="White" />--%>
 
                                 <Columns>
                                     <asp:TemplateField HeaderText="First Name" SortExpression="FirstName">
@@ -131,34 +133,37 @@
 
 
                     <td id="buttonscell">
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <div style="text-align: center; margin: 10px 10px 0;">
+                                    <div id="addcontrols" style="padding-bottom: 20px;">
+                                        <asp:Button ID="btnAdd" runat="server" Text="◄ Add" Width="100px" OnClick="btnAdd_Click" />
+                                        <br />
+                                        <div id="enroll-option">
+                                            <p>
+                                                <asp:Label ID="lblAssignRole" runat="server" Text="Assign Role"></asp:Label>
+                                                <br />
+                                                <asp:DropDownList ID="ddlAssignRole" runat="server" Height="22px" Width="120px"></asp:DropDownList>
+                                            </p>
+                                            <p>
+                                                <asp:Label ID="lblEnrollmentDuration" runat="server" Text="Enrollment Duration"></asp:Label>
+                                                <br />
+                                                <asp:DropDownList ID="ddlEnrollmentDuration" runat="server" Height="22px" Width="120px"></asp:DropDownList>
+                                            </p>
+                                            <p>
+                                                <asp:Label ID="lblStartingFrom" runat="server" Text="Starting From"></asp:Label>
+                                                <br />
+                                                <asp:DropDownList ID="ddlStartingFrom" runat="server" Height="22px" Width="120px"></asp:DropDownList>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="removecoontrols">
+                                        <asp:Button ID="btnRemove" runat="server" Text="Remove ►" Width="100px" OnClick="btnRemove_Click" />
 
-                        <div style="text-align: center; margin: 10px 10px 0;">
-                            <div id="addcontrols" style="padding-bottom: 20px;">
-                                <asp:Button ID="btnAdd" runat="server" Text="◄ Add" Width="100px" OnClick="btnAdd_Click" />
-                                <br />
-                                <div id="enroll-option">
-                                    <p>
-                                        <asp:Label ID="lblAssignRole" runat="server" Text="Assign Role"></asp:Label>
-                                        <br />
-                                        <asp:DropDownList ID="ddlAssignRole" runat="server" Height="22px" Width="120px"></asp:DropDownList>
-                                    </p>
-                                    <p>
-                                        <asp:Label ID="lblEnrollmentDuration" runat="server" Text="Enrollment Duration"></asp:Label>
-                                        <br />
-                                        <asp:DropDownList ID="ddlEnrollmentDuration" runat="server" Height="22px" Width="120px"></asp:DropDownList>
-                                    </p>
-                                    <p>
-                                        <asp:Label ID="lblStartingFrom" runat="server" Text="Starting From"></asp:Label>
-                                        <br />
-                                        <asp:DropDownList ID="ddlStartingFrom" runat="server" Height="22px" Width="120px"></asp:DropDownList>
-                                    </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="removecoontrols">
-                                <asp:Button ID="btnRemove" runat="server" Text="Remove ►" Width="100px" OnClick="btnRemove_Click" />
-
-                            </div>
-                        </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </td>
 
 
@@ -227,20 +232,9 @@
                 </tr>
             </tbody>
         </table>
+
     </div>
 
-    <div style="margin: 5px; padding: 5px;">
-        <%--  --%>
-        <div style="float: left;">
-        </div>
-        <%--  --%>
-        <div>
-        </div>
-        <%--  --%>
-        <div>
-        </div>
-        <%--  --%>
-    </div>
     <style type="text/css">
         .hover1:hover {
             /*background-color: azure;*/

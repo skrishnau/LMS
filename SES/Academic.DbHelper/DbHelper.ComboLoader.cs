@@ -14,6 +14,9 @@ namespace Academic.DbHelper
     {
         public static class ComboLoader
         {
+
+            #region School and SchoolType Loading functions
+
             public static void LoadSchool(ref DropDownList cmbSchool, int instId)
             {
                 cmbSchool.DataTextField = "Name";
@@ -43,6 +46,47 @@ namespace Academic.DbHelper
                         cmbSchool.Text = "";
                 }
             }
+
+            public static List<SchoolType> LoadSchoolType(ref DropDownList cmbSchoolType,
+              int selectedValue = 0, bool createNewField = false)
+            {
+                //int instId,
+                cmbSchoolType.DataTextField = "Name";
+                cmbSchoolType.DataValueField = "Id";
+                using (var helper = new DbHelper.Office())
+                {
+                    var schooltype = helper.GetSchoolTypes().ToList();
+                    if (schooltype.Count > 0)
+                    {
+                        schooltype.Insert(0,
+                            new DbEntities.Office.SchoolType() { Id = 0, Name = "--Select One--" });
+                    }
+                    if (createNewField)
+                    {
+                        schooltype.Add(new
+                            DbEntities.Office.SchoolType()
+                        {
+                            Id = -1,
+                            Name = "--Create New--"
+                        });
+                    }
+                    cmbSchoolType.DataSource = schooltype;
+                    cmbSchoolType.DataBind();
+                    if (selectedValue != 0)
+                    {
+                        var index = schooltype.IndexOf(schooltype.First(x => x.Id == selectedValue));
+                        if (index > 0)
+                        {
+                            cmbSchoolType.SelectedIndex = index;
+                        }
+                    }
+                    return schooltype.ToList();
+                }
+            }
+
+
+
+            #endregion
 
 
             #region Level Loading functions
@@ -314,6 +358,9 @@ namespace Academic.DbHelper
                 }
             }
 
+
+            #region Role Loading functions
+
             public static void LoadRole(ref DropDownList cmbRole, int schoolId, string defaultSelectedName = "")
             {
                 cmbRole.DataTextField = "Name";
@@ -323,11 +370,30 @@ namespace Academic.DbHelper
                 {
                     var type = helper.GetRole(schoolId);
                     if (type.Count > 0)
-                        type.Insert(0, new Role() { Id = 0, Name = "" });
+                        type.Insert(0, new Role() { Id = 0, RoleName = "" });
                     cmbRole.DataSource = type;
                     cmbRole.DataBind();
 
-                    var index = type.IndexOf(type.First(x => x.Name == defaultSelectedName));
+                    var index = type.IndexOf(type.First(x => x.RoleName == defaultSelectedName));
+                    if (index >= 0)
+                        cmbRole.SelectedIndex = index;
+                }
+            }
+
+            public static void LoadRoleForUserEnroll(ref DropDownList cmbRole, int schoolId, string defaultSelectedName)
+            {
+                cmbRole.DataTextField = "RoleName";
+                cmbRole.DataValueField = "Id";
+
+                using (var helper = new DbHelper.User())
+                {
+                    var type = helper.GetRolesForUserEnrollOption(schoolId);
+                    if (type.Count > 0)
+                        type.Insert(0, new Role() { Id = 0, RoleName = "None" });
+                    cmbRole.DataSource = type;
+                    cmbRole.DataBind();
+
+                    var index = type.IndexOf(type.First(x => x.RoleName == defaultSelectedName));
                     if (index >= 0)
                         cmbRole.SelectedIndex = index;
                 }
@@ -342,7 +408,7 @@ namespace Academic.DbHelper
                 {
                     var type = helper.GetRole(schoolId);
                     if (type.Count > 0)
-                        type.Insert(0, new Role() { Id = 0, Name = "" });
+                        type.Insert(0, new Role() { Id = 0, RoleName = "" });
                     cmbRole.DataSource = type;
                     cmbRole.DataBind();
 
@@ -352,9 +418,15 @@ namespace Academic.DbHelper
                 }
             }
 
+
+            #endregion
+
+
+            #region AcademicYear and Session Loading functions
+
             public static List<DbEntities.AcademicYear> LoadAcademicYear(
-                ref DropDownList cmbAcademicYear, int schoolId
-                , int selectedValue = 0)
+                           ref DropDownList cmbAcademicYear, int schoolId
+                           , int selectedValue = 0)
             {
                 cmbAcademicYear.DataTextField = "Name";
                 cmbAcademicYear.DataValueField = "Id";
@@ -386,153 +458,8 @@ namespace Academic.DbHelper
                 }
             }
 
-
-
-            public static List<SchoolType> LoadSchoolType(ref DropDownList cmbSchoolType,
-                int selectedValue = 0, bool createNewField = false)
-            {
-                //int instId,
-                cmbSchoolType.DataTextField = "Name";
-                cmbSchoolType.DataValueField = "Id";
-                using (var helper = new DbHelper.Office())
-                {
-                    var schooltype = helper.GetSchoolTypes().ToList();
-                    if (schooltype.Count > 0)
-                    {
-                        schooltype.Insert(0,
-                            new DbEntities.Office.SchoolType() { Id = 0, Name = "--Select One--" });
-                    }
-                    if (createNewField)
-                    {
-                        schooltype.Add(new
-                            DbEntities.Office.SchoolType()
-                        {
-                            Id = -1,
-                            Name = "--Create New--"
-                        });
-                    }
-                    cmbSchoolType.DataSource = schooltype;
-                    cmbSchoolType.DataBind();
-                    if (selectedValue != 0)
-                    {
-                        var index = schooltype.IndexOf(schooltype.First(x => x.Id == selectedValue));
-                        if (index > 0)
-                        {
-                            cmbSchoolType.SelectedIndex = index;
-                        }
-                    }
-                    return schooltype.ToList();
-                }
-            }
-            /*
-                        public static void LoadInstitution(ref DropDownList cmbInstitution, int selectedId = 0)
-                        {
-                            cmbInstitution.DataTextField = "Name";
-                            cmbInstitution.DataValueField = "Id";
-                            using (var helper = new DbHelper.Office())
-                            {
-                                if (selectedId != 0)
-                                {
-                                    List<Institution> list = new List<Institution>();
-                                    var inst = helper.GetInstitution(selectedId);
-                                    list.Add(inst);
-                                    cmbInstitution.DataSource = list;
-                                    cmbInstitution.DataBind();
-                                }
-                                else
-                                {
-                                    //for admin
-                                    var instList = helper.GetAllInstitution().ToList();
-                                    if (instList.Count >= 0)
-                                    {
-                                        instList.Insert(0, new DbEntities.Office.Institution()
-                                        {
-                                            Id = 0,
-                                            Name = ""
-                                        });
-                                    }
-                                    cmbInstitution.DataSource = instList;
-                                    cmbInstitution.DataBind();
-
-                                }
-                            }
-                        }
-                        */
-            public static List<DbEntities.Subjects.SubjectCategory> LoadSubjectCategory(ref DropDownList cmbCategory,
-                int schoolId, bool includeTopAlso = false, bool includeEmptyField = false, int selectedValue = 0)
-            {
-                cmbCategory.DataTextField = "Name";
-                cmbCategory.DataValueField = "Id";
-                using (var helper = new DbHelper.Subject())
-                {
-                    var cats = helper.GetCategories(schoolId);
-                    if (includeTopAlso)
-                    {
-                        cats.Insert(0, new DbEntities.Subjects.SubjectCategory()
-                        {
-                            Id = 0,
-                            Name = " Top "
-                        });
-                    }
-                    if (includeEmptyField)
-                    {
-                        cats.Insert(0, new DbEntities.Subjects.SubjectCategory()
-                        {
-                            Id = -1,
-                            Name = ""
-                        });
-                    }
-                    cmbCategory.DataSource = cats;
-                    cmbCategory.DataBind();
-
-                    if (selectedValue > 0)
-                    {
-                        var index = cats.IndexOf(cats.First(x => x.Id == selectedValue));
-                        if (index >= 0)
-                        {
-                            cmbCategory.SelectedIndex = index;
-                        }
-                    }
-                    return cats.ToList();
-                }
-            }
-
-            public static List<Academic.DbEntities.Students.StudentGroup> LoadStudentGroup(
-                ref DropDownList cmbGroup, int schoolId, bool includeEmptyField = false
-                , int selectedValue = 0)
-            {
-                cmbGroup.DataTextField = "Name";
-                cmbGroup.DataValueField = "Id";
-                using (var helper = new DbHelper.Student())
-                {
-                    var cats = helper.GetStudentGroupList(schoolId);
-
-                    if (includeEmptyField)
-                    {
-                        cats.Insert(0, new DbEntities.Students.StudentGroup()
-                        {
-                            Id = 0,
-                            Name = ""
-                        });
-                    }
-
-                    cmbGroup.DataSource = cats;
-                    cmbGroup.DataBind();
-
-                    if (selectedValue >= 0)
-                    {
-                        var index = cats.IndexOf(cats.First(x => x.Id == selectedValue));
-                        if (index >= 0)
-                        {
-                            cmbGroup.SelectedIndex = index;
-                        }
-                    }
-                    return cats.ToList();
-                }
-            }
-
             public static List<DbEntities.Session> LoadSession(ref DropDownList cmbSession, int academicYearId
-                , bool includeAllField = false, bool includeNoneField = false)
+              , bool includeAllField = false, bool includeNoneField = false)
             {
                 cmbSession.DataTextField = "Name";
                 cmbSession.DataValueField = "Id";
@@ -575,6 +502,7 @@ namespace Academic.DbHelper
                     return cats.ToList();
                 }
             }
+
             public static List<DbEntities.Session> LoadSession(ref DropDownList cmbSession, int academicYearId, int selectedValue
                , bool includeAllField = false, bool includeNoneField = false, bool includeEmptyField = false, bool selectActiveSession = false)
             {
@@ -629,61 +557,10 @@ namespace Academic.DbHelper
             }
 
 
-            public static List<DbEntities.Teachers.Teacher> LoadTeacher(ref DropDownList cmbTeacher, int schoolId)
-            {
-                cmbTeacher.DataTextField = "Name";
-                cmbTeacher.DataValueField = "Id";
-                using (var helper = new DbHelper.Teacher())
-                {
-                    var cats = helper.GetTeacherList(schoolId);
+            #endregion
 
-                    //if (includeEmptyField)
-                    {
-                        cats.Insert(0, new DbEntities.Teachers.Teacher()
-                        {
-                            Id = 0,
-                            Name = ""
-                        });
-                    }
 
-                    cmbTeacher.DataSource = cats;
-                    cmbTeacher.DataBind();
-
-                    //if (selectedValue >= 0)
-                    //{
-                    //    var index = cats.IndexOf(cats.First(x => x.Id == selectedValue));
-                    //    if (index >= 0)
-                    //    {
-                    //        cmbSession.SelectedIndex = index;
-                    //    }
-                    //}
-                    return cats.ToList();
-                }
-            }
-
-            public static List<DbEntities.Subjects.Subject> LoadSubject(ref DropDownList cmbSubject, int schoolId)
-            {
-                cmbSubject.DataTextField = "Name";
-                cmbSubject.DataValueField = "Id";
-                using (var helper = new DbHelper.Subject())
-                {
-                    var cats = helper.GetSubjectList(schoolId);
-
-                    //if (includeEmptyField)
-                    {
-                        cats.Insert(0, new DbEntities.Subjects.Subject()
-                        {
-                            Id = 0,
-                            Name = ""
-                        });
-                    }
-
-                    cmbSubject.DataSource = cats;
-                    cmbSubject.DataBind();
-
-                    return cats.ToList();
-                }
-            }
+            #region SubYear Loading functions
 
             public static void LoadSubYear(ref DropDownList cmbSubYear, int yearId
                 , bool emptySelection = false
@@ -765,6 +642,184 @@ namespace Academic.DbHelper
                     cmbSubYear.DataBind();
                 }
             }
+
+            #endregion
+
+
+            #region Subject and SubjectCategory Loading functions
+
+            public static List<DbEntities.Subjects.Subject> LoadSubject(ref DropDownList cmbSubject, int schoolId)
+            {
+                cmbSubject.DataTextField = "Name";
+                cmbSubject.DataValueField = "Id";
+                using (var helper = new DbHelper.Subject())
+                {
+                    var cats = helper.GetSubjectList(schoolId);
+
+                    //if (includeEmptyField)
+                    {
+                        cats.Insert(0, new DbEntities.Subjects.Subject()
+                        {
+                            Id = 0,
+                            Name = ""
+                        });
+                    }
+
+                    cmbSubject.DataSource = cats;
+                    cmbSubject.DataBind();
+
+                    return cats.ToList();
+                }
+            }
+
+            public static List<DbEntities.Subjects.SubjectCategory> LoadSubjectCategory(ref DropDownList cmbCategory,
+              int schoolId, bool includeTopAlso = false, bool includeEmptyField = false, int selectedValue = 0)
+            {
+                cmbCategory.DataTextField = "Name";
+                cmbCategory.DataValueField = "Id";
+                using (var helper = new DbHelper.Subject())
+                {
+                    var cats = helper.GetCategories(schoolId);
+                    if (includeTopAlso)
+                    {
+                        cats.Insert(0, new DbEntities.Subjects.SubjectCategory()
+                        {
+                            Id = 0,
+                            Name = " Top "
+                        });
+                    }
+                    if (includeEmptyField)
+                    {
+                        cats.Insert(0, new DbEntities.Subjects.SubjectCategory()
+                        {
+                            Id = -1,
+                            Name = ""
+                        });
+                    }
+                    cmbCategory.DataSource = cats;
+                    cmbCategory.DataBind();
+
+                    if (selectedValue > 0)
+                    {
+                        var index = cats.IndexOf(cats.First(x => x.Id == selectedValue));
+                        if (index >= 0)
+                        {
+                            cmbCategory.SelectedIndex = index;
+                        }
+                    }
+                    return cats.ToList();
+                }
+            }
+
+
+            #endregion
+
+
+
+            /*
+                        public static void LoadInstitution(ref DropDownList cmbInstitution, int selectedId = 0)
+                        {
+                            cmbInstitution.DataTextField = "Name";
+                            cmbInstitution.DataValueField = "Id";
+                            using (var helper = new DbHelper.Office())
+                            {
+                                if (selectedId != 0)
+                                {
+                                    List<Institution> list = new List<Institution>();
+                                    var inst = helper.GetInstitution(selectedId);
+                                    list.Add(inst);
+                                    cmbInstitution.DataSource = list;
+                                    cmbInstitution.DataBind();
+                                }
+                                else
+                                {
+                                    //for admin
+                                    var instList = helper.GetAllInstitution().ToList();
+                                    if (instList.Count >= 0)
+                                    {
+                                        instList.Insert(0, new DbEntities.Office.Institution()
+                                        {
+                                            Id = 0,
+                                            Name = ""
+                                        });
+                                    }
+                                    cmbInstitution.DataSource = instList;
+                                    cmbInstitution.DataBind();
+
+                                }
+                            }
+                        }
+                        */
+
+
+            public static List<Academic.DbEntities.Students.StudentGroup> LoadStudentGroup(
+                ref DropDownList cmbGroup, int schoolId, bool includeEmptyField = false
+                , int selectedValue = 0)
+            {
+                cmbGroup.DataTextField = "Name";
+                cmbGroup.DataValueField = "Id";
+                using (var helper = new DbHelper.Student())
+                {
+                    var cats = helper.GetStudentGroupList(schoolId);
+
+                    if (includeEmptyField)
+                    {
+                        cats.Insert(0, new DbEntities.Students.StudentGroup()
+                        {
+                            Id = 0,
+                            Name = ""
+                        });
+                    }
+
+                    cmbGroup.DataSource = cats;
+                    cmbGroup.DataBind();
+
+                    if (selectedValue >= 0)
+                    {
+                        var index = cats.IndexOf(cats.First(x => x.Id == selectedValue));
+                        if (index >= 0)
+                        {
+                            cmbGroup.SelectedIndex = index;
+                        }
+                    }
+                    return cats.ToList();
+                }
+            }
+
+
+
+            public static List<DbEntities.Teachers.Teacher> LoadTeacher(ref DropDownList cmbTeacher, int schoolId)
+            {
+                cmbTeacher.DataTextField = "Name";
+                cmbTeacher.DataValueField = "Id";
+                using (var helper = new DbHelper.Teacher())
+                {
+                    var cats = helper.GetTeacherList(schoolId);
+
+                    //if (includeEmptyField)
+                    {
+                        cats.Insert(0, new DbEntities.Teachers.Teacher()
+                        {
+                            Id = 0,
+                            Name = ""
+                        });
+                    }
+
+                    cmbTeacher.DataSource = cats;
+                    cmbTeacher.DataBind();
+
+                    //if (selectedValue >= 0)
+                    //{
+                    //    var index = cats.IndexOf(cats.First(x => x.Id == selectedValue));
+                    //    if (index >= 0)
+                    //    {
+                    //        cmbSession.SelectedIndex = index;
+                    //    }
+                    //}
+                    return cats.ToList();
+                }
+            }
+
 
             public static void LoadCoordinator(ref DropDownList cmbCoordinator, int schoolId, int selectedValue = 0)
             {

@@ -21,7 +21,7 @@ namespace One.Views.Role
             {
                 var role = new Academic.DbEntities.User.Role()
                 {
-                    Name = txtName.Text
+                    RoleName = txtName.Text
                     , Description = txtDescription.Text
                     //,IsActive = chkActive.Checked
                     
