@@ -52,6 +52,8 @@ namespace Academic.DbEntities.Class
        //IsRegular false case: i.e. if IsRegular=false then SubjectId != null and others all Id are null
        //Name is given if the course is independent of above ids i.e. above Ids are null
        public int? SubjectId { get; set; }
+       public virtual Subjects.Subject Subject { get; set; }
+
        public string Name { get; set; }
 
        //overall Part.

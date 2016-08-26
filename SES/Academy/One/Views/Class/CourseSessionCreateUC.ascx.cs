@@ -14,7 +14,7 @@ namespace One.Views.Class
         {
             if (!IsPostBack)
             {
-                UserEnrollUC_ListDisplay.SubjectSessionId = SubjectSessionId;
+                //UserEnrollUC_ListDisplay.SubjectSessionId = SubjectSessionId;
             }
         }
 
@@ -49,16 +49,21 @@ namespace One.Views.Class
                 var subjectSession = new Academic.DbEntities.Class.SubjectSession()
                 {
                     Name = txtName.Text
-                    ,CreatedDate = now.Date
-                    ,IsRegular = false
-                    ,CreatedTime =  now.Hour+":"+now.Minute+":"+now.Second+":"+now.Millisecond
-                    ,UseDefaultGrouping = true
-                    ,SubjectId = CourseId
+                    ,
+                    CreatedDate = now.Date
+                    ,
+                    IsRegular = false
+                    ,
+                    CreatedTime = now.Hour + ":" + now.Minute + ":" + now.Second + ":" + now.Millisecond
+                    ,
+                    UseDefaultGrouping = true
+                    ,
+                    SubjectId = CourseId
                 };
                 using (var helper = new DbHelper.Classes())
                 {
                     var saved = helper.AddOrUpdateSubjectSession(subjectSession);
-                    Response.Redirect("~/Views/Course/CourseDetail.aspx?cId="+CourseId);
+                    Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + CourseId);
                 }
             }
         }

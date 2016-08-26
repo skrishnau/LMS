@@ -76,15 +76,6 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Button btnSaveAndReturn;
         
         /// <summary>
-        /// UserEnrollUC_ListDisplay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Class.Enrollment.UserEnrollUC_ListDisplay UserEnrollUC_ListDisplay;
-        
-        /// <summary>
         /// hidCourseId control.
         /// </summary>
         /// <remarks>

@@ -29,22 +29,18 @@ namespace One.Views.Class.Enrollment
                     var enrollmentDuration = new List<IdAndName>();
                     enrollmentDuration.Add(new IdAndName() { Id = 0, Name = "Unlimited" });
                     enrollmentDuration.Add(new IdAndName() { Id = 1, Name = "1 day" });
+
                     for (int i = 2; i <= 365; i++)
                     {
                         enrollmentDuration.Add(new IdAndName() { Id = i, Name = i + " days" });
                     }
+
                     ddlEnrollmentDuration.DataSource = enrollmentDuration;
                     ddlEnrollmentDuration.DataBind();
 
 
 
-                    var startingFrom = new List<IdAndName>()
-                        {
-                            new IdAndName(){Id=0,Name="Class Start Day"+""}
-                            ,new IdAndName(){Id=1,Name="Today "+""}
-                        };
-                    ddlStartingFrom.DataSource = startingFrom;
-                    ddlStartingFrom.DataBind();
+
 
                     //=================== End of Data population =======================//
 
@@ -53,12 +49,31 @@ namespace One.Views.Class.Enrollment
                     using (var helper = new DbHelper.Classes())
                     {
                         //var subsession = helper.GetSubjectSession()
+                        var session = helper.GetSubjectSession(SubjectSessionId);
 
+                        if (session == null)
+                        {
+                            Response.Redirect("~/Views/Course/List.aspx");
+                            return;
+                        }
+                        else
+                        {
+                            hidSessionStartDate.Value = ((session.StartDate == null)
+                                ? DateTime.Now.ToShortDateString()
+                                : session.StartDate.Value.ToShortDateString());
+                            var startingFrom = new List<IdAndName>()
+                            {
+                                new IdAndName(){Id=0,Name="Class Start Day ("+((session.StartDate==null)?"not set":session.StartDate.Value.ToShortDateString())+")"}
+                                ,new IdAndName(){Id=1,Name="Today "+DateTime.Now.ToShortDateString()}
+                            };
+                            ddlStartingFrom.DataSource = startingFrom;
+                            ddlStartingFrom.DataBind();
+                        }
                         var asglist = helper.ListUsersOfSubjectSession(SubjectSessionId);
                         lstAsg.DataSource = asglist;
                         lstAsg.DataBind();
 
-                        Session["SessionUserList"] = helper.GetSessionUsers(SubjectSessionId);
+                        Session["enrolledList"] = helper.ListSessionUsers(SubjectSessionId);
 
                         var notasgList = helper.ListUsersNotInSubjectSession(
                             SubjectSessionId
@@ -120,18 +135,20 @@ namespace One.Views.Class.Enrollment
             lstAsg.ClearSelection();
             if (item != null)
             {
-                lstAsg.Items.Insert(asgSelectedIndex + 1, new ListItem(item.Text, item.Value, true));
-                AddToEnrolledList(Convert.ToInt32(item.Value));
-                lstUnAsg.Items.RemoveAt(unasgSelectedIndex);
-                var selectionNew = (unasgSelectedIndex > 0) ? (unasgSelectedIndex - 1) : ((unasgTotalItems > 1) ? 0 : -1);
+                if (AddToEnrolledList(Convert.ToInt32(item.Value)))
+                {
+                    lstAsg.Items.Insert(asgSelectedIndex + 1, new ListItem(item.Text, item.Value, true));
 
-                if (selectionNew != -1)
-                    lstUnAsg.SelectedIndex = unasgSelectedIndex - 1;
-                lstAsg.SelectedIndex = asgSelectedIndex + 1;
-                lstUnAsg.ClearSelection();
-                lstAsg.ClearSelection();
+                    lstUnAsg.Items.RemoveAt(unasgSelectedIndex);
+                    var selectionNew = (unasgSelectedIndex > 0) ? (unasgSelectedIndex - 1) : ((unasgTotalItems > 1) ? 0 : -1);
+
+                    if (selectionNew != -1)
+                        lstUnAsg.SelectedIndex = unasgSelectedIndex - 1;
+                    lstAsg.SelectedIndex = asgSelectedIndex + 1;
+                    lstUnAsg.ClearSelection();
+                    lstAsg.ClearSelection();
+                }
             }
-
         }
 
         protected void btnRemove_Click(object sender, EventArgs e)
@@ -149,19 +166,18 @@ namespace One.Views.Class.Enrollment
 
             if (item != null)
             {
+                if (RemoveFromEnrolledList(Convert.ToInt32(item.Value)))
+                {
+                    lstAsg.Items.RemoveAt(asgSelectedIndex);
+                    lstUnAsg.Items.Insert(unasgSelectedIndex + 1, new ListItem(item.Text, item.Value));
 
-
-                lstAsg.Items.RemoveAt(asgSelectedIndex);
-                lstUnAsg.Items.Insert(unasgSelectedIndex + 1, new ListItem(item.Text, item.Value));
-
-                RemoveFromEnrolledList(Convert.ToInt32(item.Value));
-
-                var selectionNew = (asgSelectedIndex > 0) ? (asgSelectedIndex - 1) : ((asgTotalItems > 1) ? 0 : -1);
-                if (selectionNew != -1)
-                    lstAsg.SelectedIndex = asgSelectedIndex - 1;
-                lstUnAsg.SelectedIndex = unasgSelectedIndex + 1;
-                lstUnAsg.ClearSelection();
-                lstAsg.ClearSelection();
+                    var selectionNew = (asgSelectedIndex > 0) ? (asgSelectedIndex - 1) : ((asgTotalItems > 1) ? 0 : -1);
+                    if (selectionNew != -1)
+                        lstAsg.SelectedIndex = asgSelectedIndex - 1;
+                    lstUnAsg.SelectedIndex = unasgSelectedIndex + 1;
+                    lstUnAsg.ClearSelection();
+                    lstAsg.ClearSelection();
+                }
             }
         }
 
@@ -178,29 +194,30 @@ namespace One.Views.Class.Enrollment
             //    RequiredFieldValidator2.IsValid = false;
             //}
             //save
+
             if (Page.IsValid)
             {
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
-                    List<int> stdList = new List<int>();
-                    foreach (ListItem item in lstAsg.Items)
+                    //List<int> stdList = new List<int>();
+                    //foreach (ListItem item in lstAsg.Items)
+                    //{
+                    //    stdList.Add(Convert.ToInt32(item.Value));
+                    //}
+                    //if (stdList.Count > 0)
+                    //{
+                    using (var helper = new DbHelper.Classes())
                     {
-                        stdList.Add(Convert.ToInt32(item.Value));
+                        //var s = helper.AssignStudentToGroup(stdList, grpId, Values.Session.GetUser(Session));
+                        //if (s)
+                        //{
+                        //    Response.Redirect("~/Views/Student/StudentGroup/List.aspx");
+                        //}
+                        var savesuccess = helper.AddOrUpdateUsersList(GetSubjectSessionUsersList());
+                        Response.Redirect("~/Views/Class/CourseClassDetail.aspx?ccId=" + SubjectSessionId);
                     }
-                    if (stdList.Count > 0)
-                    {
-                        using (var helper = new DbHelper.Classes())
-                        {
-                            //var s = helper.AssignStudentToGroup(stdList, grpId, Values.Session.GetUser(Session));
-                            //if (s)
-                            //{
-                            //    Response.Redirect("~/Views/Student/StudentGroup/List.aspx");
-                            //}
-                            var savesuccess = helper.AddOrUpdateUsersList(GetSubjectSessionUsersList());
-
-                        }
-                    }
+                    //}
                 }
             }
         }
@@ -269,32 +286,63 @@ namespace One.Views.Class.Enrollment
         //    return new List<int>();
         //}
 
-        private void AddToEnrolledList(int userId)
+        private bool AddToEnrolledList(int userId)
         {
             var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
             if (enrolledList != null)
             {
+
                 var found = enrolledList.Find(x => x.UserId == userId);
                 if (found != null)
                 {
                     found.Void = false;
+                    found.StartDate = (ddlStartingFrom.SelectedValue == "0") ?
+                   Convert.ToDateTime(hidSessionStartDate.Value) : DateTime.Now.Date;
+                    if (ddlAssignRole.SelectedValue != "0")
+                    {
+                        found.RoleId = Convert.ToInt32(ddlAssignRole.SelectedValue);
+                    }
+                    else found.RoleId = null;
+
+                    found.EnrollmentDuration = Convert.ToInt32(ddlEnrollmentDuration.SelectedValue);
                 }
                 else
                 {
-                    enrolledList.Add(new Academic.DbEntities.Class.SubjectSessionUser()
+                    var ssu = new Academic.DbEntities.Class.SubjectSessionUser()
                     {
                         UserId = userId
-                            ,
+                        ,
 
                         Void = false
                         ,
-                    });
+                        SubjectSessionId = SubjectSessionId
+                        ,
+                        CreatedDate = DateTime.Now
+                    };
+                    if (ddlAssignRole.SelectedValue != "0")
+                    {
+                        ssu.RoleId = Convert.ToInt32(ddlAssignRole.SelectedValue);
+                    }
+                    ssu.StartDate = (ddlStartingFrom.SelectedValue == "0") ?
+                    Convert.ToDateTime(hidSessionStartDate.Value) : DateTime.Now.Date;
+
+                    if (ddlAssignRole.SelectedValue != "0")
+                    {
+                        ssu.RoleId = Convert.ToInt32(ddlAssignRole.SelectedValue);
+                    }
+                    else ssu.RoleId = null;
+
+                    ssu.EnrollmentDuration = Convert.ToInt32(ddlEnrollmentDuration.SelectedValue);
+                    enrolledList.Add(ssu);
                 }
+                return true;
             }
+            return false;
         }
 
-        void RemoveFromEnrolledList(int userId)
+        bool RemoveFromEnrolledList(int userId)
         {
+            //var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
             var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
             if (enrolledList != null)
             {
@@ -310,7 +358,9 @@ namespace One.Views.Class.Enrollment
                         enrolledList.Remove(found);
                     }
                 }
+                return true;
             }
+            return false;
         }
 
         //protected void btnRemove_Click(object sender, EventArgs e)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Academic.ViewModel.AcademicPlacement
 {
+    //previous class name = StudentSubjectModel
     [Serializable]
     public class StudentSubjectModel
     {

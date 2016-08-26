@@ -18,6 +18,9 @@
             <asp:HiddenField ID="hidSessionId" runat="server" Value="0" />
             <asp:HiddenField ID="hidStudentId" runat="server" Value="0" />
             <asp:HiddenField ID="hidUserType" runat="server" Value="0" />
+
+            <%-- Used :: final --%>
+            <asp:HiddenField ID="hidLoadType" runat="server" />
         </ContentTemplate>
     </asp:UpdatePanel>
 </div>

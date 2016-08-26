@@ -526,6 +526,7 @@ namespace Academic.DbHelper
             {
                 return new List<StudentSubjectModel>();
             }
+
             public void GetEarlierRegularSubjectsOfUser(int userId)
             {
 
@@ -596,14 +597,118 @@ namespace Academic.DbHelper
                                     Name = x.Subject.Name
                                     ,
                                     Checked = false
-                                    ,CategoryName = x.Subject.SubjectCategory.Name
-                                    ,Code = x.Subject.Code
+                                    ,
+                                    CategoryName = x.Subject.SubjectCategory.Name
+                                    ,
+                                    Code = x.Subject.Code
                                 });
                             });
                 return list;
             }
 
+            //Used--Latest after Github ---remember "after Github" are all finals
+
+            public List<DbEntities.Subjects.Subject> ListCurrentCoursesOfUser(int userId)
+            {
+                 var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                        .Select(x => x.SubjectSession).Where(x => !(x.Void ?? false) && !(x.SessionComplete ?? false))
+                        .ToList();
+                        //.Select(x=>x.Subject).ToList();
+
+                    //var incomplete = subSession.Where(x => ).ToList();
+
+                    var regularincomplete = subSession.Where(x => x.IsRegular)
+                        .Select(x => x.SubjectStructure.Subject).ToList();
+
+                    var notregularincomplete = subSession.Where(x => !x.IsRegular)
+                        .Select(x => x.Subject).ToList();
+                    regularincomplete.AddRange(notregularincomplete);
+                    return regularincomplete;
+                }
+                return new List<DbEntities.Subjects.Subject>();
+            }
+
+            public List<DbEntities.Subjects.Subject> ListEarlierCoursesOfUser(int userId)
+            {
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                        .Select(x => x.SubjectSession).Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
+                        .ToList();//.Select(x=>x.Subject).ToList();
+
+                    //var complete = subSession.Where(x => ).ToList();
+
+                    var regularcomplete = subSession.Where(x => x.IsRegular)
+                       .Select(x => x.SubjectStructure.Subject).ToList();
+
+                    var notregularcomplete = subSession.Where(x => !x.IsRegular).Select(x => x.Subject)
+                        .ToList();
+
+                    regularcomplete.AddRange(notregularcomplete);
+
+                    return regularcomplete;
+                    
+                }
+                return new List<DbEntities.Subjects.Subject>();
+            }
+
+            public List<Academic.DbEntities.Subjects.Subject>[] ListCurrentAndEarlierCoursesOfUser(int userId)
+            {
+                //var currAndEarlierCourses = new List<DbEntities.Subjects.Subject>[2];
+                var user = Context.Users.Find(userId);
+
+                if (user != null)
+                {
+                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                         .Select(x => x.SubjectSession).Where(x => !(x.Void ?? false)).ToList();//.Select(x=>x.Subject).ToList();
+
+                    //complete means(or goes to)  earlier courses
+                    var complete = subSession.Where(x => (x.SessionComplete ?? false)).ToList();
+
+                    var regularcomplete = complete.Where(x => x.IsRegular)
+                       .Select(x => x.SubjectStructure.Subject).ToList();
+
+                    var notregularcomplete = complete.Where(x => !x.IsRegular).Select(x => x.Subject)
+                        .ToList();
+
+                    //incomplete means(or goes to) current courses
+                    var incomplete = subSession.Where(x => !(x.SessionComplete ?? false)).ToList();
+
+                    var regularincomplete = incomplete.Where(x => x.IsRegular)
+                        .Select(x => x.SubjectStructure.Subject).ToList();
+
+                    var notregularincomplete = incomplete.Where(x => !x.IsRegular)
+                        .Select(x => x.Subject).ToList();
+
+
+                    //regular.AddRange(notregular);
+                    regularcomplete.AddRange(notregularcomplete);
+                    regularincomplete.AddRange(notregularincomplete);
+                    //should be in this order: incomplete:(current) and complete:(earlier)
+                    return new List<DbEntities.Subjects.Subject>[2]
+                    {
+                       regularincomplete
+                       ,
+                       regularcomplete
+                    };
+
+                }
+                return new List<DbEntities.Subjects.Subject>[2]
+                {
+                    new List<DbEntities.Subjects.Subject>()
+                    , 
+                    new List<DbEntities.Subjects.Subject>()
+                };
+            }
+
+
             #endregion
+
+
             //==============================End of Listing==========================//
             //=========================================================================//
 

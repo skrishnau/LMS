@@ -3,7 +3,7 @@
 <%@ Register Src="~/Views/Class/Enrollment/UserEnrollUC_ListDisplay.ascx" TagPrefix="uc1" TagName="UserEnrollUC_ListDisplay" %>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
-    http://localhost:1240/Views/Class/CourseSessionCreate.aspx?cId=6
+    <%--http://localhost:1240/Views/Class/CourseSessionCreate.aspx?cId=6--%>
      <div>
          <%--<div style="text-align: right;">
              <asp:Button ID="btnEnroll" runat="server" Text="Enroll" />
@@ -16,4 +16,5 @@
          </div>
          <%-- List of users to add; with filter  --%>
      </div>
+    <asp:HiddenField ID="hidCourseClassId" Value="0" runat="server" />
 </asp:Content>

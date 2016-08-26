@@ -156,7 +156,7 @@
 
                                             <div style="font-size: 1.2em; padding: 10px 10px 0;">
                                                 <asp:HyperLink ID="lblName" runat="server"
-                                                    NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?cdId"+Eval("Id") %>'
+                                                    NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("Id") %>'
                                                     Text='<%# Eval("GetName") %>'></asp:HyperLink>
                                                 <asp:Literal ID="lblRegularOrNot" runat="server" Text="(Regular)"></asp:Literal>
                                             </div>

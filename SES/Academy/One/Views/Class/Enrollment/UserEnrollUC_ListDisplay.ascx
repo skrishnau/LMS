@@ -41,7 +41,7 @@
                                 <td id="existingcell">
                                     <div>
                                         <div class="user-cell">
-                                            <asp:ListBox ID="lstAsg" onscroll="javascript:saveScroll();" runat="server" Width="100%" Height="100%"></asp:ListBox>
+                                            <asp:ListBox ID="lstAsg" onscroll="javascript:saveScroll();" runat="server" Width="100%" Height="100%" DataTextField="FirstName" DataValueField="Id"></asp:ListBox>
                                         </div>
                                         <br />
                                         <div id="divUserEnrollId" class="user-enroll-search">
@@ -118,6 +118,7 @@
     </div>
     <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSubjectSessionId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidSessionStartDate" runat="server" Value="" />
 
     <%--<hr />
     <hr />

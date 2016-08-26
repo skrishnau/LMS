@@ -22,8 +22,21 @@ namespace Academic.DbHelper
                 Context = new AcademicContext();
             }
 
-            //used
-            public List<Academic.DbEntities.Class.SubjectSession> ListSessionsOfSubject(int subjectId)
+
+            #region Get functions i.e. which returns single value, not a List
+
+            public Academic.DbEntities.Class.SubjectSession GetSubjectSession(int subjectSessionId)
+            {
+                return Context.SubjectSession.Find(subjectSessionId);
+            }
+
+            #endregion
+
+
+            #region List Functions i.e. which returns List<>
+
+            public List<Academic.DbEntities.Class.SubjectSession> ListSessionsOfSubject(
+                           int subjectId)
             {
                 var regular =
                     Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
@@ -42,7 +55,8 @@ namespace Academic.DbHelper
             ///  2=Due, 3=not started yet, 4=completed
             /// </param>
             /// <returns></returns>
-            public List<Academic.DbEntities.Class.SubjectSession> ListSessionsOfSubject(int subjectId, string courseCompletionType)
+            public List<Academic.DbEntities.Class.SubjectSession> ListSessionsOfSubject(
+                int subjectId, string courseCompletionType)
             {
                 var regular = new List<Academic.DbEntities.Class.SubjectSession>();
                 //Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
@@ -142,34 +156,13 @@ namespace Academic.DbHelper
                 return regular;
             }
 
-            public void Dispose()
-            {
-                Context.Dispose();
-            }
-
-            public bool AddOrUpdateSubjectSession(DbEntities.Class.SubjectSession subjectSession)
-            {
-                var ent = Context.SubjectSession.Find(subjectSession.Id);
-                if (ent == null)
-                {
-                    Context.SubjectSession.Add(subjectSession);
-                    Context.SaveChanges();
-                }
-                else
-                {
-                    ent.Name = subjectSession.Name;
-                    ent.UseDefaultGrouping = subjectSession.UseDefaultGrouping;
-                    Context.SaveChanges();
-                }
-                return false;
-            }
-
             public List<Academic.DbEntities.User.Users> ListUsersOfSubjectSession(int subjectSessionId)
             {
                 var subsession = Context.SubjectSession.Find(subjectSessionId);
                 if (subsession != null)
                 {
-                    return subsession.ClassUsers.Select(x => x.User).ToList();
+                    return subsession.ClassUsers.Where(x => !(x.Void ?? false))
+                        .Select(x => x.User).ToList();
                 }
                 return new List<Users>();
             }
@@ -189,6 +182,50 @@ namespace Academic.DbHelper
                     .OrderBy(y => y.FirstName)
                     .ThenBy(t => t.MiddleName)
                     .ThenBy(y => y.LastName).Take(50).ToList();
+            }
+
+
+            public List<SubjectSessionUser> ListSessionUsers(int subjectSessionId)
+            {
+                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                if (subsession != null)
+                {
+                    return subsession.ClassUsers.Where(x => !(x.Void ?? false)).ToList();
+                }
+                return new List<SubjectSessionUser>();
+            }
+
+            public List<DbEntities.User.Users> ListSubjectSessionEnrolledUsers(int subjectSessionId)
+            {
+                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                if (subsession != null)
+                {
+                    return subsession.ClassUsers.Where(x => !(x.Void ?? false)).Select(x => x.User).ToList();
+                }
+                return new List<DbEntities.User.Users>();
+            }
+
+            #endregion
+
+
+            #region Add Or Update functions
+
+
+            public bool AddOrUpdateSubjectSession(DbEntities.Class.SubjectSession subjectSession)
+            {
+                var ent = Context.SubjectSession.Find(subjectSession.Id);
+                if (ent == null)
+                {
+                    Context.SubjectSession.Add(subjectSession);
+                    Context.SaveChanges();
+                }
+                else
+                {
+                    ent.Name = subjectSession.Name;
+                    ent.UseDefaultGrouping = subjectSession.UseDefaultGrouping;
+                    Context.SaveChanges();
+                }
+                return false;
             }
 
             public bool AddOrUpdateUsersList(List<Academic.DbEntities.Class.SubjectSessionUser> userList)
@@ -244,15 +281,15 @@ namespace Academic.DbHelper
                 }
             }
 
-            public List<SubjectSessionUser> GetSessionUsers(int subjectSessionId)
+
+            #endregion
+
+
+            public void Dispose()
             {
-                var subsession = Context.SubjectSession.Find(subjectSessionId);
-                if (subsession != null)
-                {
-                    return subsession.ClassUsers.ToList();
-                }
-                return new List<SubjectSessionUser>();
+                Context.Dispose();
             }
+
         }
     }
 }

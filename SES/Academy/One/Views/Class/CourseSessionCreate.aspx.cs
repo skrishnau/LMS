@@ -22,6 +22,14 @@ namespace One.Views.Class
                     {
                         
                         CourseSessionCreateUC1.SetCourseId(courseId);
+                        using (var helper = new DbHelper.Subject())
+                        {
+                            var course = helper.GetCourse(CourseSessionCreateUC1.CourseId);
+                            if (course != null)
+                            {
+                                CourseSessionCreateUC1.CourseName = course.Name;
+                            }
+                        }
                     }
                     catch { Response.Redirect("~/Views/Course/List.aspx"); }
                 }

@@ -7,6 +7,10 @@
 <style type="text/css">
     .auto-style1 {
         width: 181px;
+        padding: 7px 0;
+    }
+    .auto-style2 {
+        width: 168px;
     }
 </style>
 
@@ -19,9 +23,18 @@
 
     <div style="margin: 10px;">
         <div>
-            Class creation in course: &nbsp;
-            <asp:Label ID="lblCourseName" runat="server"></asp:Label>
+            <table style="vertical-align: top;">
+                <tr style="vertical-align: top;">
+                    <td class="auto-style2" >Class creation in course: &nbsp;                    
+                    </td>
+                    <td style="font-weight: 700;">
+                        <asp:Label ID="lblCourseName" runat="server"></asp:Label>
+                    </td>
+                </tr>
+
+            </table>
         </div>
+        <br/>
         <div style="margin-left: 20px;">
             <table>
                 <tr>
@@ -35,8 +48,8 @@
                     <td>
                         <asp:DropDownList ID="DropDownList1" runat="server">
                             <Items>
-                                <asp:ListItem Text="Use Default Grouping From Settings"></asp:ListItem>
-                                <asp:ListItem Text="Use Grouping From Subject"></asp:ListItem>
+                                <asp:ListItem Text="Use Global Grouping Settings"></asp:ListItem>
+                                <asp:ListItem Text="Use Grouping From Course"></asp:ListItem>
                                 <asp:ListItem Text="Custom Grouping For Only This Class"></asp:ListItem>
                                 <asp:ListItem Text="Don't Use any Grouping"></asp:ListItem>
                             </Items>
@@ -92,15 +105,14 @@
         <%--<asp:Button ID="btnSaveAndEnrollUsers" runat="server" Text="Save" OnClick="btnSave_Click" />--%>
     </div>
 
-    <div>
+    <%--    <div>
         User LIst to enroll
         <div>
             //Enroll
-            <%--<uc1:UserEnrollUC runat="server" ID="UserEnrollUC" />--%>
             <uc1:UserEnrollUC_ListDisplay runat="server" ID="UserEnrollUC_ListDisplay" />
         </div>
-        <%-- List of users to add; with filter  --%>
-    </div>
+    </div>--%>
+    <%--<uc1:UserEnrollUC runat="server" ID="UserEnrollUC" />--%>
 
     <asp:HiddenField ID="hidCourseId" Value="0" runat="server" />
     <asp:HiddenField ID="hidSubjectSessionId" Value="0" runat="server" />

@@ -359,7 +359,6 @@
     <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeViewUC.ascx" />
     <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\WebForm1.aspx" />
     <Content Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx" />
-    <Content Include="Views\Class\ClassUserUC.ascx" />
     <Content Include="Views\Class\CourseClassDetail.aspx" />
     <Content Include="Views\Class\CourseSessionCreate.aspx" />
     <Content Include="Views\Class\CourseSessionCreateUC.ascx" />
@@ -930,13 +929,6 @@
     </Compile>
     <Compile Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx.designer.cs">
       <DependentUpon>BatchSelectUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Class\ClassUserUC.ascx.cs">
-      <DependentUpon>ClassUserUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Class\ClassUserUC.ascx.designer.cs">
-      <DependentUpon>ClassUserUC.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Class\CourseClassDetail.aspx.cs">
       <DependentUpon>CourseClassDetail.aspx</DependentUpon>

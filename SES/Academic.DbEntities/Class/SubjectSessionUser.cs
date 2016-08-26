@@ -21,9 +21,19 @@ namespace Academic.DbEntities.Class
         public virtual User.Role Role { get; set; }
 
         public bool? Void { get; set; }
+        
+        public DateTime CreatedDate { get; set; }
+        // user enroll to the course start date
+        public DateTime? StartDate { get; set; }
+        //user enroll to the course end date
+        public DateTime? EndDate { get; set; }
 
-        public DateTime JoinedDate { get; set; }
-        public DateTime? WithdrawDate { get; set; }
+        /// <summary>
+        /// will be in days:: 0=unlimited, 1 day, 2 days, 3 days ... unlimited
+        /// </summary>
+        public int EnrollmentDuration { get; set; }
+
+        public bool? Suspended { get; set; }
 
         //This is the gorup id that this user belongs to 
         //if UseDefaultGrouping is true in SubjectSession then its value is null

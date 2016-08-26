@@ -1,5 +1,6 @@
 ﻿body {
 }
+
 .body-inner-left {
     overflow: hidden;
     float: left;
@@ -11,7 +12,6 @@
     margin: 0 auto;
     background-color: #f7f7f7;
     /*margin-right: 115px;*/
-    
 }
 
 
@@ -57,6 +57,7 @@
 .width-100 {
     width: 100%;
 }
+
 .width-100px {
     width: 100px;
 }
@@ -65,7 +66,6 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
@@ -74,7 +74,6 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
@@ -107,16 +106,17 @@
     top: 0;
     left: 0;
 }
+
 .transparent {
-	zoom: 1;
-	filter: alpha(opacity=50);
-	opacity: 0.5;
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
 }
 
 .undo-delete-transparancy {
-	zoom: 1;
-	filter: alpha(opacity=50);
-	opacity: 0.8;
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.8;
 }
 
 
@@ -161,6 +161,7 @@ h5, h6 {
     overflow: hidden;
     width: 97%;
 }
+
 .item-student {
     margin: 5px 5px 5px;
     /*background-color: #e0e0e0;*/
@@ -168,6 +169,7 @@ h5, h6 {
     overflow: hidden;
     width: 100%;
 }
+
 .item-heading {
     font: 2em bold;
     padding: 10px 10px 15px;
@@ -176,6 +178,7 @@ h5, h6 {
     /*background-color: #f0fff0;*/
     /*//font-size: 2em;*/
 }
+
 .act-res-heading {
     font: 1.2em bold;
     padding: 10px 10px 15px;
@@ -185,7 +188,7 @@ h5, h6 {
 
 /*SubItem with border*/
 .sub-item {
-     margin: 5px 10px 5px;
+    margin: 5px 10px 5px;
     /*background-color: #e0e0e0;*/
     border: 1.8px solid darkgray;
     overflow: hidden;
@@ -201,16 +204,17 @@ h5, h6 {
 }
 
 .item-heading-exam {
-   
     padding: 5px 10px 2px;
     margin: 5px 10px 2px;
     color: #0000b3;
     /*background-color: #f0fff0;*/
     /*//font-size: 2em;*/
 }
-.item-heading-exam .head-text {
-     font: 2em bold;
-}
+
+    .item-heading-exam .head-text {
+        font: 2em bold;
+    }
+
 .item-summary-exam {
     font: 1em inherit;
     padding: 2px 10px 2px;
@@ -238,14 +242,16 @@ h5, h6 {
     display: block;
     color: darkblue;
 }
+
 .item-course-group-description {
     font: 1em inherit;
     padding: 5px 10px 5px;
     margin: 5px 10px 5px;
 }
-    .item-section-heading :hover {
-        /*background-color: lightgrey;*/
-    }
+
+.item-section-heading :hover {
+    /*background-color: lightgrey;*/
+}
 
 
 
@@ -318,17 +324,21 @@ tr.pager td {
     bottom: 0;
     right: 0;
 }
+
 .tree-div {
     height: 5px;
     width: 20px;
-    text-align: center
+    text-align: center;
 }
+
 .table-tree {
-    border-width:0; 
+    border-width: 0;
 }
+
 .bordered-item {
     border: 1px solid lightgray;
 }
+
 .border-bottom {
     border-bottom: 1px solid lightgray;
 }
@@ -339,11 +349,15 @@ tr.pager td {
 
 .form-title {
     font-size: 1.5em;
-    text-align: center
+    text-align: center;
 }
+
 .form-body {
-    margin: 10px 20px 0; padding: 10px; border: 2px solid lightgray;
+    margin: 10px 20px 0;
+    padding: 10px;
+    border: 2px solid lightgray;
 }
+
 .form-content {
     margin: 0 20px 0;
 }
@@ -358,6 +372,7 @@ tr.pager td {
 .block {
     display: block;
 }
+
 .no-underline {
     text-decoration: none;
 }
@@ -365,3 +380,21 @@ tr.pager td {
 .overflow-scroll {
     overflow: scroll;
 }
+
+/*For Detail Display Used all three below*/
+.table-detail {
+    border-collapse: collapse;
+}
+
+.row-detail {
+    border-bottom: 1px solid grey;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.data-detail {
+    width: 170px;
+    padding: 10px 0;
+    display: inline-block;
+}
+/*End of Detail Display*/

@@ -129,27 +129,53 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
 
             using (var helper = new DbHelper.Subject())
             {
-                try{
-                var user = Page.User as CustomPrincipal;
-                var subjects = helper.GetCurrentRegularSubjectsOfUser(user.Id);
-                    foreach (var c in subjects)
+                try
+                {
+                    var loadType = 0;
+                    if (hidLoadType.Value == "earlier")
                     {
-                        CourseUc uc =
-                            (CourseUc) Page.LoadControl("~/ViewsSite/DashBoard/Student/CourseOverView/CourseUc.ascx");
-                        uc.WithdrawVisible = false;
-                        uc.Title = c.SubjectName;
-                        uc.Id = c.SubjectId.ToString();
-                        uc.SubjectSubscriptionId = c.SubjectSubscriptionId;
-                        uc.StudentSubjectModel = c;
-                        //Messages
-                        //foreach messages add message controls to uc
-                        {
-                            //Messages list
-                        }
-
-                        this.pnlCourseList.Controls.Add(uc);
+                        loadType = 1;
                     }
-                }catch(Exception e){}
+                    else if (hidLoadType.Value != "current" && hidLoadType.Value != "")
+                    {
+                        Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
+                    }
+
+
+                    var user = Page.User as CustomPrincipal;
+                    if (user != null)
+                    {
+                        //var subjects = helper.GetCurrentRegularSubjectsOfUser(user.Id);
+                        var subjectsArray = helper.ListCurrentAndEarlierCoursesOfUser(user.Id);
+                        //foreach (var c in subjects[loadType])
+                        foreach (var c in subjectsArray[loadType])
+                        {
+                            CourseUc uc =
+                                (CourseUc)Page.LoadControl("~/ViewsSite/DashBoard/Student/CourseOverView/CourseUc.ascx");
+                            uc.WithdrawVisible = false;
+
+                            //the below 4 lines were previously uncommented ;
+                            // now these replaced by adjacent 2 lines
+                            //may be ViewModel should be used.. working on it.
+
+                            //uc.Title = c.SubjectName;
+                            //uc.Id = c.SubjectId.ToString();
+                            //uc.SubjectSubscriptionId = c.SubjectSubscriptionId;
+                            //uc.StudentSubjectModel = c;
+                            uc.Title = c.Name;
+                            uc.Id = c.Id.ToString();
+                            //Messages
+                            //foreach messages add message controls to uc
+                            {
+                                //Messages list
+                            }
+
+                            this.pnlCourseList.Controls.Add(uc);
+                        }
+                    }
+
+                }
+                catch (Exception e) { }
             }
 
             /*
@@ -255,5 +281,14 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
         //        //LoadUnjoinedCourses();
         //    }
         //}
+
+        /// <summary>
+        /// Type that are valid: 'current'-->for current, 'earlier'-->for earlier
+        /// </summary>
+        public string LoadType
+        {
+            set { hidLoadType.Value = value ?? ""; }
+        }
+
     }
 }

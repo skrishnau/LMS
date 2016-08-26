@@ -13,12 +13,15 @@ namespace One.ViewsSite.User.Dashboard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!User.Identity.IsAuthenticated)
-            {
-                Response.Redirect("~/ViewsSite/Account/Login.aspx");
-            }
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    Response.Redirect("~/ViewsSite/Account/Login.aspx");
+            //}
             if (!IsPostBack)
             {
+                var loadType = Request.QueryString["type"];
+                LstUc1.LoadType = loadType;
+               
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
@@ -31,7 +34,7 @@ namespace One.ViewsSite.User.Dashboard
                 else
                 {
                     //logout the user
-                   
+
                 }
 
 

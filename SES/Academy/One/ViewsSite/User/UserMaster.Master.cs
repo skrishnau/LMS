@@ -26,6 +26,7 @@ namespace One.ViewsSite.User
                     UpdateLoginTime(user.Id);
 
                     CoursesUc.UserId = user.Id;
+                    EarlierUc.UserId = user.Id;
                     if (user.IsInRole("manager"))
                     {
                         var schoolCreateUrl = "Views/Office/School/Create.aspx";
