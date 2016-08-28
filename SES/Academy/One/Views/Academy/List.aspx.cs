@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using One.Values.MemberShip;
 
 namespace One.Views.Academy
 {
@@ -20,20 +21,46 @@ namespace One.Views.Academy
 
         private void BindGrid()
         {
-            using (var helper = new DbHelper.AcademicYear())
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
+            //if (user.SchoolId > 0)
             {
-                var aca = helper.GetAcademicYearListForSchool(Values.Session.GetSchool(Session));
-                for (var i = 0; i < aca.Count; i++)
+                using (var helper = new DbHelper.AcademicYear())
                 {
-                    var ses = helper.GetSessionListForAcademicYear(aca[i].Id);
-                    aca[i].SchoolId = ses.Count;
+                    var aca = helper.GetAcademicYearListForSchool(
+                        user.SchoolId);
+                    //for (var i = 0; i < aca.Count; i++)
+                    //{
+                    //    var ses = helper.GetSessionListForAcademicYear(aca[i].Id);
+                    //    aca[i].SchoolId = ses.Count;
+
+                    //}
+                    //GridView1.DataSource = aca;
+                    //GridView1.DataBind();
+
+                    foreach (var ay in aca)
+                    {
+                        var uc =
+                            (UserControls.AcademicYearListUC)
+                                Page.LoadControl("~/Views/Academy/UserControls/AcademicYearListUC.ascx");
+                        uc.LoadAcademicYear(
+                            ay.Id, ay.Name, ay.StartDate, ay.EndDate
+                            , ay.IsActive, ay.Sessions.ToList());
+                        pnlAcademicYearListing.Controls.Add(uc);
+                    }
 
                 }
-                GridView1.DataSource = aca;
-                GridView1.DataBind();
-
             }
 
+        }
+
+        public string GetDatePartOnly(object date)
+        {
+            if (date != null)
+            {
+                return Convert.ToDateTime(date.ToString()).ToShortDateString();
+            }
+            return "";
         }
 
         protected void GridView1_DataBound(object sender, EventArgs e)
@@ -46,21 +73,21 @@ namespace One.Views.Academy
             //GridView1.Columns[1].Visible = false;
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Views/Academy/AcademicYear/Create.aspx");
-        }
+        //protected void LinkButton1_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("~/Views/Academy/AcademicYear/Create.aspx");
+        //}
 
-        protected void LinkButton2_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Views/Academy/Session/Create.aspx");
-        }
+        //protected void LinkButton2_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("~/Views/Academy/Session/Create.aspx");
+        //}
 
         protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             //switch (e.)
             //{
-                    
+
             //}
         }
 

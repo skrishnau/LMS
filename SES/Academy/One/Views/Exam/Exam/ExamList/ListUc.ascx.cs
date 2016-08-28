@@ -65,7 +65,7 @@ namespace One.Views.Exam.Exam.ExamList
         }
         private void LoadSession()
         {
-            DbHelper.ComboLoader.LoadSession(ref cmbSession, Convert.ToInt32(cmbAcademicYear.SelectedValue), SessionId
+            DbHelper.ComboLoader.LoadSession(ref cmbSession, Convert.ToInt32(cmbAcademicYear.SelectedValue == "" ? "0" : cmbAcademicYear.SelectedValue), SessionId
                 , true, true, false);
             //LoadExams();
         }
@@ -82,8 +82,8 @@ namespace One.Views.Exam.Exam.ExamList
                 {
                     ItemsOfListUc item =
                         (ItemsOfListUc)Page.LoadControl("~/Views/Exam/Exam/ExamList/ItemsOfListUc.ascx");
-                    item.SetFields(exam.Id,exam.Name, exam.ExamType.Name, exam.ResultDate, exam.UpdatedDate
-                        , exam.WeightPercent??0, exam.Notice);
+                    item.SetFields(exam.Id, exam.Name, exam.ExamType.Name, exam.ResultDate, exam.UpdatedDate
+                        , exam.WeightPercent ?? 0, exam.Notice);
                     pnlExamList.Controls.Add(item);
                 }
             }

@@ -18,6 +18,8 @@ namespace One.ViewsSite
                 //check for user role and display accordingly now its only admin
 
                 //leftSideBarUC.TextAndLinks = Values.Session.GetAdminSideBarItemsAndLinks();
+
+                //need to uncomment
                 leftSideBarUC.PopulateList(Values.Session.GetAdminSideBarItemsAndLinks());
 
 

@@ -13,10 +13,24 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<%--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">--%>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<%--<html xmlns="http://www.w3.org/1999/xhtml">--%>
+<html lang="en">
 <head runat="server">
+    <%-- --newly added --%>
+    <meta charset="utf-8" />
+    <%--<title><%: Page.Title %> - My ASP.NET Application</title>--%>
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <%-- <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/css" /> 
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
+    <meta name="viewport" content="width=device-width" />
+    <%--  end of newly added --%>
+
     <title>
         <asp:ContentPlaceHolder ID="title" runat="server">
         </asp:ContentPlaceHolder>
@@ -26,59 +40,165 @@
 
     <link href="UserStyles.css" rel="stylesheet" />
     <link href="../../Content/CSSes/All.css" rel="stylesheet" />
+    <style type="text/css">
+        .table-whole {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        .body-whole {
+            margin-top: 36px;
+        }
+
+        .right-width {
+            width: 20%;
+        }
+
+        .left-width {
+            width: 15%;
+        }
+
+        .mid-width {
+            width: 64%;
+        }
+
+        .menu-div {
+            color: white;
+            height: 35px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            /*-webkit-border-radius: 2px;*/
+            background-color: black;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
+         <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
 
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
 
-        <div id="menuDiv" class="menu-div" style="float: none; width: 100%;">
-            <asp:ContentPlaceHolder ID="Menu" runat="server">
-                <div style="float: right;">
-                    <asp:LoginName ID="LoginName1" runat="server" />
-                    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div id="menuDiv" class="menu-div" style="text-align: left; vertical-align: central; padding: 2px 5px; clear: both; width: 100%;">
+            <div style="margin: auto; vertical-align: central;">
+                <a href="~/Views/Office/School/View.aspx" style="text-decoration: none;">
+                    <asp:Label ID="lblSchoolName" runat="server" Text="Label" Font-Size="1.2em" Font-Bold="True"></asp:Label>
+                </a>
+                <div style="float: left;">
+                    <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Images/company-logo.jpg" Width="30" Height="30"/>
+                    
                 </div>
+                <div style="position: fixed; right: 0; top: 0; margin-right: 10px; margin-top: 5px;" class="clearfix">
+                    <asp:LoginName ID="LoginName1" runat="server" Font-Size="1.1em" />
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" ForeColor="white" Font-Size="0.9em" />
+                </div>
+            </div>
+
+            <asp:ContentPlaceHolder ID="Menu" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+        <div style="clear: both;"></div>
+        <div class="body-whole">
+            <table class="table-whole">
 
-        <div class="leftsidebar">
-            <%-- Subjects --%>
-            <uc1:CoursesUc runat="server" ID="CoursesUc" />
-            <uc1:EarlierUc runat="server" ID="EarlierUc" />
-            <%--<uc1:EventsUc runat="server" ID="EventsUc1" />--%>
-            <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
-            <%--  --%>
+                <tr style="vertical-align: top;">
+
+                    <%--  =================== Left sidebar ========================= --%>
+                    <td class="left-width">
+                        <%-- ----------------------START------------------------ --%>
+                        <%-- class="leftsidebar" --%>
+                        <div style="width: 100%;">
+
+                            <%-- Subjects --%>
+                            <uc1:CoursesUc runat="server" ID="CoursesUc" />
+                            <uc1:EarlierUc runat="server" ID="EarlierUc" />
+                            <%--<uc1:EventsUc runat="server" ID="EventsUc1" />--%>
+                            <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
+                            <%--  --%>
+                        </div>
+                        <%-- -------------------------END------------------------ --%>
+                    </td>
+                    <%-- ============================= END ========================= --%>
+
+
+
+                    <%-- ======================= Middle ======================= --%>
+                    <td class="mid-width">
+                        <%-- ------------------------- START -------------------- --%>
+                        <%-- style="float: left; width: 60%; overflow: hidden; margin: 15px 5px 20px;" --%>
+                        <div id="bodyDiv">
+                            <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
+                                <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
+                            </asp:Panel>
+                            <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
+                            </asp:ContentPlaceHolder>
+                            <asp:ContentPlaceHolder ID="Body" runat="server">
+                            </asp:ContentPlaceHolder>
+                            <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+                        </div>
+                        <%-- --------------------------- END --------------------- --%>
+                    </td>
+                    <%-- ============================= END ========================= --%>
+
+
+
+                    <%-- ======================= Right sidebar ======================= --%>
+
+                    <td class="right-width">
+                        <%-- ------------------------- START -------------------- --%>
+                        <%-- class="right-sidebar" --%>
+                        <div style="width: 100%;">
+                            <%--  style="overflow: auto; margin-top: 5px; height:180px;" --%>
+                            <div class="dashboard-modules">
+                                <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
+                            </div>
+                            <div class="dashboard-modules">
+                                <uc1:NewsUc runat="server" ID="NewsUc" />
+                            </div>
+                            <div class="dashboard-modules">
+                                <uc1:EventsUc runat="server" ID="EventsUc" />
+                            </div>
+                            <div class="dashboard-modules">
+                                <uc1:OnlineUsersUc runat="server" ID="OnlineUsersUc" />
+                            </div>
+                        </div>
+                        <%-- --------------------------- END --------------------- --%>
+                    </td>
+                    <%-- ============================= END ========================= --%>
+                </tr>
+
+
+
+            </table>
         </div>
 
+        <div style="clear: both;"></div>
+
+        <%--  Here was left sidebar --%>
         <%-- Body   --%>
 
-        <div id="bodyDiv" style="float: left; width: 60%; overflow: hidden; margin: 15px 5px 20px;">
-            <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
-                <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
-            </asp:Panel>
-            <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
-            </asp:ContentPlaceHolder>
-            <asp:ContentPlaceHolder ID="Body" runat="server">
-            </asp:ContentPlaceHolder>
-            <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
-        </div>
+        <%-- Here was body  --%>
 
         <%-- Right --%>
-        <div class="right-sidebar">
-            <%--  style="overflow: auto; margin-top: 5px; height:180px;" --%>
-            <div class="dashboard-modules">
-                <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
-            </div>
-            <div class="dashboard-modules">
-                <uc1:NewsUc runat="server" ID="NewsUc" />
-            </div>
-            <div class="dashboard-modules">
-                <uc1:EventsUc runat="server" ID="EventsUc" />
-            </div>
-            <div class="dashboard-modules">
-                <uc1:OnlineUsersUc runat="server" ID="OnlineUsersUc" />
-            </div>
-        </div>
+
+        <%--  Here waas right sidebar --%>
+
 
 
         <%-- Clear Both --%>

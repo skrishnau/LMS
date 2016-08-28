@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using One.Values.MemberShip;
 
 namespace One.Views.AcademicPlacement.RunningClass.CheckBoxOnly
 {
@@ -14,8 +15,11 @@ namespace One.Views.AcademicPlacement.RunningClass.CheckBoxOnly
         {
             if (!IsPostBack)
             {
-
-               TreeViewUC1.SchoolId = Values.Session.GetSchool(Session);
+                var user = Page.User as CustomPrincipal;
+                if (user != null)
+                {
+                    TreeViewUC1.SchoolId = Values.Session.GetSchool(Session);
+                }
 
                 //using (var helper = new DbHelper.AcademicPlacement())
                 //{
@@ -28,17 +32,17 @@ namespace One.Views.AcademicPlacement.RunningClass.CheckBoxOnly
             }
             else
             {
-               /* string passedArgument = Request.Params.Get("__EVENTARGUMENT");
-                string x = Request.Params.Get("hidX");
+                /* string passedArgument = Request.Params.Get("__EVENTARGUMENT");
+                 string x = Request.Params.Get("hidX");
 
-                string controlName = Request.Params.Get("__EVENTTARGET");
-                string[] values = passedArgument.Split(new char[] { ',' });
-                if (values.Length == 2 && controlName == "imgStdGrp")
-                {
-                    //hidX.Value = values[0];
-                    //hidY.Value = values[1];
-                    //lnlbtn123_Click(this, new EventArgs());
-                }*/
+                 string controlName = Request.Params.Get("__EVENTTARGET");
+                 string[] values = passedArgument.Split(new char[] { ',' });
+                 if (values.Length == 2 && controlName == "imgStdGrp")
+                 {
+                     //hidX.Value = values[0];
+                     //hidY.Value = values[1];
+                     //lnlbtn123_Click(this, new EventArgs());
+                 }*/
             }
         }
     }

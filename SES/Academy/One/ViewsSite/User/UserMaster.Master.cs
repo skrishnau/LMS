@@ -14,6 +14,7 @@ namespace One.ViewsSite.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             //if (!IsPostBack)
             {
 
@@ -22,6 +23,20 @@ namespace One.ViewsSite.User
                 if (user != null)
                 {
                     //check for school
+                    if (!IsPostBack)
+                    {
+                        //using(var fileHelper = new DbHelper.WorkingWithFiles())
+                        using (var helper = new DbHelper.Office())
+                        {
+                            var school = helper.GetSchoolOfUser(user.Id);
+                            if (school != null)
+                            {
+                                //imgSchool.ImageUrl = "~/Content/Images/"
+                                //imgSchool.ImageUrl = fileHelper.
+                                lblSchoolName.Text = school.Name;
+                            }
+                        }
+                    }
 
                     UpdateLoginTime(user.Id);
 
@@ -37,14 +52,14 @@ namespace One.ViewsSite.User
                         }
 
                         SettingsUc settings =
-                            (SettingsUc) Page.LoadControl("~/ViewsSite/User/ModulesUc/SettingsUc.ascx");
+                            (SettingsUc)Page.LoadControl("~/ViewsSite/User/ModulesUc/SettingsUc.ascx");
                         settings.UserId = user.Id;
                         pnlSettings.Controls.Add(settings);
                     }
                 }
-                else if(!Request.Url.AbsolutePath.Contains(loginUrl))
+                else if (!Request.Url.AbsolutePath.Contains(loginUrl))
                 {
-                    Response.Redirect("~/"+loginUrl);
+                    Response.Redirect("~/" + loginUrl);
                 }
 
             }

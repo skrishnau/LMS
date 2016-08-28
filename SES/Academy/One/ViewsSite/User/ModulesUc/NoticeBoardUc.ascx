@@ -7,7 +7,8 @@
     <asp:Label ID="lblNoticeIndication" runat="server" Text="" ForeColor="white" BackColor="red"></asp:Label>
     <hr />
 </div>
-<div style="overflow: auto; margin-top: 5px; height: 180px;">
+<%-- 180px; --%>
+<div style="overflow: auto; margin-top: 5px; height: 10px;">
     <%-- DataSourceID="NotificationListDS" --%>
     <asp:DataList ID="DataList1" Height="100%" runat="server" >
         <ItemTemplate>

@@ -9,12 +9,24 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%--<html xmlns="http://www.w3.org/1999/xhtml">--%>
+<html lang="en">
 <head runat="server">
-    <title>
+
+    <%-- ----Added after error ---- --%>
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <%-- <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/css" /> 
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
+    <meta name="viewport" content="width=device-width" />
+    <%-- -------------- End of Added after error --------------- --%>
+    <%--<title>
         <asp:ContentPlaceHolder ID="title" runat="server">
         </asp:ContentPlaceHolder>
-    </title>
+    </title>--%>
     <%-- Pick a Day --%>
     <%--<link href="../Content/PickADay/css/pikaday.css" rel="stylesheet" />--%>
     <%--<link href="../Content/PickADay/css/site.css" rel="stylesheet" />--%>
@@ -22,21 +34,43 @@
     <%--<script src="../Content/PickADay/pikaday.js"></script>--%>
     <%--<link href="../Content/PickADay/css/triangle.css" rel="stylesheet" />--%>
     <%-- End of Pick a Day --%>
-    <link href="../Content/CSSes/All.css" rel="stylesheet" />
-    
 
-     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+
+    <%-- need to uncomment --%>
+    <%--<link href="../Content/CSSes/All.css" rel="stylesheet" />--%>
+
+
+    <%-- <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
       <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    
+    --%>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
 </head>
 <body>
+
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+
+
+            </Scripts>
+        </asp:ScriptManager>
         <div id="menuDiv" style="float: none; width: 100%;">
             <div style="float: right;">
                 <asp:ImageButton ID="ImageButton1" runat="server"
@@ -59,7 +93,6 @@
             <div class="left-sidebar">
 
                 <asp:ContentPlaceHolder runat="server" ID="LeftSideBarPlaceHolder">
-
                     <uc1:LeftSideBar runat="server" ID="leftSideBarUC" />
 
                 </asp:ContentPlaceHolder>
@@ -80,16 +113,16 @@
                 <asp:ContentPlaceHolder runat="server" ID="BodyInnerLeft">
                 </asp:ContentPlaceHolder>
             </div>
-            
+
 
             <asp:Panel ID="Panel1" runat="server" BackColor="#CC99FF">
                 <asp:Label ID="Label1" runat="server" Text="___" Visible="False"></asp:Label>
             </asp:Panel>
-            
+
 
             <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
             </asp:ContentPlaceHolder>
-            
+
 
             <asp:ContentPlaceHolder ID="Body" runat="server">
             </asp:ContentPlaceHolder>

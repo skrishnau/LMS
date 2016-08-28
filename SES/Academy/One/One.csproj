@@ -130,6 +130,8 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\CSSes\All.css" />
     <Content Include="Content\CSSes\StudentMaster.css" />
+    <Content Include="Content\DatePickerResourses\jquery-1.8.3.js" />
+    <Content Include="Content\DatePickerResourses\jquery-ui-1.9.2.custom.css" />
     <Content Include="Content\Icons\Action\action-do.png" />
     <Content Include="Content\Icons\Action\action-undo.png" />
     <Content Include="Content\Icons\Action\assign.png" />
@@ -258,6 +260,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Course\Index.aspx" />
     <Content Include="Course\List.aspx" />
+    <Content Include="DatePickerJquery\jquery-1.8.3.js" />
+    <Content Include="DatePickerJquery\jquery-ui-1.9.2.custom.css" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -323,6 +327,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="TestingOnly\WebForm1.aspx" />
     <Content Include="ViewsSite\Account\Login.aspx" />
     <Content Include="ViewsSite\Account\Register.aspx" />
     <Content Include="ViewsSite\DashBoard\StudentDashboardStyle.css" />
@@ -359,6 +364,12 @@
     <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeViewUC.ascx" />
     <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\WebForm1.aspx" />
     <Content Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx" />
+    <Content Include="Views\Academy\AcademicYear\AcademicYearDetail.aspx" />
+    <Content Include="Views\Academy\AcademicYear\AcademyCreate.aspx" />
+    <Content Include="Views\Academy\Session\SessionDetail.aspx" />
+    <Content Include="Views\Academy\UserControls\AcademicYearListUC.ascx" />
+    <Content Include="Views\Academy\UserControls\SessionsListingInAYDetailUC.ascx" />
+    <Content Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx" />
     <Content Include="Views\Class\CourseClassDetail.aspx" />
     <Content Include="Views\Class\CourseSessionCreate.aspx" />
     <Content Include="Views\Class\CourseSessionCreateUC.ascx" />
@@ -648,6 +659,20 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="TestingOnly\Test.Master.cs">
+      <DependentUpon>Test.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestingOnly\Test.Master.designer.cs">
+      <DependentUpon>Test.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TestingOnly\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestingOnly\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Values\Classes.cs" />
     <Compile Include="Values\DateTime.cs" />
     <Compile Include="Values\Enums.cs" />
@@ -929,6 +954,48 @@
     </Compile>
     <Compile Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx.designer.cs">
       <DependentUpon>BatchSelectUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\AcademicYear\AcademicYearDetail.aspx.cs">
+      <DependentUpon>AcademicYearDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\AcademicYear\AcademicYearDetail.aspx.designer.cs">
+      <DependentUpon>AcademicYearDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\AcademicYear\AcademyCreate.aspx.cs">
+      <DependentUpon>AcademyCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\AcademicYear\AcademyCreate.aspx.designer.cs">
+      <DependentUpon>AcademyCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\Session\SessionDetail.aspx.cs">
+      <DependentUpon>SessionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Session\SessionDetail.aspx.designer.cs">
+      <DependentUpon>SessionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\UserControls\AcademicYearListUC.ascx.cs">
+      <DependentUpon>AcademicYearListUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\UserControls\AcademicYearListUC.ascx.designer.cs">
+      <DependentUpon>AcademicYearListUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\UserControls\SessionsListingInAYDetailUC.ascx.cs">
+      <DependentUpon>SessionsListingInAYDetailUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\UserControls\SessionsListingInAYDetailUC.ascx.designer.cs">
+      <DependentUpon>SessionsListingInAYDetailUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx.cs">
+      <DependentUpon>SingleProgramInListingUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx.designer.cs">
+      <DependentUpon>SingleProgramInListingUC.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Class\CourseClassDetail.aspx.cs">
       <DependentUpon>CourseClassDetail.aspx</DependentUpon>
@@ -2144,6 +2211,7 @@
     <Content Include="ViewsSite\Teacher\TeacherMaster.Master" />
     <Content Include="ViewsSite\Teacher\Web.config" />
     <Content Include="ViewsSite\User\UserMaster.Master" />
+    <Content Include="TestingOnly\Test.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

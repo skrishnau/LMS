@@ -10,20 +10,27 @@
     left: 0;
     position: relative;
     margin: 0 auto;
-    background-color: #f7f7f7;
+    background-color:#f7f7f7;
+/* */
     /*margin-right: 115px;*/
 }
 
 
 .menu-div {
-    padding: 3px;
+    /*padding: 3px;*/
     height: 30px;
-    -webkit-border-radius: 2px;
-    background-color: lightblue;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    /*-webkit-border-radius: 2px;*/
+/*lightblue*/
+    background-color: black ;
 }
 
 .menu-right {
     float: right;
+    /*margin-right: 5px;*/
     font: 1.2em bold;
 }
 
@@ -398,3 +405,8 @@ tr.pager td {
     display: inline-block;
 }
 /*End of Detail Display*/
+.clearfix:after {
+    content:" ";
+    display:block;
+    clear:both;
+}

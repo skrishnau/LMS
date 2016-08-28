@@ -7,36 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Academy {
+namespace One.Views.Academy.UserControls {
     
     
-    public partial class List {
+    public partial class SingleProgramInListingUC {
         
         /// <summary>
-        /// Button1 control.
+        /// lnkProgram control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.HyperLink lnkProgram;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// lblCurrentlyIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink LinkButton1;
-        
-        /// <summary>
-        /// pnlAcademicYearListing control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAcademicYearListing;
+        protected global::System.Web.UI.WebControls.Literal lblCurrentlyIn;
     }
 }

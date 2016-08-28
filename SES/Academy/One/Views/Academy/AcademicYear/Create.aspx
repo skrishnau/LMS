@@ -1,15 +1,28 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/UserSite.Master" AutoEventWireup="true" CodeBehind="Create.aspx.cs" Inherits="One.Views.Academy.AcademicYear.Create" %>
 
+<%-- "" --%>
 <%@ Register Src="~/Views/UserControls/DateChooser.ascx" TagPrefix="uc1" TagName="DateChooser" %>
 
 
 <%@ Register Src="../Session/CreateUC.ascx" TagName="CreateUC" TagPrefix="uc2" %>
 
+<asp:Content runat="server" ID="headContent" ContentPlaceHolderID="head">
+    <link rel="stylesheet" href="~/Content/DatePickerResourses/jquery-ui-1.9.2.custom.css" />
+    <script src="~/Content/DatePickerResourses/jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+
+            $("#txtStart").datepicker();
+            $("#txtEnd").datepicker();
+        });
+    </script>
+</asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <asp:Panel ID="pnlAcademicYear" runat="server">
+            <%--<asp:Panel ID="pnlAcademicYear" runat="server">--%>
 
 
                 <fieldset>
@@ -25,6 +38,27 @@
                                     ControlToValidate="txtName" ErrorMessage="Name is required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
+                        <tr>
+                            <td>Start Date</td>
+                            <td>
+                                <div style="position: absolute;">
+                                    <asp:TextBox ID="txtStart" runat="server" ClientIDMode="Static"></asp:TextBox>
+                                    <%--<uc1:DateChooser runat="server" ID="dtStart" />--%>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>End Date
+                            </td>
+                            <td>
+                                <div style="position: absolute;">
+                                    <%--<uc1:DateChooser runat="server" ID="dtEnd" />--%>
+                                    <asp:TextBox ID="txtEnd" runat="server" ClientIDMode="Static"></asp:TextBox>
+                                </div>
+                            </td>
+                        </tr>
+
                         <%-- <tr>
                 <td>School
                 </td>
@@ -35,24 +69,36 @@
                 </td>
             </tr>--%>
                     </table>
-                    <asp:Panel ID="panelStart" runat="server">
-                        Start Date &nbsp;
-            <uc1:DateChooser runat="server" ID="dtStart" />
-                    </asp:Panel>
 
-                    <asp:Panel ID="panelEnd" runat="server">
-                        End Date &nbsp;
-            <uc1:DateChooser runat="server" ID="dtEnd" />
-                    </asp:Panel>
+                    <%-- <div style="position: relative;">
+                        <asp:Panel ID="panelStart" runat="server">
+                            Start Date &nbsp;
+                       
+                        </asp:Panel>
+                    </div>--%>
+
+                    <br />
+                    <%-- <div style="position: relative;">
+
+                        <asp:Panel ID="panelEnd" runat="server">
+                            End Date &nbsp;
+                       
+                        </asp:Panel>
+                        <br />
+                    </div>--%>
                     <asp:CheckBox ID="CheckBox1" runat="server" Text="Make this Current Academic Year." />
                     <em style="font-size: 12px;">Note: Previous Academic year will be disabled.</em>
                 </fieldset>
-            </asp:Panel>
-                <br />
-                &nbsp;
+            <%--</asp:Panel>--%>
+            <br />
+            &nbsp;
                 <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" Width="75px" />
+            <hr />
+            <hr />
+            <%--<input id="datepicker" type="text" />--%>
 
-     <%--   </ContentTemplate>
+
+            <%--   </ContentTemplate>
     </asp:UpdatePanel>
 
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -68,5 +114,12 @@
             </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <br/>
+    <div>
+        <p>
+            Date:
+                <input id="datepicker" type="text" />
+        </p>
+
+    </div>
+    <br />
 </asp:Content>

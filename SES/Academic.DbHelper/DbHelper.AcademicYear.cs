@@ -1,6 +1,7 @@
 ﻿using Academic.Database;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -163,8 +164,11 @@ namespace Academic.DbHelper
             public List<DbEntities.AcademicYear> GetAcademicYearListForSchool(int schoolId)
             {
                 var date = DateTime.Now;
-                var aca = Context.AcademicYear.Where(x => x.SchoolId == schoolId && x.EndDate > date)
-                            .OrderByDescending(y => y.StartDate);
+                var aca = Context.AcademicYear
+                    .Where(x => x.SchoolId == schoolId && !(x.Void ?? false))
+                    .Include(x => x.Sessions)
+                    .OrderByDescending(y => y.StartDate);
+
                 return aca.ToList();
             }
 
@@ -322,6 +326,11 @@ namespace Academic.DbHelper
                 {
                     return false;
                 }
+            }
+
+            public DbEntities.AcademicYear GetAcademicYear(int academicYearId)
+            {
+                return Context.AcademicYear.Find(academicYearId);
             }
         }
     }

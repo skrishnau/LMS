@@ -42,10 +42,10 @@ namespace One.Views.Academy.AcademicYear
                     ,
                     Name = txtName.Text
                     ,
-                    EndDate = dtEnd.SelectedDate
-                    ,
-                    StartDate = dtStart.SelectedDate
-                    ,
+                    //EndDate = dtEnd.SelectedDate
+                    //,
+                    //StartDate = dtStart.SelectedDate
+                    //,
                     SchoolId = Values.Session.GetSchool(Session)
                     ,
                     IsActive = CheckBox1.Checked
@@ -57,11 +57,14 @@ namespace One.Views.Academy.AcademicYear
                     if (saved!=null)
                     {
                         //Response.Write("SAVE SUCCESSFUL!");
-                        pnlAcademicYear.Enabled = false;
+
+                        //earlier uncommented
+                        //pnlAcademicYear.Enabled = false;
                         btnSave.Enabled = false;
                         CreateUC1.ValidationEnabled = true;
                         CreateUC1.AcademicYear = saved.Id;
-                        pnlAcademicYear.BackColor = Color.Aquamarine;
+                        //earlier uncommented
+                        //pnlAcademicYear.BackColor = Color.Aquamarine;
                         pnlSession.Visible = true;
                     }
                 }
