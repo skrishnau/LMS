@@ -9,8 +9,12 @@ namespace Academic.DbEntities.AcacemicPlacements
 {
 
     /// <summary>
+    /// Obsolete. since link between class and subject is done by
+    ///  SubjectSession(or SubjectClass). 
+    /// Earlier Note: 
     /// RegularSubjectClass and UserClass are closely related...
     /// </summary>
+    [Obsolete]
     public class RegularSubjectClass
     {
         public int Id { get; set; }

@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.AcacemicPlacements
 {
+    /// <summary>
+    /// Obsolete. Since SubjectClass(or SubjectSession) and SubjectSessionUser(or SubjectClassUsers)
+    ///  link users (student or teacher) to the Class
+    /// </summary>
+    [Obsolete]
    public  class TeacherClass
     {
        public int Id { get; set; }

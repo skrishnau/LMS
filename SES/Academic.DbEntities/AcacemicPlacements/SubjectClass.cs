@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.AcacemicPlacements
 {
+    /// <summary>
+    /// Obsolete. It links Subjects to the Running Class. 
+    /// But this is already done by SubjectSession (or Subject Class
+    /// --> one of them as the name might change as per confort of use)
+    /// 
+    /// </summary>
+    [Obsolete]
     public class SubjectClass
     {
         public int Id { get; set; }

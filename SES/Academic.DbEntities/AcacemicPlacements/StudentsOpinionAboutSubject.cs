@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.AcacemicPlacements
 {
+    /// <summary>
+    /// Obsolete. It will be used in another way, in the module Subject (not in this module)
+    /// </summary>
+    [Obsolete]
     public class StudentsOpinionAboutSubject
     {
         public int Id { get; set; }

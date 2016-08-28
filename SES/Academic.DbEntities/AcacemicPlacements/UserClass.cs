@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.AcacemicPlacements
 {
+    /// <summary>
+    /// Obsolete. Since link between User and Subject Class is done by 
+    /// SubjectSessionUser(or SubjectClassUser)
+    /// </summary>
+    [Obsolete]
     public class UserClass
     {
+
         public int Id { get; set; }
 
         //public int RegularSubjectClassId { get; set; }

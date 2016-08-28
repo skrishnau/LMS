@@ -12,6 +12,11 @@ using Academic.DbEntities.Structure;
 
 namespace Academic.DbEntities.Subjects
 {
+    /// <summary>
+    /// Obsolete. Subject grouping is done either by 'Category' or 'SubjectStructure'
+    /// . And its same as SubjectStructure
+    /// </summary>
+    [Obsolete]
     public class SubjectGroup
     {
         //[Key(), Column(Order=1)]

@@ -7,6 +7,11 @@ using Academic.DbEntities.Structure;
 
 namespace Academic.DbEntities.Subjects
 {
+    /// <summary>
+    /// Obsolete. Since link between Subject and Year/Subyear is done by
+    /// SubjectStructure class.
+    /// </summary>
+    [Obsolete]
     public class RegularSubject
     {
         public int Id { get; set; }

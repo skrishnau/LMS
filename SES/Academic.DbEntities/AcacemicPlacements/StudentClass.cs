@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.AcacemicPlacements
 {
+    /// <summary>
+    /// This will not be used. and is obsolete..
+    /// Further use should not be done.
+    /// </summary>
+    [Obsolete]
     [Serializable]
     public class StudentClass
     {

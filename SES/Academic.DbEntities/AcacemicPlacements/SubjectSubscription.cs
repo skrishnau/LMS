@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.AcacemicPlacements
 {
+    /// <summary>
+    /// It is Obslete since both StudentClass and SubjectClass are obsolete and this class 
+    /// is used to link those two.
+    /// </summary>
+    [Obsolete]
     public class SubjectSubscription
     {
         public int Id { get; set; }
