@@ -15,6 +15,30 @@ namespace One.Views.Academy.Session
         {
             if (!IsPostBack)
             {
+                var aId = Request.QueryString["aId"];
+                var sId = Request.QueryString["sId"];
+
+                if (aId != null)
+                {
+                    try
+                    {
+                        CreateUC.AcademicYearId = Convert.ToInt32(aId);
+                        //hidAcademicYear.Value = aId;
+                        //lnknewSession.NavigateUrl = "~/Views/Academy/Session/Create.aspx?aId=" + aId;
+                    }
+                    catch { Response.Redirect("../List.aspx"); }
+                }
+                if (sId != null)
+                {
+                    try
+                    {
+                        CreateUC.SessionId = Convert.ToInt32(sId);
+                    }catch{}
+                }
+                if (aId == null && sId == null)
+                {
+                    Response.Redirect("../List.aspx"); 
+                }
                 ////DbHelper.ComboLoader.LoadSchool(ref cmbSchool, InitialValues.CustomSession["InstitutionId"]);
                 //List<Academic.DbEntities.AcademicYear> acaYears = DbHelper.ComboLoader.LoadAcademicYear(
                 //    ref cmbAcademicYear,Values.Session.GetSchool(Session));

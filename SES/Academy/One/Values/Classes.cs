@@ -18,7 +18,7 @@ namespace One.Values
 
     }
 
-    public class DataEventArgs:EventArgs
+    public class DataEventArgs : EventArgs
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -56,16 +56,21 @@ namespace One.Values
         public int ProgramId { get; set; }
         public int YearId { get; set; }
         public int SubYearId { get; set; }
-        
+
         public int RefId { get; set; }
+        //public string Type { get; set; }
     }
 
     public class RunningClassEventArgs : EventArgs
     {
+        public int LevelId { get; set; }
+        public int FacultyId { get; set; }
+
         public int ProgramId { get; set; }
 
         public int YearId { get; set; }
         public int SubYearId { get; set; }
+
         public int ProgramBatchId { get; set; }
 
         public int RunningClassId { get; set; }
@@ -78,13 +83,21 @@ namespace One.Values
 
 
         public string ProgramBatchName { get; set; }
+        public string ProgrameName { get; set; }
+        public string BatchName { get; set; }
+        public string YearName { get; set; }
+        public string SubYearName { get; set; }
+
+        public int BatchId { get; set; }
+
     }
 
-    
+
     public class BatchEventArgs : EventArgs
     {
         public int ProgramId { get; set; }
         public int ProgramBatchId { get; set; }
+        public int BatchId { get; set; }
 
         public bool Checked { get; set; }
     }
@@ -99,6 +112,10 @@ namespace One.Values
         public List<string> StudentList { get; set; }
 
         public string Type { get; set; }//year or subyear
+
+        //for passing the year/subyear Id which invoked the selection 
+        //these will be used to backtrack the subcontrols (i.e. year and subyear controls)
+
     }
     //public class StudentEntryEventArgs : EventArgs
     //{

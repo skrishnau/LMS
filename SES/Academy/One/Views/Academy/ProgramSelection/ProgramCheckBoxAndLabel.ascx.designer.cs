@@ -7,45 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Academy.UserControls {
+namespace One.Views.Academy.ProgramSelection {
     
     
-    public partial class SessionsListingInAYDetailUC {
+    public partial class ProgramCheckBoxAndLabel {
         
         /// <summary>
-        /// lnkSessionName control.
+        /// chkBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkSessionName;
+        protected global::System.Web.UI.WebControls.CheckBox chkBox;
         
         /// <summary>
-        /// lblStartDate control.
+        /// hidId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStartDate;
+        protected global::System.Web.UI.WebControls.HiddenField hidId;
         
         /// <summary>
-        /// lblEndDate control.
+        /// pnlSubControls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEndDate;
-        
-        /// <summary>
-        /// pnlSessionPrograms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSessionPrograms;
+        protected global::System.Web.UI.WebControls.Panel pnlSubControls;
     }
 }

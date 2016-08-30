@@ -26,6 +26,10 @@
         <asp:HyperLink ID="HyperLink6" runat="server"
             NavigateUrl="~/Views/User/List.aspx">Exams</asp:HyperLink>
         <br />
+        <hr />
+          <asp:HyperLink ID="HyperLink8" runat="server"
+            NavigateUrl="~/Views/Academy/List.aspx">Manage Academic year and Sessions</asp:HyperLink>
+
 
     </div>
 

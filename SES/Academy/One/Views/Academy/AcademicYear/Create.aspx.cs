@@ -17,7 +17,7 @@ namespace One.Views.Academy.AcademicYear
             if (!IsPostBack)
             {
                 //DbHelper.ComboLoader.LoadSchool(ref cmbSchool, InitialValues.CustomSession["InstitutionId"],true);
-                CreateUC1.ValidationEnabled = false;
+                //CreateUC1.ValidationEnabled = false;
                 pnlSession.Visible = false;
             }
         }
@@ -61,8 +61,8 @@ namespace One.Views.Academy.AcademicYear
                         //earlier uncommented
                         //pnlAcademicYear.Enabled = false;
                         btnSave.Enabled = false;
-                        CreateUC1.ValidationEnabled = true;
-                        CreateUC1.AcademicYear = saved.Id;
+                        //CreateUC1.ValidationEnabled = true;
+                        CreateUC1.AcademicYearId = saved.Id;
                         //earlier uncommented
                         //pnlAcademicYear.BackColor = Color.Aquamarine;
                         pnlSession.Visible = true;

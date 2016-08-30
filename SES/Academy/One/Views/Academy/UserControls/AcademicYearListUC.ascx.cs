@@ -29,7 +29,7 @@ namespace One.Views.Academy.UserControls
             if (!sessionList.Any())
             {
                 //lblTitleInSessionsList.Text = "Sessions:";
-                pnlSessionsList.Controls.Add(new Literal(){Text = "None"});
+                pnlSessionsList.Controls.Add(new Literal() { Text = "None" });
 
             }
             else
@@ -47,8 +47,10 @@ namespace One.Views.Academy.UserControls
                     {
                         hypSes.BackColor = Color.LightGreen;
                     }
+                    //hypSes.Attributes.Add("margin","2px 0");
                     pnlSessionsList.Controls.Add(hypSes);
-                    pnlSessionsList.Controls.Add(new HtmlGenericControl("br"));
+                    pnlSessionsList.Controls.Add(new Literal() { Text = "<br />" });
+                    //pnlSessionsList.Controls.Add(new HtmlGenericControl("br"));
                 }
             }
         }

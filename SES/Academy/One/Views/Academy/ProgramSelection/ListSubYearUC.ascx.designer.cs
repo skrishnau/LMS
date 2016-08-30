@@ -7,126 +7,144 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Academy.Session {
+namespace One.Views.Academy.ProgramSelection {
     
     
-    public partial class CreateUC {
+    public partial class ListSubYearUC {
         
         /// <summary>
-        /// lblHeading control.
+        /// rdbtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHeading;
+        protected global::System.Web.UI.WebControls.RadioButton rdbtn;
         
         /// <summary>
-        /// lblAcademicHeading control.
+        /// lnkBatchSelect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAcademicHeading;
+        protected global::System.Web.UI.WebControls.LinkButton lnkBatchSelect;
         
         /// <summary>
-        /// lblAcademicStart control.
+        /// lblBatchName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAcademicStart;
+        protected global::System.Web.UI.WebControls.Label lblBatchName;
         
         /// <summary>
-        /// lblAcademicEnd control.
+        /// imgBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAcademicEnd;
+        protected global::System.Web.UI.WebControls.Image imgBtn;
         
         /// <summary>
-        /// txtName control.
+        /// hidSelectedProgramBatchId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtName;
+        protected global::System.Web.UI.WebControls.HiddenField hidSelectedProgramBatchId;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// hidStructureType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.HiddenField hidStructureType;
         
         /// <summary>
-        /// dtStart control.
+        /// hidYearId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.UserControls.DateChooser dtStart;
+        protected global::System.Web.UI.WebControls.HiddenField hidYearId;
         
         /// <summary>
-        /// dtEnd control.
+        /// hidSubYearId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.UserControls.DateChooser dtEnd;
+        protected global::System.Web.UI.WebControls.HiddenField hidSubYearId;
         
         /// <summary>
-        /// btnSaveAndAddMore control.
+        /// hidProgramId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveAndAddMore;
+        protected global::System.Web.UI.WebControls.HiddenField hidProgramId;
         
         /// <summary>
-        /// btnSaveAndReturn control.
+        /// hidProgrameName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveAndReturn;
+        protected global::System.Web.UI.WebControls.HiddenField hidProgrameName;
         
         /// <summary>
-        /// btnCancel control.
+        /// hidYearName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.HiddenField hidYearName;
         
         /// <summary>
-        /// hidSessionId control.
+        /// hidSubYearName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSessionId;
+        protected global::System.Web.UI.WebControls.HiddenField hidSubYearName;
         
         /// <summary>
-        /// hidAcademicYear control.
+        /// hidLevelId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidAcademicYear;
+        protected global::System.Web.UI.WebControls.HiddenField hidLevelId;
+        
+        /// <summary>
+        /// hidFacultyId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidFacultyId;
+        
+        /// <summary>
+        /// hidRunningClassId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidRunningClassId;
     }
 }

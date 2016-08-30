@@ -7,45 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Academy.UserControls {
+namespace One.Views.Academy.ProgramSelection {
     
     
-    public partial class SessionsListingInAYDetailUC {
+    public partial class ListLevelUC {
         
         /// <summary>
-        /// lnkSessionName control.
+        /// panel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkSessionName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl panel;
         
         /// <summary>
-        /// lblStartDate control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStartDate;
+        protected global::System.Web.UI.WebControls.HyperLink lblName;
         
         /// <summary>
-        /// lblEndDate control.
+        /// hidStructureId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEndDate;
+        protected global::System.Web.UI.WebControls.HiddenField hidStructureId;
         
         /// <summary>
-        /// pnlSessionPrograms control.
+        /// hidStructureType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSessionPrograms;
+        protected global::System.Web.UI.WebControls.HiddenField hidStructureType;
+        
+        /// <summary>
+        /// pnlSubControls control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder pnlSubControls;
     }
 }

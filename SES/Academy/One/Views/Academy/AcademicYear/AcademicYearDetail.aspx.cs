@@ -20,10 +20,13 @@ namespace One.Views.Academy.AcademicYear
                     try
                     {
                         hidAcademicYear.Value = aId;
-
-                    }catch{Response.Redirect("../List.aspx");}
+                        lnknewSession.NavigateUrl = "~/Views/Academy/Session/Create.aspx?aId=" + aId;
+                        lnkAddPrograms.NavigateUrl = "~/Views/Academy/ProgramSelection/ProgramSelect.aspx?aId="+aId;
+                    }
+                    catch { Response.Redirect("../List.aspx"); }
                 }
             }
+            LoadData();
         }
 
         public int AcademicYearId
@@ -42,11 +45,14 @@ namespace One.Views.Academy.AcademicYear
                 {
                     lblEndDate.Text = academic.EndDate.ToShortDateString();
                     lblStartDate.Text = academic.StartDate.ToShortDateString();
+                    lblAcademicYearName.Text = academic.Name;
 
-                    foreach (var source in academic.Sessions.ToList())
+                    foreach (var sess in academic.Sessions.ToList())
                     {
-                        //var sessUc = (Academy.UserControls.SessionsListingInAYDetailUC)
-                        //    Page.LoadControl
+                        var sessUc = (Academy.UserControls.SessionsListingInAYDetailUC)
+                            Page.LoadControl("~/Views/Academy/UserControls/SessionsListingInAYDetailUC.ascx");
+                        sessUc.LoadSessionData(sess.Id, sess.Name, sess.StartDate, sess.EndDate);
+                        pnlSessions.Controls.Add(sessUc);
                     }
 
                 }

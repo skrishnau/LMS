@@ -10,7 +10,7 @@ namespace Academic.DbEntities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string SessionType { get; set; }//e.g. Fall , Spring
+        //public string SessionType { get; set; }//e.g. Fall , Spring
 
         public int? ParentId { get; set; }
         public virtual Session Parent { get; set; }

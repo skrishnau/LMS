@@ -48,7 +48,7 @@ namespace Academic.DbHelper
                                 StartDate = m.StartDate,
                                 EndDate = m.EndDate,
                                 IsActive = true,
-                                SessionType = m.SessionType,
+                                //SessionType = m.SessionType,
                                 AcademicYearId = ay.Id
                             };
                             var sess = Context.Session.Add(Sentity);
@@ -87,7 +87,7 @@ namespace Academic.DbHelper
                         EndDate = new DateTime(model.YearSe, model.MonthSe + 1, model.DateSe),
                         IsActive = true,
                         AcademicYearId = saved.Id,
-                        SessionType = model.SessionType,
+                        //SessionType = model.SessionType,
 
                     };
                     Context.Session.Add(session);
@@ -185,7 +185,7 @@ namespace Academic.DbHelper
                     else
                     {
                         sess.EndDate = session.EndDate;
-                        sess.SessionType = session.SessionType;
+                        //sess.SessionType = session.SessionType;
                         sess.IsActive = session.IsActive;
                         sess.Name = session.Name;
                         sess.StartDate = session.StartDate;
@@ -331,6 +331,11 @@ namespace Academic.DbHelper
             public DbEntities.AcademicYear GetAcademicYear(int academicYearId)
             {
                 return Context.AcademicYear.Find(academicYearId);
+            }
+
+            public DbEntities.Session GetSession(int sessionId)
+            {
+                return Context.Session.Find(sessionId);
             }
         }
     }

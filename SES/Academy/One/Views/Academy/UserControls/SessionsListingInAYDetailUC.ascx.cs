@@ -13,5 +13,16 @@ namespace One.Views.Academy.UserControls
         {
 
         }
+
+        public void LoadSessionData(int sessionId, string name, DateTime start, DateTime end)
+        {
+            lnkSessionName.Text = name;
+            lnkSessionName.NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?sId=" + sessionId;
+            lblStartDate.Text = start.ToShortDateString();
+            lblEndDate.Text = end.ToShortDateString();
+            //GetPrograms in these sessions and add to pnlPrograms
+        }
+
+        
     }
 }

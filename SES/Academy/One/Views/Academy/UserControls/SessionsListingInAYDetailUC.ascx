@@ -1,7 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SessionsListingInAYDetailUC.ascx.cs" Inherits="One.Views.Academy.UserControls.SessionsListingInAYDetailUC" %>
 
-<div>
-    <div>
+<div style="margin-left: 20px;">
+    <strong>
+        <asp:HyperLink ID="lnkSessionName" runat="server" Text="Label"></asp:HyperLink></strong>
+    <div style="margin-left: 20px;">
         <table>
             <tr>
                 <td>Start Date</td>
@@ -20,8 +22,10 @@
     <br />
 
     <div>
-        <strong>Programs:</strong>
-        <hr />
-        <asp:Panel ID="pnlSessionPrograms" runat="server"></asp:Panel>
+
+        <asp:Panel ID="pnlSessionPrograms" runat="server" Visible="False">
+            <strong>Programs:</strong>
+            <hr />
+        </asp:Panel>
     </div>
 </div>

@@ -7,45 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Academy.UserControls {
+namespace One.Views.Academy.ProgramSelection {
     
     
-    public partial class SessionsListingInAYDetailUC {
+    public partial class BatchSelect {
         
         /// <summary>
-        /// lnkSessionName control.
+        /// hidProgramId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkSessionName;
+        protected global::System.Web.UI.WebControls.HiddenField hidProgramId;
         
         /// <summary>
-        /// lblStartDate control.
+        /// hidSelectedProgramBatchId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStartDate;
+        protected global::System.Web.UI.WebControls.HiddenField hidSelectedProgramBatchId;
         
         /// <summary>
-        /// lblEndDate control.
+        /// DataList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEndDate;
+        protected global::System.Web.UI.WebControls.DataList DataList1;
         
         /// <summary>
-        /// pnlSessionPrograms control.
+        /// btnDone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSessionPrograms;
+        protected global::System.Web.UI.WebControls.Button btnDone;
     }
 }
