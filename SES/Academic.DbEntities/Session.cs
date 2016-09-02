@@ -10,6 +10,11 @@ namespace Academic.DbEntities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        /// <summary>
+        /// the ordering of session to facilitate automatic session change
+        /// </summary>
+        public int Position { get; set; }
         //public string SessionType { get; set; }//e.g. Fall , Spring
 
         public int? ParentId { get; set; }

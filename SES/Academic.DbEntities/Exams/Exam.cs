@@ -13,33 +13,33 @@ namespace Academic.DbEntities.Exams
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
         public string Notice { get; set; }
 
+        public bool IsPercent { get; set; }
         public float? WeightPercent { get; set; }
-
-        public int ExamTypeId { get; set; }
+        public float? WeightMarks { get; set; }
 
         public DateTime? StartDate { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public DateTime? ResultDate { get; set; }
 
-        public int SchoolId { get; set; }
-        public int AcademicYearId { get; set; }
-        public int? SessionId { get; set; }
-
-        public int? ExamCoordinatorId { get; set; }
-
         public bool? Void { get; set; }
 
-
+        public int? ExamTypeId { get; set; }
         public virtual ExamType ExamType { get; set; }
 
+        public int SchoolId { get; set; }
         public virtual School School { get; set; }
+
+        public int AcademicYearId { get; set; }
         public virtual AcademicYear AcademicYear { get; set; }
+
+        public int? SessionId { get; set; }
         public virtual Session Session { get; set; }
 
-
+        public int? ExamCoordinatorId { get; set; }
         public virtual Users ExamCoordinator { get; set; }//teacher or staff
 
         public virtual ICollection<ExamSubject> ExamSubjects { get; set; }

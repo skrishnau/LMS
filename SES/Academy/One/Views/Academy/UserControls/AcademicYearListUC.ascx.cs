@@ -19,18 +19,23 @@ namespace One.Views.Academy.UserControls
         public void LoadAcademicYear(int academicYearId, string name, DateTime startDate
             , DateTime endDate, bool active, List<Academic.DbEntities.Session> sessionList)
         {
-            lnkAcademicYearName.Text = name;
+            lnkAcademicYearName.Text = " "+name+" ";
             lnkAcademicYearName.NavigateUrl = "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + academicYearId;
             lblEndDate.Text = endDate.ToShortDateString();
             lblStartDate.Text = startDate.ToShortDateString();
             if (active)
-                pnlBody.BackColor = Color.LightGreen;
+            {
+                //pnlBody.BackColor = Color.LightGreen;
+                lblActiveIndicator.Text = " (Active)";
+                lblActiveIndicator.ForeColor = Color.Green;
+                lnkAcademicYearName.BackColor = Color.LightGreen;
+            }
 
             if (!sessionList.Any())
             {
                 //lblTitleInSessionsList.Text = "Sessions:";
-                pnlSessionsList.Controls.Add(new Literal() { Text = "None" });
-
+                pnlSessionsList.Controls.Add(new Label() { Text = "None" , ForeColor = Color.OrangeRed});
+                
             }
             else
             {
@@ -43,12 +48,14 @@ namespace One.Views.Academy.UserControls
                         NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?sId=" + sess.Id
                         ,
                     };
+                    pnlSessionsList.Controls.Add(hypSes);
                     if (active && sess.IsActive)
                     {
                         hypSes.BackColor = Color.LightGreen;
+                        var activeIndicator = new Label(){Text = " (Active)", ForeColor = Color.Green};
+                        pnlSessionsList.Controls.Add(activeIndicator);
                     }
                     //hypSes.Attributes.Add("margin","2px 0");
-                    pnlSessionsList.Controls.Add(hypSes);
                     pnlSessionsList.Controls.Add(new Literal() { Text = "<br />" });
                     //pnlSessionsList.Controls.Add(new HtmlGenericControl("br"));
                 }

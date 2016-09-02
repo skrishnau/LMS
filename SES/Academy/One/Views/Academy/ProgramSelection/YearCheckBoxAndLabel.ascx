@@ -2,14 +2,17 @@
 
 <div style="margin: auto; text-align: left; padding-left: 5px; width: 300px;">
 
-    <asp:CheckBox ID="chkBox" runat="server" OnCheckedChanged="chkBox_CheckedChanged" />
-    &nbsp;|&nbsp;
+    <%--<asp:CheckBox ID="chkBox" runat="server" AutoPostBack="False" OnCheckedChanged="chkBox_CheckedChanged" />--%>
+
     <%--<asp:ImageButton ID="imgBtn" runat="server" Visible="False" OnClick="imgBtn_Click" CausesValidation="False" />--%>
-    <asp:LinkButton ID="lnkBatchSelect" runat="server" OnClick="lnkBtn_Click">
-        <asp:Label ID="lblBatchName" runat="server" Text=""></asp:Label>
+    <asp:CheckBox ID="chkBox" runat="server" AutoPostBack="False" />
+    <asp:LinkButton ID="lnkBatchSelect" CssClass="inline-block" Font-Underline="False" runat="server" OnClick="lnkBtn_Click">
+        <asp:Label ID="lblStructureName" runat="server" Text="" ForeColor="black"></asp:Label>
+        &nbsp;|&nbsp;
+        <asp:Label ID="lblBatchName" runat="server" Text="" ForeColor="darkblue" CssClass="hover-underline"></asp:Label>
         <asp:Image ID="imgBtn" runat="server" />
     </asp:LinkButton>
-    <asp:HiddenField ID="hidSelectedProgramBatchId" runat="server" Value="0"/>
+    <asp:HiddenField ID="hidSelectedProgramBatchId" runat="server" Value="0" />
     <%--<asp:Label ID="lbl" runat="server" Text="Label"></asp:Label>--%>
     <asp:HiddenField ID="hidId" runat="server" Value="0" />
     <div style="margin-left: 20px;">

@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using Academic.InitialValues;
+using One.Values.MemberShip;
 
 namespace One.Views.Academy.AcademicYear
 {
@@ -32,7 +33,8 @@ namespace One.Views.Academy.AcademicYear
             //{
             //    RequiredFieldValidator2.IsValid = true;
             //}
-
+            var user = Page.User as CustomPrincipal;
+            if(user!=null)
             if (IsValid)
             {
                 
@@ -53,7 +55,7 @@ namespace One.Views.Academy.AcademicYear
                 using (var helper = new DbHelper.AcademicYear())
                 {
 
-                    var saved = helper.AddOrUpdateAcademicYear(entity);
+                    var saved = helper.AddOrUpdateAcademicYear(user.SchoolId, entity);
                     if (saved!=null)
                     {
                         //Response.Write("SAVE SUCCESSFUL!");

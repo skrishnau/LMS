@@ -13,15 +13,6 @@ namespace One.Views.Academy.ProgramSelection {
     public partial class ListSubYearUC {
         
         /// <summary>
-        /// rdbtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbtn;
-        
-        /// <summary>
         /// lnkBatchSelect control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace One.Views.Academy.ProgramSelection {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkBatchSelect;
+        
+        /// <summary>
+        /// rdbtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbtn;
         
         /// <summary>
         /// lblBatchName control.

@@ -22,23 +22,64 @@
         <br />
         <%-- Programs listing --%>
         <div>
-            <div style="clear: both;">
-                <div style="float: left;">
-                    <strong>Programs
+            <div style="margin: 0 5px 20px 10px; padding-bottom: 15px;">
+                <div>
+                    <strong style="display: inline-block; border-bottom: 1px solid black;">Classes:
                     </strong>
-
-                </div>
-                <div style="float: right;">
-                    <asp:HyperLink ID="lnkAddPrograms" runat="server">
-                        <asp:Image ID="Image2" runat="server"
+                    &nbsp;
+                    <asp:HyperLink ID="lnkAddClasses" runat="server">
+                        <asp:Image ID="Image3" runat="server"
                             ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-                        Add Programs
                     </asp:HyperLink>
                 </div>
+                <%--<div style="clear: both;"></div>--%>
+
+
+                <asp:Panel ID="pnlSessionPrograms" runat="server" Visible="False">
+
+
+                    <div style="margin-left: 70px; width: 50%;">
+
+                        <asp:ListView ID="ListView1" runat="server">
+                            <LayoutTemplate>
+                                <table runat="server" id="table1" style="border-collapse: collapse; border: 1px solid lightgray;">
+                                    <thead>
+                                        <tr style="text-align: left; border: 1px solid lightgray;">
+                                            <th style="width: 50%;">Group</th>
+                                            <th>Study in (Year)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr runat="server" id="itemPlaceholder"></tr>
+                                    </tbody>
+                                </table>
+                            </LayoutTemplate>
+                            <AlternatingItemTemplate>
+                                <tr id="Tr1" runat="server" style="background-color: lightgoldenrodyellow;">
+                                    <td>
+                                        <asp:Label ID="Label1" runat="server" Text='<%# GetName(Eval("ProgramBatch")) %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Label2" runat="server" Text='<%# GetCurrent(Eval("Year"),Eval("SubYear")) %>'></asp:Label>
+                                    </td>
+                                </tr>
+                            </AlternatingItemTemplate>
+                            <ItemTemplate>
+                                <tr id="Tr2" runat="server">
+                                    <td>
+                                        <asp:Label ID="Label1" runat="server" Text='<%# GetName(Eval("ProgramBatch")) %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Label2" runat="server" Text='<%# GetCurrent(Eval("Year"),Eval("SubYear")) %>'></asp:Label>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:ListView>
+                    </div>
+                </asp:Panel>
+
             </div>
 
-            <div style="clear: both;"></div>
-            <hr />
             <asp:Panel ID="pnlAcademicPrograms" runat="server">
             </asp:Panel>
         </div>

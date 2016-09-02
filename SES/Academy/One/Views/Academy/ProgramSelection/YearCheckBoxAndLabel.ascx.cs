@@ -33,7 +33,7 @@ namespace One.Views.Academy.ProgramSelection
             hidProgrameName.Value = programeName;
             hidYearName.Value = yearName;
             hidSubYearName.Value = subyearName;
-            this.chkBox.Text = yearName;
+            lblStructureName.Text = yearName;
             //this.lblName.NavigateUrl = url;
         }
 
@@ -78,15 +78,28 @@ namespace One.Views.Academy.ProgramSelection
 
         void uc_CheckChanged(object sender, Values.RunningClassEventArgs e)
         {
-            foreach (ListSubYearUC uc in pnlSubControls.Controls)
+            var alreadySelected = Session["AlreadySelectedProgramBatches"] as Dictionary<int, List<int>>;
+            if (alreadySelected == null)
             {
-                uc.Checked = false;
+                Response.Redirect("~" + Request.Url.PathAndQuery, true);
             }
-            var send = sender as ListSubYearUC;
-            if (send != null)
+            else
             {
-                send.Checked = true;
+                foreach (ListSubYearUC uc in pnlSubControls.Controls)
+                {
+                    uc.Checked = false;
+                    alreadySelected[e.ProgramId].Remove(uc.SelectedProgramBatchId);
+                    uc.ClearProgramBatch();
+                }
+                var send = sender as ListSubYearUC;
+                if (send != null)
+                {
+                    //send.SelectedProgramBatchId = e.ProgramBatchId;
+                    send.SetSelectedBatch(e.ProgramBatchId,e.ProgramBatchName,e.RunningClassId);
+                    send.Checked = true;
+                }
             }
+
         }
 
 
@@ -112,19 +125,20 @@ namespace One.Views.Academy.ProgramSelection
         }
         //RadioButtonList
 
-        public List<RadioButtonList> GetControls()
-        {
-            var list = new List<RadioButtonList>();
-            foreach (RadioButtonList uc in pnlSubControls.Controls)
-            {
-                list.Add(uc);
-            }
-            return list;
-        }
+        //public List<RadioButtonList> GetControls()
+        //{
+        //    //var list = new List<RadioButtonList>();
+        //    //foreach (RadioButtonList uc in pnlSubControls.Controls)
+        //    //{
+        //    //    list.Add(uc);
+        //    //}
+        //    //return list;
+        //}
 
         public bool Checked
         {
             get { return chkBox.Checked; }
+            set { chkBox.Checked = value; }
         }
 
         public int LevelId
@@ -156,7 +170,7 @@ namespace One.Views.Academy.ProgramSelection
             get { return Convert.ToInt32(hidSelectedProgramBatchId.Value); }
             set { hidSelectedProgramBatchId.Value = value.ToString(); }
         }
-        
+
 
         public int RunningClassId
         {
@@ -187,7 +201,8 @@ namespace One.Views.Academy.ProgramSelection
                     YearName = hidYearName.Value
                     ,
                     SubYearName = hidSubYearName.Value
-                    ,ProgramBatchId = SelectedProgramBatchId
+                    ,
+                    ProgramBatchId = SelectedProgramBatchId
                 });
             }
         }
@@ -211,18 +226,37 @@ namespace One.Views.Academy.ProgramSelection
         //}
 
 
-
-        public void SetSelectedBatch(int programBatchId, string programBatchName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programBatchId">used to pass Id of selected programBatch</param>
+        /// <param name="programBatchName">used to pass Name of selected programBatch</param>
+        /// <param name="runningClassId">
+        /// Its used to pass Id of saved runningClass table row, --> to update database when programbatch is changed.
+        /// By default, already stored running class results inn atuo select of programbatch.
+        /// </param>
+        public void SetSelectedBatch(int programBatchId, string programBatchName, int runningClassId = 0)
         {
             hidSelectedProgramBatchId.Value = programBatchId.ToString();
             lblBatchName.Text = programBatchName;// == "" ? null : programBatchName;
             imgBtn.Visible = (programBatchName == "");
+            RunningClassId = runningClassId;
         }
 
 
         public Control FindCustomControl(string id)
         {
             return pnlSubControls.FindControl(id);
+        }
+
+        public List<ListSubYearUC> GetControls()
+        {
+            var list = new List<ListSubYearUC>();
+            foreach (ListSubYearUC uc in pnlSubControls.Controls)
+            {
+                list.Add(uc);
+            }
+            return list;
         }
     }
 }

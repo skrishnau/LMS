@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Subjects
 {
+    /// <summary>
+    /// since subject group is obsolete. its no use to link subject to subjectGroup
+    /// </summary>
+    [Obsolete]
    public class SubjectGroupSubject
     {
        public int Id { get; set; }

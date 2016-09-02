@@ -31,13 +31,13 @@ namespace One.Views.Academy.ProgramSelection
             var user = Page.User as CustomPrincipal;
             if (user != null)
             {
-                var path = Request.Path;
                 var alreadySelected = Session["AlreadySelectedProgramBatches"] as Dictionary<int, List<int>>;
+
                 if (alreadySelected == null)
                 {
-                    //var path = Request.Path;
-                    Response.Redirect(path, true);
+                    Response.Redirect("~" + Request.Url.PathAndQuery, true);
                 }
+
                 else
                 {
                     using (var batchhelper = new DbHelper.Batch())
@@ -49,9 +49,9 @@ namespace One.Views.Academy.ProgramSelection
                         //var batch = batchhelper.GetBatchList(user.SchoolId);
 
                         var batch = batchhelper.ListUnAssignedBatches(programId, academicYearId, sessionId);
-                        
+
                         //1. get list of programbatches for the given programId
-                        var find = alreadySelected[programId];
+                        var find = alreadySelected[programId].ToList();
                         //2. Remove the programBatchId which is already selected by the same Program's subcategory
                         //this is done to avoid removal of selected programbatch from list
                         find.Remove(programBatchId);
@@ -123,8 +123,7 @@ namespace One.Views.Academy.ProgramSelection
                 var alreadySelected = Session["AlreadySelectedProgramBatches"] as Dictionary<int, List<int>>;
                 if (alreadySelected == null)
                 {
-                    var path = Request.Path;
-                    Response.Redirect(path, true);
+                    Response.Redirect("~" + Request.Url.PathAndQuery, true);
                 }
                 else
                 {
@@ -137,6 +136,7 @@ namespace One.Views.Academy.ProgramSelection
                             var argument = e.CommandArgument.ToString().Split(new char[] { ',' });
                             var pbId = Convert.ToInt32(argument[0]);
                             alreadySelected[ProgramId].Remove(SelectedProgramBatchId);
+
                             alreadySelected[ProgramId].Add(pbId);
                             BatchSelected(this, new ProgramBatchEventArgs()
                             {

@@ -13,11 +13,21 @@ namespace Academic.DbEntities.Exams
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public int SchoolId { get; set; }
+        //public string PublicNotice { get; set; }
+
+        public bool IsPercent { get; set; }
+        public float? WeightPercent { get; set; }
+        public float? WeightMarks { get; set; }
 
         public bool? Void { get; set; }
 
+
+        public int SchoolId { get; set; }
         public virtual School School { get; set; }
+
+        /// <summary>
+        /// It gives exams like: all 1st terminal, all 2nd terminal, etc.
+        /// </summary>
         public virtual ICollection<Exam> Exams { get; set; }
 
     }

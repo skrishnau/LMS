@@ -29,7 +29,7 @@ namespace One.Views.Academy.Session
                     if (aca != null)
                     {
                         lblHeading.Text = @"New Session Create";
-                        lblAcademicHeading.Text=@"Session create in Academic Year: """ + aca.Name + @"""";
+                        lblAcademicHeading.Text = @"Session create in Academic Year: """ + aca.Name + @"""";
                         lblAcademicStart.Text = "Start Date: " + aca.StartDate.ToShortDateString();
                         lblAcademicEnd.Text = "End Date:   " + aca.EndDate.ToShortDateString();
                     }
@@ -158,7 +158,7 @@ namespace One.Views.Academy.Session
                         ,
                         AcademicYearId = AcademicYearId
                     };
-                    var sav = helper.AddOrUpdateSession(session);
+                    var sav = helper.AddOrUpdateSession(AcademicYearId, session);
                     if (sav)
                     {
                         if (!task)

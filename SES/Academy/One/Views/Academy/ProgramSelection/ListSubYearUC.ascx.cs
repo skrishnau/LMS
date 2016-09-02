@@ -94,24 +94,26 @@ namespace One.Views.Academy.ProgramSelection
             //}
         }
 
-        protected void rdbtn_CheckedChanged(object sender, EventArgs e)
-        {
-            var t = this;
-            //checkChanged event call
-            if (CheckChanged != null)
-            {
-                var arg = new RunningClassEventArgs()
-                {
-                    SubYearId = SubYearId
-                    ,
-                    YearId = YearId
-                    ,
-                    ProgramBatchId = SelectedProgramBatchId
-
-                };
-                CheckChanged(this, arg);
-            }
-        }
+        //protected void rdbtn_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    var t = this;
+        //    //checkChanged event call
+        //    if (CheckChanged != null)
+        //    {
+        //        var arg = new RunningClassEventArgs()
+        //        {
+        //            SubYearId = SubYearId
+        //            ,
+        //            YearId = YearId
+        //            ,
+        //            ProgramBatchId = SelectedProgramBatchId
+        //            ,
+        //            ProgramId = ProgramId
+        //            ,
+        //        };
+        //        CheckChanged(this, arg);
+        //    }
+        //}
 
         public bool Checked
         {
@@ -121,6 +123,23 @@ namespace One.Views.Academy.ProgramSelection
 
         protected void lnkBtn_Click(object sender, EventArgs e)
         {
+            if (CheckChanged != null)
+            {
+                var arg = new RunningClassEventArgs()
+                {
+                    SubYearId = SubYearId
+                    ,
+                    YearId = YearId
+                    ,
+                    ProgramBatchId = SelectedProgramBatchId
+                    ,
+                    ProgramId = ProgramId
+                    ,RunningClassId = RunningClassId
+                    ,ProgramBatchName = lblBatchName.Text
+
+                };
+                CheckChanged(this, arg);
+            }
             if (BatchSelectClicked != null)
             {
                 BatchSelectClicked(this, new RunningClassEventArgs()
@@ -167,12 +186,21 @@ namespace One.Views.Academy.ProgramSelection
         //    }
         //}
 
-        public void SetSelectedBatch(int programBatchId, string programBatchName)
+        public void SetSelectedBatch(int programBatchId, string programBatchName, int runningClassId = 0)
         {
             hidSelectedProgramBatchId.Value = programBatchId.ToString();
 
             lblBatchName.Text = programBatchName;// == "" ? null : programBatchName;
             imgBtn.Visible = (programBatchName == "");
+            RunningClassId = runningClassId;
+        }
+        public void ClearProgramBatch()
+        {
+            hidSelectedProgramBatchId.Value = "0";// programBatchId.ToString();
+
+            lblBatchName.Text = "";// programBatchName;// == "" ? null : programBatchName;
+            imgBtn.Visible = true;// (programBatchName == "");
+            //RunningClassId = runningClassId;
         }
     }
 }

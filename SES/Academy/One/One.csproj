@@ -366,6 +366,8 @@
     <Content Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx" />
     <Content Include="Views\Academy\AcademicYear\AcademicYearDetail.aspx" />
     <Content Include="Views\Academy\AcademicYear\AcademyCreate.aspx" />
+    <Content Include="Views\Academy\Activation\ActivateAcademicYearAndSession.aspx" />
+    <Content Include="Views\Academy\Activation\ActivateUC.ascx" />
     <Content Include="Views\Academy\ProgramSelection\BatchSelect.ascx" />
     <Content Include="Views\Academy\ProgramSelection\ProgramCheckBoxAndLabel.ascx" />
     <Content Include="Views\Academy\ProgramSelection\ListLevelUC.ascx" />
@@ -414,6 +416,8 @@
     <Content Include="Views\Course\ListingMain\CoursesOfGroup\CoursesOfGroupListing.aspx" />
     <Content Include="Views\Course\ListingMain\CoursesOfGroup\ListUc.ascx" />
     <Content Include="Views\Course\Section\Master\CourseSectionListing.aspx" />
+    <Content Include="Views\Exam\ExamType\ExamTypeCreate.aspx" />
+    <Content Include="Views\Exam\ExamType\ExamTypeList.aspx" />
     <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx" />
     <Content Include="Views\NoticeBoard\CreateUc.ascx" />
     <Content Include="Views\NoticeBoard\ListUc.ascx" />
@@ -977,6 +981,20 @@
     <Compile Include="Views\Academy\AcademicYear\AcademyCreate.aspx.designer.cs">
       <DependentUpon>AcademyCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Academy\Activation\ActivateAcademicYearAndSession.aspx.cs">
+      <DependentUpon>ActivateAcademicYearAndSession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Activation\ActivateAcademicYearAndSession.aspx.designer.cs">
+      <DependentUpon>ActivateAcademicYearAndSession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\Activation\ActivateUC.ascx.cs">
+      <DependentUpon>ActivateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Activation\ActivateUC.ascx.designer.cs">
+      <DependentUpon>ActivateUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Academy\ProgramSelection\BatchSelect.ascx.cs">
       <DependentUpon>BatchSelect.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1312,6 +1330,20 @@
     </Compile>
     <Compile Include="Views\Course\Section\Master\CourseSectionListing.aspx.designer.cs">
       <DependentUpon>CourseSectionListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\ExamType\ExamTypeCreate.aspx.cs">
+      <DependentUpon>ExamTypeCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\ExamType\ExamTypeCreate.aspx.designer.cs">
+      <DependentUpon>ExamTypeCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\ExamType\ExamTypeList.aspx.cs">
+      <DependentUpon>ExamTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\ExamType\ExamTypeList.aspx.designer.cs">
+      <DependentUpon>ExamTypeList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx.cs">
       <DependentUpon>StudentEntry.ascx</DependentUpon>
@@ -2260,6 +2292,7 @@
     <Folder Include="Views\AcademicPlacement\TeacherClass\" />
     <Folder Include="Views\All_Resusable_Codes\Paging\" />
     <Folder Include="Views\Assignments\" />
+    <Folder Include="Views\Exam\ExamType\NewFolder1\" />
     <Folder Include="Views\Student\StudentGroup\UserControls\" />
     <Folder Include="Views\Student\Student\" />
     <Folder Include="Views\Teacher\" />

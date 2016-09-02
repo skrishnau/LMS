@@ -13,5 +13,11 @@ namespace One.Views.Academy.UserControls
         {
 
         }
+
+        public void SetName(string structureName, string curretlyIn)
+        {
+            lnkProgram.Text = structureName;
+            lblCurrentlyIn.Text = curretlyIn;
+        }
     }
 }

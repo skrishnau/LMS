@@ -11,6 +11,11 @@ namespace Academic.DbEntities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        //automatically generated
+        public int Position { get; set; }
+
+
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
@@ -18,6 +23,8 @@ namespace Academic.DbEntities
 
         //foreign
         public bool IsActive { get; set; }
+        public bool? Completed { get; set; }
+
         public int SchoolId { get; set; }
 
 

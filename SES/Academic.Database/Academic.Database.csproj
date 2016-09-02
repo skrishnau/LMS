@@ -218,6 +218,14 @@
     <Compile Include="Migrations\201608281321222_minor_changes1.Designer.cs">
       <DependentUpon>201608281321222_minor_changes1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609010011490_position_added_in_academicYear_and_session.cs" />
+    <Compile Include="Migrations\201609010011490_position_added_in_academicYear_and_session.Designer.cs">
+      <DependentUpon>201609010011490_position_added_in_academicYear_and_session.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609012300048_exam_type_updated.cs" />
+    <Compile Include="Migrations\201609012300048_exam_type_updated.Designer.cs">
+      <DependentUpon>201609012300048_exam_type_updated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -360,6 +368,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608281321222_minor_changes1.resx">
       <DependentUpon>201608281321222_minor_changes1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609010011490_position_added_in_academicYear_and_session.resx">
+      <DependentUpon>201609010011490_position_added_in_academicYear_and_session.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609012300048_exam_type_updated.resx">
+      <DependentUpon>201609012300048_exam_type_updated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

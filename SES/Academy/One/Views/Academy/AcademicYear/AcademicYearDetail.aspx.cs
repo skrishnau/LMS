@@ -21,7 +21,7 @@ namespace One.Views.Academy.AcademicYear
                     {
                         hidAcademicYear.Value = aId;
                         lnknewSession.NavigateUrl = "~/Views/Academy/Session/Create.aspx?aId=" + aId;
-                        lnkAddPrograms.NavigateUrl = "~/Views/Academy/ProgramSelection/ProgramSelect.aspx?aId="+aId;
+                        lnkAddClasses.NavigateUrl = "~/Views/Academy/ProgramSelection/ProgramSelect.aspx?aId="+aId;
                     }
                     catch { Response.Redirect("../List.aspx"); }
                 }
@@ -51,17 +51,57 @@ namespace One.Views.Academy.AcademicYear
                     {
                         var sessUc = (Academy.UserControls.SessionsListingInAYDetailUC)
                             Page.LoadControl("~/Views/Academy/UserControls/SessionsListingInAYDetailUC.ascx");
-                        sessUc.LoadSessionData(sess.Id, sess.Name, sess.StartDate, sess.EndDate);
+                        sessUc.LoadSessionData(academic.Id, sess.Id, sess.Name, sess.StartDate, sess.EndDate);
                         pnlSessions.Controls.Add(sessUc);
                     }
 
                 }
+
+            }
+
+            using (var helper = new DbHelper.AcademicPlacement())
+            {
+                var classes = helper.ListRunningClasses(AcademicYearId, 0);//.OrderBy(p=>p.ProgramBatch.Program.Name);
+                
+                if (classes.Any())
+                    pnlSessionPrograms.Visible = true;
+               
+                ListView1.DataSource = classes;
+                ListView1.DataBind();
             }
         }
 
         protected void btnActivate_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        public string GetName(object programBatch)
+        {
+            var p = programBatch as Academic.DbEntities.Batches.ProgramBatch;
+            if (p != null)
+            {
+                return p.NameFromBatch;
+            }
+            return "";
+        }
+
+        public string GetCurrent(object year, object subyear)
+        {
+            string ret = "";
+            var y = year as Academic.DbEntities.Structure.Year;
+            var s = (subyear == null) ? null : subyear as Academic.DbEntities.Structure.SubYear;
+            if (y != null)
+            {
+                ret = y.Name;
+
+            }
+            if (s != null)
+            {
+                ret += " , " + s.Name;
+            }
+            return ret;
         }
     }
 }

@@ -32,12 +32,47 @@ namespace Academic.DbHelper
             //----------------START------------------//
             #region Running Classes Functions
 
+            //Used ::: by latest--> after github
+            public bool AddRunningClass(List<DbEntities.AcacemicPlacements.RunningClass> rcList)
+            {
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        foreach (var rc in rcList)
+                        {
+                            var ent = Context.RunningClass.Find(rc.Id);
+                            if (ent == null)
+                            {
+                                Context.RunningClass.Add(rc);
+                                Context.SaveChanges();
+                            }
+                            else
+                            {
+                                ent.ProgramBatchId = rc.ProgramBatchId;
+                                ent.Void = rc.Void;
+                                ent.Completed = rc.Completed;
+                                ent.IsActive = rc.IsActive;
+                                Context.SaveChanges();
+                            }
+                            
+                        }
+                        scope.Complete();
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
             public bool AddOrUpdateRunningClass(List<DbEntities.AcacemicPlacements.RunningClass> classes)
             {
                 try
                 {
                     using (var scope = new TransactionScope())
-                    using(var helper = new DbHelper.AcademicYear())
+                    using (var helper = new DbHelper.AcademicYear())
                     {
                         var isThisActiveAcademicYearSession =
                             helper.IsThisActiveAcademicYearSession(classes.First().AcademicYearId,
@@ -685,7 +720,7 @@ namespace Academic.DbHelper
                 return new List<StudentSubjectModel>() { new StudentSubjectModel() { } };
             }
 
-            
+
 
 
             public bool Subscribe(SubjectSubscription subsc)
@@ -896,6 +931,28 @@ namespace Academic.DbHelper
                                 && (r.SessionId ?? 0) == sessionId
                           select r.ProgramBatch).ToList();
                 return pb.FirstOrDefault();
+            }
+
+            //Used --> after github
+            public Academic.DbEntities.AcacemicPlacements.RunningClass GetRunningClassInAcademicYear
+             (int academicYearId, int yearId, int sessionId = 0, int subYearId = 0)
+            {
+                var rc = (from r in Context.RunningClass
+                          // join s in Context.StudentClass on r.Id equals s.RunningClassId
+                          where r.AcademicYearId == academicYearId
+                                && r.YearId == yearId
+                                && (r.SubYearId ?? 0) == subYearId
+                                && (r.SessionId ?? 0) == sessionId
+                          select r).FirstOrDefault();
+                return rc;
+            }
+
+            //used
+            public List<RunningClass> ListRunningClasses(int academicYearId, int sessionId)
+            {
+                var rc = Context.RunningClass.Where(x =>
+                    x.AcademicYearId == academicYearId && (x.SessionId ?? 0) == sessionId).ToList();
+                return rc;
             }
         }
 

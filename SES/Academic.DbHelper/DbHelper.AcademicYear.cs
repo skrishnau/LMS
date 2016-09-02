@@ -118,7 +118,7 @@ namespace Academic.DbHelper
                 return ay;
             }
 
-            public DbEntities.AcademicYear AddOrUpdateAcademicYear(DbEntities.AcademicYear entity)
+            public DbEntities.AcademicYear AddOrUpdateAcademicYear(int schoolId, DbEntities.AcademicYear entity)
             {
                 //bool saveSuccess = false;
                 var ent = Context.AcademicYear.Find(entity.Id);
@@ -129,7 +129,8 @@ namespace Academic.DbHelper
                         if (ent == null)
                         {
                             //add
-
+                            var max = Context.AcademicYear.Where(x => x.SchoolId == schoolId).Max(m => m.Position);
+                            entity.Position = max + 1;
                             ent = Context.AcademicYear.Add(entity);
                             Context.SaveChanges();
                             //saveSuccess = true;
@@ -172,27 +173,34 @@ namespace Academic.DbHelper
                 return aca.ToList();
             }
 
-            public bool AddOrUpdateSession(DbEntities.Session session)
+            public bool AddOrUpdateSession(int academicYearId, DbEntities.Session session)
             {
                 try
                 {
-                    var sess = Context.Session.Find(session.Id);
-                    if (sess == null)
+                    var a = Context.AcademicYear.Find(academicYearId);
+                    if (a != null)
                     {
-                        Context.Session.Add(session);
-                        Context.SaveChanges();
-                    }
-                    else
-                    {
-                        sess.EndDate = session.EndDate;
-                        //sess.SessionType = session.SessionType;
-                        sess.IsActive = session.IsActive;
-                        sess.Name = session.Name;
-                        sess.StartDate = session.StartDate;
+                        var max = a.Sessions.Max(x => x.Position);
+                        var sess = Context.Session.Find(session.Id);
+                        if (sess == null)
+                        {
+                            session.Position = max + 1;
+                            Context.Session.Add(session);
+                            Context.SaveChanges();
+                        }
+                        else
+                        {
+                            sess.EndDate = session.EndDate;
+                            //sess.SessionType = session.SessionType;
+                            sess.IsActive = session.IsActive;
+                            sess.Name = session.Name;
+                            sess.StartDate = session.StartDate;
 
-                        Context.SaveChanges();
+                            Context.SaveChanges();
+                        }
+                        return true;
                     }
-                    return true;
+                    return false;
                 }
                 catch (Exception)
                 {
@@ -328,14 +336,114 @@ namespace Academic.DbHelper
                 }
             }
 
+            //used
             public DbEntities.AcademicYear GetAcademicYear(int academicYearId)
             {
                 return Context.AcademicYear.Find(academicYearId);
             }
-
+            //used
             public DbEntities.Session GetSession(int sessionId)
             {
                 return Context.Session.Find(sessionId);
+            }
+
+            //used--> after github
+            public Academic.DbEntities.Session GetNextSessionToActivate(int schoolId)
+            {
+                try
+                {
+                    var a = Context.AcademicYear.Where(x => x.IsActive && x.SchoolId == schoolId).ToList();
+                    if (a.Any())
+                    {
+                        var maxStartDate = a.Max(x => x.StartDate);
+
+                        var latestStart = a.Where(x => x.StartDate == maxStartDate).ToList();
+                        var maxEndDate = latestStart.Max(x => x.EndDate);
+                        var latestEnd = latestStart.FirstOrDefault(x => x.EndDate == maxEndDate);
+                        if (latestEnd != null)
+                        {
+                            var sess = latestEnd.Sessions.FirstOrDefault(x => x.IsActive);
+                            if (sess != null)
+                            {
+                                var nextSess = Context.Session
+                                    .Where(
+                                        x =>
+                                            x.AcademicYearId == latestEnd.Id && x.Position > sess.Position &&
+                                            !(x.Void ?? false))
+                                    .OrderBy(x => x.Position).FirstOrDefault();
+                                return nextSess
+                                    ??
+                                    new Session()
+                                    {
+                                        Id = 0
+                                        ,
+                                        AcademicYearId = latestEnd.Id
+                                        ,
+                                        AcademicYear = latestEnd
+                                    ,
+                                    };
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        var notactive = Context.AcademicYear.Where(x => x.SchoolId == schoolId &&
+                                                                        !(x.Void ?? false)).ToList();
+                        var latest = notactive.FirstOrDefault(x => x.Position == (notactive.Max(m => m.Position)));
+                        if (latest != null)
+                            return latest.Sessions.FirstOrDefault(x => x.Position == (latest.Sessions.Min(m => m.Position)));
+                    }
+                    return null;
+                }
+                catch
+                {
+                    return null;
+                    throw;
+                }
+            }
+
+            //used ==> after github
+            public Academic.DbEntities.AcademicYear GetNextAcademicYearToActivate(int schoolId)
+            {
+                try
+                {
+                    var a = Context.AcademicYear.Where(x => x.SchoolId == schoolId && x.IsActive).ToList();
+                    if (a.Any())
+                    {
+                        //var lateset = a.Where(x => x.Position == (a.Max(y => y.Position)));
+                        return Context.AcademicYear.Where(x => x.SchoolId == schoolId && x.Position > a.Max(m => m.Position))
+                            .OrderBy(o => o.Position).FirstOrDefault();
+                    }
+                    var max = Context.AcademicYear.Where(x => !(x.Void ?? false) && x.SchoolId == schoolId).Max(x => x.Position);
+                    return Context.AcademicYear.FirstOrDefault(x => x.SchoolId == schoolId && x.Position == max);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            //Used
+            public void ActivateAcademicYearSession(int aId, int sId)
+            {
+                using (var scope = new TransactionScope())
+                {
+                    var a = Context.AcademicYear.Find(aId);
+                    if (a != null)
+                    {
+                        a.IsActive = true;
+                        Context.SaveChanges();
+                    }
+                    var s = Context.Session.Find(sId);
+                    if (s != null)
+                    {
+                        s.IsActive = true;
+                        Context.SaveChanges();
+                    }
+                    scope.Complete();
+
+                }
             }
         }
     }

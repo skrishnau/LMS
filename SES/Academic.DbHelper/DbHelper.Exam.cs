@@ -95,6 +95,26 @@ namespace Academic.DbHelper
                     return null;
                 }
             }
+
+            public ExamType AddOrUpdateExamType(ExamType eType)
+            {
+                var ent = Context.ExamType.Find(eType.Id);
+                if (ent == null)
+                {
+                   ent = Context.ExamType.Add(eType);
+                }
+                else
+                {
+                    ent.WeightMarks = eType.WeightMarks;
+                    ent.WeightPercent = eType.WeightPercent;
+                    ent.IsPercent = eType.IsPercent;
+                    ent.Name = eType.Name;
+                    ent.Description = eType.Description;
+                    ent.Void = eType.Void;
+                   }
+                Context.SaveChanges();
+                return ent;
+            }
         }
     }
 }

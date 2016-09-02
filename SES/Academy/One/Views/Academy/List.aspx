@@ -13,7 +13,7 @@
             <div style="float: left;">
                 <asp:Button ID="Button1"
                     runat="server" Height="27px"
-                    Text="Activate New Academic year/ Session" Width="262px" />
+                    Text="Activate Next Academic year/ Session" Width="262px" />
 
             </div>
             <div style="float: right;">

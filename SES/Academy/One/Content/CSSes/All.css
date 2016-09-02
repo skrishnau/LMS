@@ -379,7 +379,13 @@ tr.pager td {
 .block {
     display: block;
 }
-
+.inline-block {
+    display: inline-block;
+}
+.hover-underline:hover {
+    text-decoration: underline;
+    color: darkviolet;
+}
 .no-underline {
     text-decoration: none;
 }

@@ -7,63 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Academy.UserControls {
+namespace One.Views.Academy.Activation {
     
     
-    public partial class AcademicYearListUC {
+    public partial class ActivateUC {
         
         /// <summary>
-        /// pnlBody control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlBody;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// lnkAcademicYearName control.
+        /// btnActivate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkAcademicYearName;
+        protected global::System.Web.UI.WebControls.Button btnActivate;
         
         /// <summary>
-        /// lblActiveIndicator control.
+        /// hidAcademicYearId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblActiveIndicator;
+        protected global::System.Web.UI.WebControls.HiddenField hidAcademicYearId;
         
         /// <summary>
-        /// lblStartDate control.
+        /// hidSessionId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStartDate;
-        
-        /// <summary>
-        /// lblEndDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEndDate;
-        
-        /// <summary>
-        /// pnlSessionsList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSessionsList;
+        protected global::System.Web.UI.WebControls.HiddenField hidSessionId;
     }
 }

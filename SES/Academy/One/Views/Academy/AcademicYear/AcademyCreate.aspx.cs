@@ -89,7 +89,7 @@ namespace One.Views.Academy.AcademicYear
                     using (var helper = new DbHelper.AcademicYear())
                     {
 
-                        var saved = helper.AddOrUpdateAcademicYear(entity);
+                        var saved = helper.AddOrUpdateAcademicYear(user.SchoolId,entity);
                         if (saved != null)
                         {
                             var btn = sender as Button;
