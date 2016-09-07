@@ -17,7 +17,7 @@ namespace One.Views.Class.Enrollment
         {
             if (!IsPostBack)
             {
-                Session["enrolledList"] = new List<Academic.DbEntities.Class.SubjectSessionUser>();
+                Session["enrolledList"] = new List<Academic.DbEntities.Class.UserClass>();
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
@@ -266,14 +266,14 @@ namespace One.Views.Class.Enrollment
         }
 
 
-        private List<Academic.DbEntities.Class.SubjectSessionUser> GetSubjectSessionUsersList()
+        private List<Academic.DbEntities.Class.UserClass> GetSubjectSessionUsersList()
         {
-            var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
+            var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.UserClass>;
             if (enrolledList != null)
             {
                 return enrolledList.ToList();
             }
-            return new List<Academic.DbEntities.Class.SubjectSessionUser>();
+            return new List<Academic.DbEntities.Class.UserClass>();
         }
 
         //private List<int> GetEnrolledList()
@@ -288,7 +288,7 @@ namespace One.Views.Class.Enrollment
 
         private bool AddToEnrolledList(int userId)
         {
-            var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
+            var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.UserClass>;
             if (enrolledList != null)
             {
 
@@ -308,14 +308,14 @@ namespace One.Views.Class.Enrollment
                 }
                 else
                 {
-                    var ssu = new Academic.DbEntities.Class.SubjectSessionUser()
+                    var ssu = new Academic.DbEntities.Class.UserClass()
                     {
                         UserId = userId
                         ,
 
                         Void = false
                         ,
-                        SubjectSessionId = SubjectSessionId
+                        SubjectClassId = SubjectSessionId
                         ,
                         CreatedDate = DateTime.Now
                     };
@@ -343,7 +343,7 @@ namespace One.Views.Class.Enrollment
         bool RemoveFromEnrolledList(int userId)
         {
             //var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
-            var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
+            var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.UserClass>;
             if (enrolledList != null)
             {
                 var found = enrolledList.Find(x => x.UserId == userId);

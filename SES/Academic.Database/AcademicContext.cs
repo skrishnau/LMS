@@ -43,16 +43,21 @@ namespace Academic.Database
 
         // ---------------- ClassUser, ClassSubject ----------------//
 
-        public DbSet<Academic.DbEntities.Class.SubjectSessionUser> SubjectSessionUser { get; set; }
-        public DbSet<DbEntities.Class.SubjectSession> SubjectSession { get; set; }
+        public DbSet<Academic.DbEntities.Class.UserClass> UserClass { get; set; }
+        public DbSet<DbEntities.Class.SubjectClass> SubjectClass { get; set; }
 
         //---------------------------------------------------------//
 
 
         //--------Academic Placement--------------//
         public DbSet<Academic.DbEntities.AcacemicPlacements.RunningClass> RunningClass { get; set; }
+
         public DbSet<Academic.DbEntities.AcacemicPlacements.StudentClass> StudentClass { get; set; }
-        public DbSet<Academic.DbEntities.AcacemicPlacements.SubjectClass> SubjectClass { get; set; }
+
+        //uncomment this
+        //public DbSet<Academic.DbEntities.AcacemicPlacements.SubjectClass> SubjectClass { get; set; }
+
+
         public DbSet<Academic.DbEntities.AcacemicPlacements.SubjectSubscription> SubjectSubscription { get; set; }
         public DbSet<Academic.DbEntities.AcacemicPlacements.StudentsOpinionAboutSubject> StudentsOpinionAboutSubject { get; set; }
         public DbSet<Academic.DbEntities.AcacemicPlacements.TeacherClass> TeacherClass { get; set; }
@@ -79,8 +84,11 @@ namespace Academic.Database
         public DbSet<DbEntities.Exams.Exam> Exam { get; set; }
         public DbSet<DbEntities.Exams.ExamStudent> ExamStudent { get; set; }
         public DbSet<DbEntities.Exams.ExamSubject> ExamSubject { get; set; }
-        public DbSet<DbEntities.Exams.ExamSubjectTeacher> ExamSubjectTeacher { get; set; }
-        public DbSet<DbEntities.Exams.ExamSubType> ExamSubType { get; set; }
+        //uncomment this
+        public DbSet<DbEntities.Exams.ExamSubjectExaminer> ExamSubjectExaminer { get; set; }
+
+        //public DbSet<DbEntities.Exams.ExamSubType> ExamSubType { get; set; }
+
         public DbSet<DbEntities.Exams.ExamType> ExamType { get; set; }
 
 
@@ -214,6 +222,7 @@ namespace Academic.Database
         public DbSet<DbEntities.Notices.Notice> Notice { get; set; }
         public DbSet<DbEntities.Notices.NoticeNotification> NoticeNotification { get; set; }
         public DbSet<DbEntities.Notices.NoticeTo> NoticeTo { get; set; }
+        public DbSet<DbEntities.Notices.NoticeFiles> NoticeFiles { get; set; }
 
 
 

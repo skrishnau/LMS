@@ -18,16 +18,16 @@ namespace One.Views.Exam.ExamType
 
         protected void ddlWeight_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlWeight.SelectedIndex == 0)
-            {
-                //regularVali.ValidationExpression = @"^\[0-9][0-9][0-9]+(\.[0-9][0-9])+(\.[%])?$";
-                rangeVali.Enabled = true;
-            }
-            else
-            {
-                //regularVali.ValidationExpression = @"^\[0-9]*+(\.[0-9][0-9])";
-                rangeVali.Enabled = false;
-            }
+            //if (ddlWeight.SelectedIndex == 0)
+            //{
+            //    //regularVali.ValidationExpression = @"^\[0-9][0-9][0-9]+(\.[0-9][0-9])+(\.[%])?$";
+            //    valiWeight.Enabled = true;
+            //}
+            //else
+            //{
+            //    //regularVali.ValidationExpression = @"^\[0-9]*+(\.[0-9][0-9])";
+            //    valiWeight.Enabled = false;
+            //}
         }
 
         public int ExamTypeId
@@ -47,12 +47,14 @@ namespace One.Views.Exam.ExamType
                     var txt2 = (float)Convert.ToDecimal(txt1);
                     if (txt2 < 0 || txt2 > 100)
                     {
-                        rangeVali.IsValid = false;
+                        valiWeight.ErrorMessage = "0 to 100 only.";
+                        valiWeight.IsValid = false;
                     }
                 }
                 catch
                 {
-                    regularVali.IsValid = false;
+                    valiWeight.ErrorMessage = "Not a number";
+                    valiWeight.IsValid = false;
                 }
 
             }
@@ -64,10 +66,12 @@ namespace One.Views.Exam.ExamType
                 }
                 catch
                 {
-                    regularVali.IsValid = false;
+                    valiWeight.ErrorMessage = "Not a number";
+                    valiWeight.IsValid = false;
                 }
             }
-            // SaveExamType();
+
+            SaveExamType();
         }
 
         void SaveExamType()
@@ -91,17 +95,16 @@ namespace One.Views.Exam.ExamType
                             IsPercent = ispercent
                             ,
                             SchoolId = user.SchoolId
+                            ,
                         };
-                        if (ispercent)
-                        {
-                            eType.WeightPercent = (float)Convert.ToDecimal(txtWeight.Text);
-                            eType.WeightMarks = null;
-                        }
-                        else
-                        {
-                            eType.WeightPercent = null;
-                            eType.WeightMarks = (float)Convert.ToDecimal(txtWeight.Text);
-                        }
+
+                        if (txtFullmarks.Text != "")
+                            eType.FullMarks = Convert.ToInt32(txtFullmarks.Text);
+                        if (txtPassmarks.Text != "")
+                            eType.PassMarks = Convert.ToInt32(txtPassmarks.Text);
+
+                        eType.Weight = (float)Convert.ToDecimal(txtWeight.Text);
+
                         using (var helper = new DbHelper.Exam())
                         {
                             var saved = helper.AddOrUpdateExamType(eType);

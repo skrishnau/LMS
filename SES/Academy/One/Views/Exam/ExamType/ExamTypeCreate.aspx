@@ -51,14 +51,49 @@
                             </asp:DropDownList>
                             &nbsp;
                             <asp:TextBox ID="txtWeight" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="regularVali" runat="server" ErrorMessage="Not a number. " ControlToValidate="txtWeight" ForeColor="red"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="valiWeight" runat="server" ErrorMessage="Not a number. " ControlToValidate="txtWeight" ForeColor="red"></asp:RequiredFieldValidator>
+                            <%--<asp:RequiredFieldValidator ID="rangeVali" ForeColor="red" runat="server" ErrorMessage="0 to 100 Only." ControlToValidate="txtWeight" MaximumValue="100" MinimumValue="0"></asp:RequiredFieldValidator>--%>
+                        </td>
 
-                            <asp:RequiredFieldValidator ID="rangeVali" ForeColor="red" runat="server" ErrorMessage="0 to 100 Only." ControlToValidate="txtWeight" MaximumValue="100" MinimumValue="0"></asp:RequiredFieldValidator>
+                    </tr>
+                    <tr class="this-row">
+                        <td>Marks</td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <%--<asp:DropDownList ID="DropDownList1" runat="server" Height="23px" Width="100px" AutoPostBack="True" OnSelectedIndexChanged="ddlWeight_SelectedIndexChanged">
+                                            <Items>
+                                                <asp:ListItem Value="1" Text="In Marks" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Value="0" Text="In Grade"></asp:ListItem>
+                                            </Items>
+                                        </asp:DropDownList>--%>
+                                        <asp:Panel ID="Panel1" runat="server">
+                                            <table>
+                                                <tr>
+                                                    <td>FullMarks</td>
+                                                    <td>
+                                                        <asp:TextBox ID="txtFullmarks" runat="server" TextMode="Number"></asp:TextBox>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Pass Marks</td>
+                                                    <td>
+                                                        <asp:TextBox ID="txtPassmarks" runat="server" TextMode="Number"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </asp:Panel>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
 
                 </table>
-                <asp:HiddenField ID="hidExamTypeId" runat="server" Value="0"/>
+                <asp:HiddenField ID="hidExamTypeId" runat="server" Value="0" />
+
             </ContentTemplate>
         </asp:UpdatePanel>
         <div>

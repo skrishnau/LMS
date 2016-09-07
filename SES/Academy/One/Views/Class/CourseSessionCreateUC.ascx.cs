@@ -46,7 +46,7 @@ namespace One.Views.Class
             if (Page.IsValid)
             {
                 var now = DateTime.Now;
-                var subjectSession = new Academic.DbEntities.Class.SubjectSession()
+                var subjectSession = new Academic.DbEntities.Class.SubjectClass()
                 {
                     Name = txtName.Text
                     ,

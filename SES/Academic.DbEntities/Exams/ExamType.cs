@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Academic.DbEntities.Marks;
 using Academic.DbEntities.Office;
 
 namespace Academic.DbEntities.Exams
 {
+    //used
     public class ExamType
     {
         public int Id { get; set; }
@@ -15,9 +17,17 @@ namespace Academic.DbEntities.Exams
 
         //public string PublicNotice { get; set; }
 
+        //these four values can be changed for each subject
+        //public bool IsGradingSystem { get; set; }
+
         public bool IsPercent { get; set; }
-        public float? WeightPercent { get; set; }
-        public float? WeightMarks { get; set; }
+        public float? Weight { get; set; }
+
+
+
+        public int? FullMarks { get; set; }
+        public int? PassMarks { get; set; }
+        //end
 
         public bool? Void { get; set; }
 

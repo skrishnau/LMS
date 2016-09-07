@@ -425,8 +425,12 @@ namespace Academic.DbHelper
                 return subs;
             }
 
+            //uncomment this
+            
             public List<StudentSubjectModel> GetCurrentRegularSubjectsOfUser(int userId)
             {
+                // uncomment all
+                /*
                 var user = Context.Users.Find(userId);
                 if (user != null)
                 {
@@ -518,9 +522,10 @@ namespace Academic.DbHelper
                         }
                     }
 
-                }
+                }*/
                 return new List<StudentSubjectModel>();
             }
+            
 
             public List<StudentSubjectModel> GetExtraSubjectsOfUser(int userId)
             {
@@ -539,10 +544,13 @@ namespace Academic.DbHelper
             /// <param name="userId"></param>
             public List<StudentSubjectModel> GetAllSubjectsOfUser(int userId)
             {
-                var regular = GetCurrentRegularSubjectsOfUser(userId);
-                var extra = GetExtraSubjectsOfUser(userId);
-                regular.AddRange(extra);
-                return regular;
+                //uncomment this all
+                //var regular = GetCurrentRegularSubjectsOfUser(userId);
+                //var extra = GetExtraSubjectsOfUser(userId);
+                //regular.AddRange(extra);
+                //return regular;
+
+                return null;
             }
 
 
@@ -614,7 +622,7 @@ namespace Academic.DbHelper
                 if (user != null)
                 {
                     var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
-                        .Select(x => x.SubjectSession).Where(x => !(x.Void ?? false) && !(x.SessionComplete ?? false))
+                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && !(x.SessionComplete ?? false))
                         .ToList();
                         //.Select(x=>x.Subject).ToList();
 
@@ -637,7 +645,7 @@ namespace Academic.DbHelper
                 if (user != null)
                 {
                     var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
-                        .Select(x => x.SubjectSession).Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
+                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
                         .ToList();//.Select(x=>x.Subject).ToList();
 
                     //var complete = subSession.Where(x => ).ToList();
@@ -664,7 +672,7 @@ namespace Academic.DbHelper
                 if (user != null)
                 {
                     var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
-                         .Select(x => x.SubjectSession).Where(x => !(x.Void ?? false)).ToList();//.Select(x=>x.Subject).ToList();
+                         .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false)).ToList();//.Select(x=>x.Subject).ToList();
 
                     //complete means(or goes to)  earlier courses
                     var complete = subSession.Where(x => (x.SessionComplete ?? false)).ToList();

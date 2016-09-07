@@ -415,6 +415,12 @@ namespace Academic.DbHelper
             {
                 return;
             }
+
+            //used
+            public List<Users> ListUsersWithNameStartingFrom(string nameStartsWith)
+            {
+                return Context.Users.Where(x => x.FirstName.StartsWith(nameStartsWith)).Take(50).ToList();
+            }
         }
     }
 }

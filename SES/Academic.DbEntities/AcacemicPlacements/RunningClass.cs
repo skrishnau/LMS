@@ -31,8 +31,8 @@ namespace Academic.DbEntities.AcacemicPlacements
         //obsolete
         [Obsolete]
         public virtual ICollection<StudentClass> StudentClasses { get; set; }
-        [Obsolete]
-        public virtual ICollection<SubjectClass> SubjectClasses { get; set; }
+        //[Obsolete]
+        //public virtual ICollection<SubjectClass> SubjectClasses { get; set; }
         //apply next table to store students' opinion about the course
     }
 }

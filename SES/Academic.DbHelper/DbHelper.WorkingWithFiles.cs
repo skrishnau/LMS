@@ -131,6 +131,11 @@ namespace Academic.DbHelper
                 }
                 return "";
             }
+
+            public object ListFilesOfNoticeFolder()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

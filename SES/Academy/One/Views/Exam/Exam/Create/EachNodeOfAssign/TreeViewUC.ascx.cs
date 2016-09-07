@@ -54,7 +54,7 @@ namespace One.Views.Exam.Exam.Create.EachNodeOfAssign
                 {
                     using (var helper = new DbHelper.Exam())
                     {
-                        exam = helper.Find(value);
+                        exam = helper.FindExam(value);
 
                         if (exam != null)
                         {
@@ -238,6 +238,8 @@ namespace One.Views.Exam.Exam.Create.EachNodeOfAssign
            , ref TreeNodeUC subyearuc, List<Academic.DbEntities.Structure.SubYear> subyears
            , int ye, int sub, List<Academic.DbEntities.AcacemicPlacements.RunningClass> runningClasses)
         {
+            //uncomment this all
+            /*
             var withSubject =
                                 runningClasses.Where(x => x.YearId == years[ye].Id && x.SubYearId == subyears[sub].Id);
             if (years[ye].SubYears.Count > 0)
@@ -265,12 +267,14 @@ namespace One.Views.Exam.Exam.Create.EachNodeOfAssign
 
                     }
                 }
-            }
+            }*/
         }
 
         private void CheckForSubjectOfYear(List<Academic.DbEntities.Structure.Year> years
             , ref TreeNodeUC yearuc, int ye, List<Academic.DbEntities.AcacemicPlacements.RunningClass> runningClasses)
         {
+            //uncomment this all
+            /*
             var yearwithSubject =
                                   runningClasses.Where(x => x.YearId == years[ye].Id && x.SubYearId == null);
             if (years[ye].SubYears.Count == 0)
@@ -296,7 +300,7 @@ namespace One.Views.Exam.Exam.Create.EachNodeOfAssign
                         subPos++;
                     }
                 }
-            }
+            }*/
         }
 
 

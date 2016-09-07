@@ -3,39 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Academic.DbEntities.Marks;
 
 namespace Academic.DbEntities.Exams
 {
+    //used after github
     public class ExamSubject
     {
         public int Id { get; set; }
 
         public int SubjectClassId { get; set; }
+        public virtual Academic.DbEntities.Class.SubjectClass SubjectClass { get; set; }
 
         public int ExamId { get; set; }
-        public int? ExamSubTypeId { get; set; }
+        public virtual Exam Exam { get; set; }
 
-        public int FullMarks { get; set; }
-        public int PassMarks { get; set; }
+        //public bool IsGradingSystem { get; set; }
+        //public int? GradeId { get; set; }
+        //public virtual Grade Grade { get; set; }
+        public bool IsPercent { get; set; }
+        public float? Weight { get; set; }
+
+        public int? FullMarks { get; set; }
+        public int? PassMarks { get; set; }
         /// <summary>
         /// Hours and minutes are the Time period of exam
         /// </summary>
         public DateTime? SubjectExamDate { get; set; }
-        public TimeSpan StartTime { get; set; }
 
-        public byte Hours { get; set; }
-        public byte? Minutes { get; set; }
-
-
-        public float? WeightPercent { get; set; }
-
-        public virtual Academic.DbEntities.AcacemicPlacements.SubjectClass SubjectClass { get; set; }
-
-        public virtual Exam Exam { get; set; }
-        public virtual ExamSubType ExamSubType { get; set; }
+        /// <summary>
+        /// In 24 hour format
+        /// </summary>
+        public string Time { get; set; }
 
         public virtual  ICollection<ExamStudent>  ExamStudents { get; set; }
-        public virtual ICollection<ExamSubjectTeacher> ExamSubjectTeachers { get; set; }
+        public virtual ICollection<ExamSubjectExaminer> ExamSubjectTeachers { get; set; }
 
 
         /*

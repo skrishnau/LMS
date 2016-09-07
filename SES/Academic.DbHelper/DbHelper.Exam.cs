@@ -12,7 +12,7 @@ namespace Academic.DbHelper
 {
     public partial class DbHelper
     {
-        public class Exam:IDisposable
+        public class Exam : IDisposable
         {
             AcademicContext Context;
 
@@ -29,7 +29,7 @@ namespace Academic.DbHelper
             {
                 try
                 {
-                    var tp = Context.ExamType.Where(x => x.SchoolId == schoolId && !(x.Void??false)).ToList();
+                    var tp = Context.ExamType.Where(x => x.SchoolId == schoolId && !(x.Void ?? false)).ToList();
                     return tp;
                 }
                 catch (Exception ex)
@@ -38,7 +38,7 @@ namespace Academic.DbHelper
                 }
             }
 
-            public DbEntities.Exams.Exam  AddOrUpdateExam(DbEntities.Exams.Exam exam)
+            public DbEntities.Exams.Exam AddOrUpdateExam(DbEntities.Exams.Exam exam)
             {
                 try
                 {
@@ -56,7 +56,7 @@ namespace Academic.DbHelper
                         model.Notice = exam.Notice;
                         model.ResultDate = exam.ResultDate;
                         model.StartDate = exam.StartDate;
-                        model.WeightPercent = exam.WeightPercent;
+                        model.Weight = exam.Weight;
                         model.ExamTypeId = exam.ExamTypeId;
                         model.UpdatedDate = DateTime.Now;
                         model.ExamCoordinatorId = exam.ExamCoordinatorId;
@@ -71,24 +71,34 @@ namespace Academic.DbHelper
                 }
             }
 
-            public List<DbEntities.Exams.Exam> GetExamList(int schoolId, int academicYearId, int sessionId=0)
+            public List<DbEntities.Exams.Exam> GetExamList(int schoolId, int academicYearId, int sessionId = 0)
             {
                 if (sessionId == 0)
                 {
                     return
-                        Context.Exam.Where(x => x.SchoolId == schoolId && x.AcademicYearId == academicYearId).ToList();
+                        Context.Exam.Where(x => 
+                            x.SchoolId == schoolId 
+                            && x.AcademicYearId == academicYearId)
+                        .OrderByDescending(x => x.Id)                        
+                        .ToList();
                 }
                 else
                 {
-                    return Context.Exam.Where(x => x.SchoolId == schoolId && x.AcademicYearId == academicYearId && x.SessionId==sessionId).ToList();
+                    return Context.Exam.Where(x => 
+                        x.SchoolId == schoolId 
+                        && x.AcademicYearId == academicYearId
+                        && x.SessionId == sessionId)
+                        .OrderByDescending(x=>x.Id)
+                        .ToList();
                 }
             }
 
-            public DbEntities.Exams.Exam Find(int id)
+            //Used
+            public DbEntities.Exams.Exam FindExam(int id)
             {
                 try
                 {
-                    return Context.Exam.Include(x=>x.AcademicYear).Include(y=>y.Session).FirstOrDefault(x=>x.Id==id);
+                    return Context.Exam.Include(x => x.AcademicYear).Include(y => y.Session).FirstOrDefault(x => x.Id == id);
                 }
                 catch (Exception)
                 {
@@ -96,24 +106,63 @@ namespace Academic.DbHelper
                 }
             }
 
+            //Used
             public ExamType AddOrUpdateExamType(ExamType eType)
             {
                 var ent = Context.ExamType.Find(eType.Id);
                 if (ent == null)
                 {
-                   ent = Context.ExamType.Add(eType);
+                    ent = Context.ExamType.Add(eType);
                 }
                 else
                 {
-                    ent.WeightMarks = eType.WeightMarks;
-                    ent.WeightPercent = eType.WeightPercent;
+                    //ent.WeightMarks = eType.WeightMarks;
+                    ent.Weight = eType.Weight;
                     ent.IsPercent = eType.IsPercent;
                     ent.Name = eType.Name;
                     ent.Description = eType.Description;
                     ent.Void = eType.Void;
-                   }
+                }
                 Context.SaveChanges();
                 return ent;
+            }
+
+            //used
+            public List<ExamType> ListExamTypes(int schoolId)
+            {
+                return Context.ExamType.Where(x => x.SchoolId == schoolId && !(x.Void ?? false)).ToList();
+            }
+
+            //used
+            public List<DbEntities.Exams.Exam> ListExams(int schoolId, int academicYearId, int sessionId = 0)
+            {
+                if (sessionId == 0)
+                {
+                    return
+                        Context.Exam.Where(x =>
+                            x.SchoolId == schoolId
+                            && x.AcademicYearId == academicYearId
+                            && !(x.Void ?? false))
+                        .OrderByDescending(o => o.StartDate)
+                        .ToList();
+                }
+                else
+                {
+                    return
+                        Context.Exam
+                            .Where(x =>
+                                x.SchoolId == schoolId
+                                && x.AcademicYearId == academicYearId
+                                && x.SessionId == sessionId
+                                && !(x.Void ?? false))
+                            .OrderByDescending(o => o.StartDate)
+                            .ToList();
+                }
+            }
+
+            public DbEntities.Exams.Exam GetExam(int examId)
+            {
+                return Context.Exam.Find(examId);
             }
         }
     }

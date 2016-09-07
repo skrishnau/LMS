@@ -22,7 +22,9 @@ namespace Academic.DbEntities
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
         public bool IsActive { get; set; }
+        public bool? Completed { get; set; }
         public bool? Void { get; set; }
 
         public bool? RemindWhenEndDate { get; set; }//setting to check ; true -- remind about the nearing of end date

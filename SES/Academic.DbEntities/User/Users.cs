@@ -59,6 +59,6 @@ namespace Academic.DbEntities.User
         public string SecurityAnswer { get; set; }
 
 
-        public virtual ICollection<Class.SubjectSessionUser> Classes { get; set; }
+        public virtual ICollection<Class.UserClass> Classes { get; set; }
     }
 }

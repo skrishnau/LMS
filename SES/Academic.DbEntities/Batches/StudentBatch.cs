@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Batches
 {
+    /// <summary>
+    /// Used: Its used to relate students to the batch/programbatch
+    /// .
+    /// </summary>
     public class StudentBatch
     {
         public int Id { get; set; }

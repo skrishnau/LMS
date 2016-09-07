@@ -316,7 +316,7 @@ namespace One.Views.Exam
                     StartDate = Convert.ToDateTime(txtDate1.Text)
                     ,ExamTypeId =  Convert.ToInt32(typ)
                     ,Name = txtName.Text
-                    ,WeightPercent = (float)Convert.ToDecimal( txtWeight.Text)
+                    ,Weight = (float)Convert.ToDecimal( txtWeight.Text)
                 };
                 using (var helper = new DbHelper.Exam())
                 {

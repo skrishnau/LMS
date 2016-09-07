@@ -565,7 +565,9 @@ namespace Academic.DbHelper
             public List<ViewModel.AcademicPlacement.StudentSubjectModel> GetClassesOfUser(int schoolId
                 , int academicYearId, int sessionId, int userId, string userType)
             {
-                List<ViewModel.AcademicPlacement.StudentSubjectModel> list = new List<StudentSubjectModel>();
+
+                //uncomment this alll
+              /*  List<ViewModel.AcademicPlacement.StudentSubjectModel> list = new List<StudentSubjectModel>();
 
                 if (userType == "student")
                 {
@@ -716,7 +718,7 @@ namespace Academic.DbHelper
                         list.Add(model);
                     }
                     return list;
-                }
+                }*/
                 return new List<StudentSubjectModel>() { new StudentSubjectModel() { } };
             }
 

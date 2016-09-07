@@ -12,7 +12,7 @@ namespace Academic.DbEntities.AcacemicPlacements
     /// SubjectSessionUser(or SubjectClassUser)
     /// </summary>
     [Obsolete]
-    public class UserClass
+    public class UserClass1
     {
 
         public int Id { get; set; }
@@ -21,7 +21,9 @@ namespace Academic.DbEntities.AcacemicPlacements
         //public virtual RegularSubjectClass RegularSubjectClass { get; set; }
 
         public int SubjectClassId { get; set; }
-        public virtual SubjectClass SubjectClass { get; set; }
+
+        //uncomment this
+        //public virtual SubjectClass SubjectClass { get; set; }
 
         public int UserId { get; set; }
         public virtual User.Users User { get; set; }

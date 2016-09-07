@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8">
+    <title>A simple page with ckeditor</title>
+    <script src="../ckeditor/ckeditor.js"></script>
+</head>
+<body>
+
+<form>
+    <textarea id="editor1" name="editor1" rows="10" cols="80">
+        This is my text area to be replaced with texteditor
+    </textarea>
+    <script type="text/javascript">
+        CKEDITOR.replace('editor1', {
+            filebrowserBrowseUrl: '/filetasks/Browse.aspx',
+            filebrowserUploadUrl: '/filetasks/Upload.aspx'
+        });
+    </script>
+</form>
+</body>
+</html>

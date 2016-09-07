@@ -24,5 +24,8 @@ namespace Academic.DbEntities.Notices
         public bool? ViewerLimited { get; set; }
 
         public bool? Void { get; set; }
+
+        public virtual ICollection<NoticeFiles> NoticeFiles{ get; set; }
+
     }
 }

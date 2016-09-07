@@ -53,6 +53,7 @@
     <Compile Include="Batch\BatchViewModel.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Enums\NotificationType.cs" />
+    <Compile Include="Files\ImageListingViewModel.cs" />
     <Compile Include="FileViewModel.cs" />
     <Compile Include="Functions\DateHelper.cs" />
     <Compile Include="IdAndName.cs" />

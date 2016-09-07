@@ -20,7 +20,9 @@ namespace Academic.DbEntities.AcacemicPlacements
 
 
         public virtual StudentClass StudentClass { get; set; }
-        public virtual SubjectClass SubjectClass { get; set; }
+
+        //uncomment this
+        //public virtual SubjectClass SubjectClass { get; set; }
 
         //is student permitted to access  the course contents.
 

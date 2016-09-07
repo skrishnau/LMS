@@ -445,6 +445,46 @@ namespace Academic.DbHelper
 
                 }
             }
+
+            //used in Exam listing.. to create selectable academic and session list
+            //so we need to pass both these classes as same class i.e.
+            //The view model is 
+            public List<ViewModel.AcademicAndSessionCombinedViewModel> ListAcademicAndSessionAsViewModel(int schoolId)
+            {
+                var list = new List<ViewModel.AcademicAndSessionCombinedViewModel>();
+                Context.AcademicYear.Where(a => a.SchoolId == schoolId && !(a.Void??false))
+                    .OrderByDescending(o=>o.Position)
+                    .ToList().ForEach(a =>
+                    {
+                        list.Add(new AcademicAndSessionCombinedViewModel()
+                        {
+                            Id = a.Id
+                            ,AcademicYearId = a.Id
+                            ,SessionId = 0
+                            ,Completed = a.Completed??false
+                            ,Name = a.Name
+                            ,BothNameCombined = a.Name
+                        });
+                        foreach (var s in a.Sessions.OrderByDescending(o=>o.Position))
+                        {
+                            list.Add(new AcademicAndSessionCombinedViewModel()
+                            {
+                                Id = s.Id
+                                ,
+                                AcademicYearId = a.Id
+                                ,
+                                SessionId = s.Id
+                                ,
+                                Completed = s.Completed ?? false
+                                ,
+                                Name = s.Name
+                                ,BothNameCombined = a.Name+" > "+s.Name
+
+                            });
+                        }
+                    });
+                return list;
+            }
         }
     }
 }

@@ -13,14 +13,13 @@ namespace Academic.DbEntities.AcacemicPlacements
     /// 
     /// </summary>
     [Obsolete]
-    public class SubjectClass
+    public class SubjectClass1
     {
         public int Id { get; set; }
 
         public int SubjectId { get; set; }
         public virtual Subjects.Subject Subject { get; set; }
-
-
+        
         public int? SubjectGroupId { get; set; }
         public virtual Subjects.SubjectGroup SubjectGroup { get; set; }
 

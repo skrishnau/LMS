@@ -31,6 +31,21 @@ namespace Academic.ViewModel
         public String SessionType { get; set; }
     }
 
+    public class AcademicAndSessionCombinedViewModel
+    {
+        public string Name { get; set; }
+        public int Id { get; set; }
+
+        public int AcademicYearId { get; set; }
+        public int SessionId { get; set; }
+
+        public bool Check { get; set; }
+
+        public bool Completed { get; set; }
+
+        public string BothNameCombined { get; set; }
+    }
+
     public enum Month
     {
         Jan,Feb,Mar,Apr,May,June,July,Aug,Sep,Oct,Nov,Dec

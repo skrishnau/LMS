@@ -25,9 +25,9 @@ namespace Academic.DbHelper
 
             #region Get functions i.e. which returns single value, not a List
 
-            public Academic.DbEntities.Class.SubjectSession GetSubjectSession(int subjectSessionId)
+            public Academic.DbEntities.Class.SubjectClass GetSubjectSession(int subjectSessionId)
             {
-                return Context.SubjectSession.Find(subjectSessionId);
+                return Context.SubjectClass.Find(subjectSessionId);
             }
 
             #endregion
@@ -35,13 +35,13 @@ namespace Academic.DbHelper
 
             #region List Functions i.e. which returns List<>
 
-            public List<Academic.DbEntities.Class.SubjectSession> ListSessionsOfSubject(
+            public List<Academic.DbEntities.Class.SubjectClass> ListSessionsOfSubject(
                            int subjectId)
             {
                 var regular =
-                    Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
+                    Context.SubjectClass.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
 
-                var notRegular = Context.SubjectSession.Where(s => (!s.IsRegular)).Where(x => x.SubjectId == subjectId);
+                var notRegular = Context.SubjectClass.Where(s => (!s.IsRegular)).Where(x => x.SubjectId == subjectId);
                 var list = regular.ToList();
                 list.AddRange(notRegular);
                 return list;
@@ -55,13 +55,13 @@ namespace Academic.DbHelper
             ///  2=Due, 3=not started yet, 4=completed
             /// </param>
             /// <returns></returns>
-            public List<Academic.DbEntities.Class.SubjectSession> ListSessionsOfSubject(
+            public List<Academic.DbEntities.Class.SubjectClass> ListSessionsOfSubject(
                 int subjectId, string courseCompletionType)
             {
-                var regular = new List<Academic.DbEntities.Class.SubjectSession>();
+                var regular = new List<Academic.DbEntities.Class.SubjectClass>();
                 //Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
 
-                var notRegular = new List<Academic.DbEntities.Class.SubjectSession>();
+                var notRegular = new List<Academic.DbEntities.Class.SubjectClass>();
                 //Context.SubjectSession.Where(s => (!s.IsRegular)).Where(x => x.SubjectId == subjectId);
                 var now = DateTime.Now.Date;
                 var min = DateTime.MinValue.Date;
@@ -69,16 +69,17 @@ namespace Academic.DbHelper
                 switch (courseCompletionType)
                 {
                     case "btnCurrentlyRunning":
-                        regular = Context.SubjectSession
+                        regular = Context.SubjectClass
                             .Where(s => s.IsRegular
                                 && (s.StartDate ?? min) <= now
                                 && (s.EndDate ?? max) >= now
                                 && !(s.SessionComplete ?? false))
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
-                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t => t.ProgramBatch.Program.Name)
+                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                            .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
                             .ToList();
 
-                        notRegular = Context.SubjectSession
+                        notRegular = Context.SubjectClass
                             .Where(s => (!s.IsRegular)
                                 && (s.StartDate ?? min) <= now
                                 && (s.EndDate ?? max) >= now
@@ -88,15 +89,15 @@ namespace Academic.DbHelper
                             .ToList();
                         break;
                     case "btnDue":
-                        regular = Context.SubjectSession
+                        regular = Context.SubjectClass
                             .Where(s => s.IsRegular
                                && (s.EndDate ?? max) < now
                                 && !(s.SessionComplete ?? false))
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
-                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t => t.ProgramBatch.Program.Name)
+                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name).ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
                             .ToList();
 
-                        notRegular = Context.SubjectSession
+                        notRegular = Context.SubjectClass
                             .Where(s => (!s.IsRegular)
                                 && (s.EndDate ?? max) < now
                                 && !(s.SessionComplete ?? false))
@@ -106,15 +107,17 @@ namespace Academic.DbHelper
                         //ApplyFilterAndLoadData(2);
                         break;
                     case "btnNotStartedYet":
-                        regular = Context.SubjectSession
+                        regular = Context.SubjectClass
                             .Where(s => s.IsRegular
                                 && (s.StartDate ?? min) > now
                                 && !(s.SessionComplete ?? false))
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
-                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t => t.ProgramBatch.Program.Name)
+                            .OrderByDescending(o => o.CreatedDate)
+                            .ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                            .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
                             .ToList();
 
-                        notRegular = Context.SubjectSession
+                        notRegular = Context.SubjectClass
                             .Where(s => (!s.IsRegular)
                                 && (s.StartDate ?? min) > now
                                 && !(s.SessionComplete ?? false))
@@ -124,14 +127,16 @@ namespace Academic.DbHelper
                         //ApplyFilterAndLoadData(3);
                         break;
                     case "btnCompleted":
-                        regular = Context.SubjectSession
+                        regular = Context.SubjectClass
                             .Where(s => s.IsRegular
                                 && (s.SessionComplete ?? false))
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
-                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t => t.ProgramBatch.Program.Name)
+                            .OrderByDescending(o => o.CreatedDate)
+                            .ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                            .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
                             .ToList();
 
-                        notRegular = Context.SubjectSession
+                        notRegular = Context.SubjectClass
                             .Where(s => (!s.IsRegular)
                                 && (s.SessionComplete ?? false))
                             .Where(x => x.SubjectId == subjectId)
@@ -139,13 +144,15 @@ namespace Academic.DbHelper
                             .ToList();
                         break;
                     default:
-                        regular = Context.SubjectSession
+                        regular = Context.SubjectClass
                             .Where(s => s.IsRegular)
                             .Where(x => x.SubjectStructure.SubjectId == subjectId)
-                            .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.ProgramBatch.Batch.Name).ThenBy(t => t.ProgramBatch.Program.Name)
+                            .OrderByDescending(o => o.CreatedDate)
+                            .ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                            .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
                             .ToList();
 
-                        notRegular = Context.SubjectSession
+                        notRegular = Context.SubjectClass
                             .Where(s => (!s.IsRegular))
                             .Where(x => x.SubjectId == subjectId)
                             .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.Name)
@@ -158,7 +165,7 @@ namespace Academic.DbHelper
 
             public List<Academic.DbEntities.User.Users> ListUsersOfSubjectSession(int subjectSessionId)
             {
-                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                var subsession = Context.SubjectClass.Find(subjectSessionId);
                 if (subsession != null)
                 {
                     return subsession.ClassUsers.Where(x => !(x.Void ?? false))
@@ -169,7 +176,7 @@ namespace Academic.DbHelper
 
             public List<Academic.DbEntities.User.Users> ListUsersNotInSubjectSession(int subjectSessionId, List<int> asignedList)
             {
-                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                var subsession = Context.SubjectClass.Find(subjectSessionId);
                 if (subsession != null)
                 {
                     var users = Context.Users.Where(x => !asignedList.Contains(x.Id))
@@ -185,19 +192,19 @@ namespace Academic.DbHelper
             }
 
 
-            public List<SubjectSessionUser> ListSessionUsers(int subjectSessionId)
+            public List<UserClass> ListSessionUsers(int subjectSessionId)
             {
-                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                var subsession = Context.SubjectClass.Find(subjectSessionId);
                 if (subsession != null)
                 {
                     return subsession.ClassUsers.Where(x => !(x.Void ?? false)).ToList();
                 }
-                return new List<SubjectSessionUser>();
+                return new List<UserClass>();
             }
 
             public List<DbEntities.User.Users> ListSubjectSessionEnrolledUsers(int subjectSessionId)
             {
-                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                var subsession = Context.SubjectClass.Find(subjectSessionId);
                 if (subsession != null)
                 {
                     return subsession.ClassUsers.Where(x => !(x.Void ?? false)).Select(x => x.User).ToList();
@@ -211,12 +218,12 @@ namespace Academic.DbHelper
             #region Add Or Update functions
 
 
-            public bool AddOrUpdateSubjectSession(DbEntities.Class.SubjectSession subjectSession)
+            public bool AddOrUpdateSubjectSession(DbEntities.Class.SubjectClass subjectSession)
             {
-                var ent = Context.SubjectSession.Find(subjectSession.Id);
+                var ent = Context.SubjectClass.Find(subjectSession.Id);
                 if (ent == null)
                 {
-                    Context.SubjectSession.Add(subjectSession);
+                    Context.SubjectClass.Add(subjectSession);
                     Context.SaveChanges();
                 }
                 else
@@ -228,7 +235,7 @@ namespace Academic.DbHelper
                 return false;
             }
 
-            public bool AddOrUpdateUsersList(List<Academic.DbEntities.Class.SubjectSessionUser> userList)
+            public bool AddOrUpdateUsersList(List<Academic.DbEntities.Class.UserClass> userList)
             {
                 try
                 {
@@ -236,10 +243,10 @@ namespace Academic.DbHelper
                     {
                         foreach (var sessUser in userList)
                         {
-                            var userFound = Context.SubjectSessionUser.Find(sessUser.Id);
+                            var userFound = Context.UserClass.Find(sessUser.Id);
                             if (userFound == null)
                             {
-                                Context.SubjectSessionUser.Add(sessUser);
+                                Context.UserClass.Add(sessUser);
                             }
                             else
                             {
@@ -260,16 +267,16 @@ namespace Academic.DbHelper
 
             public void AddOrUpdateUsersList(List<int> userList, int subjectSessionId, int p)
             {
-                var subsession = Context.SubjectSession.Find(subjectSessionId);
+                var subsession = Context.SubjectClass.Find(subjectSessionId);
                 if (subsession != null)
                 {
                     foreach (var i in userList)
                     {
                         var userFound =
-                            Context.SubjectSessionUser.FirstOrDefault(x => x.UserId == i && !(x.Void ?? false));
+                            Context.UserClass.FirstOrDefault(x => x.UserId == i && !(x.Void ?? false));
                         if (userFound == null)
                         {
-                            Context.SubjectSessionUser.Add(new SubjectSessionUser()
+                            Context.UserClass.Add(new UserClass()
                             {
                                 UserId = i
                                     //,JoinedDate = 

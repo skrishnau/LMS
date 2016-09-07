@@ -24,7 +24,12 @@
             NavigateUrl="~/Views/User/List.aspx">Users</asp:HyperLink>
         <br />
         <asp:HyperLink ID="HyperLink6" runat="server"
-            NavigateUrl="~/Views/User/List.aspx">Exams</asp:HyperLink>
+            NavigateUrl="~/Views/Exam/Exam/ExamsList.aspx">Exams</asp:HyperLink>
+        <br/>
+        <span style="margin-left: 10px;">
+             <asp:HyperLink ID="HyperLink9" runat="server"
+            NavigateUrl="~/Views/Exam/ExamType/ExamTypeList.aspx">Exam Types</asp:HyperLink>
+        </span>
         <br />
         <hr />
           <asp:HyperLink ID="HyperLink8" runat="server"

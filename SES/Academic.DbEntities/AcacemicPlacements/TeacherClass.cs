@@ -20,7 +20,9 @@ namespace Academic.DbEntities.AcacemicPlacements
        public virtual Teachers.Teacher Teacher { get; set; }
        
        public int SubjectClassId { get; set; }
-       public virtual SubjectClass SubjectClass { get; set; }
+
+       //uncomment this
+       //public virtual SubjectClass SubjectClass { get; set; }
 
 
        //public string MessageToTeacher { get; set; }
@@ -33,7 +35,7 @@ namespace Academic.DbEntities.AcacemicPlacements
        public bool? Void { get; set; }
        public bool? IsActive { get; set; }
 
-       public virtual ICollection<Exams.ExamSubjectTeacher> ExamSubjectTeachers { get; set; }
+       public virtual ICollection<Exams.ExamSubjectExaminer> ExamSubjectTeachers { get; set; }
 
     }
 }

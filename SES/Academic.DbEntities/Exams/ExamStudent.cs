@@ -7,15 +7,17 @@ using Academic.DbEntities.User;
 
 namespace Academic.DbEntities.Exams
 {
+    //used
     public class ExamStudent
     {
         public int Id { get; set; }
 
         public int ExamSubjectId { get; set; }
-        public int StudentClassId { get; set; }
-
         public virtual ExamSubject ExamSubject { get; set; }
-        public virtual AcacemicPlacements.StudentClass StudentClass { get; set; }
+
+        //for regular
+        public int StudentClassId { get; set; }
+        public virtual Class.UserClass StudentClass { get; set; }
 
 
         public float ObtainedMarksInPercent { get; set; }

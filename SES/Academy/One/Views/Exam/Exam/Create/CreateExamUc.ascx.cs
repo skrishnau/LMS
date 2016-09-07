@@ -57,7 +57,7 @@ namespace One.Views.Exam.Exam.Create
                 Academic.DbEntities.Exams.Exam exam;
                 using (var helper = new DbHelper.Exam())
                 {
-                    exam = helper.Find(value);
+                    exam = helper.FindExam(value);
                     if (AcademicYearId <= 0)
                     {
                         if (exam != null)
@@ -65,7 +65,7 @@ namespace One.Views.Exam.Exam.Create
                             hidAcademicYear.Value = exam.AcademicYearId.ToString();
                             if (exam.SessionId != null)
                             {
-                                hidSessionId.Value = exam.SessionId.ToString();                                
+                                hidSessionId.Value = exam.SessionId.ToString();
                             }
                             LoadAcademicYear();
 
@@ -74,10 +74,10 @@ namespace One.Views.Exam.Exam.Create
                             txtResultDate.Text = exam.ResultDate.HasValue
                                 ? exam.ResultDate.Value.ToShortDateString()
                                 : "";
-                            txtStartDate.Text = exam.StartDate.HasValue 
-                                ? exam.StartDate.Value.ToShortDateString() 
+                            txtStartDate.Text = exam.StartDate.HasValue
+                                ? exam.StartDate.Value.ToShortDateString()
                                 : "";
-                            txtWeight.Text = exam.WeightPercent.ToString();
+                            txtWeight.Text = exam.Weight.ToString();
 
                             hidExamTypeId.Value = exam.ExamTypeId.ToString();
                             LoadExamType();
@@ -121,7 +121,6 @@ namespace One.Views.Exam.Exam.Create
 
 
         #endregion
-
 
         #region Load Functions
 
@@ -283,7 +282,6 @@ namespace One.Views.Exam.Exam.Create
 
         #endregion
 
-
         #region  Events
 
         protected void cmbAcademicYear_SelectedIndexChanged(object sender, EventArgs e)
@@ -339,7 +337,6 @@ namespace One.Views.Exam.Exam.Create
 
         #endregion
 
-
         #region Save
 
         protected void btnSaveExam_Click(object sender, EventArgs e)
@@ -374,7 +371,7 @@ namespace One.Views.Exam.Exam.Create
                     ,
                     Name = txtName.Text
                     ,
-                    WeightPercent = (float)Convert.ToDecimal(txtWeight.Text)
+                    Weight = (float)Convert.ToDecimal(txtWeight.Text)
                     ,
                     CreatedDate = DateTime.Now
                     ,
@@ -403,7 +400,6 @@ namespace One.Views.Exam.Exam.Create
                         TreeViewUC1.AcademicYearId = AcademicYearId;
                         TreeViewUC1.SessionId = SessionId;
                         TreeViewUC1.ExamId = saved.Id;
-                        
                     }
                 }
             }

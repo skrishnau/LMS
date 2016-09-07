@@ -12,23 +12,21 @@ namespace Academic.DbEntities.Exams
     public class Exam
     {
         public int Id { get; set; }
-        public string Name { get; set; }
 
+        public int? ExamTypeId { get; set; }
+        public virtual ExamType ExamType { get; set; }
+
+        public string Name { get; set; }
         public string Notice { get; set; }
 
         public bool IsPercent { get; set; }
-        public float? WeightPercent { get; set; }
-        public float? WeightMarks { get; set; }
+        public float? Weight { get; set; }
 
         public DateTime? StartDate { get; set; }
-        public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public DateTime? ResultDate { get; set; }
 
         public bool? Void { get; set; }
-
-        public int? ExamTypeId { get; set; }
-        public virtual ExamType ExamType { get; set; }
 
         public int SchoolId { get; set; }
         public virtual School School { get; set; }
@@ -44,7 +42,10 @@ namespace Academic.DbEntities.Exams
 
         public virtual ICollection<ExamSubject> ExamSubjects { get; set; }
 
-
+        public int CreatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        
+        //public int Position { get; set; }
         /*
         
         /// <summary>
