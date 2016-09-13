@@ -23,7 +23,7 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
-            public DbEntities.Assignments.Assignment AddOrUpdateAssignment(DbEntities.Assignments.Assignment asg)
+            public DbEntities.ActivityAndResource.Assignment AddOrUpdateAssignment(DbEntities.ActivityAndResource.Assignment asg)
             {
                 var ent = Context.Assignment.Find(asg.Id);
                 if (ent == null)
@@ -46,7 +46,7 @@ namespace Academic.DbHelper
                     ent.ModifiedBy = asg.ModifiedBy;
                     ent.ModifiedDate = asg.ModifiedDate;
                     ent.SubmissionFrom = asg.SubmissionFrom;
-                    ent.SubmissionType = asg.SubmissionType;
+                   // ent.SubmissionType = asg.SubmissionType;
                     ent.Name = asg.Name;
                     ent.WordLimit = asg.WordLimit;
                     Context.SaveChanges();

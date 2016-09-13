@@ -57,7 +57,6 @@ namespace Academic.DbHelper
                         return helper.GetImageUrl(id);
                     }
                 }
-                return "";
             }
 
             public string GetLastOnline(DateTime? onlineDate)

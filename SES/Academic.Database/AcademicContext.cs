@@ -63,16 +63,26 @@ namespace Academic.Database
         public DbSet<Academic.DbEntities.AcacemicPlacements.TeacherClass> TeacherClass { get; set; }
         //-----------------END----------------------//
 
-        public DbSet<Academic.DbEntities.AccessPermission.Restriction> Restriction { get; set; }
+        //------------Restriction ------------------------//
+        public DbSet<DbEntities.AccessPermission.DateRestriction> DateRestriction { get; set; }
+        public DbSet<DbEntities.AccessPermission.GradeRestriction> GradeRestriction { get; set; }
+        public DbSet<DbEntities.AccessPermission.GroupRestriction> GroupRestriction { get; set; }
+        public DbSet<DbEntities.AccessPermission.UserProfileRestriction> UserProfileRestriction { get; set; }
+        public DbSet<DbEntities.AccessPermission.Restriction> Restriction { get; set; }
+        //------------------- Restriction END -----------------------/
+
+        public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
+
 
 
         //------------------------------------------//
-        public DbSet<DbEntities.Activities.Study> Study { get; set; }
-        public DbSet<DbEntities.Activities.Teach> Teach { get; set; }
+        //public DbSet<DbEntities.Activities.Study> Study { get; set; }
+        //public DbSet<DbEntities.Activities.Teach> Teach { get; set; }
         //public DbSet<DbEntities.Activities.ClassInAcademicYear> ActiveClassesInAcademicYear { get; set; }
 
+
         public DbSet<DbEntities.Assignments.AssignedTask> AssignedTask { get; set; }
-        public DbSet<DbEntities.Assignments.Assignment> Assignment { get; set; }
+        //public DbSet<DbEntities.Assignments.Assignment> Assignment { get; set; }
         public DbSet<DbEntities.Assignments.AssignmentAnswer> AssignmentAnswer { get; set; }
         public DbSet<DbEntities.Assignments.AssignmentAnswerFile> AssignmentAnswerFile { get; set; }
         //public DbSet<DbEntities.Assignments.Task> Task { get; set; }
@@ -160,8 +170,13 @@ namespace Academic.Database
 
 
         public DbSet<DbEntities.Students.StudentSubject> StudentSubject { get; set; }
-        public DbSet<DbEntities.Subjects.Detail.SubjectSection> SubjectSection { get; set; }
-        public DbSet<DbEntities.Subjects.Detail.SubjectActivityAndResource> SubjectActivityAndResource { get; set; }
+
+
+        public DbSet<DbEntities.Subjects.SubjectSection> SubjectSection { get; set; }
+
+  
+
+        //public DbSet<DbEntities.Subjects.Detail.SubjectActivityAndResource> SubjectActivityAndResource { get; set; }
 
 
 

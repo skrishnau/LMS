@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Academic.DbEntities.Assignments;
 
-namespace Academic.DbEntities.Assignments
+namespace Academic.DbEntities.ActivityAndResource
 {
     public class Assignment
     {
@@ -12,8 +13,8 @@ namespace Academic.DbEntities.Assignments
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public int SectionId { get; set; }
-        public virtual Subjects.SubjectSection Section { get; set; }
+        //public int SectionId { get; set; }
+        //public virtual Subjects.SubjectSection Section { get; set; }
 
         public bool? DispalyDescriptionOnPage { get; set; }
 
@@ -23,21 +24,24 @@ namespace Academic.DbEntities.Assignments
         //next version see moodle orange
         //public bool? AlwaysShowDescription { get; set; }
 
-        //types: online = true , file= false
-        public string SubmissionType { get; set; }
-        public int? WordLimit { get; set; }
-
+        //Submission Types-----
+        public bool FileSubmission { get; set; }
         public int? MaximumNoOfUploadedFiles { get; set; }
         public int? MaximumSubmissionSize { get; set; } //1 MB
 
-        //next version
-        //Maximum attempts
-        //group subm
+        public bool OnlineText { get; set; }
+        public int? WordLimit { get; set; }
 
+        //next version
+        //Feedback
+        //Maximum attempts
+        //group submission
         //next version : settings for notifactation to student and teacher
 
 
-        //Grading: types: None, Point, and Scale
+        /// <summary>
+        /// Grading: types: None, Point, and Scale
+        /// </summary>
         public string GradeType { get; set; }
         public string MaximumGrade { get; set; }
         public string GradeToPass { get; set; }
@@ -61,5 +65,8 @@ namespace Academic.DbEntities.Assignments
         //public virtual ICollection<Resources.Resource> Resources { get; set; }
         public virtual ICollection<AssignmentAnswer> AssignmentAnswers { get; set; }
         //public virtual ICollection<Task> Tasks { get; set; }
+
+        public int? RestrictionId { get; set; }
+        public AccessPermission.Restriction Restriction { get; set; }
     }
 }

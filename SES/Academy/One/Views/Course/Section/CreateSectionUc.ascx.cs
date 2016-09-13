@@ -59,7 +59,7 @@ namespace One.Views.Course.Section
         {
             using (var helper = new DbHelper.SubjectSection())
             {
-                var sec = new Academic.DbEntities.Subjects.Detail.SubjectSection()
+                var sec = new Academic.DbEntities.Subjects.SubjectSection()
                 {
                    Id=SectionId
                    ,Name = txtName.Text

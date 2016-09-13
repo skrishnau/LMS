@@ -41,7 +41,7 @@ namespace Academic.DbHelper
                         }
                     return users;
                 }
-                catch (Exception exe)
+                catch 
                 {
                     return new List<Users>();
                 }

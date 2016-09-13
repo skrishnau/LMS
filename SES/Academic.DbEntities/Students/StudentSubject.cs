@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Students
 {
+    [Obsolete]
     public class StudentSubject
     {
         public int Id { get; set; }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Academic.DbEntities.Assignments;
 using Academic.DbHelper;
 using One.Values.MemberShip;
 
@@ -75,7 +74,7 @@ namespace One.Views.Course.ActivityAndResource.EntryUserConrols
                     {
                         if (SectionId > 0)
                         {
-                            Academic.DbEntities.Assignments.Assignment assg = new Assignment()
+                            var assg = new Academic.DbEntities.ActivityAndResource.Assignment()
                             {
                                 Id = AssignmentId
                                 ,
@@ -94,12 +93,12 @@ namespace One.Views.Course.ActivityAndResource.EntryUserConrols
                                 MaximumGrade = txtMaxGradde.Text
 
                                 ,
-                                SectionId = SectionId
-                                ,
+                                //SectionId = SectionId
+                                //,
 
 
-                                SubmissionType = ddlSubmissionType.SelectedItem.Text
-                                ,
+                                //SubmissionType = ddlSubmissionType.SelectedItem.Text
+                                //,
                             };
 
                             if (ddlSubmissionType.SelectedValue == "Online")

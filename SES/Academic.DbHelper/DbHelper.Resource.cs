@@ -96,10 +96,7 @@ namespace Academic.DbHelper
                     Context.SaveChanges();
                     return new IdAndName() { Id = rEntity.Id, Name = rEntity.Name };
                 }
-                catch (Exception exe)
-                {
-                    return null;
-                }
+                catch{return null;}
             }
 
             public List<IdAndName> GetFileAccessPermissionForCombo()

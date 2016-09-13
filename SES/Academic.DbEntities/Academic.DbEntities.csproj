@@ -54,9 +54,15 @@
     <Compile Include="AcacemicPlacements\TeacherClass.cs" />
     <Compile Include="AcacemicPlacements\UserClass.cs" />
     <Compile Include="AcademicYear.cs" />
+    <Compile Include="AccessPermission\DateRestriction.cs" />
+    <Compile Include="AccessPermission\GradeRestriction.cs" />
+    <Compile Include="AccessPermission\GroupRestriction.cs" />
     <Compile Include="AccessPermission\Restriction.cs" />
+    <Compile Include="AccessPermission\UserProfileRestriction.cs" />
     <Compile Include="Account\CustomUsers.cs" />
     <Compile Include="Activities\Study.cs" />
+    <Compile Include="ActivityAndResource\ActivityResource.cs" />
+    <Compile Include="ActivityAndResource\Assignment.cs" />
     <Compile Include="Admins.cs" />
     <Compile Include="AdminTitle.cs" />
     <Compile Include="Assignments\AssignedTask.cs" />
@@ -141,7 +147,7 @@
     <Compile Include="Students\StudentTransfer.cs" />
     <Compile Include="Students\StudentTransferType.cs" />
     <Compile Include="Subjects\Detail\SubjectActivityAndResource.cs" />
-    <Compile Include="Subjects\Detail\SubjectSection.cs" />
+    <Compile Include="Subjects\SubjectSection.cs" />
     <Compile Include="Subjects\RegularSubject.cs" />
     <Compile Include="Subjects\SubjectCategory.cs" />
     <Compile Include="Subjects\SubjectGroupSubject.cs" />

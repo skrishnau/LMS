@@ -25,20 +25,20 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
-            public List<SubjectActivityAndResource> GetActivityAndResourcesOfSection(int sectionId)
-            {
-                var ress = Context.SubjectActivityAndResource.Where(x => x.SubjectSectionId == sectionId).ToList();
-                return ress;
-            }
+            //public List<SubjectActivityAndResource> GetActivityAndResourcesOfSection(int sectionId)
+            //{
+            //    var ress = Context.SubjectActivityAndResource.Where(x => x.SubjectSectionId == sectionId).ToList();
+            //    return ress;
+            //}
 
-            public DbEntities.Subjects.Detail.SubjectSection Find(int SectionId)
+            public DbEntities.Subjects.SubjectSection Find(int SectionId)
             {
                 return
                     Context.SubjectSection.Include(x => x.SubjectActivityAndResource)
                         .FirstOrDefault(y => y.Id == SectionId);
             }
 
-            public bool AddOrUpdateSection(DbEntities.Subjects.Detail.SubjectSection sec)
+            public bool AddOrUpdateSection(DbEntities.Subjects.SubjectSection sec)
             {
                 try
                 {
@@ -67,7 +67,7 @@ namespace Academic.DbHelper
                 }
             }
 
-            public DbEntities.Subjects.Detail.SubjectSection GetSection(int sec)
+            public DbEntities.Subjects.SubjectSection GetSection(int sec)
             {
                 try
                 {

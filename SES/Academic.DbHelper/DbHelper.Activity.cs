@@ -27,37 +27,37 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
-            public Teach AddOrUpdateTeach(DbEntities.Activities.Teach teach)
-            {
-                try
-                {
-                    var tea = Context.Teach.Find(teach.Id);
-                    if (tea == null)
-                    {
-                      var t=  Context.Teach.Add(teach);
-                        Context.SaveChanges();
-                        return t;
-                    }
-                    else
-                    {
-                        tea.AcademicYearId = teach.AcademicYearId;
-                        tea.StartDate = teach.StartDate;
-                        tea.SessionId = teach.SessionId;
-                        tea.Void = teach.Void;
-                        tea.EstimatedCompletionHours = teach.EstimatedCompletionHours;
-                        tea.SubjectId = teach.SubjectId;
-                        tea.TeacherId = teach.TeacherId;
-                        tea.Remarks = teach.Remarks;
+            //public Teach AddOrUpdateTeach(DbEntities.Activities.Teach teach)
+            //{
+            //    try
+            //    {
+            //        var tea = Context.Teach.Find(teach.Id);
+            //        if (tea == null)
+            //        {
+            //          var t=  Context.Teach.Add(teach);
+            //            Context.SaveChanges();
+            //            return t;
+            //        }
+            //        else
+            //        {
+            //            tea.AcademicYearId = teach.AcademicYearId;
+            //            tea.StartDate = teach.StartDate;
+            //            tea.SessionId = teach.SessionId;
+            //            tea.Void = teach.Void;
+            //            tea.EstimatedCompletionHours = teach.EstimatedCompletionHours;
+            //            tea.SubjectId = teach.SubjectId;
+            //            tea.TeacherId = teach.TeacherId;
+            //            tea.Remarks = teach.Remarks;
 
-                        Context.SaveChanges();
-                        return tea;
-                    }
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
+            //            Context.SaveChanges();
+            //            return tea;
+            //        }
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return null;
+            //    }
+            //}
 
         
         }

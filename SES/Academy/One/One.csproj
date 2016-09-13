@@ -1453,6 +1453,7 @@
     <Content Include="Views\NoticeBoard\WebForm1.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
+    <Content Include="Views\RestrictionAccess\Restriction_First.ascx" />
     <Content Include="Views\Setting\Setting1.aspx" />
     <Content Include="Views\Structure\All\Master\AddCourses.aspx" />
     <Content Include="Views\Structure\All\Master\CoursesList.aspx" />
@@ -2515,6 +2516,13 @@
     </Compile>
     <Compile Include="Views\Office\School\View.aspx.designer.cs">
       <DependentUpon>View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Restriction_First.ascx.cs">
+      <DependentUpon>Restriction_First.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Restriction_First.ascx.designer.cs">
+      <DependentUpon>Restriction_First.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\Setting1.aspx.cs">
       <DependentUpon>Setting1.aspx</DependentUpon>

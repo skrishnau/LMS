@@ -10,67 +10,45 @@ namespace Academic.DbEntities.AccessPermission
     public class Restriction
     {
         public int Id { get; set; }
-        public string Type { get; set; }
 
+        /// <summary>
+        /// Used in Restriction set where multiple restrictions are nested
+        /// </summary>
+        public int? ParentId { get; set; }
+        public virtual Restriction Parent { get; set; }
 
+        /// <summary>
+        /// true: Student 'MUST' match ______ of the following. ( ___ ==> all/any)
+        /// false: Student 'MUST NOT' match _____ of the following.  ( ___ ==> all/any)
+        /// </summary>
+        public bool MatchMust { get; set; }
 
-        public int TypeId { get; set; }
-        public string CheckParameter1 { get; set; }
-        public string CheckParameter2 { get; set; }
+        /// <summary>
+        /// true= match all the child restrictions by And-ing them
+        /// false = match any of the child restrictions by doing 'OR' on all child restrictions
+        ///  e.g. Student _____ match 'all/any' of the following. ( ___ ==> must/must not)
+        /// </summary>
+        public bool MatchAllAny { get; set; }
 
-        public string StringValue1 { get; set; }
-        public string StringValue2 { get; set; }
+        /// <summary>
+        /// true: displayed greyed-out if user doesn't meet conditions. 
+        /// false: Hidden if user doesn't meet conditions.
+        /// </summary>
+        public bool Visibility { get; set; }
 
-        public int IntValue1 { get; set; }
-        public int IntValue2 { get; set; }
-
-        public int SubjectId { get; set; }
-        public virtual Subjects.Subject Subject { get; set; }
-        
     }
 
     public enum RestrictionTypes
     {
-        Activity
-        ,Date
-        ,Grade
-        ,Group
-        ,Profile
+        Date
+        ,
+        Grade
+        ,
+        UserProfile
+        ,
+        Group
+        , 
+        RestrictionSet
     }
 
-    public class GetTypeQuery
-    {
-        private Restriction _restriction;
-        public GetTypeQuery(Restriction restriction)
-        {
-            _restriction = restriction;
-        }
-
-        public void Get()
-        {
-            switch (_restriction.Type)
-            {
-                case "Activity":
-
-                    break;
-                case "Date":
-                    break;
-                case "Grade":
-                    break;
-                case "Group":
-                    break;
-                case "Profile":
-                    break;
-
-            }
-            {
-                    
-            }
-        }
-
-    }
-    public class Activity
-    {
-
-    }
 }

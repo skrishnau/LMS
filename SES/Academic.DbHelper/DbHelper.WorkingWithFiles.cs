@@ -116,7 +116,7 @@ namespace Academic.DbHelper
                     Context.SaveChanges();
                     return ent;
                 }
-                catch (Exception e)
+                catch 
                 {
                     return null;
                 }

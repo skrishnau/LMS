@@ -58,15 +58,15 @@ namespace One.Views.Activity.Teach
                 }
                 using (var helper = new DbHelper.Activity())
                 {
-                    var saved = helper.AddOrUpdateTeach(teach);
-                    if (saved != null)
-                    {
-                        Response.Redirect("~/Views/Activity/List.aspx");
-                    }
-                    else
-                    {
+                    //var saved = helper.AddOrUpdateTeach(teach);
+                    //if (saved != null)
+                    //{
+                    //    Response.Redirect("~/Views/Activity/List.aspx");
+                    //}
+                    //else
+                    //{
                         
-                    }
+                    //}
                 }
             }
         }
