@@ -13,10 +13,15 @@
     <%--<link rel="stylesheet" href="../../../../Remodal/dist/remodal.css">
     <link rel="stylesheet" href="../../../../Remodal/dist/remodal-default-theme.css">--%>
     
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css"
         rel="stylesheet" type="text/css" />
+    --%>
+    
+    <script type="text/javascript" src="../../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.min.js"></script>
+    <script src="../../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.js" type="text/javascript"></script>
+    <link href="../../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.css" rel="stylesheet"  type="text/css"/>
 
 </asp:Content>
 
