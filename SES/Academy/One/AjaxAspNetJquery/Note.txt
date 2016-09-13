@@ -1,0 +1,2 @@
+﻿Please use j"query-ui-1.12.0.custom" folder
+and reference files from this folder only, the reference mechanism is stated in "Note_How_to.txt" file.

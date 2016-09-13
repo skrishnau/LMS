@@ -186,6 +186,7 @@
     <Content Include="AjaxAspNetJquery\jquery-ui.theme.css" />
     <Content Include="AjaxAspNetJquery\jquery-ui.theme.min.css" />
     <Content Include="AjaxAspNetJquery\jquery.min.js" />
+    <Content Include="AjaxAspNetJquery\Note.txt" />
     <Content Include="AjaxAspNetJquery\Note_How_to.txt" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\CHANGES.html" />
