@@ -6,7 +6,8 @@
 
     <%--<asp:ImageButton ID="imgBtn" runat="server" Visible="False" OnClick="imgBtn_Click" CausesValidation="False" />--%>
     <asp:CheckBox ID="chkBox" runat="server" AutoPostBack="False" />
-    <asp:LinkButton ID="lnkBatchSelect" CssClass="inline-block" Font-Underline="False" runat="server" OnClick="lnkBtn_Click">
+    <asp:LinkButton ID="lnkBatchSelect" CssClass="inline-block" Font-Underline="False"
+         runat="server" OnClick="lnkBtn_Click">
         <asp:Label ID="lblStructureName" runat="server" Text="" ForeColor="black"></asp:Label>
         &nbsp;|&nbsp;
         <asp:Label ID="lblBatchName" runat="server" Text="" ForeColor="darkblue" CssClass="hover-underline"></asp:Label>
@@ -28,5 +29,7 @@
     <asp:HiddenField ID="hidLevelId" runat="server" Value="0" />
     <asp:HiddenField ID="hidFacultyId" runat="server" Value="0" />
 
+    <asp:HiddenField ID="hidEarlierSelectedBatchId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidEarlierSelectedBatchName" runat="server" Value="" />
 
 </div>

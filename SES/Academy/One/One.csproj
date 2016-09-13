@@ -1067,6 +1067,9 @@
     <Content Include="Content\Icons\delete\undo_delete.png" />
     <Content Include="Content\Icons\Done_Save\basic-save.png" />
     <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
+    <Content Include="Content\Icons\Edit\edit_orange.png" />
+    <Content Include="Content\Icons\Exclamation\exclamation.png" />
+    <Content Include="Content\Icons\Help\help_blu.png" />
     <Content Include="Content\Icons\Indent\circle_dot.png" />
     <Content Include="Content\Icons\Indent\square_dot.png" />
     <Content Include="Content\Icons\Participation\degree_icon.jpg" />
@@ -1182,11 +1185,28 @@
     <Content Include="Images\orderedList7.png" />
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
+    <Content Include="JQuery_All_new\jquery-ui.css" />
+    <Content Include="JQuery_All_new\jquery-ui.js" />
+    <Content Include="JQuery_All_new\jquery-ui.min.css" />
+    <Content Include="JQuery_All_new\jquery-ui.min.js" />
     <Content Include="Login\default.aspx" />
     <Content Include="Login\Login.aspx" />
     <Content Include="Login\Logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="Login\MySite.Master" />
+    <Content Include="Remodal\dist\remodal-default-theme.css" />
+    <Content Include="Remodal\dist\remodal.css" />
+    <Content Include="Remodal\dist\remodal.js" />
+    <Content Include="Remodal\dist\remodal.min.js" />
+    <Content Include="Remodal\examples\index-zepto.html" />
+    <Content Include="Remodal\examples\index.html" />
+    <Content Include="Remodal\Gruntfile.js" />
+    <Content Include="Remodal\libs\jquery-loader.js" />
+    <Content Include="Remodal\src\remodal-default-theme.css" />
+    <Content Include="Remodal\src\remodal.css" />
+    <Content Include="Remodal\src\remodal.js" />
+    <Content Include="Remodal\test\remodal.html" />
+    <Content Include="Remodal\test\remodal_test.js" />
     <Content Include="ResourceFiles\Upload\205c5abc-a6fa-4245-ba8a-dbb52ad46ddf" />
     <Content Include="ResourceFiles\Upload\2af02c8e-e305-4b1a-8409-fff20152fc95" />
     <Content Include="ResourceFiles\Upload\d7564075-b983-4ef2-aadc-5b35c1bdbc58" />
@@ -1205,6 +1225,20 @@
     <Content Include="ckeditor\_samples\php\replaceall.php" />
     <Content Include="ckeditor\_samples\php\standalone.php" />
     <Content Include="ckeditor\_samples\sample_posteddata.php" />
+    <Content Include="Remodal\.bowerrc" />
+    <Content Include="Remodal\.csscomb.json" />
+    <Content Include="Remodal\.editorconfig" />
+    <Content Include="Remodal\.gitignore" />
+    <Content Include="Remodal\.jscsrc" />
+    <Content Include="Remodal\.jshintrc" />
+    <Content Include="Remodal\.travis.yml" />
+    <Content Include="Remodal\bower.json" />
+    <Content Include="Remodal\CHANGELOG.md" />
+    <Content Include="Remodal\CONTRIBUTING.md" />
+    <Content Include="Remodal\LICENSE" />
+    <Content Include="Remodal\package.json" />
+    <Content Include="Remodal\README.md" />
+    <Content Include="Remodal\test\.jshintrc" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="ResourceFiles\Upload\.jpg" />
     <Content Include="ResourceFiles\Upload\.png" />
@@ -1249,6 +1283,8 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="TestingOnly\Dialog\WebForm1.aspx" />
+    <Content Include="TestingOnly\JqueryModalDialog.aspx" />
     <Content Include="TestingOnly\WebForm1.aspx" />
     <Content Include="ViewsSite\Account\Login.aspx" />
     <Content Include="ViewsSite\Account\Register.aspx" />
@@ -1291,6 +1327,10 @@
     <Content Include="Views\Academy\Activation\ActivateAcademicYearAndSession.aspx" />
     <Content Include="Views\Academy\Activation\ActivateUC.ascx" />
     <Content Include="Views\Academy\ProgramSelection\BatchSelect.ascx" />
+    <Content Include="Views\Academy\ProgramSelection\OnlyListing\ProgramSelection.ascx" />
+    <Content Include="Views\Academy\ProgramSelection\OnlyListing\ProgramUC.ascx" />
+    <Content Include="Views\Academy\ProgramSelection\OnlyListing\SubYearUC.ascx" />
+    <Content Include="Views\Academy\ProgramSelection\OnlyListing\YearU.ascx" />
     <Content Include="Views\Academy\ProgramSelection\ProgramCheckBoxAndLabel.ascx" />
     <Content Include="Views\Academy\ProgramSelection\ListLevelUC.ascx" />
     <Content Include="Views\Academy\ProgramSelection\ListSubYearUC.ascx" />
@@ -1338,14 +1378,17 @@
     <Content Include="Views\Course\ListingMain\CoursesOfGroup\CoursesOfGroupListing.aspx" />
     <Content Include="Views\Course\ListingMain\CoursesOfGroup\ListUc.ascx" />
     <Content Include="Views\Course\Section\Master\CourseSectionListing.aspx" />
+    <Content Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx" />
     <Content Include="Views\Exam\ExamType\ExamTypeCreate.aspx" />
     <Content Include="Views\Exam\ExamType\ExamTypeList.aspx" />
     <Content Include="Views\Exam\Exam\CreateExam.aspx" />
     <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx" />
+    <Content Include="Views\Exam\Exam\ExamClass.aspx" />
     <Content Include="Views\Exam\Exam\ExamDetail.aspx" />
     <Content Include="Views\Exam\Exam\ExamsList.aspx" />
     <Content Include="Views\NoticeBoard\CreateUc.ascx" />
     <Content Include="Views\NoticeBoard\ListUc.ascx" />
+    <Content Include="Views\NoticeBoard\NoticeDetail.aspx" />
     <Content Include="Views\NoticeBoard\WebForm1.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
@@ -1407,8 +1450,6 @@
     <Content Include="Views\CreatedUser\Create.aspx" />
     <Content Include="Views\CreateUC.ascx" />
     <Content Include="Views\Dashboard.aspx" />
-    <Content Include="Views\Exam\Create.aspx" />
-    <Content Include="Views\Exam\Exam\Create\CreateExamUc.ascx" />
     <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeNodeUC.ascx" />
     <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeViewUC.ascx" />
     <Content Include="Views\Exam\Exam\ExamList\ItemsOfListUc.ascx" />
@@ -1613,6 +1654,20 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TestingOnly\Dialog\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestingOnly\Dialog\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestingOnly\JqueryModalDialog.aspx.cs">
+      <DependentUpon>JqueryModalDialog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestingOnly\JqueryModalDialog.aspx.designer.cs">
+      <DependentUpon>JqueryModalDialog.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestingOnly\Test.Master.cs">
       <DependentUpon>Test.Master</DependentUpon>
@@ -1945,6 +2000,34 @@
     <Compile Include="Views\Academy\ProgramSelection\BatchSelect.ascx.designer.cs">
       <DependentUpon>BatchSelect.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Academy\ProgramSelection\OnlyListing\ProgramSelection.ascx.cs">
+      <DependentUpon>ProgramSelection.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\ProgramSelection\OnlyListing\ProgramSelection.ascx.designer.cs">
+      <DependentUpon>ProgramSelection.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\ProgramSelection\OnlyListing\ProgramUC.ascx.cs">
+      <DependentUpon>ProgramUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\ProgramSelection\OnlyListing\ProgramUC.ascx.designer.cs">
+      <DependentUpon>ProgramUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\ProgramSelection\OnlyListing\SubYearUC.ascx.cs">
+      <DependentUpon>SubYearUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\ProgramSelection\OnlyListing\SubYearUC.ascx.designer.cs">
+      <DependentUpon>SubYearUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\ProgramSelection\OnlyListing\YearU.ascx.cs">
+      <DependentUpon>YearU.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\ProgramSelection\OnlyListing\YearU.ascx.designer.cs">
+      <DependentUpon>YearU.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Academy\ProgramSelection\ProgramCheckBoxAndLabel.ascx.cs">
       <DependentUpon>ProgramCheckBoxAndLabel.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2274,6 +2357,13 @@
     <Compile Include="Views\Course\Section\Master\CourseSectionListing.aspx.designer.cs">
       <DependentUpon>CourseSectionListing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx.cs">
+      <DependentUpon>ListOfSectionsInCourseUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx.designer.cs">
+      <DependentUpon>ListOfSectionsInCourseUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Exam\ExamType\ExamTypeCreate.aspx.cs">
       <DependentUpon>ExamTypeCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2302,6 +2392,13 @@
     <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx.designer.cs">
       <DependentUpon>StudentEntry.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Exam\Exam\ExamClass.aspx.cs">
+      <DependentUpon>ExamClass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\Exam\ExamClass.aspx.designer.cs">
+      <DependentUpon>ExamClass.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Exam\Exam\ExamDetail.aspx.cs">
       <DependentUpon>ExamDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2329,6 +2426,13 @@
     </Compile>
     <Compile Include="Views\NoticeBoard\ListUc.ascx.designer.cs">
       <DependentUpon>ListUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoticeBoard\NoticeDetail.aspx.cs">
+      <DependentUpon>NoticeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\NoticeBoard\NoticeDetail.aspx.designer.cs">
+      <DependentUpon>NoticeDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\NoticeBoard\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
@@ -2756,20 +2860,6 @@
     </Compile>
     <Compile Include="Views\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Exam\Create.aspx.cs">
-      <DependentUpon>Create.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Exam\Create.aspx.designer.cs">
-      <DependentUpon>Create.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Exam\Exam\Create\CreateExamUc.ascx.cs">
-      <DependentUpon>CreateExamUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Exam\Exam\Create\CreateExamUc.ascx.designer.cs">
-      <DependentUpon>CreateExamUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeNodeUC.ascx.cs">
       <DependentUpon>TreeNodeUC.ascx</DependentUpon>

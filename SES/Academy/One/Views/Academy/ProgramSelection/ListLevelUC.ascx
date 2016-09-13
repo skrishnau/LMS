@@ -1,8 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListLevelUC.ascx.cs" Inherits="One.Views.Academy.ProgramSelection.ListLevelUC" %>
 <%-- lightblue --%>
-<div runat="server" id="panel" style="margin: 20px 0;
-                                     padding: 20px 0;">
-    <div class="block" style="font-weight: 600;font-size: 1.1em">
+<div runat="server" id="panel" style="margin: 10px 0;
+                                     ">
+    <%-- padding: 20px 0; --%>
+    <div class="block" style="font-weight: 600;">
         <asp:HyperLink ID="lblName" runat="server">
                 Name
         </asp:HyperLink>

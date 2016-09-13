@@ -13,24 +13,6 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose {
     public partial class ActResChooseUc {
         
         /// <summary>
-        /// hidSubjectId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSubjectId;
-        
-        /// <summary>
-        /// hidSectionId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSectionId;
-        
-        /// <summary>
         /// dlistActivities control.
         /// </summary>
         /// <remarks>
@@ -56,5 +38,23 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource ResourcesDs;
+        
+        /// <summary>
+        /// hidSubId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidSubId;
+        
+        /// <summary>
+        /// hidSecId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidSecId;
     }
 }

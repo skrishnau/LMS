@@ -12,10 +12,7 @@ namespace One.Views.Class
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                //UserEnrollUC_ListDisplay.SubjectSessionId = SubjectSessionId;
-            }
+            lblErrorMsg.Visible = false;
         }
 
         public int SubjectSessionId
@@ -45,26 +42,50 @@ namespace One.Views.Class
         {
             if (Page.IsValid)
             {
-                var now = DateTime.Now;
-                var subjectSession = new Academic.DbEntities.Class.SubjectClass()
+                try
                 {
-                    Name = txtName.Text
-                    ,
-                    CreatedDate = now.Date
-                    ,
-                    IsRegular = false
-                    ,
-                    CreatedTime = now.Hour + ":" + now.Minute + ":" + now.Second + ":" + now.Millisecond
-                    ,
-                    UseDefaultGrouping = true
-                    ,
-                    SubjectId = CourseId
-                };
-                using (var helper = new DbHelper.Classes())
-                {
-                    var saved = helper.AddOrUpdateSubjectSession(subjectSession);
-                    Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + CourseId);
+                    var now = DateTime.Now;
+                    var subjectSession = new Academic.DbEntities.Class.SubjectClass()
+                    {
+                        Name = txtName.Text
+                        ,
+                        CreatedDate = now.Date
+                        ,
+                        IsRegular = false
+                        ,
+                        CreatedTime = now.Hour + ":" + now.Minute + ":" + now.Second + ":" + now.Millisecond
+                        ,
+                        UseDefaultGrouping = true
+                        ,
+                        SubjectId = CourseId
+                    };
+
+                    try
+                    {
+                        if (txtStart.Text != "")
+                        {
+                            subjectSession.StartDate = Convert.ToDateTime(txtStart.Text);
+                        }
+                        if (txtEnd.Text != "")
+                        {
+                            subjectSession.EndDate = Convert.ToDateTime(txtEnd.Text);
+                        }
+                    }
+                    catch { }
+
+
+                    using (var helper = new DbHelper.Classes())
+                    {
+                        var saved = false;//helper.AddOrUpdateSubjectSession(subjectSession);
+                        if (saved)
+                            Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + CourseId);
+                        else
+                            lblErrorMsg.Visible = true;
+                    }
                 }
+                catch { }
+
+
             }
         }
     }

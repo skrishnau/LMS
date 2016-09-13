@@ -37,6 +37,16 @@
                             ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
+                 <tr>
+                    <td>Short Name*</td>
+                    <td>
+                        <asp:TextBox ID="txtShortName" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                            ControlToValidate="txtShortName" 
+                            ValidationGroup="courseCreateGroup"
+                            ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
                 <tr>
                     <td>Code*</td>
                     <td>

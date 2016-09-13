@@ -1,19 +1,20 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CoursesUc.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.CoursesUc" %>
 <style type="text/css">
     .dashboard-modules {
-        background-color: lightyellow;
-        margin: 5px;
-        padding: 5px;
-        border: 2px solid darkgray;
+        background-color: lightgoldenrodyellow;
+        /*margin: 10px 5px;*/
+        /*padding: 0 5px 5px 5px;*/
+        /*border: 2px solid darkgray;*/
     }
 </style>
-<div class="dashboard-modules">
-    <asp:HyperLink ID="HyperLink2"
-        NavigateUrl="~/ViewsSite/User/Dashboard/Dashboard.aspx?type=current" runat="server">
+<div class="module-whole">
+    <div class="modules-heading">
+        <asp:HyperLink ID="HyperLink2"
+            NavigateUrl="~/ViewsSite/User/Dashboard/Dashboard.aspx?type=current" runat="server">
                                 Courses
-                        <hr />
-    </asp:HyperLink>
-    <div>
+        </asp:HyperLink>
+    </div>
+    <div class="modules-body">
         <asp:DataList ID="dListCourses" runat="server" DataSourceID="RegularCourseDS">
             <ItemTemplate>
                 <div style="margin: 0 5px 0  10px;">

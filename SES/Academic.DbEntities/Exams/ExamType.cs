@@ -35,6 +35,7 @@ namespace Academic.DbEntities.Exams
         public int SchoolId { get; set; }
         public virtual School School { get; set; }
 
+        public string Notice { get; set; }
         /// <summary>
         /// It gives exams like: all 1st terminal, all 2nd terminal, etc.
         /// </summary>

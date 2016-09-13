@@ -17,9 +17,9 @@ namespace Academic.DbEntities.Exams
         public virtual ExamType ExamType { get; set; }
 
         public string Name { get; set; }
-        public string Notice { get; set; }
+        public string NoticeContent { get; set; }
 
-        public bool IsPercent { get; set; }
+        public bool? IsPercent { get; set; }
         public float? Weight { get; set; }
 
         public DateTime? StartDate { get; set; }
@@ -40,11 +40,15 @@ namespace Academic.DbEntities.Exams
         public int? ExamCoordinatorId { get; set; }
         public virtual Users ExamCoordinator { get; set; }//teacher or staff
 
-        public virtual ICollection<ExamSubject> ExamSubjects { get; set; }
+        public virtual ICollection<ExamOfClass> ExamOfClasses { get; set; }
 
         public int CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
-        
+
+        public bool? PublishNoticeToNoticeBoard { get; set; }
+
+        public int? NoticeId { get; set; }
+        public virtual Notices.Notice Notice { get; set; }
         //public int Position { get; set; }
         /*
         

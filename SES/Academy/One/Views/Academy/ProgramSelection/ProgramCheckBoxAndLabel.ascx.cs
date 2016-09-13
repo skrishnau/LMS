@@ -65,6 +65,16 @@ namespace One.Views.Academy.ProgramSelection
             return list;
         }
 
+         public List<OnlyListing.ProgramUC> GetControlsForListing()
+        {
+            var list = new List<OnlyListing.ProgramUC>();
+            foreach (OnlyListing.ProgramUC uc in pnlSubControls.Controls)
+            {
+                list.Add(uc);
+            }
+            return list;
+        }
+
 
         public Control FindCustomControl(string id)
         {

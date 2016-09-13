@@ -69,9 +69,9 @@ namespace One.Views.NoticeBoard
             {
                 Id = Convert.ToInt32(id.Value)
                 ,
-                Headiing = heading.Text
+                Title = heading.Text
                 ,
-                Description = description.Text
+                Content = description.Text
             };
             using (var helper = new DbHelper.Notice())
             {
@@ -129,13 +129,13 @@ namespace One.Views.NoticeBoard
             {
                 var notice = new Academic.DbEntities.Notices.Notice()
                 {
-                    CreatedById = user.Id
+                    CreatedBy = user.Id
                     ,
                     CreatedDate = DateTime.Now
                     ,
-                    Description = txtDescription.Text
+                    Content = txtDescription.Text
                     ,
-                    Headiing = txtHeading.Text
+                    Title = txtHeading.Text
                 };
                 using (var helper = new DbHelper.Notice())
                 {

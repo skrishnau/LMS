@@ -13,7 +13,10 @@ namespace One.Views.Exam.ExamType
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                
+            }
         }
 
         protected void ddlWeight_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,6 +99,7 @@ namespace One.Views.Exam.ExamType
                             ,
                             SchoolId = user.SchoolId
                             ,
+                            Notice = CKEditor1.Text
                         };
 
                         if (txtFullmarks.Text != "")
@@ -118,5 +122,17 @@ namespace One.Views.Exam.ExamType
                 }
             }
         }
+
+        protected void btnHelp_Click(object sender, EventArgs e)
+        {
+            pnlHelp.Visible = true;
+        }
+
+        protected void btnCloseHelp_Click(object sender, EventArgs e)
+        {
+            pnlHelp.Visible = false;
+        }
+
+        
     }
 }

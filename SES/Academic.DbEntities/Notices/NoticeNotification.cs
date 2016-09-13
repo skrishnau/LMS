@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Notices
 {
+
+    /// <summary>
+    /// If NoticeNotification is not found for a user then the analysis would be that
+    /// the user has not viewed the notice yet.
+    /// </summary>
     public class NoticeNotification
     {
         public int Id { get; set; }

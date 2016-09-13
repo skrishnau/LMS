@@ -1,11 +1,10 @@
 ﻿body {
+    background-color: #557d96;
 }
 
-.dashboard-modules {
-    background-color: whitesmoke;
-    margin: 5px;
-    padding: 5px;
-    border: 2px solid darkgray;
+
+.mid-width {
+    background-color: white;
 }
 
 .height-25percent {

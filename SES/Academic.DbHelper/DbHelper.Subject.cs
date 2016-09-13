@@ -426,7 +426,7 @@ namespace Academic.DbHelper
             }
 
             //uncomment this
-            
+
             public List<StudentSubjectModel> GetCurrentRegularSubjectsOfUser(int userId)
             {
                 // uncomment all
@@ -525,7 +525,7 @@ namespace Academic.DbHelper
                 }*/
                 return new List<StudentSubjectModel>();
             }
-            
+
 
             public List<StudentSubjectModel> GetExtraSubjectsOfUser(int userId)
             {
@@ -614,17 +614,18 @@ namespace Academic.DbHelper
                 return list;
             }
 
+
             //Used--Latest after Github ---remember "after Github" are all finals
 
             public List<DbEntities.Subjects.Subject> ListCurrentCoursesOfUser(int userId)
             {
-                 var user = Context.Users.Find(userId);
+                var user = Context.Users.Find(userId);
                 if (user != null)
                 {
                     var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
                         .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && !(x.SessionComplete ?? false))
                         .ToList();
-                        //.Select(x=>x.Subject).ToList();
+                    //.Select(x=>x.Subject).ToList();
 
                     //var incomplete = subSession.Where(x => ).ToList();
 
@@ -633,12 +634,14 @@ namespace Academic.DbHelper
 
                     var notregularincomplete = subSession.Where(x => !x.IsRegular)
                         .Select(x => x.Subject).ToList();
+
                     regularincomplete.AddRange(notregularincomplete);
+
                     return regularincomplete;
                 }
                 return new List<DbEntities.Subjects.Subject>();
             }
-
+            //used
             public List<DbEntities.Subjects.Subject> ListEarlierCoursesOfUser(int userId)
             {
                 var user = Context.Users.Find(userId);
@@ -659,10 +662,47 @@ namespace Academic.DbHelper
                     regularcomplete.AddRange(notregularcomplete);
 
                     return regularcomplete;
-                    
+
                 }
                 return new List<DbEntities.Subjects.Subject>();
             }
+
+            //used /// remain to edit more
+            public void ListCourses1(int userId)
+            {
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subjectClasses0 = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false));
+                        ////.Where(x=>!x.SubjectClass.IsRegular)
+                        //.Select(x => x.SubjectClass)
+                        ////.Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
+                        //.ToList(); //.Select(x=>x.Subject).ToList();
+
+                    var alreadyEnteredUserClass = subjectClasses0.Select(x => x.Id);
+
+
+                    var std = Context.Student.FirstOrDefault(x => x.UserId == userId);
+                    if (std != null)
+                    {
+                        var subjectClasses = from sb in Context.StudentBatch
+                                             join r in Context.RunningClass on sb.ProgramBatchId equals r.ProgramBatchId
+                                             join sc in Context.SubjectClass on r.Id equals sc.RunningClassId
+                                             where !(r.Void ?? false) && !(sb.Void ?? false) && !(sc.Void ?? false) &&
+                                                   sc.IsRegular && !(sc.SessionComplete ?? false)
+                                             select sc;
+                        var userClasses = Context.UserClass.Where(x => x.UserId == userId);
+                    }
+                    else
+                    {
+
+
+                    }
+
+                }
+
+            }
+
 
             public List<Academic.DbEntities.Subjects.Subject>[] ListCurrentAndEarlierCoursesOfUser(int userId)
             {
@@ -759,12 +799,24 @@ namespace Academic.DbHelper
                 {
                     return false;
                 }
-                return false;
+                //return false;
             }
 
             public DbEntities.Subjects.Subject GetCourse(int cId)
             {
                 return Context.Subject.Find(cId);
+            }
+
+            public List<DbEntities.Class.SubjectClass> ListCoursesOfClass(int runningClassId)
+            {
+                return Context.SubjectClass.Where(x => x.RunningClassId == runningClassId && !(x.Void ?? false))
+                    .ToList();
+            }
+
+            public List<DbEntities.Exams.ExamSubject> ListExamCourses(int examClassId)
+            {
+                return Context.ExamSubject.Where(x => x.ExamOfClassId == examClassId
+                    && !(x.Void ?? false)).ToList();
             }
         }
     }

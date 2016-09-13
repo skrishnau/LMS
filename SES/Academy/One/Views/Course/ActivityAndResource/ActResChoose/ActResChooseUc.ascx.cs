@@ -14,24 +14,24 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose
             LoadActivities();
             LoadResources();
         }
+        
+        //public int SubjectId
+        //{
+        //    get { return Convert.ToInt32(hidSubjectId.Value); }
+        //    set { hidSubjectId.Value = value.ToString(); }
+        //}
 
+        //public int SectionId
+        //{
+        //    get { return Convert.ToInt32(hidSectionId.Value); }
+        //    set { hidSectionId.Value = value.ToString(); }
+        //} 
+        
         private void LoadActivities()
         {
             var acts = One.Values.Enums.GetActivities();
             dlistActivities.DataSource = acts;
             dlistActivities.DataBind();
-        }
-
-        public int SubjectId
-        {
-            get { return Convert.ToInt32(hidSubjectId.Value); }
-            set { hidSubjectId.Value = value.ToString(); }
-        }
-
-        public int SectionId
-        {
-            get { return Convert.ToInt32(hidSectionId.Value); }
-            set { hidSectionId.Value = value.ToString(); }
         }
 
         private void LoadResources()
@@ -47,9 +47,39 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose
             string url = o.ToString();
             if (!string.IsNullOrEmpty(url))
             {
-                url += "?SubId=" + SubjectId+"&SecId="+SectionId;
+                //uncomment
+                //url += "?SubId=" + SubjectId+"&SecId="+SectionId;
             }
             return url;
+        }
+
+        public void SetIds(int subjectId, int sectionId, string subjectName, string sectionName)
+        {
+            dlistResources.DataSource = null;
+            dlistActivities.DataSource = null;
+
+            //SectionId = sectionId;
+            //SubjectId = subjectId;
+
+            //LoadActivities();
+            //LoadResources();
+
+            //SectionName = sectionName;
+        }
+
+        protected void dlistActivities_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            var url = e.CommandArgument;
+            if (url != null && e.CommandName=="Click")
+            {
+                var sectionId = Session["SectionId"];
+                var subjectId = Session["SubjectId"];
+
+                if (sectionId != null && subjectId != null)
+                {
+                    Response.Redirect(url.ToString()+"?SubId="+subjectId.ToString()+"&SecId="+sectionId.ToString());
+                }
+            }
         }
     }
 }

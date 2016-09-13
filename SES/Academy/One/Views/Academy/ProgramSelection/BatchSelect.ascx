@@ -20,6 +20,7 @@
             <div class="batch-items" style="padding: 3px; border: 2px lightblue solid;">
                 <%--<asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("BatchId") %>' />--%>
                 <%--<asp:Label ID="Label1" runat="server" Text='<%# Eval("BatchId")+" "+Eval("ProgramId") %>'></asp:Label>--%>
+               
                 <asp:LinkButton ID="Label1" runat="server" Text='<%# Eval("ProgramBatchName") %>'
                     CssClass="block" CommandName="Select" Font-Underline="False"
                     CommandArgument='<%# Eval("ProgramBatchId")+","+Eval("ProgramBatchName") %>' CausesValidation="False"></asp:LinkButton>

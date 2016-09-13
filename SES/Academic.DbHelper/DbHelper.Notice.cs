@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Academic.DbHelper
 {
     public partial class DbHelper
     {
-        public class Notice:IDisposable
+        public class Notice : IDisposable
         {
             private Academic.Database.AcademicContext Context;
 
             public Notice()
             {
-                Context =new Academic.Database.AcademicContext();
+                Context = new Academic.Database.AcademicContext();
             }
 
             public bool AddOrUpdateNotices(DbEntities.Notices.Notice notice)
@@ -29,10 +30,10 @@ namespace Academic.DbHelper
                         Context.SaveChanges();
                         return true;
                     }
-                    noti.Description = notice.Description;
+                    noti.Content = notice.Content;
                     noti.UpdatedDate = DateTime.Now;
-                    noti.Headiing = notice.Headiing;
-                    noti.ViewerLimited = notice.ViewerLimited;
+                    noti.Title = notice.Title;
+                    noti.NoticePublishTo = notice.NoticePublishTo;
                     Context.SaveChanges();
                     return true;
                 }
@@ -80,38 +81,38 @@ namespace Academic.DbHelper
                 //              ,Headiing = noti.Headiing
                 //          }  ;
 
-                var n =  (from noti in  Context.Notice.Where(x=>!(x.Void??false))
-                              .OrderByDescending(x=>x.CreatedDate)
-                              .ThenByDescending(x=>x.UpdatedDate)
-                              .ToList()
-                             select new DbEntities.Notices.Notice()
-                          {
-                              Id = noti.Id
-                              ,
-                              CreatedDate = noti.CreatedDate
-                              ,
-                              Description = (noti.Description.Length > 150) ? noti.Description.Substring(0, 149) + "..." : noti.Description
-                              ,
-                              UpdatedDate = noti.UpdatedDate
-                              ,
-                              //for now viewer limited is used as notice seen or not seen indication
-                              //ViewerLimited = noti.ViewerLimited
-                              ViewerLimited = !Context.NoticeNotification.Any(x=>x.UserId==userId && x.NoticeId==noti.Id)
-                              ,
-                              CreatedBy = noti.CreatedBy
-                              ,
-                              CreatedById = noti.CreatedById
-                              ,
-                              Headiing = noti.Headiing
-                              
-                          }).ToList()  ;
 
+                var n = Context.Notice.Where(x => !(x.Void ?? false) && x.PublishNoticeToNoticeBoard)
+                    .OrderByDescending(x=>x.PublishedDate)
+                    .ThenByDescending(x => x.UpdatedDate)
+                    .ThenByDescending(x => x.CreatedDate)
+                    .ToList();
+                   
+                //Used: after github
+                //calculate all the viewed notifications
+                //Here 'Void' column is used as Viewed--> so all viewed are represented by
+                //Void= false and all unviewed by Void=true
+                //since exclamation on notice is shown when not viewed , so Void = true for not viewed
+                var notification = Context.NoticeNotification.Where(x => x.UserId == userId).Select(x => x.NoticeId);
+                for (var i = 0; i < n.Count; i++)
+                {
+                    if (notification.Contains(n[i].Id))
+                    {
+                        //here void is used as viewed as 
+                        n[i].Void = false;
+                    }
+                    else
+                    {
+                        n[i].Void = true;
+                    }
+                }
                 var count = n.Count();
                 if (count <= 10) count = 0;
-                else if (count < 20) count = count%10;
+                else if (count < 20) count = count % 10;
                 else count = count - 10;
                 //count = (count%10)*(count/10);
                 var s = n.Skip(count);
+
                 return s.ToList();
             }
 
@@ -119,6 +120,70 @@ namespace Academic.DbHelper
             public void Dispose()
             {
                 Context.Dispose();
+            }
+
+            public bool AddOrUpdateNoticeNotification(List<DbEntities.Notices.Notice> notices, int userId)
+            {
+                using (var scope = new TransactionScope())
+                {
+                    foreach (var n in notices)
+                    {
+                        var notiNotification = Context.NoticeNotification.FirstOrDefault(x => x.NoticeId == n.Id && x.UserId == userId);
+                        if (notiNotification != null)
+                        {
+                            notiNotification.Viewed = true;
+                        }
+                        else
+                        {
+                            var nNf = new DbEntities.Notices.NoticeNotification()
+                            {
+                                UserId = userId
+                                ,
+                                NoticeId = n.Id
+                                ,
+                                Viewed = true
+                            };
+                            Context.NoticeNotification.Add(nNf);
+                        }
+                        Context.SaveChanges();
+                    }
+                    scope.Complete();
+                    
+                }
+                return true;
+            }
+            public bool AddOrUpdateNoticeNotification(int noticeId, int userId)
+            {
+                using (var scope = new TransactionScope())
+                {
+                        var notiNotification = Context.NoticeNotification.FirstOrDefault(x => 
+                            x.NoticeId == noticeId && x.UserId == userId);
+                        if (notiNotification != null)
+                        {
+                            notiNotification.Viewed = true;
+                        }
+                        else
+                        {
+                            var nNf = new DbEntities.Notices.NoticeNotification()
+                            {
+                                UserId = userId
+                                ,
+                                NoticeId = noticeId
+                                ,
+                                Viewed = true
+                            };
+                            Context.NoticeNotification.Add(nNf);
+                        }
+                        Context.SaveChanges();
+                    scope.Complete();
+
+                }
+                return true;
+            }
+
+            public DbEntities.Notices.Notice GetNotice(int  noticeId)
+            {
+                return Context.Notice.Find(noticeId);
             }
         }
     }

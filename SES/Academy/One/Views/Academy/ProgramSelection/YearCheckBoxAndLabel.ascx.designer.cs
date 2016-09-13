@@ -146,5 +146,23 @@ namespace One.Views.Academy.ProgramSelection {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidFacultyId;
+        
+        /// <summary>
+        /// hidEarlierSelectedBatchId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidEarlierSelectedBatchId;
+        
+        /// <summary>
+        /// hidEarlierSelectedBatchName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidEarlierSelectedBatchName;
     }
 }

@@ -151,6 +151,7 @@ namespace Academic.DbHelper
                 return stdas;
             }
 
+         
             public List<DbEntities.User.Users> GetStudentsOfProgramBatch_AsUser(int programBatchId)
             {
                 var stdas = Context.StudentBatch.Include(i => i.Student).Include(i => i.Student.User)
@@ -243,6 +244,10 @@ namespace Academic.DbHelper
                 //var rc = Context.RunningClass.Where(x=>pb.Contains(x.ProgramBatch));
                 //Context.RunningClass.Where(x=>x.ProgramBatch.BatchId)
             }
+
+            //used
+
+
 
             #endregion
 

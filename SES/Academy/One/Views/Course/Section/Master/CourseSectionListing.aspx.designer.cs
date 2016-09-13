@@ -31,13 +31,40 @@ namespace One.Views.Course.Section.Master {
         protected global::System.Web.UI.WebControls.Literal txtSubjectName;
         
         /// <summary>
-        /// CourseDetailUc1 control.
+        /// lnkEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.Course.Display.EachCourse.CourseDetailUc CourseDetailUc1;
+        protected global::System.Web.UI.WebControls.HyperLink lnkEdit;
+        
+        /// <summary>
+        /// ImageButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageButton1;
+        
+        /// <summary>
+        /// lblEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblEdit;
+        
+        /// <summary>
+        /// ListOfSectionsInCourseUC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.Course.Section.Master.ListOfSectionsInCourseUC ListOfSectionsInCourseUC1;
         
         /// <summary>
         /// Panel1 control.
@@ -47,14 +74,5 @@ namespace One.Views.Course.Section.Master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel1;
-        
-        /// <summary>
-        /// ActResChooseUc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Course.ActivityAndResource.ActResChoose.ActResChooseUc ActResChooseUc;
     }
 }

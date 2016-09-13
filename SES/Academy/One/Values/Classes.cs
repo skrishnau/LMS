@@ -47,6 +47,17 @@ namespace One.Values
 
         public bool Checked { get; set; }
     }
+    public class SubjectSectionEventArgs : EventArgs
+    {
+        public int SubjectId { get; set; }
+        public int SectionId{ get; set; }
+
+        public string SubjectName { get; set; }
+        public string SectionName { get; set; }
+
+        public bool Checked { get; set; }
+    }
+
 
     /// <summary>
     /// Used for structure

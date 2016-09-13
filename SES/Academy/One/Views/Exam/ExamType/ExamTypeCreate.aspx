@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="ExamTypeCreate.aspx.cs" Inherits="One.Views.Exam.ExamType.ExamTypeCreate" %>
 
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+
 <asp:Content runat="server" ID="headcontent1" ContentPlaceHolderID="head">
     <style type="text/css">
         .this-row {
@@ -92,8 +94,38 @@
                     </tr>
 
                 </table>
-                <asp:HiddenField ID="hidExamTypeId" runat="server" Value="0" />
 
+                <div>
+                    <strong>Notice</strong>
+                    <div style="float: right; visibility: hidden;">
+                        <div style="position: absolute; float: right; width: auto;">
+                            <asp:Panel ID="pnlHelp" runat="server" Visible="False" BackColor="white">
+                                <asp:LinkButton ID="btnCloseHelp" CausesValidation="False"
+                                     runat="server" OnClick="btnCloseHelp_Click">
+                                    <asp:Image ID="imgcross" ImageUrl="~/Content/Icons/Close/dialog_close.png"></asp:Image>
+                                </asp:LinkButton>
+                                You can add properties by using '@' in fornt of Property name and replacing space with
+                                underscore(_).
+                                <br/>
+                                For e.g., "Start Date" can be written as "@Start_Date",
+                                "Result Date" can be written as "Result_Date", etc.
+                            </asp:Panel>
+                        </div>
+                        <asp:LinkButton ID="btnHelp" runat="server" Visible="False"
+                            CausesValidation="False" OnClick="btnHelp_Click">
+                            <asp:Image runat="server" ImageUrl="~/Content/Icons/Help/help_blu.png"/>
+                        </asp:LinkButton>
+                    </div>
+                    <hr />
+                    <div style="margin: 20px;">
+                        
+                        <ckeditor:ckeditorcontrol id="CKEditor1" runat="server">
+                        </ckeditor:ckeditorcontrol>
+                    </div>
+                </div>
+
+                <asp:HiddenField ID="hidExamTypeId" runat="server" Value="0" />
+                <hr />
             </ContentTemplate>
         </asp:UpdatePanel>
         <div>

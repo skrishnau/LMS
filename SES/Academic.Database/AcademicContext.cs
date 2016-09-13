@@ -82,14 +82,13 @@ namespace Academic.Database
         public DbSet<DbEntities.Attendances.PresenceStatus> PresenceStatus { get; set; }
 
         public DbSet<DbEntities.Exams.Exam> Exam { get; set; }
+        public DbSet<DbEntities.Exams.ExamType> ExamType { get; set; }
+
+        public DbSet<DbEntities.Exams.ExamOfClass> ExamOfClass { get; set; }
         public DbSet<DbEntities.Exams.ExamStudent> ExamStudent { get; set; }
         public DbSet<DbEntities.Exams.ExamSubject> ExamSubject { get; set; }
-        //uncomment this
         public DbSet<DbEntities.Exams.ExamSubjectExaminer> ExamSubjectExaminer { get; set; }
 
-        //public DbSet<DbEntities.Exams.ExamSubType> ExamSubType { get; set; }
-
-        public DbSet<DbEntities.Exams.ExamType> ExamType { get; set; }
 
 
 
@@ -221,8 +220,8 @@ namespace Academic.Database
         //============================Notice=========================
         public DbSet<DbEntities.Notices.Notice> Notice { get; set; }
         public DbSet<DbEntities.Notices.NoticeNotification> NoticeNotification { get; set; }
-        public DbSet<DbEntities.Notices.NoticeTo> NoticeTo { get; set; }
-        public DbSet<DbEntities.Notices.NoticeFiles> NoticeFiles { get; set; }
+        //public DbSet<DbEntities.Notices.NoticeTo> NoticeTo { get; set; }
+        //public DbSet<DbEntities.Notices.NoticeFiles> NoticeFiles { get; set; }
 
 
 

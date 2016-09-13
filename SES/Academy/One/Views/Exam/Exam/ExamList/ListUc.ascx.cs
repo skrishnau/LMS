@@ -83,7 +83,7 @@ namespace One.Views.Exam.Exam.ExamList
                     ItemsOfListUc item =
                         (ItemsOfListUc)Page.LoadControl("~/Views/Exam/Exam/ExamList/ItemsOfListUc.ascx");
                     item.SetFields(exam.Id, exam.Name, exam.ExamType.Name, exam.ResultDate, exam.UpdatedDate
-                        , exam.Weight ?? 0, exam.Notice);
+                        , exam.Weight ?? 0, exam.NoticeContent);
                     pnlExamList.Controls.Add(item);
                 }
             }

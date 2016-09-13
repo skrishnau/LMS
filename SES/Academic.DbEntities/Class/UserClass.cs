@@ -15,11 +15,11 @@ namespace Academic.DbEntities.Class
         public int SubjectClassId { get; set; }
         public virtual Class.SubjectClass SubjectClass { get; set; }
 
-        //NOTE: if IsRegular= true then this class is from regualar subjects
-        //so we have to get students from StudentBatch table
-        public bool? IsRegular { get; set; }
-        public int? StudentBatchId { get; set; }
-        public virtual Batches.StudentBatch StudentBatch { get; set; }
+        ////NOTE: if IsRegular= true then this class is from regualar subjects
+        ////so we have to get students from StudentBatch table
+        //public bool? IsRegular { get; set; }
+        //public int? StudentBatchId { get; set; }
+        //public virtual Batches.StudentBatch StudentBatch { get; set; }
 
         //Note: if IsRegular = true then this class is from irregular subjects
         //so we have to get users from Users table

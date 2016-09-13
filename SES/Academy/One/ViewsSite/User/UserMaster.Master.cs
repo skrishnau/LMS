@@ -14,10 +14,7 @@ namespace One.ViewsSite.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //if (!IsPostBack)
             {
-
                 var user = Page.User as CustomPrincipal;
                 var loginUrl = "ViewsSite/Account/Login.aspx";
                 if (user != null)
@@ -26,13 +23,15 @@ namespace One.ViewsSite.User
                     if (!IsPostBack)
                     {
                         //using(var fileHelper = new DbHelper.WorkingWithFiles())
+                        CoursesUc.UserId = user.Id;
+                        EarlierUc.UserId = user.Id;
+                        NoticeBoardUc.UserId = user.Id;
                         using (var helper = new DbHelper.Office())
                         {
                             var school = helper.GetSchoolOfUser(user.Id);
                             if (school != null)
                             {
                                 //imgSchool.ImageUrl = "~/Content/Images/"
-                                //imgSchool.ImageUrl = fileHelper.
                                 lblSchoolName.Text = school.Name;
                             }
                         }
@@ -40,8 +39,7 @@ namespace One.ViewsSite.User
 
                     UpdateLoginTime(user.Id);
 
-                    CoursesUc.UserId = user.Id;
-                    EarlierUc.UserId = user.Id;
+                    
                     if (user.IsInRole("manager"))
                     {
                         var schoolCreateUrl = "Views/Office/School/Create.aspx";
@@ -64,6 +62,7 @@ namespace One.ViewsSite.User
 
             }
         }
+      
         void UpdateLoginTime(int userId)
         {
             using (var helper = new DbHelper.User())

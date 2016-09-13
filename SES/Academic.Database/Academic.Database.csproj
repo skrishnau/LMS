@@ -270,6 +270,46 @@
     <Compile Include="Migrations\201609061024385_exam_all_changes_remaining_2.Designer.cs">
       <DependentUpon>201609061024385_exam_all_changes_remaining_2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609070327009_additional_changes_for_exam_overall.cs" />
+    <Compile Include="Migrations\201609070327009_additional_changes_for_exam_overall.Designer.cs">
+      <DependentUpon>201609070327009_additional_changes_for_exam_overall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609070732566_examType_Notice_added.cs" />
+    <Compile Include="Migrations\201609070732566_examType_Notice_added.Designer.cs">
+      <DependentUpon>201609070732566_examType_Notice_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609071445082_examOfClass_added_to_context.cs" />
+    <Compile Include="Migrations\201609071445082_examOfClass_added_to_context.Designer.cs">
+      <DependentUpon>201609071445082_examOfClass_added_to_context.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609071717463_no_idea3.cs" />
+    <Compile Include="Migrations\201609071717463_no_idea3.Designer.cs">
+      <DependentUpon>201609071717463_no_idea3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609081414099_no_idea4.cs" />
+    <Compile Include="Migrations\201609081414099_no_idea4.Designer.cs">
+      <DependentUpon>201609081414099_no_idea4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609090344330_column_name_changed.cs" />
+    <Compile Include="Migrations\201609090344330_column_name_changed.Designer.cs">
+      <DependentUpon>201609090344330_column_name_changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609090351577_column_name_changed1.cs" />
+    <Compile Include="Migrations\201609090351577_column_name_changed1.Designer.cs">
+      <DependentUpon>201609090351577_column_name_changed1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609091337426_exam_id_removed_from_examSubject.cs" />
+    <Compile Include="Migrations\201609091337426_exam_id_removed_from_examSubject.Designer.cs">
+      <DependentUpon>201609091337426_exam_id_removed_from_examSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609100448330_notice_updated.cs" />
+    <Compile Include="Migrations\201609100448330_notice_updated.Designer.cs">
+      <DependentUpon>201609100448330_notice_updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609110920558_userClass_modified_and_restored_to_previous.cs" />
+    <Compile Include="Migrations\201609110920558_userClass_modified_and_restored_to_previous.Designer.cs">
+      <DependentUpon>201609110920558_userClass_modified_and_restored_to_previous.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -451,6 +491,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609061024385_exam_all_changes_remaining_2.resx">
       <DependentUpon>201609061024385_exam_all_changes_remaining_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609070327009_additional_changes_for_exam_overall.resx">
+      <DependentUpon>201609070327009_additional_changes_for_exam_overall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609070732566_examType_Notice_added.resx">
+      <DependentUpon>201609070732566_examType_Notice_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609071445082_examOfClass_added_to_context.resx">
+      <DependentUpon>201609071445082_examOfClass_added_to_context.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609071717463_no_idea3.resx">
+      <DependentUpon>201609071717463_no_idea3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609081414099_no_idea4.resx">
+      <DependentUpon>201609081414099_no_idea4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609090344330_column_name_changed.resx">
+      <DependentUpon>201609090344330_column_name_changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609090351577_column_name_changed1.resx">
+      <DependentUpon>201609090351577_column_name_changed1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609091337426_exam_id_removed_from_examSubject.resx">
+      <DependentUpon>201609091337426_exam_id_removed_from_examSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609100448330_notice_updated.resx">
+      <DependentUpon>201609100448330_notice_updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609110920558_userClass_modified_and_restored_to_previous.resx">
+      <DependentUpon>201609110920558_userClass_modified_and_restored_to_previous.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

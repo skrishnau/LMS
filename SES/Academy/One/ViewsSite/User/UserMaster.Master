@@ -41,14 +41,64 @@
     <link href="UserStyles.css" rel="stylesheet" />
     <link href="../../Content/CSSes/All.css" rel="stylesheet" />
     <style type="text/css">
+
+/*all links*/
+        
+        .link, .link:visited {
+            color: blue;
+            text-decoration: none;
+        } 
+        .link:hover {
+            color: darkorange;
+            text-decoration: underline;
+        }
+        .link:active {
+            color: blueviolet;
+            text-decoration: underline;
+        }
+       
+        
+
+         .form-element-row-height {
+             padding-top: 7px;
+             padding-bottom: 7px;
+         }
+
+        .module-whole {
+            margin: 0 5px 10px;
+        }
+
+        .modules-heading {
+            width: 100%;
+            border-bottom: 1px solid black;
+            text-align: center;
+            background-color: lightsalmon;
+            color: white;
+        }
+
+        .modules-body {
+            overflow: auto;
+            background-color: lightgoldenrodyellow;
+            padding: 5px;
+            font-family: arial, verdena;
+            font-size: 0.8em;
+        }
+
+        #bodyDiv {
+            background-color: white;
+            padding: 5px;
+        }
+
         .table-whole {
             width: 100%;
             vertical-align: top;
         }
 
         .body-whole {
-            margin-top: 36px;
+            margin-top: 45px;
         }
+
+
 
         .right-width {
             width: 20%;
@@ -75,7 +125,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-         <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Scripts>
 
                 <asp:ScriptReference Name="MsAjaxBundle" />
@@ -101,8 +151,8 @@
                     <asp:Label ID="lblSchoolName" runat="server" Text="Label" Font-Size="1.2em" Font-Bold="True"></asp:Label>
                 </a>
                 <div style="float: left;">
-                    <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Images/company-logo.jpg" Width="30" Height="30"/>
-                    
+                    <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Images/company-logo.jpg" Width="30" Height="30" />
+
                 </div>
                 <div style="position: fixed; right: 0; top: 0; margin-right: 10px; margin-top: 5px;" class="clearfix">
                     <asp:LoginName ID="LoginName1" runat="server" Font-Size="1.1em" />
@@ -165,16 +215,17 @@
                         <%-- class="right-sidebar" --%>
                         <div style="width: 100%;">
                             <%--  style="overflow: auto; margin-top: 5px; height:180px;" --%>
-                            <div class="dashboard-modules">
+                            <%-- class="dashboard-modules" --%>
+                            <div>
                                 <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
                             </div>
-                            <div class="dashboard-modules">
+                            <div>
                                 <uc1:NewsUc runat="server" ID="NewsUc" />
                             </div>
-                            <div class="dashboard-modules">
+                            <div>
                                 <uc1:EventsUc runat="server" ID="EventsUc" />
                             </div>
-                            <div class="dashboard-modules">
+                            <div>
                                 <uc1:OnlineUsersUc runat="server" ID="OnlineUsersUc" />
                             </div>
                         </div>

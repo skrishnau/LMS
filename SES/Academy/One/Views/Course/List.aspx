@@ -17,7 +17,7 @@
             <asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">
                 <asp:View ID="View1" runat="server">
                     <div>
-                        <div style="text-align: center;">
+                        <div style="text-align: center; font-size: 1.3em;">
                             <strong>Course and Category Management</strong>
                             <hr />
                         </div>

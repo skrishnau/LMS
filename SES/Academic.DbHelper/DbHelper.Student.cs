@@ -501,6 +501,16 @@ namespace Academic.DbHelper
                 //return years.GroupBy(x=>x.Year).ToList();
                 //return Context.StudentBatch.Where(x=>x.Student.UserId==userId).Select(x=>x.)
             }
+
+            public List<DbEntities.Batches.StudentBatch> ListStudentBatchesOfProgramBatch(int programBatchId)
+            {
+                var stdBatchs = Context.StudentBatch.Where(x =>
+                            x.ProgramBatchId == (programBatchId)
+                            && !(x.Void ?? false) 
+                            && !(x.Student.Void ?? false) 
+                            && !(x.Student.User.IsDeleted ?? false));
+                return stdBatchs.ToList();
+            }
         }
 
     }

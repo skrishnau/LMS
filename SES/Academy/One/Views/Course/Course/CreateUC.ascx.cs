@@ -56,6 +56,7 @@ namespace One.Views.Course.Course
                     HasLab = chkListHas.Items[1].Selected,
                     HasTutorial = chkListHas.Items[2].Selected,
                     HasProject = chkListHas.Items[3].Selected,
+                    ShortName = txtShortName.Text,
                     //LevelId = Convert.ToInt32(cmbLevel.SelectedValue),
                     //FacultyId = Convert.ToInt32((cmbFaculty.SelectedValue == "") ? "1" : cmbFaculty.SelectedValue),
                     //ProgramId = Convert.ToInt32(prog),

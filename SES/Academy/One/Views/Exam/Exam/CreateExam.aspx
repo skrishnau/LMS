@@ -3,6 +3,8 @@
     CodeBehind="CreateExam.aspx.cs" Inherits="One.Views.Exam.Exam.CreateExam" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+<%@ Register Src="~/Views/Academy/ProgramSelection/OnlyListing/ProgramSelection.ascx" TagPrefix="uc1" TagName="ProgramSelection" %>
+
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
 
@@ -69,7 +71,7 @@
     <div>
         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
             <ContentTemplate>
-                <div>
+                <div style="border-bottom: 2px solid lightgray; padding-bottom: 10px;">
                     <table>
                         <tr>
                             <td class="auto-style1">Exam Type*</td>
@@ -87,26 +89,26 @@
                         </tr>
                     </table>
                 </div>
+                <br />
                 <%-- test of nicEdit--%>
                 <%-- <textarea></textarea>
                 <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
                 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>--%>
                 <%-- end of test --%>
-                <div>
-                    <asp:Panel ID="pnlEntry" runat="server" BackColor="LightGoldenrodYellow">
-                        <table id="tbl" runat="server">
-                            <tr>
-                                <td class="auto-style1">Name*</td>
-                                <td>
-                                    <asp:TextBox ID="txtName" runat="server" ToolTip="Any indicative name. eg. year+Terminal"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                                        ErrorMessage="Required" ControlToValidate="txtName" ValidationGroup="ExamValiGroup" ForeColor="#FF3300"></asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
+                <div style="background-color: lightgoldenrodyellow; margin: 0 20px 10px;">
+                    <asp:Panel ID="pnlEntry" runat="server">
+                        <div style="margin-left: 20px; padding-left: 20px; padding-top: 10px;">
+                            <table id="tbl">
+                                <tr>
+                                    <td class="auto-style1">Name*</td>
+                                    <td>
+                                        <asp:TextBox ID="txtName" runat="server" ToolTip="Any indicative name. eg. year+Terminal"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                                            ErrorMessage="Required" ControlToValidate="txtName" ValidationGroup="ExamValiGroup" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
 
-
-
-                            <%--  <tr>
+                                <%--  <tr>
                     <td class="auto-style1">Co-ordinator*</td>
                     <td>
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -136,64 +138,75 @@
                     </td>
                 </tr>--%>
 
-                            <tr style="vertical-align: top;">
-                                <td class="auto-style1">Weight</td>
+                                <tr style="vertical-align: top;">
+                                    <td class="auto-style1">Weight</td>
 
-                                <td>
-                                    <asp:DropDownList ID="ddlWeight" runat="server" Height="23px" Width="100px"
-                                        AutoPostBack="True">
-                                        <Items>
-                                            <asp:ListItem Value="0" Text="In Percent" Selected="True"></asp:ListItem>
-                                            <asp:ListItem Value="1" Text="In Marks"></asp:ListItem>
-                                        </Items>
-                                    </asp:DropDownList>
-                                    &nbsp;
+                                    <td>
+                                        <asp:DropDownList ID="ddlWeight" runat="server" Height="23px" Width="100px"
+                                            AutoPostBack="True">
+                                            <Items>
+                                                <asp:ListItem Value="0" Text="In Percent" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Value="1" Text="In Marks"></asp:ListItem>
+                                            </Items>
+                                        </asp:DropDownList>
+                                        &nbsp;
                             <asp:TextBox ID="txtWeight" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="valiWeight" runat="server"
-                                        ErrorMessage="Not a number. " ControlToValidate="txtWeight"
-                                        ForeColor="red"></asp:RequiredFieldValidator>
+                                        <%--<asp:RequiredFieldValidator ID="valiWeight" runat="server"
+                                            ErrorMessage="Required " ControlToValidate="txtWeight"
+                                            ForeColor="red"></asp:RequiredFieldValidator>--%>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                                            ValidationExpression="^[0-9]{1,11}(?:\.[0-9]{1,3})?$"
+                                            ControlToValidate="txtWeight"
+                                            ErrorMessage="RegularExpressionValidator"></asp:RegularExpressionValidator>
+                                        <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+                                            ControlToValidate="txtWeight" ValidationExpression="/^\d*\.?\d*$/"
+                                            runat="server" ErrorMessage="Not a decimal Number"></asp:RegularExpressionValidator>--%>
 
-                                    <%--<asp:RequiredFieldValidator ID="rangeVali" ForeColor="red" runat="server" ErrorMessage="0 to 100 Only." ControlToValidate="txtWeight" MaximumValue="100" MinimumValue="0"></asp:RequiredFieldValidator>--%>
-                                </td>
+                                        <%--<asp:RequiredFieldValidator ID="rangeVali" ForeColor="red" runat="server" ErrorMessage="0 to 100 Only." ControlToValidate="txtWeight" MaximumValue="100" MinimumValue="0"></asp:RequiredFieldValidator>--%>
+                                    </td>
 
-                                <%-- <td>
+                                    <%-- <td>
                                 <asp:TextBox ID="txtWeight" runat="server" TextMode="Number"></asp:TextBox>
                                 <asp:CustomValidator ID="CompareValidator1" runat="server"
                                     ControlToValidate="txtWeight" ValidationGroup="ExamValiGroup"
                                     ErrorMessage="Must be between 0 and 100"
                                     ForeColor="#FF3300"></asp:CustomValidator>
                             </td>--%>
-                            </tr>
+                                </tr>
 
+
+                            </table>
+
+                        </div>
+                        <%-- <br />--%>
+
+
+                        <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />--%>
+
+                        <asp:HiddenField ID="subjectCountHF" runat="server" Value="0" />
+                    </asp:Panel>
+                    <div style="margin-left: 20px; padding-left: 20px; padding-bottom: 10px;">
+                        <table>
                             <tr style="text-align: start left;">
                                 <td class="auto-style1">Start Date*</td>
                                 <td>
-                                    <asp:TextBox ID="txtStartDate" ReadOnly="True" ClientIDMode="Static"
-                                        runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtStartDate" ClientIDMode="Static"
+                                        runat="server" TextMode="Date"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
+                                        ControlToValidate="txtStartDate" ForeColor="Red"
+                                        runat="server" ErrorMessage="Required"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
 
                             <tr style="text-align: start left;">
                                 <td class="auto-style1">Result Date</td>
                                 <td>
-                                    <asp:TextBox ID="txtResultDate" ReadOnly="True" ClientIDMode="Static"
+                                    <asp:TextBox ID="txtResultDate" ClientIDMode="Static"
                                         runat="server" TextMode="Date"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
-                        <br />
-                        <div>
-                            <strong>Notice</strong>
-                            <hr />
-
-                            <CKEditor:CKEditorControl ID="CKEditor1" runat="server">
-                            </CKEditor:CKEditorControl>
-                        </div>
-
-                        <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />--%>
-
-                        <asp:HiddenField ID="subjectCountHF" runat="server" Value="0" />
-                    </asp:Panel>
+                    </div>
                 </div>
                 <%-- end --%>
                 <div>
@@ -213,12 +226,50 @@
                     numberOfMonths: 1
                 });
             </script>--%>
+                <br />
+                <div>
+                    <strong>Program Selections</strong>
+                    <hr />
+                    <div style="background-color: #ddddff; margin-left: 20px; padding-left: 20px;">
+                        <div style="margin: 0 40% 20px 0; background-color: #ddddff">
+                            <uc1:ProgramSelection runat="server" ID="ProgramSelection1" />
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <div>
+                    <strong>Notice</strong>
+
+                    <hr />
+                    <div>
+                        <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>--%>
+                        <div style="margin-left: 20px;">
+                            <asp:CheckBox ID="chkPublish"  AutoPostBack="True" runat="server" Text="Publish notice to Notice Board " OnCheckedChanged="chkPublish_CheckedChanged" />
+                            <div style="margin-left: 23px;">
+                                <asp:Panel ID="pnlNoticeTitle" runat="server" Visible="False">
+                                   <strong>Title of Notice : &nbsp;&nbsp;</strong> 
+                                <asp:TextBox ID="txtTitleOfNotice" runat="server"></asp:TextBox>
+                                </asp:Panel>
+                            </div>
+                        </div>
+                        <%-- </ContentTemplate>
+                        </asp:UpdatePanel>--%>
+                        <div style="margin: 20px;">
+                            <CKEditor:CKEditorControl ID="CKEditor1" runat="server">
+                            </CKEditor:CKEditorControl>
+                        </div>
+
+                    </div>
+                </div>
             </ContentTemplate>
         </asp:UpdatePanel>
+        <hr />
     </div>
     <div style="margin-top: 15px;">
         <span style="display: inline-block;" class="auto-style1"></span>
-        <asp:Button ID="btnReset" runat="server" ValidationGroup="ExamValiGroup" Text="Reset" Width="69px" />
+        <asp:Button ID="btnReset" runat="server" ValidationGroup="ExamValiGroup" Text="Reset All" Width="69px" />
         &nbsp;&nbsp;       
         <asp:Button ID="btnSaveExam" runat="server" ValidationGroup="ExamValiGroup" Text="Save Exam" Width="103px" OnClick="btnSaveExam_Click" />
         <br />

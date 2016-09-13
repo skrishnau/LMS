@@ -2,15 +2,14 @@
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <div>
-        Exam Detail
         <div style="text-align: center;">
-            <strong >
+            <strong>
                 <asp:Label ID="lblName" Font-Size="1.3em" runat="server" Text="Label"></asp:Label>
             </strong>
             <hr />
         </div>
         <div style="margin-left: 20px;">
-           
+
             <div>
                 <table>
                     <tr>
@@ -35,20 +34,26 @@
                 </table>
             </div>
             <br />
-             <div>
-                <strong>Exams of each Program</strong>
-                <hr/>
-                 list all the year/subyear included in this exam
+            <div>
+                <strong>Exams of Classes</strong>
+                <hr  />
+                <div style="margin-left: 20px; width: 50%;  border: 2px solid lightgray; padding: 5px 10px 5px 10px;">
+                    <asp:Panel ID="pnlClasses" runat="server">
+                    </asp:Panel>
+                </div>
+
+                <%--list all the year/subyear included in this exam--%>
+                 
             </div>
-            <br/>
+            <br />
             <strong>Notice</strong>
             <hr />
             <div style="clear: both;"></div>
             <div style="width: 100%; padding: 4px; border: 2px solid lightblue;" runat="server" id="noticeDiv">
                 <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-               
+
                 <%--<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>--%>
-            </div> 
+            </div>
             <div style="text-align: right;">
                 <asp:HyperLink ID="HyperLink1" runat="server" Font-Underline="True">View Full Size</asp:HyperLink>
             </div>
@@ -57,8 +62,9 @@
         </div>
 
     </div>
+    <asp:HiddenField ID="hidExamId" runat="server" Value="0" />
 </asp:Content>
-<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
     <style type="text/css">
         .auto-style1 {
             width: 140px;

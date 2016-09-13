@@ -1,13 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsUc.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.SettingsUc" %>
 
-<div class="dashboard-modules">
+<div class="modules-whole">
     <%--<strong>Settings</strong>--%>
-    <strong>
-        <asp:HyperLink ID="HyperLink1" runat="server">Settings</asp:HyperLink>
-    </strong>
-    <hr />
-
-    <div>
+    <div class="modules-heading">
+        <strong>
+            <asp:HyperLink ID="HyperLink1" runat="server">Settings</asp:HyperLink>
+        </strong>
+    </div>
+    <div class="modules-body">
         <asp:HyperLink ID="HyperLink2" runat="server"
             NavigateUrl="~/Views/Office/School/View.aspx">School</asp:HyperLink>
         <br />
@@ -25,14 +25,14 @@
         <br />
         <asp:HyperLink ID="HyperLink6" runat="server"
             NavigateUrl="~/Views/Exam/Exam/ExamsList.aspx">Exams</asp:HyperLink>
-        <br/>
+        <br />
         <span style="margin-left: 10px;">
-             <asp:HyperLink ID="HyperLink9" runat="server"
-            NavigateUrl="~/Views/Exam/ExamType/ExamTypeList.aspx">Exam Types</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink9" runat="server"
+                NavigateUrl="~/Views/Exam/ExamType/ExamTypeList.aspx">Exam Types</asp:HyperLink>
         </span>
         <br />
         <hr />
-          <asp:HyperLink ID="HyperLink8" runat="server"
+        <asp:HyperLink ID="HyperLink8" runat="server"
             NavigateUrl="~/Views/Academy/List.aspx">Manage Academic year and Sessions</asp:HyperLink>
 
 

@@ -2,7 +2,7 @@
 
 <div runat="server" id="panel" style="padding-bottom: 10px;">
     <%-- class="block" --%>
-    <div  style="font-weight: 600; font-size: 1.1em;">
+    <div  style="font-weight: 600; font-size: 1em;">
         <asp:HyperLink ID="lblName" runat="server" >
                
         </asp:HyperLink>

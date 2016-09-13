@@ -15,17 +15,20 @@ namespace Academic.DbEntities.Exams
         public int SubjectClassId { get; set; }
         public virtual Academic.DbEntities.Class.SubjectClass SubjectClass { get; set; }
 
-        public int ExamId { get; set; }
-        public virtual Exam Exam { get; set; }
+        public int ExamOfClassId { get; set; }
+        public virtual ExamOfClass ExamOfClass { get; set; }
 
-        //public bool IsGradingSystem { get; set; }
-        //public int? GradeId { get; set; }
-        //public virtual Grade Grade { get; set; }
-        public bool IsPercent { get; set; }
+        //indicates whether the setting is used from ExamOfClass or it has its own setting
+        public bool SettingsUsedFromExam { get; set; }
+
+        //these four parameters are used to store settings of this class
+        //if SettingsUsedFromExam = true then these four values are null
+        public bool? IsPercent { get; set; }
         public float? Weight { get; set; }
 
         public int? FullMarks { get; set; }
         public int? PassMarks { get; set; }
+
         /// <summary>
         /// Hours and minutes are the Time period of exam
         /// </summary>
@@ -36,9 +39,10 @@ namespace Academic.DbEntities.Exams
         /// </summary>
         public string Time { get; set; }
 
-        public virtual  ICollection<ExamStudent>  ExamStudents { get; set; }
-        public virtual ICollection<ExamSubjectExaminer> ExamSubjectTeachers { get; set; }
+        public bool? Void { get; set; }
 
+        public virtual  ICollection<ExamStudent>  ExamStudents { get; set; }
+        public virtual ICollection<ExamSubjectExaminer> ExamSubjectExaminers { get; set; }
 
         /*
         public bool IsLab { get; set; }

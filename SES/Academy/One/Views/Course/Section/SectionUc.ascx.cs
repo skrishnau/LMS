@@ -11,6 +11,8 @@ namespace One.Views.Course.Section
 {
     public partial class SectionUc : System.Web.UI.UserControl
     {
+        public event EventHandler<SubjectSectionEventArgs> AddActResClicked;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadSectionDetail();
@@ -36,13 +38,19 @@ namespace One.Views.Course.Section
             set { lblSummary.Visible = value; }
         }
 
-        public bool ActivityPanelVisible
-        {
-            get { return pnlActAndRes.Visible; }
-            set { pnlActAndRes.Visible = value; }
-        }
+        //public bool ActivityPanelVisible
+        //{
+        //    get { return pnlActAndRes.Visible; }
+        //    set { pnlActAndRes.Visible = value; }
+        //}
 
         public List<string> List { get; set; }
+
+        public string SectionName
+        {
+            get { return hidSectionName.Value; }
+            set { hidSectionName.Value = value; }
+        }
 
         #endregion
 
@@ -56,35 +64,39 @@ namespace One.Views.Course.Section
                 var section = helper.Find(SectionId);
                 if (section != null)
                 {
+                    lnkAddActOrRes.ID = "lnkAddActOrRes_" + SubjectId + "_" + SectionId;
+                    lnkAddActOrRes.Attributes.Add("name", SectionName);
                     lblTitle.Text = section.Name;
                     lblSummary.Text = section.Summary;
-                    var actAndRess = section.SubjectActivityAndResource;
-                    foreach (var sar in actAndRess)
-                    {
-                        ActivityAndResourceUc uc =
-                                    (ActivityAndResourceUc)Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
-                        uc.Title = sar.Title;
-                        uc.ActivityAndResourceId = sar.Id;
-                        if (sar.ShowDesctiptionOnPage)
-                            uc.Summary = sar.Description;
-                        uc.Type = sar.Type;
 
-                        pnlActAndRes.Controls.Add(uc);
-                    }
+                    //var actAndRess = section.SubjectActivityAndResource;
 
-                    foreach (var sar in section.Assignments)
-                    {
-                        ActivityAndResourceUc uc =
-                                    (ActivityAndResourceUc)Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
-                        uc.Title = sar.Name;
-                        uc.ActivityAndResourceId = sar.Id;
-                        if (sar.DispalyDescriptionOnPage??false)
-                            uc.Summary = sar.Description;
-                        uc.ImageUrl = Enums.ActivityImagePath[(int) Enums.Activities.Assignment];
-                        uc.Type = "Assignment";
+                    //foreach (var sar in actAndRess)
+                    //{
+                    //    ActivityAndResourceUc uc =
+                    //                (ActivityAndResourceUc)Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
+                    //    uc.Title = sar.Title;
+                    //    uc.ActivityAndResourceId = sar.Id;
+                    //    if (sar.ShowDesctiptionOnPage)
+                    //        uc.Summary = sar.Description;
+                    //    uc.Type = sar.Type;
 
-                        pnlActAndRes.Controls.Add(uc);
-                    }
+                    //    pnlActAndRes.Controls.Add(uc);
+                    //}
+
+                    //foreach (var sar in section.Assignments)
+                    //{
+                    //    ActivityAndResourceUc uc =
+                    //                (ActivityAndResourceUc)Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
+                    //    uc.Title = sar.Name;
+                    //    uc.ActivityAndResourceId = sar.Id;
+                    //    if (sar.DispalyDescriptionOnPage??false)
+                    //        uc.Summary = sar.Description;
+                    //    uc.ImageUrl = Enums.ActivityImagePath[(int) Enums.Activities.Assignment];
+                    //    uc.Type = "Assignment";
+
+                    //    pnlActAndRes.Controls.Add(uc);
+                    //}
                 }
             }
         }
@@ -127,11 +139,34 @@ namespace One.Views.Course.Section
         protected void lnkAddActOrRes_Click(object sender, EventArgs e)
         {
             //string url = "~/Views/Course/ActivityAndResource/CreteActNRes.aspx" + "?Id=" + SectionId.ToString();
-            string url = "~/Views/Course/ActivityAndResource/ActResChoose/ActResChoose.aspx" 
-                + "?SecId=" + SectionId
-                +"&SubId="+SubjectId;
+            //string url = "~/Views/Course/ActivityAndResource/ActResChoose/ActResChoose.aspx"
+            //    + "?SecId=" + SectionId
+            //    + "&SubId=" + SubjectId;
 
-            Response.Redirect(url);
+            //Response.Redirect(url);
+
+            if (AddActResClicked != null)
+            {
+                AddActResClicked(this, new SubjectSectionEventArgs()
+                {
+                    SectionId = SectionId
+                    ,
+                    SubjectId = SubjectId
+                    ,
+                    SectionName = SectionName
+                });
+            }
+        }
+
+        public bool EditEnabled
+        {
+            set
+            {
+                lnkEdit.Visible = value;
+                lnkEdit.Enabled = value;
+                lnkAddActOrRes.Enabled = value;
+                lnkAddActOrRes.Visible = value;
+            }
         }
     }
 }

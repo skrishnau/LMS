@@ -29,9 +29,9 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose
                     {
                         if (secId != null && subId != null)
                         {
-
-                            ActResChooseUc.SectionId = Convert.ToInt32(secId);
-                            ActResChooseUc.SubjectId = Convert.ToInt32(subId);
+                            //uncomment
+                            //ActResChooseUc.SectionId = Convert.ToInt32(secId);
+                            //ActResChooseUc.SubjectId = Convert.ToInt32(subId);
                         }
 
                     }

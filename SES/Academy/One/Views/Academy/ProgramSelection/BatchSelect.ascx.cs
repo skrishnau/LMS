@@ -49,9 +49,10 @@ namespace One.Views.Academy.ProgramSelection
                         //var batch = batchhelper.GetBatchList(user.SchoolId);
 
                         var batch = batchhelper.ListUnAssignedBatches(programId, academicYearId, sessionId);
-
+                        //int[] find ;
                         //1. get list of programbatches for the given programId
                         var find = alreadySelected[programId].ToList();
+                        //alreadySelected[programId].CopyTo(find);
                         //2. Remove the programBatchId which is already selected by the same Program's subcategory
                         //this is done to avoid removal of selected programbatch from list
                         find.Remove(programBatchId);
@@ -62,15 +63,16 @@ namespace One.Views.Academy.ProgramSelection
                             batch.Remove(batch.Find(x => x.ProgramBatchId == f));
                         });
                         //4. find the index of the batch that need to be selected in default
-                        var index = batch.FindIndex(x => x.ProgramBatchId == programBatchId);
 
                         batch.Insert(0, new BatchViewModel()
-                        {
+                        {   
                             ProgramBatchId = 0,
                             ProgramBatchName = "None"
                         });
 
-                        DataList1.SelectedIndex = (index >= 0) ? index + 1 : index;
+                        var index = batch.FindIndex(x => x.ProgramBatchId == programBatchId);
+
+                        DataList1.SelectedIndex = index;//(index >= 0) ? index +1 : index;
 
                         DataList1.DataSource = batch;
                         DataList1.DataBind();
@@ -138,6 +140,9 @@ namespace One.Views.Academy.ProgramSelection
                             alreadySelected[ProgramId].Remove(SelectedProgramBatchId);
 
                             alreadySelected[ProgramId].Add(pbId);
+                            if (pbId > 0)
+                                SelectedProgramBatchId = pbId;
+
                             BatchSelected(this, new ProgramBatchEventArgs()
                             {
                                 //BatchId = Convert.ToInt32(e.CommandArgument)

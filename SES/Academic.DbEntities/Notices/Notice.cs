@@ -9,23 +9,26 @@ namespace Academic.DbEntities.Notices
     public class Notice
     {
         public int Id { get; set; }
-        public string Headiing { get; set; }
-        public string Description { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
 
-        public int CreatedById { get; set; }
-        public virtual User.Users CreatedBy { get; set; }
-
+        public int CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
+
+        public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
         /// <summary>
-        /// It means that this notice is to be viewed only by those listed in NoticeTo table
+        /// True= publish to EVeryOne; False = Publish to Users Only.
         /// </summary>
-        public bool? ViewerLimited { get; set; }
-
+        public bool? NoticePublishTo { get; set; }
         public bool? Void { get; set; }
 
-        public virtual ICollection<NoticeFiles> NoticeFiles{ get; set; }
+        public bool PublishNoticeToNoticeBoard { get; set; }
+        public DateTime? PublishedDate { get; set; }
+
+
+        //public virtual ICollection<NoticeFiles> NoticeFiles{ get; set; }
 
     }
 }

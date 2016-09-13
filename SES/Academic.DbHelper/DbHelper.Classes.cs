@@ -220,19 +220,24 @@ namespace Academic.DbHelper
 
             public bool AddOrUpdateSubjectSession(DbEntities.Class.SubjectClass subjectSession)
             {
-                var ent = Context.SubjectClass.Find(subjectSession.Id);
-                if (ent == null)
+                try
                 {
-                    Context.SubjectClass.Add(subjectSession);
-                    Context.SaveChanges();
-                }
-                else
-                {
+                    var ent = Context.SubjectClass.Find(subjectSession.Id);
+                    if (ent == null)
+                    {
+                        Context.SubjectClass.Add(subjectSession);
+                        Context.SaveChanges();
+                        return true;
+                    }
+
                     ent.Name = subjectSession.Name;
                     ent.UseDefaultGrouping = subjectSession.UseDefaultGrouping;
                     Context.SaveChanges();
+                    return true;
+
                 }
-                return false;
+                catch { return false; }
+
             }
 
             public bool AddOrUpdateUsersList(List<Academic.DbEntities.Class.UserClass> userList)

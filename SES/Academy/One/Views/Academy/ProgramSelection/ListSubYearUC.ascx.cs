@@ -121,8 +121,18 @@ namespace One.Views.Academy.ProgramSelection
             set { rdbtn.Checked = value; }
         }
 
+        public int EarlierSelectedBatchId
+        {
+            get { return Convert.ToInt32(hidEarlierSelectedBatchId.Value); }
+            set { hidEarlierSelectedBatchId.Value = value.ToString(); }
+        }
+
+     
+
         protected void lnkBtn_Click(object sender, EventArgs e)
         {
+           
+
             if (CheckChanged != null)
             {
                 var arg = new RunningClassEventArgs()
@@ -134,14 +144,37 @@ namespace One.Views.Academy.ProgramSelection
                     ProgramBatchId = SelectedProgramBatchId
                     ,
                     ProgramId = ProgramId
-                    ,RunningClassId = RunningClassId
-                    ,ProgramBatchName = lblBatchName.Text
+                    ,
+                    RunningClassId = RunningClassId
+                    ,
+                    ProgramBatchName = lblBatchName.Text
 
                 };
                 CheckChanged(this, arg);
             }
             if (BatchSelectClicked != null)
             {
+
+                //earlier selected programBatch
+                if (SelectedProgramBatchId <= 0)
+                {
+                    if (EarlierSelectedBatchId > 0)
+                    {
+                        SelectedProgramBatchId = EarlierSelectedBatchId;
+                        var alreadySelected = Session["AlreadySelectedProgramBatches"] as Dictionary<int, List<int>>;
+                        if (alreadySelected == null)
+                        {
+                            Response.Redirect("~" + Request.Url.PathAndQuery, true);
+                        }
+                        else
+                        {
+                            alreadySelected[ProgramId].Add(EarlierSelectedBatchId);
+                            SetSelectedBatch(EarlierSelectedBatchId,hidEarlierSelectedBatchName.Value,RunningClassId);
+                        }
+                    }
+                }
+                //end
+
                 BatchSelectClicked(this, new RunningClassEventArgs()
                 {
                     LevelId = LevelId
@@ -161,6 +194,9 @@ namespace One.Views.Academy.ProgramSelection
                     SubYearName = hidSubYearName.Value
                     ,
                     ProgramBatchId = SelectedProgramBatchId
+                    ,
+                    RunningClassId = RunningClassId
+
                 });
             }
         }
@@ -185,14 +221,28 @@ namespace One.Views.Academy.ProgramSelection
         //        });
         //    }
         //}
+        
 
-        public void SetSelectedBatch(int programBatchId, string programBatchName, int runningClassId = 0)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="programBatchId"></param>
+        /// <param name="programBatchName"></param>
+        /// <param name="runningClassId"></param>
+        /// <param name="overrideEarlier">To set EarlierSelectedBatchId = 0, this parameter 
+        /// must be true else earlierSelectedBatchId can never be set to zero </param>
+        public void SetSelectedBatch(int programBatchId, string programBatchName, int runningClassId = 0, bool overrideEarlier=false)
         {
             hidSelectedProgramBatchId.Value = programBatchId.ToString();
 
             lblBatchName.Text = programBatchName;// == "" ? null : programBatchName;
             imgBtn.Visible = (programBatchName == "");
             RunningClassId = runningClassId;
+            if (programBatchId > 0 || overrideEarlier)
+            {
+                hidEarlierSelectedBatchId.Value = programBatchId.ToString();
+                hidEarlierSelectedBatchName.Value = programBatchName;
+            }
         }
         public void ClearProgramBatch()
         {

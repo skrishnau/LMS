@@ -76,7 +76,6 @@
     <Compile Include="Exams\ExamOfClass.cs" />
     <Compile Include="Exams\ExamStudent.cs" />
     <Compile Include="Exams\ExamSubjectExaminer.cs" />
-    <Compile Include="Notices\NoticeFiles.cs" />
     <Compile Include="Subjects\EnrolmentMethods.cs" />
     <Compile Include="Class\SubjectClass.cs" />
     <Compile Include="Subjects\SubjectStructure.cs" />
@@ -102,7 +101,6 @@
     <Compile Include="Batches\Batch.cs" />
     <Compile Include="Notices\Notice.cs" />
     <Compile Include="Notices\NoticeNotification.cs" />
-    <Compile Include="Notices\NoticeTo.cs" />
     <Compile Include="Students\OtherGroup.cs" />
     <Compile Include="Students\StudentGroupStudent.cs" />
     <Compile Include="Office\Award.cs" />

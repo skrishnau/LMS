@@ -1,13 +1,15 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EarlierUc.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.EarlierUc" %>
 
-<div class="dashboard-modules">
-    <asp:HyperLink ID="HyperLink2"
-        NavigateUrl="~/ViewsSite/User/Dashboard/Dashboard.aspx?type=earlier" runat="server">
+<div class="module-whole">
+    <div class="modules-heading">
+        <asp:HyperLink ID="HyperLink2" 
+            NavigateUrl="~/ViewsSite/User/Dashboard/Dashboard.aspx?type=earlier" runat="server">
                                 Earlier
-                        <hr />
-    </asp:HyperLink>
+        </asp:HyperLink>
+    </div>
 
-    <div>
+
+    <div class="modules-body">
         <asp:DataList ID="dListCourses" runat="server" DataSourceID="RegularCourseDS">
             <ItemTemplate>
                 <div style="margin: 0 5px 0  10px;">
@@ -30,24 +32,24 @@
         <asp:HiddenField ID="hidTopLevelRole" runat="server" Value="" />
 
 
+        <hr />
+        <asp:DataList ID="DataList2" runat="server" DataSourceID="EarlierYearsAndSubYearsDS">
+            <ItemTemplate>
+
+                <asp:HiddenField ID="IdLabel1" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Id") %>' />
+                <%--Name:--%>
+
+                <div>
+                    <asp:Label ID="Label1" runat="server" Text='<%# GetYearName(Eval("Year")) %>' />
+                </div>
+                <div style="margin-left: 20px;">
+                    <asp:Label ID="NameLabel" runat="server" Text='<%# Eval("Name") %>' />
+                </div>
+                <asp:HiddenField ID="TypeLabel" runat="server" Value='<%# Eval("Description") %>' />
+
+            </ItemTemplate>
+        </asp:DataList>
     </div>
-    <hr />
-    <asp:DataList ID="DataList2" runat="server" DataSourceID="EarlierYearsAndSubYearsDS">
-        <ItemTemplate>
-
-            <asp:HiddenField ID="IdLabel1" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Id") %>' />
-            <%--Name:--%>
-
-            <div>
-                <asp:Label ID="Label1" runat="server" Text='<%# GetYearName(Eval("Year")) %>' />
-            </div>
-            <div style="margin-left: 20px;">
-                <asp:Label ID="NameLabel" runat="server" Text='<%# Eval("Name") %>' />
-            </div>
-            <asp:HiddenField ID="TypeLabel" runat="server" Value='<%# Eval("Description") %>' />
-
-        </ItemTemplate>
-    </asp:DataList>
 
     <asp:ObjectDataSource ID="EarlierYearsAndSubYearsDS" runat="server" SelectMethod="GetEarlierYearsAndSubYearsOfStudent" TypeName="Academic.DbHelper.DbHelper+Student">
         <SelectParameters>

@@ -13,6 +13,7 @@ using System.Web.UI.WebControls;
 using Academic.Database;
 using Academic.DbEntities.AcacemicPlacements;
 using Academic.DbEntities.Activities;
+using Academic.DbEntities.User;
 using Academic.ViewModel.AcademicPlacement;
 //using One.Values;
 
@@ -37,25 +38,207 @@ namespace Academic.DbHelper
             {
                 try
                 {
+                    var date = DateTime.Now;
+                    using (var helper = new DbHelper.Student())
+                    using (var roleHelper = new DbHelper.User())
                     using (var scope = new TransactionScope())
                     {
+                        var role = roleHelper.GetRole("student");
+                        if (role == null)
+                        {
+                            role = Context.Role.Add(new Role()
+                            {
+                                DisplayName = "Student"
+                                ,
+                                RoleName = "student"
+                            });
+                            Context.SaveChanges();
+                        }
+
+
+                        //each running class
                         foreach (var rc in rcList)
                         {
                             var ent = Context.RunningClass.Find(rc.Id);
                             if (ent == null)
                             {
-                                Context.RunningClass.Add(rc);
+                                #region if(ent==null)
+
+                                var savedRC = Context.RunningClass.Add(rc);
                                 Context.SaveChanges();
+
+                                //add subjects in subjectClass 
+                                var subStrList = Context.SubjectStructure
+                                    .Where(x => x.YearId == savedRC.YearId
+                                        && x.SubYearId == savedRC.SubYearId
+                                        && !(x.Obsolete ?? false) && !(x.Void ?? false)).ToList();
+                                subStrList.ForEach(subS =>
+                                {
+                                    var subjectClass = new DbEntities.Class.SubjectClass()
+                                    {
+                                        //CreatedBy = User.Id
+                                        CreatedDate = date.Date
+                                        ,
+                                        CreatedTime = date.Hour + ":" + date.Minute + ":" + date.Second
+                                        ,
+                                        IsRegular = true
+                                        ,
+                                        RunningClassId = savedRC.Id
+                                        ,
+                                        SubjectStructureId = subS.Id
+                                        ,
+                                        UseDefaultGrouping = true
+                                    };
+                                    var savedSubjectClass = Context.SubjectClass.Add(subjectClass);
+                                    Context.SaveChanges();
+
+                                    //add students to userClass
+                                    if ((rc.ProgramBatchId ?? 0) != 0)
+                                    {
+                                        var stds = helper.ListStudentBatchesOfProgramBatch(rc.ProgramBatchId ?? 0);
+
+                                        foreach (var std in stds.Select(x => x.Student.User))
+                                        {
+                                            var uc = new DbEntities.Class.UserClass()
+                                            {
+                                                CreatedDate = DateTime.Now
+                                                ,
+                                                EnrollmentDuration = 0
+                                                ,
+                                                RoleId = role.Id
+                                                ,
+                                                SubjectClassId = savedSubjectClass.Id
+                                                ,
+                                                UserId = std.Id
+                                            };
+                                            Context.UserClass.Add(uc);
+                                            Context.SaveChanges();
+                                        }
+
+                                    }
+                                    //end
+
+                                });
+
+
+                                #endregion
+
                             }
                             else
                             {
+                                //first update userclass (students)
+                                //incase if programBatchId changes then all the users in that programBatch
+                                //must be deleted
+                                if (ent.ProgramBatchId != rc.ProgramBatchId)
+                                {
+                                    var ucs = Context.SubjectClass.Where(x => x.RunningClassId == ent.Id)
+                                        .Select(x => x.ClassUsers);
+                                    foreach (var uc in ucs)
+                                    {
+                                        foreach (var u in uc)
+                                        {
+                                            Context.UserClass.Remove(u);
+                                            Context.SaveChanges();
+                                        }
+                                    }
+                                }
+                                //end
+
+
+
+
                                 ent.ProgramBatchId = rc.ProgramBatchId;
                                 ent.Void = rc.Void;
                                 ent.Completed = rc.Completed;
                                 ent.IsActive = rc.IsActive;
                                 Context.SaveChanges();
+
+                                //if subjectStructure has been voided then when updating RunningClass
+                                //we should check those voided and also void the consecutive subjectclass
+                                //and then we have to add those subjectStructure (remaining i.e. new )
+                                //in the subject class
+                                //update the subjectclass list (i.e. Subjects already saved ) for this running class
+                                var lst = Context.SubjectClass.Where(x => x.RunningClassId == ent.Id
+                                                                          && !(x.Void ?? false)
+                                                                          && x.IsRegular);
+
+                                var voidedSubjectClassList = new List<int>();
+                                foreach (var sc in lst)
+                                {
+                                    if (sc.SubjectStructure.Void ?? false)
+                                    {
+                                        sc.Void = true;
+                                        Context.SaveChanges();
+                                        voidedSubjectClassList.Add(sc.Id);
+                                    }
+                                    if (sc.SubjectStructure.Subject.Void ?? false)
+                                    {
+                                        sc.Void = true;
+                                        Context.SaveChanges();
+                                        voidedSubjectClassList.Add(sc.Id);
+                                    }
+                                }
+
+
+
+                                var remainSubStrList = lst.Where(x => !voidedSubjectClassList.Contains(x.Id))
+                                    .Select(s => s.SubjectStructure.Id).ToList();
+                                //add remaining subjects in subjectClass 
+                                var subStrList = Context.SubjectStructure
+                                    .Where(x => x.YearId == ent.YearId
+                                        && x.SubYearId == ent.SubYearId
+                                        && !(x.Obsolete ?? false) && !(x.Void ?? false)
+                                        && !remainSubStrList.Contains(x.Id)
+                                        ).ToList();
+                                subStrList.ForEach(subS =>
+                                {
+                                    var subjectClass = new DbEntities.Class.SubjectClass()
+                                    {
+                                        //CreatedBy = User.Id
+                                        CreatedDate = date.Date
+                                    ,
+                                        CreatedTime = date.Hour + ":" + date.Minute + ":" + date.Second
+                                    ,
+                                        IsRegular = true
+                                    ,
+                                        RunningClassId = ent.Id
+                                    ,
+                                        SubjectStructureId = subS.Id
+                                    ,
+                                        UseDefaultGrouping = true
+                                    };
+                                    var savedSubjectClass = Context.SubjectClass.Add(subjectClass);
+                                    Context.SaveChanges();
+
+                                    //add userClass for this subjectClass
+                                    //add all students in this programbatch to the userclass
+                                    var curUc = rc;
+                                    if ((rc.ProgramBatchId ?? 0) != 0)
+                                    {
+                                        var stds = helper.ListStudentBatchesOfProgramBatch(curUc.ProgramBatchId ?? 0);
+
+                                        foreach (var std in stds.Select(x => x.Student.User))
+                                        {
+                                            var uc = new DbEntities.Class.UserClass()
+                                            {
+                                                CreatedDate = DateTime.Now
+                                                ,
+                                                EnrollmentDuration = 0
+                                                ,
+                                                RoleId = role.Id
+                                                ,
+                                                SubjectClassId = savedSubjectClass.Id
+                                                ,
+                                                UserId = std.Id
+                                            };
+                                            Context.UserClass.Add(uc);
+                                            Context.SaveChanges();
+                                        }
+
+                                    }
+                                    //end
+                                });
                             }
-                            
                         }
                         scope.Complete();
                         return true;
@@ -567,158 +750,158 @@ namespace Academic.DbHelper
             {
 
                 //uncomment this alll
-              /*  List<ViewModel.AcademicPlacement.StudentSubjectModel> list = new List<StudentSubjectModel>();
+                /*  List<ViewModel.AcademicPlacement.StudentSubjectModel> list = new List<StudentSubjectModel>();
 
-                if (userType == "student")
-                {
-                    var all = from stdc in Context.StudentClass.Where(x => x.StudentId == userId)
-                              join runc in Context.RunningClass on stdc.RunningClassId equals runc.Id
-                              join subc in Context.SubjectClass on runc.Id equals subc.RunningClassId
-                              where runc.AcademicYearId == academicYearId && (runc.SessionId ?? 0) == sessionId
-                              select new { stdc, runc, subc };
-                    foreach (var a in all)
-                    {
-                        var subscription =
-                            Context.SubjectSubscription.FirstOrDefault(
-                                x => x.StudentClassId == a.stdc.Id && x.SubjectClassId == a.subc.Id);
-                        bool subscribed = false;
-                        bool permitted = true;
-                        //bool notsubscribale = false;
-                        bool suspended = false;
-                        bool active = false;
-                        if (subscription != null)
-                        {
-                            subscribed = true;
-                            permitted = subscription.Permitted ?? true;
-                            //notsubscribale = // subscription.NotSubscribale ?? false;
-                            suspended = subscription.Suspended ?? false;
-                            active = subscription.Active ?? false;
-                        }
-                        var teachers =
-                            Context.TeacherClass.Where(x => x.SubjectClassId == a.subc.Id).Select(y => y.Teacher).ToList();
-
-
-                        var model = new StudentSubjectModel()
-                        {
-                            AcademicYearId = academicYearId
-                            ,
-                            Year = a.runc.Year.Name
-                            ,
-                            StudentId = userId
-                            ,
-                            UserClassId = a.stdc.Id
-                            ,
-                            SubjectClassId = a.subc.Id
-                            ,
-                            SubjectSubscriptionId = subscription == null ? 0 : subscription.Id
-                            ,
-                            Subscribed = subscribed
-                            ,
-                            SubscriptionPermissionRequired = a.subc.SubscriptionPermissionRequired ?? false
-                            ,
-                            NotSubscribable = a.subc.NotSubscribale ?? false
-                            ,
-                            Complete = a.runc.Completed ?? false
-                            ,
-                            SubYear = a.runc.SubYear == null ? "" : a.runc.SubYear.Name
-                            ,
-                            Permitted = permitted
-                            ,
-                            SubjectName = a.subc.Subject.Name
-                            ,
-                            SubjectGroupName = a.subc.SubjectGroup == null ? "" : a.subc.SubjectGroup.Name
-                            ,
-                            Suspended = suspended
-                            ,
-                            SubjectId = a.subc.SubjectId
-                            ,
-                            SubscriptionOptional = a.subc.SubscriptionOptional ?? false
-                            ,
-                            Void = (a.subc.Void ?? false) || (a.runc.Void ?? false) || (a.stdc.Void ?? false)
-                            ,
-                            Active = active
-                            ,
-                            Teachers = teachers
-                        };
-                        list.Add(model);
-                    }
-                    return list;
-                }
-                else if (userType == "teacher")
-                {
-                    var all = from teac in Context.TeacherClass.Where(x => x.TeacherId == userId)
-                              join subc in Context.SubjectClass on teac.SubjectClassId equals subc.Id
-                              join runc in Context.RunningClass on subc.RunningClassId equals runc.Id
-                              where runc.AcademicYearId == academicYearId && (runc.SessionId ?? 0) == sessionId
-                              select new { teac, runc, subc };
-                    foreach (var a in all)
-                    {
-                        //var subscription =
-                        //    Context.SubjectSubscription.FirstOrDefault(
-                        //        x => x.StudentClassId == a.teac.Id && x.SubjectClassId == a.subc.Id);
-                        bool subscribed = false;
-                        bool permitted = true;
-                        //bool notsubscribale = false;
-                        bool suspended = false;
-                        bool active = false;
-                        //if (subscription != null)
-                        //{
-                        //    subscribed = true;
-                        //    permitted = subscription.Permitted ?? true;
-                        //    //notsubscribale = // subscription.NotSubscribale ?? false;
-                        //    suspended = subscription.Suspended ?? false;
-                        //    active = subscription.Active ?? false;
-                        //}
-                        var teachers =
-                            Context.TeacherClass.Where(x => x.SubjectClassId == a.subc.Id).Select(y => y.Teacher).ToList();
+                  if (userType == "student")
+                  {
+                      var all = from stdc in Context.StudentClass.Where(x => x.StudentId == userId)
+                                join runc in Context.RunningClass on stdc.RunningClassId equals runc.Id
+                                join subc in Context.SubjectClass on runc.Id equals subc.RunningClassId
+                                where runc.AcademicYearId == academicYearId && (runc.SessionId ?? 0) == sessionId
+                                select new { stdc, runc, subc };
+                      foreach (var a in all)
+                      {
+                          var subscription =
+                              Context.SubjectSubscription.FirstOrDefault(
+                                  x => x.StudentClassId == a.stdc.Id && x.SubjectClassId == a.subc.Id);
+                          bool subscribed = false;
+                          bool permitted = true;
+                          //bool notsubscribale = false;
+                          bool suspended = false;
+                          bool active = false;
+                          if (subscription != null)
+                          {
+                              subscribed = true;
+                              permitted = subscription.Permitted ?? true;
+                              //notsubscribale = // subscription.NotSubscribale ?? false;
+                              suspended = subscription.Suspended ?? false;
+                              active = subscription.Active ?? false;
+                          }
+                          var teachers =
+                              Context.TeacherClass.Where(x => x.SubjectClassId == a.subc.Id).Select(y => y.Teacher).ToList();
 
 
-                        var model = new StudentSubjectModel()
-                        {
-                            AcademicYearId = academicYearId
-                            ,
-                            Year = a.runc.Year.Name
-                            ,
-                            StudentId = userId
-                            ,
-                            UserClassId = a.teac.Id
-                            ,
-                            SubjectClassId = a.subc.Id
-                                //,
-                                //SubjectSubscriptionId = subscription == null ? 0 : subscription.Id
-                            ,
-                            Subscribed = subscribed
-                            ,
-                            SubscriptionPermissionRequired = a.subc.SubscriptionPermissionRequired ?? false
-                            ,
-                            NotSubscribable = a.subc.NotSubscribale ?? false
-                            ,
-                            Complete = a.runc.Completed ?? false
-                            ,
-                            SubYear = a.runc.SubYear == null ? "" : a.runc.SubYear.Name
-                            ,
-                            Permitted = permitted
-                            ,
-                            SubjectName = a.subc.Subject.Name
-                            ,
-                            SubjectGroupName = a.subc.SubjectGroup == null ? "" : a.subc.SubjectGroup.Name
-                            ,
-                            Suspended = suspended
-                            ,
-                            SubjectId = a.subc.SubjectId
-                            ,
-                            SubscriptionOptional = a.subc.SubscriptionOptional ?? false
-                            ,
-                            Void = (a.subc.Void ?? false) || (a.runc.Void ?? false) || (a.teac.Void ?? false)
-                            ,
-                            Active = a.teac.IsActive ?? false
-                            ,
-                            Teachers = teachers
-                        };
-                        list.Add(model);
-                    }
-                    return list;
-                }*/
+                          var model = new StudentSubjectModel()
+                          {
+                              AcademicYearId = academicYearId
+                              ,
+                              Year = a.runc.Year.Name
+                              ,
+                              StudentId = userId
+                              ,
+                              UserClassId = a.stdc.Id
+                              ,
+                              SubjectClassId = a.subc.Id
+                              ,
+                              SubjectSubscriptionId = subscription == null ? 0 : subscription.Id
+                              ,
+                              Subscribed = subscribed
+                              ,
+                              SubscriptionPermissionRequired = a.subc.SubscriptionPermissionRequired ?? false
+                              ,
+                              NotSubscribable = a.subc.NotSubscribale ?? false
+                              ,
+                              Complete = a.runc.Completed ?? false
+                              ,
+                              SubYear = a.runc.SubYear == null ? "" : a.runc.SubYear.Name
+                              ,
+                              Permitted = permitted
+                              ,
+                              SubjectName = a.subc.Subject.Name
+                              ,
+                              SubjectGroupName = a.subc.SubjectGroup == null ? "" : a.subc.SubjectGroup.Name
+                              ,
+                              Suspended = suspended
+                              ,
+                              SubjectId = a.subc.SubjectId
+                              ,
+                              SubscriptionOptional = a.subc.SubscriptionOptional ?? false
+                              ,
+                              Void = (a.subc.Void ?? false) || (a.runc.Void ?? false) || (a.stdc.Void ?? false)
+                              ,
+                              Active = active
+                              ,
+                              Teachers = teachers
+                          };
+                          list.Add(model);
+                      }
+                      return list;
+                  }
+                  else if (userType == "teacher")
+                  {
+                      var all = from teac in Context.TeacherClass.Where(x => x.TeacherId == userId)
+                                join subc in Context.SubjectClass on teac.SubjectClassId equals subc.Id
+                                join runc in Context.RunningClass on subc.RunningClassId equals runc.Id
+                                where runc.AcademicYearId == academicYearId && (runc.SessionId ?? 0) == sessionId
+                                select new { teac, runc, subc };
+                      foreach (var a in all)
+                      {
+                          //var subscription =
+                          //    Context.SubjectSubscription.FirstOrDefault(
+                          //        x => x.StudentClassId == a.teac.Id && x.SubjectClassId == a.subc.Id);
+                          bool subscribed = false;
+                          bool permitted = true;
+                          //bool notsubscribale = false;
+                          bool suspended = false;
+                          bool active = false;
+                          //if (subscription != null)
+                          //{
+                          //    subscribed = true;
+                          //    permitted = subscription.Permitted ?? true;
+                          //    //notsubscribale = // subscription.NotSubscribale ?? false;
+                          //    suspended = subscription.Suspended ?? false;
+                          //    active = subscription.Active ?? false;
+                          //}
+                          var teachers =
+                              Context.TeacherClass.Where(x => x.SubjectClassId == a.subc.Id).Select(y => y.Teacher).ToList();
+
+
+                          var model = new StudentSubjectModel()
+                          {
+                              AcademicYearId = academicYearId
+                              ,
+                              Year = a.runc.Year.Name
+                              ,
+                              StudentId = userId
+                              ,
+                              UserClassId = a.teac.Id
+                              ,
+                              SubjectClassId = a.subc.Id
+                                  //,
+                                  //SubjectSubscriptionId = subscription == null ? 0 : subscription.Id
+                              ,
+                              Subscribed = subscribed
+                              ,
+                              SubscriptionPermissionRequired = a.subc.SubscriptionPermissionRequired ?? false
+                              ,
+                              NotSubscribable = a.subc.NotSubscribale ?? false
+                              ,
+                              Complete = a.runc.Completed ?? false
+                              ,
+                              SubYear = a.runc.SubYear == null ? "" : a.runc.SubYear.Name
+                              ,
+                              Permitted = permitted
+                              ,
+                              SubjectName = a.subc.Subject.Name
+                              ,
+                              SubjectGroupName = a.subc.SubjectGroup == null ? "" : a.subc.SubjectGroup.Name
+                              ,
+                              Suspended = suspended
+                              ,
+                              SubjectId = a.subc.SubjectId
+                              ,
+                              SubscriptionOptional = a.subc.SubscriptionOptional ?? false
+                              ,
+                              Void = (a.subc.Void ?? false) || (a.runc.Void ?? false) || (a.teac.Void ?? false)
+                              ,
+                              Active = a.teac.IsActive ?? false
+                              ,
+                              Teachers = teachers
+                          };
+                          list.Add(model);
+                      }
+                      return list;
+                  }*/
                 return new List<StudentSubjectModel>() { new StudentSubjectModel() { } };
             }
 
@@ -945,7 +1128,7 @@ namespace Academic.DbHelper
                                 && r.YearId == yearId
                                 && (r.SubYearId ?? 0) == subYearId
                                 && (r.SessionId ?? 0) == sessionId
-                          select r).FirstOrDefault();
+                          select r).OrderByDescending(o => o.ProgramBatchId).FirstOrDefault();
                 return rc;
             }
 
@@ -953,7 +1136,10 @@ namespace Academic.DbHelper
             public List<RunningClass> ListRunningClasses(int academicYearId, int sessionId)
             {
                 var rc = Context.RunningClass.Where(x =>
-                    x.AcademicYearId == academicYearId && (x.SessionId ?? 0) == sessionId).ToList();
+                    x.AcademicYearId == academicYearId && (x.SessionId ?? 0) == sessionId
+                    && !(x.Void ?? false)
+                    && (x.ProgramBatchId ?? 0) > 0
+                    ).ToList();
                 return rc;
             }
         }

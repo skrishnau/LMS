@@ -42,6 +42,12 @@ namespace Academic.DbHelper
                 return Context.Role.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId || x.SchoolId == null)).ToList();
             }
 
+            //used
+            public Role GetRole(string roleName)
+            {
+                return Context.Role.FirstOrDefault(x => x.RoleName.ToLower().Equals(roleName.ToLower()));
+            }
+
             public List<Role> GetRolesForUserEnrollOption(int schoolId)
             {
                 var rolesToSelect = new List<string>()
