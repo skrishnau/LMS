@@ -1120,6 +1120,12 @@
     <Content Include="Content\Icons\calendar_image.png" />
     <Content Include="Content\Icons\Check\checked_blue_18x18.png" />
     <Content Include="Content\Icons\Check\unchecked_grey_18x18.png" />
+    <Content Include="Content\Icons\Close\cross_10x10.png" />
+    <Content Include="Content\Icons\Close\cross_8x14_center.png" />
+    <Content Include="Content\Icons\Close\cross_8x14_top.png" />
+    <Content Include="Content\Icons\Close\cross_8x20_center.png" />
+    <Content Include="Content\Icons\Close\cross_8x20_extreme_top.png" />
+    <Content Include="Content\Icons\Close\cross_8x20_mid_top.png" />
     <Content Include="Content\Icons\Close\dialog_close.png" />
     <Content Include="Content\Icons\delete\trash.gif" />
     <Content Include="Content\Icons\delete\undo_delete.png" />
@@ -1158,6 +1164,12 @@
     <Content Include="Content\Icons\Users\40x40\single.png" />
     <Content Include="Content\Icons\Users\single.png" />
     <Content Include="Content\Icons\Users\users-icon.png" />
+    <Content Include="Content\Icons\Visibility\eye_16x20_hidden.png" />
+    <Content Include="Content\Icons\Visibility\eye_16x20_hidden_top.png" />
+    <Content Include="Content\Icons\Visibility\eye_16x20_visible.png" />
+    <Content Include="Content\Icons\Visibility\eye_16x20_visible_top.png" />
+    <Content Include="Content\Icons\Visibility\eye_hidden.png" />
+    <Content Include="Content\Icons\Visibility\eye_Visible.png" />
     <Content Include="Content\Images\company-logo.jpg" />
     <Content Include="Content\Images\UserImage\company-logo.jpg" />
     <Content Include="Content\NoticeFiles\batch2.png" />
@@ -1453,7 +1465,12 @@
     <Content Include="Views\NoticeBoard\WebForm1.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
+    <Content Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx" />
+    <Content Include="Views\RestrictionAccess\DateRestrictionUC.ascx" />
+    <Content Include="Views\RestrictionAccess\GradeRestrictionUC.ascx" />
+    <Content Include="Views\RestrictionAccess\GroupRestrictionUC.ascx" />
     <Content Include="Views\RestrictionAccess\Restriction_First.ascx" />
+    <Content Include="Views\RestrictionAccess\UserProfileRestriction.ascx" />
     <Content Include="Views\Setting\Setting1.aspx" />
     <Content Include="Views\Structure\All\Master\AddCourses.aspx" />
     <Content Include="Views\Structure\All\Master\CoursesList.aspx" />
@@ -2517,12 +2534,47 @@
     <Compile Include="Views\Office\School\View.aspx.designer.cs">
       <DependentUpon>View.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx.cs">
+      <DependentUpon>ActivityCompleteRestrictionUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx.designer.cs">
+      <DependentUpon>ActivityCompleteRestrictionUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\DateRestrictionUC.ascx.cs">
+      <DependentUpon>DateRestrictionUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\DateRestrictionUC.ascx.designer.cs">
+      <DependentUpon>DateRestrictionUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\GradeRestrictionUC.ascx.cs">
+      <DependentUpon>GradeRestrictionUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\GradeRestrictionUC.ascx.designer.cs">
+      <DependentUpon>GradeRestrictionUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\GroupRestrictionUC.ascx.cs">
+      <DependentUpon>GroupRestrictionUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\GroupRestrictionUC.ascx.designer.cs">
+      <DependentUpon>GroupRestrictionUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\RestrictionAccess\Restriction_First.ascx.cs">
       <DependentUpon>Restriction_First.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\RestrictionAccess\Restriction_First.ascx.designer.cs">
       <DependentUpon>Restriction_First.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\UserProfileRestriction.ascx.cs">
+      <DependentUpon>UserProfileRestriction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\UserProfileRestriction.ascx.designer.cs">
+      <DependentUpon>UserProfileRestriction.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\Setting1.aspx.cs">
       <DependentUpon>Setting1.aspx</DependentUpon>
@@ -3392,6 +3444,7 @@
     <Folder Include="Views\AcademicPlacement\SubjectClass\" />
     <Folder Include="Views\AcademicPlacement\SubjectSubscription\" />
     <Folder Include="Views\AcademicPlacement\TeacherClass\" />
+    <Folder Include="Views\ActivityResource\" />
     <Folder Include="Views\All_Resusable_Codes\Paging\" />
     <Folder Include="Views\Assignments\" />
     <Folder Include="Views\Student\StudentGroup\UserControls\" />

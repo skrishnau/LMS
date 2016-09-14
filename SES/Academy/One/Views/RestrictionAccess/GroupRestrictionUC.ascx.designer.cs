@@ -10,78 +10,60 @@
 namespace One.Views.RestrictionAccess {
     
     
-    public partial class Restriction_First {
+    public partial class GroupRestrictionUC {
         
         /// <summary>
-        /// multiViewRestrict control.
+        /// ImageButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView multiViewRestrict;
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
         
         /// <summary>
-        /// viewNone control.
+        /// ddlClassGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewNone;
+        protected global::System.Web.UI.WebControls.DropDownList ddlClassGroup;
         
         /// <summary>
-        /// imgCloseRestrictionSet control.
+        /// ddlClassValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgCloseRestrictionSet;
+        protected global::System.Web.UI.WebControls.DropDownList ddlClassValue;
         
         /// <summary>
-        /// viewRestriction control.
+        /// PlaceHolder1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewRestriction;
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
         
         /// <summary>
-        /// ddlMustMatch control.
+        /// ddlGroupValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMustMatch;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGroupValue;
         
         /// <summary>
-        /// ddlAllAny control.
+        /// ImageButton2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAllAny;
-        
-        /// <summary>
-        /// pnlRestrictions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlRestrictions;
-        
-        /// <summary>
-        /// btnAddRestriction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddRestriction;
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
     }
 }

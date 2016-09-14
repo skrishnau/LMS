@@ -7,14 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace One.Views.RestrictionAccess
 {
-    public partial class Restriction_First : System.Web.UI.UserControl
+    public partial class DateRestrictionUC : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnAddRestriction_Click(object sender, EventArgs e)
         {
 
         }
