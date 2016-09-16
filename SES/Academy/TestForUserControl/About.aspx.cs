@@ -5,16 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace One.Views.RestrictionAccess
+namespace TestForUserControl
 {
-    public partial class Restriction_First : System.Web.UI.UserControl
+    public partial class About : Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnAddRestriction_Click(object sender, EventArgs e)
         {
 
         }

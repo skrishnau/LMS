@@ -310,6 +310,10 @@
     <Compile Include="Migrations\201609110920558_userClass_modified_and_restored_to_previous.Designer.cs">
       <DependentUpon>201609110920558_userClass_modified_and_restored_to_previous.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609140625556_restriction_and_types_added.cs" />
+    <Compile Include="Migrations\201609140625556_restriction_and_types_added.Designer.cs">
+      <DependentUpon>201609140625556_restriction_and_types_added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -521,6 +525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609110920558_userClass_modified_and_restored_to_previous.resx">
       <DependentUpon>201609110920558_userClass_modified_and_restored_to_previous.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609140625556_restriction_and_types_added.resx">
+      <DependentUpon>201609140625556_restriction_and_types_added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

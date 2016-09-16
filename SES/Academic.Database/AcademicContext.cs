@@ -71,7 +71,7 @@ namespace Academic.Database
         public DbSet<DbEntities.AccessPermission.Restriction> Restriction { get; set; }
         //------------------- Restriction END -----------------------/
 
-        public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
+        //public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
 
 
 
@@ -81,11 +81,12 @@ namespace Academic.Database
         //public DbSet<DbEntities.Activities.ClassInAcademicYear> ActiveClassesInAcademicYear { get; set; }
 
 
-        public DbSet<DbEntities.Assignments.AssignedTask> AssignedTask { get; set; }
-        //public DbSet<DbEntities.Assignments.Assignment> Assignment { get; set; }
-        public DbSet<DbEntities.Assignments.AssignmentAnswer> AssignmentAnswer { get; set; }
-        public DbSet<DbEntities.Assignments.AssignmentAnswerFile> AssignmentAnswerFile { get; set; }
-        //public DbSet<DbEntities.Assignments.Task> Task { get; set; }
+        //public DbSet<DbEntities.Marks.AssignmentMarks> AssignmentMarks { get; set; }
+        //public DbSet<DbEntities.Assignments.AssignedTask> AssignedTask { get; set; }
+        ////public DbSet<DbEntities.Assignments.Assignment> Assignment { get; set; }
+        //public DbSet<DbEntities.Assignments.AssignmentAnswer> AssignmentAnswer { get; set; }
+        //public DbSet<DbEntities.Assignments.AssignmentAnswerFile> AssignmentAnswerFile { get; set; }
+        ////public DbSet<DbEntities.Assignments.Task> Task { get; set; }
 
         public DbSet<DbEntities.Attendances.Attendance> Attendance { get; set; }
         public DbSet<DbEntities.Attendances.AttendanceDay> AttendanceDay { get; set; }
@@ -113,7 +114,6 @@ namespace Academic.Database
         public DbSet<DbEntities.Libraries.Return> Return { get; set; }
         public DbSet<DbEntities.Libraries.UsefulnessCategory> UsefulnessCategory { get; set; }
 
-        public DbSet<DbEntities.Marks.AssignmentMarks> AssignmentMarks { get; set; }
         public DbSet<DbEntities.Marks.ExamMarks> ExamMarks { get; set; }
         public DbSet<DbEntities.Marks.Grade> Grade { get; set; }
 
@@ -174,7 +174,7 @@ namespace Academic.Database
 
         public DbSet<DbEntities.Subjects.SubjectSection> SubjectSection { get; set; }
 
-  
+
 
         //public DbSet<DbEntities.Subjects.Detail.SubjectActivityAndResource> SubjectActivityAndResource { get; set; }
 

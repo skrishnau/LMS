@@ -62,6 +62,7 @@
     <Compile Include="Resources\PhotoViewModel.cs" />
     <Compile Include="Resources\ResourceFileViewModel.cs" />
     <Compile Include="Resources\ResourceViewModel.cs" />
+    <Compile Include="RestrictionIdName.cs" />
     <Compile Include="Student\StudentViewModel.cs" />
     <Compile Include="Student\StudentViewModelWithAllParam.cs" />
     <Compile Include="Subject\Subject.cs" />

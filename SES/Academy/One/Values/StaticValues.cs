@@ -153,5 +153,83 @@ namespace One.Values
             "~/Content/Icons/TreeView/left_down_full.png",
             "~/Content/Icons/TreeView/up_down_full.png"
         };
+
+        /// <summary>
+        /// Working script
+        /// </summary>
+        public static string ScriptRestriction
+        {
+            get
+            {
+                return
+                    "<script type=\"text/javascript\"> $(\"[id*=btnAddRestriction]\").on(\"click\", function () { var dlg = $(\"#restrictionchoosedialog\").dialog({ width: 450, minHeight: 10, minwidth: 10, modal: true, title: \"Add restriction\"}); dlg.parent().appendTo(jQuery(\"form:first\")); var parameter = Sys.WebForms.PageRequestManager.getInstance(); parameter.add_endRequest(function () { $(\"[id*=btnAddRestriction]\").on(\"click\", function () {var dlg = $(\"#restrictionchoosedialog\").dialog({width: 450,minHeight: 10,minwidth: 10,modal: true,title: \"Add restriction\"});dlg.parent().appendTo(jQuery(\"form:first\"));return false;});});return false;});var parameter1 = Sys.WebForms.PageRequestManager.getInstance();parameter1.add_endRequest(function () {$(\"[id*=btnAddRestriction]\").on(\"click\", function () {var dlg = $(\"#restrictionchoosedialog\").dialog({width: 450,minHeight: 10,minwidth: 10,modal: true,title: \"Add restriction\"});dlg.parent().appendTo(jQuery(\"form:first\"));return false;});});</script>";
+
+            }
+        }
+
+        public static string GetScriptForResctrictionAdd(string buttonId, string dialogId, string title)
+        {
+            var newScript =
+                    //"<script type=\"text/javascript\"> $(\"[id*=btnAddRestriction]\").on(\"click\", function () { var dlg = $(\"#restrictionchoosedialog\").dialog({ width: 450, minHeight: 10, minwidth: 10, modal: true, title: \"Add restriction\"}); dlg.parent().appendTo(jQuery(\"form:first\")); var parameter = Sys.WebForms.PageRequestManager.getInstance(); parameter.add_endRequest(function () { $(\"[id*=btnAddRestriction]\").on(\"click\", function () {var dlg = $(\"#restrictionchoosedialog\").dialog({width: 450,minHeight: 10,minwidth: 10,modal: true,title: \"Add restriction\"});dlg.parent().appendTo(jQuery(\"form:first\"));return false;});});return false;});var parameter1 = Sys.WebForms.PageRequestManager.getInstance();parameter1.add_endRequest(function () {$(\"[id*=btnAddRestriction]\").on(\"click\", function () {var dlg = $(\"#restrictionchoosedialog\").dialog({width: 450,minHeight: 10,minwidth: 10,modal: true,title: \"Add restriction\"});dlg.parent().appendTo(jQuery(\"form:first\"));return false;});});</script>";
+                     
+                    "<script type=\"text/javascript\"> " +
+                    "$(\"[id*=" + buttonId + 
+                    "]\").on(\"click\", function () { " +
+
+                    "var dlg = $(\"#"+dialogId+"\")" +
+                    ".dialog({ width: 450, minHeight: 10, minwidth: 10," +
+                    " modal: true, title: \""+title+"\"}); " +
+                    "dlg.parent().appendTo(jQuery(\"form:first\")); " +
+                    "var parameter = Sys.WebForms.PageRequestManager.getInstance(); " +
+                    "parameter.add_endRequest(function () { " +
+
+                    "$(\"[id*=" + buttonId +
+                    "]\").on(\"click\", function () {" +
+
+                    "var dlg = $(\"#"+dialogId+"\")" +
+                    ".dialog({width: 450,minHeight: 10,minwidth: 10," +
+                    "modal: true,title: \""+title+"\"});" +
+                    "dlg.parent().appendTo(jQuery(\"form:first\"));" +
+                    "return false;});});return false;});" +
+                    "var parameter1 = Sys.WebForms.PageRequestManager.getInstance();" +
+                    "parameter1.add_endRequest(function () {" +
+
+                    "$(\"[id*=" + buttonId + 
+                    "]\").on(\"click\", function () {" +
+
+                    "var dlg = $(\"#"+dialogId+"\")" +
+                    ".dialog({width: 450,minHeight: 10,minwidth: 10," +
+                    "modal: true,title: \""+title+"\"});" +
+                    "dlg.parent().appendTo(jQuery(\"form:first\"));" +
+                    "return false;});});</script>";
+            return newScript;
+            
+            var script =
+                    "<script type=\"text/javascript\"> $(\"[id*="+
+                    buttonId+
+                    "]\").on(\"click\", function () { var dlg = $(\"#"+
+                    dialogId+
+                    "\").dialog({ width: 450, minHeight: 10, minwidth: 10, modal: true, title: \""+
+                    title+
+                    "\"}); dlg.parent().appendTo(jQuery(\"form:first\")); " +
+                    "var parameter = Sys.WebForms.PageRequestManager.getInstance();" +
+                    " parameter.add_endRequest(function () { $(\"[id*="+
+                    buttonId+
+                    "]\").on(\"click\", function () {var dlg = $(\"#"+
+                    dialogId+
+                    "\").dialog({width: 450,minHeight: 10,minwidth: 10,modal: true,title: \""
+                    +title+
+                    "\"});dlg.parent().appendTo(jQuery(\"form:first\"));return false;});});return false;});" +
+                    "var parameter1 = Sys.WebForms.PageRequestManager.getInstance();" +
+                    "parameter1.add_endRequest(function () {$(\"[id*="
+                    +buttonId+
+                    "]\").on(\"click\", function () {var dlg = $(\"#"
+                    +dialogId+
+                    "\").dialog({width: 450,minHeight: 10,minwidth: 10,modal: true,title: \""
+                    +title+
+                    "\"});dlg.parent().appendTo(jQuery(\"form:first\"));return false;});});</script>";
+            return script;
+        }
+
     }
 }

@@ -10,78 +10,69 @@
 namespace One.Views.RestrictionAccess {
     
     
-    public partial class Restriction_First {
+    public partial class ActivityCompleteRestrictionUC {
         
         /// <summary>
-        /// multiViewRestrict control.
+        /// imgVisibility control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView multiViewRestrict;
+        protected global::System.Web.UI.WebControls.ImageButton imgVisibility;
         
         /// <summary>
-        /// viewNone control.
+        /// ddlActivity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewNone;
+        protected global::System.Web.UI.WebControls.DropDownList ddlActivity;
         
         /// <summary>
-        /// imgCloseRestrictionSet control.
+        /// ddlConstraint control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgCloseRestrictionSet;
+        protected global::System.Web.UI.WebControls.DropDownList ddlConstraint;
         
         /// <summary>
-        /// viewRestriction control.
+        /// imgClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewRestriction;
+        protected global::System.Web.UI.WebControls.ImageButton imgClose;
         
         /// <summary>
-        /// ddlMustMatch control.
+        /// hidParentId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMustMatch;
+        protected global::System.Web.UI.WebControls.HiddenField hidParentId;
         
         /// <summary>
-        /// ddlAllAny control.
+        /// hidRelativeId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAllAny;
+        protected global::System.Web.UI.WebControls.HiddenField hidRelativeId;
         
         /// <summary>
-        /// pnlRestrictions control.
+        /// hidAbsoluteId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlRestrictions;
-        
-        /// <summary>
-        /// btnAddRestriction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddRestriction;
+        protected global::System.Web.UI.WebControls.HiddenField hidAbsoluteId;
     }
 }

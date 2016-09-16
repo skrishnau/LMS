@@ -1466,11 +1466,15 @@
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
     <Content Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx" />
+    <Content Include="Views\RestrictionAccess\ChooseRestrictionTypeUC.ascx" />
     <Content Include="Views\RestrictionAccess\DateRestrictionUC.ascx" />
     <Content Include="Views\RestrictionAccess\GradeRestrictionUC.ascx" />
     <Content Include="Views\RestrictionAccess\GroupRestrictionUC.ascx" />
-    <Content Include="Views\RestrictionAccess\Restriction_First.ascx" />
+    <Content Include="Views\RestrictionAccess\Main\RestrictionFifth.ascx" />
+    <Content Include="Views\RestrictionAccess\Main\WebFormFifth.aspx" />
+    <Content Include="Views\RestrictionAccess\RestrictionFourth.ascx" />
     <Content Include="Views\RestrictionAccess\UserProfileRestriction.ascx" />
+    <Content Include="Views\RestrictionAccess\WebFormFourthTest.aspx" />
     <Content Include="Views\Setting\Setting1.aspx" />
     <Content Include="Views\Structure\All\Master\AddCourses.aspx" />
     <Content Include="Views\Structure\All\Master\CoursesList.aspx" />
@@ -2541,6 +2545,13 @@
     <Compile Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx.designer.cs">
       <DependentUpon>ActivityCompleteRestrictionUC.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\RestrictionAccess\ChooseRestrictionTypeUC.ascx.cs">
+      <DependentUpon>ChooseRestrictionTypeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\ChooseRestrictionTypeUC.ascx.designer.cs">
+      <DependentUpon>ChooseRestrictionTypeUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\RestrictionAccess\DateRestrictionUC.ascx.cs">
       <DependentUpon>DateRestrictionUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2562,12 +2573,26 @@
     <Compile Include="Views\RestrictionAccess\GroupRestrictionUC.ascx.designer.cs">
       <DependentUpon>GroupRestrictionUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\RestrictionAccess\Restriction_First.ascx.cs">
-      <DependentUpon>Restriction_First.ascx</DependentUpon>
+    <Compile Include="Views\RestrictionAccess\Main\RestrictionFifth.ascx.cs">
+      <DependentUpon>RestrictionFifth.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\RestrictionAccess\Restriction_First.ascx.designer.cs">
-      <DependentUpon>Restriction_First.ascx</DependentUpon>
+    <Compile Include="Views\RestrictionAccess\Main\RestrictionFifth.ascx.designer.cs">
+      <DependentUpon>RestrictionFifth.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Main\WebFormFifth.aspx.cs">
+      <DependentUpon>WebFormFifth.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Main\WebFormFifth.aspx.designer.cs">
+      <DependentUpon>WebFormFifth.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\RestrictionFourth.ascx.cs">
+      <DependentUpon>RestrictionFourth.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\RestrictionFourth.ascx.designer.cs">
+      <DependentUpon>RestrictionFourth.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\RestrictionAccess\UserProfileRestriction.ascx.cs">
       <DependentUpon>UserProfileRestriction.ascx</DependentUpon>
@@ -2575,6 +2600,13 @@
     </Compile>
     <Compile Include="Views\RestrictionAccess\UserProfileRestriction.ascx.designer.cs">
       <DependentUpon>UserProfileRestriction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\WebFormFourthTest.aspx.cs">
+      <DependentUpon>WebFormFourthTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\WebFormFourthTest.aspx.designer.cs">
+      <DependentUpon>WebFormFourthTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\Setting1.aspx.cs">
       <DependentUpon>Setting1.aspx</DependentUpon>
