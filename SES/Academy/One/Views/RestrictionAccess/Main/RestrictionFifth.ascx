@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RestrictionFifth.ascx.cs" Inherits="One.Views.RestrictionAccess.Main.RestrictionFifth" %>
 
 
-<div style="border: 2px solid darkgray; margin: 10px 0;">
+<div class="restriction-main">
 
     <asp:MultiView ID="multiViewRestrict" runat="server" ActiveViewIndex="0">
         <asp:View ID="viewNone" runat="server">
@@ -43,6 +43,7 @@
     <asp:HiddenField ID="hidParentId" runat="server" Value="0" />
     <asp:HiddenField ID="hidRelativeId" runat="server" Value="1" />
     <asp:HiddenField ID="hidAbsoluteId" runat="server" Value="1" />
+    <asp:HiddenField ID="hidType" runat="server" Value="" />
 
     <asp:HiddenField ID="hidNoOfChildRestrictionSets" runat="server" Value="0" />
 
@@ -61,13 +62,16 @@
          <asp:Button ID="btnAddRestriction" ClientIDMode="Static"
         CssClass="btnAdd_Restriction" runat="server" Visible="False" Text="Add restriction" />
         &nbsp;
-         <asp:LinkButton ID="lnkAddActOrRes" ClientIDMode="Static"
+         <asp:LinkButton ID="lnkAddActOrRes" ClientIDMode="Static" CausesValidation="False"
              CssClass="btnAdd_Restriction"
              runat="server">
              <%--<asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />--%>
              Add restrictions
          </asp:LinkButton>
     </div>
+ 
+     
+
     <%--<asp:Button ID="Button1" runat="server" Text="Add Restriction set" OnClick="Button1_Click" />--%>
 
     <%-- Working script --%>

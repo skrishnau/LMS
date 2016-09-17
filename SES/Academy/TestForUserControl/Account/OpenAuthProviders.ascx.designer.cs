@@ -7,18 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Course.ActivityAndResource.EntryUserConrols {
-    
-    
-    public partial class AssignWF {
-        
+namespace TestForUserControl.Account
+{
+
+
+    public partial class OpenAuthProviders
+    {
+
         /// <summary>
-        /// AssignmentUc control.
+        /// providerDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.Course.ActivityAndResource.EntryUserConrols.AssignmentUc AssignmentUc;
+        protected global::System.Web.UI.WebControls.ListView providerDetails;
+
     }
 }

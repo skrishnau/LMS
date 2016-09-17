@@ -7,10 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.RestrictionAccess {
+namespace One.Views.Test {
     
     
-    public partial class WebFormFourthTest {
+    public partial class javascriptcallfromupdatepanel {
+        
+        /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -22,21 +40,21 @@ namespace One.Views.RestrictionAccess {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// RestrictionFourth1 control.
+        /// lblDisplayDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.RestrictionAccess.RestrictionFourth RestrictionFourth1;
+        protected global::System.Web.UI.WebControls.Label lblDisplayDate;
         
         /// <summary>
-        /// ChooseRestrictionTypeUC1 control.
+        /// btnPostBack2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.RestrictionAccess.ChooseRestrictionTypeUC ChooseRestrictionTypeUC1;
+        protected global::System.Web.UI.WebControls.Button btnPostBack2;
     }
 }

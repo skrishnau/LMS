@@ -12,7 +12,7 @@
         &nbsp;
     <asp:TextBox ID="txtGreaterThanOrEqualTo" runat="server" Width="63px"></asp:TextBox>
         %
-    &nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;
     <asp:CheckBox ID="chkLessThan" runat="server" Text="must be <" />
         &nbsp;
     
@@ -21,5 +21,12 @@
     
     </span>
     &nbsp;
-    <asp:ImageButton ID="imgClose" ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" />
+
+ <asp:ImageButton ID="imgClose" CssClass="img-close" ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" OnClick="imgClose_Click" />
+    
+    <asp:HiddenField ID="hidParentId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidRelativeId" runat="server" Value="1" />
+    <asp:HiddenField ID="hidAbsoluteId" runat="server" Value="1" />
+    <asp:HiddenField ID="hidType" runat="server" Value="" />
+
 </div>

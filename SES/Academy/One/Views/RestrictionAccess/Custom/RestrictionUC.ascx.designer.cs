@@ -7,10 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.RestrictionAccess.Main {
+namespace One.Views.RestrictionAccess.Custom {
     
     
-    public partial class WebFormFifth {
+    public partial class RestrictionUC {
+        
+        /// <summary>
+        /// hidPageKeyForUniqueSession control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidPageKeyForUniqueSession;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -22,30 +31,12 @@ namespace One.Views.RestrictionAccess.Main {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// RestrictionFifth1 control.
+        /// EachRestriction1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.RestrictionAccess.Main.RestrictionFifth RestrictionFifth1;
-        
-        /// <summary>
-        /// UpdatePanel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
-        /// <summary>
-        /// ChooseRestrictionTypeUC1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.RestrictionAccess.ChooseRestrictionTypeUC ChooseRestrictionTypeUC1;
+        protected global::One.Views.RestrictionAccess.Custom.EachRestriction EachRestriction1;
     }
 }

@@ -7,9 +7,9 @@ using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using One.Values.MemberShip;
 
-namespace One.Views.Course.ActivityAndResource.EntryUserConrols
+namespace One.Views.ActivityResource.Assignments
 {
-    public partial class AssignmentUc : System.Web.UI.UserControl
+    public partial class AssignmentCreate : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

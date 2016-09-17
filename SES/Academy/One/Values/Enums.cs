@@ -76,7 +76,7 @@ namespace One.Values
         };
         public static List<string> ActivityUrl = new List<string>()
         {
-            "~/Views/Course/ActivityAndResource/EntryUserConrols/AssignWF.aspx"
+            "~/Views/ActivityResource/Assignments/AssignmentCreate.aspx"
             ,""
             ,""
             ,""

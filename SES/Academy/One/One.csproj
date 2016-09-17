@@ -1127,6 +1127,7 @@
     <Content Include="Content\Icons\Close\cross_8x20_extreme_top.png" />
     <Content Include="Content\Icons\Close\cross_8x20_mid_top.png" />
     <Content Include="Content\Icons\Close\dialog_close.png" />
+    <Content Include="Content\Icons\Close\white_cross.png" />
     <Content Include="Content\Icons\delete\trash.gif" />
     <Content Include="Content\Icons\delete\undo_delete.png" />
     <Content Include="Content\Icons\Done_Save\basic-save.png" />
@@ -1170,6 +1171,8 @@
     <Content Include="Content\Icons\Visibility\eye_16x20_visible_top.png" />
     <Content Include="Content\Icons\Visibility\eye_hidden.png" />
     <Content Include="Content\Icons\Visibility\eye_Visible.png" />
+    <Content Include="Content\Images\background-repeater.png" />
+    <Content Include="Content\Images\background-repeater1.png" />
     <Content Include="Content\Images\company-logo.jpg" />
     <Content Include="Content\Images\UserImage\company-logo.jpg" />
     <Content Include="Content\NoticeFiles\batch2.png" />
@@ -1415,6 +1418,10 @@
     <Content Include="Views\Academy\UserControls\AcademicYearListUC.ascx" />
     <Content Include="Views\Academy\UserControls\SessionsListingInAYDetailUC.ascx" />
     <Content Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx" />
+    <Content Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx" />
+    <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx" />
+    <Content Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx" />
+    <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialogStyles.css" />
     <Content Include="Views\Class\CourseClassDetail.aspx" />
     <Content Include="Views\Class\CourseSessionCreate.aspx" />
     <Content Include="Views\Class\CourseSessionCreateUC.ascx" />
@@ -1429,12 +1436,11 @@
     <Content Include="Views\Course\ActivityAndResource\Chooseer\ChooserJQueryTest.aspx" />
     <Content Include="Views\Course\ActivityAndResource\Chooseer\ChooseTypesUc.ascx" />
     <Content Include="Views\Course\ActivityAndResource\Chooseer\CopyPaste.aspx" />
+    <Content Include="Views\Course\ActivityAndResource\Chooseer\Note.txt" />
     <Content Include="Views\Course\ActivityAndResource\Chooseer\test2.aspx" />
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatUc.ascx" />
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatViews\ChatRoom.ascx" />
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatWF.aspx" />
-    <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignmentUc.ascx" />
-    <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignWF.aspx" />
     <Content Include="Views\Course\Category\ListUC.ascx" />
     <Content Include="Views\Course\CourseCreate\CreateCourse.aspx" />
     <Content Include="Views\Course\CourseDetail.aspx" />
@@ -1467,14 +1473,20 @@
     <Content Include="Views\Office\School\View.aspx" />
     <Content Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx" />
     <Content Include="Views\RestrictionAccess\ChooseRestrictionTypeUC.ascx" />
+    <Content Include="Views\RestrictionAccess\Custom\EachRestriction.ascx" />
+    <Content Include="Views\RestrictionAccess\Custom\Note.txt" />
+    <Content Include="Views\RestrictionAccess\Custom\RestrictionStyles.css" />
+    <Content Include="Views\RestrictionAccess\Custom\RestrictionUC.ascx" />
+    <Content Include="Views\RestrictionAccess\Custom\TestCustom.aspx" />
     <Content Include="Views\RestrictionAccess\DateRestrictionUC.ascx" />
     <Content Include="Views\RestrictionAccess\GradeRestrictionUC.ascx" />
     <Content Include="Views\RestrictionAccess\GroupRestrictionUC.ascx" />
+    <Content Include="Views\RestrictionAccess\Main\Note.txt" />
     <Content Include="Views\RestrictionAccess\Main\RestrictionFifth.ascx" />
+    <Content Include="Views\RestrictionAccess\Main\RestrictionMainUC.ascx" />
+    <Content Include="Views\RestrictionAccess\Main\TestOfUC.aspx" />
     <Content Include="Views\RestrictionAccess\Main\WebFormFifth.aspx" />
-    <Content Include="Views\RestrictionAccess\RestrictionFourth.ascx" />
     <Content Include="Views\RestrictionAccess\UserProfileRestriction.ascx" />
-    <Content Include="Views\RestrictionAccess\WebFormFourthTest.aspx" />
     <Content Include="Views\Setting\Setting1.aspx" />
     <Content Include="Views\Structure\All\Master\AddCourses.aspx" />
     <Content Include="Views\Structure\All\Master\CoursesList.aspx" />
@@ -1512,8 +1524,6 @@
     <Content Include="Views\Activity\List.aspx" />
     <Content Include="Views\Activity\Teach\Create.ascx" />
     <Content Include="Views\Activity\Teach\TeachCreate.aspx" />
-    <Content Include="Views\Course\ActivityAndResource\CreateActNResUc.ascx" />
-    <Content Include="Views\Course\ActivityAndResource\CreteActNRes.aspx" />
     <Content Include="Views\Course\Category\Create.ascx" />
     <Content Include="Views\Course\Category\Create.aspx" />
     <Content Include="Views\Course\Category\List.aspx" />
@@ -1584,6 +1594,9 @@
     <Content Include="Views\Student\StudentGroup\Listing\ListUc.ascx" />
     <Content Include="Views\Student\StudentStructure\SingleStudentAssignUC.ascx" />
     <Content Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx" />
+    <Content Include="Views\Test\javascriptcallfromcode.aspx" />
+    <Content Include="Views\Test\javascriptcallfromupdatepanel.aspx" />
+    <Content Include="Views\Test\javascriptcallFromusercontrol.ascx" />
     <Content Include="Views\Test\RedirectToAnotherSoln.aspx" />
     <Content Include="Views\UserControls\DateChooser.ascx" />
     <Content Include="Views\UserControls\ReqImageUC.ascx" />
@@ -2188,6 +2201,27 @@
     <Compile Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx.designer.cs">
       <DependentUpon>SingleProgramInListingUC.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx.cs">
+      <DependentUpon>AssignmentCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx.designer.cs">
+      <DependentUpon>AssignmentCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx.cs">
+      <DependentUpon>CustomDialog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx.designer.cs">
+      <DependentUpon>CustomDialog.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx.cs">
+      <DependentUpon>Dialog1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx.designer.cs">
+      <DependentUpon>Dialog1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Class\CourseClassDetail.aspx.cs">
       <DependentUpon>CourseClassDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2313,20 +2347,6 @@
     </Compile>
     <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatWF.aspx.designer.cs">
       <DependentUpon>ChatWF.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignmentUc.ascx.cs">
-      <DependentUpon>AssignmentUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignmentUc.ascx.designer.cs">
-      <DependentUpon>AssignmentUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignWF.aspx.cs">
-      <DependentUpon>AssignWF.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\AssignWF.aspx.designer.cs">
-      <DependentUpon>AssignWF.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\Category\ListUC.ascx.cs">
       <DependentUpon>ListUC.ascx</DependentUpon>
@@ -2552,6 +2572,27 @@
     <Compile Include="Views\RestrictionAccess\ChooseRestrictionTypeUC.ascx.designer.cs">
       <DependentUpon>ChooseRestrictionTypeUC.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\RestrictionAccess\Custom\EachRestriction.ascx.cs">
+      <DependentUpon>EachRestriction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Custom\EachRestriction.ascx.designer.cs">
+      <DependentUpon>EachRestriction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Custom\RestrictionUC.ascx.cs">
+      <DependentUpon>RestrictionUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Custom\RestrictionUC.ascx.designer.cs">
+      <DependentUpon>RestrictionUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Custom\TestCustom.aspx.cs">
+      <DependentUpon>TestCustom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Custom\TestCustom.aspx.designer.cs">
+      <DependentUpon>TestCustom.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\RestrictionAccess\DateRestrictionUC.ascx.cs">
       <DependentUpon>DateRestrictionUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2580,6 +2621,20 @@
     <Compile Include="Views\RestrictionAccess\Main\RestrictionFifth.ascx.designer.cs">
       <DependentUpon>RestrictionFifth.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\RestrictionAccess\Main\RestrictionMainUC.ascx.cs">
+      <DependentUpon>RestrictionMainUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Main\RestrictionMainUC.ascx.designer.cs">
+      <DependentUpon>RestrictionMainUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Main\TestOfUC.aspx.cs">
+      <DependentUpon>TestOfUC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RestrictionAccess\Main\TestOfUC.aspx.designer.cs">
+      <DependentUpon>TestOfUC.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\RestrictionAccess\Main\WebFormFifth.aspx.cs">
       <DependentUpon>WebFormFifth.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2587,26 +2642,12 @@
     <Compile Include="Views\RestrictionAccess\Main\WebFormFifth.aspx.designer.cs">
       <DependentUpon>WebFormFifth.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\RestrictionAccess\RestrictionFourth.ascx.cs">
-      <DependentUpon>RestrictionFourth.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\RestrictionAccess\RestrictionFourth.ascx.designer.cs">
-      <DependentUpon>RestrictionFourth.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\RestrictionAccess\UserProfileRestriction.ascx.cs">
       <DependentUpon>UserProfileRestriction.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\RestrictionAccess\UserProfileRestriction.ascx.designer.cs">
       <DependentUpon>UserProfileRestriction.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RestrictionAccess\WebFormFourthTest.aspx.cs">
-      <DependentUpon>WebFormFourthTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\RestrictionAccess\WebFormFourthTest.aspx.designer.cs">
-      <DependentUpon>WebFormFourthTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\Setting1.aspx.cs">
       <DependentUpon>Setting1.aspx</DependentUpon>
@@ -2866,20 +2907,6 @@
     </Compile>
     <Compile Include="Views\Activity\Teach\TeachCreate.aspx.designer.cs">
       <DependentUpon>TeachCreate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ActivityAndResource\CreateActNResUc.ascx.cs">
-      <DependentUpon>CreateActNResUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ActivityAndResource\CreateActNResUc.ascx.designer.cs">
-      <DependentUpon>CreateActNResUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ActivityAndResource\CreteActNRes.aspx.cs">
-      <DependentUpon>CreteActNRes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ActivityAndResource\CreteActNRes.aspx.designer.cs">
-      <DependentUpon>CreteActNRes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\Category\Create.ascx.cs">
       <DependentUpon>Create.ascx</DependentUpon>
@@ -3371,6 +3398,27 @@
     <Compile Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx.designer.cs">
       <DependentUpon>StudentAssignToAStructure.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Test\javascriptcallfromcode.aspx.cs">
+      <DependentUpon>javascriptcallfromcode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Test\javascriptcallfromcode.aspx.designer.cs">
+      <DependentUpon>javascriptcallfromcode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Test\javascriptcallfromupdatepanel.aspx.cs">
+      <DependentUpon>javascriptcallfromupdatepanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Test\javascriptcallfromupdatepanel.aspx.designer.cs">
+      <DependentUpon>javascriptcallfromupdatepanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Test\javascriptcallFromusercontrol.ascx.cs">
+      <DependentUpon>javascriptcallFromusercontrol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Test\javascriptcallFromusercontrol.ascx.designer.cs">
+      <DependentUpon>javascriptcallFromusercontrol.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Test\RedirectToAnotherSoln.aspx.cs">
       <DependentUpon>RedirectToAnotherSoln.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3476,7 +3524,6 @@
     <Folder Include="Views\AcademicPlacement\SubjectClass\" />
     <Folder Include="Views\AcademicPlacement\SubjectSubscription\" />
     <Folder Include="Views\AcademicPlacement\TeacherClass\" />
-    <Folder Include="Views\ActivityResource\" />
     <Folder Include="Views\All_Resusable_Codes\Paging\" />
     <Folder Include="Views\Assignments\" />
     <Folder Include="Views\Student\StudentGroup\UserControls\" />

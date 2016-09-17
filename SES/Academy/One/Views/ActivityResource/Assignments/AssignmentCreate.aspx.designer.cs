@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Course.ActivityAndResource.EntryUserConrols {
+namespace One.Views.ActivityResource.Assignments {
     
     
-    public partial class AssignmentUc {
+    public partial class AssignmentCreate {
         
         /// <summary>
         /// hidAssignmentId control.
@@ -173,6 +173,15 @@ namespace One.Views.Course.ActivityAndResource.EntryUserConrols {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtGradeToPass;
+        
+        /// <summary>
+        /// RestrictionMainUC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.RestrictionAccess.Main.RestrictionMainUC RestrictionMainUC;
         
         /// <summary>
         /// txtErrorMsg control.

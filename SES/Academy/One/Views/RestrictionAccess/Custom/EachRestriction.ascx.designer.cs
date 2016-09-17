@@ -7,64 +7,82 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.RestrictionAccess {
+namespace One.Views.RestrictionAccess.Custom {
     
     
-    public partial class GroupRestrictionUC {
+    public partial class EachRestriction {
         
         /// <summary>
-        /// ImageButton1 control.
+        /// hidPageKeyForUniqueSession control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.HiddenField hidPageKeyForUniqueSession;
         
         /// <summary>
-        /// ddlClassGroup control.
+        /// multiViewRestrict control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlClassGroup;
+        protected global::System.Web.UI.WebControls.MultiView multiViewRestrict;
         
         /// <summary>
-        /// ddlClassValue control.
+        /// viewNone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlClassValue;
+        protected global::System.Web.UI.WebControls.View viewNone;
         
         /// <summary>
-        /// PlaceHolder1 control.
+        /// imgCloseRestrictionSet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
+        protected global::System.Web.UI.WebControls.ImageButton imgCloseRestrictionSet;
         
         /// <summary>
-        /// ddlGroupValue control.
+        /// viewRestriction control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGroupValue;
+        protected global::System.Web.UI.WebControls.View viewRestriction;
         
         /// <summary>
-        /// imgClose control.
+        /// ddlMustMatch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgClose;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMustMatch;
+        
+        /// <summary>
+        /// ddlAllAny control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAllAny;
+        
+        /// <summary>
+        /// pnlRestrictions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlRestrictions;
         
         /// <summary>
         /// hidParentId control.
@@ -101,5 +119,32 @@ namespace One.Views.RestrictionAccess {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidType;
+        
+        /// <summary>
+        /// hidNoOfChildRestrictionSets control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidNoOfChildRestrictionSets;
+        
+        /// <summary>
+        /// lnkAddActOrRes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkAddActOrRes;
+        
+        /// <summary>
+        /// dialog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.Dialog.CustomDialog dialog;
     }
 }

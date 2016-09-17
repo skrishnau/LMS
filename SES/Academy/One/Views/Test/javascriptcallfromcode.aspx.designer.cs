@@ -7,45 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.RestrictionAccess.Main {
+namespace One.Views.Test {
     
     
-    public partial class WebFormFifth {
+    public partial class javascriptcallfromcode {
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// RestrictionFifth1 control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.RestrictionAccess.Main.RestrictionFifth RestrictionFifth1;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// UpdatePanel2 control.
+        /// lblDisplayDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        protected global::System.Web.UI.WebControls.Label lblDisplayDate;
         
         /// <summary>
-        /// ChooseRestrictionTypeUC1 control.
+        /// btnPostBack2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.RestrictionAccess.ChooseRestrictionTypeUC ChooseRestrictionTypeUC1;
+        protected global::System.Web.UI.WebControls.Button btnPostBack2;
+        
+        /// <summary>
+        /// javascriptcallFromusercontrol control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.Test.javascriptcallFromusercontrol javascriptcallFromusercontrol;
     }
 }

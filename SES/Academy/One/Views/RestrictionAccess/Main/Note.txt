@@ -1,0 +1,12 @@
+﻿The files in this folder use jQuery. The main task remain is Closing of Dialog after postback.
+Since its difficult(impossible for me ) to write code which calls javascript function after postback,
+These files are left. 
+
+The work-days for these 2 files is estimated to be 4 days. and that was worth the copying of code to new implementation in Custom folder.
+
+Main files:: 
+1.RestrictionFifth.ascx--- acts as each restriction entity
+2.RestrictionMainUC --- acts as Restriction Main from where execution starts
+3.TestOfUC is the last test done on above files
+4.WebFormFith ===> is the aspx version of RestrictionMainUC, in fact RestrictionMainUC was created by copying whole code of WebFormFifth
+and then some major modifications.

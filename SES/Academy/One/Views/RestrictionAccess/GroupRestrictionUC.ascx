@@ -25,5 +25,12 @@
         </asp:PlaceHolder>
     </span>
     &nbsp;
-    <asp:ImageButton ID="ImageButton2" ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" />
+    
+ <asp:ImageButton ID="imgClose" CssClass="img-close" ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" OnClick="imgClose_Click" />
+    
+    <asp:HiddenField ID="hidParentId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidRelativeId" runat="server" Value="1" />
+    <asp:HiddenField ID="hidAbsoluteId" runat="server" Value="1" />
+    <asp:HiddenField ID="hidType" runat="server" Value="" />
+
 </div>

@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Course.ActivityAndResource {
+namespace One.Views.RestrictionAccess.Custom {
     
     
-    public partial class CreteActNRes {
+    public partial class TestCustom {
         
         /// <summary>
-        /// CreateActNResUc control.
+        /// RestrictionUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.Course.ActivityAndResource.CreateActNResUc CreateActNResUc;
+        protected global::One.Views.RestrictionAccess.Custom.RestrictionUC RestrictionUC;
     }
 }

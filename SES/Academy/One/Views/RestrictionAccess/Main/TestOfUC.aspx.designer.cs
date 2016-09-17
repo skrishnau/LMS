@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Course.ActivityAndResource {
+namespace One.Views.RestrictionAccess.Main {
     
     
-    public partial class CreateActNResUc {
+    public partial class TestOfUC {
         
         /// <summary>
-        /// hidType control.
+        /// RestrictionMainUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidType;
+        protected global::One.Views.RestrictionAccess.Main.RestrictionMainUC RestrictionMainUC;
     }
 }

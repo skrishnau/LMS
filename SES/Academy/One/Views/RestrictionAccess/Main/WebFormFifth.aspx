@@ -19,7 +19,11 @@
 
     <div id="restrictionchoosedialog"
         style="display: none;">
-        <uc1:ChooseRestrictionTypeUC runat="server" ID="ChooseRestrictionTypeUC1" />
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>
+                <uc1:ChooseRestrictionTypeUC runat="server" ID="ChooseRestrictionTypeUC1" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
 
     <%--  <script type="text/javascript">
@@ -155,19 +159,31 @@
 
 
     <style type="text/css">
+        .img-close:hover {
+            background-color: orangered;
+        }
+
+        .img-close {
+        }
+
         .btnAdd_Restriction {
             width: 80px;
         }
 
+        .restriction-main {
+            border: 2px solid darkgray;
+            margin: 10px 0;
+        }
+
         .restriction-uc-whole {
-            border: 2px solid lightgrey;
+            border: 1px solid lightgrey;
             padding: 2px 2px 2px 5px;
             margin: 5px 0;
             vertical-align: central;
+            background-color: lightgoldenrodyellow;
         }
 
         .restriction-body {
-            
             vertical-align: central;
         }
 

@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace One.Views.Course.ActivityAndResource.ActResChoose
 {
+    /// <summary>
+    /// Used
+    /// </summary>
     public partial class ActResChooseUc : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)

@@ -103,6 +103,15 @@ namespace One.Views.RestrictionAccess.Main {
         protected global::System.Web.UI.WebControls.HiddenField hidAbsoluteId;
         
         /// <summary>
+        /// hidType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidType;
+        
+        /// <summary>
         /// hidNoOfChildRestrictionSets control.
         /// </summary>
         /// <remarks>

@@ -73,43 +73,54 @@ namespace One.Views.RestrictionAccess.Main
                             case "activity":
                                 var activityCompleteRestriction = (ActivityCompleteRestrictionUC)
                                     Page.LoadControl("~/Views/RestrictionAccess/ActivityCompleteRestrictionUC.ascx");
+                                activityCompleteRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId, resClass.RelativeId, resClass.Name);
+                                activityCompleteRestriction.CloseClicked += RestrictionType_CloseClicked;
+
                                 parent.Controls.Add(activityCompleteRestriction);
                                 break;
                             case "date":
                                 var dateRestriction = (DateRestrictionUC)
                                     Page.LoadControl("~/Views/RestrictionAccess/DateRestrictionUC.ascx");
+                                dateRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId, resClass.RelativeId, resClass.Name);
+                                dateRestriction.CloseClicked += RestrictionType_CloseClicked;
+
                                 parent.Controls.Add(dateRestriction);
                                 break;
 
                             case "grade":
                                 var gradeRestriction = (GradeRestrictionUC)
                                     Page.LoadControl("~/Views/RestrictionAccess/GradeRestrictionUC.ascx");
-                                //pnlRestrictions.Controls.Add(gradeRestriction);
+                                gradeRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId, resClass.RelativeId, resClass.Name);
+                                gradeRestriction.CloseClicked += RestrictionType_CloseClicked;
+
                                 parent.Controls.Add(gradeRestriction);
                                 break;
 
                             case "group":
                                 var groupRestriction = (GroupRestrictionUC)
                                     Page.LoadControl("~/Views/RestrictionAccess/GroupRestrictionUC.ascx");
-                                //pnlRestrictions.Controls.Add(groupRestriction);
+                                groupRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId, resClass.RelativeId, resClass.Name);
+                                groupRestriction.CloseClicked += RestrictionType_CloseClicked;
+
                                 parent.Controls.Add(groupRestriction);
                                 break;
 
                             case "userprofile":
                                 var userProfileRestriction = (UserProfileRestriction)
                                     Page.LoadControl("~/Views/RestrictionAccess/UserProfileRestriction.ascx");
-                                //pnlRestrictions.Controls.Add(userProfileRestriction);
+                                userProfileRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId, resClass.RelativeId, resClass.Name);
+                                userProfileRestriction.CloseClicked += RestrictionType_CloseClicked;
+
                                 parent.Controls.Add(userProfileRestriction);
                                 break;
                             case "main":
 
                                 var restrictionSet = (RestrictionFifth)
                                     Page.LoadControl("~/Views/RestrictionAccess/Main/RestrictionFifth.ascx");
+                                restrictionSet.SetIds(resClass.ParentId, resClass.AbsoluteId, resClass.RelativeId, resClass.Name);
+
                                 parent.Controls.Add(restrictionSet);
-                                restrictionSet.AbsoluteId = resClass.AbsoluteId;
-                                restrictionSet.RelativeId = resClass.RelativeId;
-                                restrictionSet.ChildControls = new List<Control>();
-                                restrictionSet.ParentId = resClass.ParentId;
+
                                 if (resClass.Children != null)
                                 {
                                     restrictionSet.LoadFromType(resClass.Children);
@@ -124,8 +135,94 @@ namespace One.Views.RestrictionAccess.Main
             }
         }
 
-        RestrictionFifth _foundMain;
 
+        bool DeleteRestriction(RestrictionIdName restrictionMain, string[] ids)
+        {
+            if (restrictionMain.AbsoluteId == ids[0])
+            {
+                if (ids.Count() == 1)
+                {
+                    return true;
+                }
+                var childRestrictionMain = restrictionMain.Children;//new
+                var remainIds = ids.ToList();
+                remainIds.RemoveAt(0);
+
+                int i = 0;
+                foreach (var rm in childRestrictionMain)
+                {
+
+                    var returned = DeleteRestriction(rm, remainIds.ToArray());
+                    if (returned)
+                    {
+                        childRestrictionMain.Remove(rm);
+                        return true;
+                    }
+                    i++;
+                }
+            }
+            return false;
+        }
+
+
+        void RestrictionType_CloseClicked(object sender, RestrictionEventArgs e)
+        {
+            var restList = Session["ControlList"] as RestrictionIdName;
+            if (restList != null)
+            {
+                var split = e.RelativeId.Split('_');
+                Panel pnlRestrictions = RestrictionFifth1.GetPanel();
+                switch (e.Type)
+                {
+                    case "activity":
+                        var acntrl = sender as ActivityCompleteRestrictionUC;
+                        if (acntrl != null)
+                        {
+                            if (DeleteRestriction(restList, split))
+                                pnlRestrictions.Controls.Remove(acntrl);
+                        }
+
+                        break;
+                    case "date":
+                        var dcntrl = sender as DateRestrictionUC;
+                        if (dcntrl != null)
+                        {
+                            if (DeleteRestriction(restList, split))
+                                pnlRestrictions.Controls.Remove(dcntrl);
+                        }
+                        break;
+                    case "grade":
+                        var gradecntrl = sender as GradeRestrictionUC;
+                        if (gradecntrl != null)
+                        {
+                            if (DeleteRestriction(restList, split))
+                                pnlRestrictions.Controls.Remove(gradecntrl);
+                        }
+                        break;
+                    case "group":
+                        var groupcntrl = sender as GroupRestrictionUC;
+                        if (groupcntrl != null)
+                        {
+                            if (DeleteRestriction(restList, split))
+                                pnlRestrictions.Controls.Remove(groupcntrl);
+                        }
+                        break;
+                    case "userprofile":
+                        var ucntrl = sender as UserProfileRestriction;
+                        if (ucntrl != null)
+                        {
+                            if (DeleteRestriction(restList, split))
+                                pnlRestrictions.Controls.Remove(ucntrl);
+                        }
+                        break;
+                }
+            }
+
+        }
+
+
+
+        RestrictionFifth _foundMain;
 
         RestrictionIdName GetParentRestriction(RestrictionIdName restrictionMain, string[] ids, RestrictionFifth uiMaiin)
         {
@@ -178,79 +275,102 @@ namespace One.Views.RestrictionAccess.Main
                 if (parent != null && _foundMain != null) //new
                 {
                     var list = parent.Children; //[restrictionId.ToString()];
+
+                    var noOfChildRestrictions = parent.Children.Count;
+                    var thisId = (noOfChildRestrictions + 1);
+                    RestrictionIdName resClass = null;
                     switch (e.Id)
                     {
                         case 0:
-                            list.Add(new RestrictionIdName() { Name = "activity" });
-                            var activityCompleteRestriction = (ActivityCompleteRestrictionUC)
-                                Page.LoadControl("~/Views/RestrictionAccess/ActivityCompleteRestrictionUC.ascx");
-                            _foundMain.AddControl(activityCompleteRestriction);
-                            break;
-                        case 1:
-                            list.Add(new RestrictionIdName() { Name = "date" });
-                            var dateRestriction = (DateRestrictionUC)
-                                Page.LoadControl("~/Views/RestrictionAccess/DateRestrictionUC.ascx");
-                            _foundMain.AddControl(dateRestriction);
-                            break;
-                        case 2:
-                            list.Add(new RestrictionIdName() { Name = "grade" });
-                            var gradeRestriction = (GradeRestrictionUC)
-                                Page.LoadControl("~/Views/RestrictionAccess/GradeRestrictionUC.ascx");
-                            //pnlRestrictions.Controls.Add(gradeRestriction);
-                            _foundMain.AddControl(gradeRestriction);
-                            break;
-                        case 3:
-                            list.Add(new RestrictionIdName() { Name = "group" });
-                            var groupRestriction = (GroupRestrictionUC)
-                                Page.LoadControl("~/Views/RestrictionAccess/GroupRestrictionUC.ascx");
-                            //pnlRestrictions.Controls.Add(groupRestriction);
-                            _foundMain.AddControl(groupRestriction);
-                            break;
-                        case 4:
-                            list.Add(new RestrictionIdName() { Name = "userprofile" });
-                            var userProfileRestriction = (UserProfileRestriction)
-                                Page.LoadControl("~/Views/RestrictionAccess/UserProfileRestriction.ascx");
-                            //pnlRestrictions.Controls.Add(userProfileRestriction);
-                            _foundMain.AddControl(userProfileRestriction);
-                            break;
-                        case 5:
-                            //pnlRestrictions.Controls.Add(restrictionSet);
-
-                            var noOfChildRestrictions = parent.Children.Count;
-                            var thisId = (noOfChildRestrictions + 1);
-
-                            var resClass = new RestrictionIdName();
-
-                            resClass.SetData(restrictionId.ToString(), "main"
+                            resClass = GetRestriction(restrictionId.ToString(), "activity"
                                 , thisId.ToString(), restrictionId + "_" + thisId
                                 , "", new List<RestrictionIdName>());
 
-                            //these assignments are done through function above
-                            //restrictionSet.ParentId = restrictionId.ToString();
-                            //restrictionSet.AbsoluteId = thisId.ToString();
-                            //restrictionSet.RelativeId = restrictionId + "_" + thisId;
-                            //restrictionSet.Children = new List<RestrictionIdName>();
+                            var activityCompleteRestriction = (ActivityCompleteRestrictionUC)
+                                Page.LoadControl("~/Views/RestrictionAccess/ActivityCompleteRestrictionUC.ascx");
+                            activityCompleteRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId,
+                                resClass.RelativeId, resClass.Name);
 
-                            list.Add(resClass);
-
-                            //NEEDED TO ADD CONTROL FIND CONTROL HERE AND ADD HERE
+                            _foundMain.AddControl(activityCompleteRestriction);
+                            break;
+                        case 1:
+                            resClass = GetRestriction(restrictionId.ToString(), "date"
+                                , thisId.ToString(), restrictionId + "_" + thisId
+                                , "", new List<RestrictionIdName>());
+                            var dateRestriction = (DateRestrictionUC)
+                                Page.LoadControl("~/Views/RestrictionAccess/DateRestrictionUC.ascx");
+                            dateRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId,
+                                resClass.RelativeId, resClass.Name);
+                            _foundMain.AddControl(dateRestriction);
+                            break;
+                        case 2:
+                            resClass = GetRestriction(restrictionId.ToString(), "grade"
+                                , thisId.ToString(), restrictionId + "_" + thisId
+                                , "", new List<RestrictionIdName>());
+                            var gradeRestriction = (GradeRestrictionUC)
+                                Page.LoadControl("~/Views/RestrictionAccess/GradeRestrictionUC.ascx");
+                            gradeRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId,
+                                resClass.RelativeId, resClass.Name);
+                            _foundMain.AddControl(gradeRestriction);
+                            break;
+                        case 3:
+                            resClass = GetRestriction(restrictionId.ToString(), "group"
+                                , thisId.ToString(), restrictionId + "_" + thisId
+                                , "", new List<RestrictionIdName>());
+                            var groupRestriction = (GroupRestrictionUC)
+                                Page.LoadControl("~/Views/RestrictionAccess/GroupRestrictionUC.ascx");
+                            groupRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId,
+                                resClass.RelativeId, resClass.Name);
+                            _foundMain.AddControl(groupRestriction);
+                            break;
+                        case 4:
+                            resClass = GetRestriction(restrictionId.ToString(), "userprofile"
+                                , thisId.ToString(), restrictionId + "_" + thisId
+                                , "", new List<RestrictionIdName>());
+                            var userProfileRestriction = (UserProfileRestriction)
+                                Page.LoadControl("~/Views/RestrictionAccess/UserProfileRestriction.ascx");
+                            userProfileRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId,
+                                resClass.RelativeId, resClass.Name);
+                            _foundMain.AddControl(userProfileRestriction);
+                            break;
+                        case 5:
+                            resClass = GetRestriction(restrictionId.ToString(), "main"
+                                , thisId.ToString(), restrictionId + "_" + thisId
+                                , "", new List<RestrictionIdName>());
 
                             var restrictionSetUc = (RestrictionFifth)
                                 Page.LoadControl("~/Views/RestrictionAccess/Main/RestrictionFifth.ascx");
-                            restrictionSetUc.AbsoluteId = resClass.AbsoluteId;
-                            restrictionSetUc.RelativeId = resClass.RelativeId;
-                            restrictionSetUc.ChildControls = new List<Control>();
-                            restrictionSetUc.ParentId = resClass.ParentId;
+                            restrictionSetUc.SetIds(resClass.ParentId, resClass.AbsoluteId,
+                                resClass.RelativeId, resClass.Name);
                             _foundMain.AddControl(restrictionSetUc);
 
                             break;
                     }
+                    if (resClass != null)
+                        list.Add(resClass);
+
                     //LoadFromType();
 
                 }
             }
         }
 
+        public RestrictionIdName GetRestriction(string parentId, string name
+             , string absoluteId, string relativeId
+             , string otherId, List<RestrictionIdName> children)
+        {
+            return new RestrictionIdName()
+            {
+                ParentId = parentId,
+                Name = name,
+                AbsoluteId = absoluteId,
+                RelativeId = relativeId,
+                OtherId = otherId,
+                Children = children
+            };
+
+
+        }
 
         //public void PopulateControls()
         //{
@@ -282,29 +402,29 @@ namespace One.Views.RestrictionAccess.Main
 
         //here ids hold ids of parent in sequenc order
 
-        private RestrictionFourth GetParentRestriction(RestrictionFourth restrictionMain, string[] ids)
-        {
-            if (restrictionMain.AbsoluteId == ids[0])
-            {
-                if (ids.Count() == 1)
-                {
-                    return restrictionMain;
-                }
-                var childRestrictionMain = restrictionMain.GetAllRestrictionMainControls();
-                var remainIds = ids.ToList();
-                remainIds.RemoveAt(0);
+        //private RestrictionFourth GetParentRestriction(RestrictionFourth restrictionMain, string[] ids)
+        //{
+        //    if (restrictionMain.AbsoluteId == ids[0])
+        //    {
+        //        if (ids.Count() == 1)
+        //        {
+        //            return restrictionMain;
+        //        }
+        //        var childRestrictionMain = restrictionMain.GetAllRestrictionMainControls();
+        //        var remainIds = ids.ToList();
+        //        remainIds.RemoveAt(0);
 
-                foreach (var rm in childRestrictionMain)
-                {
-                    var returned = GetParentRestriction(rm, remainIds.ToArray());
-                    if (returned != null)
-                        return returned;
-                }
-            }
+        //        foreach (var rm in childRestrictionMain)
+        //        {
+        //            var returned = GetParentRestriction(rm, remainIds.ToArray());
+        //            if (returned != null)
+        //                return returned;
+        //        }
+        //    }
 
 
-            return null;
-        }
+        //    return null;
+        //}
 
 
         //void Choose_RestrictionChoosen(object sender, Academic.ViewModel.IdAndNameEventArgs e)

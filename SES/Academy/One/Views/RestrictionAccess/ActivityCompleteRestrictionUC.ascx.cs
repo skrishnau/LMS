@@ -41,6 +41,11 @@ namespace One.Views.RestrictionAccess
             set { hidParentId.Value = value; }
         }
 
+        public string Type
+        {
+            get { return hidType.Value; }
+            set { hidType.Value = value; }
+        }
 
         public event EventHandler<RestrictionEventArgs> CloseClicked;
         protected void imgClose_Click(object sender, ImageClickEventArgs e)
@@ -50,13 +55,21 @@ namespace One.Views.RestrictionAccess
                 var arg = new RestrictionEventArgs()
                 {
                     ParentId = ParentId
-                    ,Type = "activity"
+                    ,Type = Type
                     ,RelativeId = RelativeId
                     ,AbsoluteId = AbsoluteId
                     
                 };
                 CloseClicked(this, arg);
             }
+        }
+
+        public void SetIds(string parentId, string absoluteId, string relativeId, string type)
+        {
+            ParentId = parentId;
+            AbsoluteId = absoluteId;
+            RelativeId = relativeId;
+            Type = type;
         }
     }
 }
