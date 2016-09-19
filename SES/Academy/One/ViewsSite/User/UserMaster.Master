@@ -41,28 +41,50 @@
     <link href="UserStyles.css" rel="stylesheet" />
     <link href="../../Content/CSSes/All.css" rel="stylesheet" />
     <style type="text/css">
+        /*all links*/
 
-/*all links*/
-        
+       
+
         .link, .link:visited {
             color: blue;
             text-decoration: none;
-        } 
-        .link:hover {
-            color: darkorange;
-            text-decoration: underline;
         }
-        .link:active {
-            color: blueviolet;
-            text-decoration: underline;
+
+            .link:hover {
+                color: darkorange;
+                text-decoration: underline;
+            }
+
+            .link:active {
+                color: blueviolet;
+                text-decoration: underline;
+            }
+
+        .table-detail {
+            border-collapse: collapse;
         }
-       
+
+        
+        .row-detail {
+            border-bottom: 1px solid grey;
+            width: 100%;
+            padding: 10px 0;
+        }
+
         
 
-         .form-element-row-height {
-             padding-top: 7px;
-             padding-bottom: 7px;
-         }
+        .data-detail {
+            width: 170px;
+            padding: 10px 0;
+            display: inline-block;
+        }
+
+        
+
+        .form-element-row-height {
+            padding-top: 7px;
+            padding-bottom: 7px;
+        }
 
         .module-whole {
             margin: 0 5px 10px;

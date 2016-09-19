@@ -20,7 +20,7 @@ namespace Academic.DbEntities.Assignments
         public short? PassMarks { get; set; }
 
         public virtual Activities.Teach Teach { get; set; }
-        public virtual Assignment Assignment { get; set; }
+        public virtual ActivityAndResource.Assignment Assignment { get; set; }
         public virtual Session Session { get; set; }
     }
 }

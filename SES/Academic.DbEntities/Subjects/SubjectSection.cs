@@ -27,9 +27,9 @@ namespace Academic.DbEntities.Subjects
         public bool? Void { get; set; }
 
 
-        public virtual ICollection<AccessPermission.Restriction> Restrictions{ get; set; }
-        public virtual ICollection<SubjectActivityAndResource> SubjectActivityAndResource { get; set; }
-        public virtual ICollection<Assignments.Assignment> Assignments { get; set; } 
+        //public virtual ICollection<AccessPermission.Restriction> Restrictions{ get; set; }
+        //public virtual ICollection<SubjectActivityAndResource> SubjectActivityAndResource { get; set; }
+        //public virtual ICollection<ActivityAndResource.Assignment> Assignments { get; set; } 
 
     }
 }

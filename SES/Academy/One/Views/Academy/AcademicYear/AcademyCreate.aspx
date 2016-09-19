@@ -9,7 +9,10 @@
             $("#txtStart").datepicker();
             $("#txtEnd").datepicker();
         });
+
+
     </script>
+    
     <style type="text/css">
         .cell-width {
             width: 75px;

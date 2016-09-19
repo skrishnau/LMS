@@ -10,6 +10,8 @@ namespace Academic.ViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+       
     }
 
     public class IdAndNameEventArgs:EventArgs
@@ -20,4 +22,19 @@ namespace Academic.ViewModel
         public int RefIdInt { get; set; }
         public string RefIdString { get; set; }
     }
+
+    public class GradeValuesDataType
+    {
+        public int Id { get; set; }
+        
+        public string Name { get; set; }
+        public string Value { get; set; }
+
+        public float Equivalent { get; set; }
+        public bool Fail { get; set; }
+
+
+    }
+
+
 }

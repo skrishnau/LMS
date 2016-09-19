@@ -16,7 +16,7 @@ namespace Academic.DbEntities.Assignments
         public string Answer { get; set; }
         //public string Remarks { get; set; }
 
-        public virtual Assignment Assignment { get; set; }
+        public virtual ActivityAndResource.Assignment Assignment { get; set; }
         public virtual DbEntities.Students.Student Student { get; set; }
 
         public virtual ICollection<AssignmentAnswerFile> Files { get; set; }

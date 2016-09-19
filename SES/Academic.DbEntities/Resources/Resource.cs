@@ -29,7 +29,7 @@ namespace Academic.DbEntities.Resources
 
         public virtual ICollection<ResourceFile> Files { get; set; }
         public virtual ICollection<Links> Links { get; set; }
-        public virtual ICollection<Assignments.Assignment> Assignments { get; set; }
+        //public virtual ICollection<Assignments.Assignment> Assignments { get; set; }
 
         public string Note { get; set; }
     }

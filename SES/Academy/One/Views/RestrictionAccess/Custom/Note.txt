@@ -1,2 +1,4 @@
 ﻿Take restrriction form this folder only... Others are for test purposes
 
+TestrictionUC.ascx is the file to import in other webform files so as to implement Restriction...
+The webform need not add any other codes but need to add RestrictionStyles.css in its <head>

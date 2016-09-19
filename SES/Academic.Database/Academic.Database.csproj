@@ -314,6 +314,22 @@
     <Compile Include="Migrations\201609140625556_restriction_and_types_added.Designer.cs">
       <DependentUpon>201609140625556_restriction_and_types_added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609180700580_grade_table_new.cs" />
+    <Compile Include="Migrations\201609180700580_grade_table_new.Designer.cs">
+      <DependentUpon>201609180700580_grade_table_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609191009579_grade_added_and_remodified.cs" />
+    <Compile Include="Migrations\201609191009579_grade_added_and_remodified.Designer.cs">
+      <DependentUpon>201609191009579_grade_added_and_remodified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609191219133_assignment_temp.cs" />
+    <Compile Include="Migrations\201609191219133_assignment_temp.Designer.cs">
+      <DependentUpon>201609191219133_assignment_temp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609191233410_assignment_update_1.cs" />
+    <Compile Include="Migrations\201609191233410_assignment_update_1.Designer.cs">
+      <DependentUpon>201609191233410_assignment_update_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -528,6 +544,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609140625556_restriction_and_types_added.resx">
       <DependentUpon>201609140625556_restriction_and_types_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609180700580_grade_table_new.resx">
+      <DependentUpon>201609180700580_grade_table_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609191009579_grade_added_and_remodified.resx">
+      <DependentUpon>201609191009579_grade_added_and_remodified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609191219133_assignment_temp.resx">
+      <DependentUpon>201609191219133_assignment_temp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609191233410_assignment_update_1.resx">
+      <DependentUpon>201609191233410_assignment_update_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

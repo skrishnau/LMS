@@ -16,6 +16,6 @@ namespace Academic.DbEntities.Assignments
 
         public int AssignmentId { get; set; }
 
-        public virtual Assignment Assignment { get; set; }
+        public virtual ActivityAndResource.Assignment Assignment { get; set; }
     }
 }

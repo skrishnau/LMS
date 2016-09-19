@@ -13,6 +13,15 @@ namespace One.Views.RestrictionAccess.Custom {
     public partial class EachRestriction {
         
         /// <summary>
+        /// hidFirstRestriction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidFirstRestriction;
+        
+        /// <summary>
         /// hidPageKeyForUniqueSession control.
         /// </summary>
         /// <remarks>

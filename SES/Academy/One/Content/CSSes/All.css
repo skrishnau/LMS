@@ -395,21 +395,7 @@ tr.pager td {
 }
 
 /*For Detail Display Used all three below*/
-.table-detail {
-    border-collapse: collapse;
-}
 
-.row-detail {
-    border-bottom: 1px solid grey;
-    width: 100%;
-    padding: 10px 0;
-}
-
-.data-detail {
-    width: 170px;
-    padding: 10px 0;
-    display: inline-block;
-}
 /*End of Detail Display*/
 .clearfix:after {
     content:" ";

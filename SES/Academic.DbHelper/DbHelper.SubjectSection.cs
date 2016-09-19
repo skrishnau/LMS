@@ -34,7 +34,7 @@ namespace Academic.DbHelper
             public DbEntities.Subjects.SubjectSection Find(int SectionId)
             {
                 return
-                    Context.SubjectSection.Include(x => x.SubjectActivityAndResource)
+                    Context.SubjectSection
                         .FirstOrDefault(y => y.Id == SectionId);
             }
 
@@ -56,7 +56,7 @@ namespace Academic.DbHelper
                         ent.Summary = sec.Summary;
                         ent.ShowSummary = sec.ShowSummary;
                         
-                        ent.SubjectActivityAndResource = sec.SubjectActivityAndResource;
+                        //ent.SubjectActivityAndResource = sec.SubjectActivityAndResource;
                         Context.SaveChanges();
                         return true;
                     }

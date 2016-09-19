@@ -18,8 +18,10 @@
                                 ForeColor="white" Font-Size="1.2em"
                                 Text="Heading here"></asp:Label>
                             <div style="float: right;">
-                                <asp:LinkButton ID="btnClose" runat="server" OnClick="btnClose_Click">
-                                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Close/white_cross.png" />
+                                <asp:LinkButton ID="btnDialogClose" runat="server" 
+                                    OnClick="btnDialogClose_Click" CausesValidation="False">
+                                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Close/white_cross.png"
+                                         />
                                 </asp:LinkButton>
                             </div>
                             <div style="clear: both;"></div>
@@ -48,11 +50,14 @@
                         <div>hello this is custom ..</div>
                         <div class="button-div" runat="server" id="buttonsDiv">
                             <span class="button-span">&nbsp;
-                                <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" Visible="False" OnClick="btnSave_Click" />
+                                <asp:Button ID="btnDialogSave" runat="server" Text="Save" Width="70px" Visible="False" 
+                                  CausesValidation="False"  OnClick="btnDialogSave_Click" />
                                 &nbsp;
-                                <asp:Button ID="btnOk" runat="server" Text="Ok" Width="70px" Visible="False" OnClick="btnOk_Click" />
+                                <asp:Button ID="btnDialogOk" runat="server" Text="Ok" Width="70px" Visible="False" 
+                                  CausesValidation="False"  OnClick="btnDialogOk_Click" />
                                 &nbsp;
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" Visible="False" OnClick="btnCancel_Click" />
+                                <asp:Button ID="btnDialogCancel" runat="server" Text="Cancel" Width="70px" Visible="False" 
+                                  CausesValidation="False"  OnClick="btnDialogCancel_Click" />
                                 &nbsp;
                             </span>
                         </div>

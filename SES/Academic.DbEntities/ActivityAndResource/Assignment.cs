@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Academic.DbEntities.Assignments;
 
 namespace Academic.DbEntities.ActivityAndResource
 {
@@ -42,7 +41,13 @@ namespace Academic.DbEntities.ActivityAndResource
         /// <summary>
         /// Grading: types: None, Point, and Scale
         /// </summary>
-        public string GradeType { get; set; }
+        //public string GradeType { get; set; }
+
+
+        public int GradeTypeId { get; set; }
+        public virtual Grades.GradeType GradeType { get; set; }
+
+        //they contain value in case of Range, and contain id of gradeValue class incase  of Value
         public string MaximumGrade { get; set; }
         public string GradeToPass { get; set; }
         //next version: blind marking
@@ -63,7 +68,7 @@ namespace Academic.DbEntities.ActivityAndResource
 
         //public virtual Subjects.Subject Subject { get; set; }
         //public virtual ICollection<Resources.Resource> Resources { get; set; }
-        public virtual ICollection<AssignmentAnswer> AssignmentAnswers { get; set; }
+        //public virtual ICollection<DbEntities.Assignments.AssignmentAnswer> AssignmentAnswers { get; set; }
         //public virtual ICollection<Task> Tasks { get; set; }
 
         public int? RestrictionId { get; set; }

@@ -25,13 +25,14 @@ namespace Academic.DbHelper
 
             public DbEntities.ActivityAndResource.Assignment AddOrUpdateAssignment(DbEntities.ActivityAndResource.Assignment asg)
             {
-                //var ent = Context.Assignment.Find(asg.Id);
-                //if (ent == null)
-                //{
-                //    var saved= Context.Assignment.Add(asg);
-                //    Context.SaveChanges();
-                //    return saved;
-                //}
+                var ent = Context.Assignment.Find(asg.Id);
+                if (ent == null)
+                {
+                    var saved = Context.Assignment.Add(asg);
+
+                    Context.SaveChanges();
+                    return saved;
+                }
                 //else
                 //{
                 //    ent.CutOffDate = asg.CutOffDate;

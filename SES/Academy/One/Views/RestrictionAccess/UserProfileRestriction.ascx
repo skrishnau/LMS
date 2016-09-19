@@ -15,7 +15,7 @@
     </span>
     &nbsp;
     
- <asp:ImageButton ID="imgClose" 
+ <asp:ImageButton ID="imgClose"  CausesValidation="False"
      CssClass="img-close" 
      ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" OnClick="imgClose_Click" />
     

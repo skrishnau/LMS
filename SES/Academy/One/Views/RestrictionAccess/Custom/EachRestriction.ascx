@@ -6,7 +6,7 @@
 
 
 <div class="restriction-main">
-
+    <asp:HiddenField ID="hidFirstRestriction" runat="server" Value="False" />
 <asp:HiddenField ID="hidPageKeyForUniqueSession" runat="server" Value="" />
     <asp:MultiView ID="multiViewRestrict" runat="server" ActiveViewIndex="0">
         <asp:View ID="viewNone" runat="server">

@@ -17,7 +17,10 @@ namespace Academic.ViewModel
 
         public string OtherId { get; set; }
 
-        public int NoOfChildren { get; set; }
+        //public bool Visible { get; set; }
+
+        public bool Void { get; set; }
+        //public int NoOfChildren { get; set; }
 
         public List<RestrictionIdName> Children { get; set; }
 
@@ -33,6 +36,7 @@ namespace Academic.ViewModel
             Children = children;
 
         }
+
 
     }
 

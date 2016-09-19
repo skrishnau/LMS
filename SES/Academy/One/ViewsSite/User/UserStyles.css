@@ -1,4 +1,76 @@
-﻿body {
+﻿
+
+/* CREATE OR EDIT form STYLES (working and tested)*/
+
+h3.heading-of-create-edit {
+    text-align: center;
+    margin-top: 3px;
+}
+
+div.data-entry-body {
+    margin-left: 20px;
+}
+
+    div.data-entry-body table {
+        border-collapse: collapse;
+    }
+
+    div.data-entry-body tr {
+        vertical-align: top;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    div.data-entry-body td.data-type {
+        width: 170px;
+        padding: 10px 0;
+        display: inline-block;
+    }
+
+    div.data-entry-body td.data-entry {
+        padding: 10px 0;
+        display: inline-block;
+    }
+
+    div.data-entry-body div.save-div {
+        padding: 10px 0;
+        margin-left: 170px;
+    }
+    div.data-entry-body div.data-entry-section {
+        margin-left: 20px;
+    }
+    div.data-entry-body div.data-entry-section div.data-entry-heading {
+        font-weight: 700;
+        
+    }
+    div.data-entry-body div.data-entry-section div.data-entry-section-body {
+        margin-left: 20px;
+    }
+    div.data-entry-body div.data-entry-section hr {
+        border: none;
+        background-color: darkgray;
+        height: 1px;
+    }
+
+/* END of create edit form styles*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*body {
     background-color: #557d96;
 }
 
@@ -13,7 +85,7 @@
 
 .width-100percent {
     width: 100%;
-}
+}*/
 
 
 /*-------------Start--------------*/

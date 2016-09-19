@@ -41,6 +41,14 @@ namespace Academic.Database
         public DbSet<UserFile> File { get; set; }
 
 
+        //------------------------- GRADE ---------------------------//
+
+        public DbSet<DbEntities.Grades.GradeType> GradeType { get; set; }
+        public DbSet<DbEntities.Grades.GradeValues> GradeValues { get; set; }
+
+        //-----------------------------------------------------------//
+
+
         // ---------------- ClassUser, ClassSubject ----------------//
 
         public DbSet<Academic.DbEntities.Class.UserClass> UserClass { get; set; }
@@ -71,8 +79,13 @@ namespace Academic.Database
         public DbSet<DbEntities.AccessPermission.Restriction> Restriction { get; set; }
         //------------------- Restriction END -----------------------/
 
-        //public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
-
+        public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
+        //public DbSet<DbEntities.Marks.AssignmentMarks> AssignmentMarks { get; set; }
+        //public DbSet<DbEntities.Assignments.AssignedTask> AssignedTask { get; set; }
+        ////public DbSet<DbEntities.Assignments.Assignment> Assignment { get; set; }
+        //public DbSet<DbEntities.Assignments.AssignmentAnswer> AssignmentAnswer { get; set; }
+        //public DbSet<DbEntities.Assignments.AssignmentAnswerFile> AssignmentAnswerFile { get; set; }
+        ////public DbSet<DbEntities.Assignments.Task> Task { get; set; }
 
 
         //------------------------------------------//
@@ -81,12 +94,7 @@ namespace Academic.Database
         //public DbSet<DbEntities.Activities.ClassInAcademicYear> ActiveClassesInAcademicYear { get; set; }
 
 
-        //public DbSet<DbEntities.Marks.AssignmentMarks> AssignmentMarks { get; set; }
-        //public DbSet<DbEntities.Assignments.AssignedTask> AssignedTask { get; set; }
-        ////public DbSet<DbEntities.Assignments.Assignment> Assignment { get; set; }
-        //public DbSet<DbEntities.Assignments.AssignmentAnswer> AssignmentAnswer { get; set; }
-        //public DbSet<DbEntities.Assignments.AssignmentAnswerFile> AssignmentAnswerFile { get; set; }
-        ////public DbSet<DbEntities.Assignments.Task> Task { get; set; }
+
 
         public DbSet<DbEntities.Attendances.Attendance> Attendance { get; set; }
         public DbSet<DbEntities.Attendances.AttendanceDay> AttendanceDay { get; set; }
@@ -115,7 +123,6 @@ namespace Academic.Database
         public DbSet<DbEntities.Libraries.UsefulnessCategory> UsefulnessCategory { get; set; }
 
         public DbSet<DbEntities.Marks.ExamMarks> ExamMarks { get; set; }
-        public DbSet<DbEntities.Marks.Grade> Grade { get; set; }
 
         public DbSet<DbEntities.Resources.AccessPermission> AccessPermission { get; set; }
         public DbSet<DbEntities.Resources.ResourceFile> ResourceFile { get; set; }

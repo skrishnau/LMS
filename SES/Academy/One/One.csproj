@@ -1465,6 +1465,9 @@
     <Content Include="Views\Exam\Exam\ExamClass.aspx" />
     <Content Include="Views\Exam\Exam\ExamDetail.aspx" />
     <Content Include="Views\Exam\Exam\ExamsList.aspx" />
+    <Content Include="Views\Grade\GradeCreate.aspx" />
+    <Content Include="Views\Grade\GradeListing.aspx" />
+    <Content Include="Views\Grade\GradeValuesUC.ascx" />
     <Content Include="Views\NoticeBoard\CreateUc.ascx" />
     <Content Include="Views\NoticeBoard\ListUc.ascx" />
     <Content Include="Views\NoticeBoard\NoticeDetail.aspx" />
@@ -2516,6 +2519,27 @@
     <Compile Include="Views\Exam\Exam\ExamsList.aspx.designer.cs">
       <DependentUpon>ExamsList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Grade\GradeCreate.aspx.cs">
+      <DependentUpon>GradeCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Grade\GradeCreate.aspx.designer.cs">
+      <DependentUpon>GradeCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Grade\GradeListing.aspx.cs">
+      <DependentUpon>GradeListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Grade\GradeListing.aspx.designer.cs">
+      <DependentUpon>GradeListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Grade\GradeValuesUC.ascx.cs">
+      <DependentUpon>GradeValuesUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Grade\GradeValuesUC.ascx.designer.cs">
+      <DependentUpon>GradeValuesUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\NoticeBoard\CreateUc.ascx.cs">
       <DependentUpon>CreateUc.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3525,7 +3549,6 @@
     <Folder Include="Views\AcademicPlacement\SubjectSubscription\" />
     <Folder Include="Views\AcademicPlacement\TeacherClass\" />
     <Folder Include="Views\All_Resusable_Codes\Paging\" />
-    <Folder Include="Views\Assignments\" />
     <Folder Include="Views\Student\StudentGroup\UserControls\" />
     <Folder Include="Views\Student\Student\" />
     <Folder Include="Views\Teacher\" />

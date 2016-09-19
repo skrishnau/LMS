@@ -49,13 +49,13 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// txtDesc control.
+        /// CKEditor1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDesc;
+        protected global::CKEditor.NET.CKEditorControl CKEditor1;
         
         /// <summary>
         /// chkDisplayDesc control.
@@ -67,6 +67,15 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.CheckBox chkDisplayDesc;
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// txtFrom control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace One.Views.ActivityResource.Assignments {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFrom;
+        
+        /// <summary>
+        /// chkFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkFrom;
         
         /// <summary>
         /// txtDue control.
@@ -85,6 +103,15 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.TextBox txtDue;
         
         /// <summary>
+        /// chkDue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDue;
+        
+        /// <summary>
         /// txtCutOff control.
         /// </summary>
         /// <remarks>
@@ -94,22 +121,40 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.TextBox txtCutOff;
         
         /// <summary>
-        /// ddlSubmissionType control.
+        /// chkCutOff control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubmissionType;
+        protected global::System.Web.UI.WebControls.CheckBox chkCutOff;
         
         /// <summary>
-        /// submissionListVali control.
+        /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator submissionListVali;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        
+        /// <summary>
+        /// chkOnlineSubmission control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkOnlineSubmission;
+        
+        /// <summary>
+        /// chkFileSubmission control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkFileSubmission;
         
         /// <summary>
         /// txtWordLimit control.
@@ -139,6 +184,15 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.TextBox txtMaxSize;
         
         /// <summary>
+        /// UpdatePanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
+        
+        /// <summary>
         /// ddlGradeType control.
         /// </summary>
         /// <remarks>
@@ -166,6 +220,15 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.TextBox txtMaxGradde;
         
         /// <summary>
+        /// ddlMaximumGrade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMaximumGrade;
+        
+        /// <summary>
         /// txtGradeToPass control.
         /// </summary>
         /// <remarks>
@@ -175,13 +238,22 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.TextBox txtGradeToPass;
         
         /// <summary>
-        /// RestrictionMainUC control.
+        /// ddlGradeToPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.RestrictionAccess.Main.RestrictionMainUC RestrictionMainUC;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGradeToPass;
+        
+        /// <summary>
+        /// RestrictionUC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.RestrictionAccess.Custom.RestrictionUC RestrictionUC;
         
         /// <summary>
         /// txtErrorMsg control.
@@ -193,22 +265,22 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.Label txtErrorMsg;
         
         /// <summary>
-        /// btnSave control.
+        /// btnAssignmentSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button btnAssignmentSave;
         
         /// <summary>
-        /// btnCancel control.
+        /// btnAssignmentCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Button btnAssignmentCancel;
         
         /// <summary>
         /// hidSectionId control.
