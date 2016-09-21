@@ -1,5 +1,10 @@
 ﻿
 
+
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
+
+
 /* CREATE OR EDIT form STYLES (working and tested)*/
 
 h3.heading-of-create-edit {
@@ -8,7 +13,7 @@ h3.heading-of-create-edit {
 }
 
 div.data-entry-body {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
     div.data-entry-body table {
@@ -37,12 +42,20 @@ div.data-entry-body {
         margin-left: 170px;
     }
     div.data-entry-body div.data-entry-section {
-        margin-left: 20px;
+        margin-left: 15px;
     }
-    div.data-entry-body div.data-entry-section div.data-entry-heading {
+    div.data-entry-body div.data-entry-section div.data-entry-section-heading {
         font-weight: 700;
         
     }
+
+/*Temp delete this after updating the respective classs name in ui*/
+ div.data-entry-body div.data-entry-section div.data-entry-heading {
+        font-weight: 700;
+        
+    }
+/*eend*/
+
     div.data-entry-body div.data-entry-section div.data-entry-section-body {
         margin-left: 20px;
     }
@@ -70,9 +83,7 @@ div.data-entry-body {
 
 
 
-/*body {
-    background-color: #557d96;
-}
+/*
 
 
 .mid-width {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Academic.Database;
+using Academic.ViewModel.ActivityResource;
 
 namespace Academic.DbHelper
 {
@@ -23,15 +24,83 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
-            public DbEntities.ActivityAndResource.Assignment AddOrUpdateAssignment(DbEntities.ActivityAndResource.Assignment asg)
+            public List<ActivityResourceViewModel> ListActivitiesAndResourcesOfSection(int sectionId)
+            {
+                var actres = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId 
+                    && !(x.Void??false)).ToList();
+                var list = new List<ActivityResourceViewModel>();
+                foreach (var ar in actres)
+                {
+                    if (ar.ActivityOrResource)
+                    {
+                        //activity
+                        switch (ar.ActivityOrResourceType)
+                        {
+                            case 1://Assignment
+                                var asg = Context.Assignment.Find(ar.ActivityOrResourceId);
+                                if (asg != null)
+                                {
+                                    //var imageurl = StaticValues.ActivityImages[ar.ActivityOrResourceType];
+                                    //var url = "~/Views/ActivityResource/Assignments/AssignmentView.aspx";
+                                    var m = new ActivityResourceViewModel()
+                                    {
+                                        ActivityOrResource = ar.ActivityOrResource
+                                        ,ActivityResourceType = ar.ActivityOrResourceType
+                                        ,ActivityResourceId = ar.ActivityOrResourceId
+                                        ,Description = asg.Description
+                                        ,Name = asg.Name
+                                        ,SubjectSectionId = ar.SubjectSectionId
+                                        ,Position = ar.Position
+                                        ,
+                                        NavigateUrl = "~/Views/ActivityResource/Assignments/AssignmentView.aspx"
+                                        ,
+                                        IconUrl =StaticValues.ActivityImages[ar.ActivityOrResourceType]
+                                    };
+                                    list.Add(m);
+                                }
+                               
+                                break;
+
+                        }
+                    }
+                    else
+                    {
+                       //resource
+
+                    }
+                }
+                return list;
+            }
+
+            public DbEntities.ActivityAndResource.Assignment AddOrUpdateAssignment(DbEntities.ActivityAndResource.Assignment asg,
+                int sectionId)
             {
                 var ent = Context.Assignment.Find(asg.Id);
                 if (ent == null)
                 {
-                    var saved = Context.Assignment.Add(asg);
-
+                    ent = Context.Assignment.Add(asg);
                     Context.SaveChanges();
-                    return saved;
+                    int pos = 0;
+                    var poslist = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId);
+                    if (poslist.Any())
+                        pos = poslist.Max(x => x.Position);
+                    var actRes = new DbEntities.ActivityAndResource.ActivityResource()
+                    {
+                        ActivityOrResource = true,
+                        ActivityOrResourceId = ent.Id
+                        ,
+                        ActivityOrResourceType = 1
+                        ,
+                        Position = pos + 1
+                        ,
+                        SubjectSectionId = sectionId
+                    };
+                    Context.ActivityResource.Add(actRes);
+                    Context.SaveChanges();
+
+                    //restriction
+
+                    return ent;
                 }
                 //else
                 //{

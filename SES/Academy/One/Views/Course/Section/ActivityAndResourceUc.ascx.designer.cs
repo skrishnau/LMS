@@ -28,7 +28,7 @@ namespace One.Views.Course.Section {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lblTitle;
+        protected global::System.Web.UI.WebControls.HyperLink lblTitle;
         
         /// <summary>
         /// imgEditBtn control.
@@ -49,13 +49,13 @@ namespace One.Views.Course.Section {
         protected global::System.Web.UI.WebControls.Label lblSummary;
         
         /// <summary>
-        /// pnlActAndRes control.
+        /// hidActOrRes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder pnlActAndRes;
+        protected global::System.Web.UI.WebControls.HiddenField hidActOrRes;
         
         /// <summary>
         /// hid control.

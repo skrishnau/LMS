@@ -84,7 +84,7 @@ namespace Academic.DbHelper
                                 CreatedDate = DateTime.Now
                                 ,
                                 NoticePublishTo = true
-                                ,
+                                ,SchoolId = model.SchoolId
                             };
 
                             if (model.PublishNoticeToNoticeBoard ?? false)

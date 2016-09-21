@@ -22,6 +22,33 @@ namespace One.Views.NoticeBoard {
         protected global::System.Web.UI.WebControls.Label lblNoticeName;
         
         /// <summary>
+        /// lnkEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkEdit;
+        
+        /// <summary>
+        /// lnkDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkDelete;
+        
+        /// <summary>
+        /// divPublished control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPublished;
+        
+        /// <summary>
         /// chkPublished control.
         /// </summary>
         /// <remarks>

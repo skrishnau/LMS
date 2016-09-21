@@ -5,7 +5,9 @@
     <ContentTemplate>
         <div class="module-whole">
             <div class="modules-heading">
-                <strong>&nbsp;&nbsp;Notice </strong>
+                <asp:HyperLink ID="HyperLink1" CssClass="modules-title" runat="server"
+                    NavigateUrl="~/Views/NoticeBoard/NoticeListing.aspx"
+                    >Notice</asp:HyperLink>
                 <asp:Label ID="lblNoticeIndication" runat="server" Text="" ForeColor="white" BackColor="red"></asp:Label>
 
             </div>
@@ -61,6 +63,7 @@
 
 
                 <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+                <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
 
             </div>
         </div>

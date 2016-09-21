@@ -2,7 +2,7 @@
 
 <div class="module-whole">
     <div class="modules-heading">
-        &nbsp;&nbsp;<strong>News</strong>
+        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="modules-title">News</asp:HyperLink>
         <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
     </div>
     <div class="modules-body">

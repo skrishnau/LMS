@@ -1142,6 +1142,41 @@ namespace Academic.DbHelper
                     ).ToList();
                 return rc;
             }
+
+            public List<RunningClass>[] GetCompleteAndIncompleteRunningClass(int programbatchId)
+            {
+                var rc = Context.RunningClass.Where(x => x.ProgramBatchId == programbatchId && !(x.Void ?? false)).ToList();
+                var completelist = new List<RunningClass>();
+                var notcompletelist = new List<RunningClass>();
+                foreach (var r in rc)
+                {
+                    if (r.Completed ?? false)
+                        completelist.Add(r);
+                    else
+                        notcompletelist.Add(r);
+                }
+                for(var i=0;i<notcompletelist.Count;i++)
+                //foreach (var r in notcompletelist)
+                {
+                    var r = notcompletelist[i];
+                    var incompletelist = r.SubjectClasses.Where(x => (x.SessionComplete ==false || x.SessionComplete==null) && !(x.Void??false))
+                        .ToList();
+                    if (!incompletelist.Any())
+                    {
+                        completelist.Add(r);
+                        notcompletelist.RemoveAt(i);
+                        i--;
+                    }
+                    // Context.SubjectClass.Where(x => x.RunningClassId == r.Id && !(x.Void??false));
+                }
+
+                return  new List<RunningClass>[]{completelist,notcompletelist};
+                //var rcs = Context.RunningClass.Where(x =>
+                //           (x.AcademicYear.Completed ?? false)
+                //           && x.ProgramBatchId == stdbatch.ProgramBatchId
+                //           && !(x.Void ?? false) && !(stdbatch.ProgramBatch.Void ?? false));
+
+            }
         }
 
 

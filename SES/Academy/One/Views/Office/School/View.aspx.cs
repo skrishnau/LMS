@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using One.Values.MemberShip;
+using One.ViewsSite.User;
 
 namespace One.Views.Office.School
 {
@@ -12,7 +13,9 @@ namespace One.Views.Office.School
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var user = User as CustomPrincipal;
+            var user = User as CustomPrincipal;// Master.UserId;
+            //var schoolId = Master as UserMaster;//
+            //if(schoolId!=null)
             if (user != null)
             {
                 if (user.SchoolId <= 0)

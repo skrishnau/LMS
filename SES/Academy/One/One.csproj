@@ -1097,6 +1097,9 @@
     <Content Include="Content\Icons\Action\assign.png" />
     <Content Include="Content\Icons\Action\backward.png" />
     <Content Include="Content\Icons\Action\forward.png" />
+    <Content Include="Content\Icons\ActivityResource\Assignment\actions-document-edit-icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Assignment\assignment_with_yellow_pencil.png" />
+    <Content Include="Content\Icons\ActivityResource\Assignment\document-icon.png" />
     <Content Include="Content\Icons\AddEditDelete\add.ico" />
     <Content Include="Content\Icons\AddEditDelete\add_small.png" />
     <Content Include="Content\Icons\AddEditDelete\delete-13.ico" />
@@ -1382,6 +1385,8 @@
     <Content Include="ViewsSite\User\Dashboard\Dashboard.aspx" />
     <Content Include="ViewsSite\User\ModulesUc\CoursesUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\EarlierUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\EarlierUc_NodesUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\EventDetailUC.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\EventsUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\FilesUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\NewsUc.ascx" />
@@ -1419,6 +1424,7 @@
     <Content Include="Views\Academy\UserControls\SessionsListingInAYDetailUC.ascx" />
     <Content Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx" />
     <Content Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx" />
+    <Content Include="Views\ActivityResource\Assignments\AssignmentView.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialogStyles.css" />
@@ -1468,10 +1474,10 @@
     <Content Include="Views\Grade\GradeCreate.aspx" />
     <Content Include="Views\Grade\GradeListing.aspx" />
     <Content Include="Views\Grade\GradeValuesUC.ascx" />
-    <Content Include="Views\NoticeBoard\CreateUc.ascx" />
-    <Content Include="Views\NoticeBoard\ListUc.ascx" />
+    <Content Include="Views\News\NewsCreate.aspx" />
+    <Content Include="Views\NoticeBoard\NoticeCreate.aspx" />
     <Content Include="Views\NoticeBoard\NoticeDetail.aspx" />
-    <Content Include="Views\NoticeBoard\WebForm1.aspx" />
+    <Content Include="Views\NoticeBoard\NoticeListing.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
     <Content Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx" />
@@ -1952,6 +1958,20 @@
     <Compile Include="ViewsSite\User\ModulesUc\EarlierUc.ascx.designer.cs">
       <DependentUpon>EarlierUc.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\EarlierUc_NodesUc.ascx.cs">
+      <DependentUpon>EarlierUc_NodesUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\EarlierUc_NodesUc.ascx.designer.cs">
+      <DependentUpon>EarlierUc_NodesUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\EventDetailUC.ascx.cs">
+      <DependentUpon>EventDetailUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\EventDetailUC.ascx.designer.cs">
+      <DependentUpon>EventDetailUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\EventsUc.ascx.cs">
       <DependentUpon>EventsUc.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2210,6 +2230,13 @@
     </Compile>
     <Compile Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx.designer.cs">
       <DependentUpon>AssignmentCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\AssignmentView.aspx.cs">
+      <DependentUpon>AssignmentView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\AssignmentView.aspx.designer.cs">
+      <DependentUpon>AssignmentView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx.cs">
       <DependentUpon>CustomDialog.ascx</DependentUpon>
@@ -2540,19 +2567,19 @@
     <Compile Include="Views\Grade\GradeValuesUC.ascx.designer.cs">
       <DependentUpon>GradeValuesUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\NoticeBoard\CreateUc.ascx.cs">
-      <DependentUpon>CreateUc.ascx</DependentUpon>
+    <Compile Include="Views\News\NewsCreate.aspx.cs">
+      <DependentUpon>NewsCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\NoticeBoard\CreateUc.ascx.designer.cs">
-      <DependentUpon>CreateUc.ascx</DependentUpon>
+    <Compile Include="Views\News\NewsCreate.aspx.designer.cs">
+      <DependentUpon>NewsCreate.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\NoticeBoard\ListUc.ascx.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
+    <Compile Include="Views\NoticeBoard\NoticeCreate.aspx.cs">
+      <DependentUpon>NoticeCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\NoticeBoard\ListUc.ascx.designer.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
+    <Compile Include="Views\NoticeBoard\NoticeCreate.aspx.designer.cs">
+      <DependentUpon>NoticeCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\NoticeBoard\NoticeDetail.aspx.cs">
       <DependentUpon>NoticeDetail.aspx</DependentUpon>
@@ -2561,12 +2588,12 @@
     <Compile Include="Views\NoticeBoard\NoticeDetail.aspx.designer.cs">
       <DependentUpon>NoticeDetail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\NoticeBoard\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="Views\NoticeBoard\NoticeListing.aspx.cs">
+      <DependentUpon>NoticeListing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\NoticeBoard\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="Views\NoticeBoard\NoticeListing.aspx.designer.cs">
+      <DependentUpon>NoticeListing.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Office\School\SchoolType\Create.aspx.cs">
       <DependentUpon>Create.aspx</DependentUpon>

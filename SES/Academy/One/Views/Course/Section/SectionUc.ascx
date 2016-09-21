@@ -18,7 +18,7 @@
         </div>
 
         <div style="padding: 5px 10px; margin-left: 20px;">
-            <%--<asp:PlaceHolder ID="pnlActAndRes" runat="server"></asp:PlaceHolder>--%>
+            <asp:PlaceHolder ID="pnlActAndRes" runat="server"></asp:PlaceHolder>
 
             <div>
                 <%-- OnClick="lnkAddActOrRes_Click"  --%>

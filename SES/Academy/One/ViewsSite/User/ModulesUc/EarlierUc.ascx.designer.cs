@@ -22,58 +22,31 @@ namespace One.ViewsSite.User.ModulesUc {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
         
         /// <summary>
-        /// dListCourses control.
+        /// pnlRegularCourses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dListCourses;
+        protected global::System.Web.UI.WebControls.PlaceHolder pnlRegularCourses;
         
         /// <summary>
-        /// RegularCourseDS control.
+        /// divNonRegular control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource RegularCourseDS;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNonRegular;
         
         /// <summary>
-        /// HiddenField2 control.
+        /// dListNonRegularSubjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField2;
-        
-        /// <summary>
-        /// hidTopLevelRole control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidTopLevelRole;
-        
-        /// <summary>
-        /// DataList2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList2;
-        
-        /// <summary>
-        /// EarlierYearsAndSubYearsDS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource EarlierYearsAndSubYearsDS;
+        protected global::System.Web.UI.WebControls.DataList dListNonRegularSubjects;
         
         /// <summary>
         /// hidUserId control.
@@ -83,5 +56,14 @@ namespace One.ViewsSite.User.ModulesUc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidUserId;
+        
+        /// <summary>
+        /// hidTopLevelRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidTopLevelRole;
     }
 }

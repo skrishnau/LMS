@@ -14,10 +14,11 @@ namespace Academic.DbEntities.Batches
     {
         public int Id { get; set; }
         public int ProgramBatchId { get; set; }
-        public int StudentId { get; set; }
-
         public virtual ProgramBatch ProgramBatch { get; set; }
-        public virtual Students.Student Student{ get; set; }
+
+        public int StudentId { get; set; }
+        public virtual Students.Student Student { get; set; }
+
 
         public bool? InActive { get; set; }
         /// <summary>

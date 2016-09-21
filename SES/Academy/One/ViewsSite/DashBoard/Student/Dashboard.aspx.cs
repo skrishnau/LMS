@@ -22,10 +22,10 @@ namespace One.ViewsSite.DashBoard.Student
                 LstTree.UserType = "student";
             }
             //load courses
-            using (var helper = new DbHelper.Activity())
-            {
-                //helper.
-            }
+            //using (var helper = new DbHelper.Activity())
+            //{
+            //    //helper.
+            //}
             //var courses = 
 
         }

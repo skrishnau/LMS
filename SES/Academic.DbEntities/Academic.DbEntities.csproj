@@ -77,6 +77,7 @@
     <Compile Include="Batches\SectionStudent.cs" />
     <Compile Include="Batches\StudentBatch.cs" />
     <Compile Include="Class\UserClass.cs" />
+    <Compile Include="Events\Event.cs" />
     <Compile Include="Exams\Exam.cs" />
     <Compile Include="Exams\ExamOfClass.cs" />
     <Compile Include="Exams\ExamStudent.cs" />

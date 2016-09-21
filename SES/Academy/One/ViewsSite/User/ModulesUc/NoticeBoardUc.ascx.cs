@@ -17,7 +17,7 @@ namespace One.ViewsSite.User.ModulesUc
             {
                 using (var helper = new DbHelper.Notice())
                 {
-                    var notices = helper.GetNotices(UserId);
+                    var notices = helper.GetNotices(SchoolId,UserId);
 
                     DataList1.DataSource = notices;
                     DataList1.DataBind();
@@ -95,6 +95,12 @@ namespace One.ViewsSite.User.ModulesUc
                 catch { }
 
             }
+        }
+
+        public int SchoolId
+        {
+            get { return Convert.ToInt32(hidSchoolId.Value); }
+            set { hidSchoolId.Value = value.ToString(); }
         }
     }
 }

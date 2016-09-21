@@ -16,24 +16,43 @@ namespace One.Views.Course.Section
 
         #region Properties
 
-        public int ActOrResId { get; set; }
+        public bool ActOrRes
+        {
+            get { return Convert.ToBoolean(hidActOrRes.Value); }
+            set { hidActOrRes.Value = value.ToString(); }
+        }
 
         public string Title { get { return lblTitle.Text; } set { lblTitle.Text = value; } }
         public string Summary { get { return lblSummary.Text; } set { lblSummary.Text = value; } }
-        public string ImageUrl{get { return imgIcon.ImageUrl; } set { imgIcon.ImageUrl = value; }}
+        public string ImageUrl { get { return imgIcon.ImageUrl; } set { imgIcon.ImageUrl = value; } }
 
-        public int ActivityAndResourceId
+        public int ActResId
         {
             get { return Convert.ToInt32(hidActOrResId.Value); }
             set { hidActOrResId.Value = value.ToString(); }
         }
 
-        public string Type
+        public string ActResType
         {
-            get { return hidType.Value; } set { hidType.Value = value; }
+            get { return hidType.Value; }
+            set { hidType.Value = value; }
         }
 
         #endregion
+
+
+        public void SetData(bool actOrRes, string title, string description, int actResId, string actResType, string imageUrl, string navigateUrl)
+        {
+            ActOrRes = actOrRes;
+            Title = title;
+            Summary = description;
+            ActResId = actResId;
+            ActResType = actResType;
+
+            lblTitle.NavigateUrl = navigateUrl + "?aId=" + actResId;
+            imgIcon.ImageUrl = imageUrl;
+        }
+
 
         //edit
         protected void imgEditBtn_Click(object sender, ImageClickEventArgs e)

@@ -55,12 +55,11 @@
     <Compile Include="DbHelper.AcademicPlacement.cs" />
     <Compile Include="DbHelper.AcademicYear.cs" />
     <Compile Include="DbHelper.ActAndRes.cs" />
-    <Compile Include="DbHelper.Activity.cs" />
-    <Compile Include="DbHelper.Assignment.cs" />
     <Compile Include="DbHelper.Batch.cs" />
     <Compile Include="DbHelper.Classes.cs" />
     <Compile Include="DbHelper.ComboLoader.cs" />
     <Compile Include="DbHelper.CustomAccount.cs" />
+    <Compile Include="DbHelper.Event.cs" />
     <Compile Include="DbHelper.Exam.cs" />
     <Compile Include="DbHelper.Grade.cs" />
     <Compile Include="DbHelper.Notice.cs" />
@@ -75,6 +74,7 @@
     <Compile Include="DbHelper.User.cs" />
     <Compile Include="DbHelper.WorkingWithFiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticValues.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Academic.Database\Academic.Database.csproj">

@@ -43,7 +43,56 @@
     <style type="text/css">
         /*all links*/
 
-       
+        /* Listing and view*/
+        h3.heading-of-listing {
+            text-align: center;
+            margin-top: 3px;
+        }
+
+        div.heading-menu {
+            text-align: center;
+            font-size: 0.8em;
+            margin-top: -7px;
+            font-family: sans-serif, Arial, Helvetica;
+        }
+
+
+        /*----------------Course view with  secions and activitites and resources-----------------*/
+        /*div {
+            /*font-family: Helvetica, Verdana, Geneva,Tahoma, sans-serif;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }*/
+
+        body {
+            background-color: #557d96;
+        }
+
+        div.course-act-res-whole {
+        }
+
+        div.course-act-res-heading {
+            padding: 5px;
+        }
+
+            div.course-act-res-heading:hover {
+                background-color: #f3f1fe;
+            }
+
+        div.course-act-res-body {
+            margin: 5px 0 5px 30px;
+            text-decoration: none;
+            /*margin-top: -10px;*/
+        }
+
+        .course-act-res-title {
+            text-decoration: none;
+        }
+
+            .course-act-res-title:hover {
+                text-decoration: underline;
+            }
+
+        /*----------------------- END OF COURSE SECTIONS AND ACTIVITIES ---------------------*/
 
         .link, .link:visited {
             color: blue;
@@ -59,19 +108,58 @@
                 color: blueviolet;
                 text-decoration: underline;
             }
+        /*--------------     DETAIL VIEW OF SINGLE DATA ----after github this and above this--------------------*/
+
+        div.detail-view table {
+            width: 100%;
+            border-collapse: collapse;
+            margin:0 10px;
+        }
+
+        div.detail-view tr {
+            border-bottom: 1px solid grey;
+            width: 100%;
+            padding: 10px 0;
+        }
+        div.detail-view td {
+            padding: 10px 0;
+            display: inline-block
+        }
+
+        div.detail-view td.data-type {
+            width: 170px;
+            padding: 10px 0;
+            display: inline-block;
+        }
+
+        div.detail-view td.data-place {
+            /*width: 170px;*/
+            /*width: 100%;*/
+            padding: 10px 0;
+            display: inline-block;
+        }
+
+        div.data-entry-section-body td.data-place {
+            /*width: 170px;*/
+            /*width: 100%;*/
+            padding: 10px 0;
+            /*display: inline-block;*/
+        }
+        /*--------------------------End of data view-----------------------*/
+
 
         .table-detail {
             border-collapse: collapse;
         }
 
-        
+
         .row-detail {
             border-bottom: 1px solid grey;
             width: 100%;
             padding: 10px 0;
         }
 
-        
+
 
         .data-detail {
             width: 170px;
@@ -79,7 +167,7 @@
             display: inline-block;
         }
 
-        
+
 
         .form-element-row-height {
             padding-top: 7px;
@@ -90,7 +178,17 @@
             margin: 0 5px 10px;
         }
 
-        .modules-heading {
+        .modules-title {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .modules-title:hover {
+                text-decoration: underline;
+            }
+
+        div.modules-heading {
             width: 100%;
             border-bottom: 1px solid black;
             text-align: center;
@@ -104,6 +202,13 @@
             padding: 5px;
             font-family: arial, verdena;
             font-size: 0.8em;
+        }
+        .modules-body-for-event {
+            /*overflow: auto;*/
+            background-color: lightgoldenrodyellow;
+            /*padding: 5px;*/
+            font-family: arial, verdena;
+            font-size: 0.7em;
         }
 
         #bodyDiv {
@@ -121,17 +226,17 @@
         }
 
 
-
+        /*right 20% left 15%*/
         .right-width {
-            width: 20%;
+            width: 200px;
         }
 
         .left-width {
-            width: 15%;
+            width: 150px;
         }
 
         .mid-width {
-            width: 64%;
+            /*width: 64%;*/
         }
 
         .menu-div {
@@ -167,7 +272,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div id="menuDiv" class="menu-div" style="text-align: left; vertical-align: central; padding: 2px 5px; clear: both; width: 100%;">
+        <div id="menuDiv" class="menu-div" style="text-align: left; z-index: 10; vertical-align: central; padding: 2px 5px; clear: both; width: 100%;">
             <div style="margin: auto; vertical-align: central;">
                 <a href="~/Views/Office/School/View.aspx" style="text-decoration: none;">
                     <asp:Label ID="lblSchoolName" runat="server" Text="Label" Font-Size="1.2em" Font-Bold="True"></asp:Label>
@@ -223,6 +328,7 @@
                             <asp:ContentPlaceHolder ID="Body" runat="server">
                             </asp:ContentPlaceHolder>
                             <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+                            <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
                         </div>
                         <%-- --------------------------- END --------------------- --%>
                     </td>
@@ -235,7 +341,7 @@
                     <td class="right-width">
                         <%-- ------------------------- START -------------------- --%>
                         <%-- class="right-sidebar" --%>
-                        <div style="width: 100%;">
+                        <div>
                             <%--  style="overflow: auto; margin-top: 5px; height:180px;" --%>
                             <%-- class="dashboard-modules" --%>
                             <div>

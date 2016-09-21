@@ -20,19 +20,25 @@ namespace One.ViewsSite.User
                 if (user != null)
                 {
                     //check for school
+                    UserId = user.Id;
+                    SchoolId = user.SchoolId;
                     if (!IsPostBack)
                     {
                         //using(var fileHelper = new DbHelper.WorkingWithFiles())
                         CoursesUc.UserId = user.Id;
                         EarlierUc.UserId = user.Id;
                         NoticeBoardUc.UserId = user.Id;
+                        EventsUc.UserId = user.Id;
                         using (var helper = new DbHelper.Office())
                         {
                             var school = helper.GetSchoolOfUser(user.Id);
                             if (school != null)
                             {
+                                NoticeBoardUc.SchoolId = school.Id;
+                                EventsUc.SchoolId = school.Id;
                                 //imgSchool.ImageUrl = "~/Content/Images/"
                                 lblSchoolName.Text = school.Name;
+                                SchoolId = user.SchoolId;
                             }
                         }
                     }
@@ -57,12 +63,25 @@ namespace One.ViewsSite.User
                 }
                 else if (!Request.Url.AbsolutePath.Contains(loginUrl))
                 {
+                 //+"?ReturnUrl="+Page.Request.Url.PathAndQuery   
                     Response.Redirect("~/" + loginUrl);
                 }
 
             }
         }
-      
+
+        public int UserId
+        {
+            get { return Convert.ToInt32(hidUserId.Value); }
+            set { hidUserId.Value = value.ToString(); }
+        }
+
+        public int SchoolId
+        {
+            get { return Convert.ToInt32(hidSchoolId.Value); }
+            set { hidSchoolId.Value = value.ToString(); }
+        }
+
         void UpdateLoginTime(int userId)
         {
             using (var helper = new DbHelper.User())

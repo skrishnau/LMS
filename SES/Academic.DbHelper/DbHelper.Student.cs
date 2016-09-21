@@ -15,7 +15,9 @@ using Academic.ViewModel.Student;
 using Academic.ViewModel.SystemControl.Office;
 using System.Data.EntityModel;
 using System.Web.SessionState;
+using Academic.DbEntities.AcacemicPlacements;
 using Academic.DbEntities.Structure;
+using Academic.ViewModel.Structure;
 
 namespace Academic.DbHelper
 {
@@ -439,75 +441,228 @@ namespace Academic.DbHelper
                 return Context.StudentGroup.Where(x => !(x.StartedStudying ?? false) && !(x.Void ?? false)).ToList();
             }
 
-
-
-            /// <summary>
-            /// Returns a list of subyears 
-            /// in which if subyear.year.Name empty xa bhane tyo year ho other wise tyo subyear ho
-            /// </summary>
-            /// <param name="userId"></param>
-            /// <returns></returns>
-            public List<DbEntities.Structure.SubYear> GetEarlierYearsAndSubYearsOfStudent(int userId)
-            {
-                List<DbEntities.Structure.SubYear> lst = new List<SubYear>();
-                var years = from sb in Context.StudentBatch
-                            join pb in Context.ProgramBatch on sb.ProgramBatchId equals pb.Id
-                            join rc in Context.RunningClass.Include(c => c.Year).Include(c => c.SubYear) on pb.Id equals rc.ProgramBatchId
-                            select rc;
-                var y = years.OrderBy(x => x.Year.Position).ThenBy(x => (x.SubYear == null) ? x.YearId : x.SubYear.Position).ToList();
-
-                //subyear.year.Name empty xa bhane tyo year ho other wise tyo subyear ho
-                foreach (var ym in y.GroupBy(x => x.Year))
+            /*     //Used : after github -- to display current subyear
+                /// <summary>
+                /// to display current subyear
+                /// </summary>
+                /// <param name="userId"></param>
+                /// <returns></returns>
+               public List<ViewModel.Structure.StructureViewModel> GetCurrentrStructure(int userId)
                 {
-                    if (ym.Any() || ym.Any(x => x.SubYear == null))
+                    var stdbatch = Context.StudentBatch.FirstOrDefault(x => x.Student.UserId == userId && !(x.Void ?? false));
+                    if (stdbatch != null)
                     {
-                        var ymEmt = new SubYear()
-                        {
-
-                            // Id = ym.Key.Id
-                            //    ,
-                            // Name = ym.Key.Name
-                            //,
-                            Description = "year"
-                            ,
-                            YearId = ym.Key.Id
-                            ,
-                            Year = new Year() { Name = ym.Key.Name }
-                        };
-                        lst.Add(ymEmt);
-                    }
-                    foreach (var runningClass in ym)
-                    {
-
-                        if (runningClass.SubYear != null)
-                        {
-                            var subEmt = new SubYear()
+                        if (!(stdbatch.ProgramBatch.Void ?? false))
+                            using (var helper = new DbHelper.AcademicPlacement())
                             {
-                                Id = runningClass.SubYearId ?? 0
-                                ,
-                                Name = runningClass.SubYear.Name
-                                ,
-                                Description = "subyear"
-                                 ,
-                                YearId = ym.Key.Id
-                            ,
-                                Year = new Year() { Name = "" }
-                            };
-                            lst.Add(subEmt);
-                        }
+
+                                var list = helper.GetCompleteAndIncompleteRunningClass(stdbatch.ProgramBatchId);
+
+                                var ss = list[1].OrderBy(x => x.Year.Position).GroupBy(x => x.Year);
+                                var myList = new List<ViewModel.Structure.StructureViewModel>();
+                                foreach (var sid in ss)
+                                {
+                                    //myList.Add(sid.Key);
+                                    var yearadded = false;
+                                    foreach (var x in sid)
+                                    {
+                                        if (x.SubYearId != null && !yearadded)
+                                        {
+                                            myList.Add(new StructureViewModel()
+                                            {
+                                                ProgramId = x.ProgramBatch.Program.Id
+                                                    ,
+                                                ProgramName = x.ProgramBatch.Program.Name
+                                                    ,
+                                                Complete = true
+                                                    ,
+                                                SubYearId = 0
+                                                    ,
+                                                SubYearName = ""//x.SubYearId == null ? "" : x.SubYear.Name
+                                                    ,
+                                                YearId = x.YearId
+                                                    ,
+                                                YearName = x.Year.Name
+                                                    ,
+                                                Id = x.Id
+                                            });
+                                            yearadded = true;
+                                        }
+
+                                        myList.Add(new StructureViewModel()
+                                        {
+                                            ProgramId = x.ProgramBatch.Program.Id
+                                            ,
+                                            ProgramName = x.ProgramBatch.Program.Name
+                                            ,
+                                            Complete = true
+                                            ,
+                                            SubYearId = x.SubYearId ?? 0
+                                            ,
+                                            SubYearName = x.SubYearId == null ? "" : x.SubYear.Name
+                                            ,
+                                            YearId = x.SubYearId == null ? x.YearId : 0 //
+                                            ,
+                                            YearName = x.SubYearId == null ? x.Year.Name : ""
+                                            ,
+                                            Id = x.Id
+                                        });
+                                    }
+                                }
+                                return myList;
+                            }
                     }
+                    return null;
                 }
-                return lst;
-                //return years.GroupBy(x=>x.Year).ToList();
-                //return Context.StudentBatch.Where(x=>x.Student.UserId==userId).Select(x=>x.)
-            }
+                */
+
+            /*  //Used --after github --latest -- to populate data in Earlier 'module'
+                /// <summary>
+                /// To populate data in Earlier 'module'
+                /// </summary>
+                /// <param name="userId"></param>
+                /// <returns></returns>
+                public List<ViewModel.Structure.StructureViewModel> GetEarlierStructure(int userId)
+                {
+                    var stdbatch = Context.StudentBatch.FirstOrDefault(x => x.Student.UserId == userId && !(x.Void ?? false));
+                    if (stdbatch != null)
+                    {
+                        if (!(stdbatch.ProgramBatch.Void ?? false))
+                            using (var helper = new DbHelper.AcademicPlacement())
+                            {
+
+                                var list = helper.GetCompleteAndIncompleteRunningClass(stdbatch.ProgramBatchId);
+
+                                var ss = list[0].OrderBy(x => x.Year.Position).GroupBy(x => x.Year);
+                                var myList = new List<ViewModel.Structure.StructureViewModel>();
+                                foreach (var sid in ss)
+                                {
+                                    //myList.Add(sid.Key);
+                                    var yearadded = false;
+                                    foreach (var x in sid)
+                                    {
+                                        if (x.SubYearId != null && !yearadded)
+                                        {
+                                            myList.Add(new StructureViewModel()
+                                               {
+                                                   ProgramId = x.ProgramBatch.Program.Id
+                                                       ,
+                                                   ProgramName = x.ProgramBatch.Program.Name
+                                                       ,
+                                                   Complete = true
+                                                       ,
+                                                   SubYearId = 0
+                                                       ,
+                                                   SubYearName = ""//x.SubYearId == null ? "" : x.SubYear.Name
+                                                       ,
+                                                   YearId = x.YearId
+                                                       ,
+                                                   YearName = x.Year.Name
+                                                       ,
+                                                   Id = x.Id
+                                               });
+                                            yearadded = true;
+                                        }
+                                    
+                                        myList.Add(new StructureViewModel()
+                                        {
+                                            ProgramId = x.ProgramBatch.Program.Id
+                                            ,
+                                            ProgramName = x.ProgramBatch.Program.Name
+                                            ,
+                                            Complete = true
+                                            ,
+                                            SubYearId = x.SubYearId ?? 0
+                                            ,
+                                            SubYearName = x.SubYearId == null ? "" : x.SubYear.Name
+                                            ,
+                                            YearId = x.SubYearId == null ? x.YearId: 0 //
+                                            ,
+                                            YearName =x.SubYearId == null ? x.Year.Name: ""
+                                            ,
+                                            Id = x.Id
+                                        });
+                                    }
+                                }
+                                return myList;
+                            }
+                    }
+                    //ViewModel.Structure
+                    return null;
+                }
+
+                */
+
+            /*  //it doesn't work ;;; gives four rows when one expected
+              /// <summary>
+              /// Returns a list of subyears 
+              /// in which if subyear.year.Name empty xa bhane tyo year ho other wise tyo subyear ho
+              /// </summary>
+              /// <param name="userId"></param>
+              /// <returns></returns>
+              public List<DbEntities.Structure.SubYear> GetEarlierYearsAndSubYearsOfStudent(int userId)
+              {
+
+                  List<DbEntities.Structure.SubYear> lst = new List<SubYear>();
+                  var years = from sb in Context.StudentBatch
+                              join pb in Context.ProgramBatch on sb.ProgramBatchId equals pb.Id
+                              join rc
+                                  in Context.RunningClass.Include(c => c.Year).Include(c => c.SubYear) on pb.Id equals rc.ProgramBatchId
+                              select rc;
+                  var y = years.OrderBy(x => x.Year.Position).ThenBy(x => (x.SubYear == null) ? x.YearId : x.SubYear.Position).ToList();
+
+                  //subyear.year.Name empty xa bhane tyo year ho other wise tyo subyear ho
+                  foreach (var ym in y.GroupBy(x => x.Year))
+                  {
+                      if (ym.Any() || ym.Any(x => x.SubYear == null))
+                      {
+                          var ymEmt = new SubYear()
+                          {
+
+                              // Id = ym.Key.Id
+                              //    ,
+                              // Name = ym.Key.Name
+                              //,
+                              Description = "year"
+                              ,
+                              YearId = ym.Key.Id
+                              ,
+                              Year = new Year() { Name = ym.Key.Name }
+                          };
+                          lst.Add(ymEmt);
+                      }
+                      foreach (var runningClass in ym)
+                      {
+
+                          if (runningClass.SubYear != null)
+                          {
+                              var subEmt = new SubYear()
+                              {
+                                  Id = runningClass.SubYearId ?? 0
+                                  ,
+                                  Name = runningClass.SubYear.Name
+                                  ,
+                                  Description = "subyear"
+                                   ,
+                                  YearId = ym.Key.Id
+                              ,
+                                  Year = new Year() { Name = "" }
+                              };
+                              lst.Add(subEmt);
+                          }
+                      }
+                  }
+                  return lst;
+                  //return years.GroupBy(x=>x.Year).ToList();
+                  //return Context.StudentBatch.Where(x=>x.Student.UserId==userId).Select(x=>x.)
+              }*/
 
             public List<DbEntities.Batches.StudentBatch> ListStudentBatchesOfProgramBatch(int programBatchId)
             {
                 var stdBatchs = Context.StudentBatch.Where(x =>
                             x.ProgramBatchId == (programBatchId)
-                            && !(x.Void ?? false) 
-                            && !(x.Student.Void ?? false) 
+                            && !(x.Void ?? false)
+                            && !(x.Student.Void ?? false)
                             && !(x.Student.User.IsDeleted ?? false));
                 return stdBatchs.ToList();
             }

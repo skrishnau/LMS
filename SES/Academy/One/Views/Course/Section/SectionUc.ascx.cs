@@ -16,6 +16,7 @@ namespace One.Views.Course.Section
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadSectionDetail();
+            //LoadActivityResource();
         }
 
         #region Properties
@@ -59,6 +60,7 @@ namespace One.Views.Course.Section
 
         void LoadSectionDetail()
         {
+            using(var ahelper = new DbHelper.ActAndRes())
             using (var helper = new DbHelper.SubjectSection())
             {
                 var section = helper.Find(SectionId);
@@ -69,6 +71,19 @@ namespace One.Views.Course.Section
                     lblTitle.Text = section.Name;
                     lblSummary.Text = section.Summary;
 
+
+                    var ars = ahelper.ListActivitiesAndResourcesOfSection(SectionId);
+                    foreach (var ar in ars)
+                    {
+                        var arUc =
+                            (ActivityAndResourceUc)
+                                Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
+                       
+                        arUc.SetData(ar.ActivityOrResource,ar.Name,ar.Description
+                            ,ar.ActivityResourceId,ar.ActivityResourceType.ToString(),ar.IconUrl,ar.NavigateUrl);
+
+                       pnlActAndRes.Controls.Add(arUc);
+                    }
                     //var actAndRess = section.SubjectActivityAndResource;
 
                     //foreach (var sar in actAndRess)

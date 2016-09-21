@@ -107,6 +107,18 @@ namespace One.Values
 
         #endregion
 
+        #region Activity and Resource Image Urls
+
+        public static List<string> ActivityImages = new List<string>()
+        {
+            "",
+            "~/Content/Icons/ActivityResource/Assignment/document-icon.png",
+
+            ""
+        };
+            //"~/Content/Icons/ActivityResource/Assignment/assignment_with_yellow_pencil.png",
+
+        #endregion
 
         #region Activities and Resources
 

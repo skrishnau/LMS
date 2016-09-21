@@ -17,7 +17,7 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose
             LoadActivities();
             LoadResources();
         }
-        
+
         //public int SubjectId
         //{
         //    get { return Convert.ToInt32(hidSubjectId.Value); }
@@ -29,7 +29,7 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose
         //    get { return Convert.ToInt32(hidSectionId.Value); }
         //    set { hidSectionId.Value = value.ToString(); }
         //} 
-        
+
         private void LoadActivities()
         {
             var acts = One.Values.Enums.GetActivities();
@@ -42,7 +42,7 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose
             var ress = One.Values.Enums.GetResources();
             dlistResources.DataSource = ress;
             dlistResources.DataBind();
-            
+
         }
 
         public string GetUrl(object o)
@@ -73,15 +73,21 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose
         protected void dlistActivities_ItemCommand(object source, DataListCommandEventArgs e)
         {
             var url = e.CommandArgument;
-            if (url != null && e.CommandName=="Click")
+            if (url != null && e.CommandName == "Click")
             {
-                var sectionId = Session["SectionId"];
-                var subjectId = Session["SubjectId"];
-
-                if (sectionId != null && subjectId != null)
+                if (!string.IsNullOrEmpty(url.ToString()))
                 {
-                    Response.Redirect(url.ToString()+"?SubId="+subjectId.ToString()+"&SecId="+sectionId.ToString());
+                    var sectionId = Session["SectionId"];
+                    var subjectId = Session["SubjectId"];
+
+                    if (sectionId != null && subjectId != null)
+                    {
+                        Response.Redirect(url.ToString() + "?SubId=" + subjectId.ToString() + "&SecId=" +
+                                          sectionId.ToString());
+                    }
                 }
+               
+
             }
         }
     }

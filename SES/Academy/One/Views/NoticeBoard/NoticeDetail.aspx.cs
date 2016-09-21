@@ -20,10 +20,19 @@ namespace One.Views.NoticeBoard
                     var user = Page.User as CustomPrincipal;
                     if (user != null)
                     {
+
                         var nId = Request.QueryString["nId"];
                         var noticeId = Convert.ToInt32(nId);
                         if (nId != null)
                         {
+                            if(user.IsInRole("manager"))
+                            {
+                                divPublished.Visible = true;
+                            }else
+                            {
+                                divPublished.Visible = false;
+                            }
+                            lnkEdit.NavigateUrl = "~/Views/NoticeBoard/NoticeCreate.aspx?nId=" + noticeId;
                             using (var helper = new DbHelper.Notice())
                             {
                                 var notice = helper.GetNotice(noticeId);
@@ -36,8 +45,10 @@ namespace One.Views.NoticeBoard
                                     var text = "";
                                     text = notice.PublishedDate == null
                                         ? ""
-                                        : "<br/><strong> Posted on: </strong> &nbsp;&nbsp;" + notice.PublishedDate.Value.ToShortDateString();
-                                    text += "<br/><strong> Viewers:</strong> &nbsp;&nbsp;" + ((notice.NoticePublishTo ?? false) ? "Everyone" : "Only Users");
+                                        : "<br/><span> Posted on: </span> &nbsp;&nbsp;" 
+                                        + notice.PublishedDate.Value.ToShortDateString();
+                                    text += "<br/><span> &nbsp;Viewers:</span> &nbsp;&nbsp;" + 
+                                        ((notice.NoticePublishTo ?? false) ? "Everyone" : "Only Users");
 
                                     
 

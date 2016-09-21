@@ -27,7 +27,7 @@ namespace Academic.DbEntities.Notices
         public bool PublishNoticeToNoticeBoard { get; set; }
         public DateTime? PublishedDate { get; set; }
 
-
+        public int SchoolId { get; set; }
         //public virtual ICollection<NoticeFiles> NoticeFiles{ get; set; }
 
     }

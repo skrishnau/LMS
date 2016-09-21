@@ -10,43 +10,16 @@
 namespace One.Views.NoticeBoard {
     
     
-    public partial class CreateUc {
+    public partial class NoticeCreate {
         
         /// <summary>
-        /// pnlDataList control.
+        /// lblPageitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDataList;
-        
-        /// <summary>
-        /// btnNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnNew;
-        
-        /// <summary>
-        /// DataList1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
-        
-        /// <summary>
-        /// pblNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pblNew;
+        protected global::System.Web.UI.WebControls.Label lblPageitle;
         
         /// <summary>
         /// lblErrorMsg control.
@@ -76,13 +49,40 @@ namespace One.Views.NoticeBoard {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// txtDescription control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// chkPublish control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPublish;
+        
+        /// <summary>
+        /// ddlPublishTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPublishTo;
+        
+        /// <summary>
+        /// CKEditor1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CKEditor.NET.CKEditorControl CKEditor1;
         
         /// <summary>
         /// btnAddSave control.
@@ -94,24 +94,6 @@ namespace One.Views.NoticeBoard {
         protected global::System.Web.UI.WebControls.Button btnAddSave;
         
         /// <summary>
-        /// btnAddCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddCancel;
-        
-        /// <summary>
-        /// ObjectDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
-        
-        /// <summary>
         /// hidUserId control.
         /// </summary>
         /// <remarks>
@@ -119,5 +101,14 @@ namespace One.Views.NoticeBoard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidUserId;
+        
+        /// <summary>
+        /// hidNoticeId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidNoticeId;
     }
 }

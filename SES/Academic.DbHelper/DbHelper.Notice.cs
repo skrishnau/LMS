@@ -30,11 +30,19 @@ namespace Academic.DbHelper
                         Context.SaveChanges();
                         return true;
                     }
+
                     noti.Content = notice.Content;
+                    noti.PublishNoticeToNoticeBoard = notice.PublishNoticeToNoticeBoard;
                     noti.UpdatedDate = DateTime.Now;
                     noti.Title = notice.Title;
                     noti.NoticePublishTo = notice.NoticePublishTo;
+                    noti.PublishedDate = notice.PublishedDate;
+                    noti.UpdatedBy = notice.UpdatedBy;
+                    noti.UpdatedDate = notice.UpdatedDate;
+                    noti.Void = notice.Void;
+
                     Context.SaveChanges();
+
                     return true;
                 }
                 catch (Exception)
@@ -62,7 +70,17 @@ namespace Academic.DbHelper
                 }
             }
 
-            public List<DbEntities.Notices.Notice> GetNotices(int userId)
+            public List<DbEntities.Notices.Notice> ListNotices(int schoolId, int userId, bool displayAll)
+            {
+                var notices = Context.Notice.Where(x => (x.SchoolId == schoolId && !(x.Void ?? false))).ToList();
+                if (displayAll)
+                {
+                    return notices;
+                }
+                return notices.Where(x => x.PublishNoticeToNoticeBoard).ToList();
+            }
+
+            public List<DbEntities.Notices.Notice> GetNotices(int schoolId, int userId)
             {
                 //this commented code will be used in next version where notification could be given to individuals.. 
                 //for now notification is given to all..
@@ -82,12 +100,12 @@ namespace Academic.DbHelper
                 //          }  ;
 
 
-                var n = Context.Notice.Where(x => !(x.Void ?? false) && x.PublishNoticeToNoticeBoard)
-                    .OrderByDescending(x=>x.PublishedDate)
+                var n = Context.Notice.Where(x => x.SchoolId == schoolId && !(x.Void ?? false) && x.PublishNoticeToNoticeBoard)
+                    .OrderByDescending(x => x.PublishedDate)
                     .ThenByDescending(x => x.UpdatedDate)
                     .ThenByDescending(x => x.CreatedDate)
                     .ToList();
-                   
+
                 //Used: after github
                 //calculate all the viewed notifications
                 //Here 'Void' column is used as Viewed--> so all viewed are represented by
@@ -148,7 +166,7 @@ namespace Academic.DbHelper
                         Context.SaveChanges();
                     }
                     scope.Complete();
-                    
+
                 }
                 return true;
             }
@@ -156,32 +174,32 @@ namespace Academic.DbHelper
             {
                 using (var scope = new TransactionScope())
                 {
-                        var notiNotification = Context.NoticeNotification.FirstOrDefault(x => 
-                            x.NoticeId == noticeId && x.UserId == userId);
-                        if (notiNotification != null)
+                    var notiNotification = Context.NoticeNotification.FirstOrDefault(x =>
+                        x.NoticeId == noticeId && x.UserId == userId);
+                    if (notiNotification != null)
+                    {
+                        notiNotification.Viewed = true;
+                    }
+                    else
+                    {
+                        var nNf = new DbEntities.Notices.NoticeNotification()
                         {
-                            notiNotification.Viewed = true;
-                        }
-                        else
-                        {
-                            var nNf = new DbEntities.Notices.NoticeNotification()
-                            {
-                                UserId = userId
-                                ,
-                                NoticeId = noticeId
-                                ,
-                                Viewed = true
-                            };
-                            Context.NoticeNotification.Add(nNf);
-                        }
-                        Context.SaveChanges();
+                            UserId = userId
+                            ,
+                            NoticeId = noticeId
+                            ,
+                            Viewed = true
+                        };
+                        Context.NoticeNotification.Add(nNf);
+                    }
+                    Context.SaveChanges();
                     scope.Complete();
 
                 }
                 return true;
             }
 
-            public DbEntities.Notices.Notice GetNotice(int  noticeId)
+            public DbEntities.Notices.Notice GetNotice(int noticeId)
             {
                 return Context.Notice.Find(noticeId);
             }

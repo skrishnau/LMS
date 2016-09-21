@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,10 @@ namespace Academic.Database
 
         public DbSet<FileCategory> FileCategory { get; set; }
         public DbSet<UserFile> File { get; set; }
+
+
+        //Event
+        public DbSet<DbEntities.Events.Event> Event{ get; set; }
 
 
         //------------------------- GRADE ---------------------------//
@@ -78,6 +83,9 @@ namespace Academic.Database
         public DbSet<DbEntities.AccessPermission.UserProfileRestriction> UserProfileRestriction { get; set; }
         public DbSet<DbEntities.AccessPermission.Restriction> Restriction { get; set; }
         //------------------- Restriction END -----------------------/
+
+        public DbSet<DbEntities.ActivityAndResource.ActivityResource> ActivityResource { get; set; }
+
 
         public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
         //public DbSet<DbEntities.Marks.AssignmentMarks> AssignmentMarks { get; set; }

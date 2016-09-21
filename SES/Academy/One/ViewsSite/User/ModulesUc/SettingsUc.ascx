@@ -4,7 +4,7 @@
     <%--<strong>Settings</strong>--%>
     <div class="modules-heading">
         <strong>
-            <asp:HyperLink ID="HyperLink1" runat="server">Settings</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" CssClass="modules-title">Settings</asp:HyperLink>
         </strong>
     </div>
     <div class="modules-body">

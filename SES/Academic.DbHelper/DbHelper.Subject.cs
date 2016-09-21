@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Web.Caching;
 using Academic.Database;
+using Academic.DbEntities.AcacemicPlacements;
 using Academic.DbEntities.Batches;
 using Academic.DbEntities.Students;
 using Academic.DbEntities.Subjects;
@@ -615,8 +616,8 @@ namespace Academic.DbHelper
             }
 
 
-            //Used--Latest after Github ---remember "after Github" are all finals
-
+            //Not Used--
+            //its after github but now new function which is just below this function is used
             public List<DbEntities.Subjects.Subject> ListCurrentCoursesOfUser(int userId)
             {
                 var user = Context.Users.Find(userId);
@@ -641,8 +642,38 @@ namespace Academic.DbHelper
                 }
                 return new List<DbEntities.Subjects.Subject>();
             }
-            //used
-            public List<DbEntities.Subjects.Subject> ListEarlierCoursesOfUser(int userId)
+
+            //Used--- Latest version -- 1.0 :):):)
+            public List<DbEntities.Class.SubjectClass> ListCurrentSubjectClasses(int userId)
+            {
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && !(x.SessionComplete ?? false))
+                        .ToList();
+
+                    return subSession;
+                }
+                return new List<DbEntities.Class.SubjectClass>();
+            }
+
+            public List<DbEntities.Class.SubjectClass> ListEarlierSubjectClasses(int userId)
+            {
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) )
+                        .ToList();
+                    return subSession;
+                }
+                return new List<DbEntities.Class.SubjectClass>();
+            }
+
+           /* //used
+            public
+            List<DbEntities.Subjects.Subject> ListEarlierCoursesOfUser(int userId)
             {
                 var user = Context.Users.Find(userId);
                 if (user != null)
@@ -666,18 +697,20 @@ namespace Academic.DbHelper
                 }
                 return new List<DbEntities.Subjects.Subject>();
             }
-
+            */
+         
             //used /// remain to edit more
-            public void ListCourses1(int userId)
+
+          /*  public void ListCourses1(int userId)
             {
                 var user = Context.Users.Find(userId);
                 if (user != null)
                 {
                     var subjectClasses0 = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false));
-                        ////.Where(x=>!x.SubjectClass.IsRegular)
-                        //.Select(x => x.SubjectClass)
-                        ////.Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
-                        //.ToList(); //.Select(x=>x.Subject).ToList();
+                    ////.Where(x=>!x.SubjectClass.IsRegular)
+                    //.Select(x => x.SubjectClass)
+                    ////.Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
+                    //.ToList(); //.Select(x=>x.Subject).ToList();
 
                     var alreadyEnteredUserClass = subjectClasses0.Select(x => x.Id);
 
@@ -701,7 +734,7 @@ namespace Academic.DbHelper
 
                 }
 
-            }
+            }*/
 
 
             public List<Academic.DbEntities.Subjects.Subject>[] ListCurrentAndEarlierCoursesOfUser(int userId)

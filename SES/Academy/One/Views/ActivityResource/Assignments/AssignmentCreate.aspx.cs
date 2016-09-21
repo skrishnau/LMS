@@ -38,43 +38,43 @@ namespace One.Views.ActivityResource.Assignments
                 //var submissionType = Values.StaticValues.SubmissionTypeList;
                 //ddlSubmissionType.DataSource = submissionType;
                 //ddlSubmissionType.DataBind();
-
-                using (var gradeHelper = new DbHelper.Grade())
-                {
-                    var gradelist = gradeHelper.ListGrades(user.SchoolId);
-                    ddlGradeType.DataSource = gradelist;
-                    ddlGradeType.DataBind();
-
-                    if (gradelist.Any())
+                if (user != null)
+                    using (var gradeHelper = new DbHelper.Grade())
                     {
-                        var grade = gradelist[0]; //gradeHelper.GetGrade(Convert.ToInt32(ddlGradeType.SelectedValue));
-                        if (txtMaxGradde != null)
+                        var gradelist = gradeHelper.ListGrades(user.SchoolId);
+                        ddlGradeType.DataSource = gradelist;
+                        ddlGradeType.DataBind();
+
+                        if (gradelist.Any())
                         {
-                            if (grade.Type == "range")
+                            var grade = gradelist[0]; //gradeHelper.GetGrade(Convert.ToInt32(ddlGradeType.SelectedValue));
+                            if (txtMaxGradde != null)
                             {
-                                ddlMaximumGrade.Visible = false;
-                                ddlGradeToPass.Visible = false;
+                                if (grade.Type == "range")
+                                {
+                                    ddlMaximumGrade.Visible = false;
+                                    ddlGradeToPass.Visible = false;
 
-                                txtGradeToPass.Visible = true;
-                                txtMaxGradde.Visible = true;
-                            }
-                            else
-                            {
-                                ddlMaximumGrade.Visible = true;
-                                ddlGradeToPass.Visible = true;
+                                    txtGradeToPass.Visible = true;
+                                    txtMaxGradde.Visible = true;
+                                }
+                                else
+                                {
+                                    ddlMaximumGrade.Visible = true;
+                                    ddlGradeToPass.Visible = true;
 
-                                txtGradeToPass.Visible = false;
-                                txtMaxGradde.Visible = false;
+                                    txtGradeToPass.Visible = false;
+                                    txtMaxGradde.Visible = false;
 
-                                var gradeValues = gradeHelper.ListGradeValues(grade.Id);
-                                ddlMaximumGrade.DataSource = gradeValues;
-                                ddlGradeToPass.DataSource = gradeValues;
-                                ddlMaximumGrade.DataBind();
-                                ddlGradeToPass.DataBind();
+                                    var gradeValues = gradeHelper.ListGradeValues(grade.Id);
+                                    ddlMaximumGrade.DataSource = gradeValues;
+                                    ddlGradeToPass.DataSource = gradeValues;
+                                    ddlMaximumGrade.DataBind();
+                                    ddlGradeToPass.DataBind();
+                                }
                             }
                         }
                     }
-                }
             }
         }
 
@@ -138,7 +138,7 @@ namespace One.Views.ActivityResource.Assignments
                                     ,
                                     Name = txtName.Text
                                     ,
-                                    
+
 
                                 };
 
@@ -151,7 +151,8 @@ namespace One.Views.ActivityResource.Assignments
                                 {
                                     assg.MaximumGrade = ddlMaximumGrade.SelectedValue;
                                     assg.GradeToPass = ddlGradeToPass.SelectedValue;
-                                }else if (txtMaxGradde.Visible && txtGradeToPass.Visible)
+                                }
+                                else if (txtMaxGradde.Visible && txtGradeToPass.Visible)
                                 {
                                     assg.MaximumGrade = txtMaxGradde.Text;
                                     assg.GradeToPass = txtGradeToPass.Text;
@@ -192,7 +193,7 @@ namespace One.Views.ActivityResource.Assignments
                                     assg.CreatedBy = user.Id;
                                 }
 
-                                var saved = helper.AddOrUpdateAssignment(assg);
+                                var saved = helper.AddOrUpdateAssignment(assg, SectionId);
                                 if (saved != null)
                                 {
                                     return;

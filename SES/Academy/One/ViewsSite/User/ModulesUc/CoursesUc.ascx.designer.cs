@@ -13,31 +13,40 @@ namespace One.ViewsSite.User.ModulesUc {
     public partial class CoursesUc {
         
         /// <summary>
-        /// HyperLink2 control.
+        /// lbltitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
+        protected global::System.Web.UI.WebControls.HyperLink lbltitle;
         
         /// <summary>
-        /// dListCourses control.
+        /// pnlRegularCourses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dListCourses;
+        protected global::System.Web.UI.WebControls.PlaceHolder pnlRegularCourses;
         
         /// <summary>
-        /// RegularCourseDS control.
+        /// divNonRegular control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource RegularCourseDS;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNonRegular;
+        
+        /// <summary>
+        /// dListNonRegularSubjects control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dListNonRegularSubjects;
         
         /// <summary>
         /// hidUserId control.

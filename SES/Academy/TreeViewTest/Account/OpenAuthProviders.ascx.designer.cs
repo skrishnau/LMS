@@ -7,27 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.NoticeBoard {
-    
-    
-    public partial class WebForm1 {
-        
+namespace TreeViewTest.Account
+{
+
+
+    public partial class OpenAuthProviders
+    {
+
         /// <summary>
-        /// form1 control.
+        /// providerDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// CreateUc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.NoticeBoard.CreateUc CreateUc;
+        protected global::System.Web.UI.WebControls.ListView providerDetails;
+
     }
 }

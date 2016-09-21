@@ -28,9 +28,11 @@ namespace Academic.DbEntities.AcacemicPlacements
         public bool? IsActive { get; set; }
         public bool? Completed { get; set; }
 
+        public virtual ICollection<Class.SubjectClass> SubjectClasses { get; set; }
+
         //obsolete
-        [Obsolete]
-        public virtual ICollection<StudentClass> StudentClasses { get; set; }
+        //[Obsolete]
+
         //[Obsolete]
         //public virtual ICollection<SubjectClass> SubjectClasses { get; set; }
         //apply next table to store students' opinion about the course

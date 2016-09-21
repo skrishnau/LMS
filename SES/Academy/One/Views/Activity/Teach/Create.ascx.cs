@@ -56,18 +56,7 @@ namespace One.Views.Activity.Teach
                 {
                     teach.EstimatedCompletionHours = Convert.ToInt32(txtEstimated.Text);
                 }
-                using (var helper = new DbHelper.Activity())
-                {
-                    //var saved = helper.AddOrUpdateTeach(teach);
-                    //if (saved != null)
-                    //{
-                    //    Response.Redirect("~/Views/Activity/List.aspx");
-                    //}
-                    //else
-                    //{
-                        
-                    //}
-                }
+               
             }
         }
 
