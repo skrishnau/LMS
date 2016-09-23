@@ -49,7 +49,7 @@ namespace One.Views.Course.Section
             ActResId = actResId;
             ActResType = actResType;
 
-            lblTitle.NavigateUrl = navigateUrl + "?aId=" + actResId;
+            lblTitle.NavigateUrl = navigateUrl + "?arId=" + actResId;
             imgIcon.ImageUrl = imageUrl;
         }
 

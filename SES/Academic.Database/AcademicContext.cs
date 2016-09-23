@@ -84,10 +84,21 @@ namespace Academic.Database
         public DbSet<DbEntities.AccessPermission.Restriction> Restriction { get; set; }
         //------------------- Restriction END -----------------------/
 
+
+
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$//
         public DbSet<DbEntities.ActivityAndResource.ActivityResource> ActivityResource { get; set; }
 
-
         public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
+
+        public DbSet<DbEntities.ActivityAndResource.BookResource> BookResource{ get; set; }
+        public DbSet<DbEntities.ActivityAndResource.BookItems.BookChapter> BookChapter { get; set; }
+
+        public DbSet<DbEntities.ActivityAndResource.UrlResource> UrlResource { get; set; }
+
+        //$$$$$$$$$$$$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
         //public DbSet<DbEntities.Marks.AssignmentMarks> AssignmentMarks { get; set; }
         //public DbSet<DbEntities.Assignments.AssignedTask> AssignedTask { get; set; }
         ////public DbSet<DbEntities.Assignments.Assignment> Assignment { get; set; }

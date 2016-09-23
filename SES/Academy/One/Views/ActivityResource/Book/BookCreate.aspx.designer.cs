@@ -7,91 +7,91 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Course.Section {
+namespace One.Views.ActivityResource.Book {
     
     
-    public partial class SectionUc {
+    public partial class BookCreate {
         
         /// <summary>
-        /// section_ control.
+        /// lblHeading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl section_;
+        protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
-        /// lblTitle control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
-        /// lnkEdit control.
+        /// CKEditor1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEdit;
+        protected global::CKEditor.NET.CKEditorControl CKEditor1;
         
         /// <summary>
-        /// imgEditBtn control.
+        /// chkDisplayDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgEditBtn;
+        protected global::System.Web.UI.WebControls.CheckBox chkDisplayDescription;
         
         /// <summary>
-        /// lblSummary control.
+        /// ddlChapterFormatting control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSummary;
+        protected global::System.Web.UI.WebControls.DropDownList ddlChapterFormatting;
         
         /// <summary>
-        /// pnlActAndRes control.
+        /// ddlStyleOfNavigation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder pnlActAndRes;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStyleOfNavigation;
         
         /// <summary>
-        /// lnkAddActOrRes control.
+        /// RestrictionUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkAddActOrRes;
+        protected global::One.Views.RestrictionAccess.Custom.RestrictionUC RestrictionUC;
         
         /// <summary>
-        /// Image1 control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// hid control.
+        /// hidBookId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hid;
+        protected global::System.Web.UI.WebControls.HiddenField hidBookId;
         
         /// <summary>
         /// hidSubjectId control.
@@ -103,12 +103,12 @@ namespace One.Views.Course.Section {
         protected global::System.Web.UI.WebControls.HiddenField hidSubjectId;
         
         /// <summary>
-        /// hidSectionName control.
+        /// hidSectionId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSectionName;
+        protected global::System.Web.UI.WebControls.HiddenField hidSectionId;
     }
 }

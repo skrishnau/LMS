@@ -63,6 +63,9 @@
     <Compile Include="Activities\Study.cs" />
     <Compile Include="ActivityAndResource\ActivityResource.cs" />
     <Compile Include="ActivityAndResource\Assignment.cs" />
+    <Compile Include="ActivityAndResource\BookResource.cs" />
+    <Compile Include="ActivityAndResource\BookItems\BookChapter.cs" />
+    <Compile Include="ActivityAndResource\UrlResource.cs" />
     <Compile Include="Admins.cs" />
     <Compile Include="AdminTitle.cs" />
     <Compile Include="Assignments\AssignedTask.cs" />

@@ -7,45 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.Course.ActivityAndResource.ActResChoose {
+namespace One.Views.ActivityResource.Book.BookItems {
     
     
-    public partial class ActResChooseUc {
+    public partial class TocItemsUc {
         
         /// <summary>
-        /// dlistActivities control.
+        /// main_span control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlistActivities;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main_span;
         
         /// <summary>
-        /// dlistResources control.
+        /// lnkChapter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlistResources;
+        protected global::System.Web.UI.WebControls.LinkButton lnkChapter;
         
         /// <summary>
-        /// hidSubId control.
+        /// hidChapterId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSubId;
-        
-        /// <summary>
-        /// hidSecId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSecId;
+        protected global::System.Web.UI.WebControls.HiddenField hidChapterId;
     }
 }

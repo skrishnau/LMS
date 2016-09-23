@@ -83,6 +83,15 @@ namespace One.Values
             ,""
             ,""
         };
+        public static List<string> ResourceUrl = new List<string>()
+        {
+            "~/Views/ActivityResource/Book/BookCreate.aspx"
+            ,""
+            ,""
+            ,""
+            ,""
+            ,""
+        };
 
 
         public static List<ActivityClass> GetActivities()
@@ -130,6 +139,7 @@ namespace One.Values
                     Name = suit
                     ,
                     ImagePath = ActivityImagePath[i]
+                    ,Url = ResourceUrl[i]
                 };
                 list.Add(ac);
                 i++;

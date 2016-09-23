@@ -1,6 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SectionUc.ascx.cs" Inherits="One.Views.Course.Section.SectionUc" %>
 
-<div style="margin-left: 10px;">
+<div style="margin-left: 10px;" >
+    <section runat="server" ID="section_" clientidmode="Static">
+        
+   
     <%--class="item-section"--%>
     <h3 style="font-size: 24px; font-weight: normal; font-family: Helvetica, Verdana, Geneva, sans-serif;">
         <asp:Label ID="lblTitle" runat="server" Text="Heading"></asp:Label>
@@ -38,5 +41,5 @@
     <asp:HiddenField ID="hid" runat="server" Value="0" />
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSectionName" runat="server" Value="" />
-
+         </section>
 </div>

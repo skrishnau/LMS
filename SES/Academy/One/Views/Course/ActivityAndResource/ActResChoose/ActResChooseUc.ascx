@@ -6,7 +6,8 @@
     <asp:DataList ID="dlistActivities" ClientIDMode="Static" runat="server" OnItemCommand="dlistActivities_ItemCommand">
         <ItemTemplate>
             <%--  NavigateUrl='<%# GetUrl(Eval("Url")) %>' --%>
-            <asp:LinkButton ID="activityLink" CssClass="block" runat="server" CommandName="Click" CommandArgument='<%# Eval("Url") %>'>
+            <asp:LinkButton ID="activityLink" CssClass="block" runat="server" 
+                CommandName="Click" CommandArgument='<%# Eval("Url") %>'>
                 <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("ImagePath") %>' Width="22px" Height="22px" />
                 <%# Eval("Name") %>
             </asp:LinkButton>
@@ -30,16 +31,21 @@
 <strong>Resources</strong>
 <div style="margin: 0 25px 0;">
 
-    <asp:DataList ID="dlistResources" runat="server">
+    <asp:DataList ID="dlistResources" runat="server" OnItemCommand="dlistResources_ItemCommand">
         <ItemTemplate>
-            <asp:Label runat="server" ID="NameL" Text='<%# Eval("Name") %>' />
+           <%-- <asp:Label runat="server" ID="NameL" Text='<%# Eval("Name") %>' />
             <asp:Label ID="ImagePathLabel" runat="server" Text='<%# Eval("ImagePath") %>' />
-            <br />
+            <br />--%>
+            <asp:LinkButton ID="activityLink" CssClass="block" runat="server" 
+                CommandName="Click" CommandArgument='<%# Eval("Url") %>'>
+                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("ImagePath") %>' Width="22px" Height="22px" />
+                <%# Eval("Name") %>
+            </asp:LinkButton>
         </ItemTemplate>
     </asp:DataList>
 
 </div>
-<asp:ObjectDataSource ID="ResourcesDs" runat="server" SelectMethod="GetResources" TypeName="One.Values.Enums"></asp:ObjectDataSource>
+<%--<asp:ObjectDataSource ID="ResourcesDs" runat="server" SelectMethod="GetResources" TypeName="One.Values.Enums"></asp:ObjectDataSource>--%>
 
 
 <asp:HiddenField ID="hidSubId" runat="server" Value="0" />

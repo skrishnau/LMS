@@ -90,5 +90,26 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose
 
             }
         }
+
+        protected void dlistResources_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            var url = e.CommandArgument;
+            if (url != null && e.CommandName == "Click")
+            {
+                if (!string.IsNullOrEmpty(url.ToString()))
+                {
+                    var sectionId = Session["SectionId"];
+                    var subjectId = Session["SubjectId"];
+
+                    if (sectionId != null && subjectId != null)
+                    {
+                        Response.Redirect(url.ToString() + "?SubId=" + subjectId.ToString() + "&SecId=" +
+                                          sectionId.ToString());
+                    }
+                }
+
+
+            }
+        }
     }
 }

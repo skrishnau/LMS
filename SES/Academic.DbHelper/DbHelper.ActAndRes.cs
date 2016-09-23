@@ -24,20 +24,46 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="actresId"> act/res Id</param>
+            /// <param name="sectionId"> sectionId</param>
+            private void AddActRes(bool actOrRes, byte actResType, int actresId, int sectionId)
+            {
+                int pos = 0;
+                var poslist = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId);
+                if (poslist.Any())
+                    pos = poslist.Max(x => x.Position);
+                var actRes = new DbEntities.ActivityAndResource.ActivityResource()
+                {
+                    ActivityOrResource = actOrRes,
+                    ActivityResourceId = actresId
+                    ,
+                    ActivityResourceType = actResType
+                    ,
+                    Position = pos + 1
+                    ,
+                    SubjectSectionId = sectionId
+                };
+                Context.ActivityResource.Add(actRes);
+                Context.SaveChanges();
+            }
+
             public List<ActivityResourceViewModel> ListActivitiesAndResourcesOfSection(int sectionId)
             {
-                var actres = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId 
-                    && !(x.Void??false)).ToList();
+                var actres = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId
+                                                                 && !(x.Void ?? false)).ToList();
                 var list = new List<ActivityResourceViewModel>();
                 foreach (var ar in actres)
                 {
                     if (ar.ActivityOrResource)
                     {
                         //activity
-                        switch (ar.ActivityOrResourceType)
+                        switch (ar.ActivityResourceType)
                         {
-                            case 1://Assignment
-                                var asg = Context.Assignment.Find(ar.ActivityOrResourceId);
+                            case 1: //Assignment
+                                var asg = Context.Assignment.Find(ar.ActivityResourceId);
                                 if (asg != null)
                                 {
                                     //var imageurl = StaticValues.ActivityImages[ar.ActivityOrResourceType];
@@ -45,34 +71,76 @@ namespace Academic.DbHelper
                                     var m = new ActivityResourceViewModel()
                                     {
                                         ActivityOrResource = ar.ActivityOrResource
-                                        ,ActivityResourceType = ar.ActivityOrResourceType
-                                        ,ActivityResourceId = ar.ActivityOrResourceId
-                                        ,Description = asg.Description
-                                        ,Name = asg.Name
-                                        ,SubjectSectionId = ar.SubjectSectionId
-                                        ,Position = ar.Position
+                                        ,
+                                        ActivityResourceType = ar.ActivityResourceType
+                                        ,
+                                        ActivityResourceId = ar.ActivityResourceId
+                                        ,
+                                        Description = asg.Description
+                                        ,
+                                        Name = asg.Name
+                                        ,
+                                        SubjectSectionId = ar.SubjectSectionId
+                                        ,
+                                        Position = ar.Position
                                         ,
                                         NavigateUrl = "~/Views/ActivityResource/Assignments/AssignmentView.aspx"
                                         ,
-                                        IconUrl =StaticValues.ActivityImages[ar.ActivityOrResourceType]
+                                        IconUrl = StaticValues.ActivityImages[ar.ActivityResourceType]
                                     };
                                     list.Add(m);
                                 }
-                               
+
                                 break;
 
                         }
                     }
                     else
                     {
-                       //resource
+                        //resource
+                        switch (ar.ActivityResourceType)
+                        {
 
+                            case 1://Book
+                                var book = Context.BookResource.Find(ar.ActivityResourceId);
+                                if (book != null)
+                                {
+                                    var m = new ActivityResourceViewModel()
+                                    {
+                                        ActivityOrResource = ar.ActivityOrResource
+                                        ,
+                                        ActivityResourceType = ar.ActivityResourceType
+                                        ,
+                                        ActivityResourceId = ar.ActivityResourceId
+                                        ,
+                                        Description = book.Description
+                                        ,
+                                        Name = book.Name
+                                        ,
+                                        SubjectSectionId = ar.SubjectSectionId
+                                        ,
+                                        Position = ar.Position
+                                        ,
+                                        NavigateUrl = "~/Views/ActivityResource/Book/BookView.aspx"
+                                        ,
+                                        IconUrl = StaticValues.ResourceImages[ar.ActivityResourceType]
+                                    };
+                                    list.Add(m);
+                                }
+                                break;
+                            case 41:
+                                break;
+
+                        }
                     }
                 }
                 return list;
             }
 
-            public DbEntities.ActivityAndResource.Assignment AddOrUpdateAssignment(DbEntities.ActivityAndResource.Assignment asg,
+            #region Assignment
+
+            public DbEntities.ActivityAndResource.Assignment AddOrUpdateAssignment(
+                DbEntities.ActivityAndResource.Assignment asg,
                 int sectionId)
             {
                 var ent = Context.Assignment.Find(asg.Id);
@@ -87,9 +155,9 @@ namespace Academic.DbHelper
                     var actRes = new DbEntities.ActivityAndResource.ActivityResource()
                     {
                         ActivityOrResource = true,
-                        ActivityOrResourceId = ent.Id
+                        ActivityResourceId = ent.Id
                         ,
-                        ActivityOrResourceType = 1
+                        ActivityResourceType = 1
                         ,
                         Position = pos + 1
                         ,
@@ -124,6 +192,102 @@ namespace Academic.DbHelper
                 //}
                 return null;
             }
+
+            #endregion
+
+
+
+
+            #region Book
+
+            public DbEntities.ActivityAndResource.BookResource AddOrUpdateBook(
+               DbEntities.ActivityAndResource.BookResource book, int sectionId)
+            {
+                try
+                {
+                    var ent = Context.BookResource.Find(book.Id);
+                    if (ent == null)
+                    {
+                        var restrictionn = new DbEntities.AccessPermission.Restriction()
+                        {
+                            MatchAllAny = false,
+                            MatchMust = false,
+                            Visibility = true
+
+                        };
+
+                        //restriction addition is remain
+                        var restric = Context.Restriction.Add(restrictionn);
+                        Context.SaveChanges();
+
+                        book.RestrictionId = restric.Id;
+
+                        ent = Context.BookResource.Add(book);
+                        Context.SaveChanges();
+
+                        AddActRes(false, 1, ent.Id, sectionId);
+
+                    }
+                    else
+                    {
+                        ent.ChapterFormatting = book.ChapterFormatting;
+                        ent.CustomTitles = book.CustomTitles;
+                        ent.Description = book.Description;
+                        ent.DisplayDescriptionOnCourePage = book.DisplayDescriptionOnCourePage;
+                        ent.Name = book.Name;
+                        ent.StyleOfNavigation = book.StyleOfNavigation;
+
+                        Context.SaveChanges();
+                        //update restriction also;
+                    }
+                    return
+                        ent;
+                }
+
+                catch
+                {
+                    return null;
+                }
+            }
+
+
+            public DbEntities.ActivityAndResource.BookResource GetBook(int bookId)
+            {
+                return Context.BookResource.Find(bookId);
+            }
+
+           
+
+            public List<DbEntities.ActivityAndResource.BookItems.BookChapter> GetTocOfBook(int bookId)
+            {
+                return Context.BookChapter.Where(x => x.BookId == bookId).ToList();
+            }
+
+            #endregion
+
+
+
+
+            public DbEntities.ActivityAndResource.BookItems.BookChapter 
+                AddOrUpdateBookChapter(DbEntities.ActivityAndResource.BookItems.BookChapter chapter)
+            {
+                var chap = Context.BookChapter.Find(chapter.Id);
+                if (chap == null)
+                {
+                    chap = Context.BookChapter.Add(chapter);
+                    Context.SaveChanges();
+                }
+                else
+                {
+                    chap.Content = chapter.Content;
+                    chap.ParentChapterId = chapter.ParentChapterId;
+                    chap.Title = chapter.Title;
+                    Context.SaveChanges();
+                }
+                return chap;
+            }
         }
+
     }
+
 }

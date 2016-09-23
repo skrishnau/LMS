@@ -1100,6 +1100,8 @@
     <Content Include="Content\Icons\ActivityResource\Assignment\actions-document-edit-icon.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\assignment_with_yellow_pencil.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\document-icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Book\Book-icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Book\book.png" />
     <Content Include="Content\Icons\AddEditDelete\add.ico" />
     <Content Include="Content\Icons\AddEditDelete\add_small.png" />
     <Content Include="Content\Icons\AddEditDelete\delete-13.ico" />
@@ -1425,6 +1427,10 @@
     <Content Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx" />
     <Content Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx" />
     <Content Include="Views\ActivityResource\Assignments\AssignmentView.aspx" />
+    <Content Include="Views\ActivityResource\Book\BookCreate.aspx" />
+    <Content Include="Views\ActivityResource\Book\BookItems\TocItemsUc.ascx" />
+    <Content Include="Views\ActivityResource\Book\BookView.aspx" />
+    <Content Include="Views\ActivityResource\Book\ChapterCreate.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialogStyles.css" />
@@ -2237,6 +2243,34 @@
     </Compile>
     <Compile Include="Views\ActivityResource\Assignments\AssignmentView.aspx.designer.cs">
       <DependentUpon>AssignmentView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Book\BookCreate.aspx.cs">
+      <DependentUpon>BookCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Book\BookCreate.aspx.designer.cs">
+      <DependentUpon>BookCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Book\BookItems\TocItemsUc.ascx.cs">
+      <DependentUpon>TocItemsUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Book\BookItems\TocItemsUc.ascx.designer.cs">
+      <DependentUpon>TocItemsUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Book\BookView.aspx.cs">
+      <DependentUpon>BookView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Book\BookView.aspx.designer.cs">
+      <DependentUpon>BookView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Book\ChapterCreate.aspx.cs">
+      <DependentUpon>ChapterCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Book\ChapterCreate.aspx.designer.cs">
+      <DependentUpon>ChapterCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx.cs">
       <DependentUpon>CustomDialog.ascx</DependentUpon>

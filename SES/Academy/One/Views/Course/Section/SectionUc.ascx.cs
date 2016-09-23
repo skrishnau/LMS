@@ -50,7 +50,11 @@ namespace One.Views.Course.Section
         public string SectionName
         {
             get { return hidSectionName.Value; }
-            set { hidSectionName.Value = value; }
+            set
+            {
+                hidSectionName.Value = value;
+                section_.ID = "section_" + SectionId;
+            }
         }
 
         #endregion

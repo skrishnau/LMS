@@ -110,6 +110,7 @@ namespace One.Views.Course.Section.Master
                         foreach (var subjectSection in unVoidedSections)
                         {
                             SectionUc sectionuc = (SectionUc)Page.LoadControl("~/Views/Course/Section/SectionUc.ascx");
+                           
                             sectionuc.AddActResClicked += sectionuc_AddActResClicked;
                             sectionuc.EditEnabled = EditEnabled;
                             sectionuc.SummaryVisible = subjectSection.ShowSummary ?? false;

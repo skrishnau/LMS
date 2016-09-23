@@ -17,13 +17,14 @@ namespace Academic.DbEntities.ActivityAndResource
 
         /// <summary>
         /// 1:Assignment, 2:
+        /// 40: Book
         /// </summary>
-        public byte ActivityOrResourceType { get; set; }
+        public byte ActivityResourceType { get; set; }
 
         /// <summary>
         /// Ids of Assignment, .. , etc
         /// </summary>
-        public int ActivityOrResourceId { get; set; }
+        public int ActivityResourceId { get; set; }
 
         /// <summary>
         /// Position of this Activity/Resource in UI(wwebpage)

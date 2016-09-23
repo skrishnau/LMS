@@ -330,6 +330,18 @@
     <Compile Include="Migrations\201609191233410_assignment_update_1.Designer.cs">
       <DependentUpon>201609191233410_assignment_update_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609221917387_book_created.cs" />
+    <Compile Include="Migrations\201609221917387_book_created.Designer.cs">
+      <DependentUpon>201609221917387_book_created.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609231618039__overall.cs" />
+    <Compile Include="Migrations\201609231618039__overall.Designer.cs">
+      <DependentUpon>201609231618039__overall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609231624288_test.cs" />
+    <Compile Include="Migrations\201609231624288_test.Designer.cs">
+      <DependentUpon>201609231624288_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -556,6 +568,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609191233410_assignment_update_1.resx">
       <DependentUpon>201609191233410_assignment_update_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609221917387_book_created.resx">
+      <DependentUpon>201609221917387_book_created.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609231618039__overall.resx">
+      <DependentUpon>201609231618039__overall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609231624288_test.resx">
+      <DependentUpon>201609231624288_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

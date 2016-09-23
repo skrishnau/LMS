@@ -19,6 +19,13 @@ namespace Academic.DbHelper
 
                     ""
                 };
+
+            public static List<string> ResourceImages = new List<string>()
+            {
+                "",
+                "~/Content/Icons/ActivityResource/Book/book.png",
+                ""
+            };
             //"~/Content/Icons/ActivityResource/Assignment/assignment_with_yellow_pencil.png",
 
             #endregion
