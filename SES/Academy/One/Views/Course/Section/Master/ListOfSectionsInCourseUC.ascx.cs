@@ -117,6 +117,9 @@ namespace One.Views.Course.Section.Master
                             sectionuc.SubjectId = subjectSection.SubjectId;
                             sectionuc.SectionId = subjectSection.Id;
                             sectionuc.SectionName = subjectSection.Name;
+
+                            var sectionlbl = new Literal() { Text = "<a  name='section_" + subjectSection.Id + "'></a>" };
+                            pnlSections.Controls.Add(sectionlbl);
                             pnlSections.Controls.Add(sectionuc);
                         }
                     }

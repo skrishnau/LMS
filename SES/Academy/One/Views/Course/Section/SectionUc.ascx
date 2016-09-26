@@ -1,11 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SectionUc.ascx.cs" Inherits="One.Views.Course.Section.SectionUc" %>
 
-<div style="margin-left: 10px;" >
-    <section runat="server" ID="section_" clientidmode="Static">
-        
-   
+<%--<section runat="server" id="section_" clientidmode="Static">
+</section>--%>
+<div style="margin-left: 10px;">
+
+
     <%--class="item-section"--%>
-    <h3 style="font-size: 24px; font-weight: normal; font-family: Helvetica, Verdana, Geneva, sans-serif;">
+    <h3  style="font-size: 24px; font-weight: normal; font-family: Helvetica, Verdana, Geneva, sans-serif;">
         <asp:Label ID="lblTitle" runat="server" Text="Heading"></asp:Label>
         &nbsp;&nbsp;&nbsp;
         <asp:LinkButton ID="lnkEdit" Visible="False" runat="server" OnClick="lnkEdit_Click">
@@ -26,8 +27,8 @@
             <div>
                 <%-- OnClick="lnkAddActOrRes_Click"  --%>
                 <asp:LinkButton ID="lnkAddActOrRes" ClientIDMode="Static"
-                    CssClass="link" 
-                    Visible="False" runat="server" >
+                    CssClass="link"
+                    Visible="False" runat="server">
                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                     Add an Activity or Resource
                 </asp:LinkButton>
@@ -36,10 +37,9 @@
     </div>
 
     <hr style="border: none; background-color: lightgray; height: 1px;" />
-    
+
 
     <asp:HiddenField ID="hid" runat="server" Value="0" />
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSectionName" runat="server" Value="" />
-         </section>
 </div>

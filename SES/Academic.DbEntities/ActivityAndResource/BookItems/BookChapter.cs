@@ -13,7 +13,8 @@ namespace Academic.DbEntities.ActivityAndResource.BookItems
 
         public string Content { get; set; }
 
-        //public int Position { get; set; }
+        //position of chapter within its parent
+        public int Position { get; set; }
 
         public int BookId { get; set; }
         public virtual BookResource Book { get; set; }

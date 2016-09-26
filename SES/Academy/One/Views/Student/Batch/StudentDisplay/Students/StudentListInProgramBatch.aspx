@@ -2,7 +2,7 @@
 
 <%@ Register Src="~/Views/Student/Batch/StudentDisplay/Students/StudentCreate/StudentCreateUc.ascx" TagPrefix="uc1" TagName="StudentCreateUc" %>
 <%--<%@ Register Src="~/Views/Student/Batch/StudentDisplay/Students/StudentCreate/test.ascx" TagPrefix="uc1" TagName="test" %>--%>
-<%@ Register TagPrefix="uc1" TagName="studentlistuc" Src="~/Views/Student/Batch/StudentDisplay/Students/StudentListUc.ascx" %>
+<%--<%@ Register TagPrefix="uc1" TagName="studentlistuc" Src="~/Views/Student/Batch/StudentDisplay/Students/StudentListUc.ascx" %>--%>
 <%@ Register Src="~/Views/Student/Batch/StudentDisplay/Students/StudentList/StudentListUC.ascx" TagPrefix="uc2" TagName="StudentListUC" %>
 
 
@@ -37,7 +37,9 @@
 
         <div style="margin-top: 5px;">
             <strong>Student List</strong>
-            <span style="float: right; margin: 0 20px 0; position: relative; right: 0; font-weight: 400;">Add Method
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <span style="float: right; margin: 0 20px 0; position: relative; right: 0; font-weight: 400;">Add Method
                         <asp:DropDownList ID="ddlAddStudent" Width="130px" runat="server"
                             OnSelectedIndexChanged="ddlAddStudent_SelectedIndexChanged" AutoPostBack="True">
                             <Items>
@@ -47,35 +49,41 @@
                                 <asp:ListItem Text="Import From File" Value="2"></asp:ListItem>
                             </Items>
                         </asp:DropDownList>
-            </span>
+                    </span>
+                </ContentTemplate>
+            </asp:UpdatePanel>
             <hr />
             <div>
                 <%--<uc1:test runat="server" ID="test1" />--%>
                 <div>
-                    <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
-                        <asp:View ID="View0" runat="server">
-                        </asp:View>
-                        <asp:View ID="View1" runat="server">
-                            <%--<uc1:StudentCreateUc runat="server" ID="StudentCreateUc" />--%>
-                            <div style="text-align: center;">
-                                <uc1:StudentCreateUc runat="server" ID="StudentCreateUc1" />
-                                <%--<asp:FileUpload ID="FileUpload3" runat="server" />--%>
-                                <%--<uc2:StudentCreateUc runat="server" ID="StudentCreateUc1" />--%>
-                            </div>
-                        </asp:View>
-                        <asp:View ID="View2" runat="server">
-                            <%--<uc1:StudentImportFromSystem runat="server" ID="StudentImportFromSystem" />--%>
-                        </asp:View>
-                        <asp:View ID="View3" runat="server">
-                            <%--<uc1:StudentImportFrommFile runat="server" ID="StudentImportFrommFile" />--%>
-                        </asp:View>
-                    </asp:MultiView>
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
+                                <asp:View ID="View0" runat="server">
+                                </asp:View>
+                                <asp:View ID="View1" runat="server">
+                                    <%--<uc1:StudentCreateUc runat="server" ID="StudentCreateUc" />--%>
+                                    <div style="text-align: center;">
+                                        <uc1:StudentCreateUc runat="server" ID="StudentCreateUc1" />
+                                        <%--<asp:FileUpload ID="FileUpload3" runat="server" />--%>
+                                        <%--<uc2:StudentCreateUc runat="server" ID="StudentCreateUc1" />--%>
+                                    </div>
+                                </asp:View>
+                                <asp:View ID="View2" runat="server">
+                                    <%--<uc1:StudentImportFromSystem runat="server" ID="StudentImportFromSystem" />--%>
+                                </asp:View>
+                                <asp:View ID="View3" runat="server">
+                                    <%--<uc1:StudentImportFrommFile runat="server" ID="StudentImportFrommFile" />--%>
+                                </asp:View>
+                            </asp:MultiView>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
                 <br />
                 <%--<asp:FileUpload ID="FileUpload1" runat="server" />--%>
             </div>
             <uc2:StudentListUC runat="server" ID="StudentListUC11" />
-            <hr/>
+            <hr />
             <%--<uc1:studentlistuc runat="server" ID="StudentListUc1" />--%>
         </div>
 

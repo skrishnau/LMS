@@ -42,7 +42,9 @@
     <link href="../../Content/CSSes/All.css" rel="stylesheet" />
     <style type="text/css">
         /*all links*/
-
+        .inline {
+            display: inline;
+        }
         /* Listing and view*/
         h3.heading-of-listing {
             text-align: center;
@@ -252,6 +254,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        
         <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Scripts>
 
@@ -338,7 +341,7 @@
 
                     <%-- ======================= Right sidebar ======================= --%>
 
-                    <td class="right-width">
+                    <td class="right-width" runat="server" ID="right_panel">
                         <%-- ------------------------- START -------------------- --%>
                         <%-- class="right-sidebar" --%>
                         <div>

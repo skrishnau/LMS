@@ -63,7 +63,8 @@ div.button-div {
 
 div.item-div {
     font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
-    margin: 10px; padding-left: 10px; font-size: 1.1em;
+    margin: 10px;  font-size: 1.1em;
+/*padding-left: 10px;*/
 }
 
 .dialog-item {

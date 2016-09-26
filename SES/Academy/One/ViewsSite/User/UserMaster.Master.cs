@@ -27,6 +27,7 @@ namespace One.ViewsSite.User
                         //using(var fileHelper = new DbHelper.WorkingWithFiles())
                         CoursesUc.UserId = user.Id;
                         EarlierUc.UserId = user.Id;
+
                         NoticeBoardUc.UserId = user.Id;
                         EventsUc.UserId = user.Id;
                         using (var helper = new DbHelper.Office())
@@ -40,6 +41,10 @@ namespace One.ViewsSite.User
                                 lblSchoolName.Text = school.Name;
                                 SchoolId = user.SchoolId;
                             }
+                        }
+                        if (Request.Url.AbsolutePath.Contains("BookView"))
+                        {
+                            right_panel.Visible = false;
                         }
                     }
 
@@ -64,7 +69,7 @@ namespace One.ViewsSite.User
                 else if (!Request.Url.AbsolutePath.Contains(loginUrl))
                 {
                  //+"?ReturnUrl="+Page.Request.Url.PathAndQuery   
-                    Response.Redirect("~/" + loginUrl);
+                    Response.Redirect("~/" + loginUrl + "?ReturnUrl=" + Page.Request.Url.PathAndQuery);
                 }
 
             }

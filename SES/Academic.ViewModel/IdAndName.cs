@@ -21,6 +21,10 @@ namespace Academic.ViewModel
 
         public int RefIdInt { get; set; }
         public string RefIdString { get; set; }
+
+        public string FileDisplayName { get; set; }
+        public string IconPath { get; set; }
+        public string FilePath { get; set; }
     }
 
     public class GradeValuesDataType

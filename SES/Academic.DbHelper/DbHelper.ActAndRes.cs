@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Academic.Database;
 using Academic.ViewModel.ActivityResource;
 
@@ -256,11 +257,11 @@ namespace Academic.DbHelper
                 return Context.BookResource.Find(bookId);
             }
 
-           
 
-            public List<DbEntities.ActivityAndResource.BookItems.BookChapter> GetTocOfBook(int bookId)
+
+            public List<DbEntities.ActivityAndResource.BookItems.BookChapter> GetChaptersOfBook(int bookId)
             {
-                return Context.BookChapter.Where(x => x.BookId == bookId).ToList();
+                return Context.BookChapter.Where(x => x.BookId == bookId).OrderBy(x => x.Position).ToList();
             }
 
             #endregion
@@ -268,23 +269,229 @@ namespace Academic.DbHelper
 
 
 
-            public DbEntities.ActivityAndResource.BookItems.BookChapter 
+            public DbEntities.ActivityAndResource.BookItems.BookChapter
                 AddOrUpdateBookChapter(DbEntities.ActivityAndResource.BookItems.BookChapter chapter)
             {
                 var chap = Context.BookChapter.Find(chapter.Id);
                 if (chap == null)
                 {
-                    chap = Context.BookChapter.Add(chapter);
-                    Context.SaveChanges();
+                    if (chapter.Position <= 0)
+                    {
+                        int pos = 0;
+
+                        try
+                        {
+                            pos = Context.BookChapter.Where(x => x.BookId == chapter.BookId
+                                                                 &&
+                                                                 (x.ParentChapterId ?? 0) ==
+                                                                 (chapter.ParentChapterId ?? 0))
+                                .Max(x => x.Position);
+                        }
+                        catch
+                        {
+                        }
+                        chapter.Position = pos + 1;
+                        chap = Context.BookChapter.Add(chapter);
+                        Context.SaveChanges();
+                    }
+                    else
+                    {
+                        chapter.Position = chapter.Position + 1;
+                        chap = Context.BookChapter.Add(chapter);
+                        Context.SaveChanges();
+                        
+                    }
+
                 }
                 else
                 {
                     chap.Content = chapter.Content;
                     chap.ParentChapterId = chapter.ParentChapterId;
                     chap.Title = chapter.Title;
+                    chap.Position = chapter.Position;
                     Context.SaveChanges();
                 }
                 return chap;
+            }
+
+            public DbEntities.ActivityAndResource.BookItems.BookChapter GetChapter(int chapterId)
+            {
+                return Context.BookChapter.Find(chapterId);
+            }
+
+            public bool UpdateChapter(string action, int chapterId, int bookId)
+            {
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        var chapter = Context.BookChapter.Find(chapterId);
+                        if (chapter != null)
+                        {
+                            switch (action)
+                            {
+                                case "in":
+                                    var upchapter = Context.BookChapter.FirstOrDefault(x =>
+                                        x.Position == chapter.Position - 1
+                                        && (x.ParentChapterId ?? 0) == (chapter.ParentChapterId ?? 0)
+                                        && x.BookId == bookId);
+                                    var pos = chapter.Position;
+                                    var parChap = chapter.ParentChapterId ?? 0;
+
+                                    var others = Context.BookChapter
+                                        .Where(x => x.Position > pos
+                                                    && x.BookId == bookId &&
+                                                    (x.ParentChapterId ?? 0) == parChap);
+                                    foreach (var bcn in others)
+                                    {
+                                        bcn.Position = bcn.Position - 1;
+                                        Context.SaveChanges();
+                                    }
+
+                                    if (upchapter != null)
+                                    {
+                                        var po = 0;
+                                        try
+                                        {
+                                            po = chapter.Position = Context.BookChapter.Where(x =>
+                                                                                  (x.ParentChapterId ?? 0) == (upchapter.Id)
+                                                                                     && x.BookId == bookId)
+                                                                                 .Max(x => x.Position);
+
+                                        }
+                                        catch { }
+
+                                        chapter.ParentChapterId = upchapter.Id;
+                                        chapter.Position = po + 1;
+                                        Context.SaveChanges();
+
+
+                                    }
+                                    break;
+                                case "out":
+                                    if (chapter.ParentChapter != null)
+                                    {
+
+                                        var newPos = chapter.ParentChapter.Position;
+                                        //positions
+                                        var innnerBelow = Context.BookChapter.Where(x => x.BookId == bookId
+                                                                                         &&
+                                                                                         (x.ParentChapterId ?? 0) ==
+                                                                                         (chapter.ParentChapterId ?? 0)
+                                                                                         && x.Position > chapter.Position);
+                                        foreach (var bc in innnerBelow)
+                                        {
+                                            bc.Position = bc.Position - 1;
+                                            Context.SaveChanges();
+                                        }
+
+                                        var outerBelow = Context.BookChapter.Where(x => x.BookId == bookId
+                                                                                        && (x.ParentChapterId ?? 0) ==
+                                                                                        (chapter.ParentChapter.ParentChapterId ?? 0)
+                                                                                        && x.Position > chapter.ParentChapter.Position);
+                                        foreach (var ob in outerBelow)
+                                        {
+                                            ob.Position = ob.Position + 1;
+                                            Context.SaveChanges();
+                                        }
+
+                                        chapter.Position = newPos + 1;
+                                        chapter.ParentChapterId = chapter.ParentChapter.ParentChapterId;
+                                        Context.SaveChanges();
+
+
+                                        //if (chapter.ParentChapter.ParentChapter != null)
+                                        //{
+                                        //    var other = Context.BookChapter.Where(x => x.BookId == bookId
+                                        //                                               &&
+                                        //                                               x.ParentChapterId ==
+                                        //                                               chapter.ParentChapter.ParentChapterId
+                                        //                                               &&
+                                        //                                               x.Position >
+                                        //                                               chapter.ParentChapter.Position);
+                                        //    int currentPos = chapter.ParentChapter.Position;
+                                        //    foreach (var o in other)
+                                        //    {
+                                        //        o.Position = o.Position + 1;
+                                        //        Context.SaveChanges();
+                                        //    }
+                                        //    chapter.Position = currentPos + 1;
+                                        //    chapter.ParentChapterId = chapter.ParentChapter.ParentChapterId;
+                                        //    Context.SaveChanges();
+                                        //}
+                                        //Context.SaveChanges();
+                                    }
+                                    break;
+                                case "move-up":
+                                    if (chapter.Position > 1)
+                                    {
+                                        var justabove =
+                                           Context.BookChapter.FirstOrDefault(
+                                               x =>
+                                                   x.BookId == bookId &&
+                                                   (x.ParentChapterId ?? 0) == (chapter.ParentChapterId ?? 0)
+                                                   && x.Position == chapter.Position - 1);
+
+                                        if (justabove != null)
+                                        {
+                                            justabove.Position = chapter.Position;
+                                            Context.SaveChanges();
+                                        }
+                                        chapter.Position = chapter.Position - 1;
+                                        Context.SaveChanges();
+                                    }
+                                    break;
+                                case "move-down":
+                                    try
+                                    {
+                                        var all =
+                                            Context.BookChapter.Where(
+                                                x =>
+                                                    x.BookId == bookId &&
+                                                    (x.ParentChapterId ?? 0) == (chapter.ParentChapterId ?? 0));
+                                        var max = all.Max(x => x.Position);
+                                        if (max > chapter.Position)
+                                        {
+                                            var justbelow = all.FirstOrDefault(x => x.Position == chapter.Position + 1);
+                                            if (justbelow != null)
+                                            {
+                                                justbelow.Position = chapter.Position;
+                                                Context.SaveChanges();
+                                            }
+                                            chapter.Position = chapter.Position + 1;
+                                            Context.SaveChanges();
+                                        }
+                                    }
+                                    catch { }
+
+                                    break;
+                            }
+                        }
+                        scope.Complete();
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public void UpdateBelowChapters(int bookId, int chapId,int parentId, int position)
+            {
+                {
+                    //var cntx = new Academic.Database.AcademicContext();
+                    var outerBelow = Context.BookChapter.Where(x => x.BookId == bookId
+                                                                && (x.ParentChapterId ?? 0) ==
+                                                                (parentId)
+                                                                && x.Position >= position && x.Id != chapId).ToList();
+                    foreach (var ob in outerBelow)
+                    {
+                        ob.Position = ob.Position + 1;
+                        Context.SaveChanges();
+                    }
+                    Context.Dispose();
+                }
             }
         }
 

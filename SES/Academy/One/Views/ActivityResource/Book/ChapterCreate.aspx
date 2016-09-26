@@ -32,7 +32,7 @@
                         <tr>
                             <td class="data-type">Subchapter</td>
                             <td class="data-entry">
-                                <asp:CheckBox ID="chkSubChapter" runat="server" />
+                                <asp:CheckBox ID="chkSubChapter" runat="server" Enabled="False" />
                             </td>
                         </tr>
 
@@ -62,6 +62,7 @@
     </div>
     <asp:HiddenField ID="hidBookId" runat="server" Value="0" />
     <asp:HiddenField ID="hidParentChapterId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidChapterId" runat="server" Value="0" />
    <%-- <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSectionId" runat="server" Value="0" />--%>
 

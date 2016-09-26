@@ -53,7 +53,8 @@ namespace One.Views.Course.Section
             set
             {
                 hidSectionName.Value = value;
-                section_.ID = "section_" + SectionId;
+                //section_.Attributes.Add("name","section_"+SectionId);
+                //section_.ID = "section_" + SectionId;
             }
         }
 
@@ -84,7 +85,8 @@ namespace One.Views.Course.Section
                                 Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
                        
                         arUc.SetData(ar.ActivityOrResource,ar.Name,ar.Description
-                            ,ar.ActivityResourceId,ar.ActivityResourceType.ToString(),ar.IconUrl,ar.NavigateUrl);
+                            ,ar.ActivityResourceId,ar.ActivityResourceType.ToString(),ar.IconUrl,ar.NavigateUrl
+                            ,SectionId,EditEnabled,SubjectId);
 
                        pnlActAndRes.Controls.Add(arUc);
                     }
@@ -186,6 +188,7 @@ namespace One.Views.Course.Section
                 lnkAddActOrRes.Enabled = value;
                 lnkAddActOrRes.Visible = value;
             }
+            get { return lnkEdit.Visible; }
         }
     }
 }

@@ -342,6 +342,14 @@
     <Compile Include="Migrations\201609231624288_test.Designer.cs">
       <DependentUpon>201609231624288_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609231742282_no____ideaa.cs" />
+    <Compile Include="Migrations\201609231742282_no____ideaa.Designer.cs">
+      <DependentUpon>201609231742282_no____ideaa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609231909576_position_re_add.cs" />
+    <Compile Include="Migrations\201609231909576_position_re_add.Designer.cs">
+      <DependentUpon>201609231909576_position_re_add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -577,6 +585,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609231624288_test.resx">
       <DependentUpon>201609231624288_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609231742282_no____ideaa.resx">
+      <DependentUpon>201609231742282_no____ideaa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609231909576_position_re_add.resx">
+      <DependentUpon>201609231909576_position_re_add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

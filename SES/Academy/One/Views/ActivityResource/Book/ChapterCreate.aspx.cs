@@ -16,13 +16,45 @@ namespace One.Views.ActivityResource.Book
             {
                 var bookId = Request.QueryString["bId"];
                 var parentChapterId = Request.QueryString["pcId"];
+                var edit = Request.QueryString["edit"];
+
                 //var secId = Request.QueryString["SecId"];
                 try
                 {
-                    if (bookId != null && parentChapterId!=null)
+                    if (bookId != null)
                     {
                         BookId = Convert.ToInt32(bookId);
-                        ParentChapterId = Convert.ToInt32(parentChapterId);
+                    }
+                    if (parentChapterId != null)
+                    {
+                        if (edit != null)
+                        {
+                            if (edit.ToString() == "1")
+                            {
+                                ChapterId = Convert.ToInt32(parentChapterId);
+                                using (var helper = new DbHelper.ActAndRes())
+                                {
+                                    var chapter = helper.GetChapter(ChapterId);
+                                    if (chapter != null)
+                                    {
+                                        txtName.Text = chapter.Title;
+                                        CKEditor1.Text = chapter.Content;
+                                        chkSubChapter.Checked = chapter.ParentChapterId != null;
+                                        chkSubChapter.Enabled = false;
+                                        ParentChapterId = chapter.ParentChapterId ?? 0;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ParentChapterId = Convert.ToInt32(parentChapterId);
+                            if (ParentChapterId > 0 && ChapterId <= 0)
+                            {
+                                chkSubChapter.Enabled = true;
+                                chkSubChapter.Checked = true;
+                            }
+                        }
                     }
                 }
                 catch
@@ -44,24 +76,61 @@ namespace One.Views.ActivityResource.Book
             get { return Convert.ToInt32(hidParentChapterId.Value); }
             set { hidParentChapterId.Value = value.ToString(); }
         }
+        public int ChapterId
+        {
+            get { return Convert.ToInt32(hidChapterId.Value); }
+            set { hidChapterId.Value = value.ToString(); }
+        }
 
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            var chapter = new Academic.DbEntities.ActivityAndResource.BookItems.BookChapter()
-            {
-                BookId = BookId
-                ,Content = CKEditor1.Text
-                ,Title = txtName.Text
-                ,ParentChapterId = ParentChapterId
-                ,
-            };
+            var saved = new Academic.DbEntities.ActivityAndResource.BookItems.BookChapter();
             using (var helper = new DbHelper.ActAndRes())
             {
-                var saved = helper.AddOrUpdateBookChapter(chapter);
-                if(saved!=null)
-                    Response.Redirect("~/Views/ActivityResource/Book/BookView.aspx?bId="+BookId);
+                var chapter = new Academic.DbEntities.ActivityAndResource.BookItems.BookChapter()
+                {
+                    Id = ChapterId,
+                    BookId = BookId
+                    ,
+                    Content = CKEditor1.Text
+                    ,
+                    Title = txtName.Text
+                    ,
+                };
+                if (chkSubChapter.Checked)
+                {
+                    if (ParentChapterId > 0)
+                    {
+                        chapter.ParentChapterId = ParentChapterId;
+                    }
 
+                }
+                else
+                {
+                    // here we need to assign th parent id of the parentchapterId
+                  
+                    var parent = helper.GetChapter(ParentChapterId);
+                    if (parent != null)
+                    {
+                        chapter.ParentChapterId = parent.ParentChapterId;
+                        chapter.Position = parent.Position;
+                    }
+                    
+                }
+
+
+                 saved = helper.AddOrUpdateBookChapter(chapter);
+               
+
+            }
+            using (var helper = new DbHelper.ActAndRes())
+            {
+                if (saved != null)
+                {
+                    helper.UpdateBelowChapters(saved.BookId, saved.Id, saved.ParentChapterId ?? 0, saved.Position);
+                    Response.Redirect("~/Views/ActivityResource/Book/BookView.aspx?arId=" + BookId);
+                }
             }
         }
 

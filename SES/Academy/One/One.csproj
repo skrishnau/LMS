@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\..\packages\AjaxControlToolkit.16.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="CKEditor.NET">
       <HintPath>..\New folder\bin\Release\CKEditor.NET.dll</HintPath>
     </Reference>
@@ -1100,8 +1103,10 @@
     <Content Include="Content\Icons\ActivityResource\Assignment\actions-document-edit-icon.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\assignment_with_yellow_pencil.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\document-icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Book\Add.png" />
     <Content Include="Content\Icons\ActivityResource\Book\Book-icon.png" />
     <Content Include="Content\Icons\ActivityResource\Book\book.png" />
+    <Content Include="Content\Icons\ActivityResource\Book\book_chapter_add.png" />
     <Content Include="Content\Icons\AddEditDelete\add.ico" />
     <Content Include="Content\Icons\AddEditDelete\add_small.png" />
     <Content Include="Content\Icons\AddEditDelete\delete-13.ico" />
@@ -1119,6 +1124,10 @@
     <Content Include="Content\Icons\Add\Add-icon.png" />
     <Content Include="Content\Icons\Add\add_bevel.png" />
     <Content Include="Content\Icons\Arrow\arrow_down.png" />
+    <Content Include="Content\Icons\Arrow\arrow_fat_down.png" />
+    <Content Include="Content\Icons\Arrow\arrow_fat_left.png" />
+    <Content Include="Content\Icons\Arrow\arrow_fat_right.png" />
+    <Content Include="Content\Icons\Arrow\arrow_fat_up.png" />
     <Content Include="Content\Icons\Arrow\arrow_left.png" />
     <Content Include="Content\Icons\Arrow\arrow_right.png" />
     <Content Include="Content\Icons\astreeview-node.gif" />
@@ -1139,7 +1148,18 @@
     <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
     <Content Include="Content\Icons\Edit\edit_orange.png" />
     <Content Include="Content\Icons\Exclamation\exclamation.png" />
+    <Content Include="Content\Icons\File\excell_icon.png" />
+    <Content Include="Content\Icons\File\file_add.png" />
+    <Content Include="Content\Icons\File\file_icon.png" />
+    <Content Include="Content\Icons\File\folder_add.png" />
+    <Content Include="Content\Icons\File\itunes-music-file-icon.PNG" />
+    <Content Include="Content\Icons\File\pdf_icon.ico" />
+    <Content Include="Content\Icons\File\ppt_icon.png" />
+    <Content Include="Content\Icons\File\text_file_icon.png" />
+    <Content Include="Content\Icons\File\video_icon.png" />
+    <Content Include="Content\Icons\File\word_2013_icon.png" />
     <Content Include="Content\Icons\Help\help_blu.png" />
+    <Content Include="Content\Icons\Hide\hide-menu-left.png" />
     <Content Include="Content\Icons\Indent\circle_dot.png" />
     <Content Include="Content\Icons\Indent\square_dot.png" />
     <Content Include="Content\Icons\Participation\degree_icon.jpg" />
@@ -1431,9 +1451,15 @@
     <Content Include="Views\ActivityResource\Book\BookItems\TocItemsUc.ascx" />
     <Content Include="Views\ActivityResource\Book\BookView.aspx" />
     <Content Include="Views\ActivityResource\Book\ChapterCreate.aspx" />
+    <Content Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx" />
+    <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FilePickerDialog.ascx" />
+    <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FilesDisplay.ascx" />
+    <Content Include="Views\ActivityResource\FileResource\FileResourceView.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialogStyles.css" />
+    <Content Include="Views\All_Resusable_Codes\FileTasks\FilePicker.ascx" />
+    <Content Include="Views\All_Resusable_Codes\FileTasks\FileUploadUc.ascx" />
     <Content Include="Views\Class\CourseClassDetail.aspx" />
     <Content Include="Views\Class\CourseSessionCreate.aspx" />
     <Content Include="Views\Class\CourseSessionCreateUC.ascx" />
@@ -1609,6 +1635,9 @@
     <Content Include="Views\Student\StudentGroup\Listing\ListUc.ascx" />
     <Content Include="Views\Student\StudentStructure\SingleStudentAssignUC.ascx" />
     <Content Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx" />
+    <Content Include="Views\Test\AsyncFileUploadCheck\uc1.ascx" />
+    <Content Include="Views\Test\AsyncFileUploadCheck\webform1.aspx" />
+    <Content Include="Views\Test\FileUploadCheck.aspx" />
     <Content Include="Views\Test\javascriptcallfromcode.aspx" />
     <Content Include="Views\Test\javascriptcallfromupdatepanel.aspx" />
     <Content Include="Views\Test\javascriptcallFromusercontrol.ascx" />
@@ -2272,6 +2301,34 @@
     <Compile Include="Views\ActivityResource\Book\ChapterCreate.aspx.designer.cs">
       <DependentUpon>ChapterCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx.cs">
+      <DependentUpon>FileResourceCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx.designer.cs">
+      <DependentUpon>FileResourceCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FilePickerDialog.ascx.cs">
+      <DependentUpon>FilePickerDialog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FilePickerDialog.ascx.designer.cs">
+      <DependentUpon>FilePickerDialog.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FilesDisplay.ascx.cs">
+      <DependentUpon>FilesDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FilesDisplay.ascx.designer.cs">
+      <DependentUpon>FilesDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceView.aspx.cs">
+      <DependentUpon>FileResourceView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceView.aspx.designer.cs">
+      <DependentUpon>FileResourceView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx.cs">
       <DependentUpon>CustomDialog.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2285,6 +2342,20 @@
     </Compile>
     <Compile Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx.designer.cs">
       <DependentUpon>Dialog1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\FileTasks\FilePicker.ascx.cs">
+      <DependentUpon>FilePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\FileTasks\FilePicker.ascx.designer.cs">
+      <DependentUpon>FilePicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\FileTasks\FileUploadUc.ascx.cs">
+      <DependentUpon>FileUploadUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\FileTasks\FileUploadUc.ascx.designer.cs">
+      <DependentUpon>FileUploadUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Class\CourseClassDetail.aspx.cs">
       <DependentUpon>CourseClassDetail.aspx</DependentUpon>
@@ -3483,6 +3554,27 @@
     <Compile Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx.designer.cs">
       <DependentUpon>StudentAssignToAStructure.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Test\AsyncFileUploadCheck\uc1.ascx.cs">
+      <DependentUpon>uc1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Test\AsyncFileUploadCheck\uc1.ascx.designer.cs">
+      <DependentUpon>uc1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Test\AsyncFileUploadCheck\webform1.aspx.cs">
+      <DependentUpon>webform1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Test\AsyncFileUploadCheck\webform1.aspx.designer.cs">
+      <DependentUpon>webform1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Test\FileUploadCheck.aspx.cs">
+      <DependentUpon>FileUploadCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Test\FileUploadCheck.aspx.designer.cs">
+      <DependentUpon>FileUploadCheck.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Test\javascriptcallfromcode.aspx.cs">
       <DependentUpon>javascriptcallfromcode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3605,6 +3697,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\CourseFileResource\" />
     <Folder Include="Views\AcademicPlacement\All\" />
     <Folder Include="Views\AcademicPlacement\SubjectClass\" />
     <Folder Include="Views\AcademicPlacement\SubjectSubscription\" />
@@ -3668,7 +3761,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>1663</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:1240/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

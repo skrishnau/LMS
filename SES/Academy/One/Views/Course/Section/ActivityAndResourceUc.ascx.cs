@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -41,7 +42,8 @@ namespace One.Views.Course.Section
         #endregion
 
 
-        public void SetData(bool actOrRes, string title, string description, int actResId, string actResType, string imageUrl, string navigateUrl)
+        public void SetData(bool actOrRes, string title, string description, int actResId, string actResType, string imageUrl, string navigateUrl
+            ,int sectionId,bool edit,int subjectId)
         {
             ActOrRes = actOrRes;
             Title = title;
@@ -49,7 +51,7 @@ namespace One.Views.Course.Section
             ActResId = actResId;
             ActResType = actResType;
 
-            lblTitle.NavigateUrl = navigateUrl + "?arId=" + actResId;
+            lblTitle.NavigateUrl = navigateUrl +"?SubId="+subjectId+ "&arId=" + actResId+"&secId="+sectionId+"&edit="+(edit?1:0);
             imgIcon.ImageUrl = imageUrl;
         }
 
