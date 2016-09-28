@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
-using Academic.InitialValues;
+//using Academic.InitialValues;
 using Academic.ViewModel;
 
 namespace One.Views.Student.Create

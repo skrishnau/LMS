@@ -125,11 +125,11 @@ namespace One.Views.Student.Batch.Create
 
         #region Student Button Events
 
-        void proguc_StudentsButtonClick(object sender, Values.ProgramBatchEventArgs e)
+        void proguc_StudentsButtonClick(object sender, ProgramBatchEventArgs e)
         {
             pnlStudentEntry.Visible = true;
         }
-        void StudentEntr_CloseClicked(object sender, Values.MessageEventArgs e)
+        void StudentEntr_CloseClicked(object sender, MessageEventArgs e)
         {
             pnlStudentEntry.Visible = false;
         }

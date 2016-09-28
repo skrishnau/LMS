@@ -11,7 +11,7 @@ using System.Web;
 using Academic.Database;
 using Academic.DbEntities;
 using Academic.DbEntities.User;
-using Academic.InitialValues;
+//using Academic.InitialValues;
 using System.IO;
 
 namespace Academic.DbHelper

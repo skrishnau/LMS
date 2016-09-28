@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 
 namespace One.Views.Course.ActivityAndResource.ActResChoose
 {
@@ -32,14 +33,14 @@ namespace One.Views.Course.ActivityAndResource.ActResChoose
 
         private void LoadActivities()
         {
-            var acts = One.Values.Enums.GetActivities();
+            var acts = Enums.GetActivities();
             dlistActivities.DataSource = acts;
             dlistActivities.DataBind();
         }
 
         private void LoadResources()
         {
-            var ress = One.Values.Enums.GetResources();
+            var ress = Enums.GetResources();
             dlistResources.DataSource = ress;
             dlistResources.DataBind();
 

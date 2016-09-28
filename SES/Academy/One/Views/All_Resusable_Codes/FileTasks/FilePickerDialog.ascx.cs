@@ -5,24 +5,22 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using Academic.ViewModel;
 using One.Values;
 
-namespace One.Views.ActivityResource.FileResource.FileResourceItems
+namespace One.Views.All_Resusable_Codes.FileTasks
 {
-    /// <summary>
-    /// Main File. FilePicker is inside this dialog Page.
-    /// </summary>
     public partial class FilePickerDialog : System.Web.UI.UserControl
     {
         #region Events Declaration
 
-        public event EventHandler<IdAndNameEventArgs> ItemClick;
-        public event EventHandler<IdAndNameEventArgs> UploadClicked;
+        public event EventHandler<FileResourceEventArgs> ItemClick;
+        public event EventHandler<FileResourceEventArgs> UploadClicked;
         public event EventHandler<EventArgs> DialogCloseClicked;
 
-        public event EventHandler<IdAndNameEventArgs> SaveClick;
-        public event EventHandler<IdAndNameEventArgs> OkClick;
+        public event EventHandler<FileResourceEventArgs> SaveClick;
+        public event EventHandler<FileResourceEventArgs> OkClick;
         public event EventHandler<EventArgs> CancelClick;
 
         #endregion
@@ -32,7 +30,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             FilePicker1.UploadClicked += FilePicker1_UploadClicked;
         }
 
-        public void FilePicker1_UploadClicked(object sender, IdAndNameEventArgs e)
+        public void FilePicker1_UploadClicked(object sender, FileResourceEventArgs e)
         {
             if (UploadClicked != null)
             {
@@ -149,7 +147,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             //deletion of file from server
             //if (DialogCloseClicked != null)
             {
-                var latest = Session["LatestFile" + PageKey] as IdAndNameEventArgs;
+                var latest = Session["LatestFile" + PageKey] as FileResourceEventArgs;
                 if (latest != null)
                 {
                     System.IO.File.Delete(Server.MapPath(latest.FilePath));
@@ -169,7 +167,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
         //            var split = arg.ToString().Split(new char[] { ',' });
         //            if (split.Count() == 2)
         //            {
-        //                ItemClick(this, new IdAndNameEventArgs()
+        //                ItemClick(this, new FileResourceEventArgs()
         //                {
         //                    Id = Convert.ToInt32(split[0])
         //                    ,
@@ -279,8 +277,8 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
         //}
 
         //perfect and tested
-       
-        
+
+
         private int count = 0;
         /// <summary>
         /// Gets New File Name. Before calling this initialize "count" to 0;
@@ -290,7 +288,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
         /// <returns></returns>
         private string GetNewFileName(Academic.DbHelper.DbHelper.WorkingWithFiles fhelper, string fileName)
         {
-            if (count < StaticValues.MaximimNumberOfTimesToCheckForSameFileName)
+            if (count < DbHelper.StaticValues.MaximimNumberOfTimesToCheckForSameFileName)
             {
                 count++;
                 if (fhelper.DoesFileExists(fileName))
@@ -307,13 +305,13 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             }
             return "";
         }
-        
+
         //protected void btnDialogSave_Click(object sender, EventArgs e)
         //{
         //    dialogdiv.Visible = false;
         //    if (SaveClick != null)
         //    {
-        //        SaveClick(sender, new IdAndNameEventArgs());
+        //        SaveClick(sender, new FileResourceEventArgs());
         //    }
         //}
 
@@ -322,7 +320,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
         //    dialogdiv.Visible = false;
         //    if (OkClick != null)
         //    {
-        //        OkClick(sender, new IdAndNameEventArgs());
+        //        OkClick(sender, new FileResourceEventArgs());
         //    }
         //}
 

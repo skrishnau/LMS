@@ -8,7 +8,7 @@ using Academic.DbHelper;
 using One.Values;
 using One.Values.MemberShip;
 using System.IO;
-using Academic.InitialValues;
+//using Academic.InitialValues;
 
 namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
 {
@@ -151,7 +151,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                             {
                                 if (CloseClicked != null)
                                 {
-                                    CloseClicked(this, StaticValues.CancelClickedMessageEventArgs);
+                                    CloseClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
                                 }
                             }
                         }
@@ -199,7 +199,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                         ,
                         DisplayName = Path.GetFileName(imageFile.FileName)
                         ,
-                        FileDirectory = StaticValue.UserImageDirectory
+                        FileDirectory = DbHelper.StaticValues.UserImageDirectory
                         ,
                         FileName = Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
                         ,
@@ -224,7 +224,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                             {
                                 //save the image with this name
                                 //var filename = Path.GetFileName(file.FileName);
-                                var path = Path.Combine(Server.MapPath(StaticValue.UserImageDirectory),
+                                var path = Path.Combine(Server.MapPath(DbHelper.StaticValues.UserImageDirectory),
                                     image.FileName);
                                 imageFile.SaveAs(path);
 
@@ -369,7 +369,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             if (CloseClicked != null)
-                CloseClicked(this, StaticValues.CancelClickedMessageEventArgs);
+                CloseClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
         }
     }
 }

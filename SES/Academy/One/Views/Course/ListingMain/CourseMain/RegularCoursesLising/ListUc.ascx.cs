@@ -36,13 +36,13 @@ namespace One.Views.Course.ListingMain.CourseMain.RegularCoursesLising
             }
         }
 
-        void CourseCreateUc_CancelClicked(object sender, Values.MessageEventArgs e)
+        void CourseCreateUc_CancelClicked(object sender, MessageEventArgs e)
         {
             cmbNewSubject.ClearSelection();
             MultiView1.ActiveViewIndex = 0;
         }
 
-        void CourseCreateUc_SaveClicked(object sender, Values.MessageEventArgs e)
+        void CourseCreateUc_SaveClicked(object sender, MessageEventArgs e)
         {
             if (e.SaveSuccess)
             {
@@ -51,18 +51,18 @@ namespace One.Views.Course.ListingMain.CourseMain.RegularCoursesLising
             }
         }
 
-        void CourseCreateUc_NewCategoryButtonClicked(object sender, Values.MessageEventArgs e)
+        void CourseCreateUc_NewCategoryButtonClicked(object sender, MessageEventArgs e)
         {
             MultiView1.ActiveViewIndex = 4;
         }
 
-        void CategoryCreate_CancelClicked(object sender, Values.MessageEventArgs e)
+        void CategoryCreate_CancelClicked(object sender, MessageEventArgs e)
         {
             cmbNewSubject.SelectedIndex = 1;
             MultiView1.ActiveViewIndex = 1;
         }
 
-        void CategoryCreate_SaveClicked(object sender, Values.MessageEventArgs e)
+        void CategoryCreate_SaveClicked(object sender, MessageEventArgs e)
         {
             if (e.SaveSuccess)
             {

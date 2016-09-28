@@ -20,9 +20,11 @@ namespace Academic.DbEntities
         public int CreatedBy { get; set; }
         public int? ModifiedBy { get; set; }
 
+
+
         public bool? Void { get; set; }
 
-        
-
+        //icon path
+        public string IconPath { get; set; }
     }
 }

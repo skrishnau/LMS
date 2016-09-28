@@ -14,7 +14,7 @@ namespace One.Views.Structure.All.UserControls.StructureView
     public partial class TreeViewWithCheckBoxInLeft : System.Web.UI.UserControl
     {
 
-        public event EventHandler<Values.BatchEventArgs> CheckChanged;
+        public event EventHandler<BatchEventArgs> CheckChanged;
         protected void Page_Load(object sender, EventArgs e)
         {
             //var user = Page.User as CustomPrincipal;
@@ -169,7 +169,7 @@ namespace One.Views.Structure.All.UserControls.StructureView
                 }
         }
 
-        void puc_CheckedChange(object sender, Values.BatchEventArgs e)
+        void puc_CheckedChange(object sender, BatchEventArgs e)
         {
             if (CheckChanged != null)
             {

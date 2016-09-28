@@ -43,7 +43,7 @@ namespace Academic.Database
 
 
         //Event
-        public DbSet<DbEntities.Events.Event> Event{ get; set; }
+        public DbSet<DbEntities.Events.Event> Event { get; set; }
 
 
         //------------------------- GRADE ---------------------------//
@@ -91,10 +91,14 @@ namespace Academic.Database
 
         public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
 
-        public DbSet<DbEntities.ActivityAndResource.BookResource> BookResource{ get; set; }
+        public DbSet<DbEntities.ActivityAndResource.BookResource> BookResource { get; set; }
         public DbSet<DbEntities.ActivityAndResource.BookItems.BookChapter> BookChapter { get; set; }
 
         public DbSet<DbEntities.ActivityAndResource.UrlResource> UrlResource { get; set; }
+
+        public DbSet<DbEntities.ActivityAndResource.FileResource> FileResource { get; set; }
+        public DbSet<DbEntities.ActivityAndResource.FileItems.FileResourceFiles> FileResourceFiles { get; set; }
+
 
         //$$$$$$$$$$$$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -144,15 +148,17 @@ namespace Academic.Database
         public DbSet<DbEntities.Marks.ExamMarks> ExamMarks { get; set; }
 
         public DbSet<DbEntities.Resources.AccessPermission> AccessPermission { get; set; }
-        public DbSet<DbEntities.Resources.ResourceFile> ResourceFile { get; set; }
-        public DbSet<DbEntities.Resources.Links> Links { get; set; }
+        // public DbSet<DbEntities.Resources.ResourceFile> ResourceFile { get; set; }
         public DbSet<DbEntities.Resources.Photo> Photo { get; set; }
+
+        /*
         public DbSet<DbEntities.Resources.Resource> Resource { get; set; }
+        public DbSet<DbEntities.Resources.Links> Links { get; set; }
 
         public DbSet<DbEntities.Resources.ResourcesSend.StudentGroupResourceShare> StudentGroupResourceShare { get; set; }
         public DbSet<DbEntities.Resources.ResourcesSend.StudentResourceShare> StudentResourceShare { get; set; }
         public DbSet<DbEntities.Resources.ResourcesSend.TeacherResourceShare> TeacherResourceShare { get; set; }
-
+        */
 
         public DbSet<DbEntities.Structure.Faculty> Faculty { get; set; }
         //public DbSet<DbEntities.Structure.FacultyCategory> FacultyCategory { get; set; }
@@ -167,14 +173,18 @@ namespace Academic.Database
         public DbSet<DbEntities.Students.Fee> Fee { get; set; }
         public DbSet<DbEntities.Students.Scholarship> Scholarship { get; set; }
         public DbSet<DbEntities.Students.Student> Student { get; set; }
-        public DbSet<DbEntities.Students.StudentFile> StudentFile { get; set; }
         public DbSet<DbEntities.Students.StudentGroup> StudentGroup { get; set; }
-        public DbSet<DbEntities.Students.StudentGroupResource> StudentGroupResource { get; set; }
         public DbSet<DbEntities.Students.StudentNotification> StudentNotification { get; set; }
         public DbSet<DbEntities.Students.StudentPreviousStudies> StudentPreviousStudies { get; set; }
         public DbSet<DbEntities.Students.StudentTransfer> StudentTransfer { get; set; }
         public DbSet<DbEntities.Students.StudentTransferType> TransferType { get; set; }
         public DbSet<DbEntities.Students.StudentGroupStudent> StudentGroupStudent { get; set; }
+
+        /*
+        public DbSet<DbEntities.Students.StudentFile> StudentFile { get; set; }
+        public DbSet<DbEntities.Students.StudentGroupResource> StudentGroupResource { get; set; }
+         
+        */
 
         public DbSet<DbEntities.Batches.Batch> Batch { get; set; }
         public DbSet<DbEntities.Batches.ProgramBatch> ProgramBatch { get; set; }
@@ -182,6 +192,8 @@ namespace Academic.Database
 
 
         public DbSet<DbEntities.Subjects.Subject> Subject { get; set; }
+        public DbSet<DbEntities.Subjects.SubjectFile> SubjectFile { get; set; }
+
         public DbSet<DbEntities.Subjects.SubjectGroup> SubjectGroup { get; set; }
         public DbSet<DbEntities.Subjects.SubjectCategory> SubjectCategory { get; set; }
         public DbSet<DbEntities.Subjects.SubjectGroupSubject> SubjectGroupSubject { get; set; }

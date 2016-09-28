@@ -56,7 +56,7 @@ namespace One.Views.Course
             set { this.hidSelectedCategory.Value = value.ToString(); }
         }
 
-        void courseCreate_SaveClicked(object sender, Values.MessageEventArgs e)
+        void courseCreate_SaveClicked(object sender, MessageEventArgs e)
         {
             var user = User as CustomPrincipal;
             if (user != null)
@@ -69,7 +69,7 @@ namespace One.Views.Course
             MultiView1.ActiveViewIndex = 0;
         }
 
-        void categoryCreate_SaveClicked(object sender, Values.MessageEventArgs e)
+        void categoryCreate_SaveClicked(object sender, MessageEventArgs e)
         {
             var user = User as CustomPrincipal;
             if (user != null)
@@ -311,7 +311,7 @@ namespace One.Views.Course
 
 
 
-        void catUc_NameClicked(object sender, Values.DataEventArgs e)
+        void catUc_NameClicked(object sender,DataEventArgs e)
         {
             //load courses in this category
 

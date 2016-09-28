@@ -67,7 +67,7 @@ namespace One.Views.Structure.All.UserControls
                     {
                         if (SaveClickedEvent != null)
                         {
-                            SaveClickedEvent(this, StaticValues.SuccessSaveMessageEventArgs);
+                            SaveClickedEvent(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                         }
                         ClearCreateTextBoxes();
                     }
@@ -75,7 +75,7 @@ namespace One.Views.Structure.All.UserControls
                     {
                         if (SaveClickedEvent != null)
                         {
-                            SaveClickedEvent(this, StaticValues.ErrorSaveMessageEventArgs);
+                            SaveClickedEvent(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
                         }
                     }
                 }
@@ -93,7 +93,7 @@ namespace One.Views.Structure.All.UserControls
         {
             if (SaveClickedEvent != null)
             {
-                SaveClickedEvent(this, StaticValues.EmptyMessageEventArgs);
+                SaveClickedEvent(this, DbHelper.StaticValues.EmptyMessageEventArgs);
             }
         }
     }

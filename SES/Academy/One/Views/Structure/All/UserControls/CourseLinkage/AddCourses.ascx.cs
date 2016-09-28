@@ -174,7 +174,7 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
             LoadCourses(id);
         }
 
-        void catUc_NameClicked(object sender, Values.DataEventArgs e)
+        void catUc_NameClicked(object sender, DataEventArgs e)
         {
             //load courses in this category
 
@@ -514,7 +514,7 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
             {
                 if (SaveClicked != null)
                 {
-                    SaveClicked(this, Values.StaticValues.SuccessSaveMessageEventArgs);
+                    SaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                 }
                 AddDataToSavedViewState();
                 ViewState["SelectedCourses"] = new List<Academic.ViewModel.Subject.Subject>();
@@ -537,7 +537,7 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
 
             if (CancelClicked != null)
             {
-                CancelClicked(this, Values.StaticValues.CancelClickedMessageEventArgs);
+                CancelClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
             AddDataToSavedViewState();
             ViewState["SelectedCourses"] = new List<Academic.ViewModel.Subject.Subject>();

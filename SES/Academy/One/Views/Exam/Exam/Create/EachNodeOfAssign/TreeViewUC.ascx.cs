@@ -443,7 +443,7 @@ namespace One.Views.Exam.Exam.Create.EachNodeOfAssign
 
 
 
-        void uc_StudentsButtonClick(object sender, Values.RunningClassEventArgs e)
+        void uc_StudentsButtonClick(object sender, RunningClassEventArgs e)
         {
             TreeNodeUC node = (TreeNodeUC)sender;
             StudentEntry entry =

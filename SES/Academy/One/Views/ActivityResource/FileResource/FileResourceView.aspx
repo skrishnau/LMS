@@ -1,16 +1,20 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FileResourceView.aspx.cs" Inherits="One.Views.ActivityResource.FileResource.FileResourceView" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="FileResourceView.aspx.cs" Inherits="One.Views.ActivityResource.FileResource.FileResourceView" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content runat="server" ID="bodycontent" ContentPlaceHolderID="Body">
     <div>
-    
+        <iframe runat="server" ClientIDMode="Static" ID="frame" 
+            sandbox="allow-scripts,allow-same-origin"></iframe>
     </div>
-    </form>
-</body>
-</html>
+
+    <asp:HiddenField ID="hidFileResourceId" runat="server" Value="0"/>
+</asp:Content>
+<asp:Content ID="Content1" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        #frame {
+            width: 442px;
+            height: 264px;
+        }
+    </style>
+</asp:Content>
+

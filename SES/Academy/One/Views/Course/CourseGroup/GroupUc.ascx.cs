@@ -94,7 +94,7 @@ namespace One.Views.Course.CourseGroup
             ResetControls();
             if (CancelClicked != null)
             {
-                CancelClicked(this, StaticValues.CancelClickedMessageEventArgs);
+                CancelClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
         }
 
@@ -103,7 +103,7 @@ namespace One.Views.Course.CourseGroup
             ResetControls();
             if (CancelClicked != null)
             {
-                CancelClicked(this, StaticValues.CancelClickedMessageEventArgs);
+                CancelClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
         }
 
@@ -221,7 +221,7 @@ namespace One.Views.Course.CourseGroup
                         //Response.Redirect("~/Views/Course/ListingMain/CourseMain/ListSubjectGroup.aspx");
                         if (SaveClicked != null)
                         {
-                            SaveClicked(this, StaticValues.SuccessSaveMessageEventArgs);
+                            SaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                         }
                     }
                     else

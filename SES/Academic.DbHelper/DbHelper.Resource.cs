@@ -13,6 +13,7 @@ namespace Academic.DbHelper
 {
     public partial class DbHelper
     {
+        /*
         public class Resource : IDisposable
         {
             private AcademicContext Context;
@@ -130,6 +131,6 @@ namespace Academic.DbHelper
             }
         }
 
-
+        */
     }
 }

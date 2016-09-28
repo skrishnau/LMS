@@ -1,4 +1,6 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FilePickerDialog.ascx.cs" Inherits="One.Views.ActivityResource.FileResource.FileResourceItems.FilePickerDialog" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FilePickerDialog.ascx.cs" Inherits="One.Views.All_Resusable_Codes.FileTasks.FilePickerDialog" %>
+
+
 <%@ Register Src="~/Views/All_Resusable_Codes/FileTasks/FilePicker.ascx" TagPrefix="uc1" TagName="FilePicker" %>
 
 

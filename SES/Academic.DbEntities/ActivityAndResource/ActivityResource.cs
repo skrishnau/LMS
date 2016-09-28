@@ -17,7 +17,7 @@ namespace Academic.DbEntities.ActivityAndResource
 
         /// <summary>
         /// 1:Assignment, 2:
-        /// 40: Book
+        /// 1: Book, 2:File, 3:Folder
         /// </summary>
         public byte ActivityResourceType { get; set; }
 

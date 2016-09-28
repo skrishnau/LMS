@@ -30,7 +30,7 @@ namespace One.Views.AcademicPlacement.RunningClass.CheckBoxOnly
             //string passedArgument = Request.Params.Get("__EVENTARGUMENT");
             //string controlName = Request.Params.Get("__EVENTTARGET");
             //string[] values = passedArgument.Split(new char[] { ',' });
-            //if (values.Length == 2 && controlName == "imgStdGrp")
+            //if (Length == 2 && controlName == "imgStdGrp")
             //{
             //    //hidX.Value = values[0];
             //    //hidY.Value = values[1];
@@ -483,15 +483,15 @@ namespace One.Views.AcademicPlacement.RunningClass.CheckBoxOnly
         {
             using (var helper = new DbHelper.Structure())
             {
-                var cnt = helper.GetMaximumNoOfSubyears(SchoolId: Values.Session.GetSchool(Session));
-                List<ListItem> switchItems = new List<ListItem>();
-                if (cnt >= 1) { switchItems.Add(new ListItem("1st", "0")); }
-                if (cnt >= 2) { switchItems.Add(new ListItem("2nd", "1")); }
-                if (cnt >= 3) { switchItems.Add(new ListItem("3rd", "2")); }
-                if (cnt >= 4) { switchItems.Add(new ListItem("4th", "3")); }
-                if (cnt >= 5) { switchItems.Add(new ListItem("5th", "4")); }
+                //var cnt = helper.GetMaximumNoOfSubyears(SchoolId: Session.GetSchool(Session));
+                //List<ListItem> switchItems = new List<ListItem>();
+                //if (cnt >= 1) { switchItems.Add(new ListItem("1st", "0")); }
+                //if (cnt >= 2) { switchItems.Add(new ListItem("2nd", "1")); }
+                //if (cnt >= 3) { switchItems.Add(new ListItem("3rd", "2")); }
+                //if (cnt >= 4) { switchItems.Add(new ListItem("4th", "3")); }
+                //if (cnt >= 5) { switchItems.Add(new ListItem("5th", "4")); }
 
-                cmbSubYearSwitch.Items.AddRange(switchItems.ToArray());
+                //cmbSubYearSwitch.Items.AddRange(switchItems.ToArray());
             }
         }
 
@@ -547,7 +547,7 @@ namespace One.Views.AcademicPlacement.RunningClass.CheckBoxOnly
         //======================Student Group Dialog ========================//
 
         public TreeNodeUC NodeClicked { get; set; }
-        void uc_StudentsButtonClick(object sender, Values.RunningClassEventArgs e)
+        void uc_StudentsButtonClick(object sender, RunningClassEventArgs e)
         {
             TreeNodeUC node = (TreeNodeUC)sender;
             pnlStudentEntry.Visible = true;
@@ -568,12 +568,12 @@ namespace One.Views.AcademicPlacement.RunningClass.CheckBoxOnly
             //ViewState["node_clicked"] = node;
 
         }
-        void StudentEntry1_CloseClicked(object sender, Values.MessageEventArgs e)
+        void StudentEntry1_CloseClicked(object sender, MessageEventArgs e)
         {
             pnlStudentEntry.Visible = false;
         }
 
-        void StudentEntry1_SaveClicked(object sender, Values.RunningClassEventArgs e)
+        void StudentEntry1_SaveClicked(object sender, RunningClassEventArgs e)
         {
             //TreeNodeUC node = (TreeNodeUC) Context.Items["node_clicked"];// ViewState["node_clicked"];
             TreeNodeUC node = (TreeNodeUC)Session["node_clicked"];

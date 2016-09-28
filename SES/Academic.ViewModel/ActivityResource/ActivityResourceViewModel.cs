@@ -13,6 +13,8 @@ namespace Academic.ViewModel.ActivityResource
         public string   Name { get; set; }
         public string Description { get; set; }
 
+        public bool ShowDescriptionOnPage { get; set; }
+
         public DateTime Date1 { get; set; }
         public DateTime Date2 { get; set; }
         public DateTime Date3 { get; set; }
@@ -46,6 +48,23 @@ namespace Academic.ViewModel.ActivityResource
 
         public string IconUrl { get; set; }
         public string NavigateUrl { get; set; }
-    
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">To dispaly as title of activity/ resource</param>
+        /// <param name="description">description</param>
+        /// <param name="showDescriptionOnCoursePage">to show or not --description</param>
+        /// <param name="navigateUrl">Url of page to go to when clicked on Name of act/res</param>
+        /// <param name="iconUrl">icon to show with name </param>
+        public void SetOtherValues(string name, string description, bool showDescriptionOnCoursePage
+            , string navigateUrl, string iconUrl)
+        {
+            Name = name;
+            this.Description = description;
+            ShowDescriptionOnPage = showDescriptionOnCoursePage;
+            NavigateUrl = navigateUrl;
+            IconUrl = iconUrl;
+        }
     }
 }

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using One.Values;
+using Academic.DbHelper;
+//using One.Values;
 
 namespace One.Views.Structure.All.UserControls.StructureView
 {
@@ -101,7 +102,7 @@ namespace One.Views.Structure.All.UserControls.StructureView
                         PlaceHolder1.Controls.Add(new Image()
                         {
                             Width = 18,
-                            ImageUrl = Values.StaticValues.TreeLinkImage[i]
+                            ImageUrl = DbHelper.StaticValues.TreeLinkImage[i]
                         });
                     }
                 }

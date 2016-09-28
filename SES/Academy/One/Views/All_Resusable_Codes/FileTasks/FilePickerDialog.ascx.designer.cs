@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.ActivityResource.FileResource.FileResourceItems {
+namespace One.Views.All_Resusable_Codes.FileTasks {
     
     
     public partial class FilePickerDialog {

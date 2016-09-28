@@ -699,11 +699,11 @@ namespace One.Views.UserControls.Structure
                     {
                         if (OnSaveClicked != null)
                         {
-                            OnSaveClicked(this, StaticValues.SuccessSaveMessageEventArgs);
+                            OnSaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                         }
                         else
                         {
-                            OnSaveClicked(this, StaticValues.ErrorSaveMessageEventArgs);
+                            OnSaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
                         }
                     }
                 }

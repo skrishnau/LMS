@@ -1451,14 +1451,18 @@
     <Content Include="Views\ActivityResource\Book\BookItems\TocItemsUc.ascx" />
     <Content Include="Views\ActivityResource\Book\BookView.aspx" />
     <Content Include="Views\ActivityResource\Book\ChapterCreate.aspx" />
+    <Content Include="Views\ActivityResource\FileResource\DownloadingPage.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx" />
-    <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FilePickerDialog.ascx" />
+    <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FileOption.ascx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FilesDisplay.ascx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceView.aspx" />
+    <Content Include="Views\ActivityResource\Url\UrlCreate.aspx" />
+    <Content Include="Views\ActivityResource\Url\UrlView.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialogStyles.css" />
     <Content Include="Views\All_Resusable_Codes\FileTasks\FilePicker.ascx" />
+    <Content Include="Views\All_Resusable_Codes\FileTasks\FilePickerDialog.ascx" />
     <Content Include="Views\All_Resusable_Codes\FileTasks\FileUploadUc.ascx" />
     <Content Include="Views\Class\CourseClassDetail.aspx" />
     <Content Include="Views\Class\CourseSessionCreate.aspx" />
@@ -1512,6 +1516,7 @@
     <Content Include="Views\NoticeBoard\NoticeListing.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
+    <Content Include="Views\Resource\Note.txt" />
     <Content Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx" />
     <Content Include="Views\RestrictionAccess\ChooseRestrictionTypeUC.ascx" />
     <Content Include="Views\RestrictionAccess\Custom\EachRestriction.ascx" />
@@ -2301,6 +2306,13 @@
     <Compile Include="Views\ActivityResource\Book\ChapterCreate.aspx.designer.cs">
       <DependentUpon>ChapterCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\DownloadingPage.aspx.cs">
+      <DependentUpon>DownloadingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\DownloadingPage.aspx.designer.cs">
+      <DependentUpon>DownloadingPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx.cs">
       <DependentUpon>FileResourceCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2308,12 +2320,12 @@
     <Compile Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx.designer.cs">
       <DependentUpon>FileResourceCreate.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FilePickerDialog.ascx.cs">
-      <DependentUpon>FilePickerDialog.ascx</DependentUpon>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FileOption.ascx.cs">
+      <DependentUpon>FileOption.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FilePickerDialog.ascx.designer.cs">
-      <DependentUpon>FilePickerDialog.ascx</DependentUpon>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FileOption.ascx.designer.cs">
+      <DependentUpon>FileOption.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FilesDisplay.ascx.cs">
       <DependentUpon>FilesDisplay.ascx</DependentUpon>
@@ -2328,6 +2340,20 @@
     </Compile>
     <Compile Include="Views\ActivityResource\FileResource\FileResourceView.aspx.designer.cs">
       <DependentUpon>FileResourceView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Url\UrlCreate.aspx.cs">
+      <DependentUpon>UrlCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Url\UrlCreate.aspx.designer.cs">
+      <DependentUpon>UrlCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Url\UrlView.aspx.cs">
+      <DependentUpon>UrlView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Url\UrlView.aspx.designer.cs">
+      <DependentUpon>UrlView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx.cs">
       <DependentUpon>CustomDialog.ascx</DependentUpon>
@@ -2349,6 +2375,13 @@
     </Compile>
     <Compile Include="Views\All_Resusable_Codes\FileTasks\FilePicker.ascx.designer.cs">
       <DependentUpon>FilePicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\FileTasks\FilePickerDialog.ascx.cs">
+      <DependentUpon>FilePickerDialog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\FileTasks\FilePickerDialog.ascx.designer.cs">
+      <DependentUpon>FilePickerDialog.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\All_Resusable_Codes\FileTasks\FileUploadUc.ascx.cs">
       <DependentUpon>FileUploadUc.ascx</DependentUpon>

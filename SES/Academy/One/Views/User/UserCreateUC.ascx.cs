@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
-using Academic.InitialValues;
+//using Academic.InitialValues;
 using One.Values.MemberShip;
 using System.IO;
 
@@ -23,7 +23,7 @@ namespace One.Views.User
             {
                 DbHelper.ComboLoader.LoadGender(ref cmbGender);
                 DateChooser1.Validate = false;
-                cmbEmailDisplay.DataSource = Values.Enums.GetDisplayModes();
+                cmbEmailDisplay.DataSource = Enums.GetDisplayModes();
                 cmbEmailDisplay.DataBind();
                 cmbEmailDisplay.SelectedIndex = 1;
 
@@ -35,7 +35,7 @@ namespace One.Views.User
                 {
                     if (
                         Values.Session.GetUserCapability(Session)
-                            .Contains(Values.Enums.UserCapabilities.UserCreate.ToString()))
+                            .Contains(Enums.UserCapabilities.UserCreate.ToString()))
                     {
 
                         //check for update not done
@@ -287,7 +287,7 @@ namespace One.Views.User
                                     ,
                                     DisplayName = Path.GetFileName(imageFile.FileName)
                                     ,
-                                    FileDirectory = StaticValue.UserImageDirectory
+                                    FileDirectory = DbHelper.StaticValues.UserImageDirectory
                                     ,
                                     FileName = Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
                                     ,
@@ -312,7 +312,7 @@ namespace One.Views.User
                                         {
                                             //save the image with this name
                                             //var filename = Path.GetFileName(file.FileName);
-                                            var path = Path.Combine(Server.MapPath(StaticValue.UserImageDirectory),
+                                            var path = Path.Combine(Server.MapPath(DbHelper.StaticValues.UserImageDirectory),
                                                 image.FileName);
                                             imageFile.SaveAs(path);
 

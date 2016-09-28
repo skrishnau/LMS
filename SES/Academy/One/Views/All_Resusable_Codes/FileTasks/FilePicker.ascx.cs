@@ -7,14 +7,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.ViewModel;
 using System.IO;
+using Academic.DbHelper;
 using One.Values;
 
 namespace One.Views.All_Resusable_Codes.FileTasks
 {
     public partial class FilePicker : System.Web.UI.UserControl
     {
-        //public event EventHandler<IdAndNameEventArgs> FileChoosen;
-        public event EventHandler<IdAndNameEventArgs> UploadClicked;
+        //public event EventHandler<FileResourceEventArgs> FileChoosen;
+        public event EventHandler<FileResourceEventArgs> UploadClicked;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -75,7 +76,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                     return;
 
                 }
-                var fileUploadPath = Path.Combine(Server.MapPath(StaticValues.CourseFilesLocation), guidName);
+                var fileUploadPath = Path.Combine(Server.MapPath(DbHelper.StaticValues.CourseFilesLocation), guidName);
                 file_upload.SaveAs(fileUploadPath);
 
                 //copied from another file so keep it.
@@ -84,14 +85,15 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 //      "top.$get(\"" + hdnFileFolder.ClientID + "\").value = '" + url + "';", true);
 
                 var iconPath = GetIconForFile(guidName);
-                var valuetoSave = new IdAndNameEventArgs()
+                var valuetoSave = new FileResourceEventArgs()
                                     {
                                         FileDisplayName = fileName,
-                                        FilePath = StaticValues.CourseFilesLocation
+                                        FilePath = DbHelper.StaticValues.CourseFilesLocation
                                             + guidName
                                         ,
                                         IconPath = iconPath
-                                        ,
+                                        ,FileSizeInBytes = file_upload.PostedFile.ContentLength
+                                        ,FileType = file_upload.PostedFile.ContentType
                                     };
                 Session["LatestFile" + PageKey] = valuetoSave;
             }
@@ -99,10 +101,10 @@ namespace One.Views.All_Resusable_Codes.FileTasks
 
         private string GetNewFileName( string fileName)
         {
-            if (count < StaticValues.MaximimNumberOfTimesToCheckForSameFileName)
+            if (count < DbHelper.StaticValues.MaximimNumberOfTimesToCheckForSameFileName)
             {
                 count++;
-                if (File.Exists(Path.Combine(Server.MapPath(StaticValues.CourseFilesLocation), fileName)))
+                if (File.Exists(Path.Combine(Server.MapPath(DbHelper.StaticValues.CourseFilesLocation), fileName)))
                 {
                     var extension = Path.GetExtension(fileName);
                     var s = Guid.NewGuid().ToString() + extension;
@@ -118,6 +120,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
         }
 
         private int count = 0;
+        /*
         /// <summary>
         /// Gets New File Name. Before calling this initialize "count" to 0;
         /// </summary>
@@ -142,42 +145,42 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 }
             }
             return "";
-        }
+        }*/
 
         private string GetIconForFile(string path)
         {
-            var iconLocation = StaticValues.IconsOfFilesLocation;//file_icon.png
-            var fileLocation = StaticValues.CourseFilesLocation;
+            var iconLocation = DbHelper.StaticValues.IconsOfFilesLocation;//file_icon.png
+            var fileLocation = DbHelper.StaticValues.CourseFilesLocation;
             var extension = Path.GetExtension(path);
             var fileName = Path.GetFileName(path);
             if (extension != null)
             {
                 extension = extension.TrimStart(new char[] { '.' });
-                if (StaticValues.TextFormat == extension)
+                if (DbHelper.StaticValues.TextFormat == extension)
                 {
                     return iconLocation + "text_file_icon.png";
                 }
-                if (StaticValues.PdfFormat == extension)
+                if (DbHelper.StaticValues.PdfFormat == extension)
                 {
                     return iconLocation + "pdf_icon.ico";
                 }
-                if (StaticValues.ImageFormatList.Contains(extension))
+                if (DbHelper.StaticValues.ImageFormatList.Contains(extension))
                 {
                     return fileLocation + fileName;
                 }
-                if (StaticValues.VidoFormatList.Contains(extension))
+                if (DbHelper.StaticValues.VidoFormatList.Contains(extension))
                 {
                     return iconLocation + "video_icon.png";
                 }
-                if (StaticValues.WordFormatList.Contains(extension))
+                if (DbHelper.StaticValues.WordFormatList.Contains(extension))
                 {
                     return iconLocation + "word_2013_icon.png";
                 }
-                if (StaticValues.ExcelFormatList.Contains(extension))
+                if (DbHelper.StaticValues.ExcelFormatList.Contains(extension))
                 {
                     return iconLocation + "excell_icon.png";
                 }
-                if (StaticValues.PowerPointFormatList.Contains(extension))
+                if (DbHelper.StaticValues.PowerPointFormatList.Contains(extension))
                 {
                     return iconLocation + "ppt_icon.png";
                 }
@@ -187,7 +190,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
-            var latest = Session["LatestFile" + PageKey] as IdAndNameEventArgs;
+            var latest = Session["LatestFile" + PageKey] as FileResourceEventArgs;
             if (latest != null)
             {
                 if (UploadClicked != null)

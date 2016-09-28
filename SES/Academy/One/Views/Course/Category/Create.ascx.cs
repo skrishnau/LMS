@@ -81,7 +81,7 @@ namespace One.Views.Course.Category
                         ResetControls();
                         if (SaveClicked != null)
                         {
-                            var args = StaticValues.SuccessSaveMessageEventArgs;
+                            var args = DbHelper.StaticValues.SuccessSaveMessageEventArgs;
                             args.SavedId = save.Id;
                             args.SavedName = save.Name;
                             SaveClicked(this, args);
@@ -96,7 +96,7 @@ namespace One.Views.Course.Category
                     {
                         if (SaveClicked != null)
                         {
-                            SaveClicked(this, StaticValues.ErrorSaveMessageEventArgs);
+                            SaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
                         }
                     }
                 }
@@ -109,7 +109,7 @@ namespace One.Views.Course.Category
             if (CancelClicked != null)
             {
                 ResetControls();
-                CancelClicked(this, StaticValues.CancelClickedMessageEventArgs);
+                CancelClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
             else if (!String.IsNullOrEmpty(hidRetUrl.Value))
             {

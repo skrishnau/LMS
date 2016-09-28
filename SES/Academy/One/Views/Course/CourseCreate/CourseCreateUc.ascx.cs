@@ -90,7 +90,7 @@ namespace One.Views.Course.CourseCreate
                         ResetControls();
                         if (SaveClicked != null)
                         {
-                            SaveClicked(this, StaticValues.SuccessSaveMessageEventArgs);
+                            SaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                         }
                         else
                         {
@@ -111,7 +111,7 @@ namespace One.Views.Course.CourseCreate
             //RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             if (NewCategoryButtonClicked != null)
             {
-                NewCategoryButtonClicked(this, StaticValues.NewCreateMessageEventArgs);
+                NewCategoryButtonClicked(this, DbHelper.StaticValues.NewCreateMessageEventArgs);
             }
             else
             {
@@ -132,7 +132,7 @@ namespace One.Views.Course.CourseCreate
             ResetControls();
             if (CancelClicked != null)
             {
-                CancelClicked(this, StaticValues.CancelClickedMessageEventArgs);
+                CancelClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
         }
 

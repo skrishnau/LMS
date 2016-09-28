@@ -73,7 +73,7 @@
                         <tr>
                             <td class="data-type">Display</td>
                             <td class="data-value">
-                                <asp:DropDownList ID="ddlChapterFormatting" runat="server">
+                                <asp:DropDownList ID="ddlDisplay" runat="server">
                                     <Items>
                                         <asp:ListItem Value="0" Text="Automatic" Selected="True"></asp:ListItem>
                                         <asp:ListItem Value="1" Text="Embed"></asp:ListItem>
@@ -87,19 +87,19 @@
                         <tr>
                             <td class="data-type">Show size</td>
                             <td class="data-value">
-                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                                <asp:CheckBox ID="chkShowSize" runat="server" />
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Show type</td>
                             <td class="data-value">
-                                <asp:CheckBox ID="CheckBox2" runat="server" />
+                                <asp:CheckBox ID="chkShowType" runat="server" />
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Show upload/modified date</td>
                             <td class="data-value">
-                                <asp:CheckBox ID="CheckBox3" runat="server" />
+                                <asp:CheckBox ID="chkShowUploadModifiedDate" runat="server" />
                             </td>
                         </tr>
                     </table>
@@ -120,7 +120,7 @@
             <%-- section end --%>
 
             <div class="save-div">
-                <asp:Button ID="btnSave" runat="server" Text="Save and return to Course" />
+                <asp:Button ID="btnSave" runat="server" Text="Save and return to Course" OnClick="btnSave_Click" />
                 &nbsp;&nbsp;
             </div>
         </div>

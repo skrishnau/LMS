@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using One.Values;
+using Academic.DbHelper;
+//using One.Values;
 using Image = System.Web.UI.WebControls.Image;
 
 namespace One.Views.Course.Category
@@ -67,7 +68,7 @@ namespace One.Views.Course.Category
                             PlaceHolder1.Controls.Add(new Image()
                             {
                                 Width = 14,
-                                ImageUrl = Values.StaticValues.TreeLinkImageFull[i]
+                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
                             });
                         }
                         pos = 1;
@@ -85,7 +86,7 @@ namespace One.Views.Course.Category
                             PlaceHolder1.Controls.Add(new Image()
                             {
                                 Width = 16,
-                                ImageUrl = Values.StaticValues.TreeLinkImageFull[i]
+                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
                             });
                         }
                     }
@@ -131,7 +132,7 @@ namespace One.Views.Course.Category
                             PlaceHolder1.Controls.Add(new Image()
                             {
                                 Width = 16,
-                                ImageUrl = Values.StaticValues.TreeLinkImageFull[i]
+                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
                             });
                         }
                         pos = 1;
@@ -149,7 +150,7 @@ namespace One.Views.Course.Category
                             PlaceHolder1.Controls.Add(new Image()
                             {
                                 Width = 16,
-                                ImageUrl = Values.StaticValues.TreeLinkImageFull[i]
+                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
                             });
                         }
                     }

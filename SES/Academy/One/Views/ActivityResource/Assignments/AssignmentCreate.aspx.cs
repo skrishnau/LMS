@@ -116,7 +116,7 @@ namespace One.Views.ActivityResource.Assignments
                     var user = Page.User as CustomPrincipal;
 
                     if (user.IsInRole("teacher") || user.IsInRole("manager") ||
-                        user.IsInRole(One.Values.StaticValues.Roles.CourseEditor))
+                        user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor))
                     {
                         if (SectionId > 0)
                         {

@@ -57,9 +57,9 @@ namespace One.Views.ActivityResource.Book
             var user = Page.User as CustomPrincipal;
             if (user != null)
             {
-                if ((user.IsInRole(StaticValues.Roles.CourseEditor)
-                     || user.IsInRole(StaticValues.Roles.Manager)
-                     || user.IsInRole(StaticValues.Roles.Teacher)))
+                if ((user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor)
+                     || user.IsInRole(DbHelper.StaticValues.Roles.Manager)
+                     || user.IsInRole(DbHelper.StaticValues.Roles.Teacher)))
                 {
                     var edit = Request.QueryString["edit"];
                     if (edit != null)
@@ -145,9 +145,9 @@ namespace One.Views.ActivityResource.Book
                     var user = Page.User as CustomPrincipal;
                     if (user != null)
                     {
-                        if ((user.IsInRole(StaticValues.Roles.CourseEditor)
-                             || user.IsInRole(StaticValues.Roles.Manager)
-                             || user.IsInRole(StaticValues.Roles.Teacher)))
+                        if ((user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor)
+                             || user.IsInRole(DbHelper.StaticValues.Roles.Manager)
+                             || user.IsInRole(DbHelper.StaticValues.Roles.Teacher)))
                         {
                             Response.Redirect("~/Views/ActivityResource/Book/ChapterCreate.aspx?bId=" + BookId +
                                               "&pcId=0");

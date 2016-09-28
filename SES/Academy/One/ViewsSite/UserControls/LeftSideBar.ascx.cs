@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.DynamicData;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using One.Values;
 
 namespace One.ViewsSite.UserControls

@@ -76,7 +76,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students
             }
         }
 
-        void StudentCreateUc1_CloseClicked(object sender, Values.MessageEventArgs e)
+        void StudentCreateUc1_CloseClicked(object sender, MessageEventArgs e)
         {
             ddlAddStudent.SelectedIndex = 0;
             MultiView1.ActiveViewIndex = 0;

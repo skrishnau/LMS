@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbEntities.User;
 using Academic.DbHelper;
-using Academic.InitialValues;
+//using Academic.InitialValues;
 using One.Values.MemberShip;
 
 namespace One.Views.Office.School
@@ -49,11 +49,11 @@ namespace One.Views.Office.School
                         hidUserId.Value = user.Id.ToString();
                     }
                 }
-                if (InitialValues.CustomSession["InstitutionId"] <= 0)
-                {
-                    Response.Redirect("~/Views/Office/Institution/Create.aspx");
-                    return;
-                }
+                //if (InitialValues.CustomSession["InstitutionId"] <= 0)
+                //{
+                //    Response.Redirect("~/Views/Office/Institution/Create.aspx");
+                //    return;
+                //}
                 LoadSchoolType();
                 //pnlSchTyp.Visible = false;
                 SchoolTypeUC.SavedId = 0;
@@ -252,7 +252,7 @@ namespace One.Views.Office.School
         {
             if (cmbSchoolType.SelectedValue == "-1")
             {
-                SchoolTypeUC.InstitutionId = InitialValues.CustomSession["InstitutionId"];
+                //SchoolTypeUC.InstitutionId = InitialValues.CustomSession["InstitutionId"];
                 SchoolTypeAllButtonsVisible(true);
 
             }
@@ -308,7 +308,7 @@ namespace One.Views.Office.School
         {
             if (!pnlSchTypeUc.Visible)
             {
-                SchoolTypeUC.InstitutionId = InitialValues.CustomSession["InstitutionId"];
+                //SchoolTypeUC.InstitutionId = InitialValues.CustomSession["InstitutionId"];
                 SchoolTypeAllButtonsVisible(true);
             }
             else

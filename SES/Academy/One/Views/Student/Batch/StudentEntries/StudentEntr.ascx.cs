@@ -191,7 +191,7 @@ namespace One.Views.Student.Batch.StudentEntries
         {
             if (CloseClicked != null)
             {
-                CloseClicked(this, StaticValues.CancelClickedMessageEventArgs);
+                CloseClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
         }
 
@@ -205,7 +205,7 @@ namespace One.Views.Student.Batch.StudentEntries
             MultiView1.ActiveViewIndex = 1;
         }
 
-        public void LoadStudentBatch(Values.RunningClassEventArgs e)
+        public void LoadStudentBatch(RunningClassEventArgs e)
         {
             YearId = e.YearId;
             SubYearId = e.SubYearId;

@@ -18,14 +18,14 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
         {
             if (!IsPostBack)
             {
-                //IdandNameEventArgs--> Icon path is the path of the image... Name is the file path
-                Session["FilesList" + PageKey] = new List<IdAndNameEventArgs>();
-                //Session["LatestFile"]=new IdAndNameEventArgs();
+                //FileResourceEventArgs--> Icon path is the path of the image... FileName is the file path
+                Session["FilesList" + PageKey] = new List<FileResourceEventArgs>();
+                //Session["LatestFile"]=new FileResourceEventArgs();
                 FilePickerDialog1.SetValues("File picker", null, "", "");
             }
             else
             {
-                var files = Session["FilesList" + PageKey] as List<IdAndNameEventArgs>;
+                var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
                 if (files != null)
                 {
                     foreach (var iname in files)
@@ -47,7 +47,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             FilePickerDialog1.UploadClicked += FilePickerDialog1_UploadClicked;
         }
 
-        void FilePickerDialog1_UploadClicked(object sender, IdAndNameEventArgs e)
+        void FilePickerDialog1_UploadClicked(object sender, FileResourceEventArgs e)
         {
             var image = new ImageButton()
             {
@@ -60,7 +60,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
 
             pnlFiles.Controls.Add(image);
 
-            var files = Session["FilesList" + PageKey] as List<IdAndNameEventArgs>;
+            var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
             if (files != null)
             {
                 files.Add(e);
@@ -68,7 +68,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             FilePickerDialog1.CloseDialog();
         }
 
-        public void FilePickerDialog1_FileChoosen(object sender, IdAndNameEventArgs e)
+        public void FilePickerDialog1_FileChoosen(object sender, FileResourceEventArgs e)
         {
            
         }
@@ -91,6 +91,36 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
                 hidPageKey.Value = value;
                 FilePickerDialog1.PageKey = value;
             }
+        }
+
+        public List<FileResourceEventArgs> GetFiles()
+        {
+            var list = new List<Academic.DbEntities.UserFile>();
+            var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
+            return files;
+            //if (files != null)
+            //{
+            //    foreach (var f in files)
+            //    {
+
+            //        var file = new Academic.DbEntities.UserFile()
+            //        {
+            //            //CreatedBy = 
+            //            CreatedDate = DateTime.Now
+            //        };
+
+            //        var image = new ImageButton()
+            //        {
+            //            ImageUrl = f.IconPath
+            //            ,
+            //            CausesValidation = false,
+            //            Height = 50,
+            //            Width = 50,
+            //            ImageAlign = ImageAlign.Left
+            //        };
+            //        pnlFiles.Controls.Add(image);
+            //    }
+            //}
         }
     }
 }

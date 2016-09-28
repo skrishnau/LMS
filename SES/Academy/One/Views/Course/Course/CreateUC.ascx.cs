@@ -97,9 +97,9 @@ namespace One.Views.Course.Course
                     if (SaveClicked != null)
                     {
                         if (saved)
-                            SaveClicked(this, Values.StaticValues.SuccessSaveMessageEventArgs);
+                            SaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                         else
-                            SaveClicked(this, Values.StaticValues.ErrorSaveMessageEventArgs);
+                            SaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
                     }
                 }
             }
@@ -117,7 +117,7 @@ namespace One.Views.Course.Course
             ResetControls();
             if (CancelClicked != null)
             {
-                CancelClicked(this, Values.StaticValues.CancelClickedMessageEventArgs);
+                CancelClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
         }
 

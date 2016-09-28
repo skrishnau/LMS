@@ -29,7 +29,7 @@ namespace One.Views.AcademicPlacement.StudentClass
         #endregion
 
 
-        public void LoadStudentGroup(Values.RunningClassEventArgs e, int academicYearId
+        public void LoadStudentGroup(RunningClassEventArgs e, int academicYearId
             , int programId, int yearId, int? sessionId = 0, int? subYearId = 0
             ,int programBatchId=0)
         {
@@ -134,7 +134,7 @@ namespace One.Views.AcademicPlacement.StudentClass
         {
             if (CloseClicked != null)
             {
-                CloseClicked(this, StaticValues.CancelClickedMessageEventArgs);
+                CloseClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
         }
 

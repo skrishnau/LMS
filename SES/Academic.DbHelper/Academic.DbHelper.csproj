@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Account\CustomMembershipUser.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Classes.cs" />
     <Compile Include="DbHelper.AcademicPlacement.cs" />
     <Compile Include="DbHelper.AcademicYear.cs" />
     <Compile Include="DbHelper.ActAndRes.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="DbHelper.Teacher.cs" />
     <Compile Include="DbHelper.User.cs" />
     <Compile Include="DbHelper.WorkingWithFiles.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Paths.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticValues.cs" />
   </ItemGroup>

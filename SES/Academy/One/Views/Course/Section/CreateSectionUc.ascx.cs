@@ -75,11 +75,11 @@ namespace One.Views.Course.Section
                 {
                     if (saved)
                     {
-                        OnSaveEvent(this, StaticValues.SuccessSaveMessageEventArgs);
+                        OnSaveEvent(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                     }
                     else
                     {
-                        OnSaveEvent(this, StaticValues.ErrorSaveMessageEventArgs);
+                        OnSaveEvent(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
                     }
                 }
                 else if (!String.IsNullOrEmpty(RedirectUrl))
@@ -100,11 +100,11 @@ namespace One.Views.Course.Section
                 {
                     if (deleted)
                     {
-                        OnSaveEvent(this, StaticValues.SuccessDeleteMessageEventArgs);
+                        OnSaveEvent(this, DbHelper.StaticValues.SuccessDeleteMessageEventArgs);
                     }
                     else
                     {
-                        OnSaveEvent(this, StaticValues.ErrorDeleteMessageEventArgs);
+                        OnSaveEvent(this, DbHelper.StaticValues.ErrorDeleteMessageEventArgs);
                         
                     }
                 }
@@ -130,7 +130,7 @@ namespace One.Views.Course.Section
 
             if (OnCloseClick != null)
             {
-                OnCloseClick(this, StaticValues.CancelClickedMessageEventArgs);
+                OnCloseClick(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
             else if (!String.IsNullOrEmpty(RedirectUrl))
             {
@@ -148,7 +148,7 @@ namespace One.Views.Course.Section
 
             if (OnCloseClick != null)
             {
-                OnCloseClick(this, StaticValues.CancelClickedMessageEventArgs);
+                OnCloseClick(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
             }
             else if (!String.IsNullOrEmpty(RedirectUrl))
             {

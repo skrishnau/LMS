@@ -41,7 +41,7 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
             }
         }
 
-        void AddCourses_ReturnClicked(object sender, Values.MessageEventArgs e)
+        void AddCourses_ReturnClicked(object sender, MessageEventArgs e)
         {
             //using (var helper = new DbHelper.Subject())
             //{

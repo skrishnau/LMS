@@ -65,6 +65,8 @@
     <Compile Include="ActivityAndResource\Assignment.cs" />
     <Compile Include="ActivityAndResource\BookResource.cs" />
     <Compile Include="ActivityAndResource\BookItems\BookChapter.cs" />
+    <Compile Include="ActivityAndResource\FileItems\FileResourceFiles.cs" />
+    <Compile Include="ActivityAndResource\FileResource.cs" />
     <Compile Include="ActivityAndResource\UrlResource.cs" />
     <Compile Include="Admins.cs" />
     <Compile Include="AdminTitle.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Grades\GradeValues.cs" />
     <Compile Include="Subjects\EnrolmentMethods.cs" />
     <Compile Include="Class\SubjectClass.cs" />
+    <Compile Include="Subjects\SubjectFile.cs" />
     <Compile Include="Subjects\SubjectStructure.cs" />
     <Compile Include="Subjects\SubjectUserGroup.cs" />
     <Compile Include="UserFile.cs" />

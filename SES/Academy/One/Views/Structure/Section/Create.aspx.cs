@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
-using Academic.InitialValues;
+//using Academic.InitialValues;
 using One.Values;
 
 namespace One.Views.Structure.Section
@@ -18,7 +18,7 @@ namespace One.Views.Structure.Section
         {
             if (!IsPostBack)
             {
-                DbHelper.ComboLoader.LoadSchool(ref cmbSchool, InitialValues.CustomSession["InstitutionId"]);
+                //DbHelper.ComboLoader.LoadSchool(ref cmbSchool, InitialValues.CustomSession["InstitutionId"]);
             }
         }
         protected void cmbSchool_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,14 +63,14 @@ namespace One.Views.Structure.Section
                     {
                         if (OnSaveClicked != null)
                         {
-                            OnSaveClicked(this, StaticValues.SuccessSaveMessageEventArgs);
+                            OnSaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                         }
                     }
                     else
                     {
                         if (OnSaveClicked != null)
                         {
-                            OnSaveClicked(this, StaticValues.ErrorSaveMessageEventArgs);
+                            OnSaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
                         }
                         
                     }

@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using One.Values;
 using One.Views.AcademicPlacement.StudentClass;
 

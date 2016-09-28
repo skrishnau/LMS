@@ -26,18 +26,18 @@ namespace One.Views.Office.School
         //    set { this.phAdminView.Visible = value; }
         //}
 
-        public int InstitutionId
-        {
-            get
-            {
-                return Convert.ToInt32(txtInstId.Text == "" ? "0" : txtInstId.Text);
-            }
-            set
-            {
-                //AdminView = false;                
-                this.txtInstId.Text = value.ToString();
-            }
-        }
+        //public int InstitutionId
+        //{
+        //    get
+        //    {
+        //        return Convert.ToInt32(txtInstId.Text == "" ? "0" : txtInstId.Text);
+        //    }
+        //    set
+        //    {
+        //        //AdminView = false;                
+        //        this.txtInstId.Text = value.ToString();
+        //    }
+        //}
 
         public bool Visible_
         {

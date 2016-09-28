@@ -7,7 +7,7 @@
             <fieldset>
                 <legend>Add School Type
                     <asp:TextBox ID="txtId" runat="server" Width="16px" Visible="False"></asp:TextBox>
-                    <asp:TextBox ID="txtInstId" runat="server" Enabled="False" Visible="False" Width="16px"></asp:TextBox>
+                    <%--<asp:TextBox ID="txtInstId" runat="server" Enabled="False" Visible="False" Width="16px"></asp:TextBox>--%>
                 </legend>
                 <table>
                     <tr>

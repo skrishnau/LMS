@@ -30,7 +30,7 @@ namespace One.Views.Student.Batch.Create
             }
         }
 
-        void TreeViewWithCheckBoxInLeft_CheckChanged(object sender, Values.BatchEventArgs e)
+        void TreeViewWithCheckBoxInLeft_CheckChanged(object sender, BatchEventArgs e)
         {
 
             var progList = ViewState["SelectedProgramBatchList"] as List<Academic.ViewModel.Batch.BatchViewModel>;

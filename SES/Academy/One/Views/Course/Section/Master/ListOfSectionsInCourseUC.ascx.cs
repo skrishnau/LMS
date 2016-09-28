@@ -37,7 +37,7 @@ namespace One.Views.Course.Section.Master
 
         }
 
-        void CreateSectionUc1_OnSaveEvent(object sender, Values.MessageEventArgs e)
+        void CreateSectionUc1_OnSaveEvent(object sender, MessageEventArgs e)
         {
             pnlCreateSection.Visible = false;
             AddNewButtonVisibility = true;
@@ -134,7 +134,7 @@ namespace One.Views.Course.Section.Master
             //pnlSections.Controls.Add(uc);
         }
 
-        void sectionuc_AddActResClicked(object sender, Values.SubjectSectionEventArgs e)
+        void sectionuc_AddActResClicked(object sender, SubjectSectionEventArgs e)
         {
             //ActResChooseUc.SetIds(e.SubjectId, e.SectionId, e.SubjectName, e.SectionName);
         }
@@ -171,7 +171,7 @@ namespace One.Views.Course.Section.Master
         }
 
 
-        void CreateSectionUc1_OnCloseClick(object sender, Values.MessageEventArgs e)
+        void CreateSectionUc1_OnCloseClick(object sender, MessageEventArgs e)
         {
             pnlCreateSection.Visible = false;
             AddNewButtonVisibility = true;

@@ -39,9 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InitialValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaticValues.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Academic.DbEntities\Academic.DbEntities.csproj">

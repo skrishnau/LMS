@@ -2,9 +2,10 @@
 
 <div class="course-act-res-whole">
     <div class="course-act-res-heading">
-        <asp:Image ID="imgIcon" runat="server" ImageUrl="" AlternateText="" />
+        <asp:Image ID="imgIcon" runat="server" ImageUrl="" AlternateText="" Height="22" Width="22" />
         
                  <asp:HyperLink ID="lblTitle" CssClass="course-act-res-title" runat="server" Text="Heading">
+                     
                  </asp:HyperLink>
         &nbsp;&nbsp;&nbsp;
         <asp:ImageButton ID="imgEditBtn" runat="server" Visible="False"

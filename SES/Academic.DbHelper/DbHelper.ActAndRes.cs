@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using Academic.Database;
+using Academic.DbEntities;
+using Academic.DbEntities.ActivityAndResource.FileItems;
+using Academic.ViewModel;
 using Academic.ViewModel.ActivityResource;
 
 namespace Academic.DbHelper
@@ -30,7 +33,7 @@ namespace Academic.DbHelper
             /// </summary>
             /// <param name="actresId"> act/res Id</param>
             /// <param name="sectionId"> sectionId</param>
-            private void AddActRes(bool actOrRes, byte actResType, int actresId, int sectionId)
+            private void SaveActivityResourceTable(bool actOrRes, byte actResType, int actresId, int sectionId)
             {
                 int pos = 0;
                 var poslist = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId);
@@ -58,42 +61,39 @@ namespace Academic.DbHelper
                 var list = new List<ActivityResourceViewModel>();
                 foreach (var ar in actres)
                 {
+
+                    var viewModel = new ActivityResourceViewModel()
+                    {
+                        ActivityOrResource = ar.ActivityOrResource
+                        ,
+                        ActivityResourceType = ar.ActivityResourceType
+                        ,
+                        ActivityResourceId = ar.ActivityResourceId
+                        ,
+                        SubjectSectionId = ar.SubjectSectionId
+                        ,
+                        Position = ar.Position
+                        ,
+                    };
+
                     if (ar.ActivityOrResource)
                     {
                         //activity
+
                         switch (ar.ActivityResourceType)
                         {
                             case 1: //Assignment
                                 var asg = Context.Assignment.Find(ar.ActivityResourceId);
                                 if (asg != null)
                                 {
-                                    //var imageurl = StaticValues.ActivityImages[ar.ActivityOrResourceType];
-                                    //var url = "~/Views/ActivityResource/Assignments/AssignmentView.aspx";
-                                    var m = new ActivityResourceViewModel()
-                                    {
-                                        ActivityOrResource = ar.ActivityOrResource
-                                        ,
-                                        ActivityResourceType = ar.ActivityResourceType
-                                        ,
-                                        ActivityResourceId = ar.ActivityResourceId
-                                        ,
-                                        Description = asg.Description
-                                        ,
-                                        Name = asg.Name
-                                        ,
-                                        SubjectSectionId = ar.SubjectSectionId
-                                        ,
-                                        Position = ar.Position
-                                        ,
-                                        NavigateUrl = "~/Views/ActivityResource/Assignments/AssignmentView.aspx"
-                                        ,
-                                        IconUrl = StaticValues.ActivityImages[ar.ActivityResourceType]
-                                    };
-                                    list.Add(m);
+                                    viewModel.SetOtherValues(asg.Name, asg.Description
+                                        , asg.DispalyDescriptionOnPage ?? false
+                                        , "~/Views/ActivityResource/Assignments/AssignmentView.aspx"
+                                        , StaticValues.ActivityImages[ar.ActivityResourceType]
+                                        );
+                                    list.Add(viewModel);
                                 }
-
                                 break;
-
                         }
                     }
                     else
@@ -106,30 +106,39 @@ namespace Academic.DbHelper
                                 var book = Context.BookResource.Find(ar.ActivityResourceId);
                                 if (book != null)
                                 {
-                                    var m = new ActivityResourceViewModel()
-                                    {
-                                        ActivityOrResource = ar.ActivityOrResource
-                                        ,
-                                        ActivityResourceType = ar.ActivityResourceType
-                                        ,
-                                        ActivityResourceId = ar.ActivityResourceId
-                                        ,
-                                        Description = book.Description
-                                        ,
-                                        Name = book.Name
-                                        ,
-                                        SubjectSectionId = ar.SubjectSectionId
-                                        ,
-                                        Position = ar.Position
-                                        ,
-                                        NavigateUrl = "~/Views/ActivityResource/Book/BookView.aspx"
-                                        ,
-                                        IconUrl = StaticValues.ResourceImages[ar.ActivityResourceType]
-                                    };
-                                    list.Add(m);
+                                    viewModel.SetOtherValues(book.Name, book.Description
+                                        , book.DisplayDescriptionOnCourePage
+                                        , "~/Views/ActivityResource/Book/BookView.aspx"
+                                        , StaticValues.ResourceImages[ar.ActivityResourceType]);
+                                    list.Add(viewModel);
                                 }
                                 break;
-                            case 41:
+                            case 2://file
+                                var file = Context.FileResource.Find(ar.ActivityResourceId);
+                                if (file != null)
+                                {
+                                    var mainFile = Context.FileResourceFiles.Find(file.MainFileId);
+                                    if (mainFile != null)
+                                    {
+                                        viewModel.SetOtherValues(file.Name, file.Description
+                                            , file.ShowDescriptionOnCoursePage
+                                            , "~/Views/ActivityResource/FileResource/FileResourceView.aspx"
+                                            , mainFile.SubFile.IconPath);
+                                        list.Add(viewModel);
+                                    }
+                                }
+
+                                break;
+                            case (int)(StaticValues.Resources.Url + 1):
+                                var url = Context.UrlResource.Find(ar.ActivityResourceId);
+                                if (url != null)
+                                {
+                                    viewModel.SetOtherValues(url.Name, url.Description
+                                        , url.DisplayDescriptionOnPage
+                                        , "~/Views/ActivityResource/FileResource/FileResourceView.aspx"
+                                        , StaticValues.ResourceImages[ar.ActivityResourceType]);
+                                    list.Add(viewModel);
+                                }
                                 break;
 
                         }
@@ -197,8 +206,6 @@ namespace Academic.DbHelper
             #endregion
 
 
-
-
             #region Book
 
             public DbEntities.ActivityAndResource.BookResource AddOrUpdateBook(
@@ -226,7 +233,7 @@ namespace Academic.DbHelper
                         ent = Context.BookResource.Add(book);
                         Context.SaveChanges();
 
-                        AddActRes(false, 1, ent.Id, sectionId);
+                        SaveActivityResourceTable(false, 1, ent.Id, sectionId);
 
                     }
                     else
@@ -251,26 +258,18 @@ namespace Academic.DbHelper
                 }
             }
 
-
             public DbEntities.ActivityAndResource.BookResource GetBook(int bookId)
             {
                 return Context.BookResource.Find(bookId);
             }
-
-
 
             public List<DbEntities.ActivityAndResource.BookItems.BookChapter> GetChaptersOfBook(int bookId)
             {
                 return Context.BookChapter.Where(x => x.BookId == bookId).OrderBy(x => x.Position).ToList();
             }
 
-            #endregion
-
-
-
-
             public DbEntities.ActivityAndResource.BookItems.BookChapter
-                AddOrUpdateBookChapter(DbEntities.ActivityAndResource.BookItems.BookChapter chapter)
+                      AddOrUpdateBookChapter(DbEntities.ActivityAndResource.BookItems.BookChapter chapter)
             {
                 var chap = Context.BookChapter.Find(chapter.Id);
                 if (chap == null)
@@ -299,7 +298,7 @@ namespace Academic.DbHelper
                         chapter.Position = chapter.Position + 1;
                         chap = Context.BookChapter.Add(chapter);
                         Context.SaveChanges();
-                        
+
                     }
 
                 }
@@ -477,7 +476,7 @@ namespace Academic.DbHelper
                 }
             }
 
-            public void UpdateBelowChapters(int bookId, int chapId,int parentId, int position)
+            public void UpdateBelowChapters(int bookId, int chapId, int parentId, int position)
             {
                 {
                     //var cntx = new Academic.Database.AcademicContext();
@@ -493,6 +492,157 @@ namespace Academic.DbHelper
                     Context.Dispose();
                 }
             }
+
+
+            #endregion
+
+
+            #region File Resource
+
+            public DbEntities.ActivityAndResource.FileResource
+                AddOrUpdateFileResource(DbEntities.ActivityAndResource.FileResource file
+                , List<DbEntities.Subjects.SubjectFile> fileList, int sectionId)
+            {
+                using (var scope = new TransactionScope())
+                {
+                    try
+                    {
+                        var ent = Context.FileResource.Find(file.Id);
+                        if (ent == null)
+                        {
+                            //get restriction from the ui not auto add
+                            var restriction = new DbEntities.AccessPermission.Restriction()
+                            {
+                                Visibility = false,
+                                MatchAllAny = false,
+                                MatchMust = true,
+                            };
+
+                            var res = Context.Restriction.Add(restriction);
+                            Context.SaveChanges();
+
+                            file.RestrictionId = res.Id;
+                            ent = Context.FileResource.Add(file);
+                            Context.SaveChanges();
+
+                            //files add
+                            int i = 0;
+                            foreach (var f in fileList)
+                            {
+                                var savedFile = Context.File.Add(f);
+                                Context.SaveChanges();
+
+
+                                var savedFileResFile = Context.FileResourceFiles.Add(new FileResourceFiles()
+                                {
+                                    FileResourceId = ent.Id
+                                    ,
+                                    SubFileId = savedFile.Id
+                                    ,
+                                });
+                                Context.SaveChanges();
+
+                                if (i == 0)
+                                {
+                                    ent.MainFileId = savedFileResFile.Id;
+                                    Context.SaveChanges();
+                                }
+
+                                i++;
+                            }
+                            SaveActivityResourceTable(false, 2, ent.Id, sectionId);
+                        }
+                        else
+                        {
+                            ent.Name = file.Name;
+                            ent.Description = file.Description;
+                            ent.Display = file.Display;
+                            ent.ShowUploadModifiedDate = file.ShowUploadModifiedDate;
+                            ent.ShowDescriptionOnCoursePage = file.ShowDescriptionOnCoursePage;
+                            ent.ShowSize = file.ShowSize;
+                            ent.ShowType = file.ShowType;
+                            ent.MainFileId = file.MainFileId;
+
+                            //modify restriction here
+                            Context.SaveChanges();
+
+                        }
+                        scope.Complete();
+                        return ent;
+
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+
+                }
+
+            }
+
+            public DbEntities.ActivityAndResource.FileResource GetFileResource(int fileResourceId)
+            {
+                return Context.FileResource.Find(fileResourceId);
+            }
+
+            public DbEntities.ActivityAndResource.FileItems.FileResourceFiles GetFileOfFileResource(int fileresourceFileId)
+            {
+                return Context.FileResourceFiles.Find(fileresourceFileId);
+            }
+
+
+            #endregion
+
+
+
+            #region Url resource
+
+            public DbEntities.ActivityAndResource.UrlResource AddOrUpdateUrlResource(
+                DbEntities.ActivityAndResource.UrlResource url, int sectionId)
+            {
+                var ent = Context.UrlResource.Find(url.Id);
+                if (ent == null)
+                {
+                    //get restriction from the ui not auto add
+                    var restriction = new DbEntities.AccessPermission.Restriction()
+                    {
+                        Visibility = false,
+                        MatchAllAny = false,
+                        MatchMust = true,
+                    };
+
+                    var res = Context.Restriction.Add(restriction);
+                    Context.SaveChanges();
+
+                    url.RestrictionId = res.Id;
+                    ent = Context.UrlResource.Add(url);
+                    Context.SaveChanges();
+
+                    SaveActivityResourceTable(false, (byte)(((int)StaticValues.Resources.Url) + 1), ent.Id, sectionId);
+
+                }
+                else
+                {
+                    ent.Display = url.Display;
+                    ent.PopupWidthInPixel = url.PopupWidthInPixel;
+                    ent.PopupHeightInPixel = url.PopupHeightInPixel;
+                    ent.Name = url.Name;
+                    ent.Description = url.Description;
+                    ent.Url = url.Url;
+                    Context.SaveChanges();
+
+                }
+                return ent;
+            }
+
+            #endregion
+
+
+            public DbEntities.ActivityAndResource.UrlResource GetUrlResource(int urlId)
+            {
+                return Context.UrlResource.Find(urlId);
+            }
+
         }
 
     }

@@ -109,7 +109,7 @@ namespace One.Views.Student.Create
                         {
                             if (CloseClicked != null)
                             {
-                                CloseClicked(this, StaticValues.CancelClickedMessageEventArgs);
+                                CloseClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
                             }
                         }
                     }

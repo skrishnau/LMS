@@ -31,7 +31,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
             StudentCreateUc.CloseClicked += StudentCreateUc_CloseClicked;
         }
 
-        void StudentCreateUc_CloseClicked(object sender, Values.MessageEventArgs e)
+        void StudentCreateUc_CloseClicked(object sender, MessageEventArgs e)
         {
             Response.Redirect("~/Views/Student/Batch/StudentDisplay/Students/ListOfStudents.aspx"+"?Id="+hidProgramBatchId.Value);
         }

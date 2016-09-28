@@ -40,15 +40,6 @@ namespace One.Views.Office.School {
         protected global::System.Web.UI.WebControls.TextBox txtId;
         
         /// <summary>
-        /// txtInstId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInstId;
-        
-        /// <summary>
         /// txtSchoolTypeName control.
         /// </summary>
         /// <remarks>

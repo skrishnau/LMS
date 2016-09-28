@@ -67,40 +67,40 @@ namespace One.Views.ActivityResource.FileResource {
         protected global::One.Views.ActivityResource.FileResource.FileResourceItems.FilesDisplay FilesDisplay1;
         
         /// <summary>
-        /// ddlChapterFormatting control.
+        /// ddlDisplay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlChapterFormatting;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDisplay;
         
         /// <summary>
-        /// CheckBox1 control.
+        /// chkShowSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+        protected global::System.Web.UI.WebControls.CheckBox chkShowSize;
         
         /// <summary>
-        /// CheckBox2 control.
+        /// chkShowType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
+        protected global::System.Web.UI.WebControls.CheckBox chkShowType;
         
         /// <summary>
-        /// CheckBox3 control.
+        /// chkShowUploadModifiedDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
+        protected global::System.Web.UI.WebControls.CheckBox chkShowUploadModifiedDate;
         
         /// <summary>
         /// RestrictionUC control.

@@ -350,6 +350,38 @@
     <Compile Include="Migrations\201609231909576_position_re_add.Designer.cs">
       <DependentUpon>201609231909576_position_re_add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609271214237_fileResource_added.cs" />
+    <Compile Include="Migrations\201609271214237_fileResource_added.Designer.cs">
+      <DependentUpon>201609271214237_fileResource_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609271758525_fileResource_modified.cs" />
+    <Compile Include="Migrations\201609271758525_fileResource_modified.Designer.cs">
+      <DependentUpon>201609271758525_fileResource_modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609271826034_fileResource_modified_1.cs" />
+    <Compile Include="Migrations\201609271826034_fileResource_modified_1.Designer.cs">
+      <DependentUpon>201609271826034_fileResource_modified_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609271851207_fileResource_modified_2.cs" />
+    <Compile Include="Migrations\201609271851207_fileResource_modified_2.Designer.cs">
+      <DependentUpon>201609271851207_fileResource_modified_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609271913259_fileResource_modified_3.cs" />
+    <Compile Include="Migrations\201609271913259_fileResource_modified_3.Designer.cs">
+      <DependentUpon>201609271913259_fileResource_modified_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609271920416_fileResource_modified_4.cs" />
+    <Compile Include="Migrations\201609271920416_fileResource_modified_4.Designer.cs">
+      <DependentUpon>201609271920416_fileResource_modified_4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609271930394_fileResource_modified_6.cs" />
+    <Compile Include="Migrations\201609271930394_fileResource_modified_6.Designer.cs">
+      <DependentUpon>201609271930394_fileResource_modified_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609281351274_staticvalues_moved_to_Dbhelper.cs" />
+    <Compile Include="Migrations\201609281351274_staticvalues_moved_to_Dbhelper.Designer.cs">
+      <DependentUpon>201609281351274_staticvalues_moved_to_Dbhelper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -591,6 +623,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609231909576_position_re_add.resx">
       <DependentUpon>201609231909576_position_re_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271214237_fileResource_added.resx">
+      <DependentUpon>201609271214237_fileResource_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271758525_fileResource_modified.resx">
+      <DependentUpon>201609271758525_fileResource_modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271826034_fileResource_modified_1.resx">
+      <DependentUpon>201609271826034_fileResource_modified_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271851207_fileResource_modified_2.resx">
+      <DependentUpon>201609271851207_fileResource_modified_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271913259_fileResource_modified_3.resx">
+      <DependentUpon>201609271913259_fileResource_modified_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271920416_fileResource_modified_4.resx">
+      <DependentUpon>201609271920416_fileResource_modified_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271930394_fileResource_modified_6.resx">
+      <DependentUpon>201609271930394_fileResource_modified_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609281351274_staticvalues_moved_to_Dbhelper.resx">
+      <DependentUpon>201609281351274_staticvalues_moved_to_Dbhelper.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

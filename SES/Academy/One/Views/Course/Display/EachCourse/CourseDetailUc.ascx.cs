@@ -20,7 +20,7 @@ namespace One.Views.Course.Display.EachCourse
             //LoadSections();
         }
 
-        void CreateSectionUc1_OnSaveEvent(object sender, Values.MessageEventArgs e)
+        void CreateSectionUc1_OnSaveEvent(object sender, MessageEventArgs e)
         {
             pnlCreateSection.Visible = false;
             AddNewButtonVisibility = true;
@@ -106,7 +106,7 @@ namespace One.Views.Course.Display.EachCourse
 
         }
 
-        void uc_OnSaveEvent(object sender, Values.MessageEventArgs e)
+        void uc_OnSaveEvent(object sender, MessageEventArgs e)
         {
             if (e.TrueFalse)
             {
@@ -136,7 +136,7 @@ namespace One.Views.Course.Display.EachCourse
         }
 
 
-        void CreateSectionUc1_OnCloseClick(object sender, Values.MessageEventArgs e)
+        void CreateSectionUc1_OnCloseClick(object sender, MessageEventArgs e)
         {
             pnlCreateSection.Visible = false;
             AddNewButtonVisibility = true;

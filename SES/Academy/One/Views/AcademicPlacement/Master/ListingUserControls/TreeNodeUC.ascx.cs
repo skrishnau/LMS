@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using One.Values;
 
 namespace One.Views.AcademicPlacement.Master.ListingUserControls
@@ -473,13 +474,13 @@ namespace One.Views.AcademicPlacement.Master.ListingUserControls
         protected void btnExpand_Click(object sender, ImageClickEventArgs e)
         {
             ChildPanelVisibility = !ChildPanelVisibility;
-            if (btnExpand.ImageUrl == Values.StaticValues.CollapsedButtonUrl)
+            if (btnExpand.ImageUrl == DbHelper.StaticValues.CollapsedButtonUrl)
             {
-                btnExpand.ImageUrl = StaticValues.ExpandedButtonUrl;
+                btnExpand.ImageUrl = DbHelper.StaticValues.ExpandedButtonUrl;
             }
             else
             {
-                btnExpand.ImageUrl = StaticValues.CollapsedButtonUrl;
+                btnExpand.ImageUrl = DbHelper.StaticValues.CollapsedButtonUrl;
             }
         }
 

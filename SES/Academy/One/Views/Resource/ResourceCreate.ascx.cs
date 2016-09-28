@@ -68,45 +68,45 @@ namespace One.Views.Resource
 
         private IdAndName _resourceJustSaved = null;
         private int _subId = 0;
-        public IdAndName ResourceJustSaved
-        {
-            get
-            {
+        //public IdAndName ResourceJustSaved
+        //{
+        //    get
+        //    {
 
-                return _resourceJustSaved;
-            }
-            set
-            {
-                var bt = (Button)ViewState["ClickedByButton"];
-                DropDownList ddlist = (DropDownList)Page.FindControl(ClickedByDDLName);
-                if (value != null && ddlist != null)
-                {
-                    using (var helper = new DbHelper.Resource())
-                    {
+        //        return _resourceJustSaved;
+        //    }
+        //    set
+        //    {
+        //        var bt = (Button)ViewState["ClickedByButton"];
+        //        DropDownList ddlist = (DropDownList)Page.FindControl(ClickedByDDLName);
+        //        if (value != null && ddlist != null)
+        //        {
+        //            using (var helper = new DbHelper.Resource())
+        //            {
 
-                        var access = helper.GetResourcesForCombo(Convert.ToInt32(cmbSubject.SelectedValue));
+        //                var access = helper.GetResourcesForCombo(Convert.ToInt32(cmbSubject.SelectedValue));
                         
-                        ddlist.DataSource = access;
-                        ddlist.DataMember = "Name";
-                        ddlist.DataTextField = "Name";
-                        ddlist.DataValueField = "Id";
-                        ddlist.DataBind();
+        //                ddlist.DataSource = access;
+        //                ddlist.DataMember = "Name";
+        //                ddlist.DataTextField = "Name";
+        //                ddlist.DataValueField = "Id";
+        //                ddlist.DataBind();
 
-                        //var datas = (List < IdAndName >) ddlist.DataSource;
-                        //datas.Add(value);
-                        //ddlist.DataSource = datas; //helper.GetResourcesForCombo(_subId);
-                        //ddlist.DataBind();
-                        ddlist.SelectedValue = value.Id.ToString();
-                    }
-                    //ddlist.DataSource = 
-                }
-                //One.Assignment.Create ctrlB = (One.Assignment.Create)Page.FindControl(ClickedByButton.ID);
-                //DropDownList ddl = ctrlB.ControlB_DDL;
-                //txtDDLValue.Text = ddl.SelectedValue;
+        //                //var datas = (List < IdAndName >) ddlist.DataSource;
+        //                //datas.Add(value);
+        //                //ddlist.DataSource = datas; //helper.GetResourcesForCombo(_subId);
+        //                //ddlist.DataBind();
+        //                ddlist.SelectedValue = value.Id.ToString();
+        //            }
+        //            //ddlist.DataSource = 
+        //        }
+        //        //One.Assignment.Create ctrlB = (One.Assignment.Create)Page.FindControl(ClickedByButton.ID);
+        //        //DropDownList ddl = ctrlB.ControlB_DDL;
+        //        //txtDDLValue.Text = ddl.SelectedValue;
 
-                this._resourceJustSaved = value;
-            }
-        }
+        //        this._resourceJustSaved = value;
+        //    }
+        //}
 
         public string SelectSubject
         {
@@ -129,33 +129,33 @@ namespace One.Views.Resource
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtNameValidator.ForeColor = Color.Black;
+            //txtNameValidator.ForeColor = Color.Black;
 
-            if (!IsPostBack)
-            {
-                using (var helper = new DbHelper.Subject())
-                {
-                    var subs =
-                        helper.ListAllSubjects(Academic.InitialValues.InitialValues.CustomSession["InstitutionId"]);
-                    cmbSubject.DataSource = subs;
-                    cmbSubject.DataMember = "Name";
-                    cmbSubject.DataTextField = "Name";
-                    cmbSubject.DataValueField = "Id";
-                    cmbSubject.DataBind();
-                }
-                using (var per = new DbHelper.Resource())
-                {
-                    var access = per.GetFileAccessPermissionForCombo();
-                    cmbAccessPermission.DataSource = access;
-                    cmbAccessPermission.DataMember = "Name";
-                    cmbAccessPermission.DataTextField = "Name";
-                    cmbAccessPermission.DataValueField = "Id";
-                    cmbAccessPermission.DataBind();
-                }
+            //if (!IsPostBack)
+            //{
+            //    using (var helper = new DbHelper.Subject())
+            //    {
+            //        var subs =
+            //            helper.ListAllSubjects(Academic.InitialValues.InitialValues.CustomSession["InstitutionId"]);
+            //        cmbSubject.DataSource = subs;
+            //        cmbSubject.DataMember = "Name";
+            //        cmbSubject.DataTextField = "Name";
+            //        cmbSubject.DataValueField = "Id";
+            //        cmbSubject.DataBind();
+            //    }
+            //    using (var per = new DbHelper.Resource())
+            //    {
+            //        var access = per.GetFileAccessPermissionForCombo();
+            //        cmbAccessPermission.DataSource = access;
+            //        cmbAccessPermission.DataMember = "Name";
+            //        cmbAccessPermission.DataTextField = "Name";
+            //        cmbAccessPermission.DataValueField = "Id";
+            //        cmbAccessPermission.DataBind();
+            //    }
 
-                pnlSave.Visible = false;
-                pnlForm.Visible = false;
-            }
+            //    pnlSave.Visible = false;
+            //    pnlForm.Visible = false;
+            //}
         }
 
         public void CreateNew()
@@ -175,7 +175,7 @@ namespace One.Views.Resource
             }
             if (Page.IsValid)
             {
-
+                /*
                 using (var helper = new DbHelper.Resource())
                 {
 
@@ -249,7 +249,7 @@ namespace One.Views.Resource
                         uploadMessage = "Save Error!";
 
                     }
-                }
+                }*/
             }
             else 
             {

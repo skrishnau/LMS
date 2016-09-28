@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.Database;
 using Academic.DbHelper;
-using Academic.InitialValues;
+//using Academic.InitialValues;
 
 namespace One.Course
 {
@@ -25,7 +25,8 @@ namespace One.Course
                 }
                var helper = new DbHelper.Structure();
                 cmbLevel.Width = 100;
-               cmbLevel.DataSource = helper.GetLevels(InitialValues.CustomSession["SchoolId"]);
+
+               //cmbLevel.DataSource = helper.GetLevels(InitialValues.CustomSession["SchoolId"]);
                 cmbLevel.DataMember = "Id";
                 cmbLevel.DataTextField = "Name";
                 cmbLevel.DataValueField = "Id";

@@ -98,7 +98,7 @@ namespace One.Views.Structure.All.UserControls
                     {
                         if (OnSaveClicked != null)
                         {
-                            OnSaveClicked(this, Values.StaticValues.SuccessSaveMessageEventArgs);
+                            OnSaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                         }
                         ClearCreateTextBoxes();
                     }
@@ -106,7 +106,7 @@ namespace One.Views.Structure.All.UserControls
                     {
                         if (OnSaveClicked != null)
                         {
-                            OnSaveClicked(this, Values.StaticValues.ErrorSaveMessageEventArgs);
+                            OnSaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
                         }
                     }
                 }

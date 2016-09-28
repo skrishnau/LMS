@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
-using Academic.InitialValues;
+//using Academic.InitialValues;
 using Microsoft.Ajax.Utilities;
 
 namespace One.Views.Structure.Year
@@ -16,7 +16,7 @@ namespace One.Views.Structure.Year
         {
             if (!IsPostBack)
             {
-                DbHelper.ComboLoader.LoadSchool(ref cmbSchool, InitialValues.CustomSession["InstitutionId"]);
+                //DbHelper.ComboLoader.LoadSchool(ref cmbSchool, InitialValues.CustomSession["InstitutionId"]);
             }
         }
         protected void cmbSchool_SelectedIndexChanged(object sender, EventArgs e)

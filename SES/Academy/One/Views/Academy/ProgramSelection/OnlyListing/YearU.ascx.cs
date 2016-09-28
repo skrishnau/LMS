@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using One.Values;
 
 namespace One.Views.Academy.ProgramSelection.OnlyListing
@@ -77,7 +78,7 @@ namespace One.Views.Academy.ProgramSelection.OnlyListing
             this.pnlSubControls.Controls.Add(uc);
         }
 
-        void uc_CheckChanged(object sender, Values.RunningClassEventArgs e)
+        void uc_CheckChanged(object sender, RunningClassEventArgs e)
         {
             var alreadySelected = Session["AlreadySelectedProgramBatches"] as Dictionary<int, List<int>>;
             if (alreadySelected == null)
