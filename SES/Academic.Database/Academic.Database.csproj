@@ -382,6 +382,38 @@
     <Compile Include="Migrations\201609281351274_staticvalues_moved_to_Dbhelper.Designer.cs">
       <DependentUpon>201609281351274_staticvalues_moved_to_Dbhelper.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609281829072_page_resource_added.cs" />
+    <Compile Include="Migrations\201609281829072_page_resource_added.Designer.cs">
+      <DependentUpon>201609281829072_page_resource_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609282030325_label_added.cs" />
+    <Compile Include="Migrations\201609282030325_label_added.Designer.cs">
+      <DependentUpon>201609282030325_label_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610010057385_forum_added.cs" />
+    <Compile Include="Migrations\201610010057385_forum_added.Designer.cs">
+      <DependentUpon>201610010057385_forum_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610011412190_forum_added_modified.cs" />
+    <Compile Include="Migrations\201610011412190_forum_added_modified.Designer.cs">
+      <DependentUpon>201610011412190_forum_added_modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610020815251_no_idea_7.cs" />
+    <Compile Include="Migrations\201610020815251_no_idea_7.Designer.cs">
+      <DependentUpon>201610020815251_no_idea_7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610022157599_column_added_discussion.cs" />
+    <Compile Include="Migrations\201610022157599_column_added_discussion.Designer.cs">
+      <DependentUpon>201610022157599_column_added_discussion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610080942397_no_idea_11.cs" />
+    <Compile Include="Migrations\201610080942397_no_idea_11.Designer.cs">
+      <DependentUpon>201610080942397_no_idea_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610100712396_position_added_to_choice_option_table.cs" />
+    <Compile Include="Migrations\201610100712396_position_added_to_choice_option_table.Designer.cs">
+      <DependentUpon>201610100712396_position_added_to_choice_option_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -647,6 +679,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609281351274_staticvalues_moved_to_Dbhelper.resx">
       <DependentUpon>201609281351274_staticvalues_moved_to_Dbhelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609281829072_page_resource_added.resx">
+      <DependentUpon>201609281829072_page_resource_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609282030325_label_added.resx">
+      <DependentUpon>201609282030325_label_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610010057385_forum_added.resx">
+      <DependentUpon>201610010057385_forum_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610011412190_forum_added_modified.resx">
+      <DependentUpon>201610011412190_forum_added_modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020815251_no_idea_7.resx">
+      <DependentUpon>201610020815251_no_idea_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610022157599_column_added_discussion.resx">
+      <DependentUpon>201610022157599_column_added_discussion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610080942397_no_idea_11.resx">
+      <DependentUpon>201610080942397_no_idea_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610100712396_position_added_to_choice_option_table.resx">
+      <DependentUpon>201610100712396_position_added_to_choice_option_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

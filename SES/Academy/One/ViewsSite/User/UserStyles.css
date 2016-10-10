@@ -21,6 +21,7 @@ div.data-entry-body {
 
     div.data-entry-body table {
         border-collapse: collapse;
+        /*width: 100%;*/
     }
 
     div.data-entry-body tr {
@@ -34,6 +35,7 @@ div.data-entry-body {
         padding: 10px 0;
         display: inline-block;
     }
+    
 
     div.data-entry-body td.data-value {
         padding: 10px 0;
@@ -46,7 +48,7 @@ div.data-entry-body {
 
     div.data-entry-body div.save-div {
         padding: 10px 0;
-        margin-left: 170px;
+        margin-left: 190px;
     }
 
     div.data-entry-body div.data-entry-section {

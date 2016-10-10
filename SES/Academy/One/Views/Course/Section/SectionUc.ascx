@@ -16,7 +16,7 @@
     </h3>
     <%-- class="item-summary" --%>
     <div style="margin-left: 25px;">
-        <div style="padding: 10px;">
+        <div style="padding: 10px; margin-right: 25px;">
             <asp:Label ID="lblSummary" runat="server" Text="Summary"></asp:Label>
 
         </div>

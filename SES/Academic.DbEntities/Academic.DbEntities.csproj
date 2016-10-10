@@ -65,8 +65,14 @@
     <Compile Include="ActivityAndResource\Assignment.cs" />
     <Compile Include="ActivityAndResource\BookResource.cs" />
     <Compile Include="ActivityAndResource\BookItems\BookChapter.cs" />
+    <Compile Include="ActivityAndResource\ChoiceActivity.cs" />
+    <Compile Include="ActivityAndResource\ChoiceItems\ChoiceOptions.cs" />
     <Compile Include="ActivityAndResource\FileItems\FileResourceFiles.cs" />
     <Compile Include="ActivityAndResource\FileResource.cs" />
+    <Compile Include="ActivityAndResource\ForumActivity.cs" />
+    <Compile Include="ActivityAndResource\ForumItems\ForumDiscussion.cs" />
+    <Compile Include="ActivityAndResource\LabelResource.cs" />
+    <Compile Include="ActivityAndResource\PageResource.cs" />
     <Compile Include="ActivityAndResource\UrlResource.cs" />
     <Compile Include="Admins.cs" />
     <Compile Include="AdminTitle.cs" />

@@ -285,11 +285,20 @@ namespace Academic.DbHelper
 
     #region Activity and Resources
 
-    public class ActivityClass
+    public class ActivityResourceClass
     {
         public string Name { get; set; }
-        public string Url { get; set; }
-        public string ImagePath { get; set; }
+        public string CreateUrl { get; set; }
+        public string ViewUrl { get; set; }
+
+
+        public string IconPath { get; set; }
+
+        /// <summary>
+        /// type pos: 1: assignment, 2:chat , 1: book, 2:file, etc.
+        ///  It is used to denote the type of act/res in database.. and always starts from 1.
+        /// </summary>
+        public byte TypePosition { get; set; }
     }
 
 

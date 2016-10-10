@@ -41,6 +41,12 @@
     <link href="UserStyles.css" rel="stylesheet" />
     <link href="../../Content/CSSes/All.css" rel="stylesheet" />
     <style type="text/css">
+        div.data-entry-body td.data-field {
+            /*width: 170px;*/
+            padding: 10px 0;
+            /*display: inline-block;*/
+        }
+
         /*all links*/
         .inline {
             display: inline;
@@ -70,18 +76,41 @@
         }
 
         div.course-act-res-whole {
+            vertical-align: central;
+            padding-bottom: 5px;
+            padding-top: 2px;
         }
 
-        div.course-act-res-heading {
-            padding: 5px;
+        div.course-act-res-whole-in-edit-mode {
+            vertical-align: central;
+            padding-bottom: 5px;
+            padding-top: 2px;
         }
 
-            div.course-act-res-heading:hover {
+            div.course-act-res-whole-in-edit-mode:hover {
                 background-color: #f3f1fe;
             }
 
+        div.course-act-res-heading {
+            vertical-align: central;
+            padding: 0px 4px 0;
+        }
+
+        /*div.course-act-res-heading:hover {
+                background-color: #f3f1fe;
+            }*/
+        /*div.course-act-res-heading-in-edit-mode {
+            vertical-align: central;
+            padding: 4px;
+        }
+
+            div.course-act-res-heading-in-edit-mode:hover {
+                background-color: #f3f1fe;
+            }*/
+
         div.course-act-res-body {
-            margin: 5px 0 5px 30px;
+            vertical-align: central;
+            padding: 0px 25px 0px 30px;
             text-decoration: none;
             /*margin-top: -10px;*/
         }
@@ -93,6 +122,10 @@
             .course-act-res-title:hover {
                 text-decoration: underline;
             }
+
+        .course-act-res-title-of-label {
+            text-decoration: none;
+        }
 
         /*----------------------- END OF COURSE SECTIONS AND ACTIVITIES ---------------------*/
 
@@ -115,7 +148,7 @@
         div.detail-view table {
             width: 100%;
             border-collapse: collapse;
-            margin:0 10px;
+            margin: 0 10px;
         }
 
         div.detail-view tr {
@@ -123,23 +156,24 @@
             width: 100%;
             padding: 10px 0;
         }
+
         div.detail-view td {
             padding: 10px 0;
-            display: inline-block
-        }
-
-        div.detail-view td.data-type {
-            width: 170px;
-            padding: 10px 0;
             display: inline-block;
         }
 
-        div.detail-view td.data-place {
-            /*width: 170px;*/
-            /*width: 100%;*/
-            padding: 10px 0;
-            display: inline-block;
-        }
+            div.detail-view td.data-type {
+                width: 170px;
+                padding: 10px 0;
+                display: inline-block;
+            }
+
+            div.detail-view td.data-place {
+                /*width: 170px;*/
+                /*width: 100%;*/
+                padding: 10px 0;
+                display: inline-block;
+            }
 
         div.data-entry-section-body td.data-place {
             /*width: 170px;*/
@@ -205,6 +239,7 @@
             font-family: arial, verdena;
             font-size: 0.8em;
         }
+
         .modules-body-for-event {
             /*overflow: auto;*/
             background-color: lightgoldenrodyellow;
@@ -254,7 +289,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        
+
         <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Scripts>
 
@@ -341,7 +376,7 @@
 
                     <%-- ======================= Right sidebar ======================= --%>
 
-                    <td class="right-width" runat="server" ID="right_panel">
+                    <td class="right-width" runat="server" id="right_panel">
                         <%-- ------------------------- START -------------------- --%>
                         <%-- class="right-sidebar" --%>
                         <div>

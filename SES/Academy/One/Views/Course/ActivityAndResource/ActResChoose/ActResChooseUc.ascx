@@ -7,8 +7,9 @@
         <ItemTemplate>
             <%--  NavigateUrl='<%# GetUrl(Eval("Url")) %>' --%>
             <asp:LinkButton ID="activityLink" CssClass="block" runat="server" 
-                CommandName="Click" CommandArgument='<%# Eval("Url") %>'>
-                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("ImagePath") %>' Width="22px" Height="22px" />
+                CommandName="Click" CommandArgument='<%# Eval("CreateUrl") %>'>
+                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("IconPath") %>' Width="22px" Height="22px" />
+                &nbsp;
                 <%# Eval("Name") %>
             </asp:LinkButton>
         </ItemTemplate>
@@ -37,8 +38,9 @@
             <asp:Label ID="ImagePathLabel" runat="server" Text='<%# Eval("ImagePath") %>' />
             <br />--%>
             <asp:LinkButton ID="activityLink" CssClass="block" runat="server" 
-                CommandName="Click" CommandArgument='<%# Eval("Url") %>'>
-                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("ImagePath") %>' Width="22px" Height="22px" />
+                CommandName="Click" CommandArgument='<%# Eval("CreateUrl") %>'>
+                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("IconPath") %>' Width="22px" Height="22px" />
+                &nbsp;
                 <%# Eval("Name") %>
             </asp:LinkButton>
         </ItemTemplate>

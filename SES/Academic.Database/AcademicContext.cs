@@ -89,7 +89,17 @@ namespace Academic.Database
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$//
         public DbSet<DbEntities.ActivityAndResource.ActivityResource> ActivityResource { get; set; }
 
+        public DbSet<DbEntities.ActivityAndResource.ChoiceActivity> ChoiceActivity { get; set; }
+        public DbSet<DbEntities.ActivityAndResource.ChoiceItems.ChoiceOptions>ChoiceOptions { get; set; }
+
+
         public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
+
+        public DbSet<DbEntities.ActivityAndResource.ForumActivity> ForumActivity { get; set; }
+        public DbSet<DbEntities.ActivityAndResource.ForumItems.ForumDiscussion> ForumDiscussion { get; set; }
+
+
+
 
         public DbSet<DbEntities.ActivityAndResource.BookResource> BookResource { get; set; }
         public DbSet<DbEntities.ActivityAndResource.BookItems.BookChapter> BookChapter { get; set; }
@@ -99,7 +109,9 @@ namespace Academic.Database
         public DbSet<DbEntities.ActivityAndResource.FileResource> FileResource { get; set; }
         public DbSet<DbEntities.ActivityAndResource.FileItems.FileResourceFiles> FileResourceFiles { get; set; }
 
+        public DbSet<DbEntities.ActivityAndResource.PageResource> PageResource { get; set; }
 
+        public DbSet<DbEntities.ActivityAndResource.LabelResource> LabelResource { get; set; }
         //$$$$$$$$$$$$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$$$$$$$$$$$$$$$$
 
 

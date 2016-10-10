@@ -152,6 +152,8 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                         {
                             CourseUc uc =
                                 (CourseUc)Page.LoadControl("~/ViewsSite/DashBoard/Student/CourseOverView/CourseUc.ascx");
+                            uc.TitleNavigationTarget = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" 
+                                + c.Id;
                             uc.WithdrawVisible = false;
 
                             //the below 4 lines were previously uncommented ;
@@ -163,7 +165,6 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                             //uc.SubjectSubscriptionId = c.SubjectSubscriptionId;
                             //uc.StudentSubjectModel = c;
                             uc.Title = c.Name;
-                            uc.Id = c.Id.ToString();
                             //Messages
                             //foreach messages add message controls to uc
                             {

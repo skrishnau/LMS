@@ -19,29 +19,29 @@
                     <table>
                         <tr>
                             <td class="data-type">Name</td>
-                            <td class="data-entry">
-                                <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+                            <td class="data-field">
+                                <asp:TextBox ID="txtName" runat="server" Width="170"></asp:TextBox>
                             </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td class="data-type">External Url</td>
-                            <td class="data-entry">
-                                <asp:TextBox ID="txtExternalUrl" runat="server"></asp:TextBox>
+                            <td class="data-field">
+                                <asp:TextBox ID="txtExternalUrl" runat="server" TextMode="MultiLine" Height="70" ></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Description</td>
-                            <td class="data-entry">
+                            <td class="data-field" >
                                 <CKEditor:CKEditorControl ID="CKEditor1" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Display discription on course page</td>
-                            <td class="data-entry">
+                            <td class="data-field">
                                 <asp:CheckBox ID="chkDisplayDescription" runat="server" />
                             </td>
                         </tr>
-                       
+
                     </table>
                 </div>
             </div>
@@ -53,34 +53,38 @@
                     <hr />
                 </div>
                 <div class="data-entry-section-body">
-                    <table>
-                        <tr>
-                            <td class="data-type">Display</td>
-                            <td class="data-value">
-                                <asp:DropDownList ID="ddlDisplay" runat="server">
-                                    <Items>
-                                        <asp:ListItem Value="0" Text="Automatic" Selected="True"></asp:ListItem>
-                                        <asp:ListItem Value="1" Text="Embed"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="Open"></asp:ListItem>
-                                        <asp:ListItem Value="3" Text="In pop-up"></asp:ListItem>
-                                    </Items>
-                                </asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="data-type">Pop-up width in pixel</td>
-                            <td class="data-value">
-                                <asp:TextBox ID="txtPopupWidthInPixel" runat="server"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="data-type">Pop-up height in pixel</td>
-                            <td class="data-value">
-                                <asp:TextBox ID="txtPopupHeightInPixel" runat="server"></asp:TextBox>
-                            </td>
-                        </tr>
-                       
-                    </table>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <table>
+                                <tr>
+                                    <td class="data-type">Display</td>
+                                    <td class="data-field">
+                                        <asp:DropDownList ID="ddlDisplay" runat="server" Width="150" AutoPostBack="True" OnSelectedIndexChanged="ddlDisplay_SelectedIndexChanged">
+                                            <Items>
+                                                <asp:ListItem Value="0" Text="Automatic" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Value="1" Text="Embed"></asp:ListItem>
+                                                <asp:ListItem Value="2" Text="Open"></asp:ListItem>
+                                                <asp:ListItem Value="3" Text="In pop-up"></asp:ListItem>
+                                            </Items>
+                                        </asp:DropDownList>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="data-type">Pop-up width in pixel</td>
+                                    <td class="data-field">
+                                        <asp:TextBox ID="txtPopupWidthInPixel" runat="server" Enabled="False" Width="70px"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="data-type">Pop-up height in pixel</td>
+                                    <td class="data-field">
+                                        <asp:TextBox ID="txtPopupHeightInPixel" runat="server" Enabled="False" Width="70px"></asp:TextBox>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
             <%-- SEction end --%>
@@ -98,7 +102,7 @@
             <%-- section end --%>
 
             <div class="save-div">
-                <asp:Button ID="btnSave" runat="server" Text="Save and return to Course" OnClick="btnSave_Click"  />
+                <asp:Button ID="btnSave" runat="server" Text="Save and return to Course" OnClick="btnSave_Click" />
                 &nbsp;&nbsp;
             </div>
         </div>

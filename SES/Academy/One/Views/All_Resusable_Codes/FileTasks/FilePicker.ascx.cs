@@ -162,7 +162,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 }
                 if (DbHelper.StaticValues.PdfFormat == extension)
                 {
-                    return iconLocation + "pdf_icon.ico";
+                    return iconLocation + "pdf_icon.png";
                 }
                 if (DbHelper.StaticValues.ImageFormatList.Contains(extension))
                 {
@@ -174,11 +174,11 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 }
                 if (DbHelper.StaticValues.WordFormatList.Contains(extension))
                 {
-                    return iconLocation + "word_2013_icon.png";
+                    return iconLocation + "word_icon.png";
                 }
                 if (DbHelper.StaticValues.ExcelFormatList.Contains(extension))
                 {
-                    return iconLocation + "excell_icon.png";
+                    return iconLocation + "excel_icon.png";
                 }
                 if (DbHelper.StaticValues.PowerPointFormatList.Contains(extension))
                 {

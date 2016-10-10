@@ -33,7 +33,12 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
             get { return lblTitle.Text; }
             set { lblTitle.Text = value; }
         }
-        public string TitleNavigationTarget { get; set; }
+
+        public string TitleNavigationTarget
+        {
+            get { return lblTitle.NavigateUrl; }
+            set { lblTitle.NavigateUrl = value; }
+        }
 
         public Academic.ViewModel.AcademicPlacement.StudentSubjectModel StudentSubjectModel { get; set; }
 

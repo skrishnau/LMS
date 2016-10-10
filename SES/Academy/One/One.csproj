@@ -1107,6 +1107,16 @@
     <Content Include="Content\Icons\ActivityResource\Book\Book-icon.png" />
     <Content Include="Content\Icons\ActivityResource\Book\book.png" />
     <Content Include="Content\Icons\ActivityResource\Book\book_chapter_add.png" />
+    <Content Include="Content\Icons\ActivityResource\Choice\choice_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\File\any_file_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Folder\folder-icon-40x40.png" />
+    <Content Include="Content\Icons\ActivityResource\Folder\folder_icon_plain.png" />
+    <Content Include="Content\Icons\ActivityResource\Forum\forum_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Label\label_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Page\page_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Url\url_earth.png" />
+    <Content Include="Content\Icons\ActivityResource\Url\url_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Url\url_with_text.png" />
     <Content Include="Content\Icons\AddEditDelete\add.ico" />
     <Content Include="Content\Icons\AddEditDelete\add_small.png" />
     <Content Include="Content\Icons\AddEditDelete\delete-13.ico" />
@@ -1148,16 +1158,16 @@
     <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
     <Content Include="Content\Icons\Edit\edit_orange.png" />
     <Content Include="Content\Icons\Exclamation\exclamation.png" />
-    <Content Include="Content\Icons\File\excell_icon.png" />
+    <Content Include="Content\Icons\File\excel_icon.png" />
     <Content Include="Content\Icons\File\file_add.png" />
     <Content Include="Content\Icons\File\file_icon.png" />
     <Content Include="Content\Icons\File\folder_add.png" />
     <Content Include="Content\Icons\File\itunes-music-file-icon.PNG" />
-    <Content Include="Content\Icons\File\pdf_icon.ico" />
+    <Content Include="Content\Icons\File\pdf_icon.png" />
     <Content Include="Content\Icons\File\ppt_icon.png" />
     <Content Include="Content\Icons\File\text_file_icon.png" />
     <Content Include="Content\Icons\File\video_icon.png" />
-    <Content Include="Content\Icons\File\word_2013_icon.png" />
+    <Content Include="Content\Icons\File\word_icon.png" />
     <Content Include="Content\Icons\Help\help_blu.png" />
     <Content Include="Content\Icons\Hide\hide-menu-left.png" />
     <Content Include="Content\Icons\Indent\circle_dot.png" />
@@ -1266,6 +1276,18 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Course\Index.aspx" />
     <Content Include="Course\List.aspx" />
+    <Content Include="DatePickerJquery\timepicker\GruntFile.js" />
+    <Content Include="DatePickerJquery\timepicker\index.html" />
+    <Content Include="DatePickerJquery\timepicker\jquery.timepicker.css" />
+    <Content Include="DatePickerJquery\timepicker\jquery.timepicker.d.ts" />
+    <Content Include="DatePickerJquery\timepicker\jquery.timepicker.js" />
+    <Content Include="DatePickerJquery\timepicker\jquery.timepicker.min.js" />
+    <Content Include="DatePickerJquery\timepicker\lib\bootstrap-datepicker.css" />
+    <Content Include="DatePickerJquery\timepicker\lib\bootstrap-datepicker.js" />
+    <Content Include="DatePickerJquery\timepicker\lib\glyphicons-halflings.png" />
+    <Content Include="DatePickerJquery\timepicker\lib\screenshot.png" />
+    <Content Include="DatePickerJquery\timepicker\lib\site.css" />
+    <Content Include="DatePickerJquery\timepicker\lib\site.js" />
     <Content Include="DatePickerJquery\jquery-1.8.3.js" />
     <Content Include="DatePickerJquery\jquery-ui-1.9.2.custom.css" />
     <Content Include="FileTasks\Browse.aspx" />
@@ -1340,6 +1362,11 @@
     <Content Include="AjaxAspNetJquery\images\Thumbs.db" />
     <Content Include="AjaxAspNetJquery\jquery-ui-1.12.0.custom\images\Thumbs.db" />
     <Content Include="AjaxAspNetJquery\jquery-ui-1.12.0.custom\package.json" />
+    <Content Include="DatePickerJquery\timepicker\.gitignore" />
+    <Content Include="DatePickerJquery\timepicker\bower.json" />
+    <Content Include="DatePickerJquery\timepicker\jt.timepicker.jquery.json" />
+    <Content Include="DatePickerJquery\timepicker\package.json" />
+    <Content Include="DatePickerJquery\timepicker\README.md" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="ResourceFiles\Upload\.jpg" />
     <Content Include="ResourceFiles\Upload\.png" />
@@ -1451,11 +1478,25 @@
     <Content Include="Views\ActivityResource\Book\BookItems\TocItemsUc.ascx" />
     <Content Include="Views\ActivityResource\Book\BookView.aspx" />
     <Content Include="Views\ActivityResource\Book\ChapterCreate.aspx" />
+    <Content Include="Views\ActivityResource\Choice\ChoiceCreate.aspx" />
+    <Content Include="Views\ActivityResource\Choice\ChoiceOptionsCreate.ascx" />
+    <Content Include="Views\ActivityResource\Choice\ChoiceView.aspx" />
     <Content Include="Views\ActivityResource\FileResource\DownloadingPage.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FileOption.ascx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FilesDisplay.ascx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceView.aspx" />
+    <Content Include="Views\ActivityResource\Folder\FolderCreate.aspx" />
+    <Content Include="Views\ActivityResource\Folder\FolderView.aspx" />
+    <Content Include="Views\ActivityResource\Forum\DiscussionCreate.aspx" />
+    <Content Include="Views\ActivityResource\Forum\DiscussionView.aspx" />
+    <Content Include="Views\ActivityResource\Forum\EachDiscussionUc.ascx" />
+    <Content Include="Views\ActivityResource\Forum\ForumCreate.aspx" />
+    <Content Include="Views\ActivityResource\Forum\ForumView.aspx" />
+    <Content Include="Views\ActivityResource\Label\LabelCreate.aspx" />
+    <Content Include="Views\ActivityResource\Label\LabelView.aspx" />
+    <Content Include="Views\ActivityResource\Page\PageCreate.aspx" />
+    <Content Include="Views\ActivityResource\Page\PageView.aspx" />
     <Content Include="Views\ActivityResource\Url\UrlCreate.aspx" />
     <Content Include="Views\ActivityResource\Url\UrlView.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx" />
@@ -2306,6 +2347,27 @@
     <Compile Include="Views\ActivityResource\Book\ChapterCreate.aspx.designer.cs">
       <DependentUpon>ChapterCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ActivityResource\Choice\ChoiceCreate.aspx.cs">
+      <DependentUpon>ChoiceCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Choice\ChoiceCreate.aspx.designer.cs">
+      <DependentUpon>ChoiceCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Choice\ChoiceOptionsCreate.ascx.cs">
+      <DependentUpon>ChoiceOptionsCreate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Choice\ChoiceOptionsCreate.ascx.designer.cs">
+      <DependentUpon>ChoiceOptionsCreate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Choice\ChoiceView.aspx.cs">
+      <DependentUpon>ChoiceView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Choice\ChoiceView.aspx.designer.cs">
+      <DependentUpon>ChoiceView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActivityResource\FileResource\DownloadingPage.aspx.cs">
       <DependentUpon>DownloadingPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2340,6 +2402,83 @@
     </Compile>
     <Compile Include="Views\ActivityResource\FileResource\FileResourceView.aspx.designer.cs">
       <DependentUpon>FileResourceView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Folder\FolderCreate.aspx.cs">
+      <DependentUpon>FolderCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Folder\FolderCreate.aspx.designer.cs">
+      <DependentUpon>FolderCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Folder\FolderView.aspx.cs">
+      <DependentUpon>FolderView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Folder\FolderView.aspx.designer.cs">
+      <DependentUpon>FolderView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\DiscussionCreate.aspx.cs">
+      <DependentUpon>DiscussionCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\DiscussionCreate.aspx.designer.cs">
+      <DependentUpon>DiscussionCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\DiscussionView.aspx.cs">
+      <DependentUpon>DiscussionView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\DiscussionView.aspx.designer.cs">
+      <DependentUpon>DiscussionView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\EachDiscussionUc.ascx.cs">
+      <DependentUpon>EachDiscussionUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\EachDiscussionUc.ascx.designer.cs">
+      <DependentUpon>EachDiscussionUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\ForumCreate.aspx.cs">
+      <DependentUpon>ForumCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\ForumCreate.aspx.designer.cs">
+      <DependentUpon>ForumCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\ForumView.aspx.cs">
+      <DependentUpon>ForumView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Forum\ForumView.aspx.designer.cs">
+      <DependentUpon>ForumView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Label\LabelCreate.aspx.cs">
+      <DependentUpon>LabelCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Label\LabelCreate.aspx.designer.cs">
+      <DependentUpon>LabelCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Label\LabelView.aspx.cs">
+      <DependentUpon>LabelView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Label\LabelView.aspx.designer.cs">
+      <DependentUpon>LabelView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Page\PageCreate.aspx.cs">
+      <DependentUpon>PageCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Page\PageCreate.aspx.designer.cs">
+      <DependentUpon>PageCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Page\PageView.aspx.cs">
+      <DependentUpon>PageView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Page\PageView.aspx.designer.cs">
+      <DependentUpon>PageView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ActivityResource\Url\UrlCreate.aspx.cs">
       <DependentUpon>UrlCreate.aspx</DependentUpon>

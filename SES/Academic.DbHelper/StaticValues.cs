@@ -202,6 +202,7 @@ namespace Academic.DbHelper
             {
                 get { return "~/Content/Icons/Arrow/arrow_down.png"; }
             }
+
             #endregion
 
             #region Indentation Image Urls
@@ -266,30 +267,38 @@ namespace Academic.DbHelper
         };
             #endregion
 
+            #region Custom TreeView (current tree view, used in programs listing)
+
             public static List<string> TreeLinkImage = new List<string>()
-        {
-            "",
-            "~/Content/Icons/TreeView/three_ends.png",
-            "~/Content/Icons/TreeView/up_left.png",
-            "~/Content/Icons/TreeView/left_down.png",
-            "~/Content/Icons/TreeView/up_down.png"
-        };
+            {
+                "",
+                "~/Content/Icons/TreeView/three_ends.png",
+                "~/Content/Icons/TreeView/up_left.png",
+                "~/Content/Icons/TreeView/left_down.png",
+                "~/Content/Icons/TreeView/up_down.png"
+            };
+
             public static List<string> TreeLinkImageBlack = new List<string>()
-        {
-            "",
-            "~/Content/Icons/TreeView/three_ends_black.png",
-            "~/Content/Icons/TreeView/up_left_black.png",
-            "~/Content/Icons/TreeView/left_down_black.png",
-            "~/Content/Icons/TreeView/up_down_black.png"
-        };
+            {
+                "",
+                "~/Content/Icons/TreeView/three_ends_black.png",
+                "~/Content/Icons/TreeView/up_left_black.png",
+                "~/Content/Icons/TreeView/left_down_black.png",
+                "~/Content/Icons/TreeView/up_down_black.png"
+            };
+
             public static List<string> TreeLinkImageFull = new List<string>()
-        {
-             "",
-            "~/Content/Icons/TreeView/three_ends_full.png",
-            "~/Content/Icons/TreeView/up_left_full.png",
-            "~/Content/Icons/TreeView/left_down_full.png",
-            "~/Content/Icons/TreeView/up_down_full.png"
-        };
+            {
+                "",
+                "~/Content/Icons/TreeView/three_ends_full.png",
+                "~/Content/Icons/TreeView/up_left_full.png",
+                "~/Content/Icons/TreeView/left_down_full.png",
+                "~/Content/Icons/TreeView/up_down_full.png"
+            };
+
+            #endregion
+
+            #region JavaScripts
 
             /// <summary>
             /// Working script
@@ -303,6 +312,7 @@ namespace Academic.DbHelper
 
                 }
             }
+
 
             public static string GetScriptForResctrictionAdd(string buttonId, string dialogId, string title)
             {
@@ -369,43 +379,65 @@ namespace Academic.DbHelper
             }
 
 
+            #endregion
+
+
+
+
             public static int MaximimNumberOfTimesToCheckForSameFileName = 5;
             public static string IconsOfFilesLocation = "~/Content/Icons/File/";
             public static string CourseFilesLocation = "~/Content/Images/CourseFileResource/";
 
             #region Activity and Resource Image Urls
 
-            public static List<string> ActivityImages = new List<string>()
-                {
-                    "",
-                    "~/Content/Icons/ActivityResource/Assignment/document-icon.png",
+           
 
-                    ""
-                };
 
-            public static List<string> ResourceImages = new List<string>()
-            {
-                "",
-                "~/Content/Icons/ActivityResource/Book/book.png",
-                "--"
-            };
+            //public static List<string> ActivityImages = new List<string>()
+            //    {
+            //        "",
+            //        "~/Content/Icons/ActivityResource/Assignment/document-icon.png",
+
+            //        ""
+            //        ,""
+            //        ,""
+            //         ,""
+            //         ,""
+            //         ,""
+            //         ,""
+            //         ,""
+            //         ,""
+
+            //    };
+
+            //public static List<string> ResourceImages = new List<string>()
+            //{
+            //    "",
+            //    "~/Content/Icons/ActivityResource/Book/book.png",
+            //    "~/Content/Icons/ActivityResource/File/any_file_icon.png"
+            //    ,"~/Content/Icons/ActivityResource/Folder/folder_icon_plain.png"
+            //    ,"~/Content/Icons/ActivityResource/Label/label_icon.png"
+            //    ,"~/Content/Icons/ActivityResource/Page/page_icon.png"
+            //    ,"~/Content/Icons/ActivityResource/Url/url_with_text.png"
+
+            //};
             //"~/Content/Icons/ActivityResource/Assignment/assignment_with_yellow_pencil.png",
 
             #endregion
 
-            public enum Resources
-            {
-                Book
-                ,
-                File
-                    ,
-                Folder
-                    ,
-                Label
-                    ,
-                Page
-                    , Url
-            }
+            //public enum Resources
+            //{
+            //    Book
+            //    ,
+            //    File
+            //        ,
+            //    Folder
+            //        ,
+            //    Label
+            //        ,
+            //    Page
+            //        , Url
+            //}
         }
     }
 }

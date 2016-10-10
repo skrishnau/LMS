@@ -10,7 +10,7 @@ namespace Academic.ViewModel.ActivityResource
     {
         public int Id { get; set; }
 
-        public string   Name { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
 
         public bool ShowDescriptionOnPage { get; set; }
@@ -18,7 +18,7 @@ namespace Academic.ViewModel.ActivityResource
         public DateTime Date1 { get; set; }
         public DateTime Date2 { get; set; }
         public DateTime Date3 { get; set; }
-       
+
         /// <summary>
         /// true: Activity; false: Resource
         /// </summary>
@@ -39,7 +39,7 @@ namespace Academic.ViewModel.ActivityResource
         /// Position of this Activity/Resource in UI(wwebpage)
         /// </summary>
         public int Position { get; set; }
-        
+
 
         public int SubjectSectionId { get; set; }
         //public virtual Subjects.SubjectSection SubjectSection { get; set; }
@@ -49,6 +49,8 @@ namespace Academic.ViewModel.ActivityResource
         public string IconUrl { get; set; }
         public string NavigateUrl { get; set; }
 
+        public bool Enable { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -57,14 +59,19 @@ namespace Academic.ViewModel.ActivityResource
         /// <param name="showDescriptionOnCoursePage">to show or not --description</param>
         /// <param name="navigateUrl">Url of page to go to when clicked on Name of act/res</param>
         /// <param name="iconUrl">icon to show with name </param>
+        /// <param name="enable"></param>
         public void SetOtherValues(string name, string description, bool showDescriptionOnCoursePage
-            , string navigateUrl, string iconUrl)
+            , string navigateUrl = "", string iconUrl = "", bool enable = true)
         {
             Name = name;
             this.Description = description;
+            Enable = enable;
             ShowDescriptionOnPage = showDescriptionOnCoursePage;
-            NavigateUrl = navigateUrl;
-            IconUrl = iconUrl;
+            if (!string.IsNullOrEmpty(navigateUrl))
+                NavigateUrl = navigateUrl;
+            if (!string.IsNullOrEmpty(iconUrl))
+                IconUrl = iconUrl;
+
         }
     }
 }

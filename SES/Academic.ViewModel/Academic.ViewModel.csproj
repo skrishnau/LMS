@@ -52,6 +52,7 @@
     <Compile Include="Account\AccountViewModel.cs" />
     <Compile Include="ActivityResource\ActivityResourceViewModel.cs" />
     <Compile Include="Batch\BatchViewModel.cs" />
+    <Compile Include="ChoiceViewModel.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Files\ImageListingViewModel.cs" />

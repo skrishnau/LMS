@@ -12,7 +12,7 @@ namespace One.Views.Course.Section
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         #region Properties
@@ -24,7 +24,7 @@ namespace One.Views.Course.Section
         }
 
         public string Title { get { return lblTitle.Text; } set { lblTitle.Text = value; } }
-        public string Summary { get { return lblSummary.Text; } set { lblSummary.Text = value; } }
+        public string Description { get { return lblDescription.Text; } set { lblDescription.Text = value; } }
         public string ImageUrl { get { return imgIcon.ImageUrl; } set { imgIcon.ImageUrl = value; } }
 
         public int ActResId
@@ -43,16 +43,37 @@ namespace One.Views.Course.Section
 
 
         public void SetData(bool actOrRes, string title, string description, int actResId, string actResType, string imageUrl, string navigateUrl
-            ,int sectionId,bool edit,int subjectId)
+            , int sectionId, bool edit, int subjectId, bool enable = true)
         {
+            if (edit)
+            {
+                pnlHeading.CssClass = "course-act-res-whole-in-edit-mode";
+            }
+            else
+            {
+                pnlHeading.CssClass = "course-act-res-whole";
+            }
+
             ActOrRes = actOrRes;
             Title = title;
-            Summary = description;
+            Description = description;
             ActResId = actResId;
             ActResType = actResType;
 
-            lblTitle.NavigateUrl = navigateUrl +"?SubId="+subjectId+ "&arId=" + actResId+"&secId="+sectionId+"&edit="+(edit?1:0);
+            
+            lblTitle.NavigateUrl = navigateUrl + "?SubId=" + subjectId + "&arId=" + actResId + "&secId=" + sectionId + "&edit=" + (edit ? 1 : 0);
             imgIcon.ImageUrl = imageUrl;
+
+            lblTitle.Enabled = enable;
+            imgIcon.Visible = enable;
+            if (!enable)
+            {
+                lblTitle.CssClass = "course-act-res-title-of-label";
+            }
+            if (string.IsNullOrEmpty(description))
+            {
+                divDescription.Visible = false;
+            }
         }
 
 

@@ -13,6 +13,15 @@ namespace One.Views.Course.Section {
     public partial class ActivityAndResourceUc {
         
         /// <summary>
+        /// pnlHeading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlHeading;
+        
+        /// <summary>
         /// imgIcon control.
         /// </summary>
         /// <remarks>
@@ -40,13 +49,22 @@ namespace One.Views.Course.Section {
         protected global::System.Web.UI.WebControls.ImageButton imgEditBtn;
         
         /// <summary>
-        /// lblSummary control.
+        /// divDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSummary;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDescription;
+        
+        /// <summary>
+        /// lblDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescription;
         
         /// <summary>
         /// hidActOrRes control.
