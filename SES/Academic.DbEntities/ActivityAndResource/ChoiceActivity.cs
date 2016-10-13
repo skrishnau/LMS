@@ -57,5 +57,6 @@ namespace Academic.DbEntities.ActivityAndResource
         public virtual AccessPermission.Restriction Restriction { get; set; }
 
         public virtual ICollection<ChoiceItems.ChoiceOptions> ChoiceOptions { get; set; }
+        public virtual ICollection<ChoiceItems.ChoiceUser> ChoiceUsers { get; set; }
     }
 }

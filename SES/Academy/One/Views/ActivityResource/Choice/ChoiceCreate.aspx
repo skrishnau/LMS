@@ -232,7 +232,7 @@
                                 <tr>
                                     <td class="data-type">Privacy of results</td>
                                     <td class="data-field">
-                                        <asp:DropDownList ID="ddlPrivacyOfResults" runat="server" Enabled="False">
+                                        <asp:DropDownList ID="ddlPrivacyOfResults"  runat="server" Enabled="False">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="Publish anonymous results, do not show student names "></asp:ListItem>
                                                 <asp:ListItem Value="1" Text="Publish full result, showing names and their choices"></asp:ListItem>

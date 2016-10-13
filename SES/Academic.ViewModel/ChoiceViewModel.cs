@@ -9,7 +9,6 @@ namespace Academic.ViewModel
     [Serializable]
     public class ChoiceViewModel
     {
-
         public int Id { get; set; }
         public string Option { get; set; }
         public long? Limit { get; set; }
@@ -23,5 +22,16 @@ namespace Academic.ViewModel
         public int Position { get; set; }
 
         public bool Visible { get; set; }
+    }
+
+    public class ChoiceResultViewModel
+    {
+        public int Id { get; set; }
+
+        public string ChoiceOption { get; set; }
+
+        public int NumberOfResponses { get; set; }
+
+        public string PercentageOfResponses { get; set; }
     }
 }

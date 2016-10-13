@@ -414,6 +414,10 @@
     <Compile Include="Migrations\201610100712396_position_added_to_choice_option_table.Designer.cs">
       <DependentUpon>201610100712396_position_added_to_choice_option_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610110232214_choiceUser_created.cs" />
+    <Compile Include="Migrations\201610110232214_choiceUser_created.Designer.cs">
+      <DependentUpon>201610110232214_choiceUser_created.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -703,6 +707,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610100712396_position_added_to_choice_option_table.resx">
       <DependentUpon>201610100712396_position_added_to_choice_option_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610110232214_choiceUser_created.resx">
+      <DependentUpon>201610110232214_choiceUser_created.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

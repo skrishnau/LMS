@@ -67,6 +67,7 @@
     <Compile Include="ActivityAndResource\BookItems\BookChapter.cs" />
     <Compile Include="ActivityAndResource\ChoiceActivity.cs" />
     <Compile Include="ActivityAndResource\ChoiceItems\ChoiceOptions.cs" />
+    <Compile Include="ActivityAndResource\ChoiceItems\ChoiceUser.cs" />
     <Compile Include="ActivityAndResource\FileItems\FileResourceFiles.cs" />
     <Compile Include="ActivityAndResource\FileResource.cs" />
     <Compile Include="ActivityAndResource\ForumActivity.cs" />

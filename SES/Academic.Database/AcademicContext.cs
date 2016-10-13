@@ -91,6 +91,7 @@ namespace Academic.Database
 
         public DbSet<DbEntities.ActivityAndResource.ChoiceActivity> ChoiceActivity { get; set; }
         public DbSet<DbEntities.ActivityAndResource.ChoiceItems.ChoiceOptions>ChoiceOptions { get; set; }
+        public DbSet<DbEntities.ActivityAndResource.ChoiceItems.ChoiceUser> ChoiceUser { get; set; }
 
 
         public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }

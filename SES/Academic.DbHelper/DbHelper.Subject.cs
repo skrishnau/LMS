@@ -528,15 +528,9 @@ namespace Academic.DbHelper
             }
 
 
-            public List<StudentSubjectModel> GetExtraSubjectsOfUser(int userId)
-            {
-                return new List<StudentSubjectModel>();
-            }
+           
 
-            public void GetEarlierRegularSubjectsOfUser(int userId)
-            {
-
-            }
+           
 
             /// <summary>
             /// It is the union of GetRegularSubjectsOfUser() and GetExtraSubjectsOfUser()
@@ -850,6 +844,16 @@ namespace Academic.DbHelper
             {
                 return Context.ExamSubject.Where(x => x.ExamOfClassId == examClassId
                     && !(x.Void ?? false)).ToList();
+            }
+
+            public bool IsUserEnrolledToCourse(int userId,int SubjectId)
+            {
+                //var user = Context.Users.Find(userId);
+                //if (user != null)
+                //{
+                //    user.Classes.FirstOrDefault(x=>x.SubjectClass.Subj)
+                //}
+                return true;
             }
         }
     }

@@ -203,18 +203,18 @@ namespace One.Views.ActivityResource.Choice
 
         protected void ddlPublishResults_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // the below are commented beacuse these features are not used
             if (ddlPublishResults.SelectedIndex == 0)
             {
-                ddlPrivacyOfResults.Enabled = false;
-                ddlShowColumnsForUnanswered.Enabled = false;
-                ddlIncludeResponsesFromInactiveUsers.Enabled = false;
-
+                //ddlPrivacyOfResults.Enabled = false;
+                //ddlShowColumnsForUnanswered.Enabled = false;
+                //ddlIncludeResponsesFromInactiveUsers.Enabled = false;
             }
             else
             {
-                ddlPrivacyOfResults.Enabled = true;
-                ddlShowColumnsForUnanswered.Enabled = true;
-                ddlIncludeResponsesFromInactiveUsers.Enabled = true;
+                //ddlPrivacyOfResults.Enabled = true;
+                //ddlShowColumnsForUnanswered.Enabled = true;
+                //ddlIncludeResponsesFromInactiveUsers.Enabled = true;
             }
         }
 
@@ -331,7 +331,8 @@ namespace One.Views.ActivityResource.Choice
                     var saved = helper.AddOrUpdateChoiceActivity(choice, list, SectionId);
                     if (saved != null)
                     {
-                        Response.Redirect("~/Views/ActivityResource/Choice/ChoiceView.aspx");
+                        Response.Redirect("~/Views/ActivityResource/Choice/ChoiceView.aspx" + "?SubId="
+                                          + SubjectId + "&arId=" + saved.Id + "&secId=" + SectionId);//+ "&edit=" + (edit ? 1 : 0););
                     }
                 }
             }

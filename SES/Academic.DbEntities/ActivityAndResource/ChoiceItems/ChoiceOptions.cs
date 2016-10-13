@@ -14,9 +14,9 @@ namespace Academic.DbEntities.ActivityAndResource.ChoiceItems
 
         public int Position { get; set; }
 
-
         public int ChoiceActivityId { get; set; }
         public virtual ChoiceActivity ChoiceActivity{ get; set; }
 
+        public virtual ICollection<ChoiceUser> ChoiceUsers { get; set; }
     }
 }

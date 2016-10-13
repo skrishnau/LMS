@@ -76,7 +76,7 @@ namespace One.Views.Class
 
                     using (var helper = new DbHelper.Classes())
                     {
-                        var saved = false;//helper.AddOrUpdateSubjectSession(subjectSession);
+                        var saved = helper.AddOrUpdateSubjectSession(subjectSession);
                         if (saved)
                             Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + CourseId);
                         else

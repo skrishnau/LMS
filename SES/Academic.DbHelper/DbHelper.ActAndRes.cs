@@ -117,6 +117,18 @@ namespace Academic.DbHelper
                                     list.Add(viewModel);
                                 }
                                 break;
+                            case (int)Enums.Activities.Choice:
+                                var choice = Context.ChoiceActivity.Find(ar.ActivityResourceId);
+                                if (choice != null)
+                                {
+                                    var v = ActivityResourceValues.ChoiceActivity();
+                                    viewModel.SetOtherValues(choice.Name
+                                        , (choice.DisplayDescriptionOnCoursePage ? choice.Description : "")
+                                        , choice.DisplayDescriptionOnCoursePage
+                                        , v.ViewUrl, v.IconPath);
+                                    list.Add(viewModel);
+                                }
+                                break;
                             case (int)Enums.Activities.Lession: //lession
 
                                 break;
@@ -370,77 +382,90 @@ namespace Academic.DbHelper
 
 
             #region Choice activity
-            public object AddOrUpdateChoiceActivity(DbEntities.ActivityAndResource.ChoiceActivity choice
+            public DbEntities.ActivityAndResource.ChoiceActivity AddOrUpdateChoiceActivity
+                (DbEntities.ActivityAndResource.ChoiceActivity choice
                 , List<DbEntities.ActivityAndResource.ChoiceItems.ChoiceOptions> choiceOptions
-                ,int sectionId)
+                , int sectionId)
             {
-                var ent = Context.ChoiceActivity.Find(choice.Id);
-                if (ent == null)
+                using (var scope = new TransactionScope())
                 {
-                    //get restriction from the ui not auto add
-                    var restriction = new DbEntities.AccessPermission.Restriction()
+                    var ent = Context.ChoiceActivity.Find(choice.Id);
+                    if (ent == null)
                     {
-                        Visibility = false,
-                        MatchAllAny = false,
-                        MatchMust = true,
-                    };
+                        //get restriction from the ui not auto add
+                        var restriction = new DbEntities.AccessPermission.Restriction()
+                        {
+                            Visibility = false,
+                            MatchAllAny = false,
+                            MatchMust = true,
+                        };
 
-                    var res = Context.Restriction.Add(restriction);
-                    Context.SaveChanges();
+                        var res = Context.Restriction.Add(restriction);
+                        Context.SaveChanges();
 
-                    choice.RestrictionId = res.Id;
-                    ent = Context.ChoiceActivity.Add(choice);
-                    Context.SaveChanges();
+                        choice.RestrictionId = res.Id;
+                        ent = Context.ChoiceActivity.Add(choice);
+                        Context.SaveChanges();
 
-                    SaveActivityResourceTable(true, (byte)(((int)Enums.Activities.Choice) + 1), ent.Id, sectionId);
+                        SaveActivityResourceTable(true, (byte)(((int)Enums.Activities.Choice) + 1), ent.Id, sectionId);
 
-                }
-                else
-                {
-                    ent.Name = choice.Name;
-                    ent.Description = choice.Description;
-                    ent.DisplayDescriptionOnCoursePage = choice.DisplayDescriptionOnCoursePage;
-                    ent.DisplayModeForOptions = choice.DisplayModeForOptions;
+                        foreach (var o in choiceOptions)
+                        {
+                            o.ChoiceActivityId = ent.Id;
+                            Context.ChoiceOptions.Add(o);
+                            Context.SaveChanges();
+                        }
 
-                    ent.AllowChoiceTobeUpdated = choice.AllowChoiceTobeUpdated;
-                    ent.AllowMoreThanOneChoiceToBeSelected = choice.AllowMoreThanOneChoiceToBeSelected;
-                    ent.LimitTheNumberOfResponsesAllowed = choice.LimitTheNumberOfResponsesAllowed;
-
-                    //options
-
-                    ent.RestrictTimePeriod = choice.RestrictTimePeriod;
-                    if (choice.RestrictTimePeriod)
-                    {
-                        ent.OpenDate = choice.OpenDate;
-                        ent.UntilDate = choice.UntilDate;
                     }
                     else
                     {
-                        ent.OpenDate = null;
-                        ent.UntilDate = null;
+                        ent.Name = choice.Name;
+                        ent.Description = choice.Description;
+                        ent.DisplayDescriptionOnCoursePage = choice.DisplayDescriptionOnCoursePage;
+                        ent.DisplayModeForOptions = choice.DisplayModeForOptions;
+
+                        ent.AllowChoiceTobeUpdated = choice.AllowChoiceTobeUpdated;
+                        ent.AllowMoreThanOneChoiceToBeSelected = choice.AllowMoreThanOneChoiceToBeSelected;
+                        ent.LimitTheNumberOfResponsesAllowed = choice.LimitTheNumberOfResponsesAllowed;
+
+                        //options
+
+                        ent.RestrictTimePeriod = choice.RestrictTimePeriod;
+                        if (choice.RestrictTimePeriod)
+                        {
+                            ent.OpenDate = choice.OpenDate;
+                            ent.UntilDate = choice.UntilDate;
+                        }
+                        else
+                        {
+                            ent.OpenDate = null;
+                            ent.UntilDate = null;
+                        }
+                        ent.ShowPreview = choice.ShowPreview;
+
+
+                        ent.PublishResults = choice.PublishResults;
+                        if (ent.PublishResults == 0)
+                        {
+                            ent.PrivacyOfResults = false;
+                            ent.ShowColumnForUnAnswered = false;
+                            ent.IncludeResponsesFromInactiveUsers = false;
+                        }
+                        else
+                        {
+                            ent.PrivacyOfResults = choice.PrivacyOfResults;
+                            ent.ShowColumnForUnAnswered = choice.ShowColumnForUnAnswered;
+                            ent.IncludeResponsesFromInactiveUsers = choice.IncludeResponsesFromInactiveUsers;
+                        }
+
+
+                        Context.SaveChanges();
+
                     }
-                    ent.ShowPreview = choice.ShowPreview;
-
-
-                    ent.PublishResults = choice.PublishResults;
-                    if (ent.PublishResults == 0)
-                    {
-                        ent.PrivacyOfResults = false;
-                        ent.ShowColumnForUnAnswered = false;
-                        ent.IncludeResponsesFromInactiveUsers = false;
-                    }
-                    else
-                    {
-                        ent.PrivacyOfResults = choice.PrivacyOfResults;
-                        ent.ShowColumnForUnAnswered = choice.ShowColumnForUnAnswered;
-                        ent.IncludeResponsesFromInactiveUsers = choice.IncludeResponsesFromInactiveUsers;
-                    }
-
-
-                    Context.SaveChanges();
-
+                    scope.Complete();
+                    return ent;
                 }
-                return ent;
+
             }
             #endregion
 
@@ -985,6 +1010,48 @@ namespace Academic.DbHelper
             public DbEntities.ActivityAndResource.ChoiceItems.ChoiceOptions GetChoiceOptions(int choiceId)
             {
                 return Context.ChoiceOptions.Find(choiceId);
+            }
+
+            public bool SaveChoice(List<DbEntities.ActivityAndResource.ChoiceItems.ChoiceUser> selectedChoices
+                , List<DbEntities.ActivityAndResource.ChoiceItems.ChoiceUser> removedChoices)
+            {
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        foreach (var co in selectedChoices)
+                        {
+                            var opt = Context.ChoiceUser.Find(co.Id);
+                            if (opt == null)
+                            {
+                                Context.ChoiceUser.Add(co);
+                                Context.SaveChanges();
+                            }
+                            else
+                            {
+                                opt.ChoiceOptionsId = co.ChoiceOptionsId;
+                                Context.SaveChanges();
+                            }
+                        }
+                        foreach (var co in removedChoices)
+                        {
+                            var opt = Context.ChoiceUser.Find(co.Id);
+                            if (opt != null)
+                            {
+                                Context.ChoiceUser.Remove(opt);
+                                Context.SaveChanges();
+                            }
+                        }
+
+
+                        scope.Complete();
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
 

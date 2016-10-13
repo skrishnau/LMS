@@ -1101,18 +1101,20 @@
     <Content Include="Content\Icons\Action\backward.png" />
     <Content Include="Content\Icons\Action\forward.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\actions-document-edit-icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Assignment\document1-icon.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\assignment_with_yellow_pencil.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\document-icon.png" />
     <Content Include="Content\Icons\ActivityResource\Book\Add.png" />
-    <Content Include="Content\Icons\ActivityResource\Book\Book-icon.png" />
     <Content Include="Content\Icons\ActivityResource\Book\book.png" />
     <Content Include="Content\Icons\ActivityResource\Book\book_chapter_add.png" />
     <Content Include="Content\Icons\ActivityResource\Choice\choice_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\File\any_file_icon1.png" />
     <Content Include="Content\Icons\ActivityResource\File\any_file_icon.png" />
     <Content Include="Content\Icons\ActivityResource\Folder\folder-icon-40x40.png" />
     <Content Include="Content\Icons\ActivityResource\Folder\folder_icon_plain.png" />
     <Content Include="Content\Icons\ActivityResource\Forum\forum_icon.png" />
     <Content Include="Content\Icons\ActivityResource\Label\label_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Label\label_icon1.png" />
     <Content Include="Content\Icons\ActivityResource\Page\page_icon.png" />
     <Content Include="Content\Icons\ActivityResource\Url\url_earth.png" />
     <Content Include="Content\Icons\ActivityResource\Url\url_icon.png" />
@@ -1480,7 +1482,9 @@
     <Content Include="Views\ActivityResource\Book\ChapterCreate.aspx" />
     <Content Include="Views\ActivityResource\Choice\ChoiceCreate.aspx" />
     <Content Include="Views\ActivityResource\Choice\ChoiceOptionsCreate.ascx" />
+    <Content Include="Views\ActivityResource\Choice\ChoiceResponseView.ascx" />
     <Content Include="Views\ActivityResource\Choice\ChoiceView.aspx" />
+    <Content Include="Views\ActivityResource\Choice\Default.aspx" />
     <Content Include="Views\ActivityResource\FileResource\DownloadingPage.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FileOption.ascx" />
@@ -2361,12 +2365,26 @@
     <Compile Include="Views\ActivityResource\Choice\ChoiceOptionsCreate.ascx.designer.cs">
       <DependentUpon>ChoiceOptionsCreate.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ActivityResource\Choice\ChoiceResponseView.ascx.cs">
+      <DependentUpon>ChoiceResponseView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Choice\ChoiceResponseView.ascx.designer.cs">
+      <DependentUpon>ChoiceResponseView.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActivityResource\Choice\ChoiceView.aspx.cs">
       <DependentUpon>ChoiceView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\ActivityResource\Choice\ChoiceView.aspx.designer.cs">
       <DependentUpon>ChoiceView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Choice\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Choice\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ActivityResource\FileResource\DownloadingPage.aspx.cs">
       <DependentUpon>DownloadingPage.aspx</DependentUpon>
