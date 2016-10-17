@@ -127,7 +127,11 @@ namespace Academic.DbHelper
                 var ent = Context.File.Find(imageId);
                 if (ent != null)
                 {
-                    return ent.FileDirectory + ent.FileName;//+ "." + extension;
+                    return ent.FileDirectory + ent.FileName; //+ "." + extension;
+                }
+                else
+                {
+                    
                 }
                 return "";
             }

@@ -13,16 +13,17 @@ namespace One.Views.Office.School
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var user = User as CustomPrincipal;// Master.UserId;
-            //var schoolId = Master as UserMaster;//
-            //if(schoolId!=null)
-            if (user != null)
-            {
-                if (user.SchoolId <= 0)
-                {
-                    Response.Redirect("Create.aspx");
-                }
-            }
+            Response.Redirect("~/Views/Office/");
+            //var user = User as CustomPrincipal;// Master.UserId;
+            ////var schoolId = Master as UserMaster;//
+            ////if(schoolId!=null)
+            //if (user != null)
+            //{
+            //    if (user.SchoolId <= 0)
+            //    {
+            //        Response.Redirect("Create.aspx");
+            //    }
+            //}
         }
     }
 }

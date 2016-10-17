@@ -32,6 +32,8 @@
                     <ajaxToolkit:AsyncFileUpload ID="file_upload" runat="server" OnUploadedComplete="file_upload_UploadedComplete" />
                     <br />
                     <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" Width="93px" />
+                    &nbsp; &nbsp;
+                    <asp:Label ID="lblMessage" runat="server" Text="Error! Please reload the page." ForeColor="red" Visible="False"></asp:Label>
                     <asp:HiddenField ID="hdnFileFolder" runat="server" Value="" />
                 </div>
                 <%--<uc1:FileUploadUc runat="server" ID="FileUploadUc" Visible="False"/>--%>
@@ -39,4 +41,6 @@
         </tr>
     </table>
     <asp:HiddenField ID="hidPageKey" runat="server" Value="0" />
+            <asp:HiddenField ID="hidFileSaveDirectory" runat="server" Value="" />
+            <asp:HiddenField ID="hidFileAcquireMode" runat="server" Value="Multiple" />
 </div>

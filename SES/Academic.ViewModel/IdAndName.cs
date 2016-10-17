@@ -16,6 +16,12 @@ namespace Academic.ViewModel
 
     public class FileResourceEventArgs : EventArgs
     {
+        public FileResourceEventArgs()
+        {
+            Visible = true;
+        }
+        public int Id { get; set; }
+
         public long FileSizeInBytes { get; set; }
         /// <summary>
         /// eg. image/jpg . i.e. in the form of slash in middle
@@ -35,6 +41,8 @@ namespace Academic.ViewModel
         /// full file path. extract name later.
         /// </summary>
         public string FilePath { get; set; }
+
+        public bool Visible { get; set; } 
     }
 
     public class IdAndNameEventArgs:EventArgs

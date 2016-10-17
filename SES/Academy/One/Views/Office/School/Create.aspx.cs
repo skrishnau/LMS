@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -10,6 +11,9 @@ using Academic.DbEntities.User;
 using Academic.DbHelper;
 //using Academic.InitialValues;
 using One.Values.MemberShip;
+using System.IO;
+using Academic.DbEntities;
+using Academic.ViewModel;
 
 namespace One.Views.Office.School
 {
@@ -17,32 +21,22 @@ namespace One.Views.Office.School
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            file_upload.Style.Add("visibility", " hidden");
             if (!IsPostBack)
             {
+                var guid = Guid.NewGuid();
+                hidPageKey.Value = guid.ToString();
+                FilesDisplay1.PageKey = hidPageKey.Value;
+                FilesDisplay1.FileSaveDirectory = DbHelper.StaticValues.SchoolFileLocation;
+                FilesDisplay1.FileAcquireMode = Enums.FileAcquireMode.Single;
                 var user = User as CustomPrincipal;
                 if (user != null)
                 {
+                    PopulateCountry();
                     if (user.SchoolId > 0)
                     {
-                        using (var helper = new DbHelper.Office())
-                        {
-                            var sch = helper.GetSchoolOfUser(user.Id);
-                            if (sch != null)
-                            {
-                                hidSchoolId.Value = sch.Id.ToString();
-                                txtCity.Text = sch.City;
-                                txtCode.Text = sch.Code;
-                                txtName.Text = sch.Name;
-                                txtCountry.Text = sch.Country;
-                                txtEmail.Text = sch.Email;
-                                txtFax.Text = sch.Fax;
-                                txtPhone.Text = sch.Phone;
-                                txtRegNo.Text = sch.RegNo;
-                                txtStreet.Text = sch.Street;
-                                txtWeb.Text = sch.Website;
-                                hidUserId.Value = sch.UserId.ToString();
-                            }
-                        }
+                        PopulateSchoolInfo(user);
+
                     }
                     else
                     {
@@ -55,10 +49,11 @@ namespace One.Views.Office.School
                 //    return;
                 //}
                 LoadSchoolType();
+
                 //pnlSchTyp.Visible = false;
-                SchoolTypeUC.SavedId = 0;
-                SchoolTypeUC.Visible_ = false;
-                SchoolTypeAllButtonsVisible(false);
+                //SchoolTypeUC.SavedId = 0;
+                //SchoolTypeUC.Visible_ = false;
+                //SchoolTypeAllButtonsVisible(false);
             }
 
             if (Values.Session.GetUser(Session) > 0)
@@ -82,14 +77,92 @@ namespace One.Views.Office.School
             lblMsg.Visible = false;
         }
 
+        private void PopulateSchoolInfo(CustomPrincipal user)
+        {
+            using (var helper = new DbHelper.Office())
+            {
+                var sch = helper.GetSchoolOfUser(user.Id);
+                if (sch != null)
+                {
+                    hidSchoolId.Value = sch.Id.ToString();
+                    txtCity.Text = sch.City;
+                    txtCode.Text = sch.Code;
+                    txtName.Text = sch.Name;
+                    ddlCountry.SelectedValue = sch.Country;
+                    // txtCountry.Text = sch.Country;
+                    txtEmail.Text = sch.Email;
+                    txtFax.Text = sch.Fax;
+                    txtPhone.Text = sch.Phone;
+                    txtRegNo.Text = sch.RegNo;
+                    hidImageId.Value = sch.ImageId.ToString();
+                    //txtStreet.Text = sch.Street;
+                    txtWeb.Text = sch.Website;
+                    hidUserId.Value = sch.UserId.ToString();
+                    cmbSchoolType.SelectedValue = sch.SchoolTypeId.ToString();
+                    var f = helper.GetSchoolImage(sch.ImageId);
+                    if (f != null)
+                    {
+                        //var fileName = Path.GetFileName(f.FilePath);
+                        var image = new FileResourceEventArgs()
+                                {
+                                    Id = f.Id,
+                                    //CreatedBy = user.Id
+                                    //,
+                                    //CreatedDate = DateTime.Now
+                                    //,
+                                    FileDisplayName = f.DisplayName //Path.GetFileName(imageFile.FileName)
+                                        //,
+                                        // FileDirectory = DbHelper.StaticValues.SchoolFileLocation //StaticValue.UserImageDirectory
+                                        // ,
+                                        //FileName = fileName
+                                    ,
+                                    FilePath = DbHelper.StaticValues.SchoolFileLocation + f.FileName
+                                        //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
+                                    ,
+                                    FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
+                                    ,
+                                    FileType = f.FileType //imageFile.ContentType
+                                    ,
+                                    IconPath = f.IconPath
+                                    ,
+                                    //SubjectId = SubjectId
+                                };
+                        FilesDisplay1.SetInitialValues(new List<FileResourceEventArgs>() { image });
+                    }
+                }
+            }
+        }
+
+        private void PopulateCountry()
+        {
+            List<string> countries = new List<string>();
+            var getCultureInfo = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+            foreach (var c in getCultureInfo)
+            {
+                var getRegionInfo =
+                    new RegionInfo(c.LCID);
+                var name = getRegionInfo.EnglishName.Split(new char[] { '(' })[0];
+                if (!countries.Contains(name))
+                {
+                    countries.Add(name);
+                }
+            }
+            countries.Sort();
+            countries.Insert(0, "Select");
+            ddlCountry.DataSource = countries;
+            ddlCountry.DataBind();
+        }
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
             if (cmbSchoolType.SelectedValue == "" || cmbSchoolType.SelectedValue == "0")
             {
                 valiSchType.IsValid = false;
-                return;
             }
+            if (ddlCountry.SelectedIndex == 0)
+                valiCountry.IsValid = false;
+
             if (IsValid)
             {
                 var user = User as CustomPrincipal;
@@ -105,7 +178,7 @@ namespace One.Views.Office.School
                     ,
                     Code = txtCode.Text
                     ,
-                    Country = txtCountry.Text
+                    Country = ddlCountry.Text
                     ,
                     Email = txtEmail.Text
                     ,
@@ -121,50 +194,97 @@ namespace One.Views.Office.School
                     ,
                     SchoolTypeId = Convert.ToInt32(cmbSchoolType.Text)
                     ,
-                    Street = txtStreet.Text
+                    Street = ""
                     ,
                     Website = txtWeb.Text
                     ,
                     CreatedDate = DateTime.Now
-                   ,
+                    ,ImageId = Convert.ToInt32(hidImageId.Value)
                 };
                 if (user.SchoolId <= 0)
                     school.UserId = user.Id;
 
                 using (var helper = new DbHelper.Office())
                 {
-                    var saved = helper.AddOrUpdateSchool(school, FileUpload1.PostedFile);
+                    var files = FilesDisplay1.GetFiles();
+                    var image = new UserFile();
+                    if (files != null)
+                    {
+                        if (files.Count >= 1)
+                        {
+                            var f = files[0];
+                            //foreach (var f in files)
+                            {
+                                var fileName = Path.GetFileName(f.FilePath);
+                                image = new Academic.DbEntities.UserFile()
+                                {
+                                    Id = f.Id,
+                                    CreatedBy = user.Id
+                                    ,
+                                    CreatedDate = DateTime.Now
+                                    ,
+                                    DisplayName = f.FileDisplayName //Path.GetFileName(imageFile.FileName)
+                                    ,
+                                    FileDirectory = DbHelper.StaticValues.SchoolFileLocation //StaticValue.UserImageDirectory
+                                    ,
+                                    FileName = fileName
+                                        //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
+                                    ,
+                                    FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
+                                    ,
+                                    FileType = f.FileType //imageFile.ContentType
+                                    ,
+                                    IconPath = f.IconPath
+                                    ,
+                                    //SubjectId = SubjectId
+                                };
+                                if (f.Id > 0)
+                                {
+                                    image.ModifiedBy = user.Id;
+                                    image.ModifiedDate = DateTime.Now;
+                                }
+                            }
+                        }
+                    }
+
+                    var saved = helper.AddOrUpdateSchool(school, image);//FileUpload1.PostedFile
 
                     //update cookie -- add school Id to the cookie
                     //Page.User.Identity.Name;
-                    if (user.SchoolId <= 0 && saved != null)
+                    if (saved != null)
                     {
-                        var ok = UpdateSchoolInfoInCookie(user, saved.Id);
-                        if (ok)
+                        if (user.SchoolId <= 0 )
                         {
-                            Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
-                        }
-                        else
-                        {
-                            lblMsg.Text = "Error while saving.";
-                        }
+                            var ok = UpdateSchoolInfoInCookie(user, saved.Id);
+                            if (ok)
+                            {
+                                Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
+                            }
+                            else
+                            {
+                                lblMsg.Text = "Error while saving.";
+                            }
 
-                        //---not needed, since redirect is done above
+                            //---not needed, since redirect is done above
 
-                        //SchoolTypeUC.SavedId = 0;
-                        //lblMsg.Visible = true;
-                        //lblMsg.Text = "Save Successful.";
+                            //SchoolTypeUC.SavedId = 0;
+                            //lblMsg.Visible = true;
+                            //lblMsg.Text = "Save Successful.";
+                        }
+                        else Response.Redirect("~/Views/Office/");
                     }
+
                     else
                     {
                         lblMsg.Text = "Error while saving.";
                     }
                 }
             }
+            else
+            {
+                lblMsg.Text = "Some fields are invalid or not filled.";
+            }
         }
-
-
-
 
         public bool UpdateSchoolInfoInCookie(CustomPrincipal user, int schoolId)
         {
@@ -247,74 +367,10 @@ namespace One.Views.Office.School
             }
         }
 
-
-        protected void cmbSchoolType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbSchoolType.SelectedValue == "-1")
-            {
-                //SchoolTypeUC.InstitutionId = InitialValues.CustomSession["InstitutionId"];
-                SchoolTypeAllButtonsVisible(true);
-
-            }
-            else
-            {
-                SchoolTypeAllButtonsVisible(false);
-                ResetSchoolTypeUc();
-            }
-        }
-
-        private void ResetSchoolTypeUc()
-        {
-            SchoolTypeUC.SavedId = 0;
-            SchoolTypeUC.Name = "";
-        }
-
-        //protected void Button1_Click(object sender, EventArgs e)
-        //{
-        //    SchoolTypeUC.Visible_ = false;
-        //}
-
         void LoadSchoolType(int selectedValue = 0)
         {
             DbHelper.ComboLoader.LoadSchoolType(ref  cmbSchoolType,
                      selectedValue, false);
-            SchoolTypeAllButtonsVisible(false);
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            SchoolTypeUC.Cancel();
-            SchoolTypeAllButtonsVisible(false);
-        }
-
-        void SchoolTypeAllButtonsVisible(bool value)
-        {
-            //btnCancel.Visible = value;
-            //btnSave.Visible = value;
-            pnlSchTypeUc.Visible = value;
-            SchoolTypeUC.Visible_ = value;
-        }
-
-        protected void btnSave1_Click(object sender, EventArgs e)
-        {
-            var saved = SchoolTypeUC.Save();
-            if (saved)
-            {
-                LoadSchoolType(SchoolTypeUC.SavedId);
-            }
-        }
-
-        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
-        {
-            if (!pnlSchTypeUc.Visible)
-            {
-                //SchoolTypeUC.InstitutionId = InitialValues.CustomSession["InstitutionId"];
-                SchoolTypeAllButtonsVisible(true);
-            }
-            else
-            {
-                SchoolTypeAllButtonsVisible(false);
-            }
         }
     }
 }

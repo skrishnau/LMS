@@ -37,6 +37,9 @@ namespace One.Views.ActivityResource.FileResource
                 var guid = Guid.NewGuid();
                 hidPageKey.Value = guid.ToString();
                 FilesDisplay1.PageKey = guid.ToString();
+                FilesDisplay1.FileSaveDirectory = DbHelper.StaticValues.CourseFilesLocation;
+                FilesDisplay1.FileAcquireMode = Enums.FileAcquireMode.Multiple;
+
             }
             AsyncFileUpload1.Style.Add("visibility", " hidden");
         }

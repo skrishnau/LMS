@@ -7,3 +7,7 @@
         <uc1:UserCreateUC runat="server" ID="UserCreateUC" />
     </div>
 </asp:Content>
+
+<%--<asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
+    
+</asp:Content>--%>

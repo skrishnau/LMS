@@ -75,6 +75,11 @@
             background-color: #557d96;
         }
 
+        .file-display {
+            background-color: #557d96;  
+            padding: 2px 5px;          
+        }
+
         div.course-act-res-whole {
             vertical-align: central;
             padding-bottom: 5px;
@@ -306,7 +311,6 @@
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
 
-
             </Scripts>
         </asp:ScriptManager>
 
@@ -315,10 +319,11 @@
                 <a href="~/Views/Office/School/View.aspx" style="text-decoration: none;">
                     <asp:Label ID="lblSchoolName" runat="server" Text="Label" Font-Size="1.2em" Font-Bold="True"></asp:Label>
                 </a>
-                <div style="float: left;">
-                    <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Images/company-logo.jpg" Width="30" Height="30" />
 
+                <div style="float: left;">
+                    <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Icons/School/school-logo.png" Width="30" Height="30" />
                 </div>
+
                 <div style="position: fixed; right: 0; top: 0; margin-right: 10px; margin-top: 5px;" class="clearfix">
                     <asp:LoginName ID="LoginName1" runat="server" Font-Size="1.1em" />
                     <asp:LoginStatus ID="LoginStatus1" runat="server" ForeColor="white" Font-Size="0.9em" />

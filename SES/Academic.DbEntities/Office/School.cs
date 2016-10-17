@@ -21,24 +21,30 @@ namespace Academic.DbEntities.Office
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
 
-        [Required(ErrorMessage = "please choose one of the types.")]
-        public Int32 SchoolTypeId { get; set; }
-        public String Code { get; set; }
-        public String Country { get; set; }
-        public String City { get; set; }
-        public String Street { get; set; }
-        public String Phone { get; set; }
-        public String RegNo { get; set; }
-        public String Fax { get; set; }
-        public String Email { get; set; }
-        public String Website { get; set; }
+        //[Required(ErrorMessage = "please choose one of the types.")]
+        public string Code { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string Phone { get; set; }
+        public string RegNo { get; set; }
+        public string Fax { get; set; }
+        public string Email { get; set; }
+        public string Website { get; set; }
         public DateTime? CreatedDate { get; set; }
 
         public int? UserId { get; set; }
         //public virtual Users User { get; set; }
 
-        public Byte[] Image { get; set; }
-        public string ImageType { get; set; }
+        public int ImageId { get; set; }
+        public virtual UserFile Image { get; set; }
+
+        //public Byte[] Image { get; set; }
+        //public string ImageType { get; set; }
+        
+        public int SchoolTypeId { get; set; }
+        public virtual SchoolType SchoolType { get; set; }
+
         //i think its not needed
         //public Int32? ParentId { get; set; }
 
@@ -48,6 +54,5 @@ namespace Academic.DbEntities.Office
         //public virtual Institution Institution { get; set; }
        // public virtual Branch Branch { get; set; }
         //next version
-        public virtual SchoolType SchoolType { get; set; }
     }
 }

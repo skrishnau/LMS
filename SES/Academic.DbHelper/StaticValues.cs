@@ -387,10 +387,14 @@ namespace Academic.DbHelper
             public static int MaximimNumberOfTimesToCheckForSameFileName = 5;
             public static string IconsOfFilesLocation = "~/Content/Icons/File/";
             public static string CourseFilesLocation = "~/Content/Images/CourseFileResource/";
+            public static string SchoolFileLocation = "~/Content/Images/SchoolFileResource/";
+            
+
+
 
             #region Activity and Resource Image Urls
 
-           
+
 
 
             //public static List<string> ActivityImages = new List<string>()

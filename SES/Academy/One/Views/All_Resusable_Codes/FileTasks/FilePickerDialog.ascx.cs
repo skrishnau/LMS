@@ -38,6 +38,25 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             }
         }
 
+        public string FileSaveDirectory
+        {
+            get { return hidFileSaveDirectory.Value; }
+            set
+            {
+                FilePicker1.FileSaveDirectory = value;
+                hidFileSaveDirectory.Value = value;
+            }
+        }
+        public Enums.FileAcquireMode FileAcquireMode
+        {
+            get { return Enums.ParseEnum<Enums.FileAcquireMode>(hidFileAcquireMode.Value); }
+            set
+            {
+                FilePicker1.FileAcquireMode = value;
+                hidFileAcquireMode.Value = value.ToString();
+            }
+        }
+
         public string PageKey
         {
             get { return hidPageKey.Value; }
@@ -335,6 +354,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
 
 
         #endregion
+
 
     }
 }

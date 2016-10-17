@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using Academic.ViewModel;
 
 namespace One.Views.ActivityResource.FileResource.FileResourceItems
@@ -19,9 +20,9 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             if (!IsPostBack)
             {
                 //FileResourceEventArgs--> Icon path is the path of the image... FileName is the file path
-                Session["FilesList" + PageKey] = new List<FileResourceEventArgs>();
                 //Session["LatestFile"]=new FileResourceEventArgs();
                 FilePickerDialog1.SetValues("File picker", null, "", "");
+
             }
             else
             {
@@ -30,16 +31,22 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
                 {
                     foreach (var iname in files)
                     {
-                        var image = new ImageButton()
+                        //if (iname.Visible)
                         {
-                            ImageUrl = iname.IconPath
-                            ,
-                            CausesValidation = false,
-                            Height = 50,
-                            Width = 50,
-                            ImageAlign = ImageAlign.Left
-                        };
-                        pnlFiles.Controls.Add(image);
+                            var image = new ImageButton()
+                            {
+                                ImageUrl = iname.IconPath
+                                ,
+                                CausesValidation = false,
+                                Height = 50,
+                                Width = 50,
+                                ImageAlign = ImageAlign.Left
+                                ,
+                                Visible = iname.Visible
+                            };
+                            pnlFiles.Controls.Add(image);
+                        }
+
                     }
                 }
             }
@@ -49,28 +56,35 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
 
         void FilePickerDialog1_UploadClicked(object sender, FileResourceEventArgs e)
         {
-            var image = new ImageButton()
-            {
-                ImageUrl = e.IconPath,
-                CausesValidation = false,
-                Height = 50,
-                Width = 50,
-                ImageAlign = ImageAlign.Left
-            };
-
-            pnlFiles.Controls.Add(image);
-
             var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
+
             if (files != null)
             {
+                if (FileAcquireMode == Enums.FileAcquireMode.Single)
+                {
+                    if (files.Count >= 1)
+                        files[files.Count - 1].Visible = false;
+                }
                 files.Add(e);
+                var image = new ImageButton()
+                {
+                    ImageUrl = e.IconPath,
+                    CausesValidation = false,
+                    Height = 50,
+                    Width = 50,
+                    ImageAlign = ImageAlign.Left
+                    ,
+                    Visible = e.Visible
+                };
+                pnlFiles.Controls.Clear();
+                pnlFiles.Controls.Add(image);
             }
             FilePickerDialog1.CloseDialog();
         }
 
         public void FilePickerDialog1_FileChoosen(object sender, FileResourceEventArgs e)
         {
-           
+
         }
 
         protected void lnkAddFile_Click(object sender, EventArgs e)
@@ -88,8 +102,30 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             get { return hidPageKey.Value; }
             set
             {
+                Session["FilesList" + value] = new List<FileResourceEventArgs>();
                 hidPageKey.Value = value;
                 FilePickerDialog1.PageKey = value;
+            }
+        }
+
+        public string FileSaveDirectory
+        {
+            get { return hidFileSaveDirectory.Value; }
+            set
+            {
+                FilePickerDialog1.FileSaveDirectory = value;
+                hidFileSaveDirectory.Value = value;
+            }
+        }
+        public Enums.FileAcquireMode FileAcquireMode
+        {
+            get { return Enums.ParseEnum<Enums.FileAcquireMode>(hidFileAcquireMode.Value); }
+            set
+            {
+                FilePickerDialog1.FileAcquireMode = value;
+                hidFileAcquireMode.Value = value.ToString();
+                if (value == Enums.FileAcquireMode.Single)
+                    MultiView1.ActiveViewIndex = 1;
             }
         }
 
@@ -97,7 +133,16 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
         {
             var list = new List<Academic.DbEntities.UserFile>();
             var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
+            if (FileAcquireMode == Enums.FileAcquireMode.Single && files != null)
+            {
+                if (files.Count >= 1)
+                {
+                    files[files.Count - 1].Id = files[0].Id;
+                    return new List<FileResourceEventArgs>() {files[files.Count - 1]};
+                }
+            }
             return files;
+
             //if (files != null)
             //{
             //    foreach (var f in files)
@@ -121,6 +166,30 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             //        pnlFiles.Controls.Add(image);
             //    }
             //}
+        }
+
+        public void SetInitialValues(List<FileResourceEventArgs> list)
+        {
+            Session["FilesList" + PageKey] = list;
+            foreach (var iname in list)
+            {
+                //if (iname.Visible)
+                {
+                    var image = new ImageButton()
+                    {
+                        ImageUrl = iname.IconPath
+                        ,
+                        CausesValidation = false,
+                        Height = 50,
+                        Width = 50,
+                        ImageAlign = ImageAlign.Left
+                        ,
+                        Visible = iname.Visible
+                    };
+                    pnlFiles.Controls.Add(image);
+                }
+
+            }
         }
     }
 }

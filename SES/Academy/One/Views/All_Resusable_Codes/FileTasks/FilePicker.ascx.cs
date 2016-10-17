@@ -19,6 +19,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblMessage.Visible = false;
             if (!IsPostBack)
             {
                 lnkUploadFile.BackColor = Color.LightBlue;
@@ -55,8 +56,11 @@ namespace One.Views.All_Resusable_Codes.FileTasks
 
         protected void file_upload_UploadedComplete(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
         {
+            if (string.IsNullOrEmpty(FileSaveDirectory))
+                lblMessage.Visible = true;
             if (!file_upload.HasFile)
                 return;
+            //if(FileAcquireMode== DbHelper.StaticValues.FileAcquireMode.Single)
 
             var fileName = Path.GetFileName(e.FileName);
             if (fileName == null) return;
@@ -67,7 +71,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 var extension = Path.GetExtension(fileName);
                 var s = Guid.NewGuid().ToString() + extension;
                 count = 0;
-                string guidName = GetNewFileName( s);
+                string guidName = GetNewFileName(s);
                 count = 0;
                 if (guidName == "")
                 {
@@ -76,7 +80,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                     return;
 
                 }
-                var fileUploadPath = Path.Combine(Server.MapPath(DbHelper.StaticValues.CourseFilesLocation), guidName);
+                var fileUploadPath = Path.Combine(Server.MapPath(FileSaveDirectory), guidName);
                 file_upload.SaveAs(fileUploadPath);
 
                 //copied from another file so keep it.
@@ -88,18 +92,34 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 var valuetoSave = new FileResourceEventArgs()
                                     {
                                         FileDisplayName = fileName,
-                                        FilePath = DbHelper.StaticValues.CourseFilesLocation
-                                            + guidName
-                                        ,
+                                        FilePath = FileSaveDirectory + guidName,
                                         IconPath = iconPath
-                                        ,FileSizeInBytes = file_upload.PostedFile.ContentLength
-                                        ,FileType = file_upload.PostedFile.ContentType
+                                        ,
+                                        FileSizeInBytes = file_upload.PostedFile.ContentLength
+                                        ,
+                                        FileType = file_upload.PostedFile.ContentType
                                     };
+                //if (FileAcquireMode == Enums.FileAcquireMode.Single)
+                //{
+                //    //here delete the previous uploaded file                    
+                //    DeletePreviousUploadedFile();
+                //    Session["JustUploaded" + PageKey] = valuetoSave;
+                //}
+
                 Session["LatestFile" + PageKey] = valuetoSave;
             }
         }
 
-        private string GetNewFileName( string fileName)
+        private void DeletePreviousUploadedFile()
+        {
+            var latest = Session["JustUploaded" + PageKey] as FileResourceEventArgs;
+            if (latest != null)
+            {
+                System.IO.File.Delete(Server.MapPath(latest.FilePath));
+            }
+        }
+
+        private string GetNewFileName(string fileName)
         {
             if (count < DbHelper.StaticValues.MaximimNumberOfTimesToCheckForSameFileName)
             {
@@ -108,7 +128,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 {
                     var extension = Path.GetExtension(fileName);
                     var s = Guid.NewGuid().ToString() + extension;
-                    return GetNewFileName( fileName);
+                    return GetNewFileName(fileName);
                 }
                 else
                 {
@@ -150,7 +170,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
         private string GetIconForFile(string path)
         {
             var iconLocation = DbHelper.StaticValues.IconsOfFilesLocation;//file_icon.png
-            var fileLocation = DbHelper.StaticValues.CourseFilesLocation;
+            var fileLocation = FileSaveDirectory;
             var extension = Path.GetExtension(path);
             var fileName = Path.GetFileName(path);
             if (extension != null)
@@ -195,12 +215,37 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             {
                 if (UploadClicked != null)
                 {
+                    if (FileAcquireMode == Enums.FileAcquireMode.Single)
+                    {
+                        //here delete the previous uploaded file                    
+                        DeletePreviousUploadedFile();
+                        Session["JustUploaded" + PageKey] = latest;
+
+                    }
                     UploadClicked(this, latest);
                 }
             }
             Session["LatestFile" + PageKey] = null;
         }
 
+
+
+
+        public string FileSaveDirectory
+        {
+            get { return hidFileSaveDirectory.Value; }
+            set
+            {
+                //fi.FileSaveDirectory = value;
+                hidFileSaveDirectory.Value = value;
+            }
+        }
+
+        public Enums.FileAcquireMode FileAcquireMode
+        {
+            get { return Enums.ParseEnum<Enums.FileAcquireMode>(hidFileAcquireMode.Value); }
+            set { hidFileAcquireMode.Value = value.ToString(); }
+        }
 
 
     }

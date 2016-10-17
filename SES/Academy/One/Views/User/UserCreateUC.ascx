@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserCreateUC.ascx.cs" Inherits="One.Views.User.UserCreateUC" %>
 <%@ Register TagPrefix="uc1" TagName="ReqImageUC" Src="~/Views/UserControls/ReqImageUC.ascx" %>
 <%@ Register Src="../UserControls/DateChooser.ascx" TagName="DateChooser" TagPrefix="uc2" %>
+<%@ Register Src="~/Views/ActivityResource/FileResource/FileResourceItems/FilesDisplay.ascx" TagPrefix="uc1" TagName="FilesDisplay" %>
+
 <div class="user-create">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -100,6 +102,8 @@
                    <%-- <a href="#">--%>
                         <%--<img src="~/Images/user.png" style="width: 57px" />--%><br />
                         <asp:FileUpload ID="FileUpload1" runat="server" />
+                    
+                    <uc1:FilesDisplay runat="server" ID="FilesDisplay" />
                     <%--</a>--%>
                 </div>
                 <br />

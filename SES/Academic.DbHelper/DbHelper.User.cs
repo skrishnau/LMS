@@ -13,6 +13,7 @@ using Academic.DbEntities;
 using Academic.DbEntities.User;
 //using Academic.InitialValues;
 using System.IO;
+using System.Web.UI.WebControls;
 
 namespace Academic.DbHelper
 {
@@ -198,7 +199,7 @@ namespace Academic.DbHelper
 
                     using (TransactionScope scope = new TransactionScope())
                     {
-                        byte[] imgBytes = null;
+                        //byte[] imgBytes = null;
 
                         //using (var filehelper = new DbHelper.WorkingWithFiles())
                         //{
@@ -209,8 +210,6 @@ namespace Academic.DbHelper
                         //        user.ImageType = file.ContentType;
                         //    }
                         //}
-
-
 
                         var ent = Context.Users.Find(user.Id);
                         if (ent == null)
@@ -282,6 +281,8 @@ namespace Academic.DbHelper
                 }
             }
 
+
+            
             public bool UpdateUsersImage(int userId, int imageId)
             {
                 var ent = Context.Users.Find(userId);

@@ -40,6 +40,9 @@ namespace One.ViewsSite.User
                                 //imgSchool.ImageUrl = "~/Content/Images/"
                                 lblSchoolName.Text = school.Name;
                                 SchoolId = user.SchoolId;
+                                var f = helper.GetSchoolImage(school.ImageId);
+                                if (f != null)
+                                    imgSchool.ImageUrl = f.FileDirectory + f.FileName;
                             }
                         }
                         if (Request.Url.AbsolutePath.Contains("BookView"))

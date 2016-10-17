@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Academic.Database;
+using Academic.DbEntities;
 using Academic.DbEntities.Office;
 using Academic.ViewModel;
 
@@ -21,104 +24,10 @@ namespace Academic.DbHelper
                 Context = new AcademicContext();
             }
 
-
-
-
-
-
             public void Dispose()
             {
                 Context.Dispose();
             }
-
-            //=======================================================================//
-
-            //For WebForm controls
-            /*
-            //not needed
-            public DbEntities.Office.Institution GetInstitution(int id)
-            {
-                return Context.Institution.Find(id);
-
-            }
-
-            public DbEntities.Office.Institution AddOrUpdateInstitution(DbEntities.Office.Institution entity, System.Web.HttpPostedFile httpPostedFile)
-            {
-                try
-                {
-                    var model = Context.Institution.Find(entity.Id);
-                    byte[] imgBytes = null;
-                    using (var filehelper = new DbHelper.WorkingWithFiles())
-                    {
-                        if (httpPostedFile != null)
-                        {
-                            imgBytes = filehelper.ConvertToBytes(httpPostedFile);
-                            entity.Logo = imgBytes;
-                            entity.LogoImageType = httpPostedFile.ContentType;
-                        }
-                    }
-                    if (model == null)
-                    {
-                        //add
-                        var inst = Context.Institution.Add(entity);
-                        Context.SaveChanges();
-                        return inst;
-                    }
-
-                    else
-                    {
-                        //update
-                        model.Name = entity.Name;
-                        model.Country = entity.Country;
-                        model.City = entity.City;
-                        model.Category = entity.Category;
-                        model.Street = entity.Street;
-                        model.Logo = (httpPostedFile == null) ? model.Logo : imgBytes;
-                        model.LogoImageType = (httpPostedFile == null)
-                            ? model.LogoImageType
-                            : httpPostedFile.ContentType;
-                        model.Email = entity.Email;
-                        model.Website = entity.Website;
-                        model.Moto = entity.Moto;
-                        model.PanNo = entity.PanNo;
-                        model.PostalCode = entity.PostalCode;
-                        model.UserId = entity.UserId;
-                        Context.SaveChanges();
-                        return model;
-                    }
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }
-            }
-
-            public DbEntities.Office.Institution RemoveInstitution(int id)
-            {
-                try
-                {
-                    var inst = Context.Institution.Find(id);
-                    if (inst == null)
-                    {
-                        return null;
-                    }
-                    var removed = Context.Institution.Remove(inst);
-                    Context.SaveChanges();
-                    return removed;
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }
-            }
-
-            public List<Institution> GetAllInstitution()
-            {
-                return Context.Institution.ToList();
-            }
-
-            */
-
 
             public List<IdAndName> GetSchoolForCombo(int instId)
             {
@@ -135,66 +44,97 @@ namespace Academic.DbHelper
                 return ss;
             }
 
-            public DbEntities.Office.School AddOrUpdateSchool(DbEntities.Office.School school, System.Web.HttpPostedFile httpPostedFile)
+            public DbEntities.Office.School AddOrUpdateSchool(DbEntities.Office.School school, UserFile image)//System.Web.HttpPostedFile httpPostedFile
             {
                 try
                 {
-                    int earlierSchoolId = school.Id;
-                    var ent = Context.School.Find(school.Id);
-
-                    byte[] imgBytes = null;
-                    using (var filehelper = new DbHelper.WorkingWithFiles())
+                    using (var scope = new TransactionScope())
                     {
-                        if (httpPostedFile != null)
-                        {
-                            imgBytes = filehelper.ConvertToBytes(httpPostedFile);
-                            school.Image = imgBytes;
-                            school.ImageType = httpPostedFile.ContentType;
-                        }
-                    }
 
-                    if (ent == null)
-                    {
-                        var saved = Context.School.Add(school);
-                        Context.SaveChanges();
-
-                        //if this is newly created school (by the user) then add schoolId to the user
-                        if (earlierSchoolId <= 0 && school.UserId > 0)
+                        int earlierSchoolId = school.Id;
+                        var ent = Context.School.Find(school.Id);
+                        if (ent == null)
                         {
-                            var user = Context.Users.Find(school.UserId);
-                            if (user != null)
+                            var img = Context.File.Add(image);
+                            Context.SaveChanges();
+                            school.ImageId = img.Id;
+                            ent = Context.School.Add(school);
+                            Context.SaveChanges();
+
+                            //if this is newly created school (by the user) then add schoolId to the user
+                            if (earlierSchoolId <= 0 && school.UserId > 0)
                             {
-                                user.SchoolId = saved.Id;
-                                Context.SaveChanges();
-
+                                var user = Context.Users.Find(school.UserId);
+                                if (user != null)
+                                {
+                                    user.SchoolId = ent.Id;
+                                    Context.SaveChanges();
+                                }
                             }
+
                         }
+                        else
+                        {
+                            int imageId = 0;
 
-                        return saved;
-                    }
-                    else
-                    {
-                        //update later
-                        ent.Name = school.Name;
-                        ent.Email = school.Email;
-                        ent.Fax = school.Fax;
-                        ent.Phone = school.Phone;
-                        ent.RegNo = school.RegNo;
-                        ent.Street = school.Street;
-                        ent.Website = school.Website;
-                        ent.City = school.City;
-                        ent.Code = school.Code;
-                        ent.Country = school.Country;
-                        ent.Image = school.Image;
-                        ent.ImageType = school.ImageType;
-                        ent.IsActive = school.IsActive;
-                        ent.IsDeleted = school.IsDeleted;
-                        Context.SaveChanges();
+                            //update later
+                            if (ent.ImageId <= 0)
+                            {
+                                //var cntx = new AcademicContext();
+                                var img = Context.File.Add(image);
+                                Context.SaveChanges();
+                                school.ImageId = img.Id;
+                                //school.ImageId = img.Id;
+                                
+                                //ent.ImageId = img.Id;
+                                //Context.Dispose();
+                            }
+                            else
+                            {
+                                var img = Context.File.Find(ent.ImageId);
+                                if (img != null)
+                                {
+                                    
+                                    img.DisplayName = image.DisplayName;
+                                    img.FileName = image.FileName;
+                                    img.ModifiedBy = image.ModifiedBy;
+                                    img.ModifiedDate = image.ModifiedDate;
+                                    img.FileDirectory = image.FileDirectory;
+
+                                    img.FileSizeInBytes = image.FileSizeInBytes;
+                                    img.FileType = image.FileType;
+                                    img.IconPath = image.IconPath;
+                                    img.Void = image.Void;
+                                    //Context.SaveChanges();
+                                }
+                            }
+
+                            ent.ImageId = school.ImageId;
+                            ent.Name = school.Name;
+                            ent.Email = school.Email;
+                            ent.Fax = school.Fax;
+                            ent.Phone = school.Phone;
+                            ent.RegNo = school.RegNo;
+                            ent.Street = school.Street;
+                            ent.Website = school.Website;
+                            ent.City = school.City;
+                            ent.Code = school.Code;
+                            ent.Country = school.Country;
+
+                            //ent.Image = school.Image;
+                            //ent.ImageType = school.ImageType;
+
+                            ent.IsActive = school.IsActive;
+                            ent.IsDeleted = school.IsDeleted;
+                            Context.SaveChanges();
+                        }
+                        scope.Complete();
                         return ent;
-
-                        return null;
                     }
-
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw ex;
                 }
                 catch (Exception)
                 {
@@ -202,7 +142,6 @@ namespace Academic.DbHelper
                 }
             }
 
-            //int instId
             public IEnumerable<SchoolType> GetSchoolTypes()
             {
                 var schTypes = Context.SchoolType.AsEnumerable();
@@ -220,8 +159,6 @@ namespace Academic.DbHelper
                 }
                 return list;
             }
-
-
 
             public SchoolType AddOrUpdateSchoolType(SchoolType schTyp)
             {
@@ -257,10 +194,10 @@ namespace Academic.DbHelper
                 var user = Context.Users.Include(x => x.School).FirstOrDefault(x => x.Id == userId);
                 if (user != null)
                 {
-                    if ((user.SchoolId ?? 0) > 0)
-                    {
-                        return user.School;
-                    }
+                    //if ((user.SchoolId ?? 0) > 0 )
+                    //{
+                    return user.School;
+                    //}
                     //if (((int)(user.SchoolId )) > 0)
                     //{
                     //    return user.School;
@@ -273,6 +210,11 @@ namespace Academic.DbHelper
                     //}
                 }
                 return null;
+            }
+
+            public UserFile GetSchoolImage(int fileId)
+            {
+                return Context.File.Find(fileId);
             }
         }
     }

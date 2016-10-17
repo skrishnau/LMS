@@ -1133,8 +1133,11 @@
     <Content Include="Content\Icons\AddEditDelete\file_edit_kashan.png" />
     <Content Include="Content\Icons\AddEditDelete\images.png" />
     <Content Include="Content\Icons\AddEditDelete\order_form_online_offer-128.png" />
-    <Content Include="Content\Icons\Add\Add-icon.png" />
+    <Content Include="Content\Icons\Add\Add-icon1.png" />
     <Content Include="Content\Icons\Add\add_bevel.png" />
+    <Content Include="Content\Icons\Add\Add-icon2.png" />
+    <Content Include="Content\Icons\Add\Add-icon.png" />
+    <Content Include="Content\Icons\Add\add_icon.png" />
     <Content Include="Content\Icons\Arrow\arrow_down.png" />
     <Content Include="Content\Icons\Arrow\arrow_fat_down.png" />
     <Content Include="Content\Icons\Arrow\arrow_fat_left.png" />
@@ -1160,9 +1163,10 @@
     <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
     <Content Include="Content\Icons\Edit\edit_orange.png" />
     <Content Include="Content\Icons\Exclamation\exclamation.png" />
-    <Content Include="Content\Icons\File\excel_icon.png" />
     <Content Include="Content\Icons\File\file_add.png" />
+    <Content Include="Content\Icons\File\excel_icon.png" />
     <Content Include="Content\Icons\File\file_icon.png" />
+    <Content Include="Content\Icons\File\file_replace.png" />
     <Content Include="Content\Icons\File\folder_add.png" />
     <Content Include="Content\Icons\File\itunes-music-file-icon.PNG" />
     <Content Include="Content\Icons\File\pdf_icon.png" />
@@ -1183,6 +1187,7 @@
     <Content Include="Content\Icons\req.gif" />
     <Content Include="Content\Icons\req.jpg" />
     <Content Include="Content\Icons\req.png" />
+    <Content Include="Content\Icons\School\school-logo.png" />
     <Content Include="Content\Icons\Search\search2.png" />
     <Content Include="Content\Icons\setting_1.png" />
     <Content Include="Content\Icons\Star\star_red.png" />
@@ -1545,6 +1550,7 @@
     <Content Include="Views\Course\ListingMain\CoursesOfGroup\ListUc.ascx" />
     <Content Include="Views\Course\Section\Master\CourseSectionListing.aspx" />
     <Content Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx" />
+    <Content Include="Views\Default.aspx" />
     <Content Include="Views\Exam\ExamType\ExamTypeCreate.aspx" />
     <Content Include="Views\Exam\ExamType\ExamTypeList.aspx" />
     <Content Include="Views\Exam\Exam\CreateExam.aspx" />
@@ -1559,6 +1565,7 @@
     <Content Include="Views\NoticeBoard\NoticeCreate.aspx" />
     <Content Include="Views\NoticeBoard\NoticeDetail.aspx" />
     <Content Include="Views\NoticeBoard\NoticeListing.aspx" />
+    <Content Include="Views\Office\Default.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
     <Content Include="Views\Resource\Note.txt" />
@@ -2792,6 +2799,13 @@
     <Compile Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx.designer.cs">
       <DependentUpon>ListOfSectionsInCourseUC.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Exam\ExamType\ExamTypeCreate.aspx.cs">
       <DependentUpon>ExamTypeCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2889,6 +2903,13 @@
     </Compile>
     <Compile Include="Views\NoticeBoard\NoticeListing.aspx.designer.cs">
       <DependentUpon>NoticeListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Office\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Office\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Office\School\SchoolType\Create.aspx.cs">
       <DependentUpon>Create.aspx</DependentUpon>

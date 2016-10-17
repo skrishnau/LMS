@@ -7,99 +7,81 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.All_Resusable_Codes.FileTasks {
+namespace One.Views.Office {
     
     
-    public partial class FilePickerDialog {
+    public partial class Default {
         
         /// <summary>
-        /// dialogdiv control.
+        /// divMenu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dialogdiv;
+        protected global::System.Web.UI.WebControls.Panel divMenu;
         
         /// <summary>
-        /// lblHeading control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHeading;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// btnDialogClose control.
+        /// lblSchoolType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDialogClose;
+        protected global::System.Web.UI.WebControls.Label lblSchoolType;
         
         /// <summary>
-        /// Image1 control.
+        /// lblPhoneNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Label lblPhoneNo;
         
         /// <summary>
-        /// FilePicker1 control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.All_Resusable_Codes.FileTasks.FilePicker FilePicker1;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// pnlItemsControl control.
+        /// lblWebsite control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlItemsControl;
+        protected global::System.Web.UI.WebControls.Label lblWebsite;
         
         /// <summary>
-        /// hidItemClickMode control.
+        /// lblCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidItemClickMode;
+        protected global::System.Web.UI.WebControls.Label lblCountry;
         
         /// <summary>
-        /// hidPageKey control.
+        /// lblCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidPageKey;
-        
-        /// <summary>
-        /// hidFileSaveDirectory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidFileSaveDirectory;
-        
-        /// <summary>
-        /// hidFileAcquireMode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidFileAcquireMode;
+        protected global::System.Web.UI.WebControls.Label lblCity;
     }
 }
