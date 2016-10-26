@@ -13,24 +13,6 @@ namespace One.Views.ActivityResource.Assignments {
     public partial class AssignmentCreate {
         
         /// <summary>
-        /// hidAssignmentId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidAssignmentId;
-        
-        /// <summary>
-        /// hidSubjectId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSubjectId;
-        
-        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -290,5 +272,23 @@ namespace One.Views.ActivityResource.Assignments {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidSectionId;
+        
+        /// <summary>
+        /// hidAssignmentId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidAssignmentId;
+        
+        /// <summary>
+        /// hidSubjectId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidSubjectId;
     }
 }

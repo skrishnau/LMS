@@ -107,9 +107,13 @@ namespace One.Views.ActivityResource.Url
                 url.PopupHeightInPixel = Convert.ToInt32(txtPopupHeightInPixel.Text);
                 url.PopupWidthInPixel = Convert.ToInt32(txtPopupWidthInPixel.Text);
             }
+            var restriction = new Academic.DbEntities.AccessPermission.Restriction()
+            {
+
+            };
             using (var helper = new DbHelper.ActAndRes())
             {
-                var saved = helper.AddOrUpdateUrlResource(url,SectionId);
+                var saved = helper.AddOrUpdateUrlResource(url,SectionId,restriction);
                 if (saved != null)
                 {
                     Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);

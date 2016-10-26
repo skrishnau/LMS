@@ -73,8 +73,8 @@ namespace Academic.DbEntities.ActivityAndResource
 
 
         //=========== Restriction ====================//
-        public int RestrictionId { get; set; }
-        public virtual AccessPermission.Restriction Restriction { get; set; }
+        //public int RestrictionId { get; set; }
+        //public virtual AccessPermission.Restriction Restriction { get; set; }
 
 
 

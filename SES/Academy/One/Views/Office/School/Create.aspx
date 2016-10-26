@@ -145,7 +145,7 @@
         <div class="data-entry-section-body">
             <table>
                 <tr>
-                    <td class="data-field">Earlier Website</td>
+                    <td class="data-type">Earlier Website</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtWeb" runat="server"></asp:TextBox>
                     </td>
@@ -153,7 +153,7 @@
 
 
                 <tr>
-                    <td class="data-field">City</td>
+                    <td class="data-type">City</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
                     </td>
@@ -165,7 +165,7 @@
                 </td>
             </tr>--%>
                 <tr>
-                    <td class="data-field">Code</td>
+                    <td class="data-type">Code</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtCode" runat="server"></asp:TextBox>
                         <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
@@ -175,13 +175,13 @@
                 </tr>
 
                 <tr>
-                    <td class="data-field">Registration No.</td>
+                    <td class="data-type">Registration No.</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtRegNo" runat="server"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="data-field">Fax</td>
+                    <td class="data-type">Fax</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtFax" runat="server"></asp:TextBox>
                     </td>

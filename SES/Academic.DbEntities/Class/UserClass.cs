@@ -51,5 +51,7 @@ namespace Academic.DbEntities.Class
         //if UseDefaultGrouping is true in SubjectSession then its value is null
         public int? SubjectUserGroupId { get; set; }
         public virtual Subjects.SubjectUserGroup SubjectUserGroup { get; set; }
+
+        public virtual ICollection<ActivityAndResource.AssignmentItems.AssignmentSubmissions> AssignmentSubmissions { get; set; }
     }
 }

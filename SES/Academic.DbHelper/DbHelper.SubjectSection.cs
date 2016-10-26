@@ -31,11 +31,11 @@ namespace Academic.DbHelper
             //    return ress;
             //}
 
-            public DbEntities.Subjects.SubjectSection Find(int SectionId)
+            public DbEntities.Subjects.SubjectSection Find(int sectionId)
             {
                 return
                     Context.SubjectSection
-                        .FirstOrDefault(y => y.Id == SectionId);
+                        .FirstOrDefault(y => y.Id == sectionId);
             }
 
             public bool AddOrUpdateSection(DbEntities.Subjects.SubjectSection sec)

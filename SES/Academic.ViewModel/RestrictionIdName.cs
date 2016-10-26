@@ -8,6 +8,12 @@ namespace Academic.ViewModel
 {
     public class RestrictionIdName
     {
+        public int RestrictionId { get; set; }
+        public int RestrictionParentId { get; set; }
+
+        /// <summary>
+        /// Its not the parent of restriction(database). but its used to control ui . use REstrictionParentId instead.
+        /// </summary>
         public string ParentId { get; set; }
 
         public string Name { get; set; }

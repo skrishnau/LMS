@@ -41,11 +41,18 @@
     <link href="UserStyles.css" rel="stylesheet" />
     <link href="../../Content/CSSes/All.css" rel="stylesheet" />
     <style type="text/css">
-        div.data-entry-body td.data-field {
-            /*width: 170px;*/
-            padding: 10px 0;
-            /*display: inline-block;*/
+        
+        .link_button {
+            background-color: lightpink;
+            border: 1px solid lightcoral;
+            padding:2px;
         }
+
+         div.data-entry-body td.data-field {
+             /*width: 170px;*/
+             padding: 10px 0;
+             /*display: inline-block;*/
+         }
 
         /*all links*/
         .inline {
@@ -92,9 +99,9 @@
             padding-top: 2px;
         }
 
-            div.course-act-res-whole-in-edit-mode:hover {
-                background-color: #f3f1fe;
-            }
+        div.course-act-res-whole-in-edit-mode:hover {
+            background-color: #f3f1fe;
+        }
 
         div.course-act-res-heading {
             vertical-align: central;
@@ -124,9 +131,9 @@
             text-decoration: none;
         }
 
-            .course-act-res-title:hover {
-                text-decoration: underline;
-            }
+        .course-act-res-title:hover {
+            text-decoration: underline;
+        }
 
         .course-act-res-title-of-label {
             text-decoration: none;
@@ -139,15 +146,15 @@
             text-decoration: none;
         }
 
-            .link:hover {
-                color: darkorange;
-                text-decoration: underline;
-            }
+        .link:hover {
+            color: darkorange;
+            text-decoration: underline;
+        }
 
-            .link:active {
-                color: blueviolet;
-                text-decoration: underline;
-            }
+        .link:active {
+            color: blueviolet;
+            text-decoration: underline;
+        }
         /*--------------     DETAIL VIEW OF SINGLE DATA ----after github this and above this--------------------*/
 
         div.detail-view table {
@@ -167,24 +174,33 @@
             display: inline-block;
         }
 
-            div.detail-view td.data-type {
-                width: 170px;
-                padding: 10px 0;
-                display: inline-block;
-            }
+        div.detail-view td.data-type {
+            width: 170px;
+            padding: 10px 0;
+            display: inline-block;
+        }
 
-            div.detail-view td.data-place {
-                /*width: 170px;*/
-                /*width: 100%;*/
-                padding: 10px 0;
-                display: inline-block;
-            }
+        div.detail-view td.data-place {
+            /*width: 170px;*/
+            /*width: 100%;*/
+            padding: 10px 0;
+            display: inline-block;
+        }
 
         div.data-entry-section-body td.data-place {
             /*width: 170px;*/
             /*width: 100%;*/
             padding: 10px 0;
             /*display: inline-block;*/
+        }
+        div.data-entry-section-body table {
+            margin: 0 10px 0;
+        }
+        div.data-entry-section-body tr {
+            vertical-align: top;
+        }
+        div.data-entry-section-body td {
+            vertical-align: top;
         }
         /*--------------------------End of data view-----------------------*/
 
@@ -225,9 +241,9 @@
             font-weight: 600;
         }
 
-            .modules-title:hover {
-                text-decoration: underline;
-            }
+        .modules-title:hover {
+            text-decoration: underline;
+        }
 
         div.modules-heading {
             width: 100%;

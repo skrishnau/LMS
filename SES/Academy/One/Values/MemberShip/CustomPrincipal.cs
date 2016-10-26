@@ -16,7 +16,7 @@ namespace One.Values.MemberShip
         string UserName { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
-        List<string> UserRoles { get; set; } 
+        List<string> UserRoles { get; set; }
     }
 
     public class CustomPrincipal : ICustomPrincipal
@@ -35,16 +35,26 @@ namespace One.Values.MemberShip
             return false;
         }
 
-        private Array Roles {  get;  set; }
+        private Array Roles { get; set; }
+
+        public List<string> GetRoles()
+        {
+            var lst = new List<string>();
+            foreach (var role1 in Roles)
+            {
+                lst.Add(role1.ToString());
+            }
+            return lst;
+        }
 
         public CustomPrincipal(string email)
         {
             this.Identity = new GenericIdentity(email);
         }
 
-        public CustomPrincipal(string username,Array roles)
+        public CustomPrincipal(string username, Array roles)
         {
-            this.Identity = new GenericIdentity(username,"Forms");
+            this.Identity = new GenericIdentity(username, "Forms");
             this.Roles = roles;
         }
 

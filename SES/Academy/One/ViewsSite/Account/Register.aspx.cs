@@ -17,10 +17,20 @@ namespace One.ViewsSite.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             //CreateUserWizard1.
+            if (!IsPostBack)
+            {
+                var user = Page.User as CustomPrincipal;
+                if (user != null)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                }
+                    
+            }
         }
 
         protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
         {
+
             var username = CreateUserWizard1.UserName;
             var password = CreateUserWizard1.Password;
             var email = CreateUserWizard1.Email;
@@ -90,6 +100,7 @@ namespace One.ViewsSite.Account
                             //viewModel.Email,
                             viewModel.UserName,
                             DateTime.Now,
+                            
                             DateTime.Now.AddMinutes(15),
                             false,
                             userData);

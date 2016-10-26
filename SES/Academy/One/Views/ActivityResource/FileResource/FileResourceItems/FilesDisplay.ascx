@@ -43,7 +43,7 @@
                             <asp:Image ID="Image3" runat="server" Width="22" Height="22"
                                 ImageUrl="~/Content/Icons/File/file_replace.png"
                                 ToolTip="File add" />
-                        Change file...
+                        Choose
                         </asp:LinkButton>
                 </asp:View>
             </asp:MultiView>

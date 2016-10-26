@@ -53,8 +53,8 @@ namespace Academic.DbEntities.ActivityAndResource
 
         public bool IncludeResponsesFromInactiveUsers { get; set; }
         
-        public int RestrictionId { get; set; }
-        public virtual AccessPermission.Restriction Restriction { get; set; }
+        //public int RestrictionId { get; set; }
+        //public virtual AccessPermission.Restriction Restriction { get; set; }
 
         public virtual ICollection<ChoiceItems.ChoiceOptions> ChoiceOptions { get; set; }
         public virtual ICollection<ChoiceItems.ChoiceUser> ChoiceUsers { get; set; }

@@ -23,8 +23,13 @@ namespace One.Views.ActivityResource.Assignments
                 {
                     if (subId != null && secId != null)
                     {
+                        var sId = Convert.ToInt32(subId);
                         SectionId = Convert.ToInt32(secId);
-                        SubjectId = Convert.ToInt32(subId);
+                        SubjectId = sId;
+
+                        //ClassesInActivityChoose1.SubjectId = sId;
+                        RestrictionUC.SubjectId = sId;
+
                     }
                 }
                 catch
@@ -98,7 +103,7 @@ namespace One.Views.ActivityResource.Assignments
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            return;
+            Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -193,10 +198,12 @@ namespace One.Views.ActivityResource.Assignments
                                     assg.CreatedBy = user.Id;
                                 }
 
-                                var saved = helper.AddOrUpdateAssignment(assg, SectionId);
+                                var restriction = RestrictionUC.GetRestriction();
+
+                                var saved = helper.AddOrUpdateAssignmentActivity(assg, SectionId,restriction);
                                 if (saved != null)
                                 {
-                                    return;
+                                    Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
                                 }
                                 else
                                 {

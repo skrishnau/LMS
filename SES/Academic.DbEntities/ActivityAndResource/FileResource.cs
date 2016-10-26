@@ -35,8 +35,8 @@ namespace Academic.DbEntities.ActivityAndResource
         public bool ShowType { get; set; }
         public bool ShowUploadModifiedDate { get; set; }
 
-        public int RestrictionId { get; set; }
-        public virtual AccessPermission.Restriction Restriction { get; set; }
+        //public int RestrictionId { get; set; }
+        //public virtual AccessPermission.Restriction Restriction { get; set; }
 
         /// <summary>
         /// Id of FileResourceFile table to indicate that this file is set as main file.

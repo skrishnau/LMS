@@ -36,6 +36,13 @@ namespace Academic.DbEntities.AccessPermission
         /// </summary>
         public bool Visibility { get; set; }
 
+        public virtual ICollection<DateRestriction> DateRestrictions { get; set; }
+        public virtual ICollection<GradeRestriction> GradeRestrictions { get; set; }
+        public virtual ICollection<GroupRestriction> GroupRestrictions { get; set; }
+        public virtual ICollection<UserProfileRestriction> UserProfileRestrictions { get; set; }
+
+        public virtual ICollection<Restriction> Restrictions { get; set; }
+
     }
 
     public enum RestrictionTypes

@@ -1481,6 +1481,7 @@
     <Content Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx" />
     <Content Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx" />
     <Content Include="Views\ActivityResource\Assignments\AssignmentView.aspx" />
+    <Content Include="Views\ActivityResource\Assignments\TeacherViewUc.ascx" />
     <Content Include="Views\ActivityResource\Book\BookCreate.aspx" />
     <Content Include="Views\ActivityResource\Book\BookItems\TocItemsUc.ascx" />
     <Content Include="Views\ActivityResource\Book\BookView.aspx" />
@@ -1490,6 +1491,8 @@
     <Content Include="Views\ActivityResource\Choice\ChoiceResponseView.ascx" />
     <Content Include="Views\ActivityResource\Choice\ChoiceView.aspx" />
     <Content Include="Views\ActivityResource\Choice\Default.aspx" />
+    <Content Include="Views\ActivityResource\Class\ClassesInActivityChoose.ascx" />
+    <Content Include="Views\ActivityResource\Class\EachClass.ascx" />
     <Content Include="Views\ActivityResource\FileResource\DownloadingPage.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FileOption.ascx" />
@@ -1502,6 +1505,7 @@
     <Content Include="Views\ActivityResource\Forum\EachDiscussionUc.ascx" />
     <Content Include="Views\ActivityResource\Forum\ForumCreate.aspx" />
     <Content Include="Views\ActivityResource\Forum\ForumView.aspx" />
+    <Content Include="Views\ActivityResource\Grading\Default.aspx" />
     <Content Include="Views\ActivityResource\Label\LabelCreate.aspx" />
     <Content Include="Views\ActivityResource\Label\LabelView.aspx" />
     <Content Include="Views\ActivityResource\Page\PageCreate.aspx" />
@@ -1573,6 +1577,7 @@
     <Content Include="Views\RestrictionAccess\ChooseRestrictionTypeUC.ascx" />
     <Content Include="Views\RestrictionAccess\Custom\EachRestriction.ascx" />
     <Content Include="Views\RestrictionAccess\Custom\Note.txt" />
+    <Content Include="Views\RestrictionAccess\Custom\PreviousCodesJustForRef.txt" />
     <Content Include="Views\RestrictionAccess\Custom\RestrictionStyles.css" />
     <Content Include="Views\RestrictionAccess\Custom\RestrictionUC.ascx" />
     <Content Include="Views\RestrictionAccess\Custom\TestCustom.aspx" />
@@ -2330,6 +2335,13 @@
     <Compile Include="Views\ActivityResource\Assignments\AssignmentView.aspx.designer.cs">
       <DependentUpon>AssignmentView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\TeacherViewUc.ascx.cs">
+      <DependentUpon>TeacherViewUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\TeacherViewUc.ascx.designer.cs">
+      <DependentUpon>TeacherViewUc.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActivityResource\Book\BookCreate.aspx.cs">
       <DependentUpon>BookCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2392,6 +2404,20 @@
     </Compile>
     <Compile Include="Views\ActivityResource\Choice\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Class\ClassesInActivityChoose.ascx.cs">
+      <DependentUpon>ClassesInActivityChoose.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Class\ClassesInActivityChoose.ascx.designer.cs">
+      <DependentUpon>ClassesInActivityChoose.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Class\EachClass.ascx.cs">
+      <DependentUpon>EachClass.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Class\EachClass.ascx.designer.cs">
+      <DependentUpon>EachClass.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\ActivityResource\FileResource\DownloadingPage.aspx.cs">
       <DependentUpon>DownloadingPage.aspx</DependentUpon>
@@ -2476,6 +2502,13 @@
     </Compile>
     <Compile Include="Views\ActivityResource\Forum\ForumView.aspx.designer.cs">
       <DependentUpon>ForumView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ActivityResource\Label\LabelCreate.aspx.cs">
       <DependentUpon>LabelCreate.aspx</DependentUpon>
@@ -3913,6 +3946,7 @@
     <Folder Include="Views\AcademicPlacement\SubjectClass\" />
     <Folder Include="Views\AcademicPlacement\SubjectSubscription\" />
     <Folder Include="Views\AcademicPlacement\TeacherClass\" />
+    <Folder Include="Views\ActivityResource\Availability\" />
     <Folder Include="Views\All_Resusable_Codes\Paging\" />
     <Folder Include="Views\Student\StudentGroup\UserControls\" />
     <Folder Include="Views\Student\Student\" />

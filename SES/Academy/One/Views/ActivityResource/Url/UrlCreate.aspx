@@ -120,3 +120,7 @@
             });
     </script>
 </asp:Content>
+
+<asp:Content runat="server" ID="headcontent" ContentPlaceHolderID="head">
+    <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
+</asp:Content>

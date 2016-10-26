@@ -102,9 +102,13 @@ namespace One.Views.ActivityResource.Page
                 PageContent = txtContent.Text
             };
 
+            var restriction = new Academic.DbEntities.AccessPermission.Restriction()
+            {
+
+            };
             using (var helper = new DbHelper.ActAndRes())
             {
-                var saved = helper.AddOrUpdatePageResource(page, SectionId);
+                var saved = helper.AddOrUpdatePageResource(page, SectionId,restriction);
                 if (saved != null)
                 {
                     Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);

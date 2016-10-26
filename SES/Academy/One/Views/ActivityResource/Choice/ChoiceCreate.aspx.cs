@@ -324,11 +324,14 @@ namespace One.Views.ActivityResource.Choice
                     }
                 }
 
+                var restriction = new Academic.DbEntities.AccessPermission.Restriction()
+                {
 
+                };
 
                 using (var helper = new Academic.DbHelper.DbHelper.ActAndRes())
                 {
-                    var saved = helper.AddOrUpdateChoiceActivity(choice, list, SectionId);
+                    var saved = helper.AddOrUpdateChoiceActivity(choice, list, SectionId,restriction);
                     if (saved != null)
                     {
                         Response.Redirect("~/Views/ActivityResource/Choice/ChoiceView.aspx" + "?SubId="

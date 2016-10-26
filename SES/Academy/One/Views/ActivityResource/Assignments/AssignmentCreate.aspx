@@ -6,6 +6,8 @@
 
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+<%--<%@ Register Src="~/Views/ActivityResource/Class/ClassesInActivityChoose.ascx" TagPrefix="uc1" TagName="ClassesInActivityChoose" %>--%>
+
 
 
 
@@ -16,37 +18,32 @@
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
-    <div>
-        <style type="text/css">
-            .auto-style1 {
-                width: 250px;
-            }
-        </style>
+    <div class="data-entry-body">
+        <h3 class="data-entry-heading">
+            New Assignment
+        </h3>
+        <br />
 
 
-        <div>
-            <div class="form-title">
-                <strong>New Assignment</strong>
+        <%-- style="margin: 0 25px 0;" --%>
+
+        <div class="data-entry-section">
+            <div class="data-entry-section-heading">
+                General
             </div>
-            <br />
-            <asp:HiddenField ID="hidAssignmentId" runat="server" Value="0" />
-            <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
-            <br />
-            <%-- style="margin: 0 25px 0;" --%>
+            <hr />
+            <div class="data-entry-section-body">
 
-            <div class="form-body">
-                <strong>General</strong>
-                <hr />
-                <table style="margin: 0 20px 0;">
+                <table >
                     <tr>
-                        <td class="auto-style1">Name</td>
+                        <td class="data-type">Name</td>
                         <td>
                             <asp:TextBox ID="txtName" runat="server" Width="210px" ValidationGroup="grpAss"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtName" runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style1">Description</td>
+                        <td class="data-type">Description</td>
                         <td>
 
                             <%--  BasePath="/ckeditor/" --%>
@@ -57,21 +54,29 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style1">Display Description</td>
+                        <td class="data-type">Display Description</td>
                         <td>
                             <asp:CheckBox ID="chkDisplayDesc" runat="server" />
                         </td>
                     </tr>
 
                 </table>
-                <br />
-                <strong>Submission Date</strong>
-                <hr />
+            </div>
+
+          <%--  <uc1:ClassesInActivityChoose runat="server" ID="ClassesInActivityChoose1" />
+            --%>
+
+            <br />
+            <div class="data-entry-section-heading">
+                Submission Date
+            </div>
+            <hr />
+            <div class="data-entry-section-body">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <table style="margin: 0 20px 0;">
                             <tr>
-                                <td class="auto-style1">Submission From</td>
+                                <td class="data-type">Submission From</td>
                                 <td>
                                     <asp:TextBox ID="txtFrom" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
                                     <asp:CheckBox ID="chkFrom" ClientIDMode="Static" runat="server"
@@ -80,7 +85,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="auto-style1">Due Date</td>
+                                <td class="data-type">Due Date</td>
                                 <td>
                                     <asp:TextBox ID="txtDue" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
                                     <asp:CheckBox ID="chkDue" ClientIDMode="Static" runat="server"
@@ -89,7 +94,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="auto-style1">Cut off Date</td>
+                                <td class="data-type">Cut off Date</td>
                                 <td>
                                     <asp:TextBox ID="txtCutOff" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
                                     <asp:CheckBox ID="chkCutOff" ClientIDMode="Static" runat="server"
@@ -101,14 +106,20 @@
                         </table>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <br />
-                <strong>Type</strong>
-                <hr />
+            </div>
+            <br />
+
+            <div class="data-entry-section-heading">
+                Type
+            </div>
+            <hr />
+            <div class="data-entry-section-body">
+
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
                         <table style="margin: 0 20px 0;">
                             <tr>
-                                <td class="auto-style1">Submission Type</td>
+                                <td class="data-type">Submission Type</td>
                                 <td>
                                     <asp:CheckBox ID="chkOnlineSubmission" runat="server"
                                         OnCheckedChanged="chk_CheckedChanged" Text="Online"
@@ -119,26 +130,26 @@
                                 OnCheckedChanged="chk_CheckedChanged" Checked="True"
                                 AutoPostBack="True" CausesValidation="False" />
                                     <%--Files--%>
-                            <%--<asp:DropDownList ID="ddlSubmissionType" runat="server" Height="21px" Width="210px"></asp:DropDownList>--%>
+                                    <%--<asp:DropDownList ID="ddlSubmissionType" runat="server" Height="21px" Width="210px"></asp:DropDownList>--%>
                                     <%--<asp:RequiredFieldValidator ID="submissionListVali"
                                 ControlToValidate="ddlSubmissionType"
                                 runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>--%>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="auto-style1">Word Limit</td>
+                                <td class="data-type">Word Limit</td>
                                 <td>
                                     <asp:TextBox ID="txtWordLimit" Enabled="False" runat="server" Width="210px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="auto-style1">Maximum Number of Submitted Files</td>
+                                <td class="data-type">Maximum Number of Submitted Files</td>
                                 <td>
                                     <asp:TextBox ID="txtMaxFiles" runat="server" Width="210px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="auto-style1">Maximum Submission Size</td>
+                                <td class="data-type">Maximum Submission Size</td>
                                 <td>
                                     <asp:TextBox ID="txtMaxSize" runat="server" Width="210px"></asp:TextBox>
                                 </td>
@@ -146,14 +157,19 @@
                         </table>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <br />
-                <strong>Grade</strong>
-                <hr />
+            </div>
+            <br />
+            <div class="data-entry-section-heading">
+                Grade
+            </div>
+            <hr />
+            <div class="data-entry-section-body">
+
                 <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                     <ContentTemplate>
                         <table style="margin: 0 20px 0;">
                             <tr>
-                                <td class="auto-style1">Grade Type</td>
+                                <td class="data-type">Grade Type</td>
                                 <td>
                                     <asp:DropDownList ID="ddlGradeType" runat="server" Height="21px" Width="210px" AutoPostBack="True" DataTextField="Name" DataValueField="Id" OnSelectedIndexChanged="ddlGradeType_SelectedIndexChanged"></asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="gradeListVali"
@@ -162,14 +178,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="auto-style1">Maximum Grade</td>
+                                <td class="data-type">Maximum Grade</td>
                                 <td>
                                     <asp:TextBox ID="txtMaxGradde" runat="server" Width="210px"></asp:TextBox>
                                     <asp:DropDownList ID="ddlMaximumGrade" runat="server" Width="210px" Visible="False" DataTextField="Value" DataValueField="Id"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="auto-style1">Grade to Pass</td>
+                                <td class="data-type">Grade to Pass</td>
                                 <td>
                                     <asp:TextBox ID="txtGradeToPass" runat="server" Width="210px"></asp:TextBox>
                                     <asp:DropDownList ID="ddlGradeToPass" runat="server" Width="210px" Visible="False" DataTextField="Value" DataValueField="Id"></asp:DropDownList>
@@ -178,45 +194,51 @@
                         </table>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <br />
-                <div>
-                    <strong>Restriction</strong>
-                    <hr />
-                    <uc1:RestrictionUC runat="server" ID="RestrictionUC" />
-                    <%--<uc1:RestrictionMainUC runat="server" id="RestrictionMainUC" />--%>
-                </div>
-                <br />
-                <hr />
-                <br />
-                <div style="text-align: left; padding: 5px 20px 5px">
-                    <asp:Label ID="txtErrorMsg" runat="server" Text="Sorry, Couldn't Save !" ForeColor="#FF3300" Visible="False"></asp:Label>
-                    &nbsp;&nbsp;
-                        <asp:Button ID="btnAssignmentSave" ValidationGroup="grpAss" runat="server" Text="Save" Width="100" OnClick="btnSave_Click" />
-                    &nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btnAssignmentCancel" ValidationGroup="cancelAss" runat="server" Text="Cancel" Width="100" OnClick="btnCancel_Click" CausesValidation="False" />
-                </div>
+            </div>
+            <br />
+
+            <div class="data-entry-section-heading">
+                Restriction
             </div>
 
+            <hr />
+            <div class="data-entry-section-body">
+                <uc1:RestrictionUC runat="server" ID="RestrictionUC" />
+            </div>
+            <%--<uc1:RestrictionMainUC runat="server" id="RestrictionMainUC" />--%>
 
-            <div>
-                <asp:HiddenField ID="hidSectionId" runat="server" Value="0" />
+
+
+            <br />
+            <div class="save-div">
+                <asp:Label ID="txtErrorMsg" runat="server" Text="Sorry, Couldn't Save !" ForeColor="#FF3300" Visible="False"></asp:Label>
+                &nbsp;&nbsp;
+                        <asp:Button ID="btnAssignmentSave" ValidationGroup="grpAss" runat="server" Text="Save" Width="100" OnClick="btnSave_Click" />
+                &nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnAssignmentCancel" ValidationGroup="cancelAss" runat="server" Text="Cancel" Width="100" OnClick="btnCancel_Click" CausesValidation="False" />
             </div>
         </div>
-        <script type="text/javascript">
-            function pageLoad() {
 
-                $('#txtFrom').unbind();
-                $("#txtFrom").datepicker();
 
-                $("#txtCutOff").unbind();
-                $("#txtCutOff").datepicker();
+        <div>
+            <asp:HiddenField ID="hidSectionId" runat="server" Value="0" />
+        </div>
+    </div>
+    <script type="text/javascript">
+        function pageLoad() {
 
-                $("#txtDue").unbind();
-                $("#txtDue").datepicker();
+            $('#txtFrom').unbind();
+            $("#txtFrom").datepicker();
 
-            }
-        </script>
-        <%-- <script>
+            $("#txtCutOff").unbind();
+            $("#txtCutOff").datepicker();
+
+            $("#txtDue").unbind();
+            $("#txtDue").datepicker();
+
+        }
+    </script>
+    <%-- <script>
             $(function () {
                 //$("#dialog-1").dialog({
                 //    autoOpen: false,
@@ -230,8 +252,8 @@
 
             });
         </script>--%>
-    </div>
-
+    <asp:HiddenField ID="hidAssignmentId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
 </asp:Content>
 
 
@@ -246,6 +268,7 @@
 
     <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
+    <link href="../../../ViewsSite/User/UserStyles.css" rel="stylesheet" />
 
 
 </asp:Content>

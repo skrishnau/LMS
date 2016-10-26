@@ -124,11 +124,14 @@ namespace One.Views.ActivityResource.FileResource
                     }
                     
                 }
+                var restriction = new Academic.DbEntities.AccessPermission.Restriction()
+                {
 
+                };
 
                 using (var helper = new DbHelper.ActAndRes())
                 {
-                    var saved = helper.AddOrUpdateFileResource(file,list,SectionId);
+                    var saved = helper.AddOrUpdateFileResource(file,list,SectionId,restriction);
                     if (saved != null)
                     {
                         Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId="+SubjectId+"&edit=1#section_"+SectionId);

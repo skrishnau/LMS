@@ -10,14 +10,16 @@
     <asp:DropDownList ID="ddlClassGroup" runat="server" Height="20px" Width="100px">
         <Items>
             <asp:ListItem Value="0" Text="Class"></asp:ListItem>
-            <asp:ListItem Value="1" Text="Group"></asp:ListItem>
+            <%--<asp:ListItem Value="1" Text="Group"></asp:ListItem>--%>
         </Items>
     </asp:DropDownList>
         &nbsp;
-         <asp:DropDownList ID="ddlClassValue" runat="server" Height="20px" Width="140px">
+         <asp:DropDownList ID="ddlClass" runat="server" Height="20px" Width="140px" 
+             DataValueField="Id" DataTextField="Name" DataSourceID="ObjectDataSource1" AutoPostBack="True"
+             OnSelectedIndexChanged="ddlClass_SelectedIndexChanged">
          </asp:DropDownList>
 
-        <asp:PlaceHolder ID="PlaceHolder1" runat="server">&nbsp;
+        <asp:PlaceHolder ID="pnlGroup" runat="server" Visible="False">&nbsp;
             and group
               &nbsp;
              <asp:DropDownList ID="ddlGroupValue" runat="server" Height="20px" Width="120px">
@@ -33,5 +35,17 @@
     <asp:HiddenField ID="hidRelativeId" runat="server" Value="1" />
     <asp:HiddenField ID="hidAbsoluteId" runat="server" Value="1" />
     <asp:HiddenField ID="hidType" runat="server" Value="" />
+    
+    
+     <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidRoles" runat="server" Value="" />
 
+    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="ListCurrentClassesOfTeacherForCombo" TypeName="Academic.DbHelper.DbHelper+Classes">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="hidSubjectId" DefaultValue="0" Name="subjectId" PropertyName="Value" Type="Int32" />
+            <asp:ControlParameter ControlID="hidUserId" DefaultValue="0" Name="userId" PropertyName="Value" Type="Int32" />
+            <asp:ControlParameter ControlID="hidRoles" DefaultValue=" " Name="role" PropertyName="Value" Type="String" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
 </div>

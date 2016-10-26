@@ -46,13 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcademicContext.cs" />
-    <Compile Include="Migrations\201610170254477_InitialCreate.cs" />
-    <Compile Include="Migrations\201610170254477_InitialCreate.Designer.cs">
-      <DependentUpon>201610170254477_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201610190208169_activity_class_added.cs" />
+    <Compile Include="Migrations\201610190208169_activity_class_added.Designer.cs">
+      <DependentUpon>201610190208169_activity_class_added.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610170300272_init_1.cs" />
-    <Compile Include="Migrations\201610170300272_init_1.Designer.cs">
-      <DependentUpon>201610170300272_init_1.cs</DependentUpon>
+    <Compile Include="Migrations\201610252042350_restriction_update.cs" />
+    <Compile Include="Migrations\201610252042350_restriction_update.Designer.cs">
+      <DependentUpon>201610252042350_restriction_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,11 +68,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610170254477_InitialCreate.resx">
-      <DependentUpon>201610170254477_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610190208169_activity_class_added.resx">
+      <DependentUpon>201610190208169_activity_class_added.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610170300272_init_1.resx">
-      <DependentUpon>201610170300272_init_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610252042350_restriction_update.resx">
+      <DependentUpon>201610252042350_restriction_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

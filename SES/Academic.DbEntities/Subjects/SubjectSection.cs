@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Academic.DbEntities.ActivityAndResource;
 using Academic.DbEntities.Resources;
 using Academic.DbEntities.Subjects.Detail;
 
@@ -26,6 +27,7 @@ namespace Academic.DbEntities.Subjects
         
         public bool? Void { get; set; }
 
+        public virtual ICollection<ActivityResource> ActivityResources { get; set; }
 
         //public virtual ICollection<AccessPermission.Restriction> Restrictions{ get; set; }
         //public virtual ICollection<SubjectActivityAndResource> SubjectActivityAndResource { get; set; }

@@ -52,6 +52,8 @@
 
     <asp:HiddenField ID="hidNoOfChildRestrictionSets" runat="server" Value="0" />
 
+    <asp:HiddenField ID="hidRestrictionId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidRestrictionParentId" runat="server" Value="0" />
 
     <%-- <div id="restrictionchoosedialog">
         
@@ -80,6 +82,7 @@
      </div>
  </div>
      
+    <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
 
     <%--<asp:Button ID="Button1" runat="server" Text="Add Restriction set" OnClick="Button1_Click" />--%>
 

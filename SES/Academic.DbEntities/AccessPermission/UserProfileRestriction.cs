@@ -21,6 +21,7 @@ namespace Academic.DbEntities.AccessPermission
 
         public string Value { get; set; }
 
-
+        public int RestrictionId { get; set; }
+        public AccessPermission.Restriction Restriction { get; set; }
     }
 }

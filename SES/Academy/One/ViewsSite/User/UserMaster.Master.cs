@@ -45,7 +45,8 @@ namespace One.ViewsSite.User
                                     imgSchool.ImageUrl = f.FileDirectory + f.FileName;
                             }
                         }
-                        if (Request.Url.AbsolutePath.Contains("BookView"))
+                        if (Request.Url.AbsolutePath.Contains("BookView")
+                            ||Request.Url.AbsolutePath.Contains("Create"))
                         {
                             right_panel.Visible = false;
                         }

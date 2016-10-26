@@ -87,14 +87,20 @@ namespace One.Views.ActivityResource.Label
             };
 
             if (SectionId > 0)
+            {
+                var restriction = new Academic.DbEntities.AccessPermission.Restriction()
+                {
+
+                };
                 using (var helper = new DbHelper.ActAndRes())
                 {
-                    var saved = helper.AddOrUpdateLabelResource(label, SectionId);
+                    var saved = helper.AddOrUpdateLabelResource(label, SectionId,restriction);
                     if (saved != null)
                     {
                         Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
                     }
                 }
+            }
         }
 
 

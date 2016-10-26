@@ -24,7 +24,7 @@ namespace One.Views.Course
                     {
                         using (var helper = new DbHelper.Classes())
                         {
-                            var sessions = helper.ListSessionsOfSubject(Convert.ToInt32(courseId),"All");
+                            var sessions = helper.ListClassesOfSubject(Convert.ToInt32(courseId),"All");
                             dlistClasses.DataSource = sessions;
                             dlistClasses.DataBind();
                         }
@@ -122,7 +122,7 @@ namespace One.Views.Course
         {
             using (var helper = new DbHelper.Classes())
             {
-                var sessions = helper.ListSessionsOfSubject(CourseId, courseCompletionType);
+                var sessions = helper.ListClassesOfSubject(CourseId, courseCompletionType);
                 dlistClasses.DataSource = sessions;
                 dlistClasses.DataBind();
             }

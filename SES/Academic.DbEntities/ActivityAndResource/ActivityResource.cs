@@ -26,16 +26,20 @@ namespace Academic.DbEntities.ActivityAndResource
         /// </summary>
         public int ActivityResourceId { get; set; }
 
+        public string Name { get; set; }
+
         /// <summary>
         /// Position of this Activity/Resource in UI(wwebpage)
         /// </summary>
         public int Position { get; set; }
-        
 
         public int SubjectSectionId { get; set; }
         public virtual Subjects.SubjectSection SubjectSection { get; set; }
 
         public bool? Void { get; set; }
+
+        public int? RestrictionId { get; set; }
+        public AccessPermission.Restriction Restriction { get; set; }
     }
 
 }

@@ -37,7 +37,7 @@ namespace Academic.DbEntities.Office
         //public virtual Users User { get; set; }
 
         public int ImageId { get; set; }
-        public virtual UserFile Image { get; set; }
+        //public virtual UserFile Image { get; set; }
 
         //public Byte[] Image { get; set; }
         //public string ImageType { get; set; }

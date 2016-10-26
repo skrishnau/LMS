@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Academic.Database;
 using Academic.DbEntities;
+using Academic.DbEntities.AccessPermission;
 using Academic.DbEntities.ActivityAndResource.FileItems;
 using Academic.ViewModel;
 using Academic.ViewModel.ActivityResource;
@@ -29,30 +30,116 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="actresId"> act/res Id</param>
-            /// <param name="sectionId"> sectionId</param>
-            private void SaveActivityResourceTable(bool actOrRes, byte actResType, int actresId, int sectionId)
+            private Restriction AddOrUpdateRestriction(int parentId, Restriction restriction)
+            {
+                var found = Context.Restriction.Find(restriction.Id);
+                if (found == null)
+                {
+                    #region If restriction doesn't exist
+
+                    var newr = new Restriction()
+                    {
+                        Id = restriction.Id,
+                        MatchMust = restriction.MatchMust,
+                        MatchAllAny = restriction.MatchAllAny,
+                        Visibility = restriction.Visibility
+                    };
+                    if (parentId > 0)
+                        newr.ParentId = restriction.ParentId;
+
+                    //restriction.ParentId = parentId;
+                    var savedRes = Context.Restriction.Add(newr);
+                    Context.SaveChanges();
+
+                    if (restriction.GradeRestrictions != null)
+                        restriction.GradeRestrictions.ToList().ForEach(g =>
+                        {
+                            g.RestrictionId = savedRes.Id;
+                            Context.GradeRestriction.Add(g);
+                        });
+
+                    if (restriction.GroupRestrictions != null)
+                        restriction.GroupRestrictions.ToList().ForEach(g =>
+                        {
+                            g.RestrictionId = savedRes.Id;
+                            Context.GroupRestriction.Add(g);
+                        });
+
+                    if (restriction.DateRestrictions != null)
+                        restriction.DateRestrictions.ToList().ForEach(g =>
+                        {
+                            g.RestrictionId = savedRes.Id;
+                            Context.DateRestriction.Add(g);
+                        });
+
+                    if (restriction.UserProfileRestrictions != null)
+                        restriction.UserProfileRestrictions.ToList().ForEach(g =>
+                        {
+                            g.RestrictionId = savedRes.Id;
+                            Context.UserProfileRestriction.Add(g);
+                        });
+
+                    Context.SaveChanges();
+                    if (restriction.Restrictions != null)
+                        foreach (var model in restriction.Restrictions)
+                        {
+                            AddOrUpdateRestriction(savedRes.Id, model);
+                        }
+                    return savedRes;
+
+                    #endregion
+                }
+                else
+                {
+                    #region if Restriction exist
+
+                    //delete also here..
+                    return null;
+
+                    #endregion
+                }
+
+            }
+
+
+            private void SaveActivityResourceTable(bool actOrRes, byte actResType, int actresId
+                , int sectionId, string name, Restriction restriction)
             {
                 int pos = 0;
                 var poslist = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId);
                 if (poslist.Any())
                     pos = poslist.Max(x => x.Position);
+
+
+                #region Restriction
+
+                var res = AddOrUpdateRestriction(0, restriction);
+
+                #endregion
+
+                #region ActivityResource
+
                 var actRes = new DbEntities.ActivityAndResource.ActivityResource()
-                {
-                    ActivityOrResource = actOrRes,
-                    ActivityResourceId = actresId
-                    ,
-                    ActivityResourceType = actResType
-                    ,
-                    Position = pos + 1
-                    ,
-                    SubjectSectionId = sectionId
-                };
+                               {
+                                   ActivityOrResource = actOrRes,
+                                   ActivityResourceId = actresId
+                                   ,
+                                   ActivityResourceType = actResType
+                                   ,
+                                   Position = pos + 1
+                                   ,
+                                   SubjectSectionId = sectionId
+                                   ,
+                                   RestrictionId = res.Id
+                                   ,
+                                   Name = name,
+                               };
                 Context.ActivityResource.Add(actRes);
                 Context.SaveChanges();
+
+                #endregion
+
+
             }
 
             public List<ActivityResourceViewModel> ListActivitiesAndResourcesOfSection(int sectionId)
@@ -64,6 +151,13 @@ namespace Academic.DbHelper
                 {
 
                     //var value = ActivityResourceValues.RetriveMethod("", ar.ActivityOrResource, ar.ActivityResourceType);
+
+                    //restriction 
+                    //ar.Restriction.
+                    I know  you are copying this project.. I will sue you.
+
+
+
                     var viewModel = new ActivityResourceViewModel()
                     {
                         ActivityOrResource = ar.ActivityOrResource
@@ -82,6 +176,8 @@ namespace Academic.DbHelper
                         //IconUrl = value.IconPath
 
                     };
+
+
 
                     if (ar.ActivityOrResource)
                     {
@@ -222,59 +318,64 @@ namespace Academic.DbHelper
 
             #region Assignment
 
-            public DbEntities.ActivityAndResource.Assignment AddOrUpdateAssignment(
+            //AddOrUpdate
+            public DbEntities.ActivityAndResource.Assignment AddOrUpdateAssignmentActivity(
                 DbEntities.ActivityAndResource.Assignment asg,
-                int sectionId)
+                int sectionId
+                , Restriction restriction)
             {
-                var ent = Context.Assignment.Find(asg.Id);
-                if (ent == null)
+                using (var scope = new TransactionScope())
                 {
-                    ent = Context.Assignment.Add(asg);
-                    Context.SaveChanges();
-                    int pos = 0;
-                    var poslist = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId);
-                    if (poslist.Any())
-                        pos = poslist.Max(x => x.Position);
-                    var actRes = new DbEntities.ActivityAndResource.ActivityResource()
+                    var ent = Context.Assignment.Find(asg.Id);
+                    if (ent == null)
                     {
-                        ActivityOrResource = true,
-                        ActivityResourceId = ent.Id
-                        ,
-                        ActivityResourceType = (byte)(((int)Enums.Activities.Assignment) + 1)
-                        ,
-                        Position = pos + 1
-                        ,
-                        SubjectSectionId = sectionId
-                    };
-                    Context.ActivityResource.Add(actRes);
-                    Context.SaveChanges();
+                        ent = Context.Assignment.Add(asg);
+                        Context.SaveChanges();
 
-                    //restriction
+                        SaveActivityResourceTable(true, (byte)(((int)Enums.Activities.Assignment) + 1), ent.Id, sectionId,
+                            asg.Name, restriction);
+
+                        //return ent;
+                    }
+                    else
+                    {
+                        //ent.CutOffDate = asg.CutOffDate;
+                        //    ent.Description = asg.Description;
+                        //    ent.DispalyDescriptionOnPage = asg.DispalyDescriptionOnPage;
+                        //    ent.DueDate = asg.DueDate;
+                        //    ent.GradeToPass = asg.GradeToPass;
+                        //    ent.GradeType = asg.GradeType;
+                        //    ent.MaximumGrade = asg.MaximumGrade;
+                        //    ent.MaximumNoOfUploadedFiles = asg.MaximumNoOfUploadedFiles;
+                        //    ent.MaximumSubmissionSize = asg.MaximumSubmissionSize;
+                        //    ent.ModifiedBy = asg.ModifiedBy;
+                        //    ent.ModifiedDate = asg.ModifiedDate;
+                        //    ent.SubmissionFrom = asg.SubmissionFrom;
+                        //   // ent.SubmissionType = asg.SubmissionType;
+                        //    ent.Name = asg.Name;
+                        //    ent.WordLimit = asg.WordLimit;
+                        //    Context.SaveChanges();
+                        //    return ent;
+                    }
+                    var ar =
+                        Context.ActivityResource.FirstOrDefault(
+                            x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
+                                 && x.ActivityResourceType == (byte)(((int)Enums.Activities.Assignment) + 1));
+                    if (ar != null)
+                    {
+                        ar.Name = asg.Name;
+                        Context.SaveChanges();
+                    }
+                    scope.Complete();
 
                     return ent;
                 }
-                //else
-                //{
-                //    ent.CutOffDate = asg.CutOffDate;
-                //    ent.Description = asg.Description;
-                //    ent.DispalyDescriptionOnPage = asg.DispalyDescriptionOnPage;
-                //    ent.DueDate = asg.DueDate;
-                //    ent.GradeToPass = asg.GradeToPass;
-                //    ent.GradeType = asg.GradeType;
-                //    ent.MaximumGrade = asg.MaximumGrade;
-                //    ent.MaximumNoOfUploadedFiles = asg.MaximumNoOfUploadedFiles;
-                //    ent.MaximumSubmissionSize = asg.MaximumSubmissionSize;
-                //    ent.ModifiedBy = asg.ModifiedBy;
-                //    ent.ModifiedDate = asg.ModifiedDate;
-                //    ent.SubmissionFrom = asg.SubmissionFrom;
-                //   // ent.SubmissionType = asg.SubmissionType;
-                //    ent.Name = asg.Name;
-                //    ent.WordLimit = asg.WordLimit;
-                //    Context.SaveChanges();
-                //    return ent;
-                //}
-                return null;
             }
+
+
+
+
+
 
             #endregion
 
@@ -292,7 +393,7 @@ namespace Academic.DbHelper
             }
 
             public DbEntities.ActivityAndResource.ForumActivity AddOrUpdateForumActivity(
-                DbEntities.ActivityAndResource.ForumActivity forum, int sectionId)
+                DbEntities.ActivityAndResource.ForumActivity forum, int sectionId, Restriction restriction)
             {
                 using (var scope = new TransactionScope())
                 {
@@ -300,21 +401,22 @@ namespace Academic.DbHelper
                     if (ent == null)
                     {
                         //get restriction from the ui not auto add
-                        var restriction = new DbEntities.AccessPermission.Restriction()
-                        {
-                            Visibility = false,
-                            MatchAllAny = false,
-                            MatchMust = true,
-                        };
+                        //var restriction = new DbEntities.AccessPermission.Restriction()
+                        //{
+                        //    Visibility = false,
+                        //    MatchAllAny = false,
+                        //    MatchMust = true,
+                        //};
 
-                        var res = Context.Restriction.Add(restriction);
-                        Context.SaveChanges();
+                        //var res = Context.Restriction.Add(restriction);
+                        //Context.SaveChanges();
 
-                        forum.RestrictionId = res.Id;
+                        //forum.RestrictionId = res.Id;
+
                         ent = Context.ForumActivity.Add(forum);
                         Context.SaveChanges();
 
-                        SaveActivityResourceTable(true, (byte)(((int)Enums.Activities.Forum) + 1), ent.Id, sectionId);
+                        SaveActivityResourceTable(true, (byte)(((int)Enums.Activities.Forum) + 1), ent.Id, sectionId, forum.Name, restriction);
 
                     }
                     else
@@ -335,6 +437,16 @@ namespace Academic.DbHelper
                         ent.SubscriptionMode = forum.SubscriptionMode;
 
                         Context.SaveChanges();
+
+                        var ar =
+                       Context.ActivityResource.FirstOrDefault(
+                           x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
+                                && x.ActivityResourceType == (byte)(((int)Enums.Activities.Forum) + 1));
+                        if (ar != null)
+                        {
+                            ar.Name = forum.Name;
+                            Context.SaveChanges();
+                        }
 
                     }
                     scope.Complete();
@@ -372,6 +484,7 @@ namespace Academic.DbHelper
 
                 }
             }
+
             public List<DbEntities.ActivityAndResource.ForumItems.ForumDiscussion> ListParentDiscussionsOfForum(int forumId)
             {
                 return Context.ForumDiscussion.Where(x => (x.ParentDiscussionId ?? 0) == 0 && x.ForumActivityId == forumId).ToList();
@@ -382,10 +495,13 @@ namespace Academic.DbHelper
 
 
             #region Choice activity
+
+
             public DbEntities.ActivityAndResource.ChoiceActivity AddOrUpdateChoiceActivity
                 (DbEntities.ActivityAndResource.ChoiceActivity choice
                 , List<DbEntities.ActivityAndResource.ChoiceItems.ChoiceOptions> choiceOptions
-                , int sectionId)
+                , int sectionId
+                , Restriction restriction)
             {
                 using (var scope = new TransactionScope())
                 {
@@ -393,21 +509,22 @@ namespace Academic.DbHelper
                     if (ent == null)
                     {
                         //get restriction from the ui not auto add
-                        var restriction = new DbEntities.AccessPermission.Restriction()
-                        {
-                            Visibility = false,
-                            MatchAllAny = false,
-                            MatchMust = true,
-                        };
+                        //var restriction = new DbEntities.AccessPermission.Restriction()
+                        //{
+                        //    Visibility = false,
+                        //    MatchAllAny = false,
+                        //    MatchMust = true,
+                        //};
 
-                        var res = Context.Restriction.Add(restriction);
-                        Context.SaveChanges();
+                        //var res = Context.Restriction.Add(restriction);
+                        //Context.SaveChanges();
 
-                        choice.RestrictionId = res.Id;
+                        //choice.RestrictionId = res.Id;
+
                         ent = Context.ChoiceActivity.Add(choice);
                         Context.SaveChanges();
 
-                        SaveActivityResourceTable(true, (byte)(((int)Enums.Activities.Choice) + 1), ent.Id, sectionId);
+                        SaveActivityResourceTable(true, (byte)(((int)Enums.Activities.Choice) + 1), ent.Id, sectionId, choice.Name, restriction);
 
                         foreach (var o in choiceOptions)
                         {
@@ -460,6 +577,15 @@ namespace Academic.DbHelper
 
 
                         Context.SaveChanges();
+                        var ar =
+                       Context.ActivityResource.FirstOrDefault(
+                           x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
+                                && x.ActivityResourceType == (byte)(((int)Enums.Activities.Choice) + 1));
+                        if (ar != null)
+                        {
+                            ar.Name = choice.Name;
+                            Context.SaveChanges();
+                        }
 
                     }
                     scope.Complete();
@@ -467,6 +593,60 @@ namespace Academic.DbHelper
                 }
 
             }
+
+            public DbEntities.ActivityAndResource.ChoiceActivity GetChoiceActivity(int choiceId)
+            {
+                return Context.ChoiceActivity.Find(choiceId);
+            }
+
+            public DbEntities.ActivityAndResource.ChoiceItems.ChoiceOptions GetChoiceOptions(int choiceId)
+            {
+                return Context.ChoiceOptions.Find(choiceId);
+            }
+
+            public bool SaveChoice(List<DbEntities.ActivityAndResource.ChoiceItems.ChoiceUser> selectedChoices
+                , List<DbEntities.ActivityAndResource.ChoiceItems.ChoiceUser> removedChoices)
+            {
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        foreach (var co in selectedChoices)
+                        {
+                            var opt = Context.ChoiceUser.Find(co.Id);
+                            if (opt == null)
+                            {
+                                Context.ChoiceUser.Add(co);
+                                Context.SaveChanges();
+                            }
+                            else
+                            {
+                                opt.ChoiceOptionsId = co.ChoiceOptionsId;
+                                Context.SaveChanges();
+                            }
+                        }
+                        foreach (var co in removedChoices)
+                        {
+                            var opt = Context.ChoiceUser.Find(co.Id);
+                            if (opt != null)
+                            {
+                                Context.ChoiceUser.Remove(opt);
+                                Context.SaveChanges();
+                            }
+                        }
+
+
+                        scope.Complete();
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+
             #endregion
 
 
@@ -475,31 +655,31 @@ namespace Academic.DbHelper
             #region Book
 
             public DbEntities.ActivityAndResource.BookResource AddOrUpdateBook(
-               DbEntities.ActivityAndResource.BookResource book, int sectionId)
+               DbEntities.ActivityAndResource.BookResource book, int sectionId, Restriction restriction)
             {
                 try
                 {
                     var ent = Context.BookResource.Find(book.Id);
                     if (ent == null)
                     {
-                        var restrictionn = new DbEntities.AccessPermission.Restriction()
-                        {
-                            MatchAllAny = false,
-                            MatchMust = false,
-                            Visibility = true
+                        //var restrictionn = new DbEntities.AccessPermission.Restriction()
+                        //{
+                        //    MatchAllAny = false,
+                        //    MatchMust = false,
+                        //    Visibility = true
 
-                        };
+                        //};
 
-                        //restriction addition is remain
-                        var restric = Context.Restriction.Add(restrictionn);
-                        Context.SaveChanges();
+                        ////restriction addition is remain
+                        //var restric = Context.Restriction.Add(restrictionn);
+                        //Context.SaveChanges();
 
-                        book.RestrictionId = restric.Id;
+                        //book.RestrictionId = restric.Id;
 
                         ent = Context.BookResource.Add(book);
                         Context.SaveChanges();
 
-                        SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Book) + 1), ent.Id, sectionId);
+                        SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Book) + 1), ent.Id, sectionId, book.Name, restriction);
 
                     }
                     else
@@ -512,6 +692,14 @@ namespace Academic.DbHelper
                         ent.StyleOfNavigation = book.StyleOfNavigation;
 
                         Context.SaveChanges();
+                        var ar = Context.ActivityResource.FirstOrDefault(
+                           x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
+                                && x.ActivityResourceType == (byte)(((int)Enums.Resources.Book) + 1));
+                        if (ar != null)
+                        {
+                            ar.Name = book.Name;
+                            Context.SaveChanges();
+                        }
                         //update restriction also;
                     }
                     return
@@ -767,7 +955,7 @@ namespace Academic.DbHelper
 
             public DbEntities.ActivityAndResource.FileResource
                 AddOrUpdateFileResource(DbEntities.ActivityAndResource.FileResource file
-                , List<DbEntities.Subjects.SubjectFile> fileList, int sectionId)
+                , List<DbEntities.Subjects.SubjectFile> fileList, int sectionId, Restriction restriction)
             {
                 using (var scope = new TransactionScope())
                 {
@@ -777,17 +965,17 @@ namespace Academic.DbHelper
                         if (ent == null)
                         {
                             //get restriction from the ui not auto add
-                            var restriction = new DbEntities.AccessPermission.Restriction()
-                            {
-                                Visibility = false,
-                                MatchAllAny = false,
-                                MatchMust = true,
-                            };
+                            //var restriction = new DbEntities.AccessPermission.Restriction()
+                            //{
+                            //    Visibility = false,
+                            //    MatchAllAny = false,
+                            //    MatchMust = true,
+                            //};
 
-                            var res = Context.Restriction.Add(restriction);
-                            Context.SaveChanges();
+                            //var res = Context.Restriction.Add(restriction);
+                            //Context.SaveChanges();
 
-                            file.RestrictionId = res.Id;
+                            //file.RestrictionId = res.Id;
                             ent = Context.FileResource.Add(file);
                             Context.SaveChanges();
 
@@ -816,7 +1004,7 @@ namespace Academic.DbHelper
 
                                 i++;
                             }
-                            SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.File) + 1), ent.Id, sectionId);
+                            SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.File) + 1), ent.Id, sectionId, file.Name, restriction);
                         }
                         else
                         {
@@ -834,6 +1022,15 @@ namespace Academic.DbHelper
 
                         }
                         scope.Complete();
+                        var ar =
+                       Context.ActivityResource.FirstOrDefault(
+                           x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
+                                && x.ActivityResourceType == (byte)(((int)Enums.Resources.File) + 1));
+                        if (ar != null)
+                        {
+                            ar.Name = file.Name;
+                            Context.SaveChanges();
+                        }
                         return ent;
 
                     }
@@ -863,27 +1060,27 @@ namespace Academic.DbHelper
             #region Url resource
 
             public DbEntities.ActivityAndResource.UrlResource AddOrUpdateUrlResource(
-                DbEntities.ActivityAndResource.UrlResource url, int sectionId)
+                DbEntities.ActivityAndResource.UrlResource url, int sectionId, Restriction restriction)
             {
                 var ent = Context.UrlResource.Find(url.Id);
                 if (ent == null)
                 {
                     //get restriction from the ui not auto add
-                    var restriction = new DbEntities.AccessPermission.Restriction()
-                    {
-                        Visibility = false,
-                        MatchAllAny = false,
-                        MatchMust = true,
-                    };
+                    //var restriction = new DbEntities.AccessPermission.Restriction()
+                    //{
+                    //    Visibility = false,
+                    //    MatchAllAny = false,
+                    //    MatchMust = true,
+                    //};
 
-                    var res = Context.Restriction.Add(restriction);
-                    Context.SaveChanges();
+                    //var res = Context.Restriction.Add(restriction);
+                    //Context.SaveChanges();
 
-                    url.RestrictionId = res.Id;
+                    //url.RestrictionId = res.Id;
                     ent = Context.UrlResource.Add(url);
                     Context.SaveChanges();
 
-                    SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Url) + 1), ent.Id, sectionId);
+                    SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Url) + 1), ent.Id, sectionId, url.Name, restriction);
 
                 }
                 else
@@ -896,6 +1093,16 @@ namespace Academic.DbHelper
                     ent.DisplayDescriptionOnPage = url.DisplayDescriptionOnPage;
                     ent.Url = url.Url;
                     Context.SaveChanges();
+
+                    var ar =
+                        Context.ActivityResource.FirstOrDefault(
+                            x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
+                                 && x.ActivityResourceType == (byte)(((int)Enums.Resources.Url) + 1));
+                    if (ar != null)
+                    {
+                        ar.Name = url.Name;
+                        Context.SaveChanges();
+                    }
 
                 }
                 return ent;
@@ -911,27 +1118,27 @@ namespace Academic.DbHelper
             #region Page resource
 
             public DbEntities.ActivityAndResource.PageResource AddOrUpdatePageResource(
-               DbEntities.ActivityAndResource.PageResource page, int sectionId)
+               DbEntities.ActivityAndResource.PageResource page, int sectionId, Restriction restriction)
             {
                 var ent = Context.PageResource.Find(page.Id);
                 if (ent == null)
                 {
                     //get restriction from the ui not auto add
-                    var restriction = new DbEntities.AccessPermission.Restriction()
-                    {
-                        Visibility = false,
-                        MatchAllAny = false,
-                        MatchMust = true,
-                    };
+                    //var restriction = new DbEntities.AccessPermission.Restriction()
+                    //{
+                    //    Visibility = false,
+                    //    MatchAllAny = false,
+                    //    MatchMust = true,
+                    //};
 
-                    var res = Context.Restriction.Add(restriction);
-                    Context.SaveChanges();
+                    //var res = Context.Restriction.Add(restriction);
+                    //Context.SaveChanges();
 
-                    page.RestrictionId = res.Id;
+                    //page.RestrictionId = res.Id;
                     ent = Context.PageResource.Add(page);
                     Context.SaveChanges();
 
-                    SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Page) + 1), ent.Id, sectionId);
+                    SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Page) + 1), ent.Id, sectionId, page.Name, restriction);
 
                 }
                 else
@@ -944,6 +1151,15 @@ namespace Academic.DbHelper
                     ent.PageContent = page.PageContent;
                     Context.SaveChanges();
 
+                    var ar =
+                       Context.ActivityResource.FirstOrDefault(
+                           x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
+                                && x.ActivityResourceType == (byte)(((int)Enums.Resources.Page) + 1));
+                    if (ar != null)
+                    {
+                        ar.Name = page.Name;
+                        Context.SaveChanges();
+                    }
                 }
                 return ent;
             }
@@ -966,27 +1182,27 @@ namespace Academic.DbHelper
             }
 
             public DbEntities.ActivityAndResource.LabelResource AddOrUpdateLabelResource(
-                DbEntities.ActivityAndResource.LabelResource label, int sectionId)
+                DbEntities.ActivityAndResource.LabelResource label, int sectionId, Restriction restriction)
             {
                 var ent = Context.LabelResource.Find(label.Id);
                 if (ent == null)
                 {
                     //get restriction from the ui not auto add
-                    var restriction = new DbEntities.AccessPermission.Restriction()
-                    {
-                        Visibility = false,
-                        MatchAllAny = false,
-                        MatchMust = true,
-                    };
+                    //var restriction = new DbEntities.AccessPermission.Restriction()
+                    //{
+                    //    Visibility = false,
+                    //    MatchAllAny = false,
+                    //    MatchMust = true,
+                    //};
 
-                    var res = Context.Restriction.Add(restriction);
-                    Context.SaveChanges();
+                    //var res = Context.Restriction.Add(restriction);
+                    //Context.SaveChanges();
 
-                    label.RestrictionId = res.Id;
+                    //label.RestrictionId = res.Id;
                     ent = Context.LabelResource.Add(label);
                     Context.SaveChanges();
 
-                    SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Label) + 1), ent.Id, sectionId);
+                    SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Label) + 1), ent.Id, sectionId, "", restriction);
 
                 }
                 else
@@ -1003,56 +1219,8 @@ namespace Academic.DbHelper
 
 
 
-            public DbEntities.ActivityAndResource.ChoiceActivity GetChoiceActivity(int choiceId)
-            {
-                return Context.ChoiceActivity.Find(choiceId);
-            }
-            public DbEntities.ActivityAndResource.ChoiceItems.ChoiceOptions GetChoiceOptions(int choiceId)
-            {
-                return Context.ChoiceOptions.Find(choiceId);
-            }
-
-            public bool SaveChoice(List<DbEntities.ActivityAndResource.ChoiceItems.ChoiceUser> selectedChoices
-                , List<DbEntities.ActivityAndResource.ChoiceItems.ChoiceUser> removedChoices)
-            {
-                try
-                {
-                    using (var scope = new TransactionScope())
-                    {
-                        foreach (var co in selectedChoices)
-                        {
-                            var opt = Context.ChoiceUser.Find(co.Id);
-                            if (opt == null)
-                            {
-                                Context.ChoiceUser.Add(co);
-                                Context.SaveChanges();
-                            }
-                            else
-                            {
-                                opt.ChoiceOptionsId = co.ChoiceOptionsId;
-                                Context.SaveChanges();
-                            }
-                        }
-                        foreach (var co in removedChoices)
-                        {
-                            var opt = Context.ChoiceUser.Find(co.Id);
-                            if (opt != null)
-                            {
-                                Context.ChoiceUser.Remove(opt);
-                                Context.SaveChanges();
-                            }
-                        }
 
 
-                        scope.Complete();
-                        return true;
-                    }
-                }
-                catch
-                {
-                    return false;
-                }
-            }
         }
 
     }

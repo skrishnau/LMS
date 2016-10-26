@@ -5,13 +5,13 @@ namespace Academic.Database.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class init_1 : IMigrationMetadata
+    public sealed partial class restriction_update : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(init_1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(restriction_update));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610170300272_init_1"; }
+            get { return "201610252042350_restriction_update"; }
         }
         
         string IMigrationMetadata.Source

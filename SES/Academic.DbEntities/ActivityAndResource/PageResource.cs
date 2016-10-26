@@ -17,8 +17,8 @@ namespace Academic.DbEntities.ActivityAndResource
 
         public bool DisplayDescriptionOnPage { get; set; }
 
-        public int RestrictionId { get; set; }
-        public virtual DbEntities.AccessPermission.Restriction Restriction { get; set; }
+        //public int RestrictionId { get; set; }
+        //public virtual DbEntities.AccessPermission.Restriction Restriction { get; set; }
 
         //appearance
 

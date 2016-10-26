@@ -8,6 +8,8 @@ using System.Transactions;
 using Academic.Database;
 using Academic.DbEntities.Class;
 using Academic.DbEntities.User;
+using Academic.ViewModel;
+using Academic.ViewModel.ActivityResource;
 
 namespace Academic.DbHelper
 {
@@ -51,11 +53,12 @@ namespace Academic.DbHelper
             /// 
             /// </summary>
             /// <param name="subjectId"></param>
-            /// <param name="courseCompletionType"> It specifies the type of classes to return. 1=currently running,
-            ///  2=Due, 3=not started yet, 4=completed
+            /// <param name="courseCompletionType"> It specifies the type of classes to return. 
+            /// 1=currently running,
+            ///  2=Due, 3=not started yet, 4=completed, 5=all
             /// </param>
             /// <returns></returns>
-            public List<Academic.DbEntities.Class.SubjectClass> ListSessionsOfSubject(
+            public List<Academic.DbEntities.Class.SubjectClass> ListClassesOfSubject(
                 int subjectId, string courseCompletionType)
             {
                 var regular = new List<Academic.DbEntities.Class.SubjectClass>();
@@ -66,6 +69,9 @@ namespace Academic.DbHelper
                 var now = DateTime.Now.Date;
                 var min = DateTime.MinValue.Date;
                 var max = DateTime.MaxValue.Date;
+
+                #region Switch string
+
                 switch (courseCompletionType)
                 {
                     case "btnCurrentlyRunning":
@@ -159,9 +165,267 @@ namespace Academic.DbHelper
                             .ToList();
                         break;
                 }
+
+                #endregion
+
+
                 regular.AddRange(notRegular);
                 return regular;
             }
+
+            public List<Academic.DbEntities.Class.SubjectClass> ListCurrentClassesOfUser(
+                int subjectId, int userId)
+            {
+                //var regular = new List<Academic.DbEntities.Class.SubjectClass>();
+                //Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
+
+                //var notRegular = new List<Academic.DbEntities.Class.SubjectClass>();
+                //Context.SubjectSession.Where(s => (!s.IsRegular)).Where(x => x.SubjectId == subjectId);
+                var now = DateTime.Now.Date;
+                var min = DateTime.MinValue.Date;
+                var max = DateTime.MaxValue.Date;
+                var userclass = Context.UserClass.Where(x => !(x.Void ?? false)
+                    && (x.UserId == userId)
+                    && !(x.Suspended ?? false)).ToList();
+
+                var regular = userclass.Select(x => x.SubjectClass)// SubjectClass
+                         .Where(s => s.IsRegular
+                             && (s.StartDate ?? min) <= now
+                             && (s.EndDate ?? max) >= now
+                             && !(s.SessionComplete ?? false))
+                         .Where(x => x.SubjectStructure.SubjectId == subjectId)
+                         .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                         .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
+                         .ToList();
+
+                var notRegular = userclass.Select(x => x.SubjectClass)//.SubjectClass
+                         .Where(s => (!s.IsRegular)
+                             && (s.StartDate ?? min) <= now
+                             && (s.EndDate ?? max) >= now
+                             && !(s.SessionComplete ?? false))
+                         .Where(x => x.SubjectId == subjectId)
+                         .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.Name)
+                         .ToList();
+
+                regular.AddRange(notRegular);
+                return regular;
+            }
+
+            public List<Academic.DbEntities.Class.SubjectClass> ListCurrentClassesOfTeacher(
+                int subjectId, int userId, List<string> roles, List<IdAndName> classesToIgnore = null)
+            {
+                //var regular = new List<Academic.DbEntities.Class.SubjectClass>();
+                //Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
+
+                //var notRegular = new List<Academic.DbEntities.Class.SubjectClass>();
+                //Context.SubjectSession.Where(s => (!s.IsRegular)).Where(x => x.SubjectId == subjectId);
+                var now = DateTime.Now.Date;
+                var min = DateTime.MinValue.Date;
+                var max = DateTime.MaxValue.Date;
+
+                if (roles.Contains(StaticValues.Roles.CourseEditor)
+                    || roles.Contains(StaticValues.Roles.Manager))
+                {
+                    var regular = Context.SubjectClass
+                        .Where(s => s.IsRegular
+                                    && (s.StartDate ?? min) <= now
+                                    && (s.EndDate ?? max) >= now
+                                    && !(s.SessionComplete ?? false))
+                        .Where(x => x.SubjectStructure.SubjectId == subjectId)
+                        .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                        .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
+                        .ToList();
+
+                    var notRegular = Context.SubjectClass
+                        .Where(s => (!s.IsRegular)
+                                    && s.SubjectId == subjectId
+                                    && (s.StartDate ?? min) <= now
+                                    && (s.EndDate ?? max) >= now
+                                    && !(s.SessionComplete ?? false))
+                        .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.Name)
+                        .ToList();
+                    var rg = Context.SubjectClass.ToList();
+                    var gg = Context.SubjectClass.Where(x => !x.IsRegular).OrderBy(x => x.CreatedDate).ToList();
+                    var vgg = Context.SubjectClass.Where(x => !x.IsRegular)
+                        .OrderBy(x => x.CreatedDate)
+                        .ThenBy(x=>x.Name).ToList();
+
+                    regular.AddRange(notRegular);
+
+                    if (classesToIgnore != null)
+                    {
+                        var cti = classesToIgnore.Select(x => x.Id).ToList();
+                        foreach (var c in cti)
+                        {
+                            var found = regular.Find(x => x.Id == c);
+                            if (found != null)
+                            {
+                                regular.Remove(found);
+                            }
+                        }
+                    }
+                    return regular;
+                }
+                else
+                {
+                    var userclass = Context.UserClass.Where(x => !(x.Void ?? false)
+
+                                                                 && (x.UserId == userId)
+                                                                 && !(x.Suspended ?? false)
+                                                                 && (x.Role.RoleName == "teacher")
+
+                        ).ToList();
+
+                    var regular = userclass.Select(x => x.SubjectClass) // SubjectClass
+                        .Where(s => s.IsRegular
+                                    && (s.StartDate ?? min) <= now
+                                    && (s.EndDate ?? max) >= now
+                                    && !(s.SessionComplete ?? false))
+                        .Where(x => x.SubjectStructure.SubjectId == subjectId)
+                        .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                        .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
+                        .ToList();
+
+                    var notRegular = userclass.Select(x => x.SubjectClass) //.SubjectClass
+                        .Where(s => (!s.IsRegular)
+                                    && (s.StartDate ?? min) <= now
+                                    && (s.EndDate ?? max) >= now
+                                    && !(s.SessionComplete ?? false))
+                        .Where(x => x.SubjectId == subjectId)
+                        .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.Name)
+                        .ToList();
+
+                    regular.AddRange(notRegular);
+
+                    if (classesToIgnore != null)
+                    {
+                        var cti = classesToIgnore.Select(x => x.Id).ToList();
+                        foreach (var c in cti)
+                        {
+                            var found = regular.Find(x => x.Id == c);
+                            if (found != null)
+                            {
+                                regular.Remove(found);
+                            }
+                        }
+                    }
+                    return regular;
+                }
+            }
+
+            /// <summary>
+            /// role is a string with roles separatted by commas and no spaces
+            /// </summary>
+            /// <param name="subjectId"></param>
+            /// <param name="userId"></param>
+            /// <param name="role">separated by comma and no spaces. </param>
+            /// <returns></returns>
+            public List<Academic.DbEntities.Class.SubjectClass> ListCurrentClassesOfTeacherForCombo(
+              int subjectId, int userId, string role)
+            {
+                //var regular = new List<Academic.DbEntities.Class.SubjectClass>();
+                //Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
+
+                //var notRegular = new List<Academic.DbEntities.Class.SubjectClass>();
+                //Context.SubjectSession.Where(s => (!s.IsRegular)).Where(x => x.SubjectId == subjectId);
+                var now = DateTime.Now.Date;
+                var min = DateTime.MinValue.Date;
+                var max = DateTime.MaxValue.Date;
+                var roles = role.Split(new char[] {','});
+                if (roles.Contains(StaticValues.Roles.CourseEditor)
+                    || roles.Contains(StaticValues.Roles.Manager))
+                {
+                    var regular = Context.SubjectClass
+                        .Where(s => s.IsRegular
+                                    && (s.StartDate ?? min) <= now
+                                    && (s.EndDate ?? max) >= now
+                                    && !(s.SessionComplete ?? false))
+                        .Where(x => x.SubjectStructure.SubjectId == subjectId)
+                        .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                        .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
+                        .ToList();
+
+                    var notRegular = Context.SubjectClass
+                        .Where(s => (!s.IsRegular)
+                                    && s.SubjectId == subjectId
+                                    && (s.StartDate ?? min) <= now
+                                    && (s.EndDate ?? max) >= now
+                                    && !(s.SessionComplete ?? false))
+                        .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.Name)
+                        .ToList();
+                    var rg = Context.SubjectClass.ToList();
+                    var gg = Context.SubjectClass.Where(x => !x.IsRegular).OrderBy(x => x.CreatedDate).ToList();
+                    var vgg = Context.SubjectClass.Where(x => !x.IsRegular)
+                        .OrderBy(x => x.CreatedDate)
+                        .ThenBy(x => x.Name).ToList();
+
+                    regular.AddRange(notRegular);
+
+                    //if (classesToIgnore != null)
+                    //{
+                    //    var cti = classesToIgnore.Select(x => x.Id).ToList();
+                    //    foreach (var c in cti)
+                    //    {
+                    //        var found = regular.Find(x => x.Id == c);
+                    //        if (found != null)
+                    //        {
+                    //            regular.Remove(found);
+                    //        }
+                    //    }
+                    //}
+                    regular.Insert(0, new SubjectClass() { Name = "Choose", Id = 0 });
+                    return regular;
+                }
+                else
+                {
+                    var userclass = Context.UserClass.Where(x => !(x.Void ?? false)
+
+                                                                 && (x.UserId == userId)
+                                                                 && !(x.Suspended ?? false)
+                                                                 && (x.Role.RoleName == "teacher")
+
+                        ).ToList();
+
+                    var regular = userclass.Select(x => x.SubjectClass) // SubjectClass
+                        .Where(s => s.IsRegular
+                                    && (s.StartDate ?? min) <= now
+                                    && (s.EndDate ?? max) >= now
+                                    && !(s.SessionComplete ?? false))
+                        .Where(x => x.SubjectStructure.SubjectId == subjectId)
+                        .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                        .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
+                        .ToList();
+
+                    var notRegular = userclass.Select(x => x.SubjectClass) //.SubjectClass
+                        .Where(s => (!s.IsRegular)
+                                    && (s.StartDate ?? min) <= now
+                                    && (s.EndDate ?? max) >= now
+                                    && !(s.SessionComplete ?? false))
+                        .Where(x => x.SubjectId == subjectId)
+                        .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.Name)
+                        .ToList();
+
+                    regular.AddRange(notRegular);
+
+                    //if (classesToIgnore != null)
+                    //{
+                    //    var cti = classesToIgnore.Select(x => x.Id).ToList();
+                    //    foreach (var c in cti)
+                    //    {
+                    //        var found = regular.Find(x => x.Id == c);
+                    //        if (found != null)
+                    //        {
+                    //            regular.Remove(found);
+                    //        }
+                    //    }
+                    //}
+                    regular.Insert(0, new SubjectClass() { Name = "Choose", Id = 0 });
+
+                    return regular;
+                }
+            }
+
+
 
             public List<Academic.DbEntities.User.Users> ListUsersOfSubjectSession(int subjectSessionId)
             {
@@ -174,12 +438,13 @@ namespace Academic.DbHelper
                 return new List<Users>();
             }
 
-            public List<Academic.DbEntities.User.Users> ListUsersNotInSubjectSession(int subjectSessionId, List<int> asignedList)
+            public List<Academic.DbEntities.User.Users> ListUsersNotInSubjectSession(int subjectSessionId, List<int> asignedList, int schoolId)
             {
                 var subsession = Context.SubjectClass.Find(subjectSessionId);
                 if (subsession != null)
                 {
-                    var users = Context.Users.Where(x => !asignedList.Contains(x.Id))
+                    var users = Context.Users.Where(x => !asignedList.Contains(x.Id)
+                        && x.SchoolId == schoolId)
                         .OrderBy(y => y.FirstName)
                         .ThenBy(t => t.MiddleName)
                         .ThenBy(y => y.LastName);
@@ -210,6 +475,32 @@ namespace Academic.DbHelper
                     return subsession.ClassUsers.Where(x => !(x.Void ?? false)).Select(x => x.User).ToList();
                 }
                 return new List<DbEntities.User.Users>();
+            }
+
+            //used after github
+            public List<ViewModel.ActivityResource.UserSubmissionsViewModel> ListUserSubmissionses(int subjectClassId, string type)
+            {
+                var subsession = Context.SubjectClass.Find(subjectClassId);
+                if (subsession != null)
+                {
+                    var lst = new List<UserSubmissionsViewModel>();
+                    var cls = subsession.ClassUsers.Where(x => !(x.Void ?? false)).ToList();
+                    foreach (var c in cls)
+                    {
+                        var ent = new UserSubmissionsViewModel()
+                        {
+                            UserId = c.UserId ?? 0
+                            ,
+                            UserName = c.User == null ? "" : c.User.UserName
+                            ,
+                            Email = c.User == null ? "" : c.User.Email
+
+                        };
+                        lst.Add(ent);
+                    }
+                    return lst;
+                }
+                return new List<UserSubmissionsViewModel>();
             }
 
             #endregion

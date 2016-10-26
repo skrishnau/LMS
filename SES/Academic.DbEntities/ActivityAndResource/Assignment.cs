@@ -71,7 +71,7 @@ namespace Academic.DbEntities.ActivityAndResource
         //public virtual ICollection<DbEntities.Assignments.AssignmentAnswer> AssignmentAnswers { get; set; }
         //public virtual ICollection<Task> Tasks { get; set; }
 
-        public int? RestrictionId { get; set; }
-        public AccessPermission.Restriction Restriction { get; set; }
+        //public int? RestrictionId { get; set; }
+        //public AccessPermission.Restriction Restriction { get; set; }
     }
 }

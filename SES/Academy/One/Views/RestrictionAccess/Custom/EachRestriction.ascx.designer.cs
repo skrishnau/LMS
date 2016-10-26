@@ -139,6 +139,24 @@ namespace One.Views.RestrictionAccess.Custom {
         protected global::System.Web.UI.WebControls.HiddenField hidNoOfChildRestrictionSets;
         
         /// <summary>
+        /// hidRestrictionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidRestrictionId;
+        
+        /// <summary>
+        /// hidRestrictionParentId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidRestrictionParentId;
+        
+        /// <summary>
         /// lnkAddActOrRes control.
         /// </summary>
         /// <remarks>
@@ -155,5 +173,14 @@ namespace One.Views.RestrictionAccess.Custom {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::One.Views.All_Resusable_Codes.Dialog.CustomDialog dialog;
+        
+        /// <summary>
+        /// hidSubjectId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidSubjectId;
     }
 }

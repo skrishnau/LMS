@@ -31,7 +31,9 @@
                      style="text-align: center; overflow-x: auto; vertical-align: central;">
                     <ajaxToolkit:AsyncFileUpload ID="file_upload" runat="server" OnUploadedComplete="file_upload_UploadedComplete" />
                     <br />
-                    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" Width="93px" />
+                    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" 
+                        CausesValidation="False" ValidationGroup="filepicker"
+                        Width="93px" />
                     &nbsp; &nbsp;
                     <asp:Label ID="lblMessage" runat="server" Text="Error! Please reload the page." ForeColor="red" Visible="False"></asp:Label>
                     <asp:HiddenField ID="hdnFileFolder" runat="server" Value="" />

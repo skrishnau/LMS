@@ -51,6 +51,7 @@
     <Compile Include="AcademicViewModel.cs" />
     <Compile Include="Account\AccountViewModel.cs" />
     <Compile Include="ActivityResource\ActivityResourceViewModel.cs" />
+    <Compile Include="ActivityResource\UserSubmissions.cs" />
     <Compile Include="Batch\BatchViewModel.cs" />
     <Compile Include="ChoiceViewModel.cs" />
     <Compile Include="Class1.cs" />

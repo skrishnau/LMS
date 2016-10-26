@@ -1,16 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="One.Views.Default" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="One.Views.Default" %>
 
-<!DOCTYPE html>
+<%@ Register Src="~/ViewsSite/DashBoard/Student/CourseOverView/LstUc.ascx" TagPrefix="uc1" TagName="LstUc" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
-</body>
-</html>
+
+
+<asp:Content runat="server" ID="bodyTitle" ContentPlaceHolderID="BodyTitle">
+    <h3>COURSE OVERVIEW  </h3>
+</asp:Content>
+
+<asp:Content runat="server" ID="contentBody" ContentPlaceHolderID="Body">
+    <uc1:LstUc runat="server" ID="LstUc1" />
+</asp:Content>
+

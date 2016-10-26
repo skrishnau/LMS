@@ -77,7 +77,8 @@ namespace One.Views.Class.Enrollment
 
                         var notasgList = helper.ListUsersNotInSubjectSession(
                             SubjectSessionId
-                            , asglist.Select(x => x.Id).ToList());
+                            , asglist.Select(x => x.Id).ToList()
+                            ,user.SchoolId);
                         lstUnAsg.DataSource = notasgList;
                         lstUnAsg.DataSource = notasgList;
                         lstUnAsg.DataBind();

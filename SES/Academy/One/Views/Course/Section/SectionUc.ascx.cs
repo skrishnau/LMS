@@ -80,6 +80,7 @@ namespace One.Views.Course.Section
                     var ars = ahelper.ListActivitiesAndResourcesOfSection(SectionId);
                     foreach (var ar in ars)
                     {
+                        
                         var arUc =
                             (ActivityAndResourceUc)
                                 Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");

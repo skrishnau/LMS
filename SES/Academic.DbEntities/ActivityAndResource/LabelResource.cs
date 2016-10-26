@@ -11,7 +11,7 @@ namespace Academic.DbEntities.ActivityAndResource
         public int Id { get; set; }
         public string Text { get; set; }
 
-        public int RestrictionId { get; set; }
-        public virtual DbEntities.AccessPermission.Restriction Restriction { get; set; }
+        //public int RestrictionId { get; set; }
+        //public virtual DbEntities.AccessPermission.Restriction Restriction { get; set; }
     }
 }

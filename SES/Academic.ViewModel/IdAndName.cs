@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Academic.ViewModel
 {
+    [Serializable]
     public class IdAndName
     {
         public int Id { get; set; }

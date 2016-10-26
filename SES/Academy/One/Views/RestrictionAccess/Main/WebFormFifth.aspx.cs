@@ -99,7 +99,8 @@ namespace One.Views.RestrictionAccess.Main
                             case "group":
                                 var groupRestriction = (GroupRestrictionUC)
                                     Page.LoadControl("~/Views/RestrictionAccess/GroupRestrictionUC.ascx");
-                                groupRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId, resClass.RelativeId, resClass.Name);
+                                groupRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId, resClass.RelativeId
+                                    , resClass.Name,0);
                                 groupRestriction.CloseClicked += RestrictionType_CloseClicked;
 
                                 parent.Controls.Add(groupRestriction);
@@ -320,7 +321,7 @@ namespace One.Views.RestrictionAccess.Main
                             var groupRestriction = (GroupRestrictionUC)
                                 Page.LoadControl("~/Views/RestrictionAccess/GroupRestrictionUC.ascx");
                             groupRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId,
-                                resClass.RelativeId, resClass.Name);
+                                resClass.RelativeId, resClass.Name,0);
                             _foundMain.AddControl(groupRestriction);
                             break;
                         case 4:

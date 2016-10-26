@@ -88,6 +88,8 @@ namespace Academic.Database
 
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$//
         public DbSet<DbEntities.ActivityAndResource.ActivityResource> ActivityResource { get; set; }
+        public DbSet<DbEntities.ActivityAndResource.ActivityClass> ActivityClass { get; set; }
+
 
         public DbSet<DbEntities.ActivityAndResource.ChoiceActivity> ChoiceActivity { get; set; }
         public DbSet<DbEntities.ActivityAndResource.ChoiceItems.ChoiceOptions>ChoiceOptions { get; set; }
@@ -95,6 +97,9 @@ namespace Academic.Database
 
 
         public DbSet<DbEntities.ActivityAndResource.Assignment> Assignment { get; set; }
+        public DbSet<DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissions> AssignmentSubmissions { get; set; }
+        public DbSet<DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissionFiles> AssignmentSubmissionFiles { get; set; }
+
 
         public DbSet<DbEntities.ActivityAndResource.ForumActivity> ForumActivity { get; set; }
         public DbSet<DbEntities.ActivityAndResource.ForumItems.ForumDiscussion> ForumDiscussion { get; set; }
