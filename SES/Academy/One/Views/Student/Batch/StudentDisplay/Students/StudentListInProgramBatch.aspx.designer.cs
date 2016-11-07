@@ -22,15 +22,6 @@ namespace One.Views.Student.Batch.StudentDisplay.Students {
         protected global::System.Web.UI.WebControls.Label lblProgramBatchName;
         
         /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
         /// ddlAddStudent control.
         /// </summary>
         /// <remarks>
@@ -38,15 +29,6 @@ namespace One.Views.Student.Batch.StudentDisplay.Students {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlAddStudent;
-        
-        /// <summary>
-        /// UpdatePanel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
         /// MultiView1 control.

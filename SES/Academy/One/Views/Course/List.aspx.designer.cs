@@ -13,6 +13,15 @@ namespace One.Views.Course {
     public partial class List {
         
         /// <summary>
+        /// lblHeading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHeading;
+        
+        /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
@@ -22,24 +31,6 @@ namespace One.Views.Course {
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
-        /// MultiView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
-        
-        /// <summary>
-        /// View1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
-        
-        /// <summary>
         /// pnlCategories control.
         /// </summary>
         /// <remarks>
@@ -47,24 +38,6 @@ namespace One.Views.Course {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder pnlCategories;
-        
-        /// <summary>
-        /// lnkCatCreate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCatCreate;
-        
-        /// <summary>
-        /// Image1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
         
         /// <summary>
         /// hidSelectedCategory control.
@@ -85,13 +58,22 @@ namespace One.Views.Course {
         protected global::System.Web.UI.WebControls.HiddenField hidSelectedCategoryName;
         
         /// <summary>
-        /// lblCoursesTitle control.
+        /// lnkCatCreate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCoursesTitle;
+        protected global::System.Web.UI.WebControls.LinkButton lnkCatCreate;
+        
+        /// <summary>
+        /// Image1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -103,13 +85,13 @@ namespace One.Views.Course {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// pnlCourses control.
+        /// lblCoursesTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCourses;
+        protected global::System.Web.UI.WebControls.Label lblCoursesTitle;
         
         /// <summary>
         /// lnkCoursCreate control.
@@ -130,6 +112,15 @@ namespace One.Views.Course {
         protected global::System.Web.UI.WebControls.Image Image2;
         
         /// <summary>
+        /// pnlCourses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCourses;
+        
+        /// <summary>
         /// dlistCourses control.
         /// </summary>
         /// <remarks>
@@ -148,39 +139,12 @@ namespace One.Views.Course {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
         
         /// <summary>
-        /// viewCategoryCreate control.
+        /// hidSchoolId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewCategoryCreate;
-        
-        /// <summary>
-        /// categoryCreate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Course.Category.Create categoryCreate;
-        
-        /// <summary>
-        /// viewCourseCreate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewCourseCreate;
-        
-        /// <summary>
-        /// courseCreate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Course.Course.CreateUC courseCreate;
+        protected global::System.Web.UI.WebControls.HiddenField hidSchoolId;
     }
 }

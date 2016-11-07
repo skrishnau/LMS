@@ -17,35 +17,29 @@ namespace Academic.DbEntities.Subjects
         /// <summary>
         /// It is FullName
         /// </summary>
-        public string Name { get; set; }
+        public string FullName { get; set; }
 
         public string ShortName { get; set; }
 
-
         public string Summary { get; set; }
-
 
         //enrolment methods in subject 
 //================????? ============================//
         //Enrolmment method
 
-
         public string Code { get; set; }
-        public byte? Credit { get; set; }
+        //public byte? Credit { get; set; }
 
-        //subject Id is already included in category
-        //public int SchoolId { get; set; }
-        //public virtual School School { get; set; }
 
         public int SubjectCategoryId  { get; set; }
         public virtual SubjectCategory SubjectCategory { get; set; }
 
-        public short? CompletionHours { get; set; }
+        //public short? CompletionHours { get; set; }
 
-        public int? FullMarks { get; set; }
-        public byte? PassPercentage { get; set; }
+        //public int? FullMarks { get; set; }
+        //public byte? PassPercentage { get; set; }
 
-        public bool? IsActive { get; set; }
+        //public bool? IsActive { get; set; }
         public bool? Void { get; set; }//void if this course is no longer in use.
 
 
@@ -54,20 +48,21 @@ namespace Academic.DbEntities.Subjects
         //public byte InternalPercent { get; set; }//not needed
         //public byte ExternalPercent { get; set; }//not needed
 
-        public bool? HasLab { get; set; }
-        public bool? HasTheory { get; set; }
-        public bool? HasProject { get; set; }
-        public bool? HasTutorial { get; set; }
+        //public bool? HasLab { get; set; }
+        //public bool? HasTheory { get; set; }
+        //public bool? HasProject { get; set; }
+        //public bool? HasTutorial { get; set; }
 
-        public bool? IsElective { get; set; }
-        public bool? IsOutOfSyllabus { get; set; }
+        //public bool? IsElective { get; set; }
+        //public bool? IsOutOfSyllabus { get; set; }
 
         public DateTime CreatedDate { get; set; }
+        public int  CreatedById { get; set; }
         //public bool? Vocational { get; set; }
 
-        public virtual ICollection<SubjectGroupSubject> SubjectGroupSubjects { get; set; }
+        //public virtual ICollection<SubjectGroupSubject> SubjectGroupSubjects { get; set; }
 
-        public virtual ICollection<Activities.Teach> Teach { get; set; }
+        //public virtual ICollection<Activities.Teach> Teach { get; set; }
         //public virtual ICollection<Exams.Exam> Exams { get; set; }
 
         public virtual ICollection<SubjectSection> SubjectSections { get; set; }

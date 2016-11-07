@@ -107,7 +107,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SQL_Queries\Role_All_Commands.sql" />
+    <Content Include="SQL_Queries\All_initial_Insert_stmts.sql" />
     <Content Include="SQL_Queries\user_listing.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

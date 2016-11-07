@@ -47,7 +47,7 @@ namespace Academic.DbHelper
                 {
                     Id = x.Id
                     ,
-                    Name = x.Name
+                    Name = x.FullName
                 }).ToList();
             }
 
@@ -152,20 +152,20 @@ namespace Academic.DbHelper
                     //else
                     {
                         s.Code = subject.Code;
-                        s.CompletionHours = subject.CompletionHours;
-                        s.Credit = subject.Credit;
-                        s.FullMarks = subject.FullMarks;
-                        s.HasLab = subject.HasLab;
-                        s.HasProject = subject.HasProject;
-                        s.HasTheory = subject.HasTheory;
-                        s.HasTutorial = subject.HasTutorial;
-                        s.IsActive = subject.IsActive;
+                        //s.CompletionHours = subject.CompletionHours;
+                        //s.Credit = subject.Credit;
+                        //s.FullMarks = subject.FullMarks;
+                        //s.HasLab = subject.HasLab;
+                        //s.HasProject = subject.HasProject;
+                        //s.HasTheory = subject.HasTheory;
+                        //s.HasTutorial = subject.HasTutorial;
+                        //s.IsActive = subject.IsActive;
                         s.Void = subject.Void;
-                        s.IsElective = subject.IsElective;
-                        s.IsOutOfSyllabus = subject.IsOutOfSyllabus;
+                        //s.IsElective = subject.IsElective;
+                        //s.IsOutOfSyllabus = subject.IsOutOfSyllabus;
                         s.SubjectCategoryId = subject.SubjectCategoryId;
-                        s.PassPercentage = subject.PassPercentage;
-                        s.Name = subject.Name;
+                        //s.PassPercentage = subject.PassPercentage;
+                        //s.Name = subject.Name;
                         Context.SaveChanges();
 
                         return true;
@@ -208,20 +208,20 @@ namespace Academic.DbHelper
                     //else
                     {
                         s.Code = subject.Code;
-                        s.CompletionHours = subject.CompletionHours;
-                        s.Credit = subject.Credit;
-                        s.FullMarks = subject.FullMarks;
-                        s.HasLab = subject.HasLab;
-                        s.HasProject = subject.HasProject;
-                        s.HasTheory = subject.HasTheory;
-                        s.HasTutorial = subject.HasTutorial;
-                        s.IsActive = subject.IsActive;
+                        //s.CompletionHours = subject.CompletionHours;
+                        //s.Credit = subject.Credit;
+                        //s.FullMarks = subject.FullMarks;
+                        //s.HasLab = subject.HasLab;
+                        //s.HasProject = subject.HasProject;
+                        //s.HasTheory = subject.HasTheory;
+                        //s.HasTutorial = subject.HasTutorial;
+                        //s.IsActive = subject.IsActive;
                         s.Void = subject.Void;
-                        s.IsElective = subject.IsElective;
-                        s.IsOutOfSyllabus = subject.IsOutOfSyllabus;
+                        //s.IsElective = subject.IsElective;
+                        //s.IsOutOfSyllabus = subject.IsOutOfSyllabus;
                         s.SubjectCategoryId = subject.SubjectCategoryId;
-                        s.PassPercentage = subject.PassPercentage;
-                        s.Name = subject.Name;
+                        //s.PassPercentage = subject.PassPercentage;
+                        //s.Name = subject.Name;
                         Context.SaveChanges();
 
                         return true;
@@ -238,7 +238,7 @@ namespace Academic.DbHelper
             public List<DbEntities.Subjects.Subject> GetSubjectList(int schoolId)
             {
                 return Context.Subject.Where(x => x.SubjectCategory.SchoolId == schoolId
-                    && x.IsActive == true).ToList();
+                    && !(x.Void??false)).ToList();
 
             }
 
@@ -571,13 +571,13 @@ namespace Academic.DbHelper
             public List<DbEntities.Subjects.Subject> ListCourses(int schoolId, int categoryId)
             {
                 return Context.Subject.Where(x => x.SubjectCategoryId == categoryId)
-                    .OrderBy(y => y.Name).ToList();
+                    .OrderBy(y => y.FullName).ToList();
             }
 
             public List<DbEntities.Subjects.Subject> ListCourses(int categoryId)
             {
                 return Context.Subject.Where(x => x.SubjectCategoryId == categoryId)
-                    .OrderBy(y => y.Name).ToList();
+                    .OrderBy(y => y.FullName).ToList();
             }
 
             public List<ViewModel.Subject.Subject> ListCoursesOfStructure(
@@ -597,7 +597,7 @@ namespace Academic.DbHelper
                                     ,
                                     SubjectStructureId = x.Id
                                     ,
-                                    Name = x.Subject.Name
+                                    Name = x.Subject.FullName
                                     ,
                                     Checked = false
                                     ,
@@ -854,6 +854,11 @@ namespace Academic.DbHelper
                 //    user.Classes.FirstOrDefault(x=>x.SubjectClass.Subj)
                 //}
                 return true;
+            }
+
+            public SubjectCategory GetCategory(int categoryId)
+            {
+                return Context.SubjectCategory.Find(categoryId);
             }
         }
     }

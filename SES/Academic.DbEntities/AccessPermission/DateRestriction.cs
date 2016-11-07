@@ -15,7 +15,7 @@ namespace Academic.DbEntities.AccessPermission
         public virtual Restriction Restriction { get; set; }
 
         /// <summary>
-        /// from= true; until= false
+        /// until= true;  from= false; 
         /// </summary>
         public bool Constraint { get; set; }
 

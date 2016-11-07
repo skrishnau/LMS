@@ -24,6 +24,7 @@ namespace One.Views.Course.Section.Master
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
+                    ListOfSectionsInCourseUC1.UserId = user.Id;
                     if ((user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor)
                          || user.IsInRole(DbHelper.StaticValues.Roles.Manager)
                          || user.IsInRole(DbHelper.StaticValues.Roles.Teacher)))
@@ -41,6 +42,7 @@ namespace One.Views.Course.Section.Master
                                 lblEdit.Text = "Exit Edit mode";
                                 //ListOfSectionsInCourseUC1.AddNewButtonVisibility = true;
                                 ListOfSectionsInCourseUC1.EditEnabled = true;
+
                             }
                             else
                             {
@@ -83,7 +85,7 @@ namespace One.Views.Course.Section.Master
                 var sub = helper.Find(courseId);
                 if (sub != null)
                 {
-                    txtSubjectName.Text = sub.Name;
+                    txtSubjectName.Text = sub.FullName;
                     //uncomment
                     ListOfSectionsInCourseUC1.CourseId = Id;
                 }

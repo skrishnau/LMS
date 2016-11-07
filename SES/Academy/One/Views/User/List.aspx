@@ -158,32 +158,7 @@
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             
             <Columns>
-                <%--<asp:BoundField DataField="EmailDisplay" HeaderText="EmailDisplay" SortExpression="EmailDisplay" Visible="False" />--%>
-                <%--<asp:BoundField DataField="City" HeaderText="City" SortExpression="City" Visible="False" />--%>
-                <%--<asp:BoundField DataField="EmailDisplay" HeaderText="EmailDisplay" SortExpression="EmailDisplay" />--%>
-                <%--<asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" Visible="False" />--%>
-                <%--<asp:BoundField DataField="DOB" HeaderText="DOB" SortExpression="DOB" Visible="False" />--%>
-                <%--<asp:CheckBoxField DataField="IsActive" HeaderText="IsActive" SortExpression="IsActive" Visible="False" />--%>
-                <%--<asp:CheckBoxField DataField="IsDeleted" HeaderText="IsDeleted" SortExpression="IsDeleted" Visible="False" />--%>
-                <%--<asp:BoundField DataField="GenderId" HeaderText="GenderId" SortExpression="GenderId" Visible="False" />--%>
-                <%--<asp:BoundField DataField="SchoolId" HeaderText="SchoolId" SortExpression="SchoolId" />--%>
-                <%--<asp:BoundField DataField="ImageType" HeaderText="ImageType" SortExpression="ImageType" />--%>
-                <%--<asp:BoundField DataField="CreatedDate" HeaderText="CreatedDate" SortExpression="CreatedDate" />--%>
-                <%--<asp:BoundField DataField="FullName" HeaderText="FullName" ReadOnly="True" SortExpression="FullName" />--%>
-                <%--<asp:BoundField DataField="SecurityQuestion" HeaderText="SecurityQuestion" SortExpression="SecurityQuestion" />--%>
-                <%--<asp:BoundField DataField="SecurityAnswer" HeaderText="SecurityAnswer" SortExpression="SecurityAnswer" />--%>
-                <%--<asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />--%>
-                <%--<asp:BoundField DataField="DOB" HeaderText="DOB" SortExpression="DOB" />--%>
-                <%--<asp:CheckBoxField DataField="IsActive" HeaderText="IsActive" SortExpression="IsActive" />--%>
-                <%--<asp:CheckBoxField DataField="IsDeleted" HeaderText="IsDeleted" SortExpression="IsDeleted" />--%>
-                <%--<asp:BoundField DataField="GenderId" HeaderText="GenderId" SortExpression="GenderId" />--%>
-                <%--<asp:BoundField DataField="SchoolId" HeaderText="SchoolId" SortExpression="SchoolId" />--%>
-                <%--<asp:BoundField DataField="ImageType" HeaderText="ImageType" SortExpression="ImageType" />--%>
-                <%--<asp:BoundField DataField="CreatedDate" HeaderText="CreatedDate" SortExpression="CreatedDate" />--%>
-                <%--<asp:BoundField DataField="FullName" HeaderText="FullName" ReadOnly="True" SortExpression="FullName" />--%>
-                <%--<asp:BoundField DataField="SecurityQuestion" HeaderText="SecurityQuestion" SortExpression="SecurityQuestion" />--%>
-                <%--<asp:BoundField DataField="SecurityAnswer" HeaderText="SecurityAnswer" SortExpression="SecurityAnswer" />--%>
-                <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
+                  <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
 
                 <asp:TemplateField HeaderText="Image" >
                     <EditItemTemplate>

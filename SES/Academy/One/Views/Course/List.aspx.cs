@@ -18,17 +18,25 @@ namespace One.Views.Course
             if (!IsPostBack)
             {
                 if (user != null)
-                    categoryCreate.SchoolId = user.SchoolId;
+                {
+                    SchoolId = user.SchoolId;
+                    //categoryCreate.SchoolId = user.SchoolId;
+                }
+                var catId = Request.QueryString["catId"];
+                if (catId != null)
+                {
+                    SelectedCategory = Convert.ToInt32(catId);
+                }
             }
 
             //pnlCategories.EnableViewState = false;
             //pnlCategories.ViewStateMode=ViewStateMode.Disabled;
 
-            categoryCreate.SaveClicked += categoryCreate_SaveClicked;
-            categoryCreate.CancelClicked += categoryCreate_CancelClicked;
+            //categoryCreate.SaveClicked += categoryCreate_SaveClicked;
+            //categoryCreate.CancelClicked += categoryCreate_CancelClicked;
 
-            courseCreate.SaveClicked += courseCreate_SaveClicked;
-            courseCreate.CancelClicked += courseCreate_CancelClicked;
+            //courseCreate.SaveClicked += courseCreate_SaveClicked;
+            //courseCreate.CancelClicked += courseCreate_CancelClicked;
             //if (hidSelectedCategory.Value == "0")
             //{
             //    lnkCourseCreate.Enabled = false;
@@ -48,7 +56,11 @@ namespace One.Views.Course
             LoadCategoriesAndSubCategories(user.SchoolId);
         }
 
-
+        public int SchoolId
+        {
+            get { return Convert.ToInt32(hidSchoolId.Value); }
+            set { this.hidSchoolId.Value = value.ToString(); }
+        }
 
         public int SelectedCategory
         {
@@ -58,32 +70,36 @@ namespace One.Views.Course
 
         void courseCreate_SaveClicked(object sender, MessageEventArgs e)
         {
-            var user = User as CustomPrincipal;
-            if (user != null)
+            //var user = User as CustomPrincipal;
+            if (SchoolId > 0)
                 LoadCourses(SelectedCategory);
-            MultiView1.ActiveViewIndex = 0;
+            //MultiView1.ActiveViewIndex = 0;
+            lblHeading.Text = "Course and Category Management";
         }
 
         private void courseCreate_CancelClicked(object sender, MessageEventArgs e)
         {
-            MultiView1.ActiveViewIndex = 0;
+            //MultiView1.ActiveViewIndex = 0;
+            lblHeading.Text = "Course and Category Management";
         }
 
         void categoryCreate_SaveClicked(object sender, MessageEventArgs e)
         {
-            var user = User as CustomPrincipal;
-            if (user != null)
-            {
-                //pnlCategories.Controls.Clear();
-                SelectedCategory = e.SavedId;
-                //LoadCategories(user.SchoolId);
-            }
-            MultiView1.ActiveViewIndex = 0;
+            //var user = User as CustomPrincipal;
+            //if (user != null)
+            //{
+            //pnlCategories.Controls.Clear();
+            SelectedCategory = e.SavedId;
+            //LoadCategories(SchoolId);
+            //}
+            //MultiView1.ActiveViewIndex = 0;
+            lblHeading.Text = "Course and Category Management";
         }
 
         private void categoryCreate_CancelClicked(object sender, MessageEventArgs e)
         {
-            MultiView1.ActiveViewIndex = 0;
+            //MultiView1.ActiveViewIndex = 0;
+            lblHeading.Text = "Course and Category Management";
         }
 
         bool selectedAlready = false;
@@ -91,81 +107,100 @@ namespace One.Views.Course
 
         //Category Listing
         //======================= Category listing ================================//
-        private void LoadCategories(int schoolId)
-        {
-            using (var helper = new DbHelper.Subject())
-            {
-                var categories = helper.ListAllCategories(schoolId);
-                var i = 0;
-                //if (hidSelectedCategory.Value == "0")
-                //    selectedValue = 0
-                //{
-                //    catUc.Select();
-                //}
-                var list = new List<int>();
-                
-                foreach (var cat in categories)
-                {
-                    var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
-                    catUc.Deselect();
-                    if (i == 0 && categories.Count > 1)
-                    {
-                        list.Add(3);
-                    }
-                    else if (i == categories.Count - 1)
-                    {
-                        list.Add(2);
-                    }
-                    else
-                    {
-                        list.Add(1);
-                    }
 
-                    catUc.SetNameAndIdOfCategory(cat.Id, cat.Name,list);
-                    if (i == 0)
-                    {
-                        if (hidSelectedCategory.Value == "0")
-                        {
-                            //catUc.Select();
-                            hidSelectedCategory.Value = cat.Id.ToString();
-                            catUc_NameClicked(null, new DataEventArgs() { Id = cat.Id, Name = cat.Name });
-                            //LoadCourses(cat.Id);
-                            //ViewState["selectedCategory"] = catUc;
-                            selectedAlready = true;
-                        }
-                        else if (hidSelectedCategory.Value == cat.Id.ToString())
-                        {
 
-                            //catUc.Select();
-                            //catUc_NameClicked(null, new DataEventArgs() { Id = cat.Id, Name = cat.Name });
-                            //hidSelectedCategory.Value = cat.Id.ToString();
-                            selectedAlready = true;
-                        }
-                    }
-                    else if (!selectedAlready)
-                    {
-                        if (hidSelectedCategory.Value == cat.Id.ToString())
-                        {
-
-                            //catUc.Select();
-                            //catUc_NameClicked(null, new DataEventArgs() { Id = cat.Id, Name = cat.Name });
-                            //hidSelectedCategory.Value = cat.Id.ToString();
-                            selectedAlready = true;
-                        }
-                    }
-                    catUc.NameClicked += catUc_NameClicked;
-                    pnlCategories.Controls.Add(catUc);
-                    GetSubCategory(catUc, helper, schoolId, cat.Id);
-                    //catUc.AddSubCategories(GetSubCategory(helper,schoolId, cat.Id));
-                    list.RemoveAt(list.Count - 1);
-                    i++;
-                }
-            }
-        }
+        #region Load Categories --dispaly tree like structure.. i.e. bars in front of category names.
 
         // Note :: ├ ==>1 ,    └ ==> 2 .   ┌ ==> 3 ,   │ ==> 4 ,  empty ==> 0
+
+        //void LoadCategoriesAndSubCategories(int schoolId)
+        //{
+        //    using (var helper = new DbHelper.Subject())
+        //    {
+        //        var cats = helper.ListAllCategories(schoolId);
+        //        var list = new List<int>();
+        //        for (var c = 0; c < cats.Count; c++)
+        //        {
+        //            var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
+        //            catUc.Deselect();
+
+        //            if (c == 0 && cats.Count > 1)
+        //            {
+        //                list.Add(3);
+        //            }
+        //            else if (c == cats.Count - 1)
+        //            {
+        //                list.Add(2);
+        //            }
+        //            else
+        //            {
+        //                list.Add(1);
+        //            }
+        //            catUc.SetNameAndIdOfCategory(cats[c].Id, cats[c].Name, list);
+        //            catUc.NameClicked += catUc_NameClicked;
+        //            catUc.ID = "category_" + cats[c].Id;
+        //            pnlCategories.Controls.Add(catUc);
+
+        //            GetSubCats(catUc, helper, schoolId, cats[c].Id, list);
+        //            list.RemoveAt(list.Count - 1);
+        //        }
+        //    }
+        //}
+
+
+        //// Note :: ├ ==>1 ,    └ ==> 2 .   ┌ ==> 3 ,   │ ==> 4 ,  empty ==> 0
+        //void GetSubCats(Category.ListUC parentUc, DbHelper.Subject helper, int schoolId, int categoryId, List<int> parentPaddingList)
+        //{
+        //    var subcats = helper.ListSubCategories(schoolId, categoryId);
+        //    var list = new List<int>();
+        //    if (subcats.Count > 0)
+        //    {
+        //        foreach (var i in parentPaddingList)
+        //        {
+        //            if (i == 1 || i == 3 || i == 4)
+        //            {
+        //                list.Add(4);
+        //            }
+        //            else
+        //            {
+        //                list.Add(0);
+        //            }
+        //        }
+        //    }
+        //    for (var s = 0; s < subcats.Count; s++)
+        //    {
+        //        var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
+        //        catUc.Deselect();
+
+
+        //        if (s == subcats.Count - 1)
+        //        {
+        //            list.Add(2);
+        //        }
+        //        else
+        //        {
+        //            list.Add(1);
+        //        }
+
+        //        catUc.SetNameAndIdOfCategory(subcats[s].Id, subcats[s].Name, list);
+        //        catUc.NameClicked += catUc_NameClicked;
+        //        catUc.ID = "category_" + subcats[s].Id;
+        //        //parentUc.AddSubCategories(catUc);
+        //        pnlCategories.Controls.Add(catUc);
+
+        //        GetSubCats(catUc, helper, schoolId, subcats[s].Id, list);
+        //        list.RemoveAt(list.Count - 1);
+        //    }
+        //}
+
+        #endregion
+
+
+        #region Load Categories -- indentation only...i.e. diamond shape or circle shape
+
         void LoadCategoriesAndSubCategories(int schoolId)
         {
+            var selectedCat = SelectedCategory;
             using (var helper = new DbHelper.Subject())
             {
                 var cats = helper.ListAllCategories(schoolId);
@@ -175,21 +210,23 @@ namespace One.Views.Course
                     var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
                     catUc.Deselect();
 
-                    if (c == 0 && cats.Count > 1)
-                    {
-                        list.Add(3);
-                    }
-                    else if (c == cats.Count - 1)
-                    {
-                        list.Add(2);
-                    }
-                    else
-                    {
-                        list.Add(1);
-                    }
-                    catUc.SetNameAndIdOfCategory(cats[c].Id, cats[c].Name,list);
+                    list.Add(1);
+
+                    catUc.SetNameAndIdOfCategory(cats[c].Id, cats[c].Name, list, false);
                     catUc.NameClicked += catUc_NameClicked;
+                    catUc.ID = "category_" + cats[c].Id;
                     pnlCategories.Controls.Add(catUc);
+
+                    if ((selectedCat == cats[c].Id  && !IsPostBack) || selectedCat == 0)
+                    {
+                        catUc_NameClicked(catUc, new DataEventArgs()
+                        {
+                            Id = cats[c].Id,
+                            Name = cats[c].Name
+                        });
+                        catUc.Select();
+                        selectedCat = cats[c].Id;
+                    }
 
                     GetSubCats(catUc, helper, schoolId, cats[c].Id, list);
                     list.RemoveAt(list.Count - 1);
@@ -207,140 +244,72 @@ namespace One.Views.Course
             {
                 foreach (var i in parentPaddingList)
                 {
-                    if (i == 1 || i == 3 || i == 4)
-                    {
-                        list.Add(4);
-                    }
-                    else
-                    {
-                        list.Add(0);
-                    }
+                    list.Add(0);
                 }
             }
+            var selectedCat = SelectedCategory;
             for (var s = 0; s < subcats.Count; s++)
             {
                 var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
                 catUc.Deselect();
 
+                list.Add((parentPaddingList[parentPaddingList.Count - 1] == 1) ? 2 : 1);
 
-
-                if (s == subcats.Count - 1)
-                {
-                    list.Add(2);
-                }
-                else
-                {
-                    list.Add(1);
-                }
-
-                catUc.SetNameAndIdOfCategory(subcats[s].Id, subcats[s].Name,list);
+                catUc.SetNameAndIdOfCategory(subcats[s].Id, subcats[s].Name, list, false);
                 catUc.NameClicked += catUc_NameClicked;
+                catUc.ID = "category_" + subcats[s].Id;
                 //parentUc.AddSubCategories(catUc);
                 pnlCategories.Controls.Add(catUc);
+
+
+                if ((selectedCat == subcats[s].Id && !IsPostBack ) || selectedCat == 0)
+                {
+                    catUc_NameClicked(catUc, new DataEventArgs()
+                    {
+                        Id = subcats[s].Id,
+                        Name = subcats[s].Name
+                    });
+                    catUc.Select();
+                    selectedCat = subcats[s].Id;
+                }
+
 
                 GetSubCats(catUc, helper, schoolId, subcats[s].Id, list);
                 list.RemoveAt(list.Count - 1);
             }
         }
 
+        #endregion
 
-        void GetSubCategory(Category.ListUC parentUc, DbHelper.Subject helper, int schoolId, int categoryId
-            , List<int> parentPaddingList = null )
-        {
-            var subCategories = helper.ListSubCategories(schoolId, categoryId);
-
-            //--------------------start
-            var list = new List<int>();
-            if (parentPaddingList != null)
-            {
-                if (subCategories.Count > 0)
-                {
-                    foreach (var i in parentPaddingList)
-                    {
-                        if (i == 1 || i == 3 || i == 4)
-                        {
-                            list.Add(4);
-                        }
-                        else
-                        {
-                            list.Add(0);
-                        }
-                    }
-                }
-            }
-            //------------------------End
-            var s = 0;
-            foreach (var subcat in subCategories)
-            {
-                var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
-                catUc.Deselect();
-
-                //-----------start
-                if (s == subCategories.Count - 1)
-                {
-                    list.Add(2);
-                }
-                else
-                {
-                    list.Add(1);
-                }
-                //--------------end
-
-                catUc.SetNameAndIdOfCategory(subcat.Id, subcat.Name,list);
-                if (!selectedAlready)
-                {
-                    if (hidSelectedCategory.Value == subcat.Id.ToString())
-                    {
-                        //catUc.Select();
-                        //catUc_NameClicked(null, new DataEventArgs() { Id = subcat.Id, Name = subcat.Name });
-                        selectedAlready = true;
-                    }
-                }
-                catUc.NameClicked += catUc_NameClicked;
-
-                parentUc.AddSubCategories(catUc);
-                GetSubCategory(catUc, helper, schoolId, subcat.Id, list);
-                list.RemoveAt(list.Count - 1);
-                //catUc.AddSubCategories(GetSubCategory(catUc, helper,schoolId,subcat.Id));
-                s++;
-            }
-            //return ;
-        }
 
         //========================= END of Category Listing ====================================//
 
-
-
-        void catUc_NameClicked(object sender,DataEventArgs e)
+        private void catUc_NameClicked(object sender, DataEventArgs e)
         {
             //load courses in this category
 
-            lblCoursesTitle.Text = e.Name;
-            hidSelectedCategory.Value = e.Id.ToString();
-            hidSelectedCategoryName.Value = e.Name;
+            var sent = sender as Views.Course.Category.ListUC;
+            if (sent != null)
+            {
 
 
-            //var user = User as CustomPrincipal;
-            //if (user != null)
-            //    LoadCategories(user.SchoolId);
+                var earlier = pnlCategories.FindControl("category_" + hidSelectedCategory.Value);
+                if (earlier != null)
+                {
+                    var es = earlier as Category.ListUC;
+                    if (es != null)
+                    {
+                        es.Deselect();
+                    }
+                }
+                lnkCoursCreate.Visible = true;
 
-            LoadCourses(e.Id);
-            //using (var helper = new DbHelper.Subject())
-            //{
-            //    //dlistCourses.DataSource = null;
-            //    dlistCourses.DataSource = helper.ListCourses(e.Id);
-            //    dlistCourses.DataBind();
-            //}
+                lblCoursesTitle.Text = e.Name;
+                hidSelectedCategory.Value = e.Id.ToString();
+                hidSelectedCategoryName.Value = e.Name;
 
-            //var previousSelectedCategory = ViewState["selectedCategory"];
-            //if (previousSelectedCategory != null)
-            //{
-            //    try
-            //    {
-            //        (previousSelectedCategory as Category.ListUC).Deselect();
-            //    }
-            //    catch { }
-            //}
+                LoadCourses(e.Id);
+            }
         }
 
         void LoadCourses(int categoryId)
@@ -355,17 +324,26 @@ namespace One.Views.Course
 
         protected void lnkCatCreate_Click(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 1;
+            Response.Redirect("~/Views/Course/CategoryCreate.aspx?catId=" + hidSelectedCategory.Value);
+            //MultiView1.ActiveViewIndex = 1;
+            //lblHeading.Text = "Category Create";
         }
 
         protected void lnkCoursCreate_Click(object sender, EventArgs e)
         {
             if (hidSelectedCategory.Value != "0")
             {
-                //courseCreate.CategoryId = Convert.ToInt32(hidSelectedCategory.Value);
-                courseCreate.SetCategoryIdAndName(hidSelectedCategory.Value, hidSelectedCategoryName.Value);
-                MultiView1.ActiveViewIndex = 2;
+                Response.Redirect("~/Views/Course/CourseCreate.aspx?catId=" + hidSelectedCategory.Value);
             }
+
+            //if (hidSelectedCategory.Value != "0")
+            //{
+            //    lblHeading.Text = "Course Create";
+            //    //courseCreate.CategoryId = Convert.ToInt32(hidSelectedCategory.Value);
+            //    courseCreate.SetCategoryIdAndName(hidSelectedCategory.Value, hidSelectedCategoryName.Value);
+            //    MultiView1.ActiveViewIndex = 2;
+            //}
+
         }
         //protected void LinkButton1_Click(object sender, EventArgs e)
         //{

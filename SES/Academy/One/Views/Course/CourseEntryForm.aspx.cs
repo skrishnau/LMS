@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbEntities.Subjects;
 using Academic.DbHelper;
+using One.Values.MemberShip;
 
 namespace One.Views.Course
 {
@@ -27,45 +28,48 @@ namespace One.Views.Course
             {
                 RequiredFieldValidator1.IsValid = false;
             }
+            var user = Page.User as CustomPrincipal;
+            if(user!=null)
             if (IsValid)
             {
                 var credit = txtCredit.Text;
                 Subject subject = new Subject()
                 {
-                    Name = txtName.Text,
+                    FullName = txtName.Text,
                     Code = txtCode.Text,
-                    HasTheory = chkListHas.Items[0].Selected,
-                    HasLab = chkListHas.Items[1].Selected,
-                    HasTutorial = chkListHas.Items[2].Selected,
-                    HasProject = chkListHas.Items[3].Selected,
+                    //HasTheory = chkListHas.Items[0].Selected,
+                    //HasLab = chkListHas.Items[1].Selected,
+                    //HasTutorial = chkListHas.Items[2].Selected,
+                    //HasProject = chkListHas.Items[3].Selected,
                     //LevelId = Convert.ToInt32(cmbLevel.SelectedValue),
                     //FacultyId = Convert.ToInt32((cmbFaculty.SelectedValue == "") ? "1" : cmbFaculty.SelectedValue),
                     //ProgramId = Convert.ToInt32(prog),
                     //YearId = Convert.ToInt32(yea),
 
-                    IsElective = chkListIs.Items[0].Selected,
-                    IsOutOfSyllabus = chkListIs.Items[1].Selected,
+                    //IsElective = chkListIs.Items[0].Selected,
+                    //IsOutOfSyllabus = chkListIs.Items[1].Selected,
                     
                     CreatedDate = DateTime.Now.Date
-                    ,IsActive = ckhIsActive.Checked
+                    ,CreatedById = user.Id
+                    //,IsActive = ckhIsActive.Checked
                     ,SubjectCategoryId = Convert.ToInt32(cmbCategory.SelectedValue)
                 };
-                if (string.IsNullOrEmpty(txtCredit.Text))
-                {
-                    subject.Credit = Convert.ToByte(txtCode.Text == "" ? "0" : txtCode.Text);
-                }
-                if (!String.IsNullOrEmpty(txtFullMarks.Text))
-                {
-                    subject.FullMarks = Convert.ToInt32(txtFullMarks.Text);
-                }
-                if (!string.IsNullOrEmpty(txtPassPercent.Text))
-                {
-                    subject.PassPercentage = Convert.ToByte(txtPassPercent.Text);
-                }
-                if (!string.IsNullOrEmpty(txtCompletionHours.Text))
-                {
-                    subject.CompletionHours = Convert.ToInt16(txtCompletionHours.Text);
-                }
+                //if (string.IsNullOrEmpty(txtCredit.Text))
+                //{
+                //    subject.Credit = Convert.ToByte(txtCode.Text == "" ? "0" : txtCode.Text);
+                //}
+                //if (!String.IsNullOrEmpty(txtFullMarks.Text))
+                //{
+                //    subject.FullMarks = Convert.ToInt32(txtFullMarks.Text);
+                //}
+                //if (!string.IsNullOrEmpty(txtPassPercent.Text))
+                //{
+                //    subject.PassPercentage = Convert.ToByte(txtPassPercent.Text);
+                //}
+                //if (!string.IsNullOrEmpty(txtCompletionHours.Text))
+                //{
+                //    subject.CompletionHours = Convert.ToInt16(txtCompletionHours.Text);
+                //}
 
                 using (var helper = new DbHelper.Subject())
                 {

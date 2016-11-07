@@ -63,7 +63,7 @@ namespace One.Course
             var ent = context.Subject.Find(key.Value);
             if(ent!=null)
             {
-                ent.Name = txtName.Text;
+                ent.FullName = txtName.Text;
             }
             BindGrid();
 

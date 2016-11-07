@@ -35,7 +35,7 @@ namespace One.Views.Course.Display
                 var sub = helper.Find(courseId);
                 if (sub != null)
                 {
-                    txtSubjectName.Text = sub.Name;
+                    txtSubjectName.Text = sub.FullName;
                     CourseDetailUc1.CourseId = Id;
                 }
                 //CourseDetailUc1.

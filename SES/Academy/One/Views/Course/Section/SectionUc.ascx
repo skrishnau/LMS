@@ -42,4 +42,6 @@
     <asp:HiddenField ID="hid" runat="server" Value="0" />
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSectionName" runat="server" Value="" />
+    <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidElligibleToView" runat="server" Value="False" />
 </div>

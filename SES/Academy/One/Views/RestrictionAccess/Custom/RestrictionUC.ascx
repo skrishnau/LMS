@@ -19,9 +19,13 @@
             <uc1:EachRestriction runat="server" ID="EachRestriction1" />
         </div>
 
-      <%--  <div id="restrictionchoosedialog" style="display: none;">
+        <%--  <div id="restrictionchoosedialog" style="display: none;">
             <uc1:ChooseRestrictionTypeUC runat="server" ID="ChooseRestrictionTypeUC1" />
         </div>--%>
+         <script type="text/javascript">
+             $('[class*=date_text_box]').unbind();
+             $('[class*=date_text_box]').datepicker();
+    </script>
     </ContentTemplate>
 </asp:UpdatePanel>
 

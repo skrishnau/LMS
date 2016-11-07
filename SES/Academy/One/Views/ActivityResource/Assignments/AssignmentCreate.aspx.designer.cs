@@ -238,13 +238,13 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::One.Views.RestrictionAccess.Custom.RestrictionUC RestrictionUC;
         
         /// <summary>
-        /// txtErrorMsg control.
+        /// UpdatePanel4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtErrorMsg;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel4;
         
         /// <summary>
         /// btnAssignmentSave control.
@@ -263,6 +263,15 @@ namespace One.Views.ActivityResource.Assignments {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAssignmentCancel;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// hidSectionId control.

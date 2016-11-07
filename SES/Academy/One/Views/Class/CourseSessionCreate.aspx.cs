@@ -27,7 +27,7 @@ namespace One.Views.Class
                             var course = helper.GetCourse(CourseSessionCreateUC1.CourseId);
                             if (course != null)
                             {
-                                CourseSessionCreateUC1.CourseName = course.Name;
+                                CourseSessionCreateUC1.CourseName = course.FullName;
                             }
                         }
                     }

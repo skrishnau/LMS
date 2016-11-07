@@ -30,14 +30,14 @@ div.data-entry-body {
         padding: 10px 0;
     }
 
-    div.data-entry-body td.data-type {
+     td.data-type {
         width: 170px;
         padding: 10px 0;
         display: inline-block;
     }
 
 
-    div.data-entry-body td.data-value {
+    td.data-value {
         padding: 10px 0;
         /*display: inline-block;*/
     }
@@ -46,7 +46,7 @@ div.data-entry-body {
         display: inline-block;
     }*/
 
-    div.data-entry-body div.save-div {
+     div.save-div {
         padding: 10px 0;
         margin-left: 190px;
     }

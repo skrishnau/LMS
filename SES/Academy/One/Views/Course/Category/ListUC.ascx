@@ -1,21 +1,49 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListUC.ascx.cs" Inherits="One.Views.Course.Category.ListUC" %>
 
 <%--   --%>
-<%--<div style="margin-left: 8px; width: 800px;">--%>
-    <asp:Panel ID="pnlName" runat="server" CssClass="block" EnableViewState="True">
+<span>
+    <asp:Panel ID="pnlName" runat="server" CssClass="pnlcls" EnableViewState="True" Width="100%">
         <%--<asp:Label ID="lblName" runat="server" Text="CategoryName"></asp:Label>--%>
+        <span class="category-text">
+            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+            <asp:LinkButton ID="lblName" runat="server" OnClick="lblName_Click" CssClass="linkbutton">name</asp:LinkButton>
+        </span>
+        <asp:HiddenField ID="hidCategoryId" Value="0" runat="server" />
+        <asp:PlaceHolder ID="pnlSubCategories" runat="server"></asp:PlaceHolder>
     </asp:Panel>
-    <span class="category-text" style="font-size: 1.2em; margin: 2px; word-wrap: normal; display: block; background-color: white; padding: 5px 5px 5px 1px;">
-        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-        <asp:LinkButton ID="lblName"  runat="server" OnClick="lblName_Click">name</asp:LinkButton>
-    </span>
-    <asp:HiddenField ID="hidCategoryId" Value="0" runat="server" />
-    <asp:PlaceHolder ID="pnlSubCategories" runat="server"></asp:PlaceHolder>
-<%--</div>--%>
+</span>
 <style type="text/css">
     .category-text {
         display: block;
         overflow: auto;
+        font-size: 1.2em;
+        word-wrap: normal;
+        /*background-color: white;*/
     }
+
+        .category-text:hover {
+            background-color: #dcecf1;
+            color: darkorange;
+        }
+
+    .pnlcls {
+        display: block;
+        padding: 2px;
+    }
+      .linkbutton, .linkbutton:visited {
+            /*color: darkslategrey;*/
+            text-decoration: none;
+            /*display: inline-block;*/
+        }
+
+        .linkbutton:hover {
+            color: darkorange;
+            text-decoration: underline;
+        }
+
+        .linkbutton:active {
+            color: blueviolet;
+            text-decoration: underline;
+        }
 </style>
 

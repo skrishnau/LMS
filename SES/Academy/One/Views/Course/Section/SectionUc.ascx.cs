@@ -65,9 +65,11 @@ namespace One.Views.Course.Section
 
         void LoadSectionDetail()
         {
+            
             using(var ahelper = new DbHelper.ActAndRes())
             using (var helper = new DbHelper.SubjectSection())
             {
+                var elligible = ElligibleToView;
                 var section = helper.Find(SectionId);
                 if (section != null)
                 {
@@ -77,7 +79,8 @@ namespace One.Views.Course.Section
                     lblSummary.Text = section.Summary;
 
 
-                    var ars = ahelper.ListActivitiesAndResourcesOfSection(SectionId);
+
+                    var ars = ahelper.ListActivitiesAndResourcesOfSection(UserId,SectionId,elligible);
                     foreach (var ar in ars)
                     {
                         
@@ -180,6 +183,17 @@ namespace One.Views.Course.Section
             }
         }
 
+        public int UserId
+        {
+            get { return Convert.ToInt32(hidUserId.Value); }
+            set { hidUserId.Value = value.ToString(); }
+        }
+        public bool ElligibleToView
+        {
+            get { return Convert.ToBoolean(hidElligibleToView.Value); }
+            set { hidElligibleToView.Value = value.ToString(); }
+        }
+
         public bool EditEnabled
         {
             set
@@ -190,6 +204,18 @@ namespace One.Views.Course.Section
                 lnkAddActOrRes.Visible = value;
             }
             get { return lnkEdit.Visible; }
+        }
+
+        public void SetData(bool editEnabled, bool showSummary, int subjectId, int subjectSectionId
+            , string subjectSectionName, int userId,bool elligibleToView)
+        {
+            EditEnabled = editEnabled;
+            SummaryVisible = showSummary;
+            SubjectId = subjectId;
+            SectionId = subjectSectionId;
+            SectionName = subjectSectionName;
+            UserId = userId;
+            ElligibleToView = elligibleToView;
         }
     }
 }

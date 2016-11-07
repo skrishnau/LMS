@@ -46,13 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcademicContext.cs" />
-    <Compile Include="Migrations\201610190208169_activity_class_added.cs" />
-    <Compile Include="Migrations\201610190208169_activity_class_added.Designer.cs">
-      <DependentUpon>201610190208169_activity_class_added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610252042350_restriction_update.cs" />
-    <Compile Include="Migrations\201610252042350_restriction_update.Designer.cs">
-      <DependentUpon>201610252042350_restriction_update.cs</DependentUpon>
+    <Compile Include="Migrations\201611060551400_course_modified.cs" />
+    <Compile Include="Migrations\201611060551400_course_modified.Designer.cs">
+      <DependentUpon>201611060551400_course_modified.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,11 +64,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610190208169_activity_class_added.resx">
-      <DependentUpon>201610190208169_activity_class_added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610252042350_restriction_update.resx">
-      <DependentUpon>201610252042350_restriction_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611060551400_course_modified.resx">
+      <DependentUpon>201611060551400_course_modified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -26,7 +26,8 @@
             <tr>
                 <td>Class Commence From</td>
                 <td>
-                    <asp:TextBox ID="txtCommenceDate" runat="server" TextMode="DateTimeLocal"></asp:TextBox>
+                    <asp:TextBox ID="txtCommenceDate" runat="server" TextMode="DateTimeLocal"
+                         ClientIDMode="Static"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -82,4 +83,9 @@
         <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />
 
     </div>
+    <script type="text/javascript">
+        $('#txtCommenceDate').unbind();
+        $("#txtCommenceDate").datepicker();
+
+    </script>
 </div>

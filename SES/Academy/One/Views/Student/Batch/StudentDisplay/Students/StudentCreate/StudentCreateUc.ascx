@@ -1,16 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="StudentCreateUc.ascx.cs" Inherits="One.Views.Student.Batch.StudentDisplay.Students.StudentCreate.StudentCreateUc" %>
 
 
-<div style="margin: 5px; margin-left: 18%; margin-right: 18%; padding-bottom: 5px; border: 3px solid lightgray; text-align: left; width: 70%;">
+<div style="margin: 5px; margin-left: auto; margin-right: auto; padding-bottom: 5px; border: 3px solid coral; text-align: center; width: 70%;">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div style="text-align: center; font-size: 1.2em; background-color: lightgray;">
-
-                <strong>Student Create
-            <hr />
-                </strong>
+            <div style="text-align: center; font-size: 1.2em; font-weight: 700; background-color: coral;">
+                Student Create
+                <hr />
             </div>
-            <div style="padding: 0 20px 0 20px;">
+            <div style="padding: 0 20px 0 20px; text-align: left;">
                 <div>
                     <%--<asp:Label ID="lblSaveStatus" runat="server" Text="Label" BackColor="#6666FF" Visible="False"></asp:Label>--%>
                     <strong>General</strong>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using One.Values.MemberShip;
 
 namespace One.Views.Course.Section.Master
 {
@@ -105,18 +106,43 @@ namespace One.Views.Course.Section.Master
                     var sections = course.SubjectSections;
                     if (sections != null)
                     {
+                        var user = Page.User as CustomPrincipal;
+                        var elligible = false;
+                        if (user != null)
+                        using (var chelper = new DbHelper.Classes())
+                        {
+                            var roles = user.GetRoles();
+                            //Context.UserClass.Any(x=>x.subje)
+                           // var roles = user.GetRoles().Select(x => x.Role.RoleName).ToList();
+                            if (roles.Contains(DbHelper.StaticValues.Roles.CourseEditor.ToString())
+                                || roles.Contains(DbHelper.StaticValues.Roles.Manager.ToString())
+                                || roles.Contains(DbHelper.StaticValues.Roles.Admin))
+                            {
+                                elligible = true;
+                            }
+                            //else
+                            //{
+                            //    //teacher
+                            //    elligible = (chelper.IsUserElligibleToViewSubjectSection(SubjectId, UserId));
+                            //}
+                        }
+
                         var unVoidedSections = sections.Where(x => !(x.Void ?? false));
 
                         foreach (var subjectSection in unVoidedSections)
                         {
                             SectionUc sectionuc = (SectionUc)Page.LoadControl("~/Views/Course/Section/SectionUc.ascx");
-                           
                             sectionuc.AddActResClicked += sectionuc_AddActResClicked;
-                            sectionuc.EditEnabled = EditEnabled;
-                            sectionuc.SummaryVisible = subjectSection.ShowSummary ?? false;
-                            sectionuc.SubjectId = subjectSection.SubjectId;
-                            sectionuc.SectionId = subjectSection.Id;
-                            sectionuc.SectionName = subjectSection.Name;
+
+                            //sectionuc.EditEnabled = EditEnabled;
+                            //sectionuc.SummaryVisible = subjectSection.ShowSummary ?? false;
+                            //sectionuc.SubjectId = subjectSection.SubjectId;
+                            //sectionuc.SectionId = subjectSection.Id;
+                            //sectionuc.SectionName = subjectSection.Name;
+
+                            sectionuc.SetData(EditEnabled,subjectSection.ShowSummary??false
+                                ,subjectSection.SubjectId,subjectSection.Id
+                                ,subjectSection.Name,UserId, elligible);
 
                             var sectionlbl = new Literal() { Text = "<a  name='section_" + subjectSection.Id + "'></a>" };
                             pnlSections.Controls.Add(sectionlbl);
@@ -177,6 +203,17 @@ namespace One.Views.Course.Section.Master
             AddNewButtonVisibility = true;
             ContentEnabled = true;
             //pnlContent.Enabled = true;
+        }
+
+        public int UserId
+        {
+            get { return Convert.ToInt32(hidUserId.Value); }
+            set { hidUserId.Value = value.ToString(); }
+        }
+        public int SubjectId
+        {
+            get { return Convert.ToInt32(hidSubjectId.Value); }
+            set { hidSubjectId.Value = value.ToString(); }
         }
     }
 }

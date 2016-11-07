@@ -24,39 +24,82 @@ namespace One.ViewsSite.Account
                 {
                     MultiView1.ActiveViewIndex = 1;
                 }
-                    
+                ddlSecurityQuestion.DataSource = DbHelper.StaticValues.SecurityQuestion();
+                ddlSecurityQuestion.DataBind();
             }
+            lblPasswordError.Visible = false;
         }
 
-        protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
+        protected void btnCreate_Clicked(object sender, EventArgs e)
         {
-
-            var username = CreateUserWizard1.UserName;
-            var password = CreateUserWizard1.Password;
-            var email = CreateUserWizard1.Email;
-            var que = CreateUserWizard1.Question;
-            var ans = CreateUserWizard1.Answer;
-            var user = new Academic.DbEntities.User.Users()
+            if (txtPassword.Text != txtConfirmPassword.Text)
             {
-                UserName = CreateUserWizard1.UserName
-                ,
-                Password = CreateUserWizard1.Password
-                ,
-                Email = CreateUserWizard1.Email
-                ,
-                SecurityQuestion = CreateUserWizard1.Question
-                ,
-                SecurityAnswer = CreateUserWizard1.Answer
-
-            };
-
-            using (var helper = new DbHelper.CustomAccount())
-            {
-                var success = helper.Register(user);
-                if (success)
-                    UserLogin(user);
+                lblPasswordError.Text = "Paasword and Confirm Password must match";
+                lblPasswordError.Visible = true;
+                return;
             }
+            if (Page.IsValid)
+            {
+                var user = new Academic.DbEntities.User.Users()
+                {
+                    UserName = txtUserName.Text
+                    ,
+                    Password = txtPassword.Text
+                    ,
+                    Email = txtEmail.Text
+                    ,
+                    SecurityAnswer = txtSecurityAnswer.Text
+                    ,
+                    SecurityQuestion = ddlSecurityQuestion.Text
+                };
+                using (var helper = new DbHelper.CustomAccount())
+                {
+                    var success = helper.Register(user);
+                    if (success == "success")
+                    {
+                        UserLogin(user);
+                        MultiView1.ActiveViewIndex = 3;
+                    }
+                    else
+                    {
+                        lblPasswordError.Visible = true;
+                        lblPasswordError.Text = success;
+                    }
+                }
+            }
+
+
         }
+
+        //protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
+        //{
+
+        //    var username = CreateUserWizard1.UserName;
+        //    var password = CreateUserWizard1.Password;
+        //    var email = CreateUserWizard1.Email;
+        //    var que = CreateUserWizard1.Question;
+        //    var ans = CreateUserWizard1.Answer;
+        //    var user = new Academic.DbEntities.User.Users()
+        //    {
+        //        UserName = CreateUserWizard1.UserName
+        //        ,
+        //        Password = CreateUserWizard1.Password
+        //        ,
+        //        Email = CreateUserWizard1.Email
+        //        ,
+        //        SecurityQuestion = CreateUserWizard1.Question
+        //        ,
+        //        SecurityAnswer = CreateUserWizard1.Answer
+
+        //    };
+
+        //    using (var helper = new DbHelper.CustomAccount())
+        //    {
+        //        var success = helper.Register(user);
+        //        if (success)
+        //            UserLogin(user);
+        //    }
+        //}
 
         public void UserLogin(Users viewModel)
         {
@@ -100,7 +143,7 @@ namespace One.ViewsSite.Account
                             //viewModel.Email,
                             viewModel.UserName,
                             DateTime.Now,
-                            
+
                             DateTime.Now.AddMinutes(15),
                             false,
                             userData);

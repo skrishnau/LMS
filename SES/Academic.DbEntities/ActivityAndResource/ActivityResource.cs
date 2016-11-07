@@ -36,10 +36,16 @@ namespace Academic.DbEntities.ActivityAndResource
         public int SubjectSectionId { get; set; }
         public virtual Subjects.SubjectSection SubjectSection { get; set; }
 
+
+
         public bool? Void { get; set; }
 
         public int? RestrictionId { get; set; }
-        public AccessPermission.Restriction Restriction { get; set; }
+        public virtual AccessPermission.Restriction Restriction { get; set; }
+        
+        public virtual ICollection<ActivityCompletion> ActivityCompletions { get; set; }
+        public virtual ICollection<ActivityGrading> ActivityGradings { get; set; }
+
     }
 
 }

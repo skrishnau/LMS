@@ -11,7 +11,7 @@
 
             <%-- Section List --%>
             <asp:Panel ID="pnlContent" runat="server">
-                
+
                 <div>
                     <div>
                         <div class="item-detail">
@@ -36,7 +36,6 @@
                 </asp:LinkButton>
             </div>
 
-            <asp:HiddenField ID="hidEditEnabled" runat="server" Value="False" />
             <div id="sessioncreatediv" style="display: none">
                 <%--This is a simple popup--%>
                 <uc1:CreateSectionUc runat="server" ID="CreateSectionUc2" />
@@ -49,9 +48,14 @@
             <%-- END --%>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+    <asp:HiddenField ID="hidEditEnabled" runat="server" Value="False" />
+    <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
+
     <script type="text/javascript">
 
-        $("[class*=link]").on("click",  function () {
+        $("[class*=link]").on("click", function () {
 
             var dlg = $("#activitychoosediv")
                 .dialog({
@@ -60,7 +64,7 @@
                     minwidth: 10,
                     modal: true,
                     title: "Activity/Resource in : " + this.name
-                    
+
                 });
             dlg.parent().appendTo(jQuery("form:first"));
             __doPostBack('', this.id);
@@ -76,7 +80,7 @@
                             minwidth: 10,
                             modal: true,
                             title: "Activity/Resource in : " + this.name
-                           
+
                         });
                     dlg.parent().appendTo(jQuery("form:first"));
                     __doPostBack('', this.id);

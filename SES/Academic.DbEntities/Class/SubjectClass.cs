@@ -57,8 +57,6 @@ namespace Academic.DbEntities.Class
         //public int? SessionId { get; set; }
         //public virtual Session Session { get; set; }
 
-
-
         //IsRegular means if this class is from regualr class i.e. if this row is auto added by the software 
         //IsRegular = false means --> this class is added manually..
         //IsRegular false case: i.e. if IsRegular=false then SubjectId != null and others all Id are null

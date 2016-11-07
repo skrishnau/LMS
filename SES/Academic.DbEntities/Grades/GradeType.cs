@@ -19,12 +19,14 @@ namespace Academic.DbEntities.Grades
         
 
         /// <summary>
-        /// Range or Value, in range--> max and min values are present 
-        /// in Values --> gradeValues table contain data (values)
+        /// possible values: "Range" or "Value", 
+        /// in range--> max and min values are present 
+        /// in Value --> gradeValues table contain data (values)
         /// </summary>
         public string Type { get; set; }
 
         /// <summary>
+        /// true: percent , false: position,   
         /// For 'Values' type, PercentOrPosition states whether the equivlent value will be in 
         /// Percent or Postion: Percent--> >= given value, position: rank
         /// </summary>
@@ -37,6 +39,8 @@ namespace Academic.DbEntities.Grades
 
         public int? SchoolId { get; set; }
         public virtual DbEntities.Office.School School { get; set; }
+
+        public virtual ICollection<GradeValues> GradeValues { get; set; }
 
     }
 }

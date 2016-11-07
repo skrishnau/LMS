@@ -89,6 +89,8 @@ namespace Academic.Database
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$//
         public DbSet<DbEntities.ActivityAndResource.ActivityResource> ActivityResource { get; set; }
         public DbSet<DbEntities.ActivityAndResource.ActivityClass> ActivityClass { get; set; }
+        public DbSet<DbEntities.ActivityAndResource.ActivityGrading> ActivityGrading { get; set; }
+        public DbSet<DbEntities.ActivityAndResource.ActivityCompletion> ActivityCompletion { get; set; }
 
 
         public DbSet<DbEntities.ActivityAndResource.ChoiceActivity> ChoiceActivity { get; set; }

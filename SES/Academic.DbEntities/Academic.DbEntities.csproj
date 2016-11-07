@@ -62,6 +62,8 @@
     <Compile Include="Account\CustomUsers.cs" />
     <Compile Include="Activities\Study.cs" />
     <Compile Include="ActivityAndResource\ActivityClass.cs" />
+    <Compile Include="ActivityAndResource\ActivityCompletion.cs" />
+    <Compile Include="ActivityAndResource\ActivityGrading.cs" />
     <Compile Include="ActivityAndResource\ActivityResource.cs" />
     <Compile Include="ActivityAndResource\Assignment.cs" />
     <Compile Include="ActivityAndResource\AssignmentItems\AssignmentSubmissionFiles.cs" />

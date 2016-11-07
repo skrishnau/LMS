@@ -40,6 +40,11 @@ namespace One.Views.Course.Category
             get { return Convert.ToInt32(hidSchoolId.Value); }
             set { hidSchoolId.Value = value.ToString(); }
         }
+        public int ParentCategoryId
+        {
+            get { return Convert.ToInt32(hidParentCategoryId.Value); }
+            set { hidParentCategoryId.Value = value.ToString(); }
+        }
 
         public String ReturnUrl
         {

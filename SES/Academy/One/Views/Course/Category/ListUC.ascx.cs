@@ -13,7 +13,7 @@ namespace One.Views.Course.Category
 {
     public partial class ListUC : System.Web.UI.UserControl
     {
-        public event EventHandler<DataEventArgs> NameClicked ;
+        public event EventHandler<DataEventArgs> NameClicked;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,18 +33,22 @@ namespace One.Views.Course.Category
 
         public void Select()
         {
-            pnlName.BackColor=Color.LightBlue;
-                //.CssClass = "selected";
+            pnlName.BackColor = Color.LightBlue;
+            //lblName.BackColor = Color.DarkBlue;
+            //lblName.ForeColor = Color.White;
+            //.CssClass = "selected";
         }
 
         public void Deselect()
         {
-            pnlName.BackColor= Color.White;
+            pnlName.BackColor = Color.White;
+            //lblName.BackColor = Color.White;
+            //lblName.ForeColor = Color.Black;
         }
 
         public void AddControl(UserControl conrol)
         {
-            
+
         }
         public void SetNameAndIdOfCategoryWithImage(int id, string name, List<int> treeLinkImages = null)
         {
@@ -110,67 +114,116 @@ namespace One.Views.Course.Category
             }
         }
 
-        public void SetNameAndIdOfCategory(int id, string name, List<int> treeLinkImages = null)
+        /// <summary>
+        /// when treelinkImages =null then structureType is not used, else 
+        /// {    When structureType= True then tree form else indentation form    }
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="treeLinkImages"></param>
+        /// <param name="structureType">False: indentation , True: Tree form</param>
+        public void SetNameAndIdOfCategory(int id, string name, List<int> treeLinkImages = null, bool structureType = true)
         {
             this.hidCategoryId.Value = id.ToString();
             this.lblName.Text = name;
+
+
             if (treeLinkImages != null)
             {
-                var pos = 0;
-                foreach (var i in treeLinkImages)
+                if (structureType)
                 {
-                    if (pos == 0)
-                    {
-                        if (i == 0)
-                        {
+                    #region Tree structure
 
-                            PlaceHolder1.Controls.Add(new Label() { Width = 20 });
+                    var pos = 0;
+                    foreach (var i in treeLinkImages)
+                    {
+                        if (pos == 0)
+                        {
+                            if (i == 0)
+                            {
+
+                                PlaceHolder1.Controls.Add(new Label() { Width = 20 });
+                            }
+                            else
+                            {
+                                PlaceHolder1.Controls.Add(new Label() { Width = 4 });
+                                PlaceHolder1.Controls.Add(new Image()
+                                {
+                                    Width = 16,
+                                    ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
+                                });
+                            }
+                            pos = 1;
                         }
                         else
                         {
-                            PlaceHolder1.Controls.Add(new Label() { Width = 4 });
-                            PlaceHolder1.Controls.Add(new Image()
+                            if (i == 0)
                             {
-                                Width = 16,
-                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
-                            });
-                        }
-                        pos = 1;
-                    }
-                    else
-                    {
-                        if (i == 0)
-                        {
 
-                            PlaceHolder1.Controls.Add(new Label() { Width = 30 });
-                        }
-                        else
-                        {
-                            PlaceHolder1.Controls.Add(new Label() { Width = 14 });
-                            PlaceHolder1.Controls.Add(new Image()
+                                PlaceHolder1.Controls.Add(new Label() { Width = 30 });
+                            }
+                            else
                             {
-                                Width = 16,
-                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
-                            });
+                                PlaceHolder1.Controls.Add(new Label() { Width = 14 });
+                                PlaceHolder1.Controls.Add(new Image()
+                                {
+                                    Width = 16,
+                                    ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
+                                });
+                            }
                         }
                     }
 
-                    ///not used
-                    //if (i == 0)
-                    //{
-
-                    //    PlaceHolder1.Controls.Add(new Label() { Width = 40 });
-                    //}
-                    //else
-                    //{
-                    //    PlaceHolder1.Controls.Add(new Label() { Width = 22 });
-                    //    PlaceHolder1.Controls.Add(new Image()
-                    //    {
-                    //        Width = 18,
-                    //        ImageUrl = Values.StaticValues.TreeLinkImage[i]
-                    //    });
-                    //}
+                    #endregion
                 }
+                else
+                {
+                    #region indentation structure
+
+                    var pos = 0;
+                    foreach (var i in treeLinkImages)
+                    {
+                        if (pos == 0)
+                        {
+                            if (i == 0)
+                            {
+
+                                PlaceHolder1.Controls.Add(new Label() { Width = 20 });
+                            }
+                            else
+                            {
+                                PlaceHolder1.Controls.Add(new Label() { Width = 4 });
+                                PlaceHolder1.Controls.Add(new Label()
+                                {
+                                    Width = 16,
+                                    Text = DbHelper.StaticValues.IndentationImageFull[i]
+                                });
+                            }
+                            pos = 1;
+                        }
+                        else
+                        {
+                            if (i == 0)
+                            {
+
+                                PlaceHolder1.Controls.Add(new Label() { Width = 30 });
+                            }
+                            else
+                            {
+                                PlaceHolder1.Controls.Add(new Label() { Width = 14 });
+                                PlaceHolder1.Controls.Add(new Label()
+                                {
+                                    Width = 16,
+                                    Text = DbHelper.StaticValues.IndentationImageFull[i]
+                                    //ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
+                                });
+                            }
+                        }
+                    }
+
+                    #endregion
+                }
+
             }
         }
 
@@ -183,11 +236,11 @@ namespace One.Views.Course.Category
         {
             if (NameClicked != null)
             {
-
-                NameClicked(this,new DataEventArgs()
+                NameClicked(this, new DataEventArgs()
                 {
                     Id = Convert.ToInt32(hidCategoryId.Value)
-                    ,Name=lblName.Text
+                    ,
+                    Name = lblName.Text
                 });
                 Select();
             }

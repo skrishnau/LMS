@@ -166,7 +166,7 @@ namespace Academic.DbHelper
                 ,
                 TrueFalse = false,
                 CancelClicked = true
-                ,
+                ,SaveSuccess = false
             };
 
             public static MessageEventArgs SuccessDeleteMessageEventArgs = new MessageEventArgs()
@@ -295,6 +295,12 @@ namespace Academic.DbHelper
                 "~/Content/Icons/TreeView/left_down_full.png",
                 "~/Content/Icons/TreeView/up_down_full.png"
             };
+            public static List<string> IndentationImageFull = new List<string>()
+            {
+                "",
+                "♦",
+                "●",
+            };
 
             #endregion
 
@@ -388,7 +394,7 @@ namespace Academic.DbHelper
             public static string IconsOfFilesLocation = "~/Content/Icons/File/";
             public static string CourseFilesLocation = "~/Content/Images/CourseFileResource/";
             public static string SchoolFileLocation = "~/Content/Images/SchoolFileResource/";
-            
+
 
 
 
@@ -442,6 +448,26 @@ namespace Academic.DbHelper
             //    Page
             //        , Url
             //}
+
+            public static List<string> SecurityQuestion()
+            {
+                return new List<string>()
+                {
+                    "Choose",
+                    //"What is the last name of the teacher who gave you your first failing grade?"
+                    //,
+                    "What is your first grade favourite teacher name?"
+                    ,
+                    "What was the name of your elementary / primary school?"
+                    ,
+                    "What time of the day were you born? (hh:mm)"
+                    ,
+                    "What is your pet name?"
+                    ,
+                    "What is your... ? "
+
+                };
+            }
         }
     }
 }

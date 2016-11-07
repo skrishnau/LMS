@@ -19,8 +19,7 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
     <div class="data-entry-body">
-        <h3 class="data-entry-heading">
-            New Assignment
+        <h3 class="data-entry-heading">New Assignment
         </h3>
         <br />
 
@@ -34,12 +33,12 @@
             <hr />
             <div class="data-entry-section-body">
 
-                <table >
+                <table>
                     <tr>
                         <td class="data-type">Name</td>
                         <td>
                             <asp:TextBox ID="txtName" runat="server" Width="210px" ValidationGroup="grpAss"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtName" runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtName" ValidationGroup="grpAss" runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -63,7 +62,7 @@
                 </table>
             </div>
 
-          <%--  <uc1:ClassesInActivityChoose runat="server" ID="ClassesInActivityChoose1" />
+            <%--  <uc1:ClassesInActivityChoose runat="server" ID="ClassesInActivityChoose1" />
             --%>
 
             <br />
@@ -211,11 +210,15 @@
 
             <br />
             <div class="save-div">
-                <asp:Label ID="txtErrorMsg" runat="server" Text="Sorry, Couldn't Save !" ForeColor="#FF3300" Visible="False"></asp:Label>
-                &nbsp;&nbsp;
+                <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                    <ContentTemplate>
+                        &nbsp;&nbsp;
                         <asp:Button ID="btnAssignmentSave" ValidationGroup="grpAss" runat="server" Text="Save" Width="100" OnClick="btnSave_Click" />
-                &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btnAssignmentCancel" ValidationGroup="cancelAss" runat="server" Text="Cancel" Width="100" OnClick="btnCancel_Click" CausesValidation="False" />
+                        <asp:Label ID="lblError" runat="server" Text="Sorry, Couldn't Save! Please review this form." ForeColor="#FF3300" Visible="False"></asp:Label>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
         </div>
 

@@ -22,24 +22,6 @@ namespace One.Views.Course.Course {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// lblCategoryName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategoryName;
-        
-        /// <summary>
-        /// hidCategoryId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidCategoryId;
-        
-        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -112,76 +94,31 @@ namespace One.Views.Course.Course {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// txtCompletionHours control.
+        /// CKEditor1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCompletionHours;
+        protected global::CKEditor.NET.CKEditorControl CKEditor1;
         
         /// <summary>
-        /// txtFullMarks control.
+        /// hidCategoryId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFullMarks;
+        protected global::System.Web.UI.WebControls.HiddenField hidCategoryId;
         
         /// <summary>
-        /// txtPassPercent control.
+        /// hidSubjectId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassPercent;
-        
-        /// <summary>
-        /// pnlOpt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlOpt;
-        
-        /// <summary>
-        /// chkListHas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkListHas;
-        
-        /// <summary>
-        /// chkListIs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkListIs;
-        
-        /// <summary>
-        /// ckhIsActive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ckhIsActive;
-        
-        /// <summary>
-        /// chkIsVoid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsVoid;
+        protected global::System.Web.UI.WebControls.HiddenField hidSubjectId;
         
         /// <summary>
         /// btnSave control.

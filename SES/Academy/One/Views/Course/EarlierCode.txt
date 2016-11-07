@@ -1,0 +1,139 @@
+﻿ private void LoadCategories(int schoolId)
+        {
+            using (var helper = new DbHelper.Subject())
+            {
+                var categories = helper.ListAllCategories(schoolId);
+                var i = 0;
+                //if (hidSelectedCategory.Value == "0")
+                //    selectedValue = 0
+                //{
+                //    catUc.Select();
+                //}
+                var list = new List<int>();
+
+                foreach (var cat in categories)
+                {
+                    var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
+                    catUc.Deselect();
+                    if (i == 0 && categories.Count > 1)
+                    {
+                        list.Add(3);
+                    }
+                    else if (i == categories.Count - 1)
+                    {
+                        list.Add(2);
+                    }
+                    else
+                    {
+                        list.Add(1);
+                    }
+
+                    catUc.SetNameAndIdOfCategory(cat.Id, cat.Name, list);
+                    if (i == 0)
+                    {
+                        if (hidSelectedCategory.Value == "0")
+                        {
+                            //catUc.Select();
+                            hidSelectedCategory.Value = cat.Id.ToString();
+                            catUc_NameClicked(null, new DataEventArgs() { Id = cat.Id, Name = cat.Name });
+                            //LoadCourses(cat.Id);
+                            //ViewState["selectedCategory"] = catUc;
+                            selectedAlready = true;
+                        }
+                        else if (hidSelectedCategory.Value == cat.Id.ToString())
+                        {
+
+                            //catUc.Select();
+                            //catUc_NameClicked(null, new DataEventArgs() { Id = cat.Id, Name = cat.Name });
+                            //hidSelectedCategory.Value = cat.Id.ToString();
+                            selectedAlready = true;
+                        }
+                    }
+                    else if (!selectedAlready)
+                    {
+                        if (hidSelectedCategory.Value == cat.Id.ToString())
+                        {
+
+                            //catUc.Select();
+                            //catUc_NameClicked(null, new DataEventArgs() { Id = cat.Id, Name = cat.Name });
+                            //hidSelectedCategory.Value = cat.Id.ToString();
+                            selectedAlready = true;
+                        }
+                    }
+                    catUc.NameClicked += catUc_NameClicked;
+                    pnlCategories.Controls.Add(catUc);
+                    GetSubCategory(catUc, helper, schoolId, cat.Id);
+                    //catUc.AddSubCategories(GetSubCategory(helper,schoolId, cat.Id));
+                    list.RemoveAt(list.Count - 1);
+                    i++;
+                }
+            }
+        }
+
+
+
+		  void GetSubCategory(Category.ListUC parentUc, DbHelper.Subject helper, int schoolId, int categoryId
+            , List<int> parentPaddingList = null)
+        {
+            var subCategories = helper.ListSubCategories(schoolId, categoryId);
+
+            //--------------------start
+            var list = new List<int>();
+            if (parentPaddingList != null)
+            {
+                if (subCategories.Count > 0)
+                {
+                    foreach (var i in parentPaddingList)
+                    {
+                        if (i == 1 || i == 3 || i == 4)
+                        {
+                            list.Add(4);
+                        }
+                        else
+                        {
+                            list.Add(0);
+                        }
+                    }
+                }
+            }
+            //------------------------End
+            var s = 0;
+            foreach (var subcat in subCategories)
+            {
+                var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
+                catUc.Deselect();
+
+                //-----------start
+                if (s == subCategories.Count - 1)
+                {
+                    list.Add(2);
+                }
+                else
+                {
+                    list.Add(1);
+                }
+                //--------------end
+
+                catUc.SetNameAndIdOfCategory(subcat.Id, subcat.Name, list);
+                if (!selectedAlready)
+                {
+                    if (hidSelectedCategory.Value == subcat.Id.ToString())
+                    {
+                        //catUc.Select();
+                        //catUc_NameClicked(null, new DataEventArgs() { Id = subcat.Id, Name = subcat.Name });
+                        selectedAlready = true;
+                    }
+                }
+                catUc.NameClicked += catUc_NameClicked;
+
+                parentUc.AddSubCategories(catUc);
+                GetSubCategory(catUc, helper, schoolId, subcat.Id, list);
+                list.RemoveAt(list.Count - 1);
+                //catUc.AddSubCategories(GetSubCategory(catUc, helper,schoolId,subcat.Id));
+                s++;
+            }
+            //return ;
+        }
+
+
+

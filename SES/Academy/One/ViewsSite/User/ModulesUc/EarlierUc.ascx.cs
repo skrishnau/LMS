@@ -33,7 +33,7 @@ namespace One.ViewsSite.User.ModulesUc
                     var subjects = r.Select(x => x.SubjectStructure.Subject)
                         .Distinct()
                         .Where(x=>!againCurrentSubs.Contains(x.Id))
-                        .Distinct().OrderBy(x=>x.Name).ToList();
+                        .Distinct().OrderBy(x=>x.FullName).ToList();
                     nodeuc.SetStructureData(r.Key.Year, r.Key.SubYear, subjects);
                     pnlRegularCourses.Controls.Add(nodeuc);
                 }
@@ -41,7 +41,7 @@ namespace One.ViewsSite.User.ModulesUc
                     .Select(x => x.Id).ToList();
                 var irrRun = subClss.Where(x => !x.IsRegular && (x.SessionComplete ?? false))
                         .Select(x => x.Subject).Distinct().Where(x => !againCurrentSubs.Contains(x.Id))
-                        .Distinct().OrderBy(x=>x.Name).ToList();
+                        .Distinct().OrderBy(x=>x.FullName).ToList();
 
                 if (irrRun.Any())
                 {

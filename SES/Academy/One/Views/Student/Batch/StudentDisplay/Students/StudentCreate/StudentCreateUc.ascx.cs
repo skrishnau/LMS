@@ -16,6 +16,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
     {
 
         public event EventHandler<MessageEventArgs> CloseClicked;
+        public event EventHandler<MessageEventArgs> SaveClicked;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,28 +67,10 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
-                    //List<int> DivisonsAssigned = new List<int>();
-                    //using (var helper = new DbHelper.Student())
-                    //{
-                    //helper.
-                    //}
-                    //int role = (cmbRole.SelectedValue == "") ? 0 : Convert.ToInt32(cmbRole.SelectedValue.ToString());
-                    //var dob = new DateTime(1900, 1, 1).Date;
-                    //try
-                    //{
-                    //    if (txtDOB.Text != "")
-                    //        dob = DateTime.Parse(txtDOB.Text);
-                    //    dob = dob.Date;
-                    //}
-                    //catch { }
-
-                    //var date = DateTime.Parse(DateTime.Now.Date.ToShortDateString());
+                    
                     var createdUser = new Academic.DbEntities.User.Users()
                     {
-                        //City = txtCity.Text
-                        //,
-                        //Country = txtCountry.Text
-                        //,
+                        
                         CreatedDate = DateTime.Now
                         ,
                         Email = txtEmail.Text
@@ -96,8 +79,6 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                         ,
                         LastName = txtLastName.Text
                         ,
-                        //GenderId = Convert.ToByte(cmbGender.SelectedValue)
-                        //,
                         IsActive = true
                         ,
                         IsDeleted = false
@@ -113,17 +94,8 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                     var student = new Academic.DbEntities.Students.Student()
                     {
                         CRN = txtCRN.Text,
-                        //CreatedUserId =
-                        //ExamRollNoGlobal = txtExamRoll.Text,
-                        //GuardianContactNo = txtGuarContact.Text,
-                        //GuardianEmail = txtGuarEmail.Text,
-                        //GuardianName = txtGuarName.Text
+                        };
 
-                    };
-
-
-                    //createdUser.DOB = DateTime.Parse(dob.Date.ToShortDateString());
-                    //var SchoolId = Values.Session.GetSchool(Session);
                     createdUser.SchoolId = user.SchoolId;
                     using (var helper = new DbHelper.Student())
                     //using (var batchHelper = new DbHelper.Batch())
@@ -146,12 +118,23 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                             {
                                 //lblSaveStatus.Visible = true;
                                 ResetTextAndCombos();
+                                if (SaveClicked != null)
+                                {
+                                    SaveClicked(this, new MessageEventArgs());
+                                }
                             }
-                            else
+                            else if (btn.ID == "btnCancel")
                             {
                                 if (CloseClicked != null)
                                 {
                                     CloseClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
+                                }
+                            }
+                            else
+                            {
+                                if (SaveClicked != null)
+                                {
+                                    SaveClicked(this, new MessageEventArgs());
                                 }
                             }
                         }
@@ -314,8 +297,6 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
 
         }
 
-
-
         private void TrimFirstLetterFromImageFileName(DbHelper.WorkingWithFiles fhelper, Academic.DbEntities.UserFile image)
         {
             if (trimLoop < 10)
@@ -330,10 +311,6 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
             }
 
         }
-
-
-
-
 
         private void ResetTextAndCombos()
         {
@@ -352,8 +329,6 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
             //cmbGender.SelectedValue = "0";
 
         }
-
-
 
         public int ProgramBatchId
         {

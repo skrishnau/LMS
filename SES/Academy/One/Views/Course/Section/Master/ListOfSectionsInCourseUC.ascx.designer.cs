@@ -85,15 +85,6 @@ namespace One.Views.Course.Section.Master {
         protected global::System.Web.UI.WebControls.ImageButton imgAddSection;
         
         /// <summary>
-        /// hidEditEnabled control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidEditEnabled;
-        
-        /// <summary>
         /// CreateSectionUc2 control.
         /// </summary>
         /// <remarks>
@@ -110,5 +101,32 @@ namespace One.Views.Course.Section.Master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::One.Views.Course.ActivityAndResource.ActResChoose.ActResChooseUc ActResChooseUc;
+        
+        /// <summary>
+        /// hidEditEnabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidEditEnabled;
+        
+        /// <summary>
+        /// hidUserId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidUserId;
+        
+        /// <summary>
+        /// hidSubjectId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidSubjectId;
     }
 }

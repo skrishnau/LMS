@@ -1,0 +1,22 @@
+﻿    <%--<asp:CreateUserWizard ID="CreateUserWizard1" runat="server"
+                        OnCreatedUser="CreateUserWizard1_CreatedUser">
+                        <WizardSteps>
+                            <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
+                            </asp:CreateUserWizardStep>
+                            <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"
+                                Title="ha ha" AllowReturn="False">
+                                <ContentTemplate>
+                                    <div>
+                                        Your account has been successfully created.
+                                        <br />
+                                        <asp:HyperLink ID="HyperLink1" runat="server"
+                                            CssClass="link_button"
+                                            NavigateUrl="~/Views/">
+                                             Continue
+                                        </asp:HyperLink>
+                                    </div>
+                                </ContentTemplate>
+
+                            </asp:CompleteWizardStep>
+                        </WizardSteps>
+                    </asp:CreateUserWizard>--%>

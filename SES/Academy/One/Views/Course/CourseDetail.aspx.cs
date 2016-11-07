@@ -44,10 +44,10 @@ namespace One.Views.Course
                         var sub = helper.GetCourse(cId);
                         if (sub != null)
                         {
-                            lblFullName.Text = sub.Name;
+                            lblFullName.Text = sub.FullName;
                             lblCategory.Text = sub.SubjectCategory.Name;
                             lblShortName.Text = sub.ShortName;
-                            lblHeading.Text = sub.Name;
+                            lblHeading.Text = sub.FullName;
                         }
 
                     }

@@ -42,8 +42,7 @@ namespace One.Views.Exam.Exam
                                 {
                                     pnlSubjects.Controls.Add(new HyperLink()
                                     {
-                                        Text = i + ". " + es.SubjectClass.SubjectStructure.Subject.Name + "<br/>"
-
+                                        Text = i + ". " + es.SubjectClass.SubjectStructure.Subject.FullName + "<br/>"
                                         ,
                                         CssClass = "margin-top-bottom-little"
                                     });

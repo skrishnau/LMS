@@ -1421,6 +1421,7 @@
     <Content Include="TestingOnly\Dialog\WebForm1.aspx" />
     <Content Include="TestingOnly\JqueryModalDialog.aspx" />
     <Content Include="TestingOnly\WebForm1.aspx" />
+    <Content Include="ViewsSite\Account\Earlier codes.txt" />
     <Content Include="ViewsSite\Account\Login.aspx" />
     <Content Include="ViewsSite\Account\Register.aspx" />
     <Content Include="ViewsSite\DashBoard\StudentDashboardStyle.css" />
@@ -1537,21 +1538,13 @@
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatUc.ascx" />
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatViews\ChatRoom.ascx" />
     <Content Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatWF.aspx" />
+    <Content Include="Views\Course\CategoryCreate.aspx" />
     <Content Include="Views\Course\Category\ListUC.ascx" />
-    <Content Include="Views\Course\CourseCreate\CreateCourse.aspx" />
+    <Content Include="Views\Course\CourseCreate.aspx" />
     <Content Include="Views\Course\CourseDetail.aspx" />
     <Content Include="Views\Course\Course\CourseListUC.ascx" />
     <Content Include="Views\Course\Course\CreateUC.ascx" />
-    <Content Include="Views\Course\ListingMain\CourseMain\ListItemUc.ascx" />
-    <Content Include="Views\Course\ListingMain\CourseMain\ListSubjectGroup.aspx" />
-    <Content Include="Views\Course\ListingMain\CourseMain\ListUc.ascx" />
-    <Content Include="Views\Course\ListingMain\CourseMain\NewGroup.aspx" />
-    <Content Include="Views\Course\CourseCreate\CourseCreateUc.ascx" />
-    <Content Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListItemUc.ascx" />
-    <Content Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListUc.ascx" />
-    <Content Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\RegularCourseListing.aspx" />
-    <Content Include="Views\Course\ListingMain\CoursesOfGroup\CoursesOfGroupListing.aspx" />
-    <Content Include="Views\Course\ListingMain\CoursesOfGroup\ListUc.ascx" />
+    <Content Include="Views\Course\EarlierCode.txt" />
     <Content Include="Views\Course\Section\Master\CourseSectionListing.aspx" />
     <Content Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx" />
     <Content Include="Views\Default.aspx" />
@@ -1617,6 +1610,7 @@
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentImport\StudentImportFromSystem.ascx" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentListInProgramBatch.aspx" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentListUc.ascx" />
+    <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentList\PrevoisCode.txt" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentList\StudentListUC.ascx" />
     <Content Include="Views\Student\Batch\StudentEntries\StudentEntr.ascx" />
     <Content Include="Views\Academy\AcademicYear\Create.aspx" />
@@ -2713,6 +2707,13 @@
     <Compile Include="Views\Course\ActivityAndResource\EntryUserConrols\Activity\ChatWF.aspx.designer.cs">
       <DependentUpon>ChatWF.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Course\CategoryCreate.aspx.cs">
+      <DependentUpon>CategoryCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\CategoryCreate.aspx.designer.cs">
+      <DependentUpon>CategoryCreate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Course\Category\ListUC.ascx.cs">
       <DependentUpon>ListUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2720,12 +2721,12 @@
     <Compile Include="Views\Course\Category\ListUC.ascx.designer.cs">
       <DependentUpon>ListUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Course\CourseCreate\CreateCourse.aspx.cs">
-      <DependentUpon>CreateCourse.aspx</DependentUpon>
+    <Compile Include="Views\Course\CourseCreate.aspx.cs">
+      <DependentUpon>CourseCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Course\CourseCreate\CreateCourse.aspx.designer.cs">
-      <DependentUpon>CreateCourse.aspx</DependentUpon>
+    <Compile Include="Views\Course\CourseCreate.aspx.designer.cs">
+      <DependentUpon>CourseCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\CourseDetail.aspx.cs">
       <DependentUpon>CourseDetail.aspx</DependentUpon>
@@ -2747,76 +2748,6 @@
     </Compile>
     <Compile Include="Views\Course\Course\CreateUC.ascx.designer.cs">
       <DependentUpon>CreateUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\ListItemUc.ascx.cs">
-      <DependentUpon>ListItemUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\ListItemUc.ascx.designer.cs">
-      <DependentUpon>ListItemUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\ListSubjectGroup.aspx.cs">
-      <DependentUpon>ListSubjectGroup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\ListSubjectGroup.aspx.designer.cs">
-      <DependentUpon>ListSubjectGroup.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\ListUc.ascx.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\ListUc.ascx.designer.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\NewGroup.aspx.cs">
-      <DependentUpon>NewGroup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\NewGroup.aspx.designer.cs">
-      <DependentUpon>NewGroup.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\CourseCreate\CourseCreateUc.ascx.cs">
-      <DependentUpon>CourseCreateUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\CourseCreate\CourseCreateUc.ascx.designer.cs">
-      <DependentUpon>CourseCreateUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListItemUc.ascx.cs">
-      <DependentUpon>ListItemUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListItemUc.ascx.designer.cs">
-      <DependentUpon>ListItemUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListUc.ascx.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\ListUc.ascx.designer.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\RegularCourseListing.aspx.cs">
-      <DependentUpon>RegularCourseListing.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CourseMain\RegularCoursesLising\RegularCourseListing.aspx.designer.cs">
-      <DependentUpon>RegularCourseListing.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CoursesOfGroup\CoursesOfGroupListing.aspx.cs">
-      <DependentUpon>CoursesOfGroupListing.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CoursesOfGroup\CoursesOfGroupListing.aspx.designer.cs">
-      <DependentUpon>CoursesOfGroupListing.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CoursesOfGroup\ListUc.ascx.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\ListingMain\CoursesOfGroup\ListUc.ascx.designer.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\Section\Master\CourseSectionListing.aspx.cs">
       <DependentUpon>CourseSectionListing.aspx</DependentUpon>

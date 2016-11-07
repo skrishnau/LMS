@@ -245,16 +245,16 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
 
                         CourseListItemUC uc = (CourseListItemUC)
                             Page.LoadControl("~/Views/Structure/All/UserControls/CourseLinkage/CourseListItemUC.ascx");
-                        uc.ID = "courseListing" + subject.Id + subject.Name.Replace(" ", "_");
+                        uc.ID = "courseListing" + subject.Id + subject.FullName.Replace(" ", "_");
                         //var name = "courseListing" + subject.Id + subject.Name.Replace(" ", "_");
-                        uc.SetCheckBoxId("chkbox" + subject.Id + subject.Name.Replace(" ", "_"));
+                        uc.SetCheckBoxId("chkbox" + subject.Id + subject.FullName.Replace(" ", "_"));
 
                         //==================== determine saved or selected courses ==========================//
                         var selected = selectedlist.Find(x => x.Id == subject.Id);
                         var saved = savedlist.Find(x => x.Id == subject.Id);
 
                         uc.SetCourse(subject.Id
-                            , subject.Name
+                            , subject.FullName
                             , subject.Code
                             , selected != null
                             , saved != null);

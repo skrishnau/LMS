@@ -164,7 +164,7 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                             //uc.Id = c.SubjectId.ToString();
                             //uc.SubjectSubscriptionId = c.SubjectSubscriptionId;
                             //uc.StudentSubjectModel = c;
-                            uc.Title = c.Name;
+                            uc.Title = c.FullName;
                             //Messages
                             //foreach messages add message controls to uc
                             {

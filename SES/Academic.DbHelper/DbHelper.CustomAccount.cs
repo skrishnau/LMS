@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Academic.Database;
 using Academic.DbEntities.User;
 
@@ -10,7 +11,7 @@ namespace Academic.DbHelper
 {
     public partial class DbHelper
     {
-        public class CustomAccount:IDisposable
+        public class CustomAccount : IDisposable
         {
             private AcademicContext Context;
 
@@ -50,36 +51,52 @@ namespace Academic.DbHelper
                 }
             }
 
-            public bool Register(DbEntities.User.Users  user)
+            public string Register(DbEntities.User.Users user)
             {
                 try
                 {
-                    var savedUser = Context.Users.Add(user);
-                    Context.SaveChanges();
-                    var roleId = Context.Role.FirstOrDefault(x => x.RoleName.ToLower() == "manager");
-                    if (roleId == null)
+                    var xUser = Context.Users.FirstOrDefault(x => x.UserName == user.UserName);
+                    if (xUser == null)
                     {
-                        roleId = Context.Role.Add(new Role()
+                        using (var scope = new TransactionScope())
                         {
-                            RoleName = "manager"
-                            ,Description = "'Manager' has complete access over all of the settings."
-                        });
-                        Context.SaveChanges();
-                    }
-                    var urole = new UserRole()
-                    {
-                        AssignedDate = DateTime.Now
-                        ,UserId = savedUser.Id
-                        ,RoleId = roleId.Id
-                    };
+                            var savedUser = Context.Users.Add(user);
+                            Context.SaveChanges();
+                            var roleId = Context.Role.FirstOrDefault(x => x.RoleName == "manager");
+                            if (roleId == null)
+                            {
+                                roleId = Context.Role.Add(new Role()
+                                {
+                                    DisplayName = "Manager"
+                                    ,
+                                    RoleName = "manager"
+                                    ,
+                                    Description = "'Manager' has complete access over all of the settings."
+                                });
+                                Context.SaveChanges();
+                            }
+                            var urole = new UserRole()
+                            {
+                                AssignedDate = DateTime.Now
+                                ,
+                                UserId = savedUser.Id
+                                ,
+                                RoleId = roleId.Id
+                            };
 
-                    Context.UserRole.Add(urole);
-                    Context.SaveChanges();
-                    return true;
+                            Context.UserRole.Add(urole);
+                            Context.SaveChanges();
+                            scope.Complete();
+                            return "success";
+                        }
+
+                    }
+                    return "Username already exist.";
+
                 }
                 catch (Exception e)
                 {
-                    return false;
+                    return "Error while creating user.";
                 }
             }
 

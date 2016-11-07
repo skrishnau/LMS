@@ -661,7 +661,7 @@ namespace Academic.DbHelper
                         cats.Insert(0, new DbEntities.Subjects.Subject()
                         {
                             Id = 0,
-                            Name = ""
+                            FullName = ""
                         });
                     }
 

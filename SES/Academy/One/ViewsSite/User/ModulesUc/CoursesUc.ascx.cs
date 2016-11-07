@@ -39,7 +39,7 @@ namespace One.ViewsSite.User.ModulesUc
                     var nodeuc =
                         (EarlierUc_NodesUc)Page.LoadControl("~/ViewsSite/User/ModulesUc/EarlierUc_NodesUc.ascx");
                     //key is used to display year/subyear
-                    var subjects = r.Select(x => x.SubjectStructure.Subject).Distinct().OrderBy(x=>x.Name).ToList();
+                    var subjects = r.Select(x => x.SubjectStructure.Subject).Distinct().OrderBy(x=>x.FullName).ToList();
                     nodeuc.SetStructureData(r.Key.Year, r.Key.SubYear, subjects);
                     pnlRegularCourses.Controls.Add(nodeuc);
 
@@ -47,7 +47,7 @@ namespace One.ViewsSite.User.ModulesUc
 
                 }
                 var irrRun = subClss.Where(x => !x.IsRegular)
-                        .Select(x => x.Subject).Distinct().OrderBy(x=>x.Name).ToList();
+                        .Select(x => x.Subject).Distinct().OrderBy(x=>x.FullName).ToList();
 
                 if (irrRun.Any())
                 {

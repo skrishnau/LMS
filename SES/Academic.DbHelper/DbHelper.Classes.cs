@@ -173,6 +173,34 @@ namespace Academic.DbHelper
                 return regular;
             }
 
+            //used always
+            public bool IsUserElligibleToViewSubjectSection(
+               int subjectId, int userId)
+            {
+                //var regular = new List<Academic.DbEntities.Class.SubjectClass>();
+                //Context.SubjectSession.Where(s => s.IsRegular).Where(x => x.SubjectStructure.SubjectId == subjectId);
+
+                //var notRegular = new List<Academic.DbEntities.Class.SubjectClass>();
+                //Context.SubjectSession.Where(s => (!s.IsRegular)).Where(x => x.SubjectId == subjectId);
+                var now = DateTime.Now.Date;
+                var min = DateTime.MinValue.Date;
+                var max = DateTime.MaxValue.Date;
+                var userclass = Context.UserClass.Where(x => !(x.Void ?? false)
+                    && (x.UserId == userId)
+                    && !(x.Suspended ?? false)).ToList();
+
+                if (userclass.Select(x => x.SubjectClass) 
+                            .Where(s => s.IsRegular)
+                            .Any(x => x.SubjectStructure.SubjectId == subjectId))
+                    return true;
+
+                if (userclass.Select(x => x.SubjectClass)
+                         .Where(s => (!s.IsRegular))
+                         .Any(x => x.SubjectId == subjectId))
+                    return true;
+                return false;
+            }
+
             public List<Academic.DbEntities.Class.SubjectClass> ListCurrentClassesOfUser(
                 int subjectId, int userId)
             {
@@ -248,7 +276,7 @@ namespace Academic.DbHelper
                     var gg = Context.SubjectClass.Where(x => !x.IsRegular).OrderBy(x => x.CreatedDate).ToList();
                     var vgg = Context.SubjectClass.Where(x => !x.IsRegular)
                         .OrderBy(x => x.CreatedDate)
-                        .ThenBy(x=>x.Name).ToList();
+                        .ThenBy(x => x.Name).ToList();
 
                     regular.AddRange(notRegular);
 
@@ -331,7 +359,7 @@ namespace Academic.DbHelper
                 var now = DateTime.Now.Date;
                 var min = DateTime.MinValue.Date;
                 var max = DateTime.MaxValue.Date;
-                var roles = role.Split(new char[] {','});
+                var roles = role.Split(new char[] { ',' });
                 if (roles.Contains(StaticValues.Roles.CourseEditor)
                     || roles.Contains(StaticValues.Roles.Manager))
                 {
