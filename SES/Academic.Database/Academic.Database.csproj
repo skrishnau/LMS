@@ -50,6 +50,34 @@
     <Compile Include="Migrations\201611060551400_course_modified.Designer.cs">
       <DependentUpon>201611060551400_course_modified.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611071629098_level_modified.cs" />
+    <Compile Include="Migrations\201611071629098_level_modified.Designer.cs">
+      <DependentUpon>201611071629098_level_modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611080731237_isActive_removed_from_structure.cs" />
+    <Compile Include="Migrations\201611080731237_isActive_removed_from_structure.Designer.cs">
+      <DependentUpon>201611080731237_isActive_removed_from_structure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611081648130_course_update.cs" />
+    <Compile Include="Migrations\201611081648130_course_update.Designer.cs">
+      <DependentUpon>201611081648130_course_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611111203438_no_idea.cs" />
+    <Compile Include="Migrations\201611111203438_no_idea.Designer.cs">
+      <DependentUpon>201611111203438_no_idea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611121105126_pass_out_added.cs" />
+    <Compile Include="Migrations\201611121105126_pass_out_added.Designer.cs">
+      <DependentUpon>201611121105126_pass_out_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611130747567_event_updated.cs" />
+    <Compile Include="Migrations\201611130747567_event_updated.Designer.cs">
+      <DependentUpon>201611130747567_event_updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611131316064_removed_all_obsolete.cs" />
+    <Compile Include="Migrations\201611131316064_removed_all_obsolete.Designer.cs">
+      <DependentUpon>201611131316064_removed_all_obsolete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +94,27 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611060551400_course_modified.resx">
       <DependentUpon>201611060551400_course_modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071629098_level_modified.resx">
+      <DependentUpon>201611071629098_level_modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611080731237_isActive_removed_from_structure.resx">
+      <DependentUpon>201611080731237_isActive_removed_from_structure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611081648130_course_update.resx">
+      <DependentUpon>201611081648130_course_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611111203438_no_idea.resx">
+      <DependentUpon>201611111203438_no_idea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611121105126_pass_out_added.resx">
+      <DependentUpon>201611121105126_pass_out_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611130747567_event_updated.resx">
+      <DependentUpon>201611130747567_event_updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611131316064_removed_all_obsolete.resx">
+      <DependentUpon>201611131316064_removed_all_obsolete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

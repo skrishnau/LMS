@@ -17,25 +17,36 @@ namespace One.Views.Academy.UserControls
         }
 
         public void LoadAcademicYear(int academicYearId, string name, DateTime startDate
-            , DateTime endDate, bool active, List<Academic.DbEntities.Session> sessionList)
+            , DateTime endDate, bool active, List<Academic.DbEntities.Session> sessionList
+            , bool complete)
         {
-            lnkAcademicYearName.Text = " "+name+" ";
+            lnkAcademicYearName.Text = " " + name + " ";
             lnkAcademicYearName.NavigateUrl = "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + academicYearId;
             lblEndDate.Text = endDate.ToShortDateString();
             lblStartDate.Text = startDate.ToShortDateString();
-            if (active)
+            if (complete)
+            {
+                lblActiveIndicator.Text = " (Complete)";
+                pnlBody.BackColor = //Color.LightGray;
+                        Color.FromArgb(225, 225, 225);
+            }
+            else if (active)
             {
                 //pnlBody.BackColor = Color.LightGreen;
                 lblActiveIndicator.Text = " (Active)";
-                lblActiveIndicator.ForeColor = Color.Green;
-                lnkAcademicYearName.BackColor = Color.LightGreen;
+                pnlBody.BackColor = //Color.LightGreen;
+                    //Color.FromArgb(208, 255, 208);
+                                        Color.FromArgb(193, 252, 193);
+                //lblActiveIndicator.ForeColor = Color.Green;
+                //lnkAcademicYearName.BackColor = Color.LightGreen;
             }
 
             if (!sessionList.Any())
             {
                 //lblTitleInSessionsList.Text = "Sessions:";
-                pnlSessionsList.Controls.Add(new Label() { Text = "None" , ForeColor = Color.OrangeRed});
-                
+                lblTitleInSessionsList.Text = "None";
+                //pnlSessionsList.Controls.Add(new Label() { Text = "None" , ForeColor = Color.DarkSlateGray});
+
             }
             else
             {
@@ -52,7 +63,7 @@ namespace One.Views.Academy.UserControls
                     if (active && sess.IsActive)
                     {
                         hypSes.BackColor = Color.LightGreen;
-                        var activeIndicator = new Label(){Text = " (Active)", ForeColor = Color.Green};
+                        var activeIndicator = new Label() { Text = " (Active)", ForeColor = Color.Green };
                         pnlSessionsList.Controls.Add(activeIndicator);
                     }
                     //hypSes.Attributes.Add("margin","2px 0");

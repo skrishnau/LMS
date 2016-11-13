@@ -32,7 +32,7 @@ namespace Academic.DbEntities.User
 
         public virtual ICollection<UserRole> UserRoles { get; set; }
 
-        public virtual ICollection<RoleCapability> RoleCapabilities { get; set; }
+        //public virtual ICollection<RoleCapability> RoleCapabilities { get; set; }
 
         //delete garyo bhane void hunxa
         public bool? Void { get; set; }

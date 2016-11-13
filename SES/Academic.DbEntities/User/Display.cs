@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.User
 {
-    public class Display
-    {
-    }
+    //public class Display
+    //{
+    //}
 }

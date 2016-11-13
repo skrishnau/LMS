@@ -12,5 +12,6 @@
     </div>--%>
     <div>
         <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+        <asp:HiddenField ID="hidEdit" runat="server" Value="0" />
     </div>
 </div>

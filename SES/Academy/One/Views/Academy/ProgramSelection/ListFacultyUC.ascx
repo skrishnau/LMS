@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListFacultyUC.ascx.cs" Inherits="One.Views.Academy.ProgramSelection.ListFacultyUC" %>
 
-<div runat="server" id="panel" style="padding-bottom: 10px;">
+<div runat="server" id="panel" style="padding: 5px;">
     <%-- class="block" --%>
     <div  style="font-weight: 600; font-size: 1em;">
         <asp:HyperLink ID="lblName" runat="server" >

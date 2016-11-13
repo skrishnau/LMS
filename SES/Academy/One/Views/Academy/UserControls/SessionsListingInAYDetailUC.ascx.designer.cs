@@ -13,6 +13,15 @@ namespace One.Views.Academy.UserControls {
     public partial class SessionsListingInAYDetailUC {
         
         /// <summary>
+        /// pnlbody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlbody;
+        
+        /// <summary>
         /// lnkSessionName control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace One.Views.Academy.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkSessionName;
+        
+        /// <summary>
+        /// lblActiveIndicator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblActiveIndicator;
         
         /// <summary>
         /// lblStartDate control.
@@ -40,13 +58,13 @@ namespace One.Views.Academy.UserControls {
         protected global::System.Web.UI.WebControls.Label lblEndDate;
         
         /// <summary>
-        /// lnkAddClasses control.
+        /// lnkEditClasses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkAddClasses;
+        protected global::System.Web.UI.WebControls.HyperLink lnkEditClasses;
         
         /// <summary>
         /// Image3 control.

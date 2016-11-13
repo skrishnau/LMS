@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using Academic.DbEntities.Office;
+using Academic.DbEntities.Structure;
 using Academic.DbEntities.User;
 using Academic.ViewModel;
 
@@ -61,15 +62,16 @@ namespace Academic.DbHelper
                         schooltype.Insert(0,
                             new DbEntities.Office.SchoolType() { Id = 0, Name = "--Select One--" });
                     }
-                    if (createNewField)
-                    {
-                        schooltype.Add(new
-                            DbEntities.Office.SchoolType()
-                        {
-                            Id = -1,
-                            Name = "--Create New--"
-                        });
-                    }
+
+                    //if (createNewField)
+                    //{
+                    //    schooltype.Add(new
+                    //        DbEntities.Office.SchoolType()
+                    //    {
+                    //        Id = -1,
+                    //        Name = "--Create New--"
+                    //    });
+                    //}
                     cmbSchoolType.DataSource = schooltype;
                     cmbSchoolType.DataBind();
                     if (selectedValue != 0)
@@ -312,9 +314,9 @@ namespace Academic.DbHelper
                 {
                     var yea = helper.GetYears(programId);
                     if (emptySelection)
-                        yea.Insert(0, new IdAndName() { Id = 0, Name = "" });
+                        yea.Insert(0, new Year() { Id = 0, Name = "" });
                     else if (yea.Count > 0)
-                        yea.Insert(0, new IdAndName() { Id = 0, Name = "All" });
+                        yea.Insert(0, new Year() { Id = 0, Name = "All" });
                     cmbYear.DataSource = yea;
                     cmbYear.DataBind();
                 }
@@ -335,28 +337,28 @@ namespace Academic.DbHelper
                 }
             }
 
-            public static void LoadUserType(ref DropDownList cmbUserType, int schoolId, string defaultSEelected = "")
-            {
-                cmbUserType.DataTextField = "Name";
-                cmbUserType.DataValueField = "Id";
+            //public static void LoadUserType(ref DropDownList cmbUserType, int schoolId, string defaultSEelected = "")
+            //{
+            //    cmbUserType.DataTextField = "Name";
+            //    cmbUserType.DataValueField = "Id";
 
-                using (var helper = new DbHelper.User())
-                {
-                    var type = helper.GetUserTypes(schoolId);
-                    type.Insert(0, new UserType() { Id = 0, Name = "" });
-                    cmbUserType.DataSource = type;
-                    cmbUserType.DataBind();
+            //    using (var helper = new DbHelper.User())
+            //    {
+            //        var type = helper.GetUserTypes(schoolId);
+            //        type.Insert(0, new UserType() { Id = 0, Name = "" });
+            //        cmbUserType.DataSource = type;
+            //        cmbUserType.DataBind();
 
-                    var item = type.FirstOrDefault(x => x.Name == defaultSEelected);
-                    if (item != null)
-                    {
-                        var selected = type.IndexOf(item);
-                        cmbUserType.Text = defaultSEelected;
-                        cmbUserType.SelectedIndex = selected;
-                    }
+            //        var item = type.FirstOrDefault(x => x.Name == defaultSEelected);
+            //        if (item != null)
+            //        {
+            //            var selected = type.IndexOf(item);
+            //            cmbUserType.Text = defaultSEelected;
+            //            cmbUserType.SelectedIndex = selected;
+            //        }
 
-                }
-            }
+            //    }
+            //}
 
 
             #region Role Loading functions
@@ -578,19 +580,19 @@ namespace Academic.DbHelper
                     if (allField)
                     {
                         if (yea.Count < 0)
-                            yea.Insert(0, new IdAndName() { Id = 0, Name = "None" });
-                        else yea.Insert(0, new IdAndName() { Id = 0, Name = "All" });
+                            yea.Insert(0, new SubYear() { Id = 0, Name = "None" });
+                        else yea.Insert(0, new SubYear() { Id = 0, Name = "All" });
                     }
                     else if (topAsInitial)
                     {
-                        yea.Insert(0, new IdAndName() { Id = 0, Name = "Top" });
+                        yea.Insert(0, new SubYear() { Id = 0, Name = "Top" });
                     }
                     else if (emptySelection)
                     {
-                        yea.Insert(0, new IdAndName() { Id = 0, Name = "" });
+                        yea.Insert(0, new SubYear() { Id = 0, Name = "" });
                     }
                     else if (yea.Count > 0)
-                        yea.Insert(0, new IdAndName() { Id = 0, Name = "---Select One---" });
+                        yea.Insert(0, new SubYear() { Id = 0, Name = "---Select One---" });
                     cmbSubYear.DataSource = yea;
                     cmbSubYear.DataBind();
                 }
@@ -607,7 +609,7 @@ namespace Academic.DbHelper
                 {
                     var yea = helper.GetSubYears(yearId);
                     if (yea.Count <= 0)
-                        yea.Insert(0, new IdAndName() { Id = 0, Name = "None" });
+                        yea.Insert(0, new SubYear() { Id = 0, Name = "None" });
 
                     cmbSubYear.DataSource = yea;
                     cmbSubYear.DataBind();
@@ -821,28 +823,28 @@ namespace Academic.DbHelper
             }
 
 
-            public static void LoadCoordinator(ref DropDownList cmbCoordinator, int schoolId, int selectedValue = 0)
-            {
-                cmbCoordinator.DataTextField = "FullName";
-                cmbCoordinator.DataValueField = "Id";
-                using (var helper = new DbHelper.Staff())
-                {
-                    var co = helper.GetEmployeesOfExamDivisionForCombo(schoolId);
-                    if (co.Count > 0)
-                        co.Insert(0, new Users() { Id = 0, FirstName = "" });
-                    cmbCoordinator.DataSource = co;
-                    cmbCoordinator.DataBind();
+            //public static void LoadCoordinator(ref DropDownList cmbCoordinator, int schoolId, int selectedValue = 0)
+            //{
+            //    cmbCoordinator.DataTextField = "FullName";
+            //    cmbCoordinator.DataValueField = "Id";
+            //    using (var helper = new DbHelper.Staff())
+            //    {
+            //        var co = helper.GetEmployeesOfExamDivisionForCombo(schoolId);
+            //        if (co.Count > 0)
+            //            co.Insert(0, new Users() { Id = 0, FirstName = "" });
+            //        cmbCoordinator.DataSource = co;
+            //        cmbCoordinator.DataBind();
 
-                    if (selectedValue >= 0)
-                    {
-                        var index = co.IndexOf(co.First(x => x.Id == selectedValue));
-                        if (index >= 0)
-                        {
-                            cmbCoordinator.SelectedIndex = index;
-                        }
-                    }
-                }
-            }
+            //        if (selectedValue >= 0)
+            //        {
+            //            var index = co.IndexOf(co.First(x => x.Id == selectedValue));
+            //            if (index >= 0)
+            //            {
+            //                cmbCoordinator.SelectedIndex = index;
+            //            }
+            //        }
+            //    }
+            //}
 
             public static void LoadExamType(ref DropDownList cmbExamType, int schoolId, int selectedValue = 0)
             {

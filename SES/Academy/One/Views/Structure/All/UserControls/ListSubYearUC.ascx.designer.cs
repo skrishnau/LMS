@@ -13,6 +13,15 @@ namespace One.Views.Structure.All.UserControls {
     public partial class ListSubYearUC {
         
         /// <summary>
+        /// pnlBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlBody;
+        
+        /// <summary>
         /// panel control.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,40 @@ namespace One.Views.Structure.All.UserControls {
         protected global::System.Web.UI.WebControls.HyperLink lblName;
         
         /// <summary>
-        /// HyperLink1 control.
+        /// lnkEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.HyperLink lnkEdit;
+        
+        /// <summary>
+        /// Image1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+        
+        /// <summary>
+        /// row_currentBatch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow row_currentBatch;
+        
+        /// <summary>
+        /// lnkCurrentBatch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkCurrentBatch;
         
         /// <summary>
         /// lblCurrentBatch control.
@@ -67,22 +103,31 @@ namespace One.Views.Structure.All.UserControls {
         protected global::System.Web.UI.WebControls.Label lblNoOfCourses;
         
         /// <summary>
-        /// HyperLink3 control.
+        /// lnkAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        protected global::System.Web.UI.WebControls.HyperLink lnkAdd;
         
         /// <summary>
-        /// lblNoOfStudents control.
+        /// Image3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoOfStudents;
+        protected global::System.Web.UI.WebControls.Image Image3;
+        
+        /// <summary>
+        /// lblAddText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblAddText;
         
         /// <summary>
         /// hidStructureType control.

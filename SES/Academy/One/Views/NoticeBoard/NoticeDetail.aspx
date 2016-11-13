@@ -21,10 +21,13 @@
 
         <div style="margin-left: 20px; padding: 5px;" runat="server" ID="divPublished" visible="false">
             <asp:CheckBox ID="chkPublished" Font-Bold="True" Text="Published to Notice Board" Enabled="False" runat="server" />
-            &nbsp;<asp:Label ID="lblPostedOn" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblPostedOn" runat="server" Text=""></asp:Label>
         </div>
-
-        <%--  --%><div style="border: 2px solid lightgray; padding: 5px; margin: 20px;">
+        
+        <br/>
+        <%--  --%>
+        <div style="font-weight: bold;margin-left: 20px;  ">Notice</div>
+        <div style="border: 2px dashed lightgray; padding: 5px; margin:0  20px 20px;">
             <div style="width: 100%;">
                 <asp:Literal ID="lblNoticeContent" runat="server"></asp:Literal>
             </div>

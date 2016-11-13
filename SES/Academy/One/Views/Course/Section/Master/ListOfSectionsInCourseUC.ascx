@@ -30,8 +30,10 @@
             <br />
             <div style="clear: both;"></div>
             <div>
-                <asp:LinkButton ID="lnkAddSection" ClientIDMode="Static" Visible="False" runat="server" OnClick="lnkAddSection_Click">
-                    <asp:ImageButton ID="imgAddSection" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" Height="20" Width="20" ToolTip="Add Section to this Course" />
+                <asp:LinkButton ID="lnkAddSection" ClientIDMode="Static" Visible="False"
+                    CssClass="link_smaller"
+                     runat="server" OnClick="lnkAddSection_Click">
+                    <asp:ImageButton ID="imgAddSection" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png"  ToolTip="Add Section to this Course" />
                     Add Sections
                 </asp:LinkButton>
             </div>

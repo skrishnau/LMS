@@ -49,6 +49,15 @@ namespace One.Views.Academy.Session {
         protected global::System.Web.UI.WebControls.Label lblAcademicEnd;
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -67,22 +76,40 @@ namespace One.Views.Academy.Session {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// dtStart control.
+        /// txtStart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.UserControls.DateChooser dtStart;
+        protected global::System.Web.UI.WebControls.TextBox txtStart;
         
         /// <summary>
-        /// dtEnd control.
+        /// valiStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.UserControls.DateChooser dtEnd;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiStartDate;
+        
+        /// <summary>
+        /// txtEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEnd;
+        
+        /// <summary>
+        /// valiEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiEnd;
         
         /// <summary>
         /// btnSaveAndAddMore control.
@@ -110,6 +137,15 @@ namespace One.Views.Academy.Session {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// hidSessionId control.

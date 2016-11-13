@@ -11,17 +11,17 @@ namespace Academic.DbEntities.Structure
     {
         public int Id { get; set; }
         public String Name { get; set; }
-        public int FacultyId { get; set; }
 
         public String Description { get; set; }
+
+        public int FacultyId { get; set; }
         public virtual Faculty Faculty { get; set; }
-        public virtual ICollection<Year> Year { get; set; }
 
 
-        public bool? IsActive { get; set; }
         public bool? Void { get; set; }
         public DateTime? CreatedDate { get; set; }
 
+        public virtual ICollection<Year> Year { get; set; }
         public ICollection<ProgramBatch> ProgramBatches { get; set; }
 
     }

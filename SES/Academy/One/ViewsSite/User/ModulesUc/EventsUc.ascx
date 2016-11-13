@@ -3,7 +3,7 @@
 
 <div class="module-whole">
     <div class="modules-heading">
-        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="modules-title">Events</asp:HyperLink>
+        <asp:HyperLink ID="lnkTitle" runat="server" NavigateUrl="~/Views/Events/" CssClass="modules-title">Events</asp:HyperLink>
         <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
         <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
 

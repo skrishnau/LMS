@@ -1133,11 +1133,9 @@
     <Content Include="Content\Icons\AddEditDelete\file_edit_kashan.png" />
     <Content Include="Content\Icons\AddEditDelete\images.png" />
     <Content Include="Content\Icons\AddEditDelete\order_form_online_offer-128.png" />
+    <Content Include="Content\Icons\Add\Add-icon_border.png" />
     <Content Include="Content\Icons\Add\Add-icon1.png" />
-    <Content Include="Content\Icons\Add\add_bevel.png" />
-    <Content Include="Content\Icons\Add\Add-icon2.png" />
     <Content Include="Content\Icons\Add\Add-icon.png" />
-    <Content Include="Content\Icons\Add\add_icon.png" />
     <Content Include="Content\Icons\Arrow\arrow_down.png" />
     <Content Include="Content\Icons\Arrow\arrow_fat_down.png" />
     <Content Include="Content\Icons\Arrow\arrow_fat_left.png" />
@@ -1149,6 +1147,7 @@
     <Content Include="Content\Icons\calendar_image.png" />
     <Content Include="Content\Icons\Check\checked_blue_18x18.png" />
     <Content Include="Content\Icons\Check\unchecked_grey_18x18.png" />
+    <Content Include="Content\Icons\Class\class.png" />
     <Content Include="Content\Icons\Close\cross_10x10.png" />
     <Content Include="Content\Icons\Close\cross_8x14_center.png" />
     <Content Include="Content\Icons\Close\cross_8x14_top.png" />
@@ -1183,6 +1182,8 @@
     <Content Include="Content\Icons\Participation\out.png" />
     <Content Include="Content\Icons\plus.png" />
     <Content Include="Content\Icons\plus2.png" />
+    <Content Include="Content\Icons\Privacy\loudspeaker.png" />
+    <Content Include="Content\Icons\Privacy\private.png" />
     <Content Include="Content\Icons\Refresh\refresh.png" />
     <Content Include="Content\Icons\req.gif" />
     <Content Include="Content\Icons\req.jpg" />
@@ -1205,6 +1206,8 @@
     <Content Include="Content\Icons\TreeView\up_left_full.png" />
     <Content Include="Content\Icons\Users\40x40\group.png" />
     <Content Include="Content\Icons\Users\40x40\single.png" />
+    <Content Include="Content\Icons\Users\group.png" />
+    <Content Include="Content\Icons\Users\group_10x10.png" />
     <Content Include="Content\Icons\Users\single.png" />
     <Content Include="Content\Icons\Users\users-icon.png" />
     <Content Include="Content\Icons\Visibility\eye_16x20_hidden.png" />
@@ -1216,6 +1219,10 @@
     <Content Include="Content\Images\background-repeater.png" />
     <Content Include="Content\Images\background-repeater1.png" />
     <Content Include="Content\Images\company-logo.jpg" />
+    <Content Include="Content\Images\NewsImage\Document-Add-icon.png" />
+    <Content Include="Content\Images\NewsImage\image3.png" />
+    <Content Include="Content\Images\NewsImage\image1.png" />
+    <Content Include="Content\Images\NewsImage\image2.png" />
     <Content Include="Content\Images\UserImage\company-logo.jpg" />
     <Content Include="Content\NoticeFiles\batch2.png" />
     <Content Include="Content\NoticeFiles\user4.jpg" />
@@ -1432,10 +1439,6 @@
     <Content Include="ViewsSite\DashBoard\Student\Dashboard.aspx" />
     <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\CourseMessageUC.ascx" />
     <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\ItemUc.ascx" />
-    <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\JoinedLstUc.ascx" />
-    <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\UnjoinedListUc.ascx" />
-    <Content Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCourses.aspx" />
-    <Content Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCoursesUc.ascx" />
     <Content Include="ViewsSite\Default.aspx" />
     <Content Include="ViewsSite\UserControls\LeftSideBar.ascx" />
     <Content Include="ViewsSite\UserControls\ListItemUC.ascx" />
@@ -1452,18 +1455,17 @@
     <Content Include="ViewsSite\User\ModulesUc\SettingsUc.ascx" />
     <Content Include="ViewsSite\User\Settings\Setting.aspx" />
     <Content Include="ViewsSite\User\UserStyles.css" />
-    <Content Include="Views\AcademicPlacement\Master\List.aspx" />
-    <Content Include="Views\AcademicPlacement\Master\ListingUserControls\TreeNodeUC.ascx" />
-    <Content Include="Views\AcademicPlacement\Master\ListingUserControls\TreeViewUC.ascx" />
-    <Content Include="Views\AcademicPlacement\RunningClass\AddClasses\AddClasses.aspx" />
-    <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeNodeUC.ascx" />
-    <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeViewUC.ascx" />
-    <Content Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\WebForm1.aspx" />
     <Content Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx" />
     <Content Include="Views\Academy\AcademicYear\AcademicYearDetail.aspx" />
     <Content Include="Views\Academy\AcademicYear\AcademyCreate.aspx" />
+    <Content Include="Views\Academy\Activation\Activate.aspx" />
     <Content Include="Views\Academy\Activation\ActivateAcademicYearAndSession.aspx" />
     <Content Include="Views\Academy\Activation\ActivateUC.ascx" />
+    <Content Include="Views\Academy\ClassAssign\ClassAssignCreate.aspx" />
+    <Content Include="Views\Academy\ClassAssign\UserControls\FacultyItemUc.ascx" />
+    <Content Include="Views\Academy\ClassAssign\UserControls\ProgramItemUc.ascx" />
+    <Content Include="Views\Academy\ClassAssign\UserControls\YearItemUc.ascx" />
+    <Content Include="Views\Academy\EarlierCode.txt" />
     <Content Include="Views\Academy\ProgramSelection\BatchSelect.ascx" />
     <Content Include="Views\Academy\ProgramSelection\OnlyListing\ProgramSelection.ascx" />
     <Content Include="Views\Academy\ProgramSelection\OnlyListing\ProgramUC.ascx" />
@@ -1476,6 +1478,7 @@
     <Content Include="Views\Academy\ProgramSelection\ProgramSelect.aspx" />
     <Content Include="Views\Academy\ProgramSelection\RadioButtonAndLabel.ascx" />
     <Content Include="Views\Academy\ProgramSelection\YearCheckBoxAndLabel.ascx" />
+    <Content Include="Views\Academy\Session\EarlierCodes.txt" />
     <Content Include="Views\Academy\Session\SessionDetail.aspx" />
     <Content Include="Views\Academy\UserControls\AcademicYearListUC.ascx" />
     <Content Include="Views\Academy\UserControls\SessionsListingInAYDetailUC.ascx" />
@@ -1548,10 +1551,12 @@
     <Content Include="Views\Course\Section\Master\CourseSectionListing.aspx" />
     <Content Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx" />
     <Content Include="Views\Default.aspx" />
+    <Content Include="Views\Events\Default.aspx" />
+    <Content Include="Views\Events\EventCreate.aspx" />
+    <Content Include="Views\Events\EventDetail.aspx" />
     <Content Include="Views\Exam\ExamType\ExamTypeCreate.aspx" />
     <Content Include="Views\Exam\ExamType\ExamTypeList.aspx" />
     <Content Include="Views\Exam\Exam\CreateExam.aspx" />
-    <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx" />
     <Content Include="Views\Exam\Exam\ExamClass.aspx" />
     <Content Include="Views\Exam\Exam\ExamDetail.aspx" />
     <Content Include="Views\Exam\Exam\ExamsList.aspx" />
@@ -1597,11 +1602,13 @@
     <Content Include="Views\Structure\All\UserControls\StructureView\LabelAndCheckBoxUC.ascx" />
     <Content Include="Views\Structure\All\UserControls\StructureView\LabelOnly.ascx" />
     <Content Include="Views\Structure\All\UserControls\StructureView\TreeViewWithCheckBoxInLeft.ascx" />
-    <Content Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx" />
+    <Content Include="Views\Structure\Default.aspx" />
+    <Content Include="Views\Structure\StructureCreate.aspx" />
+    <Content Include="Views\Structure\SubYear\Create.aspx" />
     <Content Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx" />
-    <Content Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx" />
-    <Content Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeViewUc.ascx" />
     <Content Include="Views\Student\Batch\Create\ProgramList.aspx" />
+    <Content Include="Views\Student\Batch\Default.aspx" />
+    <Content Include="Views\Student\Batch\ListBatchCode.txt" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\ListOfStudents.aspx" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentCreate\StudentCreate.aspx" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentCreate\StudentCreateUc.ascx" />
@@ -1618,14 +1625,10 @@
     <Content Include="Views\Academy\Session\Create.aspx" />
     <Content Include="Views\Academy\Session\CreateUC.ascx" />
     <Content Include="Views\Account\Login.aspx" />
-    <Content Include="Views\Activity\List.aspx" />
-    <Content Include="Views\Activity\Teach\Create.ascx" />
-    <Content Include="Views\Activity\Teach\TeachCreate.aspx" />
     <Content Include="Views\Course\Category\Create.ascx" />
     <Content Include="Views\Course\Category\Create.aspx" />
     <Content Include="Views\Course\Category\List.aspx" />
     <Content Include="Views\Course\CourseEntryForm.aspx" />
-    <Content Include="Views\Course\CourseGroup\GroupUc.ascx" />
     <Content Include="Views\Course\Display\CourseDetails.aspx" />
     <Content Include="Views\Course\Display\CourseList\CourseList.aspx" />
     <Content Include="Views\Course\Display\EachCourse\CourseDetailUc.ascx" />
@@ -1640,8 +1643,6 @@
     <Content Include="Views\CreatedUser\Create.aspx" />
     <Content Include="Views\CreateUC.ascx" />
     <Content Include="Views\Dashboard.aspx" />
-    <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeNodeUC.ascx" />
-    <Content Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeViewUC.ascx" />
     <Content Include="Views\Exam\Exam\ExamList\ItemsOfListUc.ascx" />
     <Content Include="Views\Exam\Exam\ExamList\ListUc.ascx" />
     <Content Include="Views\Office\Institution\Create.aspx" />
@@ -1668,11 +1669,8 @@
     <Content Include="Views\Structure\Program\Create.aspx" />
     <Content Include="Views\Structure\Section\Create.aspx" />
     <Content Include="Views\Structure\Year\Create.aspx" />
-    <Content Include="Views\Student\Batch\AddProgramsTreeNodes\TreeNodeUC.ascx" />
-    <Content Include="Views\Student\Batch\AddProgramsTreeNodes\TreeViewUC.ascx" />
     <Content Include="Views\Student\Batch\BatchDetail\Detail.aspx" />
     <Content Include="Views\Student\Batch\BatchDetail\DetailUc.ascx" />
-    <Content Include="Views\Student\Batch\Create\AddProgramsUc.ascx" />
     <Content Include="Views\Student\Batch\Create\BatchCreate.aspx" />
     <Content Include="Views\Student\Batch\Create\CreateBatchUc.ascx" />
     <Content Include="Views\Student\Batch\List\ItemUc.ascx" />
@@ -1682,7 +1680,7 @@
     <Content Include="Views\Student\Create\StudentCreateUc.ascx" />
     <Content Include="Views\Student\Create\StudentGroup.aspx" />
     <Content Include="Views\Student\Create\StudentGroupUc.ascx" />
-    <Content Include="Views\Student\Batch\ListBatch.aspx" />
+    <Content Include="Views\Student\Default.aspx" />
     <Content Include="Views\Student\StudentGroupAssignUC.ascx" />
     <Content Include="Views\Student\StudentGroup\EachGroupDetail\DetailUc.ascx" />
     <Content Include="Views\Student\StudentGroup\GroupAssign.aspx" />
@@ -1958,34 +1956,6 @@
     <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\ItemUc.ascx.designer.cs">
       <DependentUpon>ItemUc.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\JoinedLstUc.ascx.cs">
-      <DependentUpon>JoinedLstUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\JoinedLstUc.ascx.designer.cs">
-      <DependentUpon>JoinedLstUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\UnjoinedListUc.ascx.cs">
-      <DependentUpon>UnjoinedListUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\ExtraCourses\UnjoinedListUc.ascx.designer.cs">
-      <DependentUpon>UnjoinedListUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCourses.aspx.cs">
-      <DependentUpon>UnjoinedCourses.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCourses.aspx.designer.cs">
-      <DependentUpon>UnjoinedCourses.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCoursesUc.ascx.cs">
-      <DependentUpon>UnjoinedCoursesUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\UnJoinedCourses\UnjoinedCoursesUc.ascx.designer.cs">
-      <DependentUpon>UnjoinedCoursesUc.ascx</DependentUpon>
-    </Compile>
     <Compile Include="ViewsSite\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2119,55 +2089,6 @@
     <Compile Include="ViewsSite\User\UserMaster.Master.designer.cs">
       <DependentUpon>UserMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="Views\AcademicPlacement\Master\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\Master\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\Master\ListingUserControls\TreeNodeUC.ascx.cs">
-      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\Master\ListingUserControls\TreeNodeUC.ascx.designer.cs">
-      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\Master\ListingUserControls\TreeViewUC.ascx.cs">
-      <DependentUpon>TreeViewUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\Master\ListingUserControls\TreeViewUC.ascx.designer.cs">
-      <DependentUpon>TreeViewUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\RunningClass\AddClasses\AddClasses.aspx.cs">
-      <DependentUpon>AddClasses.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\RunningClass\AddClasses\AddClasses.aspx.designer.cs">
-      <DependentUpon>AddClasses.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeNodeUC.ascx.cs">
-      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeNodeUC.ascx.designer.cs">
-      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeViewUC.ascx.cs">
-      <DependentUpon>TreeViewUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\TreeViewUC.ascx.designer.cs">
-      <DependentUpon>TreeViewUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AcademicPlacement\RunningClass\CheckBoxOnly\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx.cs">
       <DependentUpon>BatchSelectUc.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2189,6 +2110,13 @@
     <Compile Include="Views\Academy\AcademicYear\AcademyCreate.aspx.designer.cs">
       <DependentUpon>AcademyCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Academy\Activation\Activate.aspx.cs">
+      <DependentUpon>Activate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Activation\Activate.aspx.designer.cs">
+      <DependentUpon>Activate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Academy\Activation\ActivateAcademicYearAndSession.aspx.cs">
       <DependentUpon>ActivateAcademicYearAndSession.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2202,6 +2130,34 @@
     </Compile>
     <Compile Include="Views\Academy\Activation\ActivateUC.ascx.designer.cs">
       <DependentUpon>ActivateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\ClassAssign\ClassAssignCreate.aspx.cs">
+      <DependentUpon>ClassAssignCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\ClassAssign\ClassAssignCreate.aspx.designer.cs">
+      <DependentUpon>ClassAssignCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\ClassAssign\UserControls\FacultyItemUc.ascx.cs">
+      <DependentUpon>FacultyItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\ClassAssign\UserControls\FacultyItemUc.ascx.designer.cs">
+      <DependentUpon>FacultyItemUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\ClassAssign\UserControls\ProgramItemUc.ascx.cs">
+      <DependentUpon>ProgramItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\ClassAssign\UserControls\ProgramItemUc.ascx.designer.cs">
+      <DependentUpon>ProgramItemUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\ClassAssign\UserControls\YearItemUc.ascx.cs">
+      <DependentUpon>YearItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\ClassAssign\UserControls\YearItemUc.ascx.designer.cs">
+      <DependentUpon>YearItemUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Academy\ProgramSelection\BatchSelect.ascx.cs">
       <DependentUpon>BatchSelect.ascx</DependentUpon>
@@ -2770,6 +2726,27 @@
     <Compile Include="Views\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Events\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Events\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Events\EventCreate.aspx.cs">
+      <DependentUpon>EventCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Events\EventCreate.aspx.designer.cs">
+      <DependentUpon>EventCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Events\EventDetail.aspx.cs">
+      <DependentUpon>EventDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Events\EventDetail.aspx.designer.cs">
+      <DependentUpon>EventDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Exam\ExamType\ExamTypeCreate.aspx.cs">
       <DependentUpon>ExamTypeCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2790,13 +2767,6 @@
     </Compile>
     <Compile Include="Views\Exam\Exam\CreateExam.aspx.designer.cs">
       <DependentUpon>CreateExam.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx.cs">
-      <DependentUpon>StudentEntry.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\StudentEntry.ascx.designer.cs">
-      <DependentUpon>StudentEntry.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Exam\Exam\ExamClass.aspx.cs">
       <DependentUpon>ExamClass.aspx</DependentUpon>
@@ -3078,12 +3048,26 @@
     <Compile Include="Views\Structure\All\UserControls\StructureView\TreeViewWithCheckBoxInLeft.ascx.designer.cs">
       <DependentUpon>TreeViewWithCheckBoxInLeft.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx.cs">
-      <DependentUpon>AddPrograms.aspx</DependentUpon>
+    <Compile Include="Views\Structure\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Student\Batch\BatchDetail\AddPrograms.aspx.designer.cs">
-      <DependentUpon>AddPrograms.aspx</DependentUpon>
+    <Compile Include="Views\Structure\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\StructureCreate.aspx.cs">
+      <DependentUpon>StructureCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\StructureCreate.aspx.designer.cs">
+      <DependentUpon>StructureCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\SubYear\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\SubYear\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx.cs">
       <DependentUpon>DetailItemUc.ascx</DependentUpon>
@@ -3092,26 +3076,19 @@
     <Compile Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx.designer.cs">
       <DependentUpon>DetailItemUc.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx.cs">
-      <DependentUpon>TreeNodeUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeNodeUc.ascx.designer.cs">
-      <DependentUpon>TreeNodeUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeViewUc.ascx.cs">
-      <DependentUpon>TreeViewUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Batch\BatchDetail\ProgramsAddTreeView\TreeViewUc.ascx.designer.cs">
-      <DependentUpon>TreeViewUc.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Student\Batch\Create\ProgramList.aspx.cs">
       <DependentUpon>ProgramList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Student\Batch\Create\ProgramList.aspx.designer.cs">
       <DependentUpon>ProgramList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\StudentDisplay\Students\ListOfStudents.aspx.cs">
       <DependentUpon>ListOfStudents.aspx</DependentUpon>
@@ -3218,27 +3195,6 @@
     <Compile Include="Views\Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Activity\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Activity\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Activity\Teach\Create.ascx.cs">
-      <DependentUpon>Create.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Activity\Teach\Create.ascx.designer.cs">
-      <DependentUpon>Create.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Activity\Teach\TeachCreate.aspx.cs">
-      <DependentUpon>TeachCreate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Activity\Teach\TeachCreate.aspx.designer.cs">
-      <DependentUpon>TeachCreate.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Course\Category\Create.ascx.cs">
       <DependentUpon>Create.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3266,13 +3222,6 @@
     </Compile>
     <Compile Include="Views\Course\CourseEntryForm.aspx.designer.cs">
       <DependentUpon>CourseEntryForm.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\CourseGroup\GroupUc.ascx.cs">
-      <DependentUpon>GroupUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\CourseGroup\GroupUc.ascx.designer.cs">
-      <DependentUpon>GroupUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\Display\CourseDetails.aspx.cs">
       <DependentUpon>CourseDetails.aspx</DependentUpon>
@@ -3371,20 +3320,6 @@
     </Compile>
     <Compile Include="Views\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeNodeUC.ascx.cs">
-      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeNodeUC.ascx.designer.cs">
-      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeViewUC.ascx.cs">
-      <DependentUpon>TreeViewUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Exam\Exam\Create\EachNodeOfAssign\TreeViewUC.ascx.designer.cs">
-      <DependentUpon>TreeViewUC.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Exam\Exam\ExamList\ItemsOfListUc.ascx.cs">
       <DependentUpon>ItemsOfListUc.ascx</DependentUpon>
@@ -3568,20 +3503,6 @@
     <Compile Include="Views\Structure\Year\Create.aspx.designer.cs">
       <DependentUpon>Create.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Student\Batch\AddProgramsTreeNodes\TreeNodeUC.ascx.cs">
-      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Batch\AddProgramsTreeNodes\TreeNodeUC.ascx.designer.cs">
-      <DependentUpon>TreeNodeUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\Batch\AddProgramsTreeNodes\TreeViewUC.ascx.cs">
-      <DependentUpon>TreeViewUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Batch\AddProgramsTreeNodes\TreeViewUC.ascx.designer.cs">
-      <DependentUpon>TreeViewUC.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Student\Batch\BatchDetail\Detail.aspx.cs">
       <DependentUpon>Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3595,13 +3516,6 @@
     </Compile>
     <Compile Include="Views\Student\Batch\BatchDetail\DetailUc.ascx.designer.cs">
       <DependentUpon>DetailUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\Batch\Create\AddProgramsUc.ascx.cs">
-      <DependentUpon>AddProgramsUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Batch\Create\AddProgramsUc.ascx.designer.cs">
-      <DependentUpon>AddProgramsUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\Create\BatchCreate.aspx.cs">
       <DependentUpon>BatchCreate.aspx</DependentUpon>
@@ -3666,12 +3580,12 @@
     <Compile Include="Views\Student\Create\StudentGroupUc.ascx.designer.cs">
       <DependentUpon>StudentGroupUc.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Student\Batch\ListBatch.aspx.cs">
-      <DependentUpon>ListBatch.aspx</DependentUpon>
+    <Compile Include="Views\Student\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Student\Batch\ListBatch.aspx.designer.cs">
-      <DependentUpon>ListBatch.aspx</DependentUpon>
+    <Compile Include="Views\Student\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\StudentGroupAssignUC.ascx.cs">
       <DependentUpon>StudentGroupAssignUC.ascx</DependentUpon>
@@ -3873,15 +3787,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\CourseFileResource\" />
-    <Folder Include="Views\AcademicPlacement\All\" />
-    <Folder Include="Views\AcademicPlacement\SubjectClass\" />
-    <Folder Include="Views\AcademicPlacement\SubjectSubscription\" />
-    <Folder Include="Views\AcademicPlacement\TeacherClass\" />
     <Folder Include="Views\ActivityResource\Availability\" />
     <Folder Include="Views\All_Resusable_Codes\Paging\" />
+    <Folder Include="Views\Exam\Exam\Create\" />
     <Folder Include="Views\Student\StudentGroup\UserControls\" />
     <Folder Include="Views\Student\Student\" />
-    <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

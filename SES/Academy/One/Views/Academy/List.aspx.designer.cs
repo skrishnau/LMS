@@ -13,22 +13,22 @@ namespace One.Views.Academy {
     public partial class List {
         
         /// <summary>
-        /// Button1 control.
+        /// btnAutoUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnAutoUpdate;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// lnkAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink LinkButton1;
+        protected global::System.Web.UI.WebControls.HyperLink lnkAdd;
         
         /// <summary>
         /// pnlAcademicYearListing control.

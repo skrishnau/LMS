@@ -37,6 +37,8 @@ namespace One.ViewsSite.User
                             {
                                 NoticeBoardUc.SchoolId = school.Id;
                                 EventsUc.SchoolId = school.Id;
+                                OnlineUsersUc.UserId = user.Id;
+                                OnlineUsersUc.SchoolId = school.Id;
                                 //imgSchool.ImageUrl = "~/Content/Images/"
                                 lblSchoolName.Text = school.Name;
                                 SchoolId = user.SchoolId;

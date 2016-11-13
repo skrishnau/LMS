@@ -11,14 +11,17 @@ namespace Academic.DbEntities.AcacemicPlacements
     {
         public int Id { get; set; }
 
-        public int AcademicYearId { get; set; }
-        public int? SessionId { get; set; }
-        public int YearId { get; set; }
-        public int? SubYearId { get; set; }
 
+        public int AcademicYearId { get; set; }
         public virtual AcademicYear AcademicYear { get; set; }
+
+        public int? SessionId { get; set; }
         public virtual Session Session { get; set; }
+
+        public int YearId { get; set; }
         public virtual Structure.Year Year { get; set; }
+
+        public int? SubYearId { get; set; }
         public virtual Structure.SubYear SubYear { get; set; }
 
         public int? ProgramBatchId { get; set; }

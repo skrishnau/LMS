@@ -1,0 +1,59 @@
+﻿  //public List<int> AcademicYearList { get; set; }
+
+        //public bool ValidationEnabled
+        //{
+        //    get { return RequiredFieldValidator1.Enabled || RequiredFieldValidator3.Enabled; }
+        //    set
+        //    {
+        //        RequiredFieldValidator1.Enabled = value;
+        //        RequiredFieldValidator3.Enabled = value;
+        //    }
+        //}
+
+        //[Obsolete]
+        //public int AcademicYear
+        //{
+        //    get
+        //    {
+        //        return Convert.ToInt32(hidAcademicYear.Value);
+        //    }
+        //    set
+        //    {
+
+        //        List<Academic.DbEntities.AcademicYear> acaYears = DbHelper.ComboLoader.LoadAcademicYear(
+        //            ref cmbAcademicYear, Values.Session.GetSchool(Session), value);
+
+
+        //        int index = cmbAcademicYear.SelectedIndex;
+        //        if (index >= 0)
+        //        {
+        //            //var items = acaYears;//(List<Academic.DbEntities.AcademicYear>)Session["AcademicYears"];
+        //            dtEnd.MinDate = acaYears[index].StartDate;
+        //            dtEnd.MaxDate = acaYears[index].EndDate;
+
+        //            dtStart.MinDate = acaYears[index].StartDate;
+        //            dtStart.MaxDate = acaYears[index].EndDate;
+        //        }
+        //        //LoadSessionParametersAndDate();
+        //        //this.cmbAcademicYear.ClearSelection();
+        //        //var item = cmbAcademicYear.Items.FindByValue(value.ToString());
+        //        //var se = cmbAcademicYear.Items.IndexOf(item);
+        //        //this.cmbAcademicYear.SelectedIndex = se; ;
+        //        cmbAcademicYear.Enabled = false;
+        //        this.hidAcademicYear.Value = value.ToString();
+        //    }
+        //}
+
+		 private void LoadSessionParametersAndDate()
+        {
+            //dtEnd.CheckDateRangeMax = true;
+            //dtEnd.CheckDateRangeMin = true;
+            //dtEnd.MaxDateValidationMessage = "Can't be greater than Academic year end date.";
+            //dtEnd.MinDateValiationMessage = "Can't be less than Academic year start date.";
+
+            //dtStart.CheckDateRangeMax = true;
+            //dtStart.CheckDateRangeMin = true;
+            //dtStart.MaxDateValidationMessage = "Can't be greater than Academic year end date.";
+            //dtStart.MinDateValiationMessage = "Can't be less than Academic year start date.";
+
+        }

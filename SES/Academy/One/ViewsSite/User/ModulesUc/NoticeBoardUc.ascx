@@ -19,6 +19,7 @@
                     <ItemTemplate>
                         <div style="border-bottom: 1px solid lightgray; vertical-align: top;">
                             <strong>
+                                ●
                                 <asp:HyperLink ID="HeadiingLabel" runat="server" Font-Underline="False"
                                     NavigateUrl='<%# "~/Views/NoticeBoard/NoticeDetail.aspx?nId="+Eval("Id") %>'
                                     Text='<%# Eval("Title")  %>'>

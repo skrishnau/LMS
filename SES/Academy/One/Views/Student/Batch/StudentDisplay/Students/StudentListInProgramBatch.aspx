@@ -25,23 +25,26 @@
 
 
     <div style="padding: 5px; margin: 0 5px 5px 5px;">
-        <div style="margin-bottom: 20px; font-weight: 700;">
-            <span style="font-size: 1.5em; text-align: center; display: block;">
-                <asp:Label ID="lblProgramBatchName" runat="server" Text=""></asp:Label>
-            </span>
-            <hr />
+        <h3 class="heading-of-create-edit">
+            <asp:Label ID="lblProgramBatchName" runat="server" Text=""></asp:Label>
+        </h3>
+        <hr />
+        <br />
+        <div class="data-entry-section-body">
+
+            <div>
+                Currently in:
+               <strong>
+                   <asp:Label ID="lblCurrentlyIn" runat="server" Text="N/A"></asp:Label></strong>
+            </div>
+            <br />
         </div>
 
-        <div style="margin: 0 5px 20px 5px; padding: 0 5px 5px 20px;">
-            Currently in: N/A
-                <br />
-        </div>
-
-        <div style="margin-top: 5px;">
+        <div class="data-entry-section-body">
             <strong>Student List</strong>
             <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>--%>
-                    <span style="float: right; margin: 0 20px 0; position: relative; right: 0; font-weight: 400;">Add Method
+            <span style="float: right; margin: 0 20px 0; position: relative; right: 0; font-weight: 400;">Add Method
                         <asp:DropDownList ID="ddlAddStudent" Width="130px" runat="server"
                             OnSelectedIndexChanged="ddlAddStudent_SelectedIndexChanged" AutoPostBack="True">
                             <Items>
@@ -51,35 +54,35 @@
                                 <asp:ListItem Text="Import From File" Value="2"></asp:ListItem>
                             </Items>
                         </asp:DropDownList>
-                    </span>
-               <%-- </ContentTemplate>
+            </span>
+            <%-- </ContentTemplate>
             </asp:UpdatePanel>--%>
             <hr />
             <div>
                 <%--<uc1:test runat="server" ID="test1" />--%>
                 <div>
-                   <%-- <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <%-- <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>--%>
-                            <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
-                                <asp:View ID="View0" runat="server">
-                                </asp:View>
-                                <asp:View ID="View1" runat="server">
-                                    <%--<uc1:StudentCreateUc runat="server" ID="StudentCreateUc" />--%>
-                                    <div style="text-align: center;">
-                                        <%--<uc1:CustomDialog runat="server" ID="CustomDialog" />--%>
-                                        <uc1:StudentCreateUc runat="server" ID="StudentCreateUc1" />
-                                        <%--<asp:FileUpload ID="FileUpload3" runat="server" />--%>
-                                        <%--<uc2:StudentCreateUc runat="server" ID="StudentCreateUc1" />--%>
-                                    </div>
-                                </asp:View>
-                                <asp:View ID="View2" runat="server">
-                                    <%--<uc1:StudentImportFromSystem runat="server" ID="StudentImportFromSystem" />--%>
-                                </asp:View>
-                                <asp:View ID="View3" runat="server">
-                                    <%--<uc1:StudentImportFrommFile runat="server" ID="StudentImportFrommFile" />--%>
-                                </asp:View>
-                            </asp:MultiView>
-                        <%--</ContentTemplate>
+                    <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
+                        <asp:View ID="View0" runat="server">
+                        </asp:View>
+                        <asp:View ID="View1" runat="server">
+                            <%--<uc1:StudentCreateUc runat="server" ID="StudentCreateUc" />--%>
+                            <div style="text-align: center;">
+                                <%--<uc1:CustomDialog runat="server" ID="CustomDialog" />--%>
+                                <uc1:StudentCreateUc runat="server" ID="StudentCreateUc1" />
+                                <%--<asp:FileUpload ID="FileUpload3" runat="server" />--%>
+                                <%--<uc2:StudentCreateUc runat="server" ID="StudentCreateUc1" />--%>
+                            </div>
+                        </asp:View>
+                        <asp:View ID="View2" runat="server">
+                            <%--<uc1:StudentImportFromSystem runat="server" ID="StudentImportFromSystem" />--%>
+                        </asp:View>
+                        <asp:View ID="View3" runat="server">
+                            <%--<uc1:StudentImportFrommFile runat="server" ID="StudentImportFrommFile" />--%>
+                        </asp:View>
+                    </asp:MultiView>
+                    <%--</ContentTemplate>
                     </asp:UpdatePanel>--%>
                 </div>
                 <br />

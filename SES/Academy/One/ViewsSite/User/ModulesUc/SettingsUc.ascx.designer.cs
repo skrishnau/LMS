@@ -67,6 +67,15 @@ namespace One.ViewsSite.User.ModulesUc {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
         
         /// <summary>
+        /// HyperLink8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink8;
+        
+        /// <summary>
         /// HyperLink6 control.
         /// </summary>
         /// <remarks>
@@ -83,15 +92,6 @@ namespace One.ViewsSite.User.ModulesUc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink9;
-        
-        /// <summary>
-        /// HyperLink8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink8;
         
         /// <summary>
         /// hidUserId control.

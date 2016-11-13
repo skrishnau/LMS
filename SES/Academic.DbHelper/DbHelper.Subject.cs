@@ -130,42 +130,45 @@ namespace Academic.DbHelper
             {
                 try
                 {
-                    var s = Context.Subject.Find(subject.Id);
-                    if (s == null)
+                    var ent = Context.Subject.Find(subject.Id);
+                    if (ent == null)
                     {
                         var sub = Context.Subject.Add(subject);
                         Context.SaveChanges();
-                        if (sub != null && subjectGroupId > 0)
-                        {
-                            Context.SubjectGroupSubject.Add(new SubjectGroupSubject()
-                            {
-                                AssignedDate = DateTime.Now
-                                ,
-                                SubjectGroupId = subjectGroupId
-                                ,
-                                SubjectId = sub.Id
-                            });
-                            Context.SaveChanges();
-                        }
+                        //if (sub != null && subjectGroupId > 0)
+                        //{
+                        //    Context.SubjectGroupSubject.Add(new SubjectGroupSubject()
+                        //    {
+                        //        AssignedDate = DateTime.Now
+                        //        ,
+                        //        SubjectGroupId = subjectGroupId
+                        //        ,
+                        //        SubjectId = sub.Id
+                        //    });
+                        //    Context.SaveChanges();
+                        //}
                         return true;
                     }
                     //else
                     {
-                        s.Code = subject.Code;
+                        ent.Code = subject.Code;
+                        ent.Void = subject.Void;
+                        ent.Credit = subject.Credit;
+                        ent.FullName = subject.FullName;
+                        ent.ShortName = subject.ShortName;
+                        ent.Summary = subject.Summary;
+                        //ent.
+                        //s.FullNames
                         //s.CompletionHours = subject.CompletionHours;
-                        //s.Credit = subject.Credit;
                         //s.FullMarks = subject.FullMarks;
                         //s.HasLab = subject.HasLab;
                         //s.HasProject = subject.HasProject;
                         //s.HasTheory = subject.HasTheory;
                         //s.HasTutorial = subject.HasTutorial;
                         //s.IsActive = subject.IsActive;
-                        s.Void = subject.Void;
                         //s.IsElective = subject.IsElective;
                         //s.IsOutOfSyllabus = subject.IsOutOfSyllabus;
-                        s.SubjectCategoryId = subject.SubjectCategoryId;
                         //s.PassPercentage = subject.PassPercentage;
-                        //s.Name = subject.Name;
                         Context.SaveChanges();
 
                         return true;
@@ -177,68 +180,69 @@ namespace Academic.DbHelper
                     return false;
                 }
             }
-            public bool AddOrUpdateRegularSubject(DbEntities.Subjects.Subject subject, int yearId, int subYearId = 0)
-            {
-                try
-                {
-                    var s = Context.Subject.Find(subject.Id);
-                    if (s == null)
-                    {
-                        var sub = Context.Subject.Add(subject);
-                        Context.SaveChanges();
-                        if (sub != null)
-                        {
-                            var rsg = new RegularSubject()
-                            {
-                                AssignedDate = DateTime.Now
-                                ,
-                                YearId = yearId
-                                ,
-                                SubjectId = sub.Id
-                            };
-                            if (subYearId > 0)
-                            {
-                                rsg.SubYearId = subYearId;
-                            }
-                            Context.RegularSubjectsGrouping.Add(rsg);
-                            Context.SaveChanges();
-                        }
-                        return true;
-                    }
-                    //else
-                    {
-                        s.Code = subject.Code;
-                        //s.CompletionHours = subject.CompletionHours;
-                        //s.Credit = subject.Credit;
-                        //s.FullMarks = subject.FullMarks;
-                        //s.HasLab = subject.HasLab;
-                        //s.HasProject = subject.HasProject;
-                        //s.HasTheory = subject.HasTheory;
-                        //s.HasTutorial = subject.HasTutorial;
-                        //s.IsActive = subject.IsActive;
-                        s.Void = subject.Void;
-                        //s.IsElective = subject.IsElective;
-                        //s.IsOutOfSyllabus = subject.IsOutOfSyllabus;
-                        s.SubjectCategoryId = subject.SubjectCategoryId;
-                        //s.PassPercentage = subject.PassPercentage;
-                        //s.Name = subject.Name;
-                        Context.SaveChanges();
 
-                        return true;
-                    }
+            //public bool AddOrUpdateRegularSubject(DbEntities.Subjects.Subject subject, int yearId, int subYearId = 0)
+            //{
+            //    try
+            //    {
+            //        var s = Context.Subject.Find(subject.Id);
+            //        if (s == null)
+            //        {
+            //            var sub = Context.Subject.Add(subject);
+            //            Context.SaveChanges();
+            //            if (sub != null)
+            //            {
+            //                var rsg = new RegularSubject()
+            //                {
+            //                    AssignedDate = DateTime.Now
+            //                    ,
+            //                    YearId = yearId
+            //                    ,
+            //                    SubjectId = sub.Id
+            //                };
+            //                if (subYearId > 0)
+            //                {
+            //                    rsg.SubYearId = subYearId;
+            //                }
+            //                Context.RegularSubjectsGrouping.Add(rsg);
+            //                Context.SaveChanges();
+            //            }
+            //            return true;
+            //        }
+            //        //else
+            //        {
+            //            s.Code = subject.Code;
+            //            //s.CompletionHours = subject.CompletionHours;
+            //            //s.Credit = subject.Credit;
+            //            //s.FullMarks = subject.FullMarks;
+            //            //s.HasLab = subject.HasLab;
+            //            //s.HasProject = subject.HasProject;
+            //            //s.HasTheory = subject.HasTheory;
+            //            //s.HasTutorial = subject.HasTutorial;
+            //            //s.IsActive = subject.IsActive;
+            //            s.Void = subject.Void;
+            //            //s.IsElective = subject.IsElective;
+            //            //s.IsOutOfSyllabus = subject.IsOutOfSyllabus;
+            //            s.SubjectCategoryId = subject.SubjectCategoryId;
+            //            //s.PassPercentage = subject.PassPercentage;
+            //            //s.Name = subject.Name;
+            //            Context.SaveChanges();
 
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
+            //            return true;
+            //        }
+
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return false;
+            //    }
+            //}
 
 
             public List<DbEntities.Subjects.Subject> GetSubjectList(int schoolId)
             {
                 return Context.Subject.Where(x => x.SubjectCategory.SchoolId == schoolId
-                    && !(x.Void??false)).ToList();
+                    && !(x.Void ?? false)).ToList();
 
             }
 
@@ -252,179 +256,179 @@ namespace Academic.DbHelper
 
             #region SubjectGroup
 
-            public SubjectGroup AddOrUpdateSubjectGroup(SubjectGroup subGrp)
-            {
-                try
-                {
-                    var entity = Context.SubjectGroup.Find(subGrp.Id);
-                    if (entity == null)
-                    {
-                        var saved = Context.SubjectGroup.Add(subGrp);
-                        Context.SaveChanges();
-                        return saved;
-                    }
-                    entity.YearId = subGrp.SubYearId;
-                    entity.SubYearId = subGrp.SubYearId;
-                    entity.ProgramId = subGrp.ProgramId;
-                    entity.Name = subGrp.Name;
-                    entity.Void = subGrp.Void;
-                    entity.Desctiption = subGrp.Desctiption;
-                    Context.SaveChanges();
-                    return entity;
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-            public List<DbEntities.Subjects.SubjectGroup> GetSubjectGroups(int programId)
-            {
-                //var subgrps = from g in Context.SubjectGroup
-                //    join sgs in Context.SubjectGroupSubject on g.Id equals sgs.SubjectGroupId
-                //    join s in Context.Subject on sgs.SubjectId equals s.Id
-                //    where (g.ProgramId ?? 0) == programId && !(g.Void ?? false)
-                //          && !(sgs.Void ?? false) && !(s.Void ?? false)
-                //    select g;
+            //public SubjectGroup AddOrUpdateSubjectGroup(SubjectGroup subGrp)
+            //{
+            //    try
+            //    {
+            //        var entity = Context.SubjectGroup.Find(subGrp.Id);
+            //        if (entity == null)
+            //        {
+            //            var saved = Context.SubjectGroup.Add(subGrp);
+            //            Context.SaveChanges();
+            //            return saved;
+            //        }
+            //        entity.YearId = subGrp.SubYearId;
+            //        entity.SubYearId = subGrp.SubYearId;
+            //        entity.ProgramId = subGrp.ProgramId;
+            //        entity.Name = subGrp.Name;
+            //        entity.Void = subGrp.Void;
+            //        entity.Desctiption = subGrp.Desctiption;
+            //        Context.SaveChanges();
+            //        return entity;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return null;
+            //    }
+            //}
+            //public List<DbEntities.Subjects.SubjectGroup> GetSubjectGroups(int programId)
+            //{
+            //    //var subgrps = from g in Context.SubjectGroup
+            //    //    join sgs in Context.SubjectGroupSubject on g.Id equals sgs.SubjectGroupId
+            //    //    join s in Context.Subject on sgs.SubjectId equals s.Id
+            //    //    where (g.ProgramId ?? 0) == programId && !(g.Void ?? false)
+            //    //          && !(sgs.Void ?? false) && !(s.Void ?? false)
+            //    //    select g;
 
-                try
-                {
-                    var grps = Context.SubjectGroup.Include(i => i.Year).Include(i => i.SubYear)
-                   .Include(i => i.SubjectGroupSubjects)
-                   .Where(x => (x.ProgramId ?? 0) == programId && !(x.Void ?? false))
-                   .OrderBy(x => (x.Year == null) ? x.Id : x.Year.Position).ThenBy(u => u.Name)
-                   .ThenBy(y => (y.SubYear == null) ? y.Id : y.SubYear.Position).ThenBy(u => u.Name)
-                   .ToList();
-                    return grps;
-                }
-                catch (Exception)
-                {
-                    return new List<SubjectGroup>();
-                }
-            }
-
-
-            public List<DbEntities.Subjects.SubjectGroup> GetRegularSubjectGroups(int programId)
-            {
-                try
-                {
-                    var program = Context.Program.Find(programId);
-                    if (program != null)
-                    {
-                        var years = Context.Year.Where(x => x.ProgramId == programId && !(x.Void ?? false))
-                            .OrderBy(x => x.Position).ThenBy(u => u.Name);
-                        //var firstTimeValueFound = false;
-                        //var subyearExist = false;
-                        var lst = new List<SubjectGroup>();
-                        var min = years.Min(x => x.SubYears.Count);
-                        var max = years.Max(x => x.SubYears.Count);
-                        if (min != max)
-                        {
-
-                        }
-                        else
-                        {
-                            if (max == 0)
-                            {
-                                //no subyears 
-                                foreach (var year in years)
-                                {
-                                    var subGrp = new SubjectGroup()
-                                    {
-                                        //CreatedDate = DateTime.Now
-                                        //,
-                                        Desctiption = "Program: " + program.Name + ", Year: " + year.Name
-                                        ,
-                                        Name = year.Name
-                                        ,
-                                        ProgramId = program.Id
-                                        ,
-                                        YearId = year.Id
-                                        ,
-                                    };
-                                    //var subjects = Context.RegularSubjectsGrouping.Where(
-                                    //    x => x.YearId == year.Id && x.SubYearId == null).ToList();
-                                    //subjects.ForEach(x =>
-                                    //{
-                                    //    subGrp.SubjectGroupSubjects
-                                    //});
-                                    lst.Add(subGrp);
-                                }
-                            }
-                            else
-                            {
-                                //has subyears
-                                foreach (var year in years)
-                                {
-                                    foreach (var subyear in year.SubYears.Where(x => !(x.Void ?? false)).OrderBy(x => x.Position).ThenBy(u => u.Name))
-                                    {
-                                        var subGrp = new SubjectGroup()
-                                        {
-                                            CreatedDate = DateTime.Now
-                                            ,
-                                            Desctiption = "Program: " + program.Name + ", Year: " + year.Name + ", Sem: " + subyear.Name
-                                            ,
-                                            Name = year.Name + " / " + subyear.Name
-                                            ,
-                                            ProgramId = program.Id
-                                            ,
-                                            YearId = year.Id
-                                            ,
-                                            SubYearId = subyear.Id
-                                        };
-                                        lst.Add(subGrp);
-                                    }
-                                }
-                            }
-
-                        }
-                        return lst;
-
-                    }
-                    return new List<SubjectGroup>();
-                }
-                catch (Exception)
-                {
-                    return new List<SubjectGroup>();
-                }
-            }
-
-            public int GetSubjectsCountInAGroup(int subjectGroupId)
-            {
-                try
-                {
-                    var s =
-                   Context.SubjectGroup.Find(subjectGroupId)
-                       .SubjectGroupSubjects.Count(x => !(x.Void ?? false) && !(x.Subject.Void ?? false));
-                    return s;
-                }
-                catch (Exception)
-                {
-                    return 0;
-                }
-            }
+            //    try
+            //    {
+            //        var grps = Context.SubjectGroup.Include(i => i.Year).Include(i => i.SubYear)
+            //       .Include(i => i.SubjectGroupSubjects)
+            //       .Where(x => (x.ProgramId ?? 0) == programId && !(x.Void ?? false))
+            //       .OrderBy(x => (x.Year == null) ? x.Id : x.Year.Position).ThenBy(u => u.Name)
+            //       .ThenBy(y => (y.SubYear == null) ? y.Id : y.SubYear.Position).ThenBy(u => u.Name)
+            //       .ToList();
+            //        return grps;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return new List<SubjectGroup>();
+            //    }
+            //}
 
 
-            public List<DbEntities.Subjects.Subject> GetSubjectsOfAGroup(int subjectGroupId)
-            {
-                try
-                {
-                    var g =
-                    Context.SubjectGroup.Find(subjectGroupId)
-                        .SubjectGroupSubjects.Where(x => !(x.Void ?? false) && !(x.Subject.Void ?? false))
-                        .Select(x => x.Subject).ToList();
-                    return g;
-                }
-                catch { return new List<DbEntities.Subjects.Subject>(); }
-            }
+            //public List<DbEntities.Subjects.SubjectGroup> GetRegularSubjectGroups(int programId)
+            //{
+            //    try
+            //    {
+            //        var program = Context.Program.Find(programId);
+            //        if (program != null)
+            //        {
+            //            var years = Context.Year.Where(x => x.ProgramId == programId && !(x.Void ?? false))
+            //                .OrderBy(x => x.Position).ThenBy(u => u.Name);
+            //            //var firstTimeValueFound = false;
+            //            //var subyearExist = false;
+            //            var lst = new List<SubjectGroup>();
+            //            var min = years.Min(x => x.SubYears.Count);
+            //            var max = years.Max(x => x.SubYears.Count);
+            //            if (min != max)
+            //            {
+
+            //            }
+            //            else
+            //            {
+            //                if (max == 0)
+            //                {
+            //                    //no subyears 
+            //                    foreach (var year in years)
+            //                    {
+            //                        var subGrp = new SubjectGroup()
+            //                        {
+            //                            //CreatedDate = DateTime.Now
+            //                            //,
+            //                            Desctiption = "Program: " + program.Name + ", Year: " + year.Name
+            //                            ,
+            //                            Name = year.Name
+            //                            ,
+            //                            ProgramId = program.Id
+            //                            ,
+            //                            YearId = year.Id
+            //                            ,
+            //                        };
+            //                        //var subjects = Context.RegularSubjectsGrouping.Where(
+            //                        //    x => x.YearId == year.Id && x.SubYearId == null).ToList();
+            //                        //subjects.ForEach(x =>
+            //                        //{
+            //                        //    subGrp.SubjectGroupSubjects
+            //                        //});
+            //                        lst.Add(subGrp);
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    //has subyears
+            //                    foreach (var year in years)
+            //                    {
+            //                        foreach (var subyear in year.SubYears.Where(x => !(x.Void ?? false)).OrderBy(x => x.Position).ThenBy(u => u.Name))
+            //                        {
+            //                            var subGrp = new SubjectGroup()
+            //                            {
+            //                                CreatedDate = DateTime.Now
+            //                                ,
+            //                                Desctiption = "Program: " + program.Name + ", Year: " + year.Name + ", Sem: " + subyear.Name
+            //                                ,
+            //                                Name = year.Name + " / " + subyear.Name
+            //                                ,
+            //                                ProgramId = program.Id
+            //                                ,
+            //                                YearId = year.Id
+            //                                ,
+            //                                SubYearId = subyear.Id
+            //                            };
+            //                            lst.Add(subGrp);
+            //                        }
+            //                    }
+            //                }
+
+            //            }
+            //            return lst;
+
+            //        }
+            //        return new List<SubjectGroup>();
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return new List<SubjectGroup>();
+            //    }
+            //}
+
+            //public int GetSubjectsCountInAGroup(int subjectGroupId)
+            //{
+            //    try
+            //    {
+            //        var s =
+            //       Context.SubjectGroup.Find(subjectGroupId)
+            //           .SubjectGroupSubjects.Count(x => !(x.Void ?? false) && !(x.Subject.Void ?? false));
+            //        return s;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return 0;
+            //    }
+            //}
+
+
+            //public List<DbEntities.Subjects.Subject> GetSubjectsOfAGroup(int subjectGroupId)
+            //{
+            //    try
+            //    {
+            //        var g =
+            //        Context.SubjectGroup.Find(subjectGroupId)
+            //            .SubjectGroupSubjects.Where(x => !(x.Void ?? false) && !(x.Subject.Void ?? false))
+            //            .Select(x => x.Subject).ToList();
+            //        return g;
+            //    }
+            //    catch { return new List<DbEntities.Subjects.Subject>(); }
+            //}
             #endregion
 
-            public List<DbEntities.Subjects.Subject> GetRegularSubjectList(int yearId, int subYearId = 0)
-            {
-                var grps = Context.RegularSubjectsGrouping.Where(x => x.YearId == yearId && (x.SubYearId ?? 0) == subYearId
-                    && !(x.Void ?? false));
-                var subs = grps.Select(x => x.Subject).Include(i => i.SubjectSections).Where(x => !(x.Void ?? false)).ToList();
-                return subs;
-            }
+            //public List<DbEntities.Subjects.Subject> GetRegularSubjectList(int yearId, int subYearId = 0)
+            //{
+            //    var grps = Context.RegularSubjectsGrouping.Where(x => x.YearId == yearId && (x.SubYearId ?? 0) == subYearId
+            //        && !(x.Void ?? false));
+            //    var subs = grps.Select(x => x.Subject).Include(i => i.SubjectSections).Where(x => !(x.Void ?? false)).ToList();
+            //    return subs;
+            //}
 
             //uncomment this
 
@@ -528,9 +532,9 @@ namespace Academic.DbHelper
             }
 
 
-           
 
-           
+
+
 
             /// <summary>
             /// It is the union of GetRegularSubjectsOfUser() and GetExtraSubjectsOfUser()
@@ -658,77 +662,77 @@ namespace Academic.DbHelper
                 if (user != null)
                 {
                     var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
-                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) )
+                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false))
                         .ToList();
                     return subSession;
                 }
                 return new List<DbEntities.Class.SubjectClass>();
             }
 
-           /* //used
-            public
-            List<DbEntities.Subjects.Subject> ListEarlierCoursesOfUser(int userId)
-            {
-                var user = Context.Users.Find(userId);
-                if (user != null)
-                {
-                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
-                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
-                        .ToList();//.Select(x=>x.Subject).ToList();
+            /* //used
+             public
+             List<DbEntities.Subjects.Subject> ListEarlierCoursesOfUser(int userId)
+             {
+                 var user = Context.Users.Find(userId);
+                 if (user != null)
+                 {
+                     var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                         .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
+                         .ToList();//.Select(x=>x.Subject).ToList();
 
-                    //var complete = subSession.Where(x => ).ToList();
+                     //var complete = subSession.Where(x => ).ToList();
 
-                    var regularcomplete = subSession.Where(x => x.IsRegular)
-                       .Select(x => x.SubjectStructure.Subject).ToList();
+                     var regularcomplete = subSession.Where(x => x.IsRegular)
+                        .Select(x => x.SubjectStructure.Subject).ToList();
 
-                    var notregularcomplete = subSession.Where(x => !x.IsRegular).Select(x => x.Subject)
-                        .ToList();
+                     var notregularcomplete = subSession.Where(x => !x.IsRegular).Select(x => x.Subject)
+                         .ToList();
 
-                    regularcomplete.AddRange(notregularcomplete);
+                     regularcomplete.AddRange(notregularcomplete);
 
-                    return regularcomplete;
+                     return regularcomplete;
 
-                }
-                return new List<DbEntities.Subjects.Subject>();
-            }
-            */
-         
+                 }
+                 return new List<DbEntities.Subjects.Subject>();
+             }
+             */
+
             //used /// remain to edit more
 
-          /*  public void ListCourses1(int userId)
-            {
-                var user = Context.Users.Find(userId);
-                if (user != null)
-                {
-                    var subjectClasses0 = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false));
-                    ////.Where(x=>!x.SubjectClass.IsRegular)
-                    //.Select(x => x.SubjectClass)
-                    ////.Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
-                    //.ToList(); //.Select(x=>x.Subject).ToList();
+            /*  public void ListCourses1(int userId)
+              {
+                  var user = Context.Users.Find(userId);
+                  if (user != null)
+                  {
+                      var subjectClasses0 = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false));
+                      ////.Where(x=>!x.SubjectClass.IsRegular)
+                      //.Select(x => x.SubjectClass)
+                      ////.Where(x => !(x.Void ?? false) && (x.SessionComplete ?? false))
+                      //.ToList(); //.Select(x=>x.Subject).ToList();
 
-                    var alreadyEnteredUserClass = subjectClasses0.Select(x => x.Id);
-
-
-                    var std = Context.Student.FirstOrDefault(x => x.UserId == userId);
-                    if (std != null)
-                    {
-                        var subjectClasses = from sb in Context.StudentBatch
-                                             join r in Context.RunningClass on sb.ProgramBatchId equals r.ProgramBatchId
-                                             join sc in Context.SubjectClass on r.Id equals sc.RunningClassId
-                                             where !(r.Void ?? false) && !(sb.Void ?? false) && !(sc.Void ?? false) &&
-                                                   sc.IsRegular && !(sc.SessionComplete ?? false)
-                                             select sc;
-                        var userClasses = Context.UserClass.Where(x => x.UserId == userId);
-                    }
-                    else
-                    {
+                      var alreadyEnteredUserClass = subjectClasses0.Select(x => x.Id);
 
 
-                    }
+                      var std = Context.Student.FirstOrDefault(x => x.UserId == userId);
+                      if (std != null)
+                      {
+                          var subjectClasses = from sb in Context.StudentBatch
+                                               join r in Context.RunningClass on sb.ProgramBatchId equals r.ProgramBatchId
+                                               join sc in Context.SubjectClass on r.Id equals sc.RunningClassId
+                                               where !(r.Void ?? false) && !(sb.Void ?? false) && !(sc.Void ?? false) &&
+                                                     sc.IsRegular && !(sc.SessionComplete ?? false)
+                                               select sc;
+                          var userClasses = Context.UserClass.Where(x => x.UserId == userId);
+                      }
+                      else
+                      {
 
-                }
 
-            }*/
+                      }
+
+                  }
+
+              }*/
 
 
             public List<Academic.DbEntities.Subjects.Subject>[] ListCurrentAndEarlierCoursesOfUser(int userId)
@@ -846,7 +850,7 @@ namespace Academic.DbHelper
                     && !(x.Void ?? false)).ToList();
             }
 
-            public bool IsUserEnrolledToCourse(int userId,int SubjectId)
+            public bool IsUserEnrolledToCourse(int userId, int SubjectId)
             {
                 //var user = Context.Users.Find(userId);
                 //if (user != null)

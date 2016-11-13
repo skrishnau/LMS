@@ -1,5 +1,5 @@
 ﻿using Academic.DbEntities;
-using Academic.DbEntities.SystemModules;
+//using Academic.DbEntities.SystemModules;
 using Academic.DbEntities.User;
 using System;
 using System.Collections.Generic;
@@ -65,15 +65,15 @@ namespace Academic.Database
         //--------Academic Placement--------------//
         public DbSet<Academic.DbEntities.AcacemicPlacements.RunningClass> RunningClass { get; set; }
 
-        public DbSet<Academic.DbEntities.AcacemicPlacements.StudentClass> StudentClass { get; set; }
+        //public DbSet<Academic.DbEntities.AcacemicPlacements.StudentClass> StudentClass { get; set; }
 
         //uncomment this
         //public DbSet<Academic.DbEntities.AcacemicPlacements.SubjectClass> SubjectClass { get; set; }
 
 
-        public DbSet<Academic.DbEntities.AcacemicPlacements.SubjectSubscription> SubjectSubscription { get; set; }
-        public DbSet<Academic.DbEntities.AcacemicPlacements.StudentsOpinionAboutSubject> StudentsOpinionAboutSubject { get; set; }
-        public DbSet<Academic.DbEntities.AcacemicPlacements.TeacherClass> TeacherClass { get; set; }
+        //public DbSet<Academic.DbEntities.AcacemicPlacements.SubjectSubscription> SubjectSubscription { get; set; }
+        //public DbSet<Academic.DbEntities.AcacemicPlacements.StudentsOpinionAboutSubject> StudentsOpinionAboutSubject { get; set; }
+        //public DbSet<Academic.DbEntities.AcacemicPlacements.TeacherClass> TeacherClass { get; set; }
         //-----------------END----------------------//
 
         //------------Restriction ------------------------//
@@ -122,26 +122,14 @@ namespace Academic.Database
         public DbSet<DbEntities.ActivityAndResource.LabelResource> LabelResource { get; set; }
         //$$$$$$$$$$$$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$$$$$$$$$$$$$$$$
 
-
-        //public DbSet<DbEntities.Marks.AssignmentMarks> AssignmentMarks { get; set; }
-        //public DbSet<DbEntities.Assignments.AssignedTask> AssignedTask { get; set; }
-        ////public DbSet<DbEntities.Assignments.Assignment> Assignment { get; set; }
-        //public DbSet<DbEntities.Assignments.AssignmentAnswer> AssignmentAnswer { get; set; }
-        //public DbSet<DbEntities.Assignments.AssignmentAnswerFile> AssignmentAnswerFile { get; set; }
-        ////public DbSet<DbEntities.Assignments.Task> Task { get; set; }
-
-
-        //------------------------------------------//
-        //public DbSet<DbEntities.Activities.Study> Study { get; set; }
-        //public DbSet<DbEntities.Activities.Teach> Teach { get; set; }
         //public DbSet<DbEntities.Activities.ClassInAcademicYear> ActiveClassesInAcademicYear { get; set; }
 
 
+        //Uncomment later.. for use not
 
-
-        public DbSet<DbEntities.Attendances.Attendance> Attendance { get; set; }
-        public DbSet<DbEntities.Attendances.AttendanceDay> AttendanceDay { get; set; }
-        public DbSet<DbEntities.Attendances.PresenceStatus> PresenceStatus { get; set; }
+        //public DbSet<DbEntities.Attendances.Attendance> Attendance { get; set; }
+        //public DbSet<DbEntities.Attendances.AttendanceDay> AttendanceDay { get; set; }
+        //public DbSet<DbEntities.Attendances.PresenceStatus> PresenceStatus { get; set; }
 
         public DbSet<DbEntities.Exams.Exam> Exam { get; set; }
         public DbSet<DbEntities.Exams.ExamType> ExamType { get; set; }
@@ -189,15 +177,15 @@ namespace Academic.Database
         public DbSet<DbEntities.Structure.Year> Year { get; set; }
 
 
-        public DbSet<DbEntities.Students.Admission> Admission { get; set; }
-        public DbSet<DbEntities.Students.Fee> Fee { get; set; }
-        public DbSet<DbEntities.Students.Scholarship> Scholarship { get; set; }
+        //public DbSet<DbEntities.Students.Admission> Admission { get; set; }
+        //public DbSet<DbEntities.Students.Fee> Fee { get; set; }
+        //public DbSet<DbEntities.Students.Scholarship> Scholarship { get; set; }
         public DbSet<DbEntities.Students.Student> Student { get; set; }
         public DbSet<DbEntities.Students.StudentGroup> StudentGroup { get; set; }
-        public DbSet<DbEntities.Students.StudentNotification> StudentNotification { get; set; }
-        public DbSet<DbEntities.Students.StudentPreviousStudies> StudentPreviousStudies { get; set; }
-        public DbSet<DbEntities.Students.StudentTransfer> StudentTransfer { get; set; }
-        public DbSet<DbEntities.Students.StudentTransferType> TransferType { get; set; }
+        //public DbSet<DbEntities.Students.StudentNotification> StudentNotification { get; set; }
+        //public DbSet<DbEntities.Students.StudentPreviousStudies> StudentPreviousStudies { get; set; }
+        //public DbSet<DbEntities.Students.StudentTransfer> StudentTransfer { get; set; }
+        //public DbSet<DbEntities.Students.StudentTransferType> TransferType { get; set; }
         public DbSet<DbEntities.Students.StudentGroupStudent> StudentGroupStudent { get; set; }
 
         /*
@@ -214,10 +202,10 @@ namespace Academic.Database
         public DbSet<DbEntities.Subjects.Subject> Subject { get; set; }
         public DbSet<DbEntities.Subjects.SubjectFile> SubjectFile { get; set; }
 
-        public DbSet<DbEntities.Subjects.SubjectGroup> SubjectGroup { get; set; }
+        //public DbSet<DbEntities.Subjects.SubjectGroup> SubjectGroup { get; set; }
         public DbSet<DbEntities.Subjects.SubjectCategory> SubjectCategory { get; set; }
-        public DbSet<DbEntities.Subjects.SubjectGroupSubject> SubjectGroupSubject { get; set; }
-        public DbSet<DbEntities.Subjects.RegularSubject> RegularSubjectsGrouping { get; set; }
+        //public DbSet<DbEntities.Subjects.SubjectGroupSubject> SubjectGroupSubject { get; set; }
+        //public DbSet<DbEntities.Subjects.RegularSubject> RegularSubjectsGrouping { get; set; }
         public DbSet<DbEntities.Subjects.SubjectStructure> SubjectStructure { get; set; }
         public DbSet<DbEntities.Subjects.SubjectUserGroup> SubjectUserGroup { get; set; }
 
@@ -227,7 +215,7 @@ namespace Academic.Database
 
 
 
-        public DbSet<DbEntities.Students.StudentSubject> StudentSubject { get; set; }
+        //public DbSet<DbEntities.Students.StudentSubject> StudentSubject { get; set; }
 
 
         public DbSet<DbEntities.Subjects.SubjectSection> SubjectSection { get; set; }
@@ -236,15 +224,15 @@ namespace Academic.Database
 
         //public DbSet<DbEntities.Subjects.Detail.SubjectActivityAndResource> SubjectActivityAndResource { get; set; }
 
-
-
-
-        public DbSet<DbEntities.Teachers.Appointment> Appointment { get; set; }
         public DbSet<DbEntities.Teachers.Teacher> Teacher { get; set; }
-        public DbSet<DbEntities.Teachers.TeacherExperience> TeacherExperience { get; set; }
-        public DbSet<DbEntities.Teachers.TeacherNotification> TeacherNotification { get; set; }
         public DbSet<DbEntities.Teachers.TeacherQualification> TeacherQualification { get; set; }
-        public DbSet<DbEntities.Teachers.TeacherJobTitle> TeacherJobTitles { get; set; }
+
+
+
+        //public DbSet<DbEntities.Teachers.Appointment> Appointment { get; set; }
+        //public DbSet<DbEntities.Teachers.TeacherExperience> TeacherExperience { get; set; }
+        //public DbSet<DbEntities.Teachers.TeacherNotification> TeacherNotification { get; set; }
+        //public DbSet<DbEntities.Teachers.TeacherJobTitle> TeacherJobTitles { get; set; }
 
 
         //public DbSet<DbEntities.Office.Institution> Institution { get; set; }
@@ -259,31 +247,32 @@ namespace Academic.Database
 
         public DbSet<Users> Users { get; set; }
         public DbSet<Gender> Gender { get; set; }
-        public DbSet<Relation> Relation { get; set; }
-        public DbSet<RelationShip> RelationShip { get; set; }
+        //public DbSet<Relation> Relation { get; set; }
+        //public DbSet<RelationShip> RelationShip { get; set; }
         public DbSet<Role> Role { get; set; }
-        public DbSet<UserTransfer> UserTransfer { get; set; }
+        //public DbSet<UserTransfer> UserTransfer { get; set; }
 
         //public DbSet<UserAssociation> UserAssociation { get; set; }
 
-        public DbSet<UserType> UserType { get; set; }
+        //public DbSet<UserType> UserType { get; set; }
         public DbSet<UserRole> UserRole { get; set; }
         public DbSet<UserLastLogin> UserLastLogin { get; set; }
-        public DbSet<RoleCapability> RoleCapability { get; set; }
-        public DbSet<Capability> Capability { get; set; }
+
+        //public DbSet<RoleCapability> RoleCapability { get; set; }
+        //public DbSet<Capability> Capability { get; set; }
 
 
-        public DbSet<Division> Division { get; set; }
-        public DbSet<UserDivision> UsersDivision { get; set; }
+        //public DbSet<Division> Division { get; set; }
+        //public DbSet<UserDivision> UsersDivision { get; set; }
 
         //public DbSet<CreatedUser> CreatedUser { get; set; }
 
         public DbSet<Nation> Nation { get; set; }
 
 
-        public DbSet<ModuleAccessPermission> ModuleAccessPermission { get; set; }
-        public DbSet<ModuleAccess> ModuleAccess { get; set; }
-        public DbSet<Module> Module { get; set; }
+        //public DbSet<ModuleAccessPermission> ModuleAccessPermission { get; set; }
+        //public DbSet<ModuleAccess> ModuleAccess { get; set; }
+        //public DbSet<Module> Module { get; set; }
 
 
         public DbSet<UserImage> UserImage { get; set; }

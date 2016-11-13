@@ -13,6 +13,36 @@ namespace Academic.DbHelper
         {
             public static string UserImageDirectory = "~/Content/Images/UserImage/";
 
+            //public static Dictionary<string, string> StructureType = new Dictionary<string, string>()
+            //{
+            //    {Enums.StructureType.Level.ToString(),"lev"}
+            //    ,{Enums.StructureType.Faculty.ToString(),"fac"}
+            //    ,{Enums.StructureType.Program.ToString(),"pro"}
+            //    ,{Enums.StructureType.Year.ToString(),"yr"}
+            //    ,{Enums.StructureType.Subyear.ToString(),"syr"}
+            //};
+
+            public static class StructureType
+            {
+                public static string Level { get { return "lev"; }}
+                public static string Faculty { get { return "fac"; } }
+                public static string Program { get { return "pro"; } }
+                public static string Year { get { return "yr"; } }
+                public static string Subyear { get { return "syr"; } }
+            }
+
+
+
+            public static List<string> SchoolType = new List<string>()
+            {
+                "Graduate",
+                "Undergraduate",
+                "Higher secondary",
+                "Secondary"
+            };
+
+
+
             #region File Formats
 
             public static List<string> VidoFormatList = new List<string>()
@@ -166,7 +196,8 @@ namespace Academic.DbHelper
                 ,
                 TrueFalse = false,
                 CancelClicked = true
-                ,SaveSuccess = false
+                ,
+                SaveSuccess = false
             };
 
             public static MessageEventArgs SuccessDeleteMessageEventArgs = new MessageEventArgs()

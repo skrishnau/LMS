@@ -22,6 +22,33 @@ namespace One.Views.Course {
         protected global::System.Web.UI.WebControls.Literal lblHeading;
         
         /// <summary>
+        /// lnkView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkView;
+        
+        /// <summary>
+        /// lnkEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkEdit;
+        
+        /// <summary>
+        /// lnkDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkDelete;
+        
+        /// <summary>
         /// lblFullName control.
         /// </summary>
         /// <remarks>
@@ -47,15 +74,6 @@ namespace One.Views.Course {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lblCategory;
-        
-        /// <summary>
-        /// lblNoOfGlobalSections control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblNoOfGlobalSections;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -94,13 +112,13 @@ namespace One.Views.Course {
         protected global::System.Web.UI.WebControls.LinkButton lnkClassFilter;
         
         /// <summary>
-        /// imgFilter control.
+        /// lblFilterArrow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgFilter;
+        protected global::System.Web.UI.WebControls.Literal lblFilterArrow;
         
         /// <summary>
         /// pnlClassFilter control.

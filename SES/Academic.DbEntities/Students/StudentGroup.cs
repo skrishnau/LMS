@@ -38,7 +38,7 @@ namespace Academic.DbEntities.Students
         public virtual School School { get; set; }
 
         public virtual ICollection<StudentGroupStudent> StudentGroupStudents { get; set; }
-        public virtual ICollection<Activities.Study> Study { get; set; }
+        //public virtual ICollection<Activities.Study> Study { get; set; }
 
         public bool? IsFromBatch { get; set; }
         public int? ProgramBatchId { get; set; }

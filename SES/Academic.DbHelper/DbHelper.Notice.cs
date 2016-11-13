@@ -124,13 +124,13 @@ namespace Academic.DbHelper
                         n[i].Void = true;
                     }
                 }
-                var count = n.Count();
-                if (count <= 10) count = 0;
-                else if (count < 20) count = count % 10;
-                else count = count - 10;
-                //count = (count%10)*(count/10);
-                var s = n.Skip(count);
-
+                //var count = n.Count();
+                //if (count <= 10) count = 0;
+                //else if (count < 20) count = count % 10;
+                //else count = count - 10;
+                ////count = (count%10)*(count/10);
+                //var s = n.Skip(count);
+                var s = n.Take(10);
                 return s.ToList();
             }
 

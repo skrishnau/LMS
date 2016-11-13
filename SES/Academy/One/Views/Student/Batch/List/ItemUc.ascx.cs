@@ -11,7 +11,8 @@ namespace One.Views.Student.Batch.List
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+                lnkName.NavigateUrl = ("~/Views/Student/Batch/" + "?Id=" + BatchId);
         }
 
         public int BatchId
@@ -20,27 +21,29 @@ namespace One.Views.Student.Batch.List
             set { hidBatchId.Value = value.ToString(); }
         }
 
-        public void LoadData(int id, string name, string description,int noOfPrograms, DateTime? classCommenceDate)
+        public void LoadData(int id, string name, string description, int noOfPrograms, DateTime? classCommenceDate, bool edit)
         {
             BatchId = id;
-            lblName.Text = name;
+            lnkName.Text = name;
+            lnkEdit.Visible = edit;
+            if (edit)
+                lnkEdit.NavigateUrl = ("~/Views/Student/Batch/Create/BatchCreate.aspx" + "?Id=" + BatchId);
+
             //lblCurrentlyIn.Text = batch.
             //lblStartYear.Text = classCommenceDate==null?"":classCommenceDate.Value.ToShortDateString();
-
             //lblNumberOfPrograms.Text = noOfPrograms.ToString();
-            
         }
 
-        protected void lblName_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Views/Student/Batch/BatchDetail/Detail.aspx"+"?Id="+BatchId);
-        }
+        //protected void lblName_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("~/Views/Student/Batch/BatchDetail/Detail.aspx"+"?Id="+BatchId);
+        //}
 
-        protected void lnkEdit_Click(object sender, EventArgs e)
-        {
-            //Context.Items["BatchId"] = hidBatchId.Value;
+        //protected void lnkEdit_Click(object sender, EventArgs e)
+        //{
+        //    //Context.Items["BatchId"] = hidBatchId.Value;
 
-            Response.Redirect("~/Views/Student/Batch/Create/BatchCreate.aspx" + "?Id=" + BatchId);
-        }
+        //    Response.Redirect("~/Views/Student/Batch/Create/BatchCreate.aspx" + "?Id=" + BatchId);
+        //}
     }
 }

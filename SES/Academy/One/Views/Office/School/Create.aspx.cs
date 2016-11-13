@@ -42,18 +42,8 @@ namespace One.Views.Office.School
                     {
                         hidUserId.Value = user.Id.ToString();
                     }
+                    LoadSchoolType();
                 }
-                //if (InitialValues.CustomSession["InstitutionId"] <= 0)
-                //{
-                //    Response.Redirect("~/Views/Office/Institution/Create.aspx");
-                //    return;
-                //}
-                LoadSchoolType();
-
-                //pnlSchTyp.Visible = false;
-                //SchoolTypeUC.SavedId = 0;
-                //SchoolTypeUC.Visible_ = false;
-                //SchoolTypeAllButtonsVisible(false);
             }
 
             if (Values.Session.GetUser(Session) > 0)

@@ -85,7 +85,7 @@ namespace Academic.DbHelper
                                 Context.SaveChanges();
                                 school.ImageId = img.Id;
                                 //school.ImageId = img.Id;
-                                
+
                                 //ent.ImageId = img.Id;
                                 //Context.Dispose();
                             }
@@ -94,7 +94,7 @@ namespace Academic.DbHelper
                                 var img = Context.File.Find(ent.ImageId);
                                 if (img != null)
                                 {
-                                    
+
                                     img.DisplayName = image.DisplayName;
                                     img.FileName = image.FileName;
                                     img.ModifiedBy = image.ModifiedBy;
@@ -142,22 +142,19 @@ namespace Academic.DbHelper
                 }
             }
 
-            public IEnumerable<SchoolType> GetSchoolTypes()
+            public List<SchoolType> GetSchoolTypes()
             {
-                var schTypes = Context.SchoolType.AsEnumerable();
-                //.Where(x => x.InstitutionId == instId
-                //        || x.InstitutionId == null).AsEnumerable();
-                List<SchoolType> list = new List<SchoolType>();
-                foreach (var schoolType in schTypes)
+                var schTypes = Context.SchoolType.AsEnumerable().ToList();
+                if (schTypes.Count == 0)
                 {
-                    list.Add(new SchoolType()
+                    foreach (var t in StaticValues.SchoolType)
                     {
-                        Id = schoolType.Id,
-                        //InstitutionId = schoolType.InstitutionId ?? 0,
-                        Name = schoolType.Name
-                    });
+                        Context.SchoolType.Add(new SchoolType() { Name = t });
+                    }
+                    Context.SaveChanges();
                 }
-                return list;
+                schTypes = Context.SchoolType.AsEnumerable().ToList();
+                return schTypes;
             }
 
             public SchoolType AddOrUpdateSchoolType(SchoolType schTyp)

@@ -21,7 +21,7 @@ namespace One.Views.Student.Create
                 //LoadDivisions();
                 DbHelper.ComboLoader.LoadGender(ref cmbGender);
                 //DbHelper.ComboLoader.LoadSchool(ref cmbSchool, InitialValues.CustomSession["InstitutionId"]);
-                DbHelper.ComboLoader.LoadUserType(ref cmbRole,Values.Session.GetSchool(Session), "Student");
+                //DbHelper.ComboLoader.LoadUserType(ref cmbRole,Values.Session.GetSchool(Session), "Student");
             }
         }
 

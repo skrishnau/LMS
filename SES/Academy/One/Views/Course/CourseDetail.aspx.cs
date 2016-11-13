@@ -18,6 +18,9 @@ namespace One.Views.Course
                 var courseId = Request.QueryString["cId"];
                 if (courseId != null)
                 {
+                    lnkView.NavigateUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId="+courseId;
+                    lnkEdit.NavigateUrl = "~/Views/Course/CourseCreate.aspx?crsId="+courseId;
+
                     hidCourseId.Value = courseId;
                     lnkNewClass.NavigateUrl = "~/Views/Class/CourseSessionCreate.aspx?cId=" + courseId;
                     try
@@ -100,15 +103,26 @@ namespace One.Views.Course
 
         protected void lnkClassFilter_Click(object sender, EventArgs e)
         {
-            if (imgFilter.ImageUrl.Contains("arrow_down"))
+            if (lblFilterArrow.Text == "►")
             {
-                imgFilter.ImageUrl = "~/Content/Icons/Arrow/arrow_right.png";
+                lblFilterArrow.Text = "▼";
+                pnlClassFilter.Visible = true;
             }
             else
             {
-                imgFilter.ImageUrl = "~/Content/Icons/Arrow/arrow_down.png";
+                lblFilterArrow.Text = "►";
+                pnlClassFilter.Visible = false;
             }
-            pnlClassFilter.Visible = !pnlClassFilter.Visible;
+
+            //if (imgFilter.ImageUrl.Contains("arrow_down"))
+            //{
+            //    imgFilter.ImageUrl = "~/Content/Icons/Arrow/arrow_right.png";
+            //}
+            //else
+            //{
+            //    imgFilter.ImageUrl = "~/Content/Icons/Arrow/arrow_down.png";
+            //}
+            //pnlClassFilter.Visible = !pnlClassFilter.Visible;
         }
 
         protected void btnFilterCrieteria_Click(object sender, EventArgs e)

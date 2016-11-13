@@ -694,18 +694,19 @@ namespace One.Views.UserControls.Structure
                 //add all the classes for this academic year to the database 
                 using (var helper = new DbHelper.AcademicPlacement())
                 {
-                    bool saved = helper.AddOrUpdateRunningClass(classes);
-                    if (saved)
-                    {
-                        if (OnSaveClicked != null)
-                        {
-                            OnSaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
-                        }
-                        else
-                        {
-                            OnSaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
-                        }
-                    }
+                    //uncomment this
+                    //bool saved = helper.AddOrUpdateRunningClass(classes);
+                    //if (saved)
+                    //{
+                    //    if (OnSaveClicked != null)
+                    //    {
+                    //        OnSaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
+                    //    }
+                    //    else
+                    //    {
+                    //        OnSaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
+                    //    }
+                    //}
                 }
             }
         }

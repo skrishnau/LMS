@@ -45,9 +45,9 @@ namespace One.Views.NoticeBoard
                                     var text = "";
                                     text = notice.PublishedDate == null
                                         ? ""
-                                        : "<br/><span> Posted on: </span> &nbsp;&nbsp;" 
+                                        : "<br/> Posted on: &nbsp;&nbsp;" 
                                         + notice.PublishedDate.Value.ToShortDateString();
-                                    text += "<br/><span> &nbsp;Viewers:</span> &nbsp;&nbsp;" + 
+                                    text += "<br/> Viewers: &nbsp;&nbsp;" + 
                                         ((notice.NoticePublishTo ?? false) ? "Everyone" : "Only Users");
 
                                     

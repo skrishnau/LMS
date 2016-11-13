@@ -8,7 +8,7 @@
         
         <div style="text-align: right">
             <asp:HyperLink ID="lnkAddNotice" runat="server" CssClass="link"
-                NavigateUrl="">
+                Visible="False">
                 <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png"/>
                 New notice
             </asp:HyperLink>

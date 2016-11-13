@@ -47,7 +47,7 @@ namespace Academic.DbEntities.User
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastOnline { get; set; }
 
-        public virtual ICollection<UserDivision> UserDivisions { get; set; }
+        //public virtual ICollection<UserDivision> UserDivisions { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; } 
 
         public string FullName

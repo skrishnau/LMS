@@ -63,30 +63,30 @@ namespace Academic.DbHelper
                 return roles;
             }
 
-            public List<DbEntities.User.UserType> GetUserTypes(int schoolId)
-            {
-                var type = Context.UserType.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId
-                    || x.SchoolId == null)).ToList();
-                if (type.Count == 0)
-                {
-                    var stdType = new UserType()
-                    {
-                        Name = "Student"
+            //public List<DbEntities.User.UserType> GetUserTypes(int schoolId)
+            //{
+            //    var type = Context.UserType.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId
+            //        || x.SchoolId == null)).ToList();
+            //    if (type.Count == 0)
+            //    {
+            //        var stdType = new UserType()
+            //        {
+            //            Name = "Student"
 
 
-                    };
-                    var teachType = new UserType()
-                    {
-                        Name = "Teacher"
-                    };
-                    Context.UserType.Add(stdType);
-                    Context.UserType.Add(teachType);
-                    Context.SaveChanges();
-                    type = Context.UserType.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId
-                    || x.SchoolId == null)).ToList();
-                }
-                return type;
-            }
+            //        };
+            //        var teachType = new UserType()
+            //        {
+            //            Name = "Teacher"
+            //        };
+            //        Context.UserType.Add(stdType);
+            //        Context.UserType.Add(teachType);
+            //        Context.SaveChanges();
+            //        type = Context.UserType.Where(x => !(x.Void ?? false) && (x.SchoolId == schoolId
+            //        || x.SchoolId == null)).ToList();
+            //    }
+            //    return type;
+            //}
             public bool AddOrUpdateRole(Role role)
             {
                 try
@@ -282,7 +282,7 @@ namespace Academic.DbHelper
             }
 
 
-            
+
             public bool UpdateUsersImage(int userId, int imageId)
             {
                 var ent = Context.Users.Find(userId);
@@ -301,46 +301,46 @@ namespace Academic.DbHelper
                 return Context.Users.Find(userId);
             }
 
-            public void SaveCreatedUser(DbEntities.User.CreatedUser createdUser, List<int> DivisonsAssigned, HttpPostedFile file)
-            {
-                var date = DateTime.Now.Date;
-                using (TransactionScope scope = new TransactionScope())
-                {
-                    byte[] imgBytes = null;
+            //public void SaveCreatedUser(DbEntities.User.CreatedUser createdUser, List<int> DivisonsAssigned, HttpPostedFile file)
+            //{
+            //    var date = DateTime.Now.Date;
+            //    using (TransactionScope scope = new TransactionScope())
+            //    {
+            //        byte[] imgBytes = null;
 
-                    using (var filehelper = new DbHelper.WorkingWithFiles())
-                    {
-                        if (file != null)
-                        {
-                            imgBytes = filehelper.ConvertToBytes(file);
-                            createdUser.Image = imgBytes;
-                            createdUser.ImageType = file.ContentType;
-                        }
-                    }
-                    Context.SaveChanges();
-                    //var entity = Context.CreatedUser.Add(createdUser);
-                    //if (entity != null)
-                    //{
-                    //    foreach (var i in DivisonsAssigned)
-                    //    {
-                    //        var ud = new DbEntities.User.UserDivision()
-                    //        {
-                    //            AssignDate = date
-                    //            ,
-                    //            DivisionId = i
-                    //            ,
-                    //            UsersId = entity.Id
-                    //            ,
-                    //            Void = false
-                    //            ,
-                    //        };
-                    //        Context.UsersDivision.Add(ud);
-                    //    }
-                    //    Context.SaveChanges();
-                    //}
-                    scope.Complete();
-                }
-            }
+            //        using (var filehelper = new DbHelper.WorkingWithFiles())
+            //        {
+            //            if (file != null)
+            //            {
+            //                imgBytes = filehelper.ConvertToBytes(file);
+            //                createdUser.Image = imgBytes;
+            //                createdUser.ImageType = file.ContentType;
+            //            }
+            //        }
+            //        Context.SaveChanges();
+            //        //var entity = Context.CreatedUser.Add(createdUser);
+            //        //if (entity != null)
+            //        //{
+            //        //    foreach (var i in DivisonsAssigned)
+            //        //    {
+            //        //        var ud = new DbEntities.User.UserDivision()
+            //        //        {
+            //        //            AssignDate = date
+            //        //            ,
+            //        //            DivisionId = i
+            //        //            ,
+            //        //            UsersId = entity.Id
+            //        //            ,
+            //        //            Void = false
+            //        //            ,
+            //        //        };
+            //        //        Context.UsersDivision.Add(ud);
+            //        //    }
+            //        //    Context.SaveChanges();
+            //        //}
+            //        scope.Complete();
+            //    }
+            //}
 
 
             //listing of users
@@ -373,29 +373,29 @@ namespace Academic.DbHelper
             }
 
             //divisions
-            public List<Division> GetDivisionsForCombo(int schoolId)
-            {
-                List<Division> list = new List<Division>();
-                var divs = Context.Division.Include(x => x.ParentDivision).Where(x => x.SchoolId == schoolId).ToList();
-                foreach (var division in divs)
-                {
-                    var div = new Division()
-                    {
-                        Id = division.Id
-                        ,
-                        Name = division.Name
-                        ,
-                        SchoolId = division.SchoolId
-                        ,
-                    };
-                    if (division.ParentDivision != null)
-                    {
-                        div.Name += " (" + division.ParentDivision.Name + ")";
-                    }
-                    list.Add(div);
-                }
-                return list;
-            }
+            //public List<Division> GetDivisionsForCombo(int schoolId)
+            //{
+            //    List<Division> list = new List<Division>();
+            //    var divs = Context.Division.Include(x => x.ParentDivision).Where(x => x.SchoolId == schoolId).ToList();
+            //    foreach (var division in divs)
+            //    {
+            //        var div = new Division()
+            //        {
+            //            Id = division.Id
+            //            ,
+            //            Name = division.Name
+            //            ,
+            //            SchoolId = division.SchoolId
+            //            ,
+            //        };
+            //        if (division.ParentDivision != null)
+            //        {
+            //            div.Name += " (" + division.ParentDivision.Name + ")";
+            //        }
+            //        list.Add(div);
+            //    }
+            //    return list;
+            //}
 
 
 
@@ -427,6 +427,37 @@ namespace Academic.DbHelper
             public List<Users> ListUsersWithNameStartingFrom(string nameStartsWith)
             {
                 return Context.Users.Where(x => x.FirstName.StartsWith(nameStartsWith)).Take(50).ToList();
+            }
+
+            public List<Users> GetOnlineUsers(int userId, int schoolId)
+            {
+                var date = DateTime.Now;
+
+                var tea = (from u in Context.Users.Where(y => y.SchoolId == schoolId)
+                           join ur in Context.UserRole on u.Id equals ur.UserId
+                           join r in
+                               Context.Role.Where(
+                                   x => x.RoleName == "teacher" || x.RoleName == "manager" && (x.SchoolId ?? 0) == 0)
+                               on ur.RoleId equals r.Id
+                           select u).ToList();//new Users { FirstName = u.FullName }
+                var selftea = tea.Find(x => x.Id == userId);
+                if (selftea != null)
+                    tea.Remove(selftea);
+
+                var std = Context.StudentBatch.FirstOrDefault(x => x.Student.UserId == userId);
+                if (std != null)
+                {
+                    var others = std.ProgramBatch.StudentBatches.Select(y => y.Student.User)
+                       .Where(x => x.SchoolId == schoolId)
+                        //&& x.LastOnline != null && (x.LastOnline - date).Value.TotalMinutes<= 2)
+                        .ToList();
+
+                    var self = others.Find(x => x.Id == userId);
+                    if (self != null)
+                        others.Remove(self);
+                    tea.AddRange(others);
+                }
+                return tea.Where(x => x.LastOnline != null && (date - x.LastOnline).Value.TotalMinutes <= 2).ToList();
             }
         }
     }

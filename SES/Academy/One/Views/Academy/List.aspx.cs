@@ -16,6 +16,7 @@ namespace One.Views.Academy
             if (!IsPostBack)
             {
                 BindGrid();
+
             }
         }
 
@@ -25,31 +26,43 @@ namespace One.Views.Academy
             if (user != null)
             //if (user.SchoolId > 0)
             {
-                using (var helper = new DbHelper.AcademicYear())
+                if (user.IsInRole("manager"))
                 {
-                    var aca = helper.GetAcademicYearListForSchool(
-                        user.SchoolId);
-                    //for (var i = 0; i < aca.Count; i++)
-                    //{
-                    //    var ses = helper.GetSessionListForAcademicYear(aca[i].Id);
-                    //    aca[i].SchoolId = ses.Count;
-
-                    //}
-                    //GridView1.DataSource = aca;
-                    //GridView1.DataBind();
-
-                    foreach (var ay in aca)
-                    {
-                        var uc =
-                            (UserControls.AcademicYearListUC)
-                                Page.LoadControl("~/Views/Academy/UserControls/AcademicYearListUC.ascx");
-                        uc.LoadAcademicYear(
-                            ay.Id, ay.Name, ay.StartDate, ay.EndDate
-                            , ay.IsActive, ay.Sessions.ToList());
-                        pnlAcademicYearListing.Controls.Add(uc);
-                    }
-
+                    lnkAdd.Visible = true;
+                    btnAutoUpdate.Visible = true;
                 }
+                else
+                {
+                    lnkAdd.Visible = false;
+                    btnAutoUpdate.Visible = false;
+                }
+
+                if (lnkAdd.Visible || user.IsInRole("teacher"))
+                    using (var helper = new DbHelper.AcademicYear())
+                    {
+                        var aca = helper.GetAcademicYearListForSchool(
+                            user.SchoolId);
+                        //for (var i = 0; i < aca.Count; i++)
+                        //{
+                        //    var ses = helper.GetSessionListForAcademicYear(aca[i].Id);
+                        //    aca[i].SchoolId = ses.Count;
+
+                        //}
+                        //GridView1.DataSource = aca;
+                        //GridView1.DataBind();
+
+                        foreach (var ay in aca)
+                        {
+                            var uc =
+                                (UserControls.AcademicYearListUC)
+                                    Page.LoadControl("~/Views/Academy/UserControls/AcademicYearListUC.ascx");
+                            uc.LoadAcademicYear(
+                                ay.Id, ay.Name, ay.StartDate, ay.EndDate
+                                , ay.IsActive, ay.Sessions.ToList(), ay.Completed ?? false);
+                            pnlAcademicYearListing.Controls.Add(uc);
+                        }
+
+                    }
             }
 
         }
@@ -88,6 +101,14 @@ namespace One.Views.Academy
             //switch (e.)
             //{
 
+            //}
+        }
+
+        protected void btnAutoUpdate_Click(object sender, EventArgs e)
+        {
+            //using (var helper = new DbHelper.AcademicYear())
+            //{
+            //    //helper.AutoUpdateAcademicYear();
             //}
         }
 

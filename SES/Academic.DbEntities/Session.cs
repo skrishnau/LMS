@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Academic.DbEntities.AcacemicPlacements;
 
 namespace Academic.DbEntities
 {
@@ -25,12 +26,17 @@ namespace Academic.DbEntities
 
         public bool IsActive { get; set; }
         public bool? Completed { get; set; }
+        public DateTime? CompleteMarkedDate { get; set; }
+        public int? CompleteMarkedById { get; set; }
+
         public bool? Void { get; set; }
 
         public bool? RemindWhenEndDate { get; set; }//setting to check ; true -- remind about the nearing of end date
 
         public int AcademicYearId { get; set; }
         public virtual AcademicYear AcademicYear { get; set; }
+
+        public virtual ICollection<RunningClass> RunningClasses { get; set; }
 
     }
 }

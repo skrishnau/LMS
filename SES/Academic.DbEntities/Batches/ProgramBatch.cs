@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Academic.DbEntities.AcacemicPlacements;
 using Academic.DbEntities.Structure;
 
 namespace Academic.DbEntities.Batches
@@ -28,10 +29,14 @@ namespace Academic.DbEntities.Batches
         public virtual Year CurrentYear { get; set; }
         public virtual SubYear  CurrentSubYear{ get; set; }
          
+        public bool? PassOut { get; set; }
 
         public bool? StartedStudying { get; set; }// new or already started studying
         public bool? StudyCompleted { get; set; }
 
+        public virtual ICollection<RunningClass> RunningClasses { get; set; }
+
+        public virtual ICollection<StudentBatch> StudentBatches { get; set; }
 
         public string NameFromBatch
         {

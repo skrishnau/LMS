@@ -204,24 +204,24 @@ namespace Academic.DbHelper
 
             }
 
-            public List<ViewModel.IdAndName> GetYears(int programId)
+            public List<Year> GetYears(int programId)
             {
-                return Context.Year.Where(x => x.ProgramId == programId)
-                    .Select(x => new IdAndName() { Id = x.Id, Name = x.Name }).ToList();
+                return Context.Year.Where(x => x.ProgramId == programId).ToList();
+                    //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
             }
 
-            public List<ViewModel.IdAndName> GetSubYears(int yearId, bool onlyTopLevelLoad = false, int? parentId = null)
+            public List<SubYear> GetSubYears(int yearId, bool onlyTopLevelLoad = false, int? parentId = null)
             {
                 if (onlyTopLevelLoad)
-                    return Context.SubYear.Where(x => x.YearId == yearId && x.ParentId == null)
-                        .Select(x => new IdAndName() { Id = x.Id, Name = x.Name }).ToList();
+                    return Context.SubYear.Where(x => x.YearId == yearId && x.ParentId == null).ToList();
+                        //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
                 if (parentId == null)
-                    return Context.SubYear.Where(x => x.YearId == yearId && x.ParentId == null)
-                        .Select(x => new IdAndName() { Id = x.Id, Name = x.Name }).ToList();
+                    return Context.SubYear.Where(x => x.YearId == yearId && x.ParentId == null).ToList();
+                        //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
                 else
                 {
-                    return Context.SubYear.Where(x => x.ParentId == parentId)
-                        .Select(x => new IdAndName() { Id = x.Id, Name = x.Name }).ToList();
+                    return Context.SubYear.Where(x => x.ParentId == parentId).ToList();
+                        //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
                 }
             }
 
@@ -377,7 +377,6 @@ namespace Academic.DbHelper
             public List<Level> GetLevelsWithAllIncluded(int schoolId)
             {
                 return Context.Level.Include(m => m.Faculty).Where(x => x.SchoolId == schoolId
-                                                                           && (x.IsActive ?? true)
                                                                            && !(x.Void ?? false)).ToList();
             }
 
@@ -413,7 +412,7 @@ namespace Academic.DbHelper
                 var year = Context.Year.Find(yearId);
                 if (year != null)
                 {
-                    var min = year.Program.Year.Where(x => (x.IsActive ?? true) && !(x.Void ?? false)
+                    var min = year.Program.Year.Where(x =>  !(x.Void ?? false)
                                                            && x.Position < year.Position)
                         .OrderByDescending(x => x.Position);
                     var mn = min.First();
@@ -433,8 +432,7 @@ namespace Academic.DbHelper
                     var subyear = Context.SubYear.Find(subyearId);
                     if (subyear != null)
                     {
-                        var min = subyear.Year.SubYears.Where(x => (x.IsActive ?? true)
-                                                                && !(x.Void ?? false)
+                        var min = subyear.Year.SubYears.Where(x => !(x.Void ?? false)
                                                                 && x.Position < subyear.Position)
                             .OrderByDescending(x => x.Position);
                         var mn = min.First();
@@ -445,14 +443,13 @@ namespace Academic.DbHelper
                         else
                         {
 
-                            var prevyear = subyear.Year.Program.Year.Where(x => (x.IsActive ?? true) && !(x.Void ?? false)
+                            var prevyear = subyear.Year.Program.Year.Where(x =>  !(x.Void ?? false)
                                                                && x.Position < subyear.Year.Position)
                                                                .OrderByDescending(x => x.Position);
                             var minYear = prevyear.First();
                             if (minYear != null)
                             {
-                                var maxSubYear = minYear.SubYears.Where(x => (x.IsActive ?? true)
-                                                                             && !(x.Void ?? false))
+                                var maxSubYear = minYear.SubYears.Where(x =>  !(x.Void ?? false))
                                     .OrderByDescending(x => x.Position).First();
                                 if (maxSubYear != null)
                                 {
@@ -469,15 +466,15 @@ namespace Academic.DbHelper
 
             #endregion
 
-            public DbEntities.Structure.Program GetProgram(int programId)
-            {
-                var prog =
-                    Context.Program.Include(x => x.Faculty)
-                        .Include(x => x.Faculty.Level)
-                        .Include(x => x.Faculty.Level.School)
-                        .FirstOrDefault(x => x.Id == programId);
-                return prog;
-            }
+            //public DbEntities.Structure.Program GetProgram(int programId)
+            //{
+            //    var prog =
+            //        Context.Program.Include(x => x.Faculty)
+            //            .Include(x => x.Faculty.Level)
+            //            .Include(x => x.Faculty.Level.School)
+            //            .FirstOrDefault(x => x.Id == programId);
+            //    return prog;
+            //}
 
 
 
@@ -509,6 +506,52 @@ namespace Academic.DbHelper
                 }
                 return dir;
             }
+
+
+            //Used... latest..
+            #region Get Functions i.e. which return single object not list
+
+            public Level GetLevel(int levelId)
+            {
+                return Context.Level.Find(levelId);
+            }
+
+            public Faculty GetFaculty(int facultyId)
+            {
+                return Context.Faculty.Find(facultyId);
+            }
+
+            public Program GetProgram(int programId)
+            {
+                return Context.Program.Find(programId);
+            }
+
+            public Year GetYear(int yearId)
+            {
+                return Context.Year.Find(yearId);
+            }
+
+            public SubYear GetSubYear(int subyearId)
+            {
+                return Context.SubYear.Find(subyearId);
+            }
+
+            #endregion
+
+            #region List functions
+
+            public List<Level> ListLevels(int schoolId)
+            {
+                return Context.Level.Where(x => x.SchoolId == schoolId).ToList();
+                //if (s != null)
+                //{
+                //    var sa = s.Select(x => new ViewModel.IdAndName() { Id = x.Id, Name = x.Name }).ToList();
+                //    return sa;
+                //}
+                //return new List<IdAndName>() { new IdAndName() { Name = "", Id = 0 } };
+            }
+
+            #endregion
         }
     }
 }

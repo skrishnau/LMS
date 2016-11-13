@@ -41,18 +41,67 @@
     <link href="UserStyles.css" rel="stylesheet" />
     <link href="../../Content/CSSes/All.css" rel="stylesheet" />
     <style type="text/css">
-        
+        /*Program choose*/
+
+        .pc-table {
+            margin-left: 25px;
+            border-collapse: collapse;
+        }
+
+        .pc-table-row {
+            vertical-align: central;
+            padding: 7px;
+            /*border-bottom: 1px dashed lightgray;*/
+        }
+
+        .pc-year-name {
+            vertical-align: central;
+            padding: 7px;
+            /*border-bottom: 1px dashed lightgray;*/
+           
+        }
+
+        .pc-subyear-option {
+            vertical-align: central;
+            padding: 7px;            
+            /*border-bottom: 1px dashed lightgray;*/
+        }
+
+        .pc-programbatch-option {
+            vertical-align: central;
+            padding: 7px;
+            /*border-bottom: 1px dashed lightgray;*/
+        }
+
+        /* end of program choose*/
+        .auto-st1 {
+            margin: 3px;
+            padding: 10px;
+            -webkit-border-radius: 5px;
+        }
+
+        .auto-st2 {
+            margin: 6px 4px;
+            padding: 5px;
+            border: 1px solid lightgrey;
+            -webkit-border-radius: 5px;
+        }
+
+            .auto-st2:hover {
+                background-color: #e4f5fa;
+            }
+
         .link_button {
             background-color: lightpink;
             border: 1px solid lightcoral;
-            padding:2px;
+            padding: 2px;
         }
 
-         div.data-entry-body td.data-field {
-             /*width: 170px;*/
-             padding: 10px 0;
-             /*display: inline-block;*/
-         }
+        div.data-entry-body td.data-field {
+            /*width: 170px;*/
+            padding: 10px 0;
+            /*display: inline-block;*/
+        }
 
         /*all links*/
         .inline {
@@ -83,8 +132,8 @@
         }
 
         .file-display {
-            background-color: #557d96;  
-            padding: 2px 5px;          
+            background-color: #557d96;
+            padding: 2px 5px;
         }
 
         div.course-act-res-whole {
@@ -99,9 +148,9 @@
             padding-top: 2px;
         }
 
-        div.course-act-res-whole-in-edit-mode:hover {
-            background-color: #f3f1fe;
-        }
+            div.course-act-res-whole-in-edit-mode:hover {
+                background-color: #f3f1fe;
+            }
 
         div.course-act-res-heading {
             vertical-align: central;
@@ -131,37 +180,48 @@
             text-decoration: none;
         }
 
-        .course-act-res-title:hover {
-            text-decoration: underline;
-        }
+            .course-act-res-title:hover {
+                text-decoration: underline;
+            }
 
         .course-act-res-title-of-label {
             text-decoration: none;
         }
 
         /*----------------------- END OF COURSE SECTIONS AND ACTIVITIES ---------------------*/
+        .link_smaller {
+            font-weight: 400;
+            font-size: 0.9em;
+            color: darkblue;
+            text-decoration: none;
+        }
+        .link_smaller:hover {
+            color: darkorange;
+            text-decoration: underline;
+        }
+
+
 
         .link, .link:visited {
             color: blue;
             text-decoration: none;
         }
 
-        .link:hover {
-            color: darkorange;
-            text-decoration: underline;
-        }
+            .link:hover {
+                color: darkorange;
+                text-decoration: underline;
+            }
 
-        .link:active {
-            color: blueviolet;
-            text-decoration: underline;
-        }
+            .link:active {
+                color: blueviolet;
+                text-decoration: underline;
+            }
 
         /*Link of auto-postback*/
 
-      
+
 
         .date_text_box {
-            
         }
         /*--------------     DETAIL VIEW OF SINGLE DATA ----after github this and above this--------------------*/
 
@@ -182,18 +242,18 @@
             display: inline-block;
         }
 
-        div.detail-view td.data-type {
-            width: 170px;
-            padding: 10px 0;
-            display: inline-block;
-        }
+            div.detail-view td.data-type {
+                width: 170px;
+                padding: 10px 0;
+                display: inline-block;
+            }
 
-        div.detail-view td.data-place {
-            /*width: 170px;*/
-            /*width: 100%;*/
-            padding: 10px 0;
-            display: inline-block;
-        }
+            div.detail-view td.data-place {
+                /*width: 170px;*/
+                /*width: 100%;*/
+                padding: 10px 0;
+                display: inline-block;
+            }
 
         div.data-entry-section-body td.data-place {
             /*width: 170px;*/
@@ -201,12 +261,15 @@
             padding: 10px 0;
             /*display: inline-block;*/
         }
+
         div.data-entry-section-body table {
             margin: 0 10px 0;
         }
+
         div.data-entry-section-body tr {
             vertical-align: top;
         }
+
         div.data-entry-section-body td {
             vertical-align: top;
         }
@@ -249,9 +312,9 @@
             font-weight: 600;
         }
 
-        .modules-title:hover {
-            text-decoration: underline;
-        }
+            .modules-title:hover {
+                text-decoration: underline;
+            }
 
         div.modules-heading {
             width: 100%;
@@ -415,7 +478,7 @@
                                 <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
                             </div>
                             <div>
-                                <uc1:NewsUc runat="server" ID="NewsUc" />
+                                <%--<uc1:NewsUc runat="server" ID="NewsUc" />--%>
                             </div>
                             <div>
                                 <uc1:EventsUc runat="server" ID="EventsUc" />

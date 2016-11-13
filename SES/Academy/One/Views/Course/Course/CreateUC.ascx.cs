@@ -18,7 +18,10 @@ namespace One.Views.Course.Course
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            if (SubjectId > 0)
+            {
+                
+            }
         }
 
         public int CategoryId

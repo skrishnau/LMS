@@ -16,7 +16,7 @@ namespace Academic.DbEntities.Marks
         public bool IsGradeSystem { get; set; }
         public int GradeId { get; set; }
 
-        public virtual Assignments.AssignedTask AssignedTask { get; set; }
+        //public virtual Assignments.AssignedTask AssignedTask { get; set; }
         public virtual Students.Student Student { get; set; }
         public virtual Grade Grade { get; set; }
 

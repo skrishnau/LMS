@@ -13,14 +13,11 @@ namespace One.Views.Academy.Session
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            valiStartDate.ErrorMessage = "Required";
+            valiEnd.ErrorMessage = "Required";
             if (!IsPostBack)
             {
-
-                //DbHelper.ComboLoader.LoadSchool(ref cmbSchool, InitialValues.CustomSession["InstitutionId"]);
-                //List<Academic.DbEntities.AcademicYear> acaYears = DbHelper.ComboLoader.LoadAcademicYear(
-                //                     ref cmbAcademicYear, Values.Session.GetSchool(Session));
-                //Session["AcademicYears"] = acaYears;
-                //AcademicYearList = acaYears.Select(x => x.Id).ToList();
                 using (var helper = new DbHelper.AcademicYear())
                 {
                     var aca = helper.GetAcademicYear(AcademicYearId);
@@ -28,17 +25,20 @@ namespace One.Views.Academy.Session
 
                     if (aca != null)
                     {
-                        lblHeading.Text = @"New Session Create";
+                        lblHeading.Text = "New Session Create";
                         lblAcademicHeading.Text = @"Session create in Academic Year: """ + aca.Name + @"""";
                         lblAcademicStart.Text = "Start Date: " + aca.StartDate.ToShortDateString();
                         lblAcademicEnd.Text = "End Date:   " + aca.EndDate.ToShortDateString();
+
+                        ViewState["AcademicYearStartDate"] = aca.StartDate.Date;
+                        ViewState["AcademicYearEndDate"] = aca.EndDate.Date;
                     }
                     if (session != null)
                     {
                         lblHeading.Text = @"Edit Session """ + session.Name + @"""";
                         LoadSessionData(session);
                     }
-                    LoadSessionParametersAndDate();
+                    //LoadSessionParametersAndDate();
                 }
 
             }
@@ -47,17 +47,10 @@ namespace One.Views.Academy.Session
         private void LoadSessionData(Academic.DbEntities.Session session)
         {
             txtName.Text = session.Name;
-            dtEnd.SelectedDate = session.EndDate.Date;
-            dtStart.SelectedDate = session.StartDate.Date;
+            txtEnd.Text = session.EndDate.Date.ToShortDateString();
+            txtStart.Text = session.StartDate.Date.ToShortDateString();
             hidSessionId.Value = session.Id.ToString();
             AcademicYearId = session.AcademicYearId;
-
-            dtEnd.MinDate = session.AcademicYear.StartDate;
-            dtEnd.MaxDate = session.AcademicYear.EndDate;
-
-            dtStart.MinDate = session.AcademicYear.StartDate;
-            dtStart.MaxDate = session.AcademicYear.EndDate;
-
         }
 
         public int AcademicYearId
@@ -71,77 +64,53 @@ namespace One.Views.Academy.Session
             set { hidSessionId.Value = value.ToString(); }
         }
 
-        private void LoadSessionParametersAndDate()
-        {
-            dtEnd.CheckDateRangeMax = true;
-            dtEnd.CheckDateRangeMin = true;
-            dtEnd.MaxDateValidationMessage = "Can't be greater than Academic year end date.";
-            dtEnd.MinDateValiationMessage = "Can't be less than Academic year start date.";
-
-            dtStart.CheckDateRangeMax = true;
-            dtStart.CheckDateRangeMin = true;
-            dtStart.MaxDateValidationMessage = "Can't be greater than Academic year end date.";
-            dtStart.MinDateValiationMessage = "Can't be less than Academic year start date.";
-
-        }
-
-        //public List<int> AcademicYearList { get; set; }
-
-        //public bool ValidationEnabled
-        //{
-        //    get { return RequiredFieldValidator1.Enabled || RequiredFieldValidator3.Enabled; }
-        //    set
-        //    {
-        //        RequiredFieldValidator1.Enabled = value;
-        //        RequiredFieldValidator3.Enabled = value;
-        //    }
-        //}
-
-        //[Obsolete]
-        //public int AcademicYear
-        //{
-        //    get
-        //    {
-        //        return Convert.ToInt32(hidAcademicYear.Value);
-        //    }
-        //    set
-        //    {
-
-        //        List<Academic.DbEntities.AcademicYear> acaYears = DbHelper.ComboLoader.LoadAcademicYear(
-        //            ref cmbAcademicYear, Values.Session.GetSchool(Session), value);
-
-
-        //        int index = cmbAcademicYear.SelectedIndex;
-        //        if (index >= 0)
-        //        {
-        //            //var items = acaYears;//(List<Academic.DbEntities.AcademicYear>)Session["AcademicYears"];
-        //            dtEnd.MinDate = acaYears[index].StartDate;
-        //            dtEnd.MaxDate = acaYears[index].EndDate;
-
-        //            dtStart.MinDate = acaYears[index].StartDate;
-        //            dtStart.MaxDate = acaYears[index].EndDate;
-        //        }
-        //        //LoadSessionParametersAndDate();
-        //        //this.cmbAcademicYear.ClearSelection();
-        //        //var item = cmbAcademicYear.Items.FindByValue(value.ToString());
-        //        //var se = cmbAcademicYear.Items.IndexOf(item);
-        //        //this.cmbAcademicYear.SelectedIndex = se; ;
-        //        cmbAcademicYear.Enabled = false;
-        //        this.hidAcademicYear.Value = value.ToString();
-        //    }
-        //}
-
-
-        protected void cmbSchool_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //var sch = cmbSchool.SelectedValue == "" ? "0" : cmbSchool.SelectedValue;
-
-        }
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             var btn = (Button)sender;
             bool task = btn.ID == "btnSaveAndAddMore";
+            var startdate = DateTime.Now;
+            var enddate = DateTime.Now;
+            var start = (DateTime)ViewState["AcademicYearStartDate"];
+            var end = (DateTime)ViewState["AcademicYearEndDate"];
+
+            try
+            {
+                startdate = Convert.ToDateTime(txtStart.Text);
+                if (startdate < start || startdate > end)
+                {
+                    valiStartDate.ErrorMessage = "Should be between Start and End dates of Academic year.";
+                    valiStartDate.IsValid = false;
+                }
+            }
+            catch
+            {
+                valiStartDate.IsValid = false;
+                valiStartDate.ErrorMessage = "Not in right format.";
+            }
+            try
+            {
+                //if (Page.IsValid)
+                {
+                    enddate = Convert.ToDateTime(txtEnd.Text);
+                    if (enddate < start || enddate > end)
+                    {
+                        valiEnd.ErrorMessage = "Should be between Start and End dates of Academic year.";
+                        valiEnd.IsValid = false;
+                    }
+                    if (enddate < startdate)
+                    {
+                        valiStartDate.ErrorMessage = "Can't be greater than end date";
+                        valiStartDate.IsValid = false;
+                        valiEnd.ErrorMessage = "Can't be less than start date";
+                        valiEnd.IsValid = false;
+                    }
+                }
+            }
+            catch
+            {
+                valiEnd.IsValid = false;
+                valiEnd.ErrorMessage = "Not in right format.";
+            }
 
             if (Page.IsValid)
             {
@@ -152,9 +121,9 @@ namespace One.Views.Academy.Session
                         Id = SessionId,
                         Name = txtName.Text
                         ,
-                        EndDate = dtEnd.SelectedDate
+                        EndDate = enddate
                         ,
-                        StartDate = dtStart.SelectedDate
+                        StartDate = startdate
                         ,
                         AcademicYearId = AcademicYearId
                     };
@@ -170,6 +139,7 @@ namespace One.Views.Academy.Session
                             ResetTextBoxes();
                         }
                     }
+                    else lblError.Visible = true;
                 }
             }
         }
@@ -177,8 +147,8 @@ namespace One.Views.Academy.Session
         private void ResetTextBoxes()
         {
             txtName.Text = "";
-            dtStart.ResetDate();
-            dtEnd.ResetDate();
+            txtStart.Text = "";
+            txtEnd.Text = "";
             hidSessionId.Value = "0";
         }
     }

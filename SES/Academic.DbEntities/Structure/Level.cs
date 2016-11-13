@@ -20,10 +20,12 @@ namespace Academic.DbEntities.Structure
 
         public virtual School School { get; set; }
         //public virtual LevelCategory LevelCategory { get; set; }
-        public virtual ICollection<Faculty> Faculty { get; set; }
 
-        public bool? IsActive { get; set; }
         public bool? Void { get; set; }
+
         public DateTime? CreatedDate { get; set; }
+
+        public virtual ICollection<Faculty> Faculty { get; set; }
+        
     }
 }

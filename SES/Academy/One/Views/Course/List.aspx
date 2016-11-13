@@ -31,27 +31,27 @@
                                 <%-- %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%  --%>
                                 <%-- ================================================================================ --%>
                                 <%-- %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%  --%>
-                                <%-- Category side width: 28%;--%>
-                                <td style="width: 200px; background-color: #fdcab6; vertical-align: top;">
+                                <%-- Category side width: 28%; fdcab6--%>
+                                <td style="width: 200px;  vertical-align: top; ">
                                     <div id="categoryDiv"
-                                        class="text-wrap-div" style="overflow-y: scroll; width: 300px; height: 100%;">
+                                        class="text-wrap-div" style="overflow-y: scroll; width: 300px; height: 100%; ">
 
                                         <%-- <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                                     <ContentTemplate>--%>
                                         <%-- list of categories --%>
-                                        <div style="text-align: center; padding: 5px 0; font-weight: bold;">
+                                        <div style="text-align: center; padding: 5px 0; margin: 0 0 3px;  font-weight: bold; background-color: #cacfd2;">
                                             Categories
                                         </div>
-                                        <span>
+                                        <div style="padding-left: 5px;" >
                                             <asp:PlaceHolder ID="pnlCategories" runat="server"></asp:PlaceHolder>
-                                        </span>
+                                        </div>
                                         <asp:HiddenField ID="hidSelectedCategory" Value="0" runat="server" />
                                         <asp:HiddenField ID="hidSelectedCategoryName" Value="" runat="server" />
                                         <%--  </ContentTemplate>
                                                 </asp:UpdatePanel>--%>
 
                                         <%-- end --%>
-                                        <div style="text-align: left; padding: 5px 0;">
+                                        <div style="text-align: left; padding: 5px 0; background-color: #cacfd2;">
                                             &nbsp;&nbsp;
                                                 <asp:LinkButton ID="lnkCatCreate" runat="server" OnClick="lnkCatCreate_Click">
                                                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
@@ -67,11 +67,11 @@
                                 <%-- %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%  --%>
                                 <%-- Course side --%>
                                 <td style="vertical-align: top; width: 100%;">
-                                    <div style="min-height: 100%; border: 2px solid #fdcbb8;">
+                                    <div style="min-height: 100%; border: 2px solid #cacfd2;">
                                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                             <%-- list of courses in this category --%>
                                             <ContentTemplate>
-                                                <div style="text-align: center; padding: 3px; background-color: #fdcbb8">
+                                                <div style="text-align: center; padding: 3px; background-color: #cacfd2">
                                                     Courses in category :&nbsp;
                                                 <strong>
                                                     <asp:Label ID="lblCoursesTitle" runat="server" Text=""></asp:Label>
@@ -188,6 +188,10 @@
             text-overflow: ellipsis;
         }
     </style>
+</asp:Content>
+
+<asp:Content runat="server" ID="contenttitle" ContentPlaceHolderID="title">
+    Course and Category Management
 </asp:Content>
 
 

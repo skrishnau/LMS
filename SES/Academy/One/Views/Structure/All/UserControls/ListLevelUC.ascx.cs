@@ -24,11 +24,19 @@ namespace One.Views.Structure.All.UserControls
             this.pnlSubControls.Controls.Add(uc);
         }
 
-        public void SetName(int id, string name, string url)
+        public void SetName(int id, string name, string editurl, bool edit = false, string addUrl ="", string addText ="")
         {
             this.hidStructureId.Value = id.ToString();
             this.lblName.Text = name;
-            this.lblName.NavigateUrl = url;
+            lnkEdit.Visible = edit;
+            lnkAdd.Visible = edit;
+            if (edit)
+            {
+                lnkEdit.NavigateUrl = editurl;
+                lnkAdd.NavigateUrl = addUrl;
+                lblAddText.Text = addText;
+                lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●","");
+            }
         }
     }
 }

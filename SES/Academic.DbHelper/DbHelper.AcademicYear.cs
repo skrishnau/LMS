@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using Academic.DbEntities;
+using Academic.DbEntities.AcacemicPlacements;
 using Academic.ViewModel;
 
 namespace Academic.DbHelper
@@ -129,7 +130,12 @@ namespace Academic.DbHelper
                         if (ent == null)
                         {
                             //add
-                            var max = Context.AcademicYear.Where(x => x.SchoolId == schoolId).Max(m => m.Position);
+                            var max = 0;
+                            try
+                            {
+                                max = Context.AcademicYear.Where(x => x.SchoolId == schoolId).Max(m => m.Position);
+                            }
+                            catch { }
                             entity.Position = max + 1;
                             ent = Context.AcademicYear.Add(entity);
                             Context.SaveChanges();
@@ -168,7 +174,8 @@ namespace Academic.DbHelper
                 var aca = Context.AcademicYear
                     .Where(x => x.SchoolId == schoolId && !(x.Void ?? false))
                     .Include(x => x.Sessions)
-                    .OrderByDescending(y => y.StartDate);
+                    .OrderByDescending(y => y.StartDate)
+                    .Take(10);
 
                 return aca.ToList();
             }
@@ -180,7 +187,13 @@ namespace Academic.DbHelper
                     var a = Context.AcademicYear.Find(academicYearId);
                     if (a != null)
                     {
-                        var max = a.Sessions.Max(x => x.Position);
+                        var max = 0;
+                        try
+                        {
+                            max = a.Sessions.Max(x => x.Position);
+                        }
+                        catch { }
+
                         var sess = Context.Session.Find(session.Id);
                         if (sess == null)
                         {
@@ -221,7 +234,6 @@ namespace Academic.DbHelper
                      && x.EndDate >= DateTime.Now).OrderBy(x => x.EndDate).ToList();//&& x.IsActive == true
             }
 
-
             public DbEntities.AcademicYear GetPreviousAcademicYear(int acadeicYearId)
             {
                 try
@@ -233,6 +245,7 @@ namespace Academic.DbHelper
                     return null;
                 }
             }
+
             private DbEntities.AcademicYear CalculatePreviousAcademicYear(int acadeicYearId)
             {
                 try
@@ -268,6 +281,7 @@ namespace Academic.DbHelper
                     return null;
                 }
             }
+
             private DbEntities.Session CalculatePreviousSession(int acadeicYearId, int sessionId = 0)
             {
                 try
@@ -424,26 +438,191 @@ namespace Academic.DbHelper
                 }
             }
 
-            //Used
-            public void ActivateAcademicYearSession(int aId, int sId)
-            {
-                using (var scope = new TransactionScope())
-                {
-                    var a = Context.AcademicYear.Find(aId);
-                    if (a != null)
-                    {
-                        a.IsActive = true;
-                        Context.SaveChanges();
-                    }
-                    var s = Context.Session.Find(sId);
-                    if (s != null)
-                    {
-                        s.IsActive = true;
-                        Context.SaveChanges();
-                    }
-                    scope.Complete();
 
+            //used
+            public string MarkCompleteAcademicYearSession(int userId, int aId, int sId)
+            {
+                try
+                {
+                    var date = DateTime.Now;
+                    using (var scope = new TransactionScope())
+                    {
+                        var a = Context.AcademicYear.Find(aId);
+                        var s = Context.Session.Find(sId);
+
+                        if (a != null)
+                        {
+                            var rc = Context.RunningClass.Where(x => x.AcademicYearId == a.Id);
+                            foreach (var r in rc)
+                            {
+                                r.Completed = true;
+                                foreach (var sc in Context.SubjectClass.Where(w => w.RunningClassId == r.Id))
+                                {
+                                    sc.SessionComplete = true;
+                                    sc.CompleteMarkedByUserId = userId;
+                                    sc.CompletionMarkedDate = date;
+                                    Context.SaveChanges();
+                                }
+                            }
+                            a.Completed = true;
+                            a.IsActive = false;
+
+                            foreach (var se in a.Sessions.Where(x => x.IsActive))
+                            {
+                                se.IsActive = false;
+                                se.Completed = true;
+                            }
+
+                            Context.SaveChanges();
+                        }
+                        else if (s != null)
+                        {
+                            var rc = Context.RunningClass.Where(x => x.SessionId == s.Id);
+                            foreach (var r in rc)
+                            {
+                                r.Completed = true;
+                                foreach (var sc in Context.SubjectClass.Where(w => w.RunningClassId == r.Id))
+                                {
+                                    sc.SessionComplete = true;
+                                    sc.CompleteMarkedByUserId = userId;
+                                    sc.CompletionMarkedDate = date;
+                                    Context.SaveChanges();
+                                }
+                            }
+                            s.Completed = true;
+                            s.IsActive = false;
+                            Context.SaveChanges();
+                        }
+                        else
+                        {
+                            return "Go to List.";
+                        }
+
+
+                        scope.Complete();
+                        return "success";
+                    }
                 }
+                catch
+                {
+                    return "Error while saving.";
+                }
+
+            }
+
+            //Used
+            public string ActivateAcademicYearSession(int userId, int aId, int sId)
+            {
+                try
+                {
+                    var date = DateTime.Now;
+                    using (var scope = new TransactionScope())
+                    {
+                        var a = Context.AcademicYear.Find(aId);
+                        if (a != null)
+                        {
+                            if (!a.IsActive)
+                            {
+                                //var other = Context.AcademicYear.Where(x => x.SchoolId == a.SchoolId && x.IsActive);
+                                //foreach (var o in other)
+                                //{
+                                //    o.IsActive = false;
+                                //}
+                                var rc = Context.RunningClass.Where(x => x.AcademicYearId == a.Id && (x.SessionId ?? 0) == 0);
+
+                                foreach (var r in rc)
+                                {
+                                    var earlierNotComplete = r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
+                                    if (earlierNotComplete)
+                                    {
+                                        continue;
+                                    }
+                                    r.Completed = false;
+                                    foreach (var sc in Context.SubjectClass.Where(w => w.RunningClassId == r.Id))
+                                    {
+                                        sc.SessionComplete = false;
+                                        sc.CompleteMarkedByUserId = userId;
+                                        sc.CompletionMarkedDate = date;
+                                        Context.SaveChanges();
+                                    }
+                                }
+
+                                a.IsActive = true;
+
+                                var anyActive = a.Sessions.Any(x => x.IsActive);
+                                if (!anyActive)
+                                {
+                                    var min = 0;
+                                    var error = false;
+                                    try
+                                    {
+                                        min = a.Sessions.Where(x => !(x.Completed ?? false)).Min(x => x.Position);
+                                    }
+                                    catch
+                                    {
+                                        error = true;
+                                    }
+                                    if (!error)
+                                    {
+                                        var se = a.Sessions.FirstOrDefault(x => x.Position == min);
+                                        if (se != null)
+                                            se.IsActive = true;
+                                    }
+                                }
+
+                                //a.Completed = false;
+                                Context.SaveChanges();
+                            }
+                            else return "Already active";
+                        }
+                        var s = Context.Session.Find(sId);
+                        if (s != null)
+                        {
+                            if (!s.IsActive)
+                            {
+                                if (s.AcademicYear.IsActive)
+                                {
+                                    //var other =
+                                    //    Context.Session.Where(x => x.AcademicYearId == s.AcademicYearId && s.IsActive);
+                                    //foreach (var o in other)
+                                    //{
+                                    //    o.IsActive = false;
+                                    //}
+                                    var rc = Context.RunningClass.Where(x => (x.SessionId ?? 0) == s.Id);
+
+                                    foreach (var r in rc)
+                                    {
+                                        var earlierNotComplete = r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
+                                        if (earlierNotComplete)
+                                        {
+                                            continue;
+                                        }
+                                        r.Completed = false;
+                                        foreach (var sc in Context.SubjectClass.Where(w => w.RunningClassId == r.Id))
+                                        {
+                                            sc.SessionComplete = false;
+                                            sc.CompleteMarkedByUserId = userId;
+                                            sc.CompletionMarkedDate = date;
+                                            Context.SaveChanges();
+                                        }
+                                    }
+                                    s.IsActive = true;
+                                    //s.Completed = false;
+                                    Context.SaveChanges();
+                                }
+                                else return "Please, first activate the Academic year.";
+                            }
+                            else return "Already active.";
+                        }
+                        scope.Complete();
+                        return "success";
+                    }
+                }
+                catch
+                {
+                    return "Error while updating.";
+                }
+
             }
 
             //used in Exam listing.. to create selectable academic and session list
@@ -452,20 +631,25 @@ namespace Academic.DbHelper
             public List<ViewModel.AcademicAndSessionCombinedViewModel> ListAcademicAndSessionAsViewModel(int schoolId)
             {
                 var list = new List<ViewModel.AcademicAndSessionCombinedViewModel>();
-                Context.AcademicYear.Where(a => a.SchoolId == schoolId && !(a.Void??false))
-                    .OrderByDescending(o=>o.Position)
+                Context.AcademicYear.Where(a => a.SchoolId == schoolId && !(a.Void ?? false))
+                    .OrderByDescending(o => o.Position)
                     .ToList().ForEach(a =>
                     {
                         list.Add(new AcademicAndSessionCombinedViewModel()
                         {
                             Id = a.Id
-                            ,AcademicYearId = a.Id
-                            ,SessionId = 0
-                            ,Completed = a.Completed??false
-                            ,Name = a.Name
-                            ,BothNameCombined = a.Name
+                            ,
+                            AcademicYearId = a.Id
+                            ,
+                            SessionId = 0
+                            ,
+                            Completed = a.Completed ?? false
+                            ,
+                            Name = a.Name
+                            ,
+                            BothNameCombined = a.Name
                         });
-                        foreach (var s in a.Sessions.OrderByDescending(o=>o.Position))
+                        foreach (var s in a.Sessions.OrderByDescending(o => o.Position))
                         {
                             list.Add(new AcademicAndSessionCombinedViewModel()
                             {
@@ -478,13 +662,273 @@ namespace Academic.DbHelper
                                 Completed = s.Completed ?? false
                                 ,
                                 Name = s.Name
-                                ,BothNameCombined = a.Name+" > "+s.Name
+                                ,
+                                BothNameCombined = a.Name + " > " + s.Name
 
                             });
                         }
                     });
                 return list;
             }
+
+
+            //Used
+            public List<Academic.DbEntities.AcademicYear> ListEarlierActiveAcademicYearsForChoose(int schoolId)
+            {
+                return Context.AcademicYear.Where(x => x.SchoolId == schoolId && (x.IsActive || !(x.Completed ?? false)))
+                    .OrderByDescending(x => !x.IsActive)
+                     .ThenBy(x => x.StartDate).ThenBy(x => x.EndDate).ThenBy(x => x.Position).ToList();
+            }
+
+            //public void AutoUpdateAcademicYear(int userId,int schoolId, int academicYearId)
+            //{
+            //    ActivateAcademicYearSession(userId, academicYearId, 0);
+
+            //}
+
+            public DbEntities.AcademicYear GetLatestCompletedAcademicYear(int schoolId)
+            {
+                DateTime? date = null;
+                try
+                {
+                    var recentComplete =
+                         Context.AcademicYear.Where(x => ((x.Completed ?? false) || x.IsActive) && x.SchoolId == schoolId)
+                        .OrderBy(x => x.IsActive).ThenByDescending(x => x.CompleteMarkedDate).FirstOrDefault();
+                    return recentComplete;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            public bool AutoUpdateAcademicYear(int aId, int userId)
+            {
+                using (var scope = new TransactionScope())
+                using (var helper = new DbHelper.AcademicPlacement())
+                {
+                    var aca = Context.AcademicYear.Find(aId);
+                    if (aca != null)
+                    {
+                        aca.IsActive = true;
+                        if (!aca.IsActive)
+                        {
+                            #region Save Sessions
+
+                            var j = 0;
+                            var savedSessionId = 0;
+                            foreach (var s in aca.Sessions.Where(x => !(x.Void ?? false)).OrderBy(x => x.Position))
+                            {
+                                var ses = new Session()
+                                {
+                                    AcademicYearId = aca.Id,
+                                    EndDate = new DateTime(aca.EndDate.Year, s.EndDate.Month, s.EndDate.Day)
+                                    ,
+                                    StartDate = new DateTime(aca.StartDate.Year, s.StartDate.Month, s.StartDate.Day)
+                                    ,
+                                    Name = s.Name
+                                    ,
+                                    Position = s.Position
+                                    ,
+                                    RemindWhenEndDate = true
+                                };
+                                if (j == 0)
+                                {
+                                    ses.IsActive = true;
+                                }
+                                var savedSes = Context.Session.Add(ses);
+                                Context.SaveChanges();
+                                savedSessionId = savedSes.Id;
+                                j++;
+                            }
+
+                            #endregion
+
+                            var latestAca = GetLatestCompletedAcademicYear(aca.SchoolId);
+                            if (latestAca != null)
+                            {
+                                var list = new List<RunningClass>();
+
+                                #region Academic year
+
+                                //var rcOfAca = Context.RunningClass.Where(x => x.AcademicYearId == latestAca.Id
+                                //                                              && (x.SessionId ?? 0) == 0);
+
+                                foreach (var rc in latestAca.RunningClasses.Where(x => (x.SessionId ?? 0) == 0))
+                                {
+                                    var curPos = rc.Year.Position;
+                                    var nextYear = rc.Year.Program.Year.OrderBy(x => x.Position)
+                                        .FirstOrDefault(x => x.Position > curPos);
+                                    if (nextYear != null)
+                                    {
+                                        var newRc = new RunningClass()
+                                        {
+                                            AcademicYearId = aca.Id
+                                            ,
+                                            YearId = nextYear.Id
+                                            ,
+                                            ProgramBatchId = rc.ProgramBatchId
+                                        };
+                                        list.Add(newRc);
+                                    }
+                                }
+
+                                #endregion
+
+                                #region Session
+
+                                var latestSession = latestAca.Sessions.Where(x => ((x.Completed ?? false) || x.IsActive))
+                                    .OrderBy(x => x.IsActive).ThenByDescending(x => x.CompleteMarkedDate).FirstOrDefault();
+
+                                var i = 0;
+                                if (latestSession != null)
+
+                                    foreach (var s in aca.Sessions.OrderBy(x => x.Position))
+                                    {
+                                        var rcSess = Context.RunningClass.Where(x => x.AcademicYearId == latestAca.Id
+                                                                                     && x.SessionId == latestSession.Id);
+                                        foreach (var sesRC in rcSess)
+                                        {
+                                            var nextYear = sesRC.Year.Program.Year.OrderBy(x => x.Position)
+                                                .FirstOrDefault(x => x.Position > sesRC.Year.Position);
+
+                                            if (nextYear != null)
+                                            {
+                                                var nextSubyear =
+                                                    nextYear.SubYears.Where(x => !(x.Void ?? false))
+                                                        .OrderBy(x => x.Position)
+                                                        .FirstOrDefault();
+                                                if (nextSubyear != null)
+                                                {
+                                                    var newRc = new RunningClass()
+                                                    {
+                                                        AcademicYearId = aca.Id
+                                                        ,
+                                                        SessionId = savedSessionId
+                                                        ,
+                                                        ProgramBatchId = sesRC.ProgramBatchId
+                                                        ,
+                                                        IsActive = true
+                                                        ,
+                                                        YearId = nextYear.Id
+                                                        ,
+                                                        SubYearId = nextSubyear.Id
+                                                    };
+                                                    list.Add(newRc);
+                                                }
+
+                                            }
+                                        }
+
+                                    }
+
+                                #endregion
+
+                                var savedaca = helper.AddOrUpdateRunningClass(list);
+                                scope.Complete();
+                                return true;
+                            }
+                            else
+                            {
+                                ActivateAcademicYearSession(userId, aca.Id, 0);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+
+            //public void AutoUpdateAcademicYear(int userId, int academicYearId, int sessionId)
+            //{
+            //    using (var scope = new TransactionScope())
+            //    using (var helper = new DbHelper.AcademicPlacement())
+            //    {
+            //        var aca = Context.AcademicYear.Find(academicYearId);
+            //        if (aca != null)
+            //        {
+            //            var latest = GetLatestCompletedAcademicYear(aca.SchoolId);
+            //            if (latest != null)
+            //            {
+            //                var rca = Context.RunningClass.Where(x => x.AcademicYearId == latest.Id);
+            //                var list = new List<RunningClass>();
+
+            //                //only academic year 
+            //                foreach (var aonly in rca.Where(x => (x.SessionId ?? 0) == 0))
+            //                {
+            //                    var curPos = aonly.Year.Position;
+            //                    var ney = aonly.Year.Program.Year.OrderBy(x => x.Position)
+            //                            .FirstOrDefault(x => x.Position > aonly.Year.Position);
+            //                    if (ney != null)
+            //                    {
+            //                        var newRc = new RunningClass()
+            //                        {
+            //                            AcademicYearId = aca.Id
+            //                            ,
+            //                            YearId = ney.Id
+            //                            ,
+            //                            ProgramBatchId = aonly.ProgramBatchId
+            //                        };
+            //                        list.Add(newRc);
+            //                        //var savedRc = Context.RunningClass.Add(newRc);
+            //                        //Context.SaveChanges();
+            //                    }
+            //                }
+            //                var savedaca = helper.AddRunningClass(list);
+
+
+            //                //only session
+            //                var session = Context.Session.Find(sessionId);
+            //                if (session != null)
+            //                {
+            //                    //var latestSubYear = 
+            //                    foreach (var sonly in rca.Where(x => (x.SessionId ?? 0) > 0))
+            //                    {
+            //                        var curPos = sonly.SubYear.Position;
+            //                        var ney =
+            //                            sonly.SubYear.Year.SubYears.OrderBy(x => x.Position)
+            //                                .FirstOrDefault(x => x.Position > curPos);
+
+            //                        if (ney != null)
+            //                        {
+            //                            //then next subyear in same year
+            //                            var newRc = new RunningClass()
+            //                            {
+            //                                AcademicYearId = aca.Id
+            //                                ,
+            //                                YearId = ney.YearId ?? 0
+            //                                ,
+            //                                SubYearId = ney.Id
+            //                                ,
+
+            //                                ProgramBatchId = sonly.ProgramBatchId
+            //                                ,
+            //                                SessionId = session.Id
+            //                            };
+            //                            list.Add(newRc);
+            //                            //var savedRc = Context.RunningClass.Add(newRc);
+            //                            //Context.SaveChanges();
+            //                        }
+            //                        else
+            //                        {
+            //                            //then subyear is finished so next year
+            //                        }
+            //                    }
+            //                    var savedses = helper.AddRunningClass(list);
+            //                }
+            //            }
+            //            else
+            //            {
+            //                ActivateAcademicYearSession(userId, academicYearId, 0);
+            //            }
+            //            var ses = Context.Session.Find(sessionId);
+            //            if (ses != null)
+            //            {
+
+            //            }
+            //        }
+            //    }
+            //}
         }
     }
 }

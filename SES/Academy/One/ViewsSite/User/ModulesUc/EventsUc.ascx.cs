@@ -17,12 +17,13 @@ namespace One.ViewsSite.User.ModulesUc
             //Calendar1.SelectedDates.Add(DateTime.Now.AddDays(3));
             //Calendar1.SelectedDates.Add(DateTime.Now.AddDays(5));
             //Calendar1.SelectedDates.Add(DateTime.Now.AddDays(-10));
+            
             if (!IsPostBack)
             {
                 Calendar1.SelectedDate = DateTime.Now.Date;
                 using (var helper = new DbHelper.Event())
                 {
-                    var list = helper.ListEventDatesForTheMonth(SchoolId, Calendar1.SelectedDate);
+                    var list = helper.ListEventDatesForTheMonth(SchoolId,UserId, Calendar1.SelectedDate);
                     foreach (var dt in list)
                     {
                         Calendar1.SelectedDates.Add(dt);
@@ -43,7 +44,7 @@ namespace One.ViewsSite.User.ModulesUc
                 Calendar1.SelectedDate = DateTime.Now.Date;
                 using (var helper = new DbHelper.Event())
                 {
-                    var list = helper.ListEventDatesForTheMonth(SchoolId, Calendar1.SelectedDate);
+                    var list = helper.ListEventDatesForTheMonth(SchoolId,UserId, Calendar1.SelectedDate);
                     foreach (var dt in list)
                     {
                         Calendar1.SelectedDates.Add(dt);
@@ -67,7 +68,7 @@ namespace One.ViewsSite.User.ModulesUc
         {
             using (var helper = new DbHelper.Event())
             {
-                var events = helper.GetEvent(SchoolId, Calendar1.SelectedDate.Date);
+                var events = helper.ListEvents(SchoolId,UserId, Calendar1.SelectedDate.Date);
                 if (events.Any())
                 {
                     var datelabel = new Label() {Text = "<div style='text-align: center;margin-top: -5px;'>" 
@@ -116,7 +117,7 @@ namespace One.ViewsSite.User.ModulesUc
             //Calendar1.SelectedDates.Clear();
             using (var helper = new DbHelper.Event())
             {
-                var list = helper.ListEventDatesForTheMonth(SchoolId, Calendar1.SelectedDate);
+                var list = helper.ListEventDatesForTheMonth(SchoolId,UserId, Calendar1.SelectedDate);
                 foreach (var dt in list)
                 {
                     Calendar1.SelectedDates.Add(dt);
@@ -133,7 +134,7 @@ namespace One.ViewsSite.User.ModulesUc
             Calendar1.SelectedDates.Clear();
             using (var helper = new DbHelper.Event())
             {
-                var list = helper.ListEventDatesForTheMonth(SchoolId, e.NewDate);
+                var list = helper.ListEventDatesForTheMonth(SchoolId,UserId, e.NewDate);
                 foreach (var dt in list)
                 {
                     Calendar1.SelectedDates.Add(dt);

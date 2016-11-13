@@ -61,6 +61,7 @@
     <Compile Include="DbHelper.Classes.cs" />
     <Compile Include="DbHelper.ComboLoader.cs" />
     <Compile Include="DbHelper.CustomAccount.cs" />
+    <Compile Include="DbHelper.News.cs" />
     <Compile Include="DbHelper.SystemDate.cs" />
     <Compile Include="DbHelper.Event.cs" />
     <Compile Include="DbHelper.Exam.cs" />

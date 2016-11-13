@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Academic.DbEntities.User;
 
 namespace Academic.DbEntities.Events
 {
@@ -12,7 +13,6 @@ namespace Academic.DbEntities.Events
         public string Title { get; set; }
 
         public string Location { get; set; }
-
 
         public DateTime Date { get; set; }
 
@@ -26,5 +26,11 @@ namespace Academic.DbEntities.Events
         public string  Description { get; set; }
 
         public int SchoolId { get; set; }
+
+        public int PostedById { get; set; }
+        public virtual Users PostedBy { get; set; }
+
+        public bool PostToPublic { get; set; }
+
     }
 }

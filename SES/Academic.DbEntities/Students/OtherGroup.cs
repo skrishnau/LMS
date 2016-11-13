@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Students
 {
-    /// <summary>
-    /// It holds the students from any studentGroup... One student can be in many "OtherGroup".
-    /// </summary>
-    public class OtherGroup
-    {
-    }
+    ///// <summary>
+    ///// It holds the students from any studentGroup... One student can be in many "OtherGroup".
+    ///// </summary>
+    //public class OtherGroup
+    //{
+    //}
 }

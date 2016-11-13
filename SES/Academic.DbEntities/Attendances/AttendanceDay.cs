@@ -12,7 +12,7 @@ namespace Academic.DbEntities.Attendances
         public DateTime Date { get; set; }
         public int TeachId { get; set; }
 
-        public virtual Activities.Teach Teach { get; set; }
+        //public virtual Activities.Teach Teach { get; set; }
         public virtual ICollection<Attendance> Attendances { get; set; }
     }
 }

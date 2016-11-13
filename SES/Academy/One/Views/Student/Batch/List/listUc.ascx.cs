@@ -8,6 +8,7 @@ using Academic.DbHelper;
 
 namespace One.Views.Student.Batch.List
 {
+
     public partial class listUc : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -35,15 +36,23 @@ namespace One.Views.Student.Batch.List
         {
             using (var helper = new DbHelper.Batch())
             {
+                var edit = Edit == "1";
                 var lst = helper.GetBatchList(SchoolId, 10
                     , 0);//Convert.ToInt32(String.IsNullOrEmpty(txtPageNo.Text) ? "0" : txtPageNo.Text));
                 foreach (var batch in lst)
                 {
                     ItemUc itemUc = (ItemUc)Page.LoadControl("~/Views/Student/Batch/List/ItemUc.ascx");
-                    itemUc.LoadData(batch.Id, batch.Name, batch.Description, batch.ProgramBatches.Count, batch.ClassCommenceDate);
+                    itemUc.LoadData(batch.Id, batch.Name, batch.Description, batch.ProgramBatches.Count
+                        , batch.ClassCommenceDate, edit);
                     pnlItems.Controls.Add(itemUc);
                 }
             }
+        }
+
+        public string Edit
+        {
+            get{return hidEdit.Value;}
+            set { hidEdit.Value = value; }
         }
     }
 }

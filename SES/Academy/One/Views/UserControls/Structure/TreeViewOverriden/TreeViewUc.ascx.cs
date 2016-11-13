@@ -237,8 +237,10 @@ namespace One.Views.UserControls.Structure.TreeViewOverriden
                 ////CheckForYear(tree.CheckedNodes)
                 using (var helper = new DbHelper.AcademicPlacement())
                 {
-                    var saved = helper.AddOrUpdateRunningClass(classes);
-                    return saved;
+                    //uncomment this
+                    //var saved = helper.AddOrUpdateRunningClass(classes);
+                    //return saved;
+                    return false;
                 }
 
             }
@@ -285,7 +287,7 @@ namespace One.Views.UserControls.Structure.TreeViewOverriden
 
 
 
-                    foreach (var faculty in level.Faculty.Where(x => !(x.Void ?? false) && (x.IsActive ?? true)))
+                    foreach (var faculty in level.Faculty.Where(x => !(x.Void ?? false) ))
                     {
                         var facNode = new MyTreeNode(faculty.Name, faculty.Id.ToString());
                         if (savedFaculties.Contains(faculty.Id))
@@ -293,7 +295,7 @@ namespace One.Views.UserControls.Structure.TreeViewOverriden
                         facNode.Type = "faculty";
                         levelNode.ChildNodes.Add(facNode);
 
-                        foreach (var program in faculty.Programs.Where(x => !(x.Void ?? false) && (x.IsActive ?? true)))
+                        foreach (var program in faculty.Programs.Where(x => !(x.Void ?? false) ))
                         {
                             var progNode = new MyTreeNode(program.Name, program.Id.ToString());
                             if (savedPrograms.Contains(program.Id))
@@ -302,7 +304,7 @@ namespace One.Views.UserControls.Structure.TreeViewOverriden
                             facNode.ChildNodes.Add(progNode);
 
 
-                            foreach (var year in program.Year.Where(x => !(x.Void ?? false) && (x.IsActive ?? true)))
+                            foreach (var year in program.Year.Where(x => !(x.Void ?? false) ))
                             {
                                 var yearNode = new MyTreeNode(year.Name, year.Id.ToString());
                                 if (savedYears.Contains(year.Id))
@@ -322,8 +324,7 @@ namespace One.Views.UserControls.Structure.TreeViewOverriden
                                 progNode.ChildNodes.Add(yearNode);
 
                                 foreach (var subyear in year.SubYears.Where(x => x.ParentId == null
-                                                                                 && !(x.Void ?? false) &&
-                                                                                 (x.IsActive ?? true)))
+                                                                                 && !(x.Void ?? false) ))
                                 {
                                     var subyearNode = new MyTreeNode(subyear.Name, subyear.Id.ToString());
                                     if (savedsubyears.Contains(subyear.Id))

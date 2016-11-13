@@ -14,72 +14,30 @@ namespace One.Views.RestrictionAccess
         protected void Page_Load(object sender, EventArgs e)
         {
             lblError.Visible = false;
-
-            LoadDate();
+            if (LoadOnAutoPostback)
+                LoadDate();
         }
 
-        /// <summary>
-        /// caalled from loading function for one time only...
-        /// </summary>
-        /// <param name="date"></param>
-        //public void LoadInitialValue(DateTime date)
-        //{
-        //    //var selectedDate = SelectedDate();
-        //    InitialDate = date;
-        //    string currentMonth = "";
-        //    ddlYear.DataSource = DbHelper.SystemDate.GetYears(-10, 5, date);
-        //    ddlYear.DataBind();
-        //    ddlYear.SelectedValue = date.Year.ToString();
-
-        //    ddlMonth.DataSource = DbHelper.SystemDate.GetMonth("short", date.Month, out currentMonth);
-        //    ddlMonth.DataBind();
-        //    if (currentMonth != "")
-        //    {
-        //        ddlMonth.SelectedValue = currentMonth;
-        //    }
-
-
-
-        //    ddlDay.DataSource = DbHelper.SystemDate.GetDays(date.Date);
-        //    ddlDay.DataBind();
-        //    ddlDay.SelectedValue = date.Day.ToString();
-
-        //    ddlHour.DataSource = DbHelper.SystemDate.GetHours();
-        //    ddlHour.DataBind();
-
-        //    ddlMinute.DataSource = DbHelper.SystemDate.GetMinutes();
-        //    ddlMinute.DataBind();
-
-        //}
-
-
-        private void LoadDate()
+        #region Properties
+        public bool LoadOnAutoPostback
         {
-
-            var date = InitialDate;
-            //var selectedDate = SelectedDate();
-            int currentMonth = 1;
-            ddlYear.DataSource = DbHelper.SystemDate.GetYears(-10, 5, date);
-            ddlYear.DataBind();
-            ddlYear.SelectedValue = date.Year.ToString();
-
-
-            ddlMonth.DataSource = DbHelper.SystemDate.GetMonth("short", date.Month, out currentMonth);
-            ddlMonth.DataBind();
-            ddlMonth.SelectedValue = currentMonth.ToString();
-
-
-            ddlDays.DataSource = DbHelper.SystemDate.GetDays(date.Date);
-            ddlDays.DataBind();
-            ddlDays.SelectedValue =  date.Day.ToString();
-
-            ddlHour.DataSource = DbHelper.SystemDate.GetHours();
-            ddlHour.DataBind();
-
-            ddlMinute.DataSource = DbHelper.SystemDate.GetMinutes();
-            ddlMinute.DataBind();
+            set { hidLoadOnAutoPostBack.Value = value.ToString(); }
+            get { return Convert.ToBoolean(hidLoadOnAutoPostBack.Value); }
         }
 
+        public bool ShowFromUntilOption
+        {
+            set
+            {
+                pnlFromUntilOption.Visible = value;
+                hidShowFromUntilOption.Value = value.ToString();
+            }
+        }
+
+        public bool ShowRemoveButton
+        {
+            set { imgClose.Visible = value; }
+        }
         public DateTime InitialDate
         {
             get
@@ -91,30 +49,6 @@ namespace One.Views.RestrictionAccess
                 return DateTime.Now; ;
             }
             set { hidInitialDate.Value = value.ToShortDateString(); }
-        }
-
-        public bool IsValid = true;
-        private DateTime SelectedDate()
-        {
-            try
-            {
-                var year = Convert.ToInt32(ddlYear.SelectedValue);
-                var month = Convert.ToInt32(ddlMonth.SelectedValue);
-
-                var day = Convert.ToInt32(ddlDays.SelectedValue);
-
-                var hour = Convert.ToInt32(ddlHour.SelectedValue);
-                var min = Convert.ToInt32(ddlMinute.SelectedValue);
-
-                return new DateTime(year, month, day, hour, min, 0);
-            }
-            catch
-            {
-                lblError.Visible = true;
-                IsValid = false;
-                return DateTime.Now;
-            }
-
         }
 
         /// <summary>
@@ -147,6 +81,83 @@ namespace One.Views.RestrictionAccess
             get { return hidType.Value; }
             set { hidType.Value = value; }
         }
+        public bool NoramlUse
+        {
+            set
+            {
+                LoadOnAutoPostback = !value;
+                ShowFromUntilOption = !value;
+                ShowRemoveButton = !value;
+            }
+
+        }
+        #endregion
+
+
+
+        private void LoadDate()
+        {
+
+            var date = InitialDate;
+            var pastYear = Convert.ToInt32(hidPastYear.Value);
+            var comingYear = Convert.ToInt32(hidComingYear.Value);
+            //var selectedDate = SelectedDate();
+            int currentMonth = 1;
+            ddlYear.DataSource = DbHelper.SystemDate.GetYears(pastYear, comingYear, date);
+            ddlYear.DataBind();
+            ddlYear.SelectedValue = date.Year.ToString();
+
+
+            ddlMonth.DataSource = DbHelper.SystemDate.GetMonth(hidMonthDisplayMode.Value, date.Month, out currentMonth);
+            ddlMonth.DataBind();
+            ddlMonth.SelectedValue = currentMonth.ToString();
+
+
+            ddlDays.DataSource = DbHelper.SystemDate.GetDays(date.Date);
+            ddlDays.DataBind();
+            ddlDays.SelectedValue = date.Day.ToString();
+
+            ddlHour.DataSource = DbHelper.SystemDate.GetHours();
+            ddlHour.DataBind();
+
+            ddlMinute.DataSource = DbHelper.SystemDate.GetMinutes();
+            ddlMinute.DataBind();
+        }
+
+        public void LoadCustomDate(int pastYear, int comingYear, string monthDisplayType, DateTime date)
+        {
+            InitialDate = date;
+            hidPastYear.Value = pastYear.ToString();
+            hidComingYear.Value = comingYear.ToString();
+            LoadDate();
+        }
+
+
+        public bool IsValid = true;
+        public DateTime SelectedDate()
+        {
+            try
+            {
+                var year = Convert.ToInt32(ddlYear.SelectedValue);
+                var month = Convert.ToInt32(ddlMonth.SelectedValue);
+
+                var day = Convert.ToInt32(ddlDays.SelectedValue);
+
+                var hour = Convert.ToInt32(ddlHour.SelectedValue);
+                var min = Convert.ToInt32(ddlMinute.SelectedValue);
+
+                return new DateTime(year, month, day, hour, min, 0);
+            }
+            catch
+            {
+                lblError.Visible = true;
+                IsValid = false;
+                return DateTime.Now;
+            }
+
+        }
+
+
 
         public event EventHandler<RestrictionEventArgs> CloseClicked;
         protected void imgClose_Click(object sender, ImageClickEventArgs e)
@@ -214,12 +225,22 @@ namespace One.Views.RestrictionAccess
             var res = new Academic.DbEntities.AccessPermission.DateRestriction()
             {
                 Id = DateRestrictionId
-                ,Date = SelectedDate()
-                ,RestrictionId = RestrictionId
-                ,Constraint = ddlFromUntil.SelectedIndex==1
+                ,
+                Date = SelectedDate()
+                ,
+                RestrictionId = RestrictionId
+                ,
+                Constraint = ddlFromUntil.SelectedIndex == 1
             };
             return res;
         }
 
+        public void SetNormalDateMode(bool loadOnAutoPostBack, bool removeButtonVisibility,
+            bool fromUntilOptionVisibility)
+        {
+            LoadOnAutoPostback = loadOnAutoPostBack;
+            ShowRemoveButton = removeButtonVisibility;
+            ShowFromUntilOption = fromUntilOptionVisibility;
+        }
     }
 }

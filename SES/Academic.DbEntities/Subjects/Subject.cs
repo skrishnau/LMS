@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Academic.DbEntities.Activities;
+//using Academic.DbEntities.Activities;
 using Academic.DbEntities.Office;
 using Academic.DbEntities.Structure;
 using Academic.DbEntities.Subjects.Detail;
 
 namespace Academic.DbEntities.Subjects
 {
-   
+
     public class Subject
     {
         public int Id { get; set; }
+
         /// <summary>
         /// It is FullName
         /// </summary>
@@ -23,15 +24,16 @@ namespace Academic.DbEntities.Subjects
 
         public string Summary { get; set; }
 
+        public int Credit { get; set; }
         //enrolment methods in subject 
-//================????? ============================//
+        //================????? ============================//
         //Enrolmment method
 
         public string Code { get; set; }
         //public byte? Credit { get; set; }
 
 
-        public int SubjectCategoryId  { get; set; }
+        public int SubjectCategoryId { get; set; }
         public virtual SubjectCategory SubjectCategory { get; set; }
 
         //public short? CompletionHours { get; set; }
@@ -57,7 +59,7 @@ namespace Academic.DbEntities.Subjects
         //public bool? IsOutOfSyllabus { get; set; }
 
         public DateTime CreatedDate { get; set; }
-        public int  CreatedById { get; set; }
+        public int CreatedById { get; set; }
         //public bool? Vocational { get; set; }
 
         //public virtual ICollection<SubjectGroupSubject> SubjectGroupSubjects { get; set; }

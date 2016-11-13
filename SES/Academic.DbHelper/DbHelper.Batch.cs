@@ -9,6 +9,7 @@ using System.Transactions;
 using System.Web.SessionState;
 using Academic.Database;
 using Academic.DbEntities.Batches;
+using Academic.ViewModel;
 
 namespace Academic.DbHelper
 {
@@ -150,7 +151,7 @@ namespace Academic.DbHelper
                 return stdas;
             }
 
-         
+
             public List<DbEntities.User.Users> GetStudentsOfProgramBatch_AsUser(int programBatchId)
             {
                 var stdas = Context.StudentBatch.Include(i => i.Student).Include(i => i.Student.User)
@@ -377,7 +378,21 @@ namespace Academic.DbHelper
             }
 
 
-
+            //used
+            public List<IdAndName> ListCurrentProgramBatches(int programId)
+            {
+                var list = new List<IdAndName>();
+                var lst = Context.ProgramBatch.Where(x => x.ProgramId == programId && !(x.PassOut ?? false)).ToList();
+                foreach (var l in lst)
+                {
+                    list.Add(new IdAndName()
+                    {
+                        Id = l.Id,
+                        Name = l.NameFromBatch
+                    });
+                }
+                return list;
+            }
 
 
 

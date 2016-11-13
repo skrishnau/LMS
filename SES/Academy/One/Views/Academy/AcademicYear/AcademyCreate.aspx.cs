@@ -13,6 +13,7 @@ namespace One.Views.Academy.AcademicYear
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             valiStartDate.ErrorMessage = "Required";
             try
             {
@@ -37,14 +38,6 @@ namespace One.Views.Academy.AcademicYear
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            //if (cmbSchool.SelectedValue == "0")
-            //{
-            //    RequiredFieldValidator2.IsValid = false;
-            //}
-            //else
-            //{
-            //    RequiredFieldValidator2.IsValid = true;
-            //}
             var user = Page.User as CustomPrincipal;
             if (user != null)
             {
@@ -68,8 +61,7 @@ namespace One.Views.Academy.AcademicYear
                     valiEndDate.ErrorMessage = "Incorrect format.";
                     valiEndDate.IsValid = false;
                 }
-                //if (!Page.IsValid)
-                //    return;
+                
                 if (Page.IsValid)
                 {
                     var entity = new Academic.DbEntities.AcademicYear()
@@ -83,13 +75,11 @@ namespace One.Views.Academy.AcademicYear
                         StartDate = start
                         ,
                         SchoolId = user.SchoolId
-                        //,
-                        //IsActive = CheckBox1.Checked
                     };
                     using (var helper = new DbHelper.AcademicYear())
                     {
 
-                        var saved = helper.AddOrUpdateAcademicYear(user.SchoolId,entity);
+                        var saved = helper.AddOrUpdateAcademicYear(user.SchoolId, entity);
                         if (saved != null)
                         {
                             var btn = sender as Button;
@@ -104,19 +94,18 @@ namespace One.Views.Academy.AcademicYear
                                     Response.Redirect("~/Views/Academy/List.aspx");
                                 }
                             }
-                            //earlier uncommented
-                            //pnlAcademicYear.Enabled = false;
-
-                            //earlier uncommented  
-                            //btnSave.Enabled = false;
-                            //CreateUC1.ValidationEnabled = true;
-                            //CreateUC1.AcademicYear = saved.Id;
-                            //pnlAcademicYear.BackColor = Color.Aquamarine;
-                            //pnlSession.Visible = true;
+                           
                         }
+                        else lblError.Visible = true;
                     }
                 }
             }
+        }
+
+        public int AcademicId
+        {
+            get { return Convert.ToInt32(hidId.Value); }
+            set { hidId.Value = value.ToString(); }
         }
 
 

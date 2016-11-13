@@ -27,25 +27,25 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
-            public List<Users> GetEmployeesOfExamDivisionForCombo(int schoolId)
-            {
-                try
-                {
-                    List<Users> users = new List<Users>();
+            //public List<Users> GetEmployeesOfExamDivisionForCombo(int schoolId)
+            //{
+            //    try
+            //    {
+            //        List<Users> users = new List<Users>();
 
-                    var examDivision = Context.Division.Include(x => x.UserDivisions).FirstOrDefault(y => y.Name == "Exam" && y.SchoolId == schoolId);
-                    if (examDivision != null)
-                        foreach (var division in examDivision.UserDivisions)
-                        {
-                            users.Add(division.Users);
-                        }
-                    return users;
-                }
-                catch 
-                {
-                    return new List<Users>();
-                }
-            }
+            //        var examDivision = Context.Division.Include(x => x.UserDivisions).FirstOrDefault(y => y.Name == "Exam" && y.SchoolId == schoolId);
+            //        if (examDivision != null)
+            //            foreach (var division in examDivision.UserDivisions)
+            //            {
+            //                users.Add(division.Users);
+            //            }
+            //        return users;
+            //    }
+            //    catch 
+            //    {
+            //        return new List<Users>();
+            //    }
+            //}
         }
     }
 }

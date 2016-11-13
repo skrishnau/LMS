@@ -48,5 +48,7 @@ namespace Academic.DbEntities.Subjects
         public virtual AcademicYear LastActiveInAcademicYear { get; set; }
         public virtual AcademicYear WillNotBeActiveFromAcademicYear { get; set; }
 
+
+
     }
 }

@@ -22,12 +22,12 @@ namespace Academic.DbEntities.Structure
         //public int? FacultyId { get; set; }
         //public int? ProgramId { get; set; }
         public int? YearId { get; set; }
-
         public virtual Year Year { get; set; }
 
-        public bool? IsActive { get; set; }
         public bool? Void { get; set; }
         public DateTime? CreatedDate { get; set; }
 
+        public virtual ICollection<Subjects.SubjectStructure> SubjectStructures { get; set; }
+        public virtual ICollection<AcacemicPlacements.RunningClass> RunningClasses { get; set; }
     }
 }

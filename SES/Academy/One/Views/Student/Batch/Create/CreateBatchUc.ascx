@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CreateBatchUc.ascx.cs" Inherits="One.Views.Student.Batch.Create.CreateBatchUc" %>
-<%@ Register Src="~/Views/Student/Batch/Create/AddProgramsUc.ascx" TagPrefix="uc1" TagName="AddProgramsUc" %>
+<%--<%@ Register Src="~/Views/Student/Batch/Create/AddProgramsUc.ascx" TagPrefix="uc1" TagName="AddProgramsUc" %>--%>
 <%@ Register Src="~/Views/Structure/All/UserControls/StructureView/TreeViewWithCheckBoxInLeft.ascx" TagPrefix="uc1" TagName="TreeViewWithCheckBoxInLeft" %>
 
 
@@ -71,7 +71,7 @@
 
             <strong>Add Programs to this Batch</strong>
             <hr />
-            <uc1:AddProgramsUc runat="server" ID="AddProgramsUc" />
+            <%--<uc1:AddProgramsUc runat="server" ID="AddProgramsUc" />--%>
             <br />
 
             <%--<uc1:AddProgramsUc runat="server" ID="AddProgramsUc" />--%>

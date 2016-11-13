@@ -28,7 +28,7 @@ namespace One.Views.Student.Batch.StudentEntries
 
         #region Properties
 
-        public List<Academic.DbEntities.AcacemicPlacements.StudentClass> StudentClasses { get; set; }
+        //public List<Academic.DbEntities.AcacemicPlacements.StudentClass> StudentClasses { get; set; }
         public int RunningClassId { get; set; }
 
         public int AcademicYearId

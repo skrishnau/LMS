@@ -59,13 +59,13 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
 
         #endregion
 
-        protected void lnkWithdraw_Click(object sender, EventArgs e)
-        {
-            using (var helper = new DbHelper.AcademicPlacement())
-            {
-                bool stat = helper.WithdrawFromCourse(SubjectSubscriptionId);
-            }
-        }
+        //protected void lnkWithdraw_Click(object sender, EventArgs e)
+        //{
+        //    using (var helper = new DbHelper.AcademicPlacement())
+        //    {
+        //        //bool stat = helper.WithdrawFromCourse(SubjectSubscriptionId);
+        //    }
+        //}
 
         protected void lblTitle_Click(object sender, EventArgs e)
         {

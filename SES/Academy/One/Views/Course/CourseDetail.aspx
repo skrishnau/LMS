@@ -4,16 +4,28 @@
     <div style="margin-left: 10px;">
 
         <div>
-            <strong style="font-size: 1.3em; display: block; text-align: center;">
+            <h3 class="heading-of-listing">
                 <asp:Literal ID="lblHeading" runat="server" Text="Heading"></asp:Literal>
-            </strong>
+            </h3>
+            <hr />
+
             <div style="text-align: center;">
-                View | Edit | Delete | Hide | BackUp | Restore
+                <asp:HyperLink ID="lnkView" runat="server">View</asp:HyperLink>
+                | 
+                <asp:HyperLink ID="lnkEdit" runat="server">Edit</asp:HyperLink>
+                | 
+                <asp:HyperLink ID="lnkDelete" runat="server">Delete</asp:HyperLink>
+                <%-- | 
+                <asp:HyperLink ID="HyperLink4" runat="server">Hide</asp:HyperLink>
+                | 
+                <asp:HyperLink ID="HyperLink5" runat="server">Backup</asp:HyperLink>
+                | 
+                <asp:HyperLink ID="HyperLink6" runat="server">Restore</asp:HyperLink>--%>
             </div>
         </div>
         <br />
-        <div>
-            <strong>Detail</strong>
+        <div class="data-entry-section">
+            <div class="data-entry-section-heading">Detail</div>
             <hr />
             <div style="margin-left: 10px;">
                 <%-- <div class="border-bottom1">
@@ -46,12 +58,12 @@
                         </td>
                     </tr>
 
-                    <tr class="border-bottom1">
+                    <%-- <tr class="border-bottom1">
                         <td class="width10">No. of Global Sections</td>
                         <td>
                             <asp:Literal ID="lblNoOfGlobalSections" runat="server"></asp:Literal>
                         </td>
-                    </tr>
+                    </tr>--%>
                 </table>
 
             </div>
@@ -71,8 +83,7 @@
                                     <asp:HyperLink ID="lnkNewClass" runat="server"
                                         ToolTip="For different group studying the Course at the same time, there can be different Subject Sessions,so as to differentiate the course content for each group.">
                                         <asp:Image ID="Image1" ImageUrl="~/Content/Icons/Add/Add-icon.png" runat="server" />
-                                        &nbsp;
-                                        Create New Class for this Course
+                                        Create New Class
                                     </asp:HyperLink>
                                 </span>
                             </div>
@@ -81,56 +92,61 @@
                             <%-- List of currently studying students --%>
                             <%-- Give to choose the year --%>
 
-                            <div style="padding: 5px; border: 2px solid lightgray;">
-                                <asp:LinkButton ID="lnkClassFilter" runat="server"
+                            <div style="padding: 3px; border: 1px solid #557d96; margin-left: 15px;">
+                                <asp:LinkButton ID="lnkClassFilter" runat="server" CssClass="link"
                                     Font-Underline="False" OnClick="lnkClassFilter_Click">
-                                    <asp:Image runat="server" ID="imgFilter" ImageUrl="~/Content/Icons/Arrow/arrow_right.png" />
+                                    <%--<asp:Image runat="server" ID="imgFilter" ImageUrl="~/Content/Icons/Arrow/arrow_right.png" Visible="False" />--%>
+                                    <asp:Literal ID="lblFilterArrow" runat="server" Text="►"></asp:Literal>
                                     Filter
                                 </asp:LinkButton>
 
-                                <asp:Panel ID="pnlClassFilter" runat="server" Visible="False">
-                                    <hr />
-                                    <table>
-                                        <tr>
-                                            <td class="table-row-padding">
-                                                <asp:LinkButton ID="btnAll" runat="server" Font-Underline="False" OnClick="btnFilterCrieteria_Click">
-                                            <span style="background-color: #ffffff;" class="class-filter-table-cell"></span>
-                                                &nbsp;All
-                                                </asp:LinkButton>
+                                <div style="margin-left: 10px;">
+                                    <asp:Panel ID="pnlClassFilter" runat="server" Visible="False">
+                                        <%--<hr />--%>
+                                        <table>
+                                            <tr>
+                                                <td class="table-row-padding">
+                                                    <asp:LinkButton ID="btnAll" runat="server"  OnClick="btnFilterCrieteria_Click">
+                                                <span style="background-color: #ffffff;" class="class-filter-table-cell"></span>
+                                                    All
+                                                    </asp:LinkButton>
+                                                    &nbsp;
+                                                </td>
+                                                <td class="table-row-padding">
+                                                    <asp:LinkButton ID="btnCurrentlyRunning" runat="server"  OnClick="btnFilterCrieteria_Click">
+                                                <span style="background-color: #d7e3e7;" class="class-filter-table-cell"></span>
+                                                    Currently Running
+                                                    </asp:LinkButton>
+                                                    &nbsp;
+                                                </td>
+                                                <td class="table-row-padding">
+                                                    <asp:LinkButton ID="btnDue" runat="server"  OnClick="btnFilterCrieteria_Click">
+                                                <span style="background-color: #fdd6dc;" class="class-filter-table-cell"></span>
+                                                Due
+                                                    </asp:LinkButton>
+                                                    &nbsp;
+                                                </td>
+                                                <td class="table-row-padding">
+                                                    <asp:LinkButton ID="btnNotStartedYet" runat="server"  OnClick="btnFilterCrieteria_Click">
+                                                <span style="background-color: #fdfdc2;" class="class-filter-table-cell"></span>
+                                                Not yet Started
+                                                    </asp:LinkButton>
+                                                    &nbsp;
+                                                </td>
 
-                                            </td >
-                                            <td class="table-row-padding">
-                                                <asp:LinkButton ID="btnCurrentlyRunning" runat="server" Font-Underline="False" OnClick="btnFilterCrieteria_Click">
-                                            <span style="background-color: #d7e3e7;" class="class-filter-table-cell"></span>
-                                                &nbsp;Currently Running
-                                                </asp:LinkButton>
-
-                                            </td>
-                                            <td class="table-row-padding">
-                                                <asp:LinkButton ID="btnDue" runat="server" Font-Underline="False" OnClick="btnFilterCrieteria_Click">
-                                        <span style="background-color: #fdd6dc;" class="class-filter-table-cell"></span>
-                                        &nbsp;Due
-                                                </asp:LinkButton>
-                                            </td>
-                                            <td class="table-row-padding">
-                                                <asp:LinkButton ID="btnNotStartedYet" runat="server" Font-Underline="False" OnClick="btnFilterCrieteria_Click">
-                                        <span style="background-color: #fdfdc2;" class="class-filter-table-cell"></span>
-                                        &nbsp;Not yet Started
-                                                </asp:LinkButton>
-                                            </td>
-
-                                            <td class="table-row-padding">
-                                                <asp:LinkButton ID="btnCompleted" runat="server" Font-Underline="False" OnClick="btnFilterCrieteria_Click">
+                                                <td class="table-row-padding">
+                                                    <asp:LinkButton ID="btnCompleted" runat="server"  OnClick="btnFilterCrieteria_Click">
                                                 <span style="background-color: #bcf4bc;" class="class-filter-table-cell"></span>
-                                                &nbsp;Completed
-                                                </asp:LinkButton>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                                Completed
+                                                    </asp:LinkButton>
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
 
 
-                                </asp:Panel>
-
+                                    </asp:Panel>
+                                </div>
                             </div>
 
                         </div>
@@ -188,14 +204,14 @@
         }
 
         .border-bottom1 {
-            border-bottom: 1px solid grey;
+            /*border-bottom: 1px solid grey;*/
             width: 100%;
-            padding: 10px 0;
+            padding: 5px 0;
         }
 
         .width10 {
             width: 170px;
-            padding: 10px 0;
+            padding: 5px 0;
             display: inline-block;
         }
 
@@ -205,11 +221,12 @@
 
         .class-filter-table-cell {
             /*margin-left: 10px;*/
-            width: 20px;
-            height: 20px;
+            width: 14px;
+            height: 14px;
             display: inline-block;
-            border: 2px solid lightgray;
+            border: 1px solid black;
         }
+
         .table-row-padding {
             padding-left: 10px;
         }

@@ -22,13 +22,13 @@ namespace One.Views.Student.Batch.List {
         protected global::System.Web.UI.WebControls.HiddenField hidBatchId;
         
         /// <summary>
-        /// lblName control.
+        /// lnkName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lblName;
+        protected global::System.Web.UI.WebControls.HyperLink lnkName;
         
         /// <summary>
         /// lnkEdit control.
@@ -37,7 +37,7 @@ namespace One.Views.Student.Batch.List {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEdit;
+        protected global::System.Web.UI.WebControls.HyperLink lnkEdit;
         
         /// <summary>
         /// imgEditBtn control.
@@ -47,14 +47,5 @@ namespace One.Views.Student.Batch.List {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgEditBtn;
-        
-        /// <summary>
-        /// lblNumberOfPrograms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblNumberOfPrograms;
     }
 }

@@ -11,6 +11,10 @@ namespace Academic.DbHelper
     //{
     public static class Enums
     {
+        public enum StructureType
+        {
+            Level, Faculty, Program, Year, Subyear
+        }
 
         public enum LongMonth
         {

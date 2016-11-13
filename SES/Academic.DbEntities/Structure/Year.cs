@@ -15,15 +15,15 @@ namespace Academic.DbEntities.Structure
         public string Description { get; set; }
 
         public int ProgramId { get; set; }
-
         public virtual Program Program { get; set; }
-        public virtual ICollection<SubYear> SubYears { get; set; }
 
-        public virtual ICollection<Subjects.SubjectGroup> SubjectGroups { get; set; }
+        //public virtual ICollection<Subjects.SubjectGroup> SubjectGroups { get; set; }
 
-
-        public bool? IsActive { get; set; }
         public bool? Void { get; set; }
         public DateTime? CreatedDate { get; set; }
+
+        public virtual ICollection<SubYear> SubYears { get; set; }
+        public virtual ICollection<Subjects.SubjectStructure> SubjectStructures { get; set; }
+        public virtual ICollection<AcacemicPlacements.RunningClass> RunningClasses { get; set; }
     }
 }

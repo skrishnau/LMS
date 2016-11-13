@@ -41,7 +41,7 @@ namespace One.Views.Academy.Activation
             using (var helper = new DbHelper.AcademicYear())
             {
                 //then session need to be activated
-                helper.ActivateAcademicYearSession(aId, sId);
+                //helper.ActivateAcademicYearSession(aId, sId);
             }
 
         }

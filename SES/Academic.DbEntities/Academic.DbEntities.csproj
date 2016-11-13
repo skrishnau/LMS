@@ -45,14 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AcacemicPlacements\RegularSubjectClass.cs" />
     <Compile Include="AcacemicPlacements\RunningClass.cs" />
-    <Compile Include="AcacemicPlacements\StudentClass.cs" />
-    <Compile Include="AcacemicPlacements\StudentsOpinionAboutSubject.cs" />
-    <Compile Include="AcacemicPlacements\SubjectClass.cs" />
-    <Compile Include="AcacemicPlacements\SubjectSubscription.cs" />
-    <Compile Include="AcacemicPlacements\TeacherClass.cs" />
-    <Compile Include="AcacemicPlacements\UserClass.cs" />
     <Compile Include="AcademicYear.cs" />
     <Compile Include="AccessPermission\DateRestriction.cs" />
     <Compile Include="AccessPermission\GradeRestriction.cs" />
@@ -60,7 +53,6 @@
     <Compile Include="AccessPermission\Restriction.cs" />
     <Compile Include="AccessPermission\UserProfileRestriction.cs" />
     <Compile Include="Account\CustomUsers.cs" />
-    <Compile Include="Activities\Study.cs" />
     <Compile Include="ActivityAndResource\ActivityClass.cs" />
     <Compile Include="ActivityAndResource\ActivityCompletion.cs" />
     <Compile Include="ActivityAndResource\ActivityGrading.cs" />
@@ -82,10 +74,6 @@
     <Compile Include="ActivityAndResource\UrlResource.cs" />
     <Compile Include="Admins.cs" />
     <Compile Include="AdminTitle.cs" />
-    <Compile Include="Assignments\AssignedTask.cs" />
-    <Compile Include="Assignments\AssignmentAnswer.cs" />
-    <Compile Include="Assignments\AssignmentAnswerFile.cs" />
-    <Compile Include="Assignments\Task.cs" />
     <Compile Include="Attendances\Attendance.cs" />
     <Compile Include="Attendances\AttendanceDay.cs" />
     <Compile Include="Attendances\PresenceStatus.cs" />
@@ -101,6 +89,7 @@
     <Compile Include="Exams\ExamSubjectExaminer.cs" />
     <Compile Include="Grades\GradeType.cs" />
     <Compile Include="Grades\GradeValues.cs" />
+    <Compile Include="Newss\News.cs" />
     <Compile Include="Subjects\EnrolmentMethods.cs" />
     <Compile Include="Class\SubjectClass.cs" />
     <Compile Include="Subjects\SubjectFile.cs" />
@@ -171,18 +160,12 @@
     <Compile Include="Subjects\RegularSubject.cs" />
     <Compile Include="Subjects\SubjectCategory.cs" />
     <Compile Include="Subjects\SubjectGroupSubject.cs" />
-    <Compile Include="Subjects\SubjectGroup.cs" />
     <Compile Include="Subjects\Subject.cs" />
-    <Compile Include="Activities\Teach.cs" />
     <Compile Include="SystemModules\Module.cs" />
     <Compile Include="SystemModules\ModuleAccess.cs" />
     <Compile Include="SystemModules\ModuleAccessPermission.cs" />
     <Compile Include="SystemModules\modules_modulesaccess.cs" />
-    <Compile Include="Teachers\Appointment.cs" />
     <Compile Include="Teachers\Teacher.cs" />
-    <Compile Include="Teachers\TeacherExperience.cs" />
-    <Compile Include="Teachers\TeacherJobTitle.cs" />
-    <Compile Include="Teachers\TeacherNotification.cs" />
     <Compile Include="Teachers\TeacherQualification.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserImage.cs" />
@@ -214,6 +197,7 @@
     <Folder Include="Subjects\ActAndRes\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AcacemicPlacements\EarlierUnusedCodes.txt" />
     <Content Include="AcacemicPlacements\note.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,6 +13,15 @@ namespace One.Views.RestrictionAccess {
     public partial class DateRestrictionUC {
         
         /// <summary>
+        /// pnlFromUntilOption control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder pnlFromUntilOption;
+        
+        /// <summary>
         /// ddlFromUntil control.
         /// </summary>
         /// <remarks>
@@ -146,5 +155,59 @@ namespace One.Views.RestrictionAccess {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidRestrictionId;
+        
+        /// <summary>
+        /// hidLoadOnAutoPostBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidLoadOnAutoPostBack;
+        
+        /// <summary>
+        /// hidShowFromUntilOption control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidShowFromUntilOption;
+        
+        /// <summary>
+        /// hidShowRemoveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidShowRemoveButton;
+        
+        /// <summary>
+        /// hidPastYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidPastYear;
+        
+        /// <summary>
+        /// hidComingYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidComingYear;
+        
+        /// <summary>
+        /// hidMonthDisplayMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidMonthDisplayMode;
     }
 }

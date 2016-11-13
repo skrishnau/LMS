@@ -20,7 +20,7 @@
                             <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("Id") %>' />
                             <asp:HyperLink ID="HyperLink5" runat="server" CssClass="link"
                                 NavigateUrl='<%# "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId="+Eval("Id") %>'
-                                Font-Underline="False" ToolTip='<%# Eval("Name") %>'>
+                                Font-Underline="False" ToolTip='<%# Eval("FullName") %>'>
                                         ■&nbsp;<%# Eval("ShortName") %>
                             </asp:HyperLink>
                         </div>

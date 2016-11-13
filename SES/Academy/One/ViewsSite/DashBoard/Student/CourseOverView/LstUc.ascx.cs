@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Academic.DbEntities.Account;
 using Academic.DbHelper;
 using One.Values.MemberShip;
-using One.ViewsSite.DashBoard.Student.UnJoinedCourses;
+//using One.ViewsSite.DashBoard.Student.UnJoinedCourses;
 
 namespace One.ViewsSite.DashBoard.Student.CourseOverView
 {
