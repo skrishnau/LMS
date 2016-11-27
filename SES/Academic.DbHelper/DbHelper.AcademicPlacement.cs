@@ -375,228 +375,226 @@ namespace Academic.DbHelper
                 if (sessionId <= 0)
                 {
                     list = Context.RunningClass
-                        .Include(y => y.Year).Include(p => p.Year.Program).Include(f => f.Year.Program.Faculty)
-                        .Include(l => l.Year.Program.Faculty.Level)
                         .Where(x => x.AcademicYearId == AcademicYearId && (x.IsActive ?? true)).ToList();//&& !(x.Void ?? false)
                 }
                 else //if (sessionId > 0)
                 {
-                    list = Context.RunningClass.Include(s => s.SubYear)
-                         .Include(y => y.Year).Include(p => p.Year.Program).Include(f => f.Year.Program.Faculty)
-                        .Include(l => l.Year.Program.Faculty.Level)
+                    list = Context.RunningClass
                         .Where(x => x.SessionId == sessionId && (x.IsActive ?? true)).ToList();//&& !(x.Void ?? false)
                 }
                 return list;
             }
 
 
-            public object GetClassStructureInTreeView(int schoolId, int academicYearId, int sessionId = 0)
-            {
-                var levels = Context.Level.Include(m => m.Faculty).Where(x => x.SchoolId == schoolId
-                                                                              && !(x.Void ?? false));
-                var runningClasses = GetClassesOfAcademicYear(academicYearId, sessionId);
+            //public object GetClassStructureInTreeView(int schoolId, int academicYearId, int sessionId = 0)
+            //{
+            //    //var levels = Context.Level.Include(m => m.Faculty).Where(x => x.SchoolId == schoolId
+            //    //                                                              && !(x.Void ?? false));
+            //    var runningClasses = GetClassesOfAcademicYear(academicYearId, sessionId);
 
-                List<TreeNode> nodeList = new List<TreeNode>();
-                //levels already occured for this academic year
-                var savedLevels = runningClasses.Select(x => x.Year.Program.Faculty.Level.Id);
-                var savedFaculties = runningClasses.Select(x => x.Year.Program.Faculty.Id);
-                var savedPrograms = runningClasses.Select(x => x.Year.Program.Id);
-                var savedYears = runningClasses.Select(x => x.Year.Id);
-                var savedsubyears = runningClasses.Select(x => x.SubYear).Where(y => (y.ParentId ?? 0) == 0).Select(m => m.Id);
-                //var savedPhases = runningClasses.Select(x => x.SubYear).Where(y => (y.ParentId ?? 0) != 0).Select(m => m.Id);
-
-                foreach (var level in levels)
-                {
-                    var levelNode = new MyTreeNode(level.Name, level.Id.ToString());
-                    if (savedLevels.Contains(level.Id))
-                        levelNode.Checked = true;
-                    levelNode.Type = "level";
-                    levelNode.SelectAction = TreeNodeSelectAction.Select;
-                    levelNode.ExpandAll(); // = true;
-                    nodeList.Add(levelNode);
-                    //treeView.Nodes.Add(levelNode);
+            //    List<TreeNode> nodeList = new List<TreeNode>();
+            //    //levels already occured for this academic year
+            //    //var savedLevels = runningClasses.Select(x => x.Year.Program.Faculty.Level.Id);
+            //    //var savedFaculties = runningClasses.Select(x => x.Year.Program.Faculty.Id);
+            //    var savedPrograms = runningClasses.Select(x => x.Year.Program.Id);
+            //    var savedYears = runningClasses.Select(x => x.Year.Id);
+            //    var savedsubyears = runningClasses.Select(x => x.SubYear).Where(y => (y.ParentId ?? 0) == 0).Select(m => m.Id);
+            //    //var savedPhases = runningClasses.Select(x => x.SubYear).Where(y => (y.ParentId ?? 0) != 0).Select(m => m.Id);
+            //    foreach (var program in Context.Program.Where(x => x.SchoolId==schoolId && !(x.Void ?? false)))
+            //    {
+            //        var progNode = new MyTreeNode(program.Name, program.Id.ToString());
+            //        if (savedPrograms.Contains(program.Id))
+            //            progNode.Checked = true;
+            //        progNode.Type = "program";
+            //        facNode.ChildNodes.Add(progNode);
 
 
+            //        foreach (var year in program.Year.Where(x => !(x.Void ?? false)))
+            //        {
+            //            var yearNode = new MyTreeNode(year.Name, year.Id.ToString());
+            //            if (savedYears.Contains(year.Id))
+            //            {
+            //                yearNode.Checked = true;
+            //                var rcId = runningClasses
+            //                    .First(x => x.AcademicYearId == academicYearId
+            //                                && (x.SessionId ?? 0) == sessionId
+            //                                && (x.IsActive ?? true)
+            //                                && !(x.Void ?? false)
+            //                                && x.YearId == year.Id
+            //                                && (x.SubYearId ?? 0) == 0).Id;
+            //                //if (rcId != null)
+            //                yearNode.RunningClassId = rcId;
+            //            }
+            //            yearNode.Type = "year";
+            //            progNode.ChildNodes.Add(yearNode);
 
-                    foreach (var faculty in level.Faculty.Where(x => !(x.Void ?? false) ))
-                    {
-                        var facNode = new MyTreeNode(faculty.Name, faculty.Id.ToString());
-                        if (savedFaculties.Contains(faculty.Id))
-                            facNode.Checked = true;
-                        facNode.Type = "faculty";
-                        levelNode.ChildNodes.Add(facNode);
+            //            foreach (var subyear in year.SubYears.Where(x => x.ParentId == null
+            //                                                             && !(x.Void ?? false)
+            //                                                             ))
+            //            {
+            //                var subyearNode = new MyTreeNode(subyear.Name, subyear.Id.ToString());
+            //                if (savedsubyears.Contains(subyear.Id))
+            //                {
+            //                    subyearNode.Checked = true;
+            //                    var rcId = runningClasses
+            //                    .First(x => x.AcademicYearId == academicYearId
+            //                                && (x.SessionId ?? 0) == sessionId
+            //                                && (x.IsActive ?? true)
+            //                                && !(x.Void ?? false)
+            //                                && x.YearId == year.Id
+            //                                && (x.SubYearId ?? 0) != 0).Id;
+            //                    //if (rcId != null)
+            //                    subyearNode.RunningClassId = rcId;
+            //                }
+            //                subyearNode.yearId = year.Id;
+            //                subyearNode.Type = "subyear";
+            //                yearNode.ChildNodes.Add(subyearNode);
 
-                        foreach (var program in faculty.Programs.Where(x => !(x.Void ?? false) ))
-                        {
-                            var progNode = new MyTreeNode(program.Name, program.Id.ToString());
-                            if (savedPrograms.Contains(program.Id))
-                                progNode.Checked = true;
-                            progNode.Type = "program";
-                            facNode.ChildNodes.Add(progNode);
+            //                //foreach (var phase in year.SubYears.Where(x => x.ParentId == subyear.Id
+            //                //                                               && !(x.Void ?? false) &&
+            //                //                                               (x.IsActive ?? true)))
+            //                //{
+            //                //    var phaseNode = new MyTreeNode(phase.Name, phase.Id.ToString());
+            //                //    if (savedPhases.Contains(phase.Id))
+            //                //        phaseNode.Checked = true;
+            //                //    phaseNode.Type = "phase";
+            //                //    subyearNode.ChildNodes.Add(phaseNode);
+            //                //}
+            //            }
+            //        }
+            //    }
 
 
-                            foreach (var year in program.Year.Where(x => !(x.Void ?? false) ))
-                            {
-                                var yearNode = new MyTreeNode(year.Name, year.Id.ToString());
-                                if (savedYears.Contains(year.Id))
-                                {
-                                    yearNode.Checked = true;
-                                    var rcId = runningClasses
-                                        .First(x => x.AcademicYearId == academicYearId
-                                                    && (x.SessionId ?? 0) == sessionId
-                                                    && (x.IsActive ?? true)
-                                                    && !(x.Void ?? false)
-                                                    && x.YearId == year.Id
-                                                    && (x.SubYearId ?? 0) == 0).Id;
-                                    //if (rcId != null)
-                                    yearNode.RunningClassId = rcId;
-                                }
-                                yearNode.Type = "year";
-                                progNode.ChildNodes.Add(yearNode);
-
-                                foreach (var subyear in year.SubYears.Where(x => x.ParentId == null
-                                                                                 && !(x.Void ?? false) 
-                                                                                 ))
-                                {
-                                    var subyearNode = new MyTreeNode(subyear.Name, subyear.Id.ToString());
-                                    if (savedsubyears.Contains(subyear.Id))
-                                    {
-                                        subyearNode.Checked = true;
-                                        var rcId = runningClasses
-                                        .First(x => x.AcademicYearId == academicYearId
-                                                    && (x.SessionId ?? 0) == sessionId
-                                                    && (x.IsActive ?? true)
-                                                    && !(x.Void ?? false)
-                                                    && x.YearId == year.Id
-                                                    && (x.SubYearId ?? 0) != 0).Id;
-                                        //if (rcId != null)
-                                        subyearNode.RunningClassId = rcId;
-                                    }
-                                    subyearNode.yearId = year.Id;
-                                    subyearNode.Type = "subyear";
-                                    yearNode.ChildNodes.Add(subyearNode);
-
-                                    //foreach (var phase in year.SubYears.Where(x => x.ParentId == subyear.Id
-                                    //                                               && !(x.Void ?? false) &&
-                                    //                                               (x.IsActive ?? true)))
-                                    //{
-                                    //    var phaseNode = new MyTreeNode(phase.Name, phase.Id.ToString());
-                                    //    if (savedPhases.Contains(phase.Id))
-                                    //        phaseNode.Checked = true;
-                                    //    phaseNode.Type = "phase";
-                                    //    subyearNode.ChildNodes.Add(phaseNode);
-                                    //}
-                                }
-                            }
-                        }
-                    }
-                }
-                return nodeList;
-            }
-
-            public object GetClassStructureInTreeView(int schoolId, ref TreeView treeView, int academicYearId, int sessionId = 0)
-            {
-                var levels = Context.Level.Include(m => m.Faculty).Where(x => x.SchoolId == schoolId
-                                                                              && !(x.Void ?? false));
-                var runningClasses = GetClassesOfAcademicYear(academicYearId, sessionId);
-
-                List<TreeNode> nodeList = new List<TreeNode>();
-                //levels already occured for this academic year
-                var savedLevels = runningClasses.Select(x => x.Year.Program.Faculty.Level.Id);
-                var savedFaculties = runningClasses.Select(x => x.Year.Program.Faculty.Id);
-                var savedPrograms = runningClasses.Select(x => x.Year.Program.Id);
-                var savedYears = runningClasses.Select(x => x.Year.Id);
-                var savedsubyears = runningClasses.Select(x => x.SubYear).Where(y => (y.ParentId ?? 0) == 0).Select(m => m.Id);
-                //var savedPhases = runningClasses.Select(x => x.SubYear).Where(y => (y.ParentId ?? 0) != 0).Select(m => m.Id);
-
-                foreach (var level in levels)
-                {
-                    var levelNode = new MyTreeNode(level.Name, level.Id.ToString());
-                    if (savedLevels.Contains(level.Id))
-                        levelNode.Checked = true;
-                    levelNode.Type = "level";
-                    levelNode.SelectAction = TreeNodeSelectAction.Select;
-                    levelNode.ExpandAll(); // = true;
-                    nodeList.Add(levelNode);
-                    treeView.Nodes.Add(levelNode);
+            //    foreach (var level in levels)
+            //    {
+            //        var levelNode = new MyTreeNode(level.Name, level.Id.ToString());
+            //        if (savedLevels.Contains(level.Id))
+            //            levelNode.Checked = true;
+            //        levelNode.Type = "level";
+            //        levelNode.SelectAction = TreeNodeSelectAction.Select;
+            //        levelNode.ExpandAll(); // = true;
+            //        nodeList.Add(levelNode);
+            //        //treeView.Nodes.Add(levelNode);
 
 
 
-                    foreach (var faculty in level.Faculty.Where(x => !(x.Void ?? false) ))
-                    {
-                        var facNode = new MyTreeNode(faculty.Name, faculty.Id.ToString());
-                        if (savedFaculties.Contains(faculty.Id))
-                            facNode.Checked = true;
-                        facNode.Type = "faculty";
-                        levelNode.ChildNodes.Add(facNode);
+            //        foreach (var faculty in level.Faculty.Where(x => !(x.Void ?? false) ))
+            //        {
+            //            var facNode = new MyTreeNode(faculty.Name, faculty.Id.ToString());
+            //            if (savedFaculties.Contains(faculty.Id))
+            //                facNode.Checked = true;
+            //            facNode.Type = "faculty";
+            //            levelNode.ChildNodes.Add(facNode);
 
-                        foreach (var program in faculty.Programs.Where(x => !(x.Void ?? false) ))
-                        {
-                            var progNode = new MyTreeNode(program.Name, program.Id.ToString());
-                            if (savedPrograms.Contains(program.Id))
-                                progNode.Checked = true;
-                            progNode.Type = "program";
-                            facNode.ChildNodes.Add(progNode);
+                      
+            //        }
+            //    }
+            //    return nodeList;
+            //}
+
+            //public object GetClassStructureInTreeView(int schoolId, ref TreeView treeView, int academicYearId, int sessionId = 0)
+            //{
+            //    var levels = Context.Level.Include(m => m.Faculty).Where(x => x.SchoolId == schoolId
+            //                                                                  && !(x.Void ?? false));
+            //    var runningClasses = GetClassesOfAcademicYear(academicYearId, sessionId);
+
+            //    List<TreeNode> nodeList = new List<TreeNode>();
+            //    //levels already occured for this academic year
+            //    var savedLevels = runningClasses.Select(x => x.Year.Program.Faculty.Level.Id);
+            //    var savedFaculties = runningClasses.Select(x => x.Year.Program.Faculty.Id);
+            //    var savedPrograms = runningClasses.Select(x => x.Year.Program.Id);
+            //    var savedYears = runningClasses.Select(x => x.Year.Id);
+            //    var savedsubyears = runningClasses.Select(x => x.SubYear).Where(y => (y.ParentId ?? 0) == 0).Select(m => m.Id);
+            //    //var savedPhases = runningClasses.Select(x => x.SubYear).Where(y => (y.ParentId ?? 0) != 0).Select(m => m.Id);
+
+            //    foreach (var level in levels)
+            //    {
+            //        var levelNode = new MyTreeNode(level.Name, level.Id.ToString());
+            //        if (savedLevels.Contains(level.Id))
+            //            levelNode.Checked = true;
+            //        levelNode.Type = "level";
+            //        levelNode.SelectAction = TreeNodeSelectAction.Select;
+            //        levelNode.ExpandAll(); // = true;
+            //        nodeList.Add(levelNode);
+            //        treeView.Nodes.Add(levelNode);
 
 
-                            foreach (var year in program.Year.Where(x => !(x.Void ?? false) ))
-                            {
-                                var yearNode = new MyTreeNode(year.Name, year.Id.ToString());
-                                if (savedYears.Contains(year.Id))
-                                {
-                                    yearNode.Checked = true;
-                                    var rcId = runningClasses
-                                        .First(x => x.AcademicYearId == academicYearId
-                                                    && (x.SessionId ?? 0) == sessionId
-                                                    && (x.IsActive ?? true)
-                                                    && !(x.Void ?? false)
-                                                    && x.YearId == year.Id
-                                                    && (x.SubYearId ?? 0) == 0).Id;
-                                    //if (rcId != null)
-                                    yearNode.RunningClassId = rcId;
-                                }
-                                yearNode.Type = "year";
-                                progNode.ChildNodes.Add(yearNode);
 
-                                foreach (var subyear in year.SubYears.Where(x => x.ParentId == null
-                                                                                 && !(x.Void ?? false) 
-                                                                                 ))
-                                {
-                                    var subyearNode = new MyTreeNode(subyear.Name, subyear.Id.ToString());
-                                    if (savedsubyears.Contains(subyear.Id))
-                                    {
-                                        subyearNode.Checked = true;
-                                        var rcId = runningClasses
-                                        .First(x => x.AcademicYearId == academicYearId
-                                                    && (x.SessionId ?? 0) == sessionId
-                                                    && (x.IsActive ?? true)
-                                                    && !(x.Void ?? false)
-                                                    && x.YearId == year.Id
-                                                    && (x.SubYearId ?? 0) != 0).Id;
-                                        //if (rcId != null)
-                                        subyearNode.RunningClassId = rcId;
-                                    }
-                                    subyearNode.yearId = year.Id;
-                                    subyearNode.Type = "subyear";
-                                    yearNode.ChildNodes.Add(subyearNode);
+            //        foreach (var faculty in level.Faculty.Where(x => !(x.Void ?? false) ))
+            //        {
+            //            var facNode = new MyTreeNode(faculty.Name, faculty.Id.ToString());
+            //            if (savedFaculties.Contains(faculty.Id))
+            //                facNode.Checked = true;
+            //            facNode.Type = "faculty";
+            //            levelNode.ChildNodes.Add(facNode);
 
-                                    //foreach (var phase in year.SubYears.Where(x => x.ParentId == subyear.Id
-                                    //                                               && !(x.Void ?? false) &&
-                                    //                                               (x.IsActive ?? true)))
-                                    //{
-                                    //    var phaseNode = new MyTreeNode(phase.Name, phase.Id.ToString());
-                                    //    if (savedPhases.Contains(phase.Id))
-                                    //        phaseNode.Checked = true;
-                                    //    phaseNode.Type = "phase";
-                                    //    subyearNode.ChildNodes.Add(phaseNode);
-                                    //}
-                                }
-                            }
-                        }
-                    }
-                }
-                return nodeList;
-            }
+            //            foreach (var program in faculty.Programs.Where(x => !(x.Void ?? false) ))
+            //            {
+            //                var progNode = new MyTreeNode(program.Name, program.Id.ToString());
+            //                if (savedPrograms.Contains(program.Id))
+            //                    progNode.Checked = true;
+            //                progNode.Type = "program";
+            //                facNode.ChildNodes.Add(progNode);
+
+
+            //                foreach (var year in program.Year.Where(x => !(x.Void ?? false) ))
+            //                {
+            //                    var yearNode = new MyTreeNode(year.Name, year.Id.ToString());
+            //                    if (savedYears.Contains(year.Id))
+            //                    {
+            //                        yearNode.Checked = true;
+            //                        var rcId = runningClasses
+            //                            .First(x => x.AcademicYearId == academicYearId
+            //                                        && (x.SessionId ?? 0) == sessionId
+            //                                        && (x.IsActive ?? true)
+            //                                        && !(x.Void ?? false)
+            //                                        && x.YearId == year.Id
+            //                                        && (x.SubYearId ?? 0) == 0).Id;
+            //                        //if (rcId != null)
+            //                        yearNode.RunningClassId = rcId;
+            //                    }
+            //                    yearNode.Type = "year";
+            //                    progNode.ChildNodes.Add(yearNode);
+
+            //                    foreach (var subyear in year.SubYears.Where(x => x.ParentId == null
+            //                                                                     && !(x.Void ?? false) 
+            //                                                                     ))
+            //                    {
+            //                        var subyearNode = new MyTreeNode(subyear.Name, subyear.Id.ToString());
+            //                        if (savedsubyears.Contains(subyear.Id))
+            //                        {
+            //                            subyearNode.Checked = true;
+            //                            var rcId = runningClasses
+            //                            .First(x => x.AcademicYearId == academicYearId
+            //                                        && (x.SessionId ?? 0) == sessionId
+            //                                        && (x.IsActive ?? true)
+            //                                        && !(x.Void ?? false)
+            //                                        && x.YearId == year.Id
+            //                                        && (x.SubYearId ?? 0) != 0).Id;
+            //                            //if (rcId != null)
+            //                            subyearNode.RunningClassId = rcId;
+            //                        }
+            //                        subyearNode.yearId = year.Id;
+            //                        subyearNode.Type = "subyear";
+            //                        yearNode.ChildNodes.Add(subyearNode);
+
+            //                        //foreach (var phase in year.SubYears.Where(x => x.ParentId == subyear.Id
+            //                        //                                               && !(x.Void ?? false) &&
+            //                        //                                               (x.IsActive ?? true)))
+            //                        //{
+            //                        //    var phaseNode = new MyTreeNode(phase.Name, phase.Id.ToString());
+            //                        //    if (savedPhases.Contains(phase.Id))
+            //                        //        phaseNode.Checked = true;
+            //                        //    phaseNode.Type = "phase";
+            //                        //    subyearNode.ChildNodes.Add(phaseNode);
+            //                        //}
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //    return nodeList;
+            //}
 
             /*     public List<Structure> GetClassStrucuteForMyTreeView(int schoolId, int academicYearId, int sessionId = 0)
                  {

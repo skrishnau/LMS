@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 //using Academic.DbEntities.Activities;
 using Academic.DbEntities.Office;
 using Academic.DbEntities.Structure;
-using Academic.DbEntities.Subjects.Detail;
+//using Academic.DbEntities.Subjects.Detail;
 
 namespace Academic.DbEntities.Subjects
 {

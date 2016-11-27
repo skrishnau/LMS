@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Academic.Database;
-using Academic.DbEntities.Subjects.Detail;
+//using Academic.DbEntities.Subjects.Detail;
 
 namespace Academic.DbHelper
 {
     public partial class DbHelper
     {
-        public class SubjectSection:IDisposable
+        public class SubjectSection : IDisposable
         {
             private AcademicContext Context;
 
@@ -38,32 +38,27 @@ namespace Academic.DbHelper
                         .FirstOrDefault(y => y.Id == sectionId);
             }
 
-            public bool AddOrUpdateSection(DbEntities.Subjects.SubjectSection sec)
+            public DbEntities.Subjects.SubjectSection AddOrUpdateSection(DbEntities.Subjects.SubjectSection sec)
             {
                 try
                 {
                     var ent = Context.SubjectSection.Find(sec.Id);
                     if (ent == null)
                     {
-
-                        Context.SubjectSection.Add(sec);
-                        Context.SaveChanges();
-                        return true;
+                        ent = Context.SubjectSection.Add(sec);
                     }
                     else
                     {
                         ent.Name = sec.Name;
                         ent.Summary = sec.Summary;
                         ent.ShowSummary = sec.ShowSummary;
-                        
-                        //ent.SubjectActivityAndResource = sec.SubjectActivityAndResource;
-                        Context.SaveChanges();
-                        return true;
-                    }
+                    } 
+                    Context.SaveChanges();
+                    return ent;
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return null;
                 }
             }
 

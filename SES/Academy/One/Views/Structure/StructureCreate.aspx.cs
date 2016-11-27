@@ -41,10 +41,10 @@ namespace One.Views.Structure
                     {
                         ParentId = Convert.ToInt32(pId);
                     }
-                    else
-                    {
-                        Response.Redirect("~/Views/Structure/All/Master/List.aspx");
-                    }
+                    //else if(type != "pro")
+                    //{
+                    //    Response.Redirect("~/Views/Structure/All/Master/List.aspx");
+                    //}
 
                 }
                 catch
@@ -58,14 +58,14 @@ namespace One.Views.Structure
         {
             switch (StructureType)
             {
-                case "lev":
-                    lblHeading.Text = "Level edit";
-                    lblTabHead.Text = "Level edit";
-                    break;
-                case "fac":
-                    lblHeading.Text = "Faculty edit";
-                    lblTabHead.Text = "Faculty edit";
-                    break;
+                //case "lev":
+                //    lblHeading.Text = "Level edit";
+                //    lblTabHead.Text = "Level edit";
+                //    break;
+                //case "fac":
+                //    lblHeading.Text = "Faculty edit";
+                //    lblTabHead.Text = "Faculty edit";
+                //    break;
                 case "pro":
                     lblHeading.Text = "Program edit";
                     lblTabHead.Text = "Program edit";
@@ -73,10 +73,12 @@ namespace One.Views.Structure
                 case "yr":
                     lblHeading.Text = "Year edit";
                     lblTabHead.Text = "Year edit";
+                    position_row.Visible = true;
                     break;
                 case "syr":
                     lblHeading.Text = "Sub-year edit";
                     lblTabHead.Text = "Sub-year edit";
+                    position_row.Visible = true;
                     break;
 
             }
@@ -88,31 +90,31 @@ namespace One.Views.Structure
             {
                 switch (StructureType)
                 {
-                    case "lev":
-                        var level = helper.GetLevel(StructureId);
-                        if (level != null)
-                        {
-                            txtName.Text = level.Name;
-                            txtDescription.Text = level.Description;
-                            ParentId = level.SchoolId;
-                        }
-                        break;
-                    case "fac":
-                        var fac = helper.GetFaculty(StructureId);
-                        if (fac != null)
-                        {
-                            txtName.Text = fac.Name;
-                            txtDescription.Text = fac.Description;
-                            ParentId = fac.LevelId;
-                        }
-                        break;
+                    //case "lev":
+                    //    var level = helper.GetLevel(StructureId);
+                    //    if (level != null)
+                    //    {
+                    //        txtName.Text = level.Name;
+                    //        txtDescription.Text = level.Description;
+                    //        ParentId = level.SchoolId;
+                    //    }
+                    //    break;
+                    //case "fac":
+                    //    //var fac = helper.GetFaculty(StructureId);
+                    //    //if (fac != null)
+                    //    //{
+                    //    //    txtName.Text = fac.Name;
+                    //    //    txtDescription.Text = fac.Description;
+                    //    //    ParentId = fac.LevelId;
+                    //    //}
+                    //    break;
                     case "pro":
                         var pro = helper.GetProgram(StructureId);
                         if (pro != null)
                         {
                             txtName.Text = pro.Name;
                             txtDescription.Text = pro.Description;
-                            ParentId = pro.FacultyId;
+                            ParentId = pro.SchoolId;
                         }
                         break;
                     case "yr":
@@ -179,52 +181,52 @@ namespace One.Views.Structure
 
         #region Save functions
 
-        bool SaveLevel(int schoolId)
-        {
-            using (var helper = new DbHelper.Structure())
-            {
-                var level = new Academic.DbEntities.Structure.Level()
-                {
-                    Name = txtName.Text
-                    ,
-                    Description = txtDescription.Text
-                    ,
-                    Id = this.StructureId
-                    ,
-                    SchoolId = schoolId
-                };
+        //bool SaveLevel(int schoolId)
+        //{
+        //    using (var helper = new DbHelper.Structure())
+        //    {
+        //        var level = new Academic.DbEntities.Structure.Level()
+        //        {
+        //            Name = txtName.Text
+        //            ,
+        //            Description = txtDescription.Text
+        //            ,
+        //            Id = this.StructureId
+        //            ,
+        //            SchoolId = schoolId
+        //        };
 
-                if (StructureId == 0)
-                    level.CreatedDate = DateTime.Now;
+        //        if (StructureId == 0)
+        //            level.CreatedDate = DateTime.Now;
 
-                var saved = helper.AddOrUpdateLevel(level);
-                return saved != null;
-            }
-        }
+        //        var saved = helper.AddOrUpdateLevel(level);
+        //        return saved != null;
+        //    }
+        //}
 
-        bool SaveFaculty()
-        {
-            using (var helper = new DbHelper.Structure())
-            {
-                var fac = new Academic.DbEntities.Structure.Faculty()
-                {
-                    Name = txtName.Text
-                    ,
-                    Description = txtDescription.Text
-                    ,
-                    Id = this.StructureId
-                    ,
-                    LevelId = ParentId
-                };
+        //bool SaveFaculty()
+        //{
+        //    using (var helper = new DbHelper.Structure())
+        //    {
+        //        var fac = new Academic.DbEntities.Structure.Faculty()
+        //        {
+        //            Name = txtName.Text
+        //            ,
+        //            Description = txtDescription.Text
+        //            ,
+        //            Id = this.StructureId
+        //            ,
+        //            LevelId = ParentId
+        //        };
 
-                if (StructureId == 0)
-                    fac.CreatedDate = DateTime.Now;
+        //        if (StructureId == 0)
+        //            fac.CreatedDate = DateTime.Now;
 
-                var saved = helper.AddOrUpdateFaculty(fac);
-                return saved != null;
-            }
-        }
-        bool SavePogram()
+        //        var saved = helper.AddOrUpdateFaculty(fac);
+        //        return saved != null;
+        //    }
+        //}
+        bool SavePogram(int schoolId)
         {
             using (var helper = new DbHelper.Structure())
             {
@@ -234,9 +236,9 @@ namespace One.Views.Structure
                     ,
                     Description = txtDescription.Text
                     ,
-                    Id = this.StructureId
+                    Id = StructureId
                     ,
-                    FacultyId = ParentId
+                    SchoolId = schoolId
                 };
 
                 if (StructureId == 0)
@@ -259,6 +261,7 @@ namespace One.Views.Structure
                     Id = this.StructureId
                     ,
                     ProgramId = ParentId
+                    ,Position = Convert.ToInt32(string.IsNullOrEmpty(txtPosition.Text)?"0":txtPosition.Text)
                 };
 
                 if (StructureId == 0)
@@ -281,6 +284,8 @@ namespace One.Views.Structure
                     Id = this.StructureId
                     ,
                     YearId = ParentId
+                    ,
+                    Position = Convert.ToInt32(string.IsNullOrEmpty(txtPosition.Text) ? "0" : txtPosition.Text)
                 };
 
                 if (StructureId == 0)
@@ -306,14 +311,14 @@ namespace One.Views.Structure
                     var saved = false;
                     switch (StructureType)
                     {
-                        case "lev":
-                            saved = SaveLevel(user.SchoolId);
-                            break;
-                        case "fac":
-                            saved = SaveFaculty();
-                            break;
+                        //case "lev":
+                        //    saved = SaveLevel(user.SchoolId);
+                        //    break;
+                        //case "fac":
+                        //    saved = SaveFaculty();
+                        //    break;
                         case "pro":
-                            saved = SavePogram();
+                            saved = SavePogram(user.SchoolId);
                             break;
                         case "yr":
                             saved = SaveYear();

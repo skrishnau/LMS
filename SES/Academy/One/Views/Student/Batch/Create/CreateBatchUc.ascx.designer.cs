@@ -76,13 +76,13 @@ namespace One.Views.Student.Batch.Create {
         protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// pnlProgramsAdd control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlProgramsAdd;
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// hidSchoolId control.

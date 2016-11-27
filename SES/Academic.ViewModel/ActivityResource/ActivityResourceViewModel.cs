@@ -48,6 +48,7 @@ namespace Academic.ViewModel.ActivityResource
 
         public string IconUrl { get; set; }
         public string NavigateUrl { get; set; }
+        public string CreateUrl { get; set; }
 
         public bool Enable { get; set; }
 
@@ -59,9 +60,10 @@ namespace Academic.ViewModel.ActivityResource
         /// <param name="showDescriptionOnCoursePage">to show or not --description</param>
         /// <param name="navigateUrl">Url of page to go to when clicked on Name of act/res</param>
         /// <param name="iconUrl">icon to show with name </param>
+        /// <param name="editurl">iurl for edit </param>
         /// <param name="enable"></param>
         public void SetOtherValues(string name, string description, bool showDescriptionOnCoursePage
-            , string navigateUrl = "", string iconUrl = "", bool enable = true)
+            , string navigateUrl = "", string iconUrl = "", string editurl="", bool enable = true)
         {
             Name = name;
             this.Description = description;
@@ -71,6 +73,10 @@ namespace Academic.ViewModel.ActivityResource
                 NavigateUrl = navigateUrl;
             if (!string.IsNullOrEmpty(iconUrl))
                 IconUrl = iconUrl;
+            if (!string.IsNullOrEmpty(editurl))
+            {
+                CreateUrl = editurl;
+            }
 
         }
     }

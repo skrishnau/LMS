@@ -6,7 +6,7 @@
 
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
-<%--<%@ Register Src="~/Views/ActivityResource/Class/ClassesInActivityChoose.ascx" TagPrefix="uc1" TagName="ClassesInActivityChoose" %>--%>
+<%@ Register Src="~/Views/ActivityResource/Class/ClassesInActivityChoose.ascx" TagPrefix="uc1" TagName="ClassesInActivityChoose" %>
 
 
 
@@ -61,9 +61,11 @@
 
                 </table>
             </div>
-
-            <%--  <uc1:ClassesInActivityChoose runat="server" ID="ClassesInActivityChoose1" />
-            --%>
+            
+            <div>
+              <uc1:ClassesInActivityChoose runat="server" ID="ClassesInActivityChoose1" />
+            </div>
+            
 
             <br />
             <div class="data-entry-section-heading">
@@ -138,19 +140,31 @@
                             <tr>
                                 <td class="data-type">Word Limit</td>
                                 <td>
-                                    <asp:TextBox ID="txtWordLimit" Enabled="False" runat="server" Width="210px"></asp:TextBox>
+                                    <asp:TextBox ID="txtWordLimit" Enabled="False" runat="server" 
+                                        TextMode="Number"
+                                        Width="210px"></asp:TextBox>
+                                    <asp:Label ID="lblValiWordLimit" runat="server" Text="Required" 
+                                        Visible="False"
+                                        ForeColor="red"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="data-type">Maximum Number of Submitted Files</td>
                                 <td>
-                                    <asp:TextBox ID="txtMaxFiles" runat="server" Width="210px"></asp:TextBox>
+                                    <asp:TextBox ID="txtMaxFiles" runat="server" Width="210px"
+                                        TextMode="Number"                                        
+                                        ></asp:TextBox>
+                                     <asp:Label ID="lblValiMaxFile" runat="server" Text="Required" 
+                                        Visible="False"
+                                        ForeColor="red"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="data-type">Maximum Submission Size</td>
+                                <td class="data-type">Maximum Submission Size (in KB)</td>
                                 <td>
-                                    <asp:TextBox ID="txtMaxSize" runat="server" Width="210px"></asp:TextBox>
+                                    <asp:TextBox ID="txtMaxSize" runat="server" Width="210px"
+                                        TextMode="Number"                                        
+                                        ></asp:TextBox>
                                 </td>
                             </tr>
                         </table>

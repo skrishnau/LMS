@@ -13,15 +13,6 @@ namespace One.Views.User {
     public partial class UserCreateUC {
         
         /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
         /// lblSaveStatus control.
         /// </summary>
         /// <remarks>
@@ -40,15 +31,6 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.HiddenField hidEditMode;
         
         /// <summary>
-        /// cmbRole control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbRole;
-        
-        /// <summary>
         /// hidSchoolId control.
         /// </summary>
         /// <remarks>
@@ -56,6 +38,24 @@ namespace One.Views.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidSchoolId;
+        
+        /// <summary>
+        /// hidPageKey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidPageKey;
+        
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
         /// ReqImageUC1 control.
@@ -121,13 +121,13 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.TextBox txtUserName;
         
         /// <summary>
-        /// RequiredFieldValidator6 control.
+        /// valiUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiUserName;
         
         /// <summary>
         /// ReqImageUC3 control.
@@ -184,15 +184,6 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// cmbEmailDisplay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbEmailDisplay;
-        
-        /// <summary>
         /// txtPhone1 control.
         /// </summary>
         /// <remarks>
@@ -200,24 +191,6 @@ namespace One.Views.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPhone1;
-        
-        /// <summary>
-        /// txtDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
-        
-        /// <summary>
-        /// FileUpload1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
         /// FilesDisplay control.
@@ -229,22 +202,31 @@ namespace One.Views.User {
         protected global::One.Views.ActivityResource.FileResource.FileResourceItems.FilesDisplay FilesDisplay;
         
         /// <summary>
-        /// pnlInterest control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlInterest;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// txtInterest control.
+        /// lnkShowOptional control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInterest;
+        protected global::System.Web.UI.WebControls.LinkButton lnkShowOptional;
+        
+        /// <summary>
+        /// tableOpt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable tableOpt;
         
         /// <summary>
         /// cmbGender control.
@@ -256,13 +238,13 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.DropDownList cmbGender;
         
         /// <summary>
-        /// DateChooser1 control.
+        /// txtDOB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.UserControls.DateChooser DateChooser1;
+        protected global::System.Web.UI.WebControls.TextBox txtDOB;
         
         /// <summary>
         /// txtCountry control.

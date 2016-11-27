@@ -43,11 +43,13 @@ namespace One.Views.Course.Section
 
 
         public void SetData(bool actOrRes, string title, string description, int actResId, string actResType, string imageUrl, string navigateUrl
-            , int sectionId, bool edit, int subjectId, bool enable = true)
+            , int sectionId, bool edit, int subjectId,string editurl, bool enable = true)
         {
             if (edit)
             {
                 pnlHeading.CssClass = "course-act-res-whole-in-edit-mode";
+                lnkEdit.Visible = true;
+                lnkEdit.NavigateUrl = editurl+ "?SubId=" + subjectId + "&arId=" + actResId + "&secId=" + sectionId + "&edit=" + (edit ? 1 : 0);;
             }
             else
             {
@@ -81,6 +83,7 @@ namespace One.Views.Course.Section
         protected void imgEditBtn_Click(object sender, ImageClickEventArgs e)
         {
             //display delete button
+
         }
     }
 }

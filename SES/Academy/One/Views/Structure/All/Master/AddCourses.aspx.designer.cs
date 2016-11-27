@@ -11,5 +11,14 @@ namespace One.Views.Structure.All.Master {
     
     
     public partial class AddCourses {
+        
+        /// <summary>
+        /// AddCourses1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.Structure.All.UserControls.CourseLinkage.AddCourses AddCourses1;
     }
 }

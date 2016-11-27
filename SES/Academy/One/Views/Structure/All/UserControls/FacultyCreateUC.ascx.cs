@@ -19,8 +19,8 @@ namespace One.Views.Structure.All.UserControls
             if (!IsPostBack)
             {
                 var empty = (hidLevelId.Value == "0" || hidId.Value =="");
-               DbHelper.ComboLoader.LoadLevel(ref cmbLevel,Values.Session.GetSchool(Session)
-                   ,!empty,Convert.ToInt32(hidId.Value));
+               //DbHelper.ComboLoader.LoadLevel(ref cmbLevel,Values.Session.GetSchool(Session)
+               //    ,!empty,Convert.ToInt32(hidId.Value));
                 if (!empty)
                     cmbLevel.Enabled = false;
             }
@@ -39,7 +39,7 @@ namespace One.Views.Structure.All.UserControls
             set
             {
                 hidSchoolId.Value = value.ToString();
-                DbHelper.ComboLoader.LoadLevel(ref cmbLevel, Convert.ToInt32(hidSchoolId.Value), true);
+                //DbHelper.ComboLoader.LoadLevel(ref cmbLevel, Convert.ToInt32(hidSchoolId.Value), true);
             }
         }
 
@@ -84,32 +84,32 @@ namespace One.Views.Structure.All.UserControls
             }
             if (isvalid)
             {
-                var fac = new Academic.DbEntities.Structure.Faculty()
-                {
-                    Name = txtName.Text
-                    ,Description = txtDescription.Text
-                    ,LevelId = Convert.ToInt32(cmbLevel.SelectedValue)
-                    ,
-                };
-                using (var helper = new DbHelper.Structure())
-                {
-                    var saved = helper.AddOrUpdateFaculty(fac);
-                    if (saved != null)
-                    {
-                        if (OnSaveClicked != null)
-                        {
-                            OnSaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
-                        }
-                        ClearCreateTextBoxes();
-                    }
-                    else
-                    {
-                        if (OnSaveClicked != null)
-                        {
-                            OnSaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
-                        }
-                    }
-                }
+                //var fac = new Academic.DbEntities.Structure.Faculty()
+                //{
+                //    Name = txtName.Text
+                //    ,Description = txtDescription.Text
+                //    ,LevelId = Convert.ToInt32(cmbLevel.SelectedValue)
+                //    ,
+                //};
+                //using (var helper = new DbHelper.Structure())
+                //{
+                //    var saved = helper.AddOrUpdateFaculty(fac);
+                //    if (saved != null)
+                //    {
+                //        if (OnSaveClicked != null)
+                //        {
+                //            OnSaveClicked(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
+                //        }
+                //        ClearCreateTextBoxes();
+                //    }
+                //    else
+                //    {
+                //        if (OnSaveClicked != null)
+                //        {
+                //            OnSaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
+                //        }
+                //    }
+                //}
             }
            
         }

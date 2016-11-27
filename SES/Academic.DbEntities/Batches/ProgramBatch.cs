@@ -23,11 +23,11 @@ namespace Academic.DbEntities.Batches
         public virtual Batch Batch { get; set; }
         public virtual Program Program { get; set; }
 
-        public int? CurrentYearId { get; set; }
-        public int? CurrentSubYearId { get; set; }
+        //public int? CurrentYearId { get; set; }
+        //public int? CurrentSubYearId { get; set; }
 
-        public virtual Year CurrentYear { get; set; }
-        public virtual SubYear  CurrentSubYear{ get; set; }
+        //public virtual Year CurrentYear { get; set; }
+        //public virtual SubYear  CurrentSubYear{ get; set; }
          
         public bool? PassOut { get; set; }
 

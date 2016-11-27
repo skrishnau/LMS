@@ -94,111 +94,111 @@ namespace Academic.DbHelper
                 }
             }
 
-            public DbEntities.Structure.Level AddOrUpdateLevel(DbEntities.Structure.Level level)
-            {
-                try
-                {
-                    var ent = Context.Level.Find(level.Id);
-                    if (ent == null)
-                    {
-                        var l = Context.Level.Add(level);
-                        Context.SaveChanges();
-                        return l;
-                    }
-                    else
-                    {
-                        ent.Name = level.Name;
-                        ent.SchoolId = level.SchoolId;
-                        ent.Description = level.Description;
+            //public DbEntities.Structure.Level AddOrUpdateLevel(DbEntities.Structure.Level level)
+            //{
+            //    try
+            //    {
+            //        var ent = Context.Level.Find(level.Id);
+            //        if (ent == null)
+            //        {
+            //            var l = Context.Level.Add(level);
+            //            Context.SaveChanges();
+            //            return l;
+            //        }
+            //        else
+            //        {
+            //            ent.Name = level.Name;
+            //            ent.SchoolId = level.SchoolId;
+            //            ent.Description = level.Description;
 
-                        Context.SaveChanges();
-                        return ent;
-                    }
-                }
-                catch
-                {
-                    return null;
-                }
-            }
+            //            Context.SaveChanges();
+            //            return ent;
+            //        }
+            //    }
+            //    catch
+            //    {
+            //        return null;
+            //    }
+            //}
 
             #endregion
 
 
             #region List Fucntions
 
-            public List<TreeNode> ListStructure(int schoolId)
-            {
-                List<TreeNode> list = new List<TreeNode>();
-                //TreeNode node = new TreeNode("main", "main");
+            //public List<TreeNode> ListStructure(int schoolId)
+            //{
+            //    List<TreeNode> list = new List<TreeNode>();
+            //    //TreeNode node = new TreeNode("main", "main");
 
-                if (schoolId > 0)
-                {
-                    GetLevels(schoolId).ForEach(x =>
-                    {
-                        var lnode = new TreeNode(x.Name, x.Id.ToString());
-                        list.Add(lnode);
-                        //node.ChildNodes.Add(lnode);
+            //    if (schoolId > 0)
+            //    {
+            //        GetLevels(schoolId).ForEach(x =>
+            //        {
+            //            var lnode = new TreeNode(x.Name, x.Id.ToString());
+            //            list.Add(lnode);
+            //            //node.ChildNodes.Add(lnode);
 
-                        GetFaculties(x.Id).ForEach(f =>
-                        {
-                            var fnode = new TreeNode(f.Name, f.Id.ToString());
-                            lnode.ChildNodes.Add(fnode);
+            //            GetFaculties(x.Id).ForEach(f =>
+            //            {
+            //                var fnode = new TreeNode(f.Name, f.Id.ToString());
+            //                lnode.ChildNodes.Add(fnode);
 
-                            GetPrograms(f.Id).ForEach(p =>
-                            {
-                                var pnode = new TreeNode(p.Name, p.Id.ToString());
-                                fnode.ChildNodes.Add(pnode);
+            //                GetPrograms(f.Id).ForEach(p =>
+            //                {
+            //                    var pnode = new TreeNode(p.Name, p.Id.ToString());
+            //                    fnode.ChildNodes.Add(pnode);
 
-                                GetYears(p.Id).ForEach(y =>
-                                {
-                                    var ynode = new TreeNode(y.Name, y.Id.ToString());
-                                    pnode.ChildNodes.Add(ynode);
+            //                    GetYears(p.Id).ForEach(y =>
+            //                    {
+            //                        var ynode = new TreeNode(y.Name, y.Id.ToString());
+            //                        pnode.ChildNodes.Add(ynode);
 
-                                    GetSubYears(y.Id).ForEach(s =>
-                                   {
-                                       var snode = new TreeNode(s.Name, s.Id.ToString());
-                                       ynode.ChildNodes.Add(snode);
-                                   });
-                                });
-                            });
-                        });
-                    });
-                    return list;
-                }
-                else
-                {
-                    return null;
-                }
-            }
+            //                        GetSubYears(y.Id).ForEach(s =>
+            //                       {
+            //                           var snode = new TreeNode(s.Name, s.Id.ToString());
+            //                           ynode.ChildNodes.Add(snode);
+            //                       });
+            //                    });
+            //                });
+            //            });
+            //        });
+            //        return list;
+            //    }
+            //    else
+            //    {
+            //        return null;
+            //    }
+            //}
 
             #endregion
 
             #region Get Functions
 
-            public List<Academic.ViewModel.IdAndName> GetLevels(int schoolId)
-            {
-                //schoolId = 1;
-                var s = Context.Level.Where(x => x.SchoolId == schoolId);
-                if (s != null)
-                {
-                    var sa = s.Select(x => new ViewModel.IdAndName() { Id = x.Id, Name = x.Name }).ToList();
-                    return sa;
-                }
-                return new List<IdAndName>() { new IdAndName() { Name = "", Id = 0 } };
-            }
+            //public List<Academic.ViewModel.IdAndName> GetLevels(int schoolId)
+            //{
+            //    //schoolId = 1;
+            //    var s = Context.Level.Where(x => x.SchoolId == schoolId);
+            //    if (s != null)
+            //    {
+            //        var sa = s.Select(x => new ViewModel.IdAndName() { Id = x.Id, Name = x.Name }).ToList();
+            //        return sa;
+            //    }
+            //    return new List<IdAndName>() { new IdAndName() { Name = "", Id = 0 } };
+            //}
 
 
-            public List<ViewModel.IdAndName> GetFaculties(int levelId)
-            {
-                return Context.Faculty.Where(x => x.LevelId == levelId)
-                    .Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
-                    .ToList();
-            }
+            //public List<ViewModel.IdAndName> GetFaculties(int levelId)
+            //{
+            //    return Context.Faculty.Where(x => x.LevelId == levelId)
+            //        .Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
+            //        .ToList();
+            //}
 
-            public List<ViewModel.IdAndName> GetPrograms(int facultyId)
+            public List<ViewModel.IdAndName> GetPrograms(int schoolId)
             {
                 return
-                    Context.Program.Where(x => x.FacultyId == facultyId)
+                    Context.Program.Where(x => x.SchoolId == schoolId)
                         .Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
                         .ToList();
 
@@ -267,31 +267,31 @@ namespace Academic.DbHelper
 
             #endregion
 
-            public DbEntities.Structure.Faculty AddOrUpdateFaculty(DbEntities.Structure.Faculty faculty)
-            {
-                try
-                {
-                    var ent = Context.Faculty.Find(faculty.Id);
-                    if (ent == null)
-                    {
-                        var l = Context.Faculty.Add(faculty);
-                        Context.SaveChanges();
-                        return l;
-                    }
-                    else
-                    {
-                        ent.Name = faculty.Name;
-                        ent.Description = faculty.Description;
-                        ent.LevelId = faculty.LevelId;
-                        Context.SaveChanges();
-                        return ent;
-                    }
-                }
-                catch
-                {
-                    return null;
-                }
-            }
+            //public DbEntities.Structure.Faculty AddOrUpdateFaculty(DbEntities.Structure.Faculty faculty)
+            //{
+            //    try
+            //    {
+            //        var ent = Context.Faculty.Find(faculty.Id);
+            //        if (ent == null)
+            //        {
+            //            var l = Context.Faculty.Add(faculty);
+            //            Context.SaveChanges();
+            //            return l;
+            //        }
+            //        else
+            //        {
+            //            ent.Name = faculty.Name;
+            //            ent.Description = faculty.Description;
+            //            ent.LevelId = faculty.LevelId;
+            //            Context.SaveChanges();
+            //            return ent;
+            //        }
+            //    }
+            //    catch
+            //    {
+            //        return null;
+            //    }
+            //}
 
             public DbEntities.Structure.Program AddOrUpdateProgram(DbEntities.Structure.Program program)
             {
@@ -308,7 +308,7 @@ namespace Academic.DbHelper
                     {
                         ent.Name = program.Name;
                         ent.Description = program.Description;
-                        ent.FacultyId = program.FacultyId;
+                        //ent.FacultyId = program.FacultyId;
                         Context.SaveChanges();
                         return ent;
                     }
@@ -322,13 +322,13 @@ namespace Academic.DbHelper
             /// <summary>
             /// Provide only one value at a time
             /// </summary>
-            /// <param name="SchoolId"></param>
+            /// <param name="schoolId"></param>
             /// <param name="levelId"></param>
             /// <param name="facultyId"></param>
             /// <param name="programId"></param>
             /// <param name="yearId"></param>
             /// <returns></returns>
-            public int GetMaximumNoOfSubyears(int SchoolId = 0, int levelId = 0, int facultyId = 0, int programId = 0,
+            public int GetMaximumNoOfSubyears(int schoolId = 0, int programId = 0,
                 int yearId = 0)
             {
                 int cnt = 0;
@@ -343,30 +343,30 @@ namespace Academic.DbHelper
 
                     cnt = years.Select(x => x.SubYears.Count(m => m.ParentId == null)).Max();
                 }
-                else if (facultyId != 0)
+                //else if (facultyId != 0)
+                //{
+                //    var years = from p in Context.Program
+                //                join y in Context.Year on p.Id equals y.ProgramId
+                //                //where p.FacultyId == facultyId
+                //                select y;
+                //    cnt = years.Select(x => x.SubYears.Count(m => m.ParentId == null)).Max();
+                //}
+                //else if (levelId != 0)
+                //{
+                //    var years = from f in Context.Faculty
+                //                //join p in Context.Program on f.Id equals p.FacultyId
+                //                //join y in Context.Year on p.Id equals y.ProgramId
+                //                where f.LevelId == levelId
+                //                select y;
+                //    cnt = years.Select(x => x.SubYears.Count(m => m.ParentId == null)).Max();
+                //}
+                else if (schoolId != 0)
                 {
-                    var years = from p in Context.Program
+                    var years = from //l in Context.Level
+                                //join f in Context.Faculty //on l.Id equals f.LevelId
+                                 p in Context.Program //on f.Id equals p.FacultyId
                                 join y in Context.Year on p.Id equals y.ProgramId
-                                where p.FacultyId == facultyId
-                                select y;
-                    cnt = years.Select(x => x.SubYears.Count(m => m.ParentId == null)).Max();
-                }
-                else if (levelId != 0)
-                {
-                    var years = from f in Context.Faculty
-                                join p in Context.Program on f.Id equals p.FacultyId
-                                join y in Context.Year on p.Id equals y.ProgramId
-                                where f.LevelId == levelId
-                                select y;
-                    cnt = years.Select(x => x.SubYears.Count(m => m.ParentId == null)).Max();
-                }
-                else if (SchoolId != 0)
-                {
-                    var years = from l in Context.Level
-                                join f in Context.Faculty on l.Id equals f.LevelId
-                                join p in Context.Program on f.Id equals p.FacultyId
-                                join y in Context.Year on p.Id equals y.ProgramId
-                                where l.SchoolId == SchoolId
+                                where p.SchoolId == schoolId
                                 select y;
                     cnt = years.Select(x => x.SubYears.Count(m => m.ParentId == null)).Max();
                 }
@@ -374,11 +374,11 @@ namespace Academic.DbHelper
             }
 
 
-            public List<Level> GetLevelsWithAllIncluded(int schoolId)
-            {
-                return Context.Level.Include(m => m.Faculty).Where(x => x.SchoolId == schoolId
-                                                                           && !(x.Void ?? false)).ToList();
-            }
+            //public List<Level> GetLevelsWithAllIncluded(int schoolId)
+            //{
+            //    return Context.Level.Include(m => m.Faculty).Where(x => x.SchoolId == schoolId
+            //                                                               && !(x.Void ?? false)).ToList();
+            //}
 
 
             #region Earlier Levels, Faculties, Programs,Years, subYears and phase
@@ -486,9 +486,9 @@ namespace Academic.DbHelper
                     var sub = Context.SubYear.Find(subyearId);
                     if (sub != null)
                     {
-                        dir = sub.Year.Program.Faculty.Level.Name + ">"
-                              + sub.Year.Program.Faculty.Name + ">"
-                              + sub.Year.Program.Name + ">"
+                        dir = //sub.Year.Program.Faculty.Level.Name + ">"
+                              //+ sub.Year.Program.Faculty.Name + ">"
+                               sub.Year.Program.Name + ">"
                               + sub.Year.Name + ">"
                               + sub.Name;
                     }
@@ -498,9 +498,9 @@ namespace Academic.DbHelper
                     var year = Context.Year.Find(yearId);
                     if (year != null)
                     {
-                        dir = year.Program.Faculty.Level.Name + ">"
-                              + year.Program.Faculty.Name + ">"
-                              + year.Program.Name + ">"
+                        dir = //year.Program.Faculty.Level.Name + ">"
+                        //      + year.Program.Faculty.Name + ">"
+                               year.Program.Name + ">"
                               + year.Name;
                     }
                 }
@@ -511,15 +511,15 @@ namespace Academic.DbHelper
             //Used... latest..
             #region Get Functions i.e. which return single object not list
 
-            public Level GetLevel(int levelId)
-            {
-                return Context.Level.Find(levelId);
-            }
+            //public Level GetLevel(int levelId)
+            //{
+            //    return Context.Level.Find(levelId);
+            //}
 
-            public Faculty GetFaculty(int facultyId)
-            {
-                return Context.Faculty.Find(facultyId);
-            }
+            //public Faculty GetFaculty(int facultyId)
+            //{
+            //    return Context.Faculty.Find(facultyId);
+            //}
 
             public Program GetProgram(int programId)
             {
@@ -540,15 +540,9 @@ namespace Academic.DbHelper
 
             #region List functions
 
-            public List<Level> ListLevels(int schoolId)
+            public List<Program> ListPrograms(int schoolId)
             {
-                return Context.Level.Where(x => x.SchoolId == schoolId).ToList();
-                //if (s != null)
-                //{
-                //    var sa = s.Select(x => new ViewModel.IdAndName() { Id = x.Id, Name = x.Name }).ToList();
-                //    return sa;
-                //}
-                //return new List<IdAndName>() { new IdAndName() { Name = "", Id = 0 } };
+                return Context.Program.Where(x => x.SchoolId == schoolId && !(x.Void??false)).ToList();
             }
 
             #endregion

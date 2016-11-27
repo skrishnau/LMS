@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Academic.Database;
-using Academic.DbEntities.Resources;
+//using Academic.DbEntities.Resources;
 using Academic.ViewModel;
 
 namespace Academic.DbHelper

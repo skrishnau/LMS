@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Academic.DbEntities.Marks;
+//using Academic.DbEntities.Marks;
 using Academic.DbEntities.Office;
 
 namespace Academic.DbEntities.Exams

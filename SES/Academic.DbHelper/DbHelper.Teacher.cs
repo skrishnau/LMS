@@ -124,7 +124,7 @@ namespace Academic.DbHelper
                 var quali = modelVm.TeacherQualification;
                 using (var ctx = new DbHelper.WorkingWithFiles())
                 {
-                    var imId = ctx.UploadImageToDB(model.Image);
+                    //var imId = ctx.UploadImageToDB(model.Image);
                     var convert = Convert(model);
                     //convert.ImageFileId = imId;
                     var teach = Context.Teacher.Add(convert);

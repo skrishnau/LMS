@@ -24,10 +24,10 @@ namespace One.Views.Student.Batch.List
         public void LoadData(int id, string name, string description, int noOfPrograms, DateTime? classCommenceDate, bool edit)
         {
             BatchId = id;
-            lnkName.Text = name;
+            lnkName.Text = "● " + name;
             lnkEdit.Visible = edit;
             if (edit)
-                lnkEdit.NavigateUrl = ("~/Views/Student/Batch/Create/BatchCreate.aspx" + "?Id=" + BatchId);
+                lnkEdit.NavigateUrl = ("~/Views/Student/Batch/Create/BatchCreate.aspx" + "?bId=" + BatchId);
 
             //lblCurrentlyIn.Text = batch.
             //lblStartYear.Text = classCommenceDate==null?"":classCommenceDate.Value.ToShortDateString();

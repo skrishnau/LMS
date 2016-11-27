@@ -26,3 +26,6 @@
     </div>
 </asp:Content>
 
+<asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
+    Batch List
+</asp:Content>

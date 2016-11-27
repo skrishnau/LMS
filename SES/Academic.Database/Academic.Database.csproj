@@ -78,6 +78,62 @@
     <Compile Include="Migrations\201611131316064_removed_all_obsolete.Designer.cs">
       <DependentUpon>201611131316064_removed_all_obsolete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611131813325_award_removed.cs" />
+    <Compile Include="Migrations\201611131813325_award_removed.Designer.cs">
+      <DependentUpon>201611131813325_award_removed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611131922343_rand.cs" />
+    <Compile Include="Migrations\201611131922343_rand.Designer.cs">
+      <DependentUpon>201611131922343_rand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140533251_rand1.cs" />
+    <Compile Include="Migrations\201611140533251_rand1.Designer.cs">
+      <DependentUpon>201611140533251_rand1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140624275_rand2.cs" />
+    <Compile Include="Migrations\201611140624275_rand2.Designer.cs">
+      <DependentUpon>201611140624275_rand2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140634113_rand21.cs" />
+    <Compile Include="Migrations\201611140634113_rand21.Designer.cs">
+      <DependentUpon>201611140634113_rand21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140638584_rand4.cs" />
+    <Compile Include="Migrations\201611140638584_rand4.Designer.cs">
+      <DependentUpon>201611140638584_rand4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140728526_rand5.cs" />
+    <Compile Include="Migrations\201611140728526_rand5.Designer.cs">
+      <DependentUpon>201611140728526_rand5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140755025_rand6.cs" />
+    <Compile Include="Migrations\201611140755025_rand6.Designer.cs">
+      <DependentUpon>201611140755025_rand6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140800190_rand61.cs" />
+    <Compile Include="Migrations\201611140800190_rand61.Designer.cs">
+      <DependentUpon>201611140800190_rand61.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140826101_rand8.cs" />
+    <Compile Include="Migrations\201611140826101_rand8.Designer.cs">
+      <DependentUpon>201611140826101_rand8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611141311317_gradeNamechanged.cs" />
+    <Compile Include="Migrations\201611141311317_gradeNamechanged.Designer.cs">
+      <DependentUpon>201611141311317_gradeNamechanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611141412158_gradeNamechanged1.cs" />
+    <Compile Include="Migrations\201611141412158_gradeNamechanged1.Designer.cs">
+      <DependentUpon>201611141412158_gradeNamechanged1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611181140580_level_and_faculty_removed.cs" />
+    <Compile Include="Migrations\201611181140580_level_and_faculty_removed.Designer.cs">
+      <DependentUpon>201611181140580_level_and_faculty_removed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611272038001_student_grouping_added.cs" />
+    <Compile Include="Migrations\201611272038001_student_grouping_added.Designer.cs">
+      <DependentUpon>201611272038001_student_grouping_added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -115,6 +171,48 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611131316064_removed_all_obsolete.resx">
       <DependentUpon>201611131316064_removed_all_obsolete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611131813325_award_removed.resx">
+      <DependentUpon>201611131813325_award_removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611131922343_rand.resx">
+      <DependentUpon>201611131922343_rand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140533251_rand1.resx">
+      <DependentUpon>201611140533251_rand1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140624275_rand2.resx">
+      <DependentUpon>201611140624275_rand2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140634113_rand21.resx">
+      <DependentUpon>201611140634113_rand21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140638584_rand4.resx">
+      <DependentUpon>201611140638584_rand4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140728526_rand5.resx">
+      <DependentUpon>201611140728526_rand5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140755025_rand6.resx">
+      <DependentUpon>201611140755025_rand6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140800190_rand61.resx">
+      <DependentUpon>201611140800190_rand61.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140826101_rand8.resx">
+      <DependentUpon>201611140826101_rand8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611141311317_gradeNamechanged.resx">
+      <DependentUpon>201611141311317_gradeNamechanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611141412158_gradeNamechanged1.resx">
+      <DependentUpon>201611141412158_gradeNamechanged1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611181140580_level_and_faculty_removed.resx">
+      <DependentUpon>201611181140580_level_and_faculty_removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611272038001_student_grouping_added.resx">
+      <DependentUpon>201611272038001_student_grouping_added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

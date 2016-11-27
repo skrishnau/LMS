@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AcademicYearListUC.ascx.cs" Inherits="One.Views.Academy.UserControls.AcademicYearListUC" %>
 
-<div class="auto-st2">
+<div class="auto-st2" runat="server" ID="divBody">
     
-    <asp:Panel ID="pnlBody" runat="server" CssClass="auto-st1">
+    <%--<asp:Panel ID="pnlBody" runat="server" CssClass="auto-st1">--%>
         <div>
             <span style="font-size: 1.2em; font-weight: 700;">
                 <asp:HyperLink ID="lnkAcademicYearName" runat="server" CssClass="link"></asp:HyperLink>
@@ -26,7 +26,7 @@
                 </tr>
             </table>
             <div style="margin-top: 5px;">
-                <strong>&nbsp;Sessions &nbsp; :
+                <strong>&nbsp;Sessions
                     <asp:Label ID="lblTitleInSessionsList" runat="server" Text="" ForeColor="darkred"></asp:Label>
                 </strong>
                 <div style="margin-left: 20px;">
@@ -34,5 +34,5 @@
                 </div>
             </div>
         </div>
-    </asp:Panel>
+    <%--</asp:Panel>--%>
 </div>

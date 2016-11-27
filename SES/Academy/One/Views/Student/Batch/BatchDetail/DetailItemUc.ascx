@@ -8,7 +8,7 @@
                  ></asp:HyperLink>
         </div>
         <div style="margin-left: 30px; padding-bottom: 10px;">
-            No. Of Students:&nbsp;
+            Total Students:&nbsp;
             <asp:HyperLink ID="lblNoOfStudents" runat="server" Text="0"></asp:HyperLink>
 
             <asp:Label ID="lblCurrentYear" runat="server" ></asp:Label>

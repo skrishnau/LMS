@@ -40,13 +40,22 @@ namespace One.Views.Course.Section {
         protected global::System.Web.UI.WebControls.HyperLink lblTitle;
         
         /// <summary>
-        /// imgEditBtn control.
+        /// lnkEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgEditBtn;
+        protected global::System.Web.UI.WebControls.HyperLink lnkEdit;
+        
+        /// <summary>
+        /// imgedt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgedt;
         
         /// <summary>
         /// divDescription control.

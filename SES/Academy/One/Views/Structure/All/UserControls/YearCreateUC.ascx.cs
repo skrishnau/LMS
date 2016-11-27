@@ -24,7 +24,7 @@ namespace One.Views.Structure.All.UserControls
             set
             {
                 hidSchoolId.Value = value.ToString();
-                DbHelper.ComboLoader.LoadLevel(ref cmbLevel, Convert.ToInt32(hidSchoolId.Value), true);
+                //DbHelper.ComboLoader.LoadLevel(ref cmbLevel, Convert.ToInt32(hidSchoolId.Value), true);
             }
         }
 
@@ -37,7 +37,7 @@ namespace One.Views.Structure.All.UserControls
                 cmbLevel.ClearSelection();
                 cmbLevel.SelectedValue = value.ToString();
                 cmbLevel.Enabled = false;
-                DbHelper.ComboLoader.LoadFaculty(ref cmbFaculty, Convert.ToInt32(hidLevelId.Value), true);
+                //DbHelper.ComboLoader.LoadFaculty(ref cmbFaculty, Convert.ToInt32(hidLevelId.Value), true);
             }
         }
 

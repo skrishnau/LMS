@@ -75,8 +75,6 @@ namespace Academic.DbHelper
                         }
                         else
                         {
-                            int imageId = 0;
-
                             //update later
                             if (ent.ImageId <= 0)
                             {

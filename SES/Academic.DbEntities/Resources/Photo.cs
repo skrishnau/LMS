@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Resources
 {
-    public class Photo:DbEntities.UserFile
-    {
+    //public class Photo:DbEntities.UserFile
+    //{
         
-    }
+    //}
 }

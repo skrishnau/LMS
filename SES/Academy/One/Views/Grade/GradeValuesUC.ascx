@@ -15,6 +15,7 @@
      &nbsp;&nbsp;
        
     <asp:ImageButton ID="btnClose" runat="server" ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" CausesValidation="False" OnClick="btnClose_Click" style="width: 8px"/>
+    &nbsp; <asp:Label ID="lblError" runat="server" Text="Input Error." ForeColor="red" Visible="False"></asp:Label>
 
     <asp:HiddenField ID="hidId" runat="server" Value="0"/>
     <asp:HiddenField ID="hidLocalId" runat="server" Value="0"/>

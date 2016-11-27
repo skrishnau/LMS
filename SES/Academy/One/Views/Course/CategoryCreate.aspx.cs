@@ -32,7 +32,7 @@ namespace One.Views.Course
 
         void CreateUC_SaveClicked(object sender, Academic.DbHelper.MessageEventArgs e)
         {
-            Response.Redirect("~/Views/Course/List.aspx?catId=" + ((e.SaveSuccess) ? e.SavedId : Create1.ParentCategoryId));
+            Response.Redirect("~/Views/Course/?catId=" + ((e.SaveSuccess) ? e.SavedId : Create1.ParentCategoryId));
         }
     }
 }

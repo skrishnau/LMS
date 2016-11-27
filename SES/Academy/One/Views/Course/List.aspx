@@ -51,8 +51,8 @@
                                                 </asp:UpdatePanel>--%>
 
                                         <%-- end --%>
-                                        <div style="text-align: left; padding: 5px 0; background-color: #cacfd2;">
-                                            &nbsp;&nbsp;
+                                        <div style="text-align: left; padding: 5px 0; margin: 10px 0; background-color: white;">
+                                            &nbsp;
                                                 <asp:LinkButton ID="lnkCatCreate" runat="server" OnClick="lnkCatCreate_Click">
                                                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                                                     New Category

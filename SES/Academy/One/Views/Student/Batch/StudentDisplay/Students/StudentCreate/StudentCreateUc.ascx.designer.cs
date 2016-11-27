@@ -13,15 +13,6 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate {
     public partial class StudentCreateUc {
         
         /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
         /// txtFirstName control.
         /// </summary>
         /// <remarks>
@@ -76,13 +67,13 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate {
         protected global::System.Web.UI.WebControls.TextBox txtUserName;
         
         /// <summary>
-        /// RequiredFieldValidator6 control.
+        /// valiUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiUserName;
         
         /// <summary>
         /// txtPassword control.

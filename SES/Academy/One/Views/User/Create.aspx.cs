@@ -20,6 +20,7 @@ namespace One.Views.User
                     UserCreateUC.SchoolId = user.SchoolId; //Values.Session.GetSchool(Session);
                 }
             }
+            AsyncFileUpload1.Style.Add("visibility", " hidden");
         }
     }
 }

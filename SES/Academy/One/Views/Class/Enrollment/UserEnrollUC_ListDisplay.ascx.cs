@@ -53,7 +53,7 @@ namespace One.Views.Class.Enrollment
 
                         if (session == null)
                         {
-                            Response.Redirect("~/Views/Course/List.aspx");
+                            Response.Redirect("~/Views/Course/");
                             return;
                         }
                         else

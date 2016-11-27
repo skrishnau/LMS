@@ -27,12 +27,12 @@ namespace One.Views.Structure.Level
                         LevelId = Convert.ToInt32(levelId);
                         using (var helper = new DbHelper.Structure())
                         {
-                            var level = helper.GetLevel(LevelId);
-                            if (level != null)
-                            {
-                                txtName.Text = level.Name;
-                                txtDescription.Text = level.Description;
-                            }
+                            //var level = helper.GetLevel(LevelId);
+                            //if (level != null)
+                            //{
+                            //    txtName.Text = level.Name;
+                            //    txtDescription.Text = level.Description;
+                            //}
                         }
                     }
                 }
@@ -65,37 +65,37 @@ namespace One.Views.Structure.Level
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
-            {
-                var user = Page.User as CustomPrincipal;
-                if (user != null)
-                    using (var helper = new DbHelper.Structure())
-                    {
-                        var level = new Academic.DbEntities.Structure.Level()
-                        {
-                            Name = txtName.Text
-                            ,
-                            Description = txtDescription.Text
-                            ,
-                            Id = this.LevelId
-                            ,
-                            SchoolId = user.SchoolId
-                        };
+            //if (Page.IsValid)
+            //{
+            //    var user = Page.User as CustomPrincipal;
+            //    if (user != null)
+            //        using (var helper = new DbHelper.Structure())
+            //        {
+            //            var level = new Academic.DbEntities.Structure.Level()
+            //            {
+            //                Name = txtName.Text
+            //                ,
+            //                Description = txtDescription.Text
+            //                ,
+            //                Id = this.LevelId
+            //                ,
+            //                SchoolId = user.SchoolId
+            //            };
 
-                        if (LevelId == 0)
-                            level.CreatedDate = DateTime.Now;
+            //            if (LevelId == 0)
+            //                level.CreatedDate = DateTime.Now;
 
-                        var saved = helper.AddOrUpdateLevel(level);
-                        if (saved != null)
-                        {
-                            Response.Redirect("~/Views/Structure/All/Master/List.aspx?edit=1");
-                        }
-                        else
-                        {
-                            lblError.Visible = true;
-                        }
-                    }
-            }
+            //            var saved = helper.AddOrUpdateLevel(level);
+            //            if (saved != null)
+            //            {
+            //                Response.Redirect("~/Views/Structure/All/Master/List.aspx?edit=1");
+            //            }
+            //            else
+            //            {
+            //                lblError.Visible = true;
+            //            }
+            //        }
+            //}
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

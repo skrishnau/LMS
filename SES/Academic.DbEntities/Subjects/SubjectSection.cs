@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Academic.DbEntities.ActivityAndResource;
 using Academic.DbEntities.Resources;
-using Academic.DbEntities.Subjects.Detail;
+//using Academic.DbEntities.Subjects.Detail;
 
 namespace Academic.DbEntities.Subjects
 {

@@ -40,8 +40,8 @@
     <asp:HiddenField ID="hidYearName" runat="server" Value="" />
     <asp:HiddenField ID="hidSubYearName" runat="server" Value="" />
 
-    <asp:HiddenField ID="hidLevelId" runat="server" Value="0" />
-    <asp:HiddenField ID="hidFacultyId" runat="server" Value="0" />
+    <%--<asp:HiddenField ID="hidLevelId" runat="server" Value="0" />--%>
+    <%--<asp:HiddenField ID="hidFacultyId" runat="server" Value="0" />--%>
 
     <asp:HiddenField ID="hidRunningClassId" runat="server" Value="0" />
     <asp:HiddenField ID="hidExamOfClassId" runat="server" Value="0" />

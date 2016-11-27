@@ -32,7 +32,7 @@ namespace Academic.DbEntities.ActivityAndResource
         ///Either ObtainedValue or GradeId is present but not both
         /// </summary>
         public int? ObtainedGradeId { get; set; }
-        public virtual Grades.GradeValues ObtainedGrade { get; set; }
+        public virtual Grades.GradeValue ObtainedGrade { get; set; }
 
         /// <summary>
         ///depending in gradeType of Activity, 

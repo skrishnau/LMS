@@ -532,10 +532,14 @@ namespace Academic.DbHelper
 
                                 foreach (var r in rc)
                                 {
-                                    var earlierNotComplete = r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
-                                    if (earlierNotComplete)
+                                    if(r.ProgramBatchId!=null)
                                     {
-                                        continue;
+
+                                        var earlierNotComplete = r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
+                                        if (earlierNotComplete)
+                                        {
+                                            continue;
+                                        }
                                     }
                                     r.Completed = false;
                                     foreach (var sc in Context.SubjectClass.Where(w => w.RunningClassId == r.Id))
@@ -628,44 +632,94 @@ namespace Academic.DbHelper
             //used in Exam listing.. to create selectable academic and session list
             //so we need to pass both these classes as same class i.e.
             //The view model is 
-            public List<ViewModel.AcademicAndSessionCombinedViewModel> ListAcademicAndSessionAsViewModel(int schoolId)
+            public List<ViewModel.AcademicAndSessionCombinedViewModel> ListAcademicAndSessionAsViewModel(
+                int schoolId, bool manager, bool teacher)
             {
                 var list = new List<ViewModel.AcademicAndSessionCombinedViewModel>();
                 Context.AcademicYear.Where(a => a.SchoolId == schoolId && !(a.Void ?? false))
                     .OrderByDescending(o => o.Position)
                     .ToList().ForEach(a =>
                     {
-                        list.Add(new AcademicAndSessionCombinedViewModel()
+                        if (manager)
                         {
-                            Id = a.Id
-                            ,
-                            AcademicYearId = a.Id
-                            ,
-                            SessionId = 0
-                            ,
-                            Completed = a.Completed ?? false
-                            ,
-                            Name = a.Name
-                            ,
-                            BothNameCombined = a.Name
-                        });
-                        foreach (var s in a.Sessions.OrderByDescending(o => o.Position))
-                        {
-                            list.Add(new AcademicAndSessionCombinedViewModel()
-                            {
-                                Id = s.Id
-                                ,
-                                AcademicYearId = a.Id
-                                ,
-                                SessionId = s.Id
-                                ,
-                                Completed = s.Completed ?? false
-                                ,
-                                Name = s.Name
-                                ,
-                                BothNameCombined = a.Name + " > " + s.Name
+                            #region if manager or exam-head
 
-                            });
+                            list.Add(new AcademicAndSessionCombinedViewModel()
+                                {
+                                    Id = a.Id
+                                    ,
+                                    AcademicYearId = a.Id
+                                    ,
+                                    SessionId = 0
+                                    ,
+                                    Completed = a.Completed ?? false
+                                    ,
+                                    Name = a.Name
+                                    ,
+                                    BothNameCombined = a.Name
+                                });
+                            foreach (var s in a.Sessions.OrderByDescending(o => o.Position))
+                            {
+                                list.Add(new AcademicAndSessionCombinedViewModel()
+                                {
+                                    Id = s.Id
+                                    ,
+                                    AcademicYearId = a.Id
+                                    ,
+                                    SessionId = s.Id
+                                    ,
+                                    Completed = s.Completed ?? false
+                                    ,
+                                    Name = s.Name
+                                    ,
+                                    BothNameCombined = a.Name + " > " + s.Name
+
+                                });
+                            }
+                            #endregion
+                        }
+                        else if (teacher)
+                        {
+                            #region if teacher
+
+                            var activeSes = a.Sessions.Where(x => x.IsActive && !(x.Completed ?? false)).ToList();
+
+                            if (activeSes.Any() || (a.IsActive && !(a.Completed ?? false)))
+                            {
+                                list.Add(new AcademicAndSessionCombinedViewModel()
+                                {
+                                    Id = a.Id
+                                    ,
+                                    AcademicYearId = a.Id
+                                    ,
+                                    SessionId = 0
+                                    ,
+                                    Completed = a.Completed ?? false
+                                    ,
+                                    Name = a.Name
+                                    ,
+                                    BothNameCombined = a.Name
+                                });
+                                foreach (var s in activeSes.OrderByDescending(o => o.Position))
+                                {
+                                    list.Add(new AcademicAndSessionCombinedViewModel()
+                                    {
+                                        Id = s.Id
+                                        ,
+                                        AcademicYearId = a.Id
+                                        ,
+                                        SessionId = s.Id
+                                        ,
+                                        Completed = s.Completed ?? false
+                                        ,
+                                        Name = s.Name
+                                        ,
+                                        BothNameCombined = a.Name + " > " + s.Name
+
+                                    });
+                                }
+                            }
+                            #endregion
                         }
                     });
                 return list;

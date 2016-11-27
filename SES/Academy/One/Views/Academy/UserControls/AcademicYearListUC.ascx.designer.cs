@@ -13,13 +13,13 @@ namespace One.Views.Academy.UserControls {
     public partial class AcademicYearListUC {
         
         /// <summary>
-        /// pnlBody control.
+        /// divBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlBody;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBody;
         
         /// <summary>
         /// lnkAcademicYearName control.

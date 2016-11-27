@@ -31,18 +31,18 @@ namespace Academic.DbHelper
             #region ImageSaveToDatabase
 
 
-            public int UploadImageToDB(HttpPostedFileBase file)
-            {
-                if (file == null) return 0;
-                DbEntities.UserImage image = new DbEntities.UserImage();
-                image.Extension = file.ContentType;
-                //image.Name = file.FileName;
-                image.Bytes = ConvertToBytes(file);
+            //public int UploadImageToDB(HttpPostedFileBase file)
+            //{
+            //    if (file == null) return 0;
+            //    DbEntities.UserImage image = new DbEntities.UserImage();
+            //    image.Extension = file.ContentType;
+            //    //image.Name = file.FileName;
+            //    image.Bytes = ConvertToBytes(file);
 
-                var im = Context.UserImage.Add(image);
-                Context.SaveChanges();
-                return im.Id;
-            }
+            //    var im = Context.UserImage.Add(image);
+            //    Context.SaveChanges();
+            //    return im.Id;
+            //}
 
 
 
@@ -54,28 +54,28 @@ namespace Academic.DbHelper
                 return imageBytes;
             }
 
-            public DbEntities.UserImage GetUserImage(int id)
-            {
-                return Context.UserImage.Find(id);
-            }
+            //public DbEntities.UserImage GetUserImage(int id)
+            //{
+            //    return Context.UserImage.Find(id);
+            //}
 
-            /// <summary>
-            /// HttpPostedFile Type
-            /// </summary>
-            /// <param name="file"></param>
-            /// <returns></returns>
-            public int UploadImageToDB(HttpPostedFile file)
-            {
-                if (file == null) return 0;
-                var image = new DbEntities.UserImage();
-                image.Extension = file.ContentType;
-                //image.Name = file.FileName;
-                image.Bytes = ConvertToBytes(file);
+            ///// <summary>
+            ///// HttpPostedFile Type
+            ///// </summary>
+            ///// <param name="file"></param>
+            ///// <returns></returns>
+            //public int UploadImageToDB(HttpPostedFile file)
+            //{
+            //    if (file == null) return 0;
+            //    var image = new DbEntities.UserImage();
+            //    image.Extension = file.ContentType;
+            //    //image.Name = file.FileName;
+            //    image.Bytes = ConvertToBytes(file);
 
-                var im = Context.UserImage.Add(image);
-                Context.SaveChanges();
-                return im.Id;
-            }
+            //    var im = Context.UserImage.Add(image);
+            //    Context.SaveChanges();
+            //    return im.Id;
+            //}
 
             public byte[] ConvertToBytes(HttpPostedFile file)
             {

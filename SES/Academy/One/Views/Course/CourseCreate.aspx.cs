@@ -25,7 +25,7 @@ namespace One.Views.Course
                 }
                 catch
                 {
-                    Response.Redirect("~/Views/Course/List.aspx");
+                    Response.Redirect("~/Views/Course/");
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace One.Views.Course
                             }
                         }
                         else
-                            Response.Redirect("~/Views/Course/List.aspx");
+                            Response.Redirect("~/Views/Course/");
                     }
                 }
             }
@@ -67,7 +67,7 @@ namespace One.Views.Course
                 PopulateCourseData(cid);
             }
             else
-                Response.Redirect("~/Views/Course/List.aspx");
+                Response.Redirect("~/Views/Course/");
         }
 
         private void PopulateCourseData(int courseId)
@@ -129,7 +129,7 @@ namespace One.Views.Course
                                 Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + CourseId);
                             else
                             {
-                                Response.Redirect("~/Views/Course/List.aspx");
+                                Response.Redirect("~/Views/Course/?catId="+CategoryId);
                             }
                         }
                         else
@@ -141,7 +141,7 @@ namespace One.Views.Course
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             if (CourseId == 0)
-                Response.Redirect("~/Views/Course/List.aspx?catId=" + CategoryId);
+                Response.Redirect("~/Views/Course/?catId=" + CategoryId);
             else
                 Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + CourseId);
         }

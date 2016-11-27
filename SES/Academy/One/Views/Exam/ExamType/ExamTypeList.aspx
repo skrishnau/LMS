@@ -23,20 +23,18 @@
                 New Type
             </asp:HyperLink>
         </div>
-        <div>
-            <asp:DataList ID="DataList1" runat="server" Width="100%">
+        <div style="width: 97%;">
+            <asp:DataList ID="DataList1" runat="server" Width="99%">
                 <ItemTemplate>
                     <asp:HiddenField ID="hidExamTypeId" runat="server" Value='<%# Eval("Id") %>' />
                     <div class="item1">
                         <asp:HyperLink ID="HyperLink1" Font-Size="1.1em" Font-Bold="True"
                             runat="server" Text='<%#Eval("Name") %>' ToolTip="Click to Edit"
-                            NavigateUrl='<%# "~/Views/Exam/ExamType/ExamTypeCreate.aspx?etId="+Eval("Id") %>'></asp:HyperLink>
+                            NavigateUrl='<%# "~/Views/Exam/ExamType/ExamTypeDetail.aspx?etId="+Eval("Id") %>'></asp:HyperLink>
                         <div style="margin: 5px 5px 5px 20px">
                             <asp:Literal ID="Literal1" runat="server" Text='<%# Eval("Description") %>'></asp:Literal>
-                            <br />
-
                         </div>
-                        <div style="margin: 15px; padding: 5px;">
+                        <div style="margin-left: 15px; padding: 5px;">
                             <strong>Weight: &nbsp;</strong>
                             <asp:Label ID="Label1" runat="server"
                                 Text='<%# GetWeight(Eval("IsPercent"),Eval("Weight")) %>'></asp:Label>

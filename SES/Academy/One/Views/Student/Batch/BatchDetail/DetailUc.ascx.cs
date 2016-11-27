@@ -49,17 +49,19 @@ namespace One.Views.Student.Batch.BatchDetail
                 var programs = helper.GetProgramBatchList(BatchId);
                 foreach (var prog in programs)
                 {
+                    var no = prog.StudentBatches.Count(x => !(x.Void ?? false));
+
                     DetailItemUc item = (DetailItemUc)Page.LoadControl("~/Views/Student/Batch/BatchDetail/DetailItemUc.ascx");
                     item.LoadData(prog.Id, prog.BatchId, prog.NameFromBatch, prog.ProgramId
-                        , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void);
-                    if (prog.CurrentYear != null)
-                    {
-                        item.CurrentYear = prog.CurrentYear.Name;
-                    }
-                    if (prog.CurrentSubYear != null)
-                    {
-                        item.CurrentSubYear = prog.CurrentSubYear.Name;
-                    }
+                        , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void,no);
+                    //if (prog.CurrentYear != null)
+                    //{
+                    //    item.CurrentYear = prog.CurrentYear.Name;
+                    //}
+                    //if (prog.CurrentSubYear != null)
+                    //{
+                    //    item.CurrentSubYear = prog.CurrentSubYear.Name;
+                    //}
 
                     item.Enabled = !(prog.Void ?? false);
                     pnlProgramsInTheBatch.Controls.Add(item);

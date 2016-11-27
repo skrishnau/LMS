@@ -256,55 +256,53 @@ namespace Academic.DbHelper
             #region Add or Update functions
 
             public Academic.DbEntities.Batches.Batch AddOrUpdateBatch(DbEntities.Batches.Batch batch
-                , List<Academic.ViewModel.Batch.BatchViewModel> progBatchList)
+                , List<ProgramBatch> progBatchList)
             {
-                using (var scope = new TransactionScope())
+                try
                 {
-                    var ent = Context.Batch.Find(batch.Id);
-                    if (ent == null)
+                    using (var scope = new TransactionScope())
                     {
-                        ent = Context.Batch.Add(batch);
-                        Context.SaveChanges();
-                        //return ent;
-                    }
-
-                    //update
-                    ent.Name = batch.Name;
-                    ent.Description = batch.Description;
-                    Context.SaveChanges();
-
-                    //save programbatches
-                    var list = new List<Academic.DbEntities.Batches.ProgramBatch>();
-                    if (progBatchList != null)
-                    {
-                        foreach (var bvm in progBatchList)
+                        var ent = Context.Batch.Find(batch.Id);
+                        if (ent == null)
                         {
-                            var found = Context.ProgramBatch.Find(bvm.ProgramBatchId);
-                            if (found == null)
+                            ent = Context.Batch.Add(batch);
+                            Context.SaveChanges();
+                            foreach (var pb in progBatchList)
                             {
-                                Context.ProgramBatch.Add(new ProgramBatch()
-                                {
-                                    ProgramId = bvm.ProgramId
-                                    ,
-                                    BatchId = ent.Id
-
-                                });
+                                pb.BatchId = ent.Id;
+                                Context.ProgramBatch.Add(pb);
                                 Context.SaveChanges();
                             }
-                            else
+
+                        }
+                        else
+                        {
+                            ent.Name = batch.Name;
+                            ent.Description = batch.Description;
+                            Context.SaveChanges();
+                            foreach (var pb in progBatchList)
                             {
-                                found.Void = !bvm.Check;
-                                Context.SaveChanges();
-
-
+                                var found = Context.ProgramBatch.Find(pb.Id);
+                                if (found == null)
+                                {
+                                    Context.ProgramBatch.Add(pb);
+                                    Context.SaveChanges();
+                                }
+                                else
+                                {
+                                    found.Void = pb.Void;
+                                    Context.SaveChanges();
+                                }
                             }
                         }
+                        scope.Complete();
+                        return ent;
                     }
-
-                    scope.Complete();
-                    return ent;
                 }
-
+                catch
+                {
+                    return null;
+                }
             }
 
 

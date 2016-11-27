@@ -13,40 +13,13 @@ namespace One.Views.Structure.All.UserControls.StructureView {
     public partial class LabelAndCheckBoxUC {
         
         /// <summary>
-        /// PlaceHolder1 control.
+        /// chkBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
-        
-        /// <summary>
-        /// lblProgramName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProgramName;
-        
-        /// <summary>
-        /// imgCheckBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgCheckBox;
-        
-        /// <summary>
-        /// hidIsChecked control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidIsChecked;
+        protected global::System.Web.UI.WebControls.CheckBox chkBox;
         
         /// <summary>
         /// hidStructureId control.
@@ -56,15 +29,6 @@ namespace One.Views.Structure.All.UserControls.StructureView {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidStructureId;
-        
-        /// <summary>
-        /// hidStructureType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidStructureType;
         
         /// <summary>
         /// hidProgramBatchId control.

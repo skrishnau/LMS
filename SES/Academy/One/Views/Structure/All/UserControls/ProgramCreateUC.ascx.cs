@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using One.Values;
+using One.Values.MemberShip;
 
 namespace One.Views.Structure.All.UserControls
 {
@@ -23,42 +24,10 @@ namespace One.Views.Structure.All.UserControls
             set
             {
                 valiTxtName.Visible = value;
-                valiFaculty.Visible =value;
+                //valiFaculty.Visible =value;
             }
         }
-        public int SchoolId
-        {
-            get { return Convert.ToInt32(hidSchoolId.Value); }
-            set
-            {
-                hidSchoolId.Value = value.ToString();
-                DbHelper.ComboLoader.LoadLevel(ref cmbLevel, Convert.ToInt32(hidSchoolId.Value), true);
-            }
-        }
-        public int LevelId
-        {
-            get { return Convert.ToInt32(hidLevelId.Value); }
-            set
-            {
-                hidLevelId.Value = value.ToString();
-                cmbLevel.ClearSelection();
-                cmbLevel.SelectedValue = value.ToString();
-                cmbLevel.Enabled = false;
-                DbHelper.ComboLoader.LoadFaculty(ref cmbFaculty, Convert.ToInt32(hidLevelId.Value), true);
-            }
-        }
-
-        public int FacultyId
-        {
-            get { return Convert.ToInt32(hidFacultyId); }
-            set
-            {
-                hidFacultyId.Value = value.ToString();
-                cmbFaculty.ClearSelection();
-                cmbFaculty.SelectedValue = value.ToString();
-                cmbFaculty.Enabled = false;
-            }
-        }
+       
 
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -78,12 +47,13 @@ namespace One.Views.Structure.All.UserControls
                 isValid = false;
                 valiTxtName.Visible = true;
             }
-            if (cmbFaculty.SelectedValue == "" || cmbFaculty.SelectedValue == "0")
-            {
-                isValid = false;
-                valiFaculty.Visible = true;
-            }
-
+            //if (cmbFaculty.SelectedValue == "" || cmbFaculty.SelectedValue == "0")
+            //{
+            //    isValid = false;
+            //    valiFaculty.Visible = true;
+            //}
+            var user = Page.User as CustomPrincipal;
+            if(user!=null)
             if (isValid)
             {
                 //save
@@ -91,7 +61,7 @@ namespace One.Views.Structure.All.UserControls
                 {
                     Name = txtName.Text
                     ,
-                    FacultyId = Convert.ToInt32(cmbFaculty.SelectedValue)
+                    SchoolId = user.SchoolId//Convert.ToInt32(cmbFaculty.SelectedValue)
                     ,Description =  txtDescription.Text
                     
                 };

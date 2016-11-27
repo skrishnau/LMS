@@ -27,7 +27,7 @@ namespace One.Views.Structure.Faculty
         protected void cmbSchool_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            DbHelper.ComboLoader.LoadLevel(ref cmbLevel,Convert.ToInt32(cmbLevel.SelectedValue) );
+            //DbHelper.ComboLoader.LoadLevel(ref cmbLevel,Convert.ToInt32(cmbLevel.SelectedValue) );
         }
     }
 }

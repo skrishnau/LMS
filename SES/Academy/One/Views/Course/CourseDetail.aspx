@@ -11,10 +11,8 @@
 
             <div style="text-align: center;">
                 <asp:HyperLink ID="lnkView" runat="server">View</asp:HyperLink>
-                | 
-                <asp:HyperLink ID="lnkEdit" runat="server">Edit</asp:HyperLink>
-                | 
-                <asp:HyperLink ID="lnkDelete" runat="server">Delete</asp:HyperLink>
+                <asp:HyperLink ID="lnkEdit" runat="server"> | Edit</asp:HyperLink>
+                <asp:HyperLink ID="lnkDelete" runat="server"> | Delete</asp:HyperLink>
                 <%-- | 
                 <asp:HyperLink ID="HyperLink4" runat="server">Hide</asp:HyperLink>
                 | 
@@ -75,12 +73,12 @@
                 <ContentTemplate>
                     <%-- ---update panel here --%>
                     <div>
-                        <div>
+                        <div runat="server" id="pnlClasses" visible="False">
                             <strong>Classes</strong>
                             <%--<span>Use filter to filter the completed, Due and Not-started yet coureses</span>--%>
                             <div style="float: right;">
                                 <span style="text-align: right; display: block;">
-                                    <asp:HyperLink ID="lnkNewClass" runat="server"
+                                    <asp:HyperLink ID="lnkNewClass" runat="server" CssClass="link_smaller"
                                         ToolTip="For different group studying the Course at the same time, there can be different Subject Sessions,so as to differentiate the course content for each group.">
                                         <asp:Image ID="Image1" ImageUrl="~/Content/Icons/Add/Add-icon.png" runat="server" />
                                         Create New Class
@@ -106,37 +104,37 @@
                                         <table>
                                             <tr>
                                                 <td class="table-row-padding">
-                                                    <asp:LinkButton ID="btnAll" runat="server"  OnClick="btnFilterCrieteria_Click">
+                                                    <asp:LinkButton ID="btnAll" runat="server" OnClick="btnFilterCrieteria_Click">
                                                 <span style="background-color: #ffffff;" class="class-filter-table-cell"></span>
                                                     All
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>
                                                 <td class="table-row-padding">
-                                                    <asp:LinkButton ID="btnCurrentlyRunning" runat="server"  OnClick="btnFilterCrieteria_Click">
-                                                <span style="background-color: #d7e3e7;" class="class-filter-table-cell"></span>
+                                                    <asp:LinkButton ID="btnCurrentlyRunning" runat="server" OnClick="btnFilterCrieteria_Click">
+                                                <span style="background-color: #00ea00;" class="class-filter-table-cell"></span>
                                                     Currently Running
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>
                                                 <td class="table-row-padding">
-                                                    <asp:LinkButton ID="btnDue" runat="server"  OnClick="btnFilterCrieteria_Click">
-                                                <span style="background-color: #fdd6dc;" class="class-filter-table-cell"></span>
+                                                    <asp:LinkButton ID="btnDue" runat="server" OnClick="btnFilterCrieteria_Click">
+                                                <span style="background-color: #ff9aaa;" class="class-filter-table-cell"></span>
                                                 Due
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>
                                                 <td class="table-row-padding">
-                                                    <asp:LinkButton ID="btnNotStartedYet" runat="server"  OnClick="btnFilterCrieteria_Click">
-                                                <span style="background-color: #fdfdc2;" class="class-filter-table-cell"></span>
+                                                    <asp:LinkButton ID="btnNotStartedYet" runat="server" OnClick="btnFilterCrieteria_Click">
+                                                <span style="background-color: #fbfb3f;" class="class-filter-table-cell"></span>
                                                 Not yet Started
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>
 
                                                 <td class="table-row-padding">
-                                                    <asp:LinkButton ID="btnCompleted" runat="server"  OnClick="btnFilterCrieteria_Click">
-                                                <span style="background-color: #bcf4bc;" class="class-filter-table-cell"></span>
+                                                    <asp:LinkButton ID="btnCompleted" runat="server" OnClick="btnFilterCrieteria_Click">
+                                                <span style="background-color: #bfbfbf;" class="class-filter-table-cell"></span>
                                                 Completed
                                                     </asp:LinkButton>
                                                     &nbsp;
@@ -153,9 +151,7 @@
                         <%-- background-color: lightgoldenrodyellow; --%>
                         <div style="padding: 10px;">
 
-                            <asp:DataList ID="dlistClasses" runat="server"
-                                CellPadding="3" Width="100%"
-                                ForeColor="#333333">
+                            <asp:DataList ID="dlistClasses" runat="server" Width="100%" ForeColor="#333333">
                                 <%--<AlternatingItemStyle BackColor="White" />--%>
                                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                                 <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
@@ -163,26 +159,35 @@
                                 <%-- BackColor="#FFFBD6" --%>
 
                                 <ItemTemplate>
-                                    <div style="padding: 2px 6px;">
-                                        <asp:Panel runat="server" ID="panel1"
-                                            BackColor='<%# GetCompletedColor(DataBinder.Eval(
-                                    Container.DataItem,"SessionComplete")
-                                    ,Eval("StartDate") ,Eval("EndDate")
-                                    ) %>'>
+                                    <div class="auto-st2-border-no-margin">
+                                        <table>
+                                            <tr>
+                                                <td style="width: 15px;">
+                                                    <asp:Panel runat="server" ID="panel1" Width="15" Height="80"
+                                                        BackColor='<%# GetCompletedColor(DataBinder.Eval(
+                                                        Container.DataItem,"SessionComplete")
+                                                        ,Eval("StartDate") ,Eval("EndDate")
+                                                        ) %>'>
+                                                    </asp:Panel>
+                                                </td>
+                                                <td>
+                                                    <div style="font-size: 1.2em; padding-left: 10px;">
+                                                        <asp:HyperLink ID="lblName" runat="server" CssClass="link"
+                                                            NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("Id") %>'
+                                                            Text='<%# Eval("GetName") %>'></asp:HyperLink>
+                                                        <asp:Literal ID="lblRegularOrNot" runat="server" Text=""></asp:Literal>
+                                                    </div>
+                                                    <div style="padding: 0 25px 10px;">
+                                                        No. of Sections:
+                                                        <br />
+                                                        Total Students:
+                                                        <br />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
 
-                                            <div style="font-size: 1.2em; padding: 10px 10px 0;">
-                                                <asp:HyperLink ID="lblName" runat="server"
-                                                    NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("Id") %>'
-                                                    Text='<%# Eval("GetName") %>'></asp:HyperLink>
-                                                <asp:Literal ID="lblRegularOrNot" runat="server" Text="(Regular)"></asp:Literal>
-                                            </div>
-                                            <div style="padding: 0 25px 10px;">
-                                                No. of Sections:
-                                                <br />
-                                                Total Students:
-                                                <br />
-                                            </div>
-                                        </asp:Panel>
+
                                     </div>
                                 </ItemTemplate>
                                 <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
@@ -231,6 +236,10 @@
             padding-left: 10px;
         }
     </style>
+</asp:Content>
+
+<asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
+    Course Detail
 </asp:Content>
 
 

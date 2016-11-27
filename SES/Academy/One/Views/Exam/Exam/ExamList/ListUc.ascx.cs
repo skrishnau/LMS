@@ -56,7 +56,7 @@ namespace One.Views.Exam.Exam.ExamList
 
         private void LoadAcademicYear()
         {
-            DbHelper.ComboLoader.LoadAcademicYear(ref cmbAcademicYear, Values.Session.GetSchool(Session), AcademicYearId);
+            //DbHelper.ComboLoader.LoadAcademicYear(ref cmbAcademicYear, Values.Session.GetSchool(Session), AcademicYearId);
             if (AcademicYearId > 0)
             {
                 cmbAcademicYear.Enabled = false;

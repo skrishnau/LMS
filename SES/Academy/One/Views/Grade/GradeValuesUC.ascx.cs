@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.Database.Migrations;
 using Academic.ViewModel;
 
 namespace One.Views.Grade
@@ -13,7 +15,8 @@ namespace One.Views.Grade
         public event EventHandler<IdAndNameEventArgs> RemoveClicked;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txtEquivalent.BackColor = Color.White;
+            lblError.Visible = false;
         }
 
         public int GradeValueId
@@ -22,9 +25,29 @@ namespace One.Views.Grade
             set { hidId.Value = value.ToString(); }
         }
 
-        public float EquivalentValue
+        public float? EquivalentValue
         {
-            get { return Convert.ToInt32(string.IsNullOrEmpty(txtEquivalent.Text)?"0":txtEquivalent.Text); }
+            get
+            {
+                if (string.IsNullOrEmpty(txtEquivalent.Text))
+                {
+                    txtEquivalent.BackColor = Color.LightPink;
+                    lblError.Visible = true;
+                    return null;
+                }
+                try
+                {
+                    var val = (float)Convert.ToDecimal(txtEquivalent.Text);
+                    return val;
+                }
+                catch
+                {
+                    txtEquivalent.BackColor = Color.LightPink;
+                    lblError.Visible = true;
+                    return null;
+                }
+                //return Convert.ToInt32(string.IsNullOrEmpty(txtEquivalent.Text)?"0":txtEquivalent.Text);
+            }
             set { txtEquivalent.Text = value.ToString(); }
         }
 
@@ -46,10 +69,18 @@ namespace One.Views.Grade
             set { chkFail.Checked = value; }
         }
 
-        public int LocalId 
+        public int LocalId
         {
             get { return Convert.ToInt32(hidLocalId.Value); }
             set { hidLocalId.Value = value.ToString(); }
+        }
+
+        public void SetValues(int localId, string value, float equivalent, bool fail)
+        {
+            LocalId = localId;
+            Value = value;
+            EquivalentValue = equivalent;
+            Fail = fail;
         }
 
         protected void btnClose_Click(object sender, ImageClickEventArgs e)

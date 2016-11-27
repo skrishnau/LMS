@@ -5,17 +5,12 @@
 
 <%@ Register Src="~/Views/Academy/ProgramSelection/BatchSelect.ascx" TagPrefix="uc1" TagName="BatchSelect" %>
 
-
-
-<%--<asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">--%>
-<div style="padding-top: -30px; margin-left: 20px;">
-    <%--<div>
-        <strong>Program Selections</strong>
-    </div>--%>
+<div style="">
     <div>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <table style="width: 100%; margin: 2px 5px;">
+                <%-- width: 100%; --%>
+                <table >
                     <tr>
 
                         <td class="inner-row-width">
@@ -25,7 +20,7 @@
 
                         <td class="inner-row-width">
                             <asp:Panel ID="pnlBatchSelect" runat="server" Visible="False">
-
+                                
                                 <strong>
                                     <asp:Label runat="server" ID="lblBatchSelectionHeading" Text=""></asp:Label>
                                 </strong>

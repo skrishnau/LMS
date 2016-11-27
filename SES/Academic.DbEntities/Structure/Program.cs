@@ -14,15 +14,18 @@ namespace Academic.DbEntities.Structure
 
         public String Description { get; set; }
 
-        public int FacultyId { get; set; }
-        public virtual Faculty Faculty { get; set; }
+        //public int FacultyId { get; set; }
+        //public virtual Faculty Faculty { get; set; }
+
+        public int SchoolId { get; set; }
+        public virtual Office.School School { get; set; }
 
 
         public bool? Void { get; set; }
         public DateTime? CreatedDate { get; set; }
 
         public virtual ICollection<Year> Year { get; set; }
-        public ICollection<ProgramBatch> ProgramBatches { get; set; }
+        public virtual ICollection<ProgramBatch> ProgramBatches { get; set; }
 
     }
 }

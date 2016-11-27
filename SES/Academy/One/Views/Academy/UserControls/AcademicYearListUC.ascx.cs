@@ -27,16 +27,22 @@ namespace One.Views.Academy.UserControls
             if (complete)
             {
                 lblActiveIndicator.Text = " (Complete)";
-                pnlBody.BackColor = //Color.LightGray;
-                        Color.FromArgb(225, 225, 225);
+                lblActiveIndicator.ForeColor = Color.DarkGray;
+                divBody.Style.Add("border-left", "10px solid lightgrey");
+
+                //pnlBody.BackColor = //Color.LightGray;
+                //        Color.FromArgb(225, 225, 225);
             }
             else if (active)
             {
+
                 //pnlBody.BackColor = Color.LightGreen;
                 lblActiveIndicator.Text = " (Active)";
-                pnlBody.BackColor = //Color.LightGreen;
-                    //Color.FromArgb(208, 255, 208);
-                                        Color.FromArgb(193, 252, 193);
+                lblActiveIndicator.ForeColor = Color.Green;
+                divBody.Style.Add("border-left", "10px solid green");
+                //pnlBody.BackColor = //Color.LightGreen;
+                //                        Color.FromArgb(193, 252, 193);
+                //Color.FromArgb(208, 255, 208);
                 //lblActiveIndicator.ForeColor = Color.Green;
                 //lnkAcademicYearName.BackColor = Color.LightGreen;
             }
@@ -56,13 +62,13 @@ namespace One.Views.Academy.UserControls
                     {
                         Text = sess.Name
                         ,
-                        NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?sId=" + sess.Id
-                        ,
+                        //NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?sId=" + sess.Id
+                        //,
                     };
                     pnlSessionsList.Controls.Add(hypSes);
                     if (active && sess.IsActive)
                     {
-                        hypSes.BackColor = Color.LightGreen;
+                        //hypSes.BackColor = Color.LightGreen;
                         var activeIndicator = new Label() { Text = " (Active)", ForeColor = Color.Green };
                         pnlSessionsList.Controls.Add(activeIndicator);
                     }

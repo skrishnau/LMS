@@ -45,7 +45,7 @@ namespace Academic.DbEntities.ActivityAndResource
 
 
         public int GradeTypeId { get; set; }
-        public virtual Grades.GradeType GradeType { get; set; }
+        public virtual Grades.Grade GradeType { get; set; }
 
         //they contain value in case of Range, and contain id of gradeValue class incase  of Value
         public string MaximumGrade { get; set; }
@@ -63,10 +63,11 @@ namespace Academic.DbEntities.ActivityAndResource
         public int CreatedBy { get; set; }
         public int ModifiedBy { get; set; }
 
+        public virtual ICollection<AssignmentItems.AssignmentSubmissions> Submissions { get; set; }
+
         //Student Group for whom the assignment is given
 
 
-        //public virtual Subjects.Subject Subject { get; set; }
         //public virtual ICollection<Resources.Resource> Resources { get; set; }
         //public virtual ICollection<DbEntities.Assignments.AssignmentAnswer> AssignmentAnswers { get; set; }
         //public virtual ICollection<Task> Tasks { get; set; }

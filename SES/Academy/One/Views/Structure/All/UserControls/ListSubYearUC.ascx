@@ -1,7 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListSubYearUC.ascx.cs" Inherits="One.Views.Structure.All.UserControls.ListSubYearUC" %>
 
-<asp:Panel ID="pnlBody" runat="server">
-    <div runat="server" id="panel" style="margin: 3px; padding: 3px 3px 5px 10px; ">
+<%-- style="margin: 3px; padding: 8px " --%>
+<div runat="server" id="panel" style="padding: 3px;">
+    <asp:Panel ID="pnlBody" runat="server">
         <div class="block">
             <span style="font-weight: 600">
                 <asp:HyperLink ID="lblName" runat="server">
@@ -18,7 +19,7 @@
                 <table>
                     <tr runat="server" id="row_currentBatch">
                         <td>
-                            <asp:HyperLink ID="lnkCurrentBatch" runat="server" >
+                            <asp:HyperLink ID="lnkCurrentBatch" runat="server">
                                 <span style="font-weight: 500; font-style: italic;">Current Batch: </span>&nbsp;
                             <asp:Label ID="lblCurrentBatch" runat="server" Text=" N/A "></asp:Label>
                             </asp:HyperLink>
@@ -26,10 +27,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:LinkButton ID="lnkCoursesList" runat="server" OnClick="lnkCoursesList_Click">
+                            <asp:HyperLink ID="lnkCoursesList" runat="server">
                                 <span style="font-weight: 500; font-style: italic;">No. Of Courses: &nbsp;</span>
                                 <asp:Label ID="lblNoOfCourses" runat="server" Text="0"></asp:Label>
-                            </asp:LinkButton>
+                            </asp:HyperLink>
                             <%-- <div style="float: right; position: absolute; background-color: red; min-height: 900px; min-width: 100px;">
                             <asp:Panel ID="pnlcourseList" runat="server"></asp:Panel>
                         </div>--%>
@@ -59,8 +60,5 @@
         <asp:HiddenField ID="hidYearId" runat="server" />
         <asp:HiddenField ID="hidSubYearId" runat="server" />
 
-        <div style="margin-left: 25px; border-left: solid lightgray 1px; background-color: aliceblue">
-            <asp:PlaceHolder ID="pnlSubControls" runat="server"></asp:PlaceHolder>
-        </div>
-    </div>
-</asp:Panel>
+    </asp:Panel>
+</div>

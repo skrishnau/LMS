@@ -17,6 +17,8 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblFileNumberError.Visible = false;
+
             if (!IsPostBack)
             {
                 //FileResourceEventArgs--> Icon path is the path of the image... FileName is the file path
@@ -89,7 +91,28 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
 
         protected void lnkAddFile_Click(object sender, EventArgs e)
         {
-            FilePickerDialog1.OpenDialog();
+            var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
+            if (files != null)
+            {
+                if (NumberOfFilesToUpload != -1)
+                {
+                    if (files.Count >= NumberOfFilesToUpload)
+                    {
+                        lblFileNumberError.Visible = true;
+                        lblFileNumberError.Text = "Only " + NumberOfFilesToUpload + " allowed.";
+                        return;
+                    }
+                    else
+                    {
+                        FilePickerDialog1.OpenDialog();
+                    }
+                }
+                else
+                {
+                    FilePickerDialog1.OpenDialog();
+                }
+            }
+
         }
 
         protected void lnkAddFolder_Click(object sender, EventArgs e)
@@ -125,7 +148,9 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
                 FilePickerDialog1.FileAcquireMode = value;
                 hidFileAcquireMode.Value = value.ToString();
                 if (value == Enums.FileAcquireMode.Single)
+                {
                     MultiView1.ActiveViewIndex = 1;
+                }
             }
         }
 
@@ -138,7 +163,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
                 if (files.Count >= 1)
                 {
                     files[files.Count - 1].Id = files[0].Id;
-                    return new List<FileResourceEventArgs>() {files[files.Count - 1]};
+                    return new List<FileResourceEventArgs>() { files[files.Count - 1] };
                 }
             }
             return files;
@@ -190,6 +215,12 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
                 }
 
             }
+        }
+
+        public int NumberOfFilesToUpload
+        {
+            get { return Convert.ToInt32(hidNumberOfFilesToUpload.Value); }
+            set { hidNumberOfFilesToUpload.Value = value.ToString(); }
         }
     }
 }

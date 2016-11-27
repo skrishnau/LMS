@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SessionsListingInAYDetailUC.ascx.cs" Inherits="One.Views.Academy.UserControls.SessionsListingInAYDetailUC" %>
 
 <%-- style="border: 1px solid lightgrey; "class="data-entry-section" style="border: 1px solid darkgray; padding: 5px; margin: 8px 0;" --%>
-<div class="auto-st2">
-    <asp:Panel ID="pnlbody" runat="server" CssClass="auto-st1">
+<div class="auto-st2" runat="server" ID="divBody">
+    <%--<asp:Panel ID="pnlbody" runat="server" CssClass="auto-st1">--%>
         <strong>
             <asp:HyperLink ID="lnkSessionName" runat="server" Text="Label" CssClass="link"></asp:HyperLink></strong>
         <asp:Label ID="lblActiveIndicator" runat="server" Text=""></asp:Label>
@@ -61,9 +61,11 @@
                                 </table>
                             </LayoutTemplate>
                             <AlternatingItemTemplate>
-                                <tr id="Tr1" runat="server" style="background-color: lightgoldenrodyellow;">
+                                <tr id="Tr1" runat="server" style="background-color: lightgoldenrodyellow;" class="auto-st2-white">
                                     <td>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# GetName(Eval("ProgramBatch")) %>'></asp:Label>
+                                        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="auto-st2-inline-block"
+                                            NavigateUrl='<%# GetUrl(Eval("ProgramBatchId")) %>'
+                                            Text='<%# GetName(Eval("ProgramBatch")) %>'></asp:HyperLink>
                                     </td>
                                     <td>
                                         <asp:Label ID="Label2" runat="server" Text='<%# GetCurrent(Eval("Year"),Eval("SubYear")) %>'></asp:Label>
@@ -71,9 +73,11 @@
                                 </tr>
                             </AlternatingItemTemplate>
                             <ItemTemplate>
-                                <tr id="Tr2" runat="server">
+                                <tr id="Tr2" runat="server" class="auto-st2-white">
                                     <td>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# GetName(Eval("ProgramBatch")) %>'></asp:Label>
+                                        <asp:HyperLink ID="HLabel1" runat="server" CssClass="auto-st2-inline-block"
+                                            NavigateUrl='<%# GetUrl(Eval("ProgramBatchId")) %>'
+                                            Text='<%# GetName(Eval("ProgramBatch")) %>'></asp:HyperLink>
                                     </td>
                                     <td>
                                         <asp:Label ID="Label2" runat="server" Text='<%# GetCurrent(Eval("Year"),Eval("SubYear")) %>'></asp:Label>
@@ -87,7 +91,7 @@
             </div>
 
         </div>
-    </asp:Panel>
+    <%--</asp:Panel>--%>
     <asp:HiddenField ID="hidAcademicYearId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSessionId" runat="server" Value="0" />
 </div>

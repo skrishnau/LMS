@@ -8,72 +8,24 @@ using Academic.DbHelper;
 //using Academic.InitialValues;
 using One.Values.MemberShip;
 using System.IO;
+using Academic.DbEntities;
 
 namespace One.Views.User
 {
     public partial class UserCreateUC : System.Web.UI.UserControl
     {
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            string editMode = "";
-
+            valiUserName.ErrorMessage = "Required";
+            //string editMode = "";
             if (!IsPostBack)
             {
                 DbHelper.ComboLoader.LoadGender(ref cmbGender);
-                DateChooser1.Validate = false;
-                cmbEmailDisplay.DataSource = Enums.GetDisplayModes();
-                cmbEmailDisplay.DataBind();
-                cmbEmailDisplay.SelectedIndex = 1;
-
-                if (Values.Session.GetUser(Session) == 0)
-                {
-                    editMode = "New";
-                }
-                else
-                {
-                    if (
-                        Values.Session.GetUserCapability(Session)
-                            .Contains(Enums.UserCapabilities.UserCreate.ToString()))
-                    {
-
-                        //check for update not done
-                        editMode = EditMode;
-                    }
-                    else
-                    {
-                        switch (EditMode)
-                        {
-                            case "ProfileEdit":
-                                editMode = EditMode;
-                                break;
-                            case "Update":
-                                editMode = EditMode;
-                                break;
-                        }
-                    }
-                }
-                switch (editMode)
-                {
-                    case "New":
-                        DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "Admin");
-                        cmbRole.Enabled = false;
-                        break;
-                    case "Create":
-                        DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "");
-
-                        break;
-                    case "ProfileEdit":
-                        // DbHelper.ComboLoader.LoadRole(ref cmbRole,Values.Session.GetSchool(Session),Values.Session.GetUserRole());
-
-                        cmbRole.Enabled = false;
-                        break;
-                    case "Update":
-                        //have logic here (if already user is active don't give to update role)
-                        break;
-                }
-
+                FilesDisplay.FileAcquireMode = Enums.FileAcquireMode.Single;
+                var key = Guid.NewGuid().ToString();
+                FilesDisplay.PageKey = key;
+                PageKey = key;
+                FilesDisplay.FileSaveDirectory = DbHelper.StaticValues.UserImageDirectory;
             }
         }
 
@@ -86,77 +38,21 @@ namespace One.Views.User
             set { hidSchoolId.Value = value.ToString(); }
         }
 
-        public int RoleId
-        {
-            get
-            {
-                if (cmbRole.Items.Count == 0)
-                {
-                    DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "");
-                }
-                return Convert.ToInt32((String.IsNullOrEmpty(cmbRole.SelectedValue)) ? "0" : cmbRole.SelectedValue);
-            }
-            set
-            {
-                if (cmbRole.Items.Count == 0)
-                {
-                    DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), value);
-                }
-                else
-                {
-                    cmbRole.SelectedValue = value.ToString();
-                }
-            }
-        }
-
-        public string RoleName
-        {
-            get
-            {
-                if (cmbRole.Items.Count == 0)
-                {
-                    DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "");
-                }
-                return cmbRole.SelectedItem.Text;
-                //Convert.ToInt32(String.IsNullOrEmpty(cmbRole.SelectedValue) ? "0" : cmbRole.SelectedValue);
-            }
-            set
-            {
-                if (cmbRole.Items.Count == 0)
-                {
-                    DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), value);
-                }
-                else
-                {
-                    var item = cmbRole.Items.FindByText(value);
-                    if (item != null)
-                    {
-                        cmbRole.SelectedValue = item.Value;
-                    }
-                }
-            }
-        }
-
         public string EditMode
         {
             get { return this.hidEditMode.Value; }
             set { this.hidEditMode.Value = value; }
         }
+        public string PageKey
+        {
+            get { return this.hidPageKey.Value; }
+            set { this.hidPageKey.Value = value; }
+        }
 
         #endregion
 
 
-
-
         #region Functions
-
-        protected Page GetParentPage(Control control)
-        {
-            if (control.Parent is Page)
-                return (Page)control.Parent;
-
-            return GetParentPage(control.Parent);
-        }
 
         private void ResetTextAndCombos()
         {
@@ -167,14 +63,10 @@ namespace One.Views.User
             txtCountry.Text = "";
             txtStreet.Text = "";
             txtEmail.Text = "";
-            //txtJobTitle.Text = "";
             txtPassword.Text = "";
             txtUserName.Text = "";
             txtPhone1.Text = "";
-            //cmbSchool.SelectedValue = "0";
-            //cmbGender.SelectedValue = "0";
-
-            DateChooser1.ResetDate();
+            txtDOB.Text = "";
             txtCountry.Text = "";
             txtCity.Text = "";
             txtStreet.Text = "";
@@ -183,260 +75,129 @@ namespace One.Views.User
 
         #endregion
 
+
         #region Events save, etc.
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            //bool isValid = (RequiredFieldValidator3.IsValid
-            //                && RequiredFieldValidator6.IsValid
-            //                && RequiredFieldValidator7.IsValid);
-            //if()
-
             var user = Page.User as CustomPrincipal;
             if (user != null)
-                if (Page.IsValid)
+            {
+                using (var helper = new DbHelper.User())
                 {
-                    //List<int> DivisonsAssigned = new List<int>();
-                    //using (var helper = new DbHelper.Student())
-                    //{
-                    //    //helper.
-                    //}
-                    int role = (cmbRole.SelectedValue == "") ? 0 : Convert.ToInt32(cmbRole.SelectedValue.ToString());
-                    var dob = DateTime.MinValue;
-                    try
+                    if (helper.DoesUserNameExist(user.SchoolId, txtUserName.Text))
                     {
-                        if (DateChooser1.SelectedDate != DateTime.MinValue)
-                            dob = (DateChooser1.SelectedDate).Date;
+                        valiUserName.ErrorMessage = "Username already exists";
+                        valiUserName.IsValid = false;
                     }
-                    catch { }
-                    var date = DateTime.Now.Date;
-                    var createdUser = new Academic.DbEntities.User.Users()
+                    if (Page.IsValid)
                     {
-                        SchoolId = user.SchoolId
-                        ,
-                        City = txtCity.Text
-                        ,
-                        Country = txtCountry.Text
-                        ,
-                        CreatedDate = date
-                        ,
-                        Email = txtEmail.Text
-                        ,
-                        FirstName = txtFirstName.Text
-                        ,
-                        MiddleName = txtMidName.Text,
-                        LastName = txtLastName.Text
-                        ,
+                        var dob = DateTime.MinValue;
+                        try
+                        {
+                            dob = Convert.ToDateTime(txtDOB.Text);
+                        }
+                        catch
+                        {
+                        }
+                        var date = DateTime.Now.Date;
+                        var createdUser = new Academic.DbEntities.User.Users()
+                        {
+                            SchoolId = user.SchoolId
+                            ,
+                            City = txtCity.Text
+                            ,
+                            Country = txtCountry.Text
+                            ,
+                            CreatedDate = date
+                            ,
+                            Email = txtEmail.Text
+                            ,
+                            FirstName = txtFirstName.Text
+                            ,
+                            MiddleName = txtMidName.Text,
+                            LastName = txtLastName.Text
+                            ,
+                            IsActive = true
+                            ,
+                            IsDeleted = false
+                            ,
+                            UserName = txtUserName.Text
+                            ,
+                            Password = txtPassword.Text
+                            ,
+                            //Description = txtDescription.Text
+                            //,
+                        };
+                        if (!(cmbGender.SelectedValue == "0" || cmbGender.SelectedValue != ""))
+                        {
+                            createdUser.GenderId = Convert.ToInt32(cmbGender.SelectedValue);
+                        }
+                        if (dob != DateTime.MinValue)
+                            createdUser.DOB = dob;
 
-                        IsActive = true
-                        ,
-                        IsDeleted = false
-                        ,
-                        UserName = txtUserName.Text
-                        ,
-                        Password = txtPassword.Text
-                        ,
-                        Description = txtDescription.Text
-                        ,
-                        EmailDisplay = cmbEmailDisplay.SelectedValue
-                    };
-                    if (!(cmbGender.SelectedValue == "0" || cmbGender.SelectedValue != ""))
-                    {
-                        createdUser.GenderId = Convert.ToInt32(cmbGender.SelectedValue);
-                    }
-                    if (dob != DateTime.MinValue)
-                        createdUser.DOB = dob;
-                    //var SchoolId = Values.Session.GetSchool(Session); // Convert.ToInt32(cmbSchool.SelectedValue);
-                    //if (SchoolId > 0)
-                    //{
-                    //    createdUser.SchoolId = SchoolId;
-                    //}
-                    //foreach (ListItem divisions in CheckBoxList1.Items)
-                    //{
-                    //    if (divisions.Selected)
-                    //    {
-                    //        DivisonsAssigned.Add(Convert.ToInt32(divisions.Value));
-                    //    }
-                    //}
-                    using (var helper = new DbHelper.User())
-                    {
-                        var savedUser = helper.AddOrUpdateUser(createdUser, cmbRole.SelectedValue, FileUpload1.PostedFile);
+
+
+
+                        var files = FilesDisplay.GetFiles();
+                        var image = new UserFile();
+                        if (files != null)
+                        {
+                            if (files.Count >= 1)
+                            {
+                                var f = files[0];
+                                //foreach (var f in files)
+                                {
+                                    var fileName = Path.GetFileName(f.FilePath);
+                                    image = new Academic.DbEntities.UserFile()
+                                    {
+                                        Id = f.Id,
+                                        CreatedBy = user.Id
+                                        ,
+                                        CreatedDate = DateTime.Now
+                                        ,
+                                        DisplayName = f.FileDisplayName //Path.GetFileName(imageFile.FileName)
+                                        ,
+                                        FileDirectory = DbHelper.StaticValues.UserImageDirectory //StaticValue.UserImageDirectory
+                                        ,
+                                        FileName = fileName
+                                            //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
+                                        ,
+                                        FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
+                                        ,
+                                        FileType = f.FileType //imageFile.ContentType
+                                        ,
+                                        IconPath = f.IconPath
+                                        ,
+                                        //SubjectId = SubjectId
+                                    };
+                                    if (f.Id > 0)
+                                    {
+                                        image.ModifiedBy = user.Id;
+                                        image.ModifiedDate = DateTime.Now;
+                                    }
+                                }
+                            }
+                        }
+
+                        var savedUser = helper.AddOrUpdateUser(createdUser, "0", image);
 
                         if (savedUser != null)
                         {
-                            //public bool UploadToFolder(HttpPostedFileBase file)
-                            //{
-                            //    var filename = Path.GetFileName(file.FileName);
-                            //    var path = Path.Combine(Server.MapPath("~/Content/Upload"), filename);
-                            //    file.SaveAs(path);
-                            //    return true;
-                            //}
-
-                            //save image
-                            //first entry to database : table File --its image
-                            if (FileUpload1.HasFile)
-                            {
-                                var imageFile = FileUpload1.PostedFile;
-
-
-                                var image = new Academic.DbEntities.UserFile()
-                                {
-                                    CreatedBy = user.Id
-                                    ,
-                                    CreatedDate = DateTime.Now
-                                    ,
-                                    DisplayName = Path.GetFileName(imageFile.FileName)
-                                    ,
-                                    FileDirectory = DbHelper.StaticValues.UserImageDirectory
-                                    ,
-                                    FileName = Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
-                                    ,
-                                    FileSizeInBytes = imageFile.ContentLength
-                                    ,
-                                    FileType = imageFile.ContentType
-                                    ,
-                                };
-                                using (var fhelper = new DbHelper.WorkingWithFiles())
-                                {
-                                    GetNewGuid(fhelper, image);
-                                    //TrimFirstLetterFromImageFileName(image);
-                                    if (trimLoop > 9 || guidLoop > 9)
-                                    {
-                                        //cancel all save
-                                    }
-                                    else
-                                    {
-                                        var savedFile = fhelper.AddOrUpdateFile(image);
-
-                                        if (savedFile != null)
-                                        {
-                                            //save the image with this name
-                                            //var filename = Path.GetFileName(file.FileName);
-                                            var path = Path.Combine(Server.MapPath(DbHelper.StaticValues.UserImageDirectory),
-                                                image.FileName);
-                                            imageFile.SaveAs(path);
-
-                                            //add the image Id to user 
-                                            helper.UpdateUsersImage(savedUser.Id, savedFile.Id);
-
-
-                                            //    return true;
-                                        }
-
-                                    }
-
-                                }
-
-                            }
-                        }
-
-                        //Label label = (Label)this.Page.FindControl("lblBodyMessage");
-                        //if (label != null)
-                        {
-                            if (savedUser != null)
-                            {
-                                //label.Text = "Save Successful.";
-                                Page.Response.Redirect("List.aspx");
-                                ResetTextAndCombos();
-                            }
-                            //else
-                            //    label.Text = "Error while saving.";
+                            Response.Redirect("List.aspx");
+                            //ResetTextAndCombos();
                         }
                     }
-
-                    //lblSaveStatus.Text = ("Save Successful.");
-                    //lblSaveStatus.Visible = true;
-
                 }
-
-
+            }
         }
 
-        public string GetExtension(string fileName, string contentType)
+        protected void lnkShowOptional_Click(object sender, EventArgs e)
         {
-            //var ent = Context.File.Find(imageId);
-
-            int dotpos = 0;
-            int slashPos = 0;
-            try
-            {
-                dotpos = fileName.LastIndexOf(".");
-            }
-            catch
-            {
-                try
-                {
-                    slashPos = contentType.IndexOf("/");
-                }
-                catch
-                {
-                    return "";
-                }
-            }
-            if (dotpos != 0)
-            {
-                var extension = fileName.Substring(dotpos + 1);
-                return "." + extension;
-            }
-            else if (slashPos != 0)
-            {
-                var extension = contentType.Substring(slashPos + 1);
-                return "." + extension;
-            }
-            return "";
-
+            tableOpt.Visible = !tableOpt.Visible;
         }
-
-
-        private int guidLoop = 0;
-        int trimLoop = 0;
-
-        private void GetNewGuid(DbHelper.WorkingWithFiles fhelper, Academic.DbEntities.UserFile image)
-        {
-            //var existingFile = Context.File.FirstOrDefault(x => x.FileName == image.FileName);
-
-            if (guidLoop < 10)
-            {
-                if (fhelper.DoesFileExists(image.FileName))
-                {
-                    image.FileName = Guid.NewGuid().ToString() + GetExtension(image.DisplayName, image.FileType);//.GetHashCode().ToString();
-                    GetNewGuid(fhelper, image);
-                    TrimFirstLetterFromImageFileName(fhelper, image);
-                }
-                guidLoop++;
-            }
-
-        }
-
-
-
-        private void TrimFirstLetterFromImageFileName(DbHelper.WorkingWithFiles fhelper, Academic.DbEntities.UserFile image)
-        {
-            if (trimLoop < 10)
-            {
-                if (!char.IsLetterOrDigit(image.FileName[0]))
-                {
-                    image.FileName = image.FileName.Substring(1);
-                    TrimFirstLetterFromImageFileName(fhelper, image);
-                    GetNewGuid(fhelper, image);
-                }
-                trimLoop++;
-            }
-
-        }
-
 
         #endregion
-
-
-       
-
-
-        protected void txtInterest_TextChanged(object sender, EventArgs e)
-        {
-            //if(e.)
-        }
-
 
     }
 }

@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CourseDetailUc.ascx.cs" Inherits="One.Views.Course.Display.EachCourse.CourseDetailUc" %>
-<%@ Register Src="~/Views/Course/Section/CreateSectionUc.ascx" TagPrefix="uc1" TagName="CreateSectionUc" %>
+<%--<%@ Register Src="~/Views/Course/Section/CreateSectionUc.ascx" TagPrefix="uc1" TagName="CreateSectionUc" %>--%>
 
 <div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -19,11 +19,11 @@
                 </div>
             </asp:Panel>
             <%-- CssClass="popup" --%>
-            <asp:Panel ID="pnlCreateSection" runat="server" Visible="False">
+            <%--<asp:Panel ID="pnlCreateSection" runat="server" Visible="False">
                 <uc1:CreateSectionUc runat="server" ID="CreateSectionUc1" />
-                <%--<asp:Panel ID="innerpanel" runat="server" CssClass="popup">--%>
-                <%--</asp:Panel>--%>
-            </asp:Panel>
+                <%--<asp:Panel ID="innerpanel" runat="server" CssClass="popup">
+                <%--</asp:Panel>
+            </asp:Panel>--%>
             <br />
             <div style="clear: both;"></div>
             <div>

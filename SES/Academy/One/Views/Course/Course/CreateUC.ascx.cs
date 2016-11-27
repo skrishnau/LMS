@@ -18,10 +18,10 @@ namespace One.Views.Course.Course
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (SubjectId > 0)
-            {
+            //if (SubjectId > 0)
+            //{
                 
-            }
+            //}
         }
 
         public int CategoryId
@@ -95,7 +95,7 @@ namespace One.Views.Course.Course
                 {
                     var saved = helper.AddOrUpdateSubject(subject);
 
-                    //Response.Redirect("~/Views/Course/List.aspx");
+                    //Response.Redirect("~/Views/Course/");
                     if (SaveClicked != null)
                     {
                         if (saved)

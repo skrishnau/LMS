@@ -42,6 +42,12 @@ namespace One.ViewsSite.Account
             {
                 var user = new Academic.DbEntities.User.Users()
                 {
+                    FirstName = txtFirstName.Text
+                    ,
+                    MiddleName =  txtMiddleName.Text
+                    ,
+                    LastName = txtLastName.Text
+                    ,
                     UserName = txtUserName.Text
                     ,
                     Password = txtPassword.Text

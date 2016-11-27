@@ -27,7 +27,7 @@
             <div>
                 <%-- OnClick="lnkAddActOrRes_Click"  --%>
                 <asp:LinkButton ID="lnkAddActOrRes" ClientIDMode="Static"
-                    CssClass="link_smaller"
+                    CssClass="link_act_res"
                     Visible="False" runat="server">
                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                     Add an Activity or Resource

@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="listUc.ascx.cs" Inherits="One.Views.Student.Batch.List.listUc" %>
 
-<div>
+<div >
     <asp:PlaceHolder ID="pnlItems" runat="server"></asp:PlaceHolder>
 
    <%-- <div class="pager">
@@ -10,8 +10,6 @@
         &nbsp;
         <asp:ImageButton ID="btnRight" runat="server" ImageUrl="~/Content/Icons/Arrow/arrow_right.png" />
     </div>--%>
-    <div>
         <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
         <asp:HiddenField ID="hidEdit" runat="server" Value="0" />
-    </div>
 </div>

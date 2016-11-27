@@ -24,7 +24,7 @@ namespace Academic.DbEntities.Batches
         public int SchoolId { get; set; }
         public School School { get; set; }
 
-        public ICollection<ProgramBatch> ProgramBatches { get; set; }
+        public virtual ICollection<ProgramBatch> ProgramBatches { get; set; }
 
     }
 }

@@ -97,10 +97,10 @@ namespace One.Views.Academy.Activation
                                     {
                                         lblQue.Text = "All the running classes in this session will be marked as completed. " +
                                                          "This can't be undone. " +
-                                                         "Are you sure to mark this session " + sess.Name +
-                                                         " as 'completed'? ";
+                                                         "Are you sure to mark this session '<strong>" + sess.Name +
+                                                         "</strong>' as '<em>completed</em>'? ";
                                         lblPageTitle.Text = "Mark complete";
-                                        lblHeading.Text = "Mark Session : " + sess.Name + " as 'Complete'";
+                                        lblHeading.Text = "Mark Session :  <strong>'" + sess.Name + "'</strong> as '<em>Complete</em>'";
                                     }
                                     else
                                         Response.Redirect("~/Views/Academy/List.aspx");

@@ -49,24 +49,6 @@ namespace One.Views.Structure {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// MultiView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
-        
-        /// <summary>
-        /// viewProgramList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewProgramList;
-        
-        /// <summary>
         /// pnlListing control.
         /// </summary>
         /// <remarks>
@@ -76,31 +58,31 @@ namespace One.Views.Structure {
         protected global::System.Web.UI.WebControls.PlaceHolder pnlListing;
         
         /// <summary>
-        /// viewCourseList control.
+        /// lnkAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewCourseList;
+        protected global::System.Web.UI.WebControls.HyperLink lnkAdd;
         
         /// <summary>
-        /// CourseListUC control.
+        /// Image3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.Structure.All.UserControls.CourseLinkage.CourseListUC CourseListUC;
+        protected global::System.Web.UI.WebControls.Image Image3;
         
         /// <summary>
-        /// View3 control.
+        /// lblAddText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3;
+        protected global::System.Web.UI.WebControls.Literal lblAddText;
         
         /// <summary>
         /// hidEdit control.

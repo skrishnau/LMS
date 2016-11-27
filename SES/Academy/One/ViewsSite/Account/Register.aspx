@@ -8,9 +8,11 @@
     <style type="text/css">
         .reg-data {
             text-align: right;
+            padding: 8px;
         }
         .reg-field {
             text-align: left;
+            padding: 8px;
         }
     </style>
 </head>
@@ -18,6 +20,10 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div>
+            <div style="font-weight: 700;">
+                Register
+                <hr />
+            </div>
             <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -25,6 +31,32 @@
 
                             <div style="text-align: center;">
                                 <table>
+                                    
+                                    <tr>
+                                        <td class="reg-data">First Name </td>
+                                        <td class="reg-field">
+                                            <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+                                            *
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+                                                ErrorMessage="Required" ForeColor="red"
+                                                ControlToValidate="txtUserName"
+                                                ></asp:RequiredFieldValidator>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="reg-data">Middle Name </td>
+                                        <td class="reg-field">
+                                            <asp:TextBox ID="txtMiddleName" runat="server"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="reg-data">Last Name </td>
+                                        <td class="reg-field">
+                                            <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+                                        </td>
+                                    </tr>
+
                                     <tr>
                                         <td class="reg-data">User Name: </td>
                                         <td class="reg-field">
@@ -43,7 +75,7 @@
                                                 TextMode="Password"
                                                 ></asp:TextBox>
                                             *
-                                            <ajaxToolkit:PasswordStrength ID="PasswordStrength1" runat="server" PreferredPasswordLength="6"/>
+                                            <ajaxToolkit:PasswordStrength TargetControlID="txtPassword" ID="PasswordStrength1" runat="server" PreferredPasswordLength="6"/>
                                               <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                                                   
                                                 ErrorMessage="Required" ForeColor="red"
@@ -81,15 +113,21 @@
                                             <asp:DropDownList ID="ddlSecurityQuestion" runat="server" Height="20px">
                                             </asp:DropDownList>
                                             *
-                                             
+                                               <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
+                                                ErrorMessage="Required" ForeColor="red"
+                                                ControlToValidate="ddlSecurityQuestion"
+                                                ></asp:RequiredFieldValidator>
                                         </td>
-                                    </tr>
+                                    </tr> 
                                     <tr>
                                         <td class="reg-data">Security Answer: </td>
                                         <td class="reg-field">
                                             <asp:TextBox ID="txtSecurityAnswer" runat="server"></asp:TextBox>
                                             *
-                                              
+                                               <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+                                                ErrorMessage="Required" ForeColor="red"
+                                                ControlToValidate="txtSecurityAnswer"
+                                                ></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
 
@@ -98,7 +136,8 @@
                                     <asp:Label ID="lblPasswordError" runat="server" ForeColor="red" Visible="false" ClientIDMode="Static"
                                         Text="The password and confirm password must match."></asp:Label>
                                 </div>
-                                <div style="text-align: left;">
+                                <br/>
+                                <div style="text-align: left; margin-left: 150px;">
                                     <asp:Button ID="btnCreate" runat="server" Text="Create User" OnClick="btnCreate_Clicked" />
                                 </div>
                             </div>

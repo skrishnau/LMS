@@ -47,26 +47,26 @@ namespace One.Values
             set { CustomSession["SessionId"] = value; }
         }
 
-        public static int GetSchool(HttpSessionState session)
-        {
+        //public static int GetSchool(HttpSessionState session)
+        //{
             
-            int sch = (int)
-                            (session["SchoolId"] ?? 1);
-            return sch;
-        }
+        //    int sch = (int)
+        //                    (session["SchoolId"] ?? 1);
+        //    return sch;
+        //}
 
-        public static void SetSchool( HttpSessionState session, int value)
-        {
-            session["SchoolId"] = value;
-        }
+        //public static void SetSchool( HttpSessionState session, int value)
+        //{
+        //    session["SchoolId"] = value;
+        //}
 
-        public static int GetUser( HttpSessionState session)
-        {
+        //public static int GetUser( HttpSessionState session)
+        //{
             
-            int sch = (int)
-                            (session["UserId"] ?? 5);//1
-            return sch;
-        }
+        //    int sch = (int)
+        //                    (session["UserId"] ?? 5);//1
+        //    return sch;
+        //}
         public static void SetUser(ref HttpSessionState session, int value)
         {
             session["UserId"] = value;
@@ -95,10 +95,10 @@ namespace One.Values
 
 
 
-        public static List<string> GetUserCapability(HttpSessionState session)
-        {
-            return (List<string>)(session["UserCapability"]??new List<string>(){""});
-        }
+        //public static List<string> GetUserCapability(HttpSessionState session)
+        //{
+        //    return (List<string>)(session["UserCapability"]??new List<string>(){""});
+        //}
 
         public static void SetUserCapability(HttpSessionState session, List<string> capabilities)
         {
@@ -215,7 +215,7 @@ namespace One.Values
             role.ChildNodes.Add(roleUsers);
             ///Views/Structure/All/Create.aspx
 
-            var course = new TreeNode("Courses", "~/Views/Course/List.aspx", "", "", "");
+            var course = new TreeNode("Courses", "~/Views/Course/", "", "", "");
             course.Expanded = false;
             //var courseList = new TreeNode("List Courses", "", "", "~/Views/Office/School/Dashboard.aspx", "");
             var courseAdd = new TreeNode("New Course", "~/Views/Course/CourseEntryForm.aspx", "", "", "");

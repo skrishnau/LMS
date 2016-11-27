@@ -22,31 +22,13 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage {
         protected global::System.Web.UI.WebControls.Literal lblProgramDirectory;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// btnManageSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
-        /// MultiView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
-        
-        /// <summary>
-        /// viewMain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewMain;
+        protected global::System.Web.UI.WebControls.Button btnManageSubject;
         
         /// <summary>
         /// dlistCourses control.
@@ -58,15 +40,6 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage {
         protected global::System.Web.UI.WebControls.DataList dlistCourses;
         
         /// <summary>
-        /// btnManageSubject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManageSubject;
-        
-        /// <summary>
         /// viewAddCourses control.
         /// </summary>
         /// <remarks>
@@ -74,15 +47,6 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View viewAddCourses;
-        
-        /// <summary>
-        /// AddCourses1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Structure.All.UserControls.CourseLinkage.AddCourses AddCourses1;
         
         /// <summary>
         /// hidYearId control.

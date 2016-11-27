@@ -15,19 +15,19 @@ namespace One.Views.Course.Display.EachCourse
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadCourseDetail();
-            CreateSectionUc1.OnCloseClick += CreateSectionUc1_OnCloseClick;
-            CreateSectionUc1.OnSaveEvent += CreateSectionUc1_OnSaveEvent;
+            //CreateSectionUc1.OnCloseClick += CreateSectionUc1_OnCloseClick;
+            //CreateSectionUc1.OnSaveEvent += CreateSectionUc1_OnSaveEvent;
             //LoadSections();
         }
 
-        void CreateSectionUc1_OnSaveEvent(object sender, MessageEventArgs e)
-        {
-            pnlCreateSection.Visible = false;
-            AddNewButtonVisibility = true;
-            ContentEnabled = true;
-            pnlSections.Controls.Clear();
-            LoadCourseDetail();
-        }
+        //void CreateSectionUc1_OnSaveEvent(object sender, MessageEventArgs e)
+        //{
+        //    //pnlCreateSection.Visible = false;
+        //    AddNewButtonVisibility = true;
+        //    ContentEnabled = true;
+        //    pnlSections.Controls.Clear();
+        //    LoadCourseDetail();
+        //}
 
 
 
@@ -43,7 +43,7 @@ namespace One.Views.Course.Display.EachCourse
             get { return Convert.ToInt32(hidId.Value); }
             set
             {
-                CreateSectionUc1.SubjectId = value;
+                //CreateSectionUc1.SubjectId = value;
                 hidId.Value = value.ToString();
             }
         }
@@ -119,15 +119,15 @@ namespace One.Views.Course.Display.EachCourse
                 //not saved
             }
 
-            CreateSectionUc uc = (CreateSectionUc)sender;
-            pnlSections.Controls.Remove(uc);
+            //CreateSectionUc uc = (CreateSectionUc)sender;
+            //pnlSections.Controls.Remove(uc);
         }
 
 
 
         protected void lnkAddSection_Click(object sender, EventArgs e)
         {
-            pnlCreateSection.Visible = true;
+            //pnlCreateSection.Visible = true;
             ContentEnabled = false;
             AddNewButtonVisibility = false;
             //pnlContent.Enabled = false;
@@ -136,12 +136,12 @@ namespace One.Views.Course.Display.EachCourse
         }
 
 
-        void CreateSectionUc1_OnCloseClick(object sender, MessageEventArgs e)
-        {
-            pnlCreateSection.Visible = false;
-            AddNewButtonVisibility = true;
-            ContentEnabled = true;
-            //pnlContent.Enabled = true;
-        }
+        //void CreateSectionUc1_OnCloseClick(object sender, MessageEventArgs e)
+        //{
+        //    //pnlCreateSection.Visible = false;
+        //    AddNewButtonVisibility = true;
+        //    ContentEnabled = true;
+        //    //pnlContent.Enabled = true;
+        //}
     }
 }

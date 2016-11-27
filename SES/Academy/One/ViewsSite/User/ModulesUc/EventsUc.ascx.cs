@@ -24,14 +24,30 @@ namespace One.ViewsSite.User.ModulesUc
                 using (var helper = new DbHelper.Event())
                 {
                     var list = helper.ListEventDatesForTheMonth(SchoolId,UserId, Calendar1.SelectedDate);
+                    var today = Calendar1.SelectedDate;
                     foreach (var dt in list)
                     {
                         Calendar1.SelectedDates.Add(dt);
                     }
+
+
                     if (!list.Contains(DateTime.Now.Date))
                     {
                         Calendar1.SelectedDates.Remove(DateTime.Now.Date);
                     }
+                    var ysub = 0;
+                    var msub = 1;
+                    if (today.Month <= 1)
+                    {
+                        ysub = 1;
+                        msub = 12;
+                    }
+                    else
+                    {
+                        msub = today.Month - 1;
+                        ysub = 0;
+                    }
+                    Calendar1.SelectedDates.Add(new DateTime(today.Year - 0, msub, 1));
                 }
             }
 
@@ -44,11 +60,25 @@ namespace One.ViewsSite.User.ModulesUc
                 Calendar1.SelectedDate = DateTime.Now.Date;
                 using (var helper = new DbHelper.Event())
                 {
-                    var list = helper.ListEventDatesForTheMonth(SchoolId,UserId, Calendar1.SelectedDate);
+                    var today = Calendar1.SelectedDate;
+                    var list = helper.ListEventDatesForTheMonth(SchoolId,UserId,today);
                     foreach (var dt in list)
                     {
                         Calendar1.SelectedDates.Add(dt);
                     }
+                    var ysub = 0;
+                    var msub = 1;
+                    if (today.Month <= 1)
+                    {
+                        ysub = 1;
+                        msub = 12;
+                    }
+                    else
+                    {
+                        msub = today.Month - 1;
+                        ysub = 0;
+                    }
+                    Calendar1.SelectedDates.Add(new DateTime(today.Year-0, msub, 1));
                 }
             }
         }
@@ -62,6 +92,7 @@ namespace One.ViewsSite.User.ModulesUc
             get { return Convert.ToInt32(hidSchoolId.Value); }
             set { hidSchoolId.Value = value.ToString(); }
         }
+
 
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
@@ -95,6 +126,7 @@ namespace One.ViewsSite.User.ModulesUc
                         pnlEvents.Controls.Add(eventUcdetail);
 
                     }
+                    
                     divEventDetail.Visible = true;
                     Calendar1.Visible = false;
                 }
@@ -139,6 +171,19 @@ namespace One.ViewsSite.User.ModulesUc
                 {
                     Calendar1.SelectedDates.Add(dt);
                 }
+                var ysub = 0;
+                var msub = 1;
+                if (e.NewDate.Month <= 1)
+                {
+                    ysub = 1;
+                    msub = 12;
+                }
+                else
+                {
+                    msub = e.NewDate.Month - 1;
+                    ysub = 0;
+                }
+                Calendar1.SelectedDates.Add(new DateTime(e.NewDate.Year - 0, msub, 1));
             }
         }
     }

@@ -48,7 +48,7 @@ namespace One.Views.Academy.AcademicYear
                     //,
                     //StartDate = dtStart.SelectedDate
                     //,
-                    SchoolId = Values.Session.GetSchool(Session)
+                    SchoolId = user.SchoolId// Values.Session.GetSchool(Session)
                     ,
                     IsActive = CheckBox1.Checked
                 };

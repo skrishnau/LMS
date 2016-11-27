@@ -59,7 +59,7 @@ namespace One.Values
     //    //role.ChildNodes.Add(roleUsers);
 
 
-    //    //var course = new TreeNode("Courses", "~/Views/Course/List.aspx", "", "", "");
+    //    //var course = new TreeNode("Courses", "~/Views/Course/", "", "", "");
     //    //course.Expanded = false;
     //    ////var courseList = new TreeNode("List Courses", "", "", "~/Views/Office/School/Dashboard.aspx", "");
     //    //var courseAdd = new TreeNode("New Course", "~/Views/Course/CourseEntryForm.aspx", "", "", "");

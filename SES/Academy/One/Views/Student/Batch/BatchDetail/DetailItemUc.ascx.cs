@@ -74,13 +74,15 @@ namespace One.Views.Student.Batch.BatchDetail
 
 
         public void LoadData(int id, int batchId, string namefromBatch, int programId, string programName
-            , bool? startedStudying, bool? studyCompleted, bool? Void)
+            , bool? startedStudying, bool? studyCompleted, bool? Void, int noOfStudents)
         {
             lnkProgrameName.Text = programName;
             CourseCompleted = studyCompleted ?? false;
             BatchId = batchId;
             ProgramBatchId = id;
             ProgramId = programId;
+            lblNoOfStudents.Text = noOfStudents.ToString();
+            
         }
     }
 }

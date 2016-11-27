@@ -16,7 +16,6 @@ namespace Academic.DbEntities.Libraries
         public string AssociatedUniversity { get; set; }
 
         public int BookId { get; set; }
-
-        public virtual Book Book { get; set; }
+        public virtual TextBook Book { get; set; }
     }
 }

@@ -108,6 +108,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQL_Queries\All_Delete_query.sql" />
     <Content Include="SQL_Queries\All_initial_Insert_stmts.sql" />
     <Content Include="SQL_Queries\user_listing.sql" />
   </ItemGroup>

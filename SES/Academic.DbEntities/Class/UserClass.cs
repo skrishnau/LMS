@@ -49,8 +49,10 @@ namespace Academic.DbEntities.Class
         //Its not required by the regular class, since regualar class students are grouped globally
         //This is the gorup id that this user belongs to 
         //if UseDefaultGrouping is true in SubjectSession then its value is null
-        public int? SubjectUserGroupId { get; set; }
-        public virtual Subjects.SubjectUserGroup SubjectUserGroup { get; set; }
+
+        //public int? SubjectUserGroupId { get; set; }
+        //public virtual Subjects.SubjectUserGroup SubjectUserGroup { get; set; }
+        public virtual ICollection<UserClassGrouping> UserClassGroupings { get; set; }
 
         public virtual ICollection<ActivityAndResource.AssignmentItems.AssignmentSubmissions> AssignmentSubmissions { get; set; }
     }

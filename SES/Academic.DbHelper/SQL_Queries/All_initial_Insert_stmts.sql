@@ -21,7 +21,7 @@ insert into schooltype(Name) values('Higher secondary')
 insert into schooltype(Name) values('Secondary')
 
 
---====================== ROLES =================================--
+--====================== Grad type =================================--
 
 
 

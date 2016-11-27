@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Resources
 {
-    public class file_resources //many to many realation
-    {
-        public int FileId { get; set; }
-        public int ResourcesId { get; set; }
-    }
+    //public class file_resources //many to many realation
+    //{
+    //    public int FileId { get; set; }
+    //    public int ResourcesId { get; set; }
+    //}
 }

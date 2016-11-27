@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Resources
 {
-    public class AccessPermission
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool Read { get; set; }
-        public bool ReadWrite { get; set; }
-        public bool Write { get; set; }
-        public bool Append { get; set; }
+    //public class AccessPermission
+    //{
+    //    public int Id { get; set; }
+    //    public string Name { get; set; }
+    //    public bool Read { get; set; }
+    //    public bool ReadWrite { get; set; }
+    //    public bool Write { get; set; }
+    //    public bool Append { get; set; }
 
-        public bool IsGlobal { get; set; }
-        public bool IsPublic { get; set; }
-        public bool IsPrivate { get; set; }
-        public bool IsAssignable { get; set; }
-        public bool IsSearchable { get; set; }
-    }
+    //    public bool IsGlobal { get; set; }
+    //    public bool IsPublic { get; set; }
+    //    public bool IsPrivate { get; set; }
+    //    public bool IsAssignable { get; set; }
+    //    public bool IsSearchable { get; set; }
+    //}
 }

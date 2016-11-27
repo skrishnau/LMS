@@ -75,14 +75,20 @@ div.data-entry-body div.data-entry-section hr {
     background-color: darkgray;
     height: 1px;
 }
+/*div.data-entry-section hr {
+    border: none;
+    background-color: darkgray;
+    height: 1px;
+}*/
+div.data-entry-section-heading hr {
+     border: none;
+    background-color: darkgray;
+    height: 1px;
+}
 
 /* END of create edit form styles*/
 
 
-.panel-with-border {
-    min-height: 25px;
-    border: 1px dashed lightgray;
-}
 
 
 

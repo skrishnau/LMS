@@ -13,14 +13,14 @@
             </div>
 
             <%-- 180px; --%>
-            <div class="modules-body">
+            <div class="modules-body" style="font-size: 0.9em;">
                 <%-- DataSourceID="NotificationListDS" --%>
                 <asp:DataList ID="DataList1" Height="100%" runat="server" Width="100%" OnItemCommand="DataList1_ItemCommand">
                     <ItemTemplate>
                         <div style="border-bottom: 1px solid lightgray; vertical-align: top;">
                             <strong>
                                 ●
-                                <asp:HyperLink ID="HeadiingLabel" runat="server" Font-Underline="False"
+                                <asp:HyperLink ID="HeadiingLabel" CssClass="link" runat="server" Font-Underline="False"
                                     NavigateUrl='<%# "~/Views/NoticeBoard/NoticeDetail.aspx?nId="+Eval("Id") %>'
                                     Text='<%# Eval("Title")  %>'>
                                 </asp:HyperLink>

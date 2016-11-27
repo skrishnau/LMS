@@ -1,0 +1,231 @@
+﻿  //switch (editMode)
+                //{
+                //    case "New":
+                //        DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "Admin");
+                //        cmbRole.Enabled = false;
+                //        break;
+                //    case "Create":
+                //        DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "");
+
+                //        break;
+                //    case "ProfileEdit":
+                //        // DbHelper.ComboLoader.LoadRole(ref cmbRole,Values.Session.GetSchool(Session),Values.Session.GetUserRole());
+
+                //        cmbRole.Enabled = false;
+                //        break;
+                //    case "Update":
+                //        //have logic here (if already user is active don't give to update role)
+                //        break;
+                //}
+
+				 //public int RoleId
+        //{
+        //    get
+        //    {
+        //        if (cmbRole.Items.Count == 0)
+        //        {
+        //            DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "");
+        //        }
+        //        return Convert.ToInt32((String.IsNullOrEmpty(cmbRole.SelectedValue)) ? "0" : cmbRole.SelectedValue);
+        //    }
+        //    set
+        //    {
+        //        if (cmbRole.Items.Count == 0)
+        //        {
+        //            DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), value);
+        //        }
+        //        else
+        //        {
+        //            cmbRole.SelectedValue = value.ToString();
+        //        }
+        //    }
+        //}
+
+        //public string RoleName
+        //{
+        //    get
+        //    {
+        //        if (cmbRole.Items.Count == 0)
+        //        {
+        //            DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), "");
+        //        }
+        //        return cmbRole.SelectedItem.Text;
+        //        //Convert.ToInt32(String.IsNullOrEmpty(cmbRole.SelectedValue) ? "0" : cmbRole.SelectedValue);
+        //    }
+        //    set
+        //    {
+        //        if (cmbRole.Items.Count == 0)
+        //        {
+        //            DbHelper.ComboLoader.LoadRole(ref cmbRole, Values.Session.GetSchool(Session), value);
+        //        }
+        //        else
+        //        {
+        //            var item = cmbRole.Items.FindByText(value);
+        //            if (item != null)
+        //            {
+        //                cmbRole.SelectedValue = item.Value;
+        //            }
+        //        }
+        //    }
+        //}
+
+
+		                else
+                //{
+                    //if (Values.Session.GetUserCapability(Session)
+                    //        .Contains(Enums.UserCapabilities.UserCreate.ToString()))
+                    //{
+
+                    //    //check for update not done
+                    //    editMode = EditMode;
+                    //}
+                    //else
+                    //{
+                    //    switch (EditMode)
+                    //    {
+                    //        case "ProfileEdit":
+                    //            editMode = EditMode;
+                    //            break;
+                    //        case "Update":
+                    //            editMode = EditMode;
+                    //            break;
+                    //    }
+                    //}
+                //}
+
+
+				//public bool UploadToFolder(HttpPostedFileBase file)
+                            //{
+                            //    var filename = Path.GetFileName(file.FileName);
+                            //    var path = Path.Combine(Server.MapPath("~/Content/Upload"), filename);
+                            //    file.SaveAs(path);
+                            //    return true;
+                            //}
+
+                            //save image
+                            //first entry to database : table File --its image
+                            //if (FileUpload1.HasFile)
+                            //{
+                            //    var imageFile = FileUpload1.PostedFile;
+
+
+                            //    var image = new Academic.DbEntities.UserFile()
+                            //    {
+                            //        CreatedBy = user.Id
+                            //        ,
+                            //        CreatedDate = DateTime.Now
+                            //        ,
+                            //        DisplayName = Path.GetFileName(imageFile.FileName)
+                            //        ,
+                            //        FileDirectory = DbHelper.StaticValues.UserImageDirectory
+                            //        ,
+                            //        FileName = Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
+                            //        ,
+                            //        FileSizeInBytes = imageFile.ContentLength
+                            //        ,
+                            //        FileType = imageFile.ContentType
+                            //        ,
+                            //    };
+                            //    using (var fhelper = new DbHelper.WorkingWithFiles())
+                            //    {
+                            //        GetNewGuid(fhelper, image);
+                            //        //TrimFirstLetterFromImageFileName(image);
+                            //        if (trimLoop > 9 || guidLoop > 9)
+                            //        {
+                            //            //cancel all save
+                            //        }
+                            //        else
+                            //        {
+                            //            var savedFile = fhelper.AddOrUpdateFile(image);
+
+                            //            if (savedFile != null)
+                            //            {
+                            //                //save the image with this name
+                            //                //var filename = Path.GetFileName(file.FileName);
+                            //                var path = Path.Combine(Server.MapPath(DbHelper.StaticValues.UserImageDirectory),
+                            //                    image.FileName);
+                            //                imageFile.SaveAs(path);
+
+                            //                //add the image Id to user 
+                            //                helper.UpdateUsersImage(savedUser.Id, savedFile.Id);
+
+
+                            //                //    return true;
+                            //            }
+
+                            //        }
+
+                            //    }
+
+                            //}
+
+
+							
+        //public string GetExtension(string fileName, string contentType)
+        //{
+        //    int dotpos = 0;
+        //    int slashPos = 0;
+        //    try
+        //    {
+        //        dotpos = fileName.LastIndexOf(".");
+        //    }
+        //    catch
+        //    {
+        //        try
+        //        {
+        //            slashPos = contentType.IndexOf("/");
+        //        }
+        //        catch
+        //        {
+        //            return "";
+        //        }
+        //    }
+        //    if (dotpos != 0)
+        //    {
+        //        var extension = fileName.Substring(dotpos + 1);
+        //        return "." + extension;
+        //    }
+        //    else if (slashPos != 0)
+        //    {
+        //        var extension = contentType.Substring(slashPos + 1);
+        //        return "." + extension;
+        //    }
+        //    return "";
+
+        //}
+
+
+
+        private int guidLoop = 0;
+        int trimLoop = 0;
+
+        //private void GetNewGuid(DbHelper.WorkingWithFiles fhelper, Academic.DbEntities.UserFile image)
+        //{
+        //    if (guidLoop < 10)
+        //    {
+        //        if (fhelper.DoesFileExists(image.FileName))
+        //        {
+        //            image.FileName = Guid.NewGuid().ToString() + GetExtension(image.DisplayName, image.FileType);//.GetHashCode().ToString();
+        //            GetNewGuid(fhelper, image);
+        //            TrimFirstLetterFromImageFileName(fhelper, image);
+        //        }
+        //        guidLoop++;
+        //    }
+
+        //}
+
+
+
+        //private void TrimFirstLetterFromImageFileName(DbHelper.WorkingWithFiles fhelper, Academic.DbEntities.UserFile image)
+        //{
+        //    if (trimLoop < 10)
+        //    {
+        //        if (!char.IsLetterOrDigit(image.FileName[0]))
+        //        {
+        //            image.FileName = image.FileName.Substring(1);
+        //            TrimFirstLetterFromImageFileName(fhelper, image);
+        //            GetNewGuid(fhelper, image);
+        //        }
+        //        trimLoop++;
+        //    }
+        //}

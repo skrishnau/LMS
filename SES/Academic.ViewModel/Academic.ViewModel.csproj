@@ -59,6 +59,7 @@
     <Compile Include="Files\ImageListingViewModel.cs" />
     <Compile Include="FileViewModel.cs" />
     <Compile Include="Functions\DateHelper.cs" />
+    <Compile Include="GradeViewModel.cs" />
     <Compile Include="IdAndName.cs" />
     <Compile Include="IFileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,8 +87,44 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="VpWorkspace\.vpprefdata\.systemproject.vpp" />
+    <None Include="VpWorkspace\.vpprefdata\.systemproject.vpp~6" />
+    <None Include="VpWorkspace\.vpprefdata\.systemproject.vpp~7" />
+    <None Include="VpWorkspace\.vpprefdata\.vp.preference" />
+    <None Include="VpWorkspace\.vpprefdata\dictionary\user.lx" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\ARYisCCGAqAKbwca.lod" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\ARYisCCGAqAKbwcaM.lod" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\i278sCCGAqAKbwcX.lod" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\i278sCCGAqAKbwcXC.lod" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\i278sCCGAqAKbwcXM.lod" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\i278sCCGAqAKbwcXMC.lod" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\L7yCsCCGAqAKbwcY.lod" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\L7yCsCCGAqAKbwcYM.lod" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\Tb9isCCGAqAKbwcb.lod" />
+    <None Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\Tb9isCCGAqAKbwcbM.lod" />
+    <None Include="VpWorkspace\.vpprefdata\modelTypePreferData\Actor" />
+    <None Include="VpWorkspace\.vpprefdata\modelTypePreferData\Component" />
+    <None Include="VpWorkspace\.vpprefdata\modelTypePreferData\InstanceSpecification" />
+    <None Include="VpWorkspace\.vpprefdata\modelTypePreferData\Model" />
+    <None Include="VpWorkspace\.vpprefdata\modelTypePreferData\Package" />
+    <None Include="VpWorkspace\.vpprefdata\nicknames\7UdjDhqGAqDIAgP3" />
+    <None Include="VpWorkspace\.vpprefdata\projectsViewInfo\MLSethqGAqDIAgAQ" />
+    <None Include="VpWorkspace\.vpprefdata\treestates\G_tjDhqGAqDIAgP2" />
+    <None Include="VpWorkspace\TestOnly.vpp" />
+    <None Include="VpWorkspace\TestOnly.vpp~16" />
+    <None Include="VpWorkspace\TestOnly.vpp~17" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\ARYisCCGAqAKbwca.jpeg" />
+    <Content Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\i278sCCGAqAKbwcX.jpeg" />
+    <Content Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\L7yCsCCGAqAKbwcY.jpeg" />
+    <Content Include="VpWorkspace\.vpprefdata\LayoutPerspectiveData\Tb9isCCGAqAKbwcb.jpeg" />
+    <Content Include="VpWorkspace\.vpprefdata\nicknames\NickNameIndexing.xml" />
+    <Content Include="VpWorkspace\.vpprefdata\treestates\ProjectTreeStateIndexing.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="VpWorkspace\tmp\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

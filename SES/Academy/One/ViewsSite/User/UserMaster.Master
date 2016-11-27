@@ -58,12 +58,11 @@
             vertical-align: central;
             padding: 7px;
             /*border-bottom: 1px dashed lightgray;*/
-           
         }
 
         .pc-subyear-option {
             vertical-align: central;
-            padding: 7px;            
+            padding: 7px;
             /*border-bottom: 1px dashed lightgray;*/
         }
 
@@ -88,6 +87,40 @@
         }
 
             .auto-st2:hover {
+                background-color: #e4f5fa;
+            }
+
+        .auto-st2-inline-block {
+            display: inline-block;
+            /*border: 1px solid lightgrey;*/
+            /*-webkit-border-radius: 5px;*/
+        }
+
+            .auto-st2-inline-block:hover {
+                color: darkorange;
+            }
+
+        .auto-st2-white {
+        }
+
+            .auto-st2-white:hover {
+                background-color: white;
+            }
+
+        .auto-st2-no-margin {
+        }
+
+            .auto-st2-no-margin:hover {
+                background-color: #e4f5fa;
+            }
+
+        .auto-st2-border-no-margin {
+            margin: 6px;
+            border: 1px solid lightgrey;
+            -webkit-border-radius: 5px;
+        }
+
+            .auto-st2-border-no-margin:hover {
                 background-color: #e4f5fa;
             }
 
@@ -195,10 +228,11 @@
             color: darkblue;
             text-decoration: none;
         }
-        .link_smaller:hover {
-            color: darkorange;
-            text-decoration: underline;
-        }
+
+            .link_smaller:hover {
+                color: darkorange;
+                text-decoration: underline;
+            }
 
 
 
@@ -217,6 +251,23 @@
                 text-decoration: underline;
             }
 
+
+        /*------------------------------------------*/
+        .link_act_res, .link_act_res:visited {
+            color: blue;
+            text-decoration: none;
+        }
+
+            .link_act_res:hover {
+                color: darkorange;
+                text-decoration: underline;
+            }
+
+            .link_act_res:active {
+                color: blueviolet;
+                text-decoration: underline;
+            }
+        /*---------------------------------------------------*/
         /*Link of auto-postback*/
 
 
@@ -328,8 +379,8 @@
             overflow: auto;
             background-color: lightgoldenrodyellow;
             padding: 5px;
-            font-family: arial, verdena;
-            font-size: 0.8em;
+            /*font-family: arial, verdena;*/
+            font-size: 1em;
         }
 
         .modules-body-for-event {
@@ -459,6 +510,9 @@
                             </asp:ContentPlaceHolder>
                             <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
                             <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+                            
+                             <asp:ContentPlaceHolder runat="server" ID="JSField">
+                            </asp:ContentPlaceHolder>
                         </div>
                         <%-- --------------------------- END --------------------- --%>
                     </td>

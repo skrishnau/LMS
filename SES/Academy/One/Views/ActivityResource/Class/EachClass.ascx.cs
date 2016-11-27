@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
+using Academic.ViewModel;
 
 namespace One.Views.ActivityResource.Class
 {
@@ -12,7 +14,16 @@ namespace One.Views.ActivityResource.Class
         public event EventHandler<EventArgs> RemoveClicked;
         protected void Page_Load(object sender, EventArgs e)
         {
+            LoadGroup();
+        }
 
+        private void LoadGroup()
+        {
+            using (var helper = new DbHelper.Classes())
+            {
+                var groups = helper.ListGroupsOfClass(ClassId);
+                //if(groups)
+            }
         }
 
         public void SetValues(Academic.ViewModel.IdAndName item)
@@ -33,6 +44,10 @@ namespace One.Views.ActivityResource.Class
             set { lblClassName.Text = value; }
         }
 
+        public IdAndName GetClass()
+        {
+            return new IdAndName(){Id = ClassId, Name=ClassName};
+        }
 
         protected void lnkRemove_Click(object sender, EventArgs e)
         {

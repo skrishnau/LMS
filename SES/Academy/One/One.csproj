@@ -44,6 +44,9 @@
     <Reference Include="CKEditor.NET">
       <HintPath>..\New folder\bin\Release\CKEditor.NET.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -359,6 +362,36 @@
     <Content Include="ckeditor\plugins\link\dialogs\link.js" />
     <Content Include="ckeditor\plugins\link\images\anchor.gif" />
     <Content Include="ckeditor\plugins\liststyle\dialogs\liststyle.js" />
+    <Content Include="ckeditor\plugins\notification\lang\ca.js" />
+    <Content Include="ckeditor\plugins\notification\lang\cs.js" />
+    <Content Include="ckeditor\plugins\notification\lang\da.js" />
+    <Content Include="ckeditor\plugins\notification\lang\de-ch.js" />
+    <Content Include="ckeditor\plugins\notification\lang\de.js" />
+    <Content Include="ckeditor\plugins\notification\lang\en.js" />
+    <Content Include="ckeditor\plugins\notification\lang\eo.js" />
+    <Content Include="ckeditor\plugins\notification\lang\es.js" />
+    <Content Include="ckeditor\plugins\notification\lang\eu.js" />
+    <Content Include="ckeditor\plugins\notification\lang\fr.js" />
+    <Content Include="ckeditor\plugins\notification\lang\gl.js" />
+    <Content Include="ckeditor\plugins\notification\lang\id.js" />
+    <Content Include="ckeditor\plugins\notification\lang\it.js" />
+    <Content Include="ckeditor\plugins\notification\lang\km.js" />
+    <Content Include="ckeditor\plugins\notification\lang\ko.js" />
+    <Content Include="ckeditor\plugins\notification\lang\ku.js" />
+    <Content Include="ckeditor\plugins\notification\lang\nb.js" />
+    <Content Include="ckeditor\plugins\notification\lang\nl.js" />
+    <Content Include="ckeditor\plugins\notification\lang\oc.js" />
+    <Content Include="ckeditor\plugins\notification\lang\pl.js" />
+    <Content Include="ckeditor\plugins\notification\lang\pt-br.js" />
+    <Content Include="ckeditor\plugins\notification\lang\pt.js" />
+    <Content Include="ckeditor\plugins\notification\lang\ru.js" />
+    <Content Include="ckeditor\plugins\notification\lang\sv.js" />
+    <Content Include="ckeditor\plugins\notification\lang\tr.js" />
+    <Content Include="ckeditor\plugins\notification\lang\ug.js" />
+    <Content Include="ckeditor\plugins\notification\lang\uk.js" />
+    <Content Include="ckeditor\plugins\notification\lang\zh-cn.js" />
+    <Content Include="ckeditor\plugins\notification\lang\zh.js" />
+    <Content Include="ckeditor\plugins\notification\plugin.js" />
     <Content Include="ckeditor\plugins\pagebreak\images\pagebreak.gif" />
     <Content Include="ckeditor\plugins\pastefromword\filter\default.js" />
     <Content Include="ckeditor\plugins\pastetext\dialogs\pastetext.js" />
@@ -504,6 +537,32 @@
     <Content Include="ckeditor\plugins\uicolor\yui\assets\picker_thumb.png" />
     <Content Include="ckeditor\plugins\uicolor\yui\assets\yui.css" />
     <Content Include="ckeditor\plugins\uicolor\yui\yui.js" />
+    <Content Include="ckeditor\plugins\wordcount\css\wordcount.css" />
+    <Content Include="ckeditor\plugins\wordcount\lang\ar.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\ca.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\da.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\de.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\el.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\en.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\es.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\fi.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\fr.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\he.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\hr.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\it.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\jp.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\nl.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\no.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\pl.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\pt-br.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\pt.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\ru.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\sv.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\tr.js" />
+    <Content Include="ckeditor\plugins\wordcount\lang\zh-cn.js" />
+    <Content Include="ckeditor\plugins\wordcount\plugin.js" />
+    <Content Include="ckeditor\plugins\wordcount\samples\wordcount.html" />
+    <Content Include="ckeditor\plugins\wordcount\samples\wordcountWithMaxCount.html" />
     <Content Include="ckeditor\plugins\wsc\dialogs\ciframe.html" />
     <Content Include="ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
     <Content Include="ckeditor\plugins\wsc\dialogs\wsc.css" />
@@ -1093,6 +1152,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\CSSes\All.css" />
     <Content Include="Content\CSSes\StudentMaster.css" />
+    <Content Include="Content\CSSes\ToolTip.css" />
     <Content Include="Content\DatePickerResourses\jquery-1.8.3.js" />
     <Content Include="Content\DatePickerResourses\jquery-ui-1.9.2.custom.css" />
     <Content Include="Content\Icons\Action\action-do.png" />
@@ -1147,6 +1207,7 @@
     <Content Include="Content\Icons\calendar_image.png" />
     <Content Include="Content\Icons\Check\checked_blue_18x18.png" />
     <Content Include="Content\Icons\Check\unchecked_grey_18x18.png" />
+    <Content Include="Content\Icons\Class\class-icon.png" />
     <Content Include="Content\Icons\Class\class.png" />
     <Content Include="Content\Icons\Close\cross_10x10.png" />
     <Content Include="Content\Icons\Close\cross_8x14_center.png" />
@@ -1210,6 +1271,7 @@
     <Content Include="Content\Icons\Users\group_10x10.png" />
     <Content Include="Content\Icons\Users\single.png" />
     <Content Include="Content\Icons\Users\users-icon.png" />
+    <Content Include="Content\Icons\Users\user_group-icon.png" />
     <Content Include="Content\Icons\Visibility\eye_16x20_hidden.png" />
     <Content Include="Content\Icons\Visibility\eye_16x20_hidden_top.png" />
     <Content Include="Content\Icons\Visibility\eye_16x20_visible.png" />
@@ -1435,8 +1497,6 @@
     <Content Include="ViewsSite\DashBoard\Student\CourseOverView\LstUc.ascx" />
     <Content Include="ViewsSite\DashBoard\Student\CourseOverView\CourseMessageUC.ascx" />
     <Content Include="ViewsSite\DashBoard\Student\CourseOverView\CourseUc.ascx" />
-    <Content Include="ViewsSite\DashBoard\Student\CourseSection\CourseSectionListing.aspx" />
-    <Content Include="ViewsSite\DashBoard\Student\Dashboard.aspx" />
     <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\CourseMessageUC.ascx" />
     <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\ItemUc.ascx" />
     <Content Include="ViewsSite\Default.aspx" />
@@ -1452,6 +1512,7 @@
     <Content Include="ViewsSite\User\ModulesUc\NewsUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\NoticeBoardUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\SettingsTeacher.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\SettingsUc.ascx" />
     <Content Include="ViewsSite\User\Settings\Setting.aspx" />
     <Content Include="ViewsSite\User\UserStyles.css" />
@@ -1462,6 +1523,7 @@
     <Content Include="Views\Academy\Activation\ActivateAcademicYearAndSession.aspx" />
     <Content Include="Views\Academy\Activation\ActivateUC.ascx" />
     <Content Include="Views\Academy\ClassAssign\ClassAssignCreate.aspx" />
+    <Content Include="Views\Academy\ClassAssign\EarlierCode.txt" />
     <Content Include="Views\Academy\ClassAssign\UserControls\FacultyItemUc.ascx" />
     <Content Include="Views\Academy\ClassAssign\UserControls\ProgramItemUc.ascx" />
     <Content Include="Views\Academy\ClassAssign\UserControls\YearItemUc.ascx" />
@@ -1472,9 +1534,7 @@
     <Content Include="Views\Academy\ProgramSelection\OnlyListing\SubYearUC.ascx" />
     <Content Include="Views\Academy\ProgramSelection\OnlyListing\YearU.ascx" />
     <Content Include="Views\Academy\ProgramSelection\ProgramCheckBoxAndLabel.ascx" />
-    <Content Include="Views\Academy\ProgramSelection\ListLevelUC.ascx" />
     <Content Include="Views\Academy\ProgramSelection\ListSubYearUC.ascx" />
-    <Content Include="Views\Academy\ProgramSelection\ListFacultyUC.ascx" />
     <Content Include="Views\Academy\ProgramSelection\ProgramSelect.aspx" />
     <Content Include="Views\Academy\ProgramSelection\RadioButtonAndLabel.ascx" />
     <Content Include="Views\Academy\ProgramSelection\YearCheckBoxAndLabel.ascx" />
@@ -1485,6 +1545,8 @@
     <Content Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx" />
     <Content Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx" />
     <Content Include="Views\ActivityResource\Assignments\AssignmentView.aspx" />
+    <Content Include="Views\ActivityResource\Assignments\GradingUc.ascx" />
+    <Content Include="Views\ActivityResource\Assignments\SubmitAssignmentCreate.aspx" />
     <Content Include="Views\ActivityResource\Assignments\TeacherViewUc.ascx" />
     <Content Include="Views\ActivityResource\Book\BookCreate.aspx" />
     <Content Include="Views\ActivityResource\Book\BookItems\TocItemsUc.ascx" />
@@ -1547,7 +1609,9 @@
     <Content Include="Views\Course\CourseDetail.aspx" />
     <Content Include="Views\Course\Course\CourseListUC.ascx" />
     <Content Include="Views\Course\Course\CreateUC.ascx" />
+    <Content Include="Views\Course\Default.aspx" />
     <Content Include="Views\Course\EarlierCode.txt" />
+    <Content Include="Views\Course\Section\Default.aspx" />
     <Content Include="Views\Course\Section\Master\CourseSectionListing.aspx" />
     <Content Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx" />
     <Content Include="Views\Default.aspx" />
@@ -1555,13 +1619,17 @@
     <Content Include="Views\Events\EventCreate.aspx" />
     <Content Include="Views\Events\EventDetail.aspx" />
     <Content Include="Views\Exam\ExamType\ExamTypeCreate.aspx" />
+    <Content Include="Views\Exam\ExamType\ExamTypeDetail.aspx" />
     <Content Include="Views\Exam\ExamType\ExamTypeList.aspx" />
     <Content Include="Views\Exam\Exam\CreateExam.aspx" />
     <Content Include="Views\Exam\Exam\ExamClass.aspx" />
     <Content Include="Views\Exam\Exam\ExamDetail.aspx" />
     <Content Include="Views\Exam\Exam\ExamsList.aspx" />
+    <Content Include="Views\Grade\EarlierCodes.txt" />
     <Content Include="Views\Grade\GradeCreate.aspx" />
+    <Content Include="Views\Grade\GradeDetail.aspx" />
     <Content Include="Views\Grade\GradeListing.aspx" />
+    <Content Include="Views\Grade\GradeTypeUc.ascx" />
     <Content Include="Views\Grade\GradeValuesUC.ascx" />
     <Content Include="Views\News\NewsCreate.aspx" />
     <Content Include="Views\NoticeBoard\NoticeCreate.aspx" />
@@ -1599,9 +1667,12 @@
     <Content Include="Views\Structure\All\UserControls\ListSubYearUC.ascx" />
     <Content Include="Views\Structure\All\UserControls\ListUC.ascx" />
     <Content Include="Views\Structure\All\UserControls\ListYearUC.ascx" />
+    <Content Include="Views\Structure\All\UserControls\StructureView\EarlierCode.txt" />
     <Content Include="Views\Structure\All\UserControls\StructureView\LabelAndCheckBoxUC.ascx" />
     <Content Include="Views\Structure\All\UserControls\StructureView\LabelOnly.ascx" />
     <Content Include="Views\Structure\All\UserControls\StructureView\TreeViewWithCheckBoxInLeft.ascx" />
+    <Content Include="Views\Structure\AssignCoursesCreate.aspx" />
+    <Content Include="Views\Structure\CourseListing.aspx" />
     <Content Include="Views\Structure\Default.aspx" />
     <Content Include="Views\Structure\StructureCreate.aspx" />
     <Content Include="Views\Structure\SubYear\Create.aspx" />
@@ -1619,7 +1690,6 @@
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentListUc.ascx" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentList\PrevoisCode.txt" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentList\StudentListUC.ascx" />
-    <Content Include="Views\Student\Batch\StudentEntries\StudentEntr.ascx" />
     <Content Include="Views\Academy\AcademicYear\Create.aspx" />
     <Content Include="Views\Academy\List.aspx" />
     <Content Include="Views\Academy\Session\Create.aspx" />
@@ -1628,18 +1698,10 @@
     <Content Include="Views\Course\Category\Create.ascx" />
     <Content Include="Views\Course\Category\Create.aspx" />
     <Content Include="Views\Course\Category\List.aspx" />
-    <Content Include="Views\Course\CourseEntryForm.aspx" />
-    <Content Include="Views\Course\Display\CourseDetails.aspx" />
-    <Content Include="Views\Course\Display\CourseList\CourseList.aspx" />
-    <Content Include="Views\Course\Display\EachCourse\CourseDetailUc.ascx" />
     <Content Include="Views\Course\List.aspx" />
     <Content Include="Views\Course\Section\ActivityAndResourceUc.ascx" />
     <Content Include="Views\Course\Section\CreateSection.aspx" />
-    <Content Include="Views\Course\Section\CreateSectionUc.ascx" />
-    <Content Include="Views\Course\Section\Master\Section.aspx" />
-    <Content Include="Views\Course\Section\Master\test_uc_delete_on_unused.ascx" />
     <Content Include="Views\Course\Section\SectionUc.ascx" />
-    <Content Include="Views\Course\Section\Test_For_Server_.aspx" />
     <Content Include="Views\CreatedUser\Create.aspx" />
     <Content Include="Views\CreateUC.ascx" />
     <Content Include="Views\Dashboard.aspx" />
@@ -1652,10 +1714,6 @@
     <Content Include="Views\Resource\ResourceCreate.ascx" />
     <Content Include="Views\Role\Assign.ascx" />
     <Content Include="Views\Role\Assign.aspx" />
-    <Content Include="Views\Role\Create.ascx" />
-    <Content Include="Views\Role\Create.aspx" />
-    <Content Include="Views\Role\Dashboard.aspx" />
-    <Content Include="Views\Role\Delete.ascx" />
     <Content Include="Views\Structure\All\Create.aspx" />
     <Content Include="Views\Structure\All\Master\List.aspx" />
     <Content Include="Views\Structure\All\UserControls\CreateUC.ascx" />
@@ -1675,20 +1733,10 @@
     <Content Include="Views\Student\Batch\Create\CreateBatchUc.ascx" />
     <Content Include="Views\Student\Batch\List\ItemUc.ascx" />
     <Content Include="Views\Student\Batch\List\listUc.ascx" />
-    <Content Include="Views\Student\Batch\StudentEntries\StudentGroupAssignUC.ascx" />
-    <Content Include="Views\Student\Create\Student.aspx" />
-    <Content Include="Views\Student\Create\StudentCreateUc.ascx" />
-    <Content Include="Views\Student\Create\StudentGroup.aspx" />
-    <Content Include="Views\Student\Create\StudentGroupUc.ascx" />
     <Content Include="Views\Student\Default.aspx" />
-    <Content Include="Views\Student\StudentGroupAssignUC.ascx" />
     <Content Include="Views\Student\StudentGroup\EachGroupDetail\DetailUc.ascx" />
-    <Content Include="Views\Student\StudentGroup\GroupAssign.aspx" />
     <Content Include="Views\Student\StudentGroup\List.aspx" />
     <Content Include="Views\Student\StudentGroup\Listing\ListItemUc.ascx" />
-    <Content Include="Views\Student\StudentGroup\Listing\ListUc.ascx" />
-    <Content Include="Views\Student\StudentStructure\SingleStudentAssignUC.ascx" />
-    <Content Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx" />
     <Content Include="Views\Test\AsyncFileUploadCheck\uc1.ascx" />
     <Content Include="Views\Test\AsyncFileUploadCheck\webform1.aspx" />
     <Content Include="Views\Test\FileUploadCheck.aspx" />
@@ -1698,12 +1746,10 @@
     <Content Include="Views\Test\RedirectToAnotherSoln.aspx" />
     <Content Include="Views\UserControls\DateChooser.ascx" />
     <Content Include="Views\UserControls\ReqImageUC.ascx" />
-    <Content Include="Views\UserControls\Structure\StructureSelection.ascx" />
-    <Content Include="Views\UserControls\Structure\TreeViewOverriden\TreeView.aspx" />
-    <Content Include="Views\UserControls\Structure\TreeViewOverriden\TreeViewUc.ascx" />
     <Content Include="Views\UserControls\TreeTest\ThreButtonColorful\NodeUc.ascx" />
     <Content Include="Views\UserControls\TreeTest\ThreButtonColorful\ThreeButtonTest.aspx" />
     <Content Include="Views\User\Create.aspx" />
+    <Content Include="Views\User\EarlierCode.txt" />
     <Content Include="Views\User\Enroll\UserEnrollUC.ascx" />
     <Content Include="Views\User\List.aspx" />
     <Content Include="Views\User\Searching\ListingTest.aspx" />
@@ -1921,20 +1967,6 @@
     <Compile Include="ViewsSite\DashBoard\Student\CourseOverView\CourseUc.ascx.designer.cs">
       <DependentUpon>CourseUc.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\CourseSection\CourseSectionListing.aspx.cs">
-      <DependentUpon>CourseSectionListing.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\CourseSection\CourseSectionListing.aspx.designer.cs">
-      <DependentUpon>CourseSectionListing.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewsSite\DashBoard\Student\Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ViewsSite\DashBoard\StudentMaster.Master.cs">
       <DependentUpon>StudentMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2067,6 +2099,13 @@
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx.designer.cs">
       <DependentUpon>OnlineUsersUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\SettingsTeacher.ascx.cs">
+      <DependentUpon>SettingsTeacher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\SettingsTeacher.ascx.designer.cs">
+      <DependentUpon>SettingsTeacher.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\SettingsUc.ascx.cs">
       <DependentUpon>SettingsUc.ascx</DependentUpon>
@@ -2201,26 +2240,12 @@
     <Compile Include="Views\Academy\ProgramSelection\ProgramCheckBoxAndLabel.ascx.designer.cs">
       <DependentUpon>ProgramCheckBoxAndLabel.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Academy\ProgramSelection\ListLevelUC.ascx.cs">
-      <DependentUpon>ListLevelUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Academy\ProgramSelection\ListLevelUC.ascx.designer.cs">
-      <DependentUpon>ListLevelUC.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Academy\ProgramSelection\ListSubYearUC.ascx.cs">
       <DependentUpon>ListSubYearUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Academy\ProgramSelection\ListSubYearUC.ascx.designer.cs">
       <DependentUpon>ListSubYearUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Academy\ProgramSelection\ListFacultyUC.ascx.cs">
-      <DependentUpon>ListFacultyUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Academy\ProgramSelection\ListFacultyUC.ascx.designer.cs">
-      <DependentUpon>ListFacultyUC.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Academy\ProgramSelection\ProgramSelect.aspx.cs">
       <DependentUpon>ProgramSelect.aspx</DependentUpon>
@@ -2284,6 +2309,20 @@
     </Compile>
     <Compile Include="Views\ActivityResource\Assignments\AssignmentView.aspx.designer.cs">
       <DependentUpon>AssignmentView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\GradingUc.ascx.cs">
+      <DependentUpon>GradingUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\GradingUc.ascx.designer.cs">
+      <DependentUpon>GradingUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\SubmitAssignmentCreate.aspx.cs">
+      <DependentUpon>SubmitAssignmentCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\SubmitAssignmentCreate.aspx.designer.cs">
+      <DependentUpon>SubmitAssignmentCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ActivityResource\Assignments\TeacherViewUc.ascx.cs">
       <DependentUpon>TeacherViewUc.ascx</DependentUpon>
@@ -2705,6 +2744,20 @@
     <Compile Include="Views\Course\Course\CreateUC.ascx.designer.cs">
       <DependentUpon>CreateUC.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Course\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Course\Section\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Course\Section\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Course\Section\Master\CourseSectionListing.aspx.cs">
       <DependentUpon>CourseSectionListing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2754,6 +2807,13 @@
     <Compile Include="Views\Exam\ExamType\ExamTypeCreate.aspx.designer.cs">
       <DependentUpon>ExamTypeCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Exam\ExamType\ExamTypeDetail.aspx.cs">
+      <DependentUpon>ExamTypeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\ExamType\ExamTypeDetail.aspx.designer.cs">
+      <DependentUpon>ExamTypeDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Exam\ExamType\ExamTypeList.aspx.cs">
       <DependentUpon>ExamTypeList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2796,12 +2856,26 @@
     <Compile Include="Views\Grade\GradeCreate.aspx.designer.cs">
       <DependentUpon>GradeCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Grade\GradeDetail.aspx.cs">
+      <DependentUpon>GradeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Grade\GradeDetail.aspx.designer.cs">
+      <DependentUpon>GradeDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Grade\GradeListing.aspx.cs">
       <DependentUpon>GradeListing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Grade\GradeListing.aspx.designer.cs">
       <DependentUpon>GradeListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Grade\GradeTypeUc.ascx.cs">
+      <DependentUpon>GradeTypeUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Grade\GradeTypeUc.ascx.designer.cs">
+      <DependentUpon>GradeTypeUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Grade\GradeValuesUC.ascx.cs">
       <DependentUpon>GradeValuesUC.ascx</DependentUpon>
@@ -3048,6 +3122,20 @@
     <Compile Include="Views\Structure\All\UserControls\StructureView\TreeViewWithCheckBoxInLeft.ascx.designer.cs">
       <DependentUpon>TreeViewWithCheckBoxInLeft.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Structure\AssignCoursesCreate.aspx.cs">
+      <DependentUpon>AssignCoursesCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\AssignCoursesCreate.aspx.designer.cs">
+      <DependentUpon>AssignCoursesCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\CourseListing.aspx.cs">
+      <DependentUpon>CourseListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\CourseListing.aspx.designer.cs">
+      <DependentUpon>CourseListing.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Structure\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3153,13 +3241,6 @@
     <Compile Include="Views\Student\Batch\StudentDisplay\Students\StudentList\StudentListUC.ascx.designer.cs">
       <DependentUpon>StudentListUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Student\Batch\StudentEntries\StudentEntr.ascx.cs">
-      <DependentUpon>StudentEntr.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Batch\StudentEntries\StudentEntr.ascx.designer.cs">
-      <DependentUpon>StudentEntr.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Academy\AcademicYear\Create.aspx.cs">
       <DependentUpon>Create.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3216,34 +3297,6 @@
     <Compile Include="Views\Course\Category\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Course\CourseEntryForm.aspx.cs">
-      <DependentUpon>CourseEntryForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\CourseEntryForm.aspx.designer.cs">
-      <DependentUpon>CourseEntryForm.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\Display\CourseDetails.aspx.cs">
-      <DependentUpon>CourseDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\Display\CourseDetails.aspx.designer.cs">
-      <DependentUpon>CourseDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\Display\CourseList\CourseList.aspx.cs">
-      <DependentUpon>CourseList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\Display\CourseList\CourseList.aspx.designer.cs">
-      <DependentUpon>CourseList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\Display\EachCourse\CourseDetailUc.ascx.cs">
-      <DependentUpon>CourseDetailUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\Display\EachCourse\CourseDetailUc.ascx.designer.cs">
-      <DependentUpon>CourseDetailUc.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Course\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3265,40 +3318,12 @@
     <Compile Include="Views\Course\Section\CreateSection.aspx.designer.cs">
       <DependentUpon>CreateSection.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Course\Section\CreateSectionUc.ascx.cs">
-      <DependentUpon>CreateSectionUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\Section\CreateSectionUc.ascx.designer.cs">
-      <DependentUpon>CreateSectionUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\Section\Master\Section.aspx.cs">
-      <DependentUpon>Section.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\Section\Master\Section.aspx.designer.cs">
-      <DependentUpon>Section.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\Section\Master\test_uc_delete_on_unused.ascx.cs">
-      <DependentUpon>test_uc_delete_on_unused.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\Section\Master\test_uc_delete_on_unused.ascx.designer.cs">
-      <DependentUpon>test_uc_delete_on_unused.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Course\Section\SectionUc.ascx.cs">
       <DependentUpon>SectionUc.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Course\Section\SectionUc.ascx.designer.cs">
       <DependentUpon>SectionUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Course\Section\Test_For_Server_.aspx.cs">
-      <DependentUpon>Test_For_Server_.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Course\Section\Test_For_Server_.aspx.designer.cs">
-      <DependentUpon>Test_For_Server_.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\CreatedUser\Create.aspx.cs">
       <DependentUpon>Create.aspx</DependentUpon>
@@ -3383,34 +3408,6 @@
     </Compile>
     <Compile Include="Views\Role\Assign.aspx.designer.cs">
       <DependentUpon>Assign.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Role\Create.ascx.cs">
-      <DependentUpon>Create.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Role\Create.ascx.designer.cs">
-      <DependentUpon>Create.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Role\Create.aspx.cs">
-      <DependentUpon>Create.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Role\Create.aspx.designer.cs">
-      <DependentUpon>Create.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Role\Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Role\Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Role\Delete.ascx.cs">
-      <DependentUpon>Delete.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Role\Delete.ascx.designer.cs">
-      <DependentUpon>Delete.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Structure\All\Create.aspx.cs">
       <DependentUpon>Create.aspx</DependentUpon>
@@ -3545,41 +3542,6 @@
     <Compile Include="Views\Student\Batch\List\listUc.ascx.designer.cs">
       <DependentUpon>listUc.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Student\Batch\StudentEntries\StudentGroupAssignUC.ascx.cs">
-      <DependentUpon>StudentGroupAssignUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Batch\StudentEntries\StudentGroupAssignUC.ascx.designer.cs">
-      <DependentUpon>StudentGroupAssignUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\Create\Student.aspx.cs">
-      <DependentUpon>Student.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Create\Student.aspx.designer.cs">
-      <DependentUpon>Student.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\Create\StudentCreateUc.ascx.cs">
-      <DependentUpon>StudentCreateUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Create\StudentCreateUc.ascx.designer.cs">
-      <DependentUpon>StudentCreateUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\Create\StudentGroup.aspx.cs">
-      <DependentUpon>StudentGroup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Create\StudentGroup.aspx.designer.cs">
-      <DependentUpon>StudentGroup.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\Create\StudentGroupUc.ascx.cs">
-      <DependentUpon>StudentGroupUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\Create\StudentGroupUc.ascx.designer.cs">
-      <DependentUpon>StudentGroupUc.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Student\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3587,26 +3549,12 @@
     <Compile Include="Views\Student\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Student\StudentGroupAssignUC.ascx.cs">
-      <DependentUpon>StudentGroupAssignUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\StudentGroupAssignUC.ascx.designer.cs">
-      <DependentUpon>StudentGroupAssignUC.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Student\StudentGroup\EachGroupDetail\DetailUc.ascx.cs">
       <DependentUpon>DetailUc.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Student\StudentGroup\EachGroupDetail\DetailUc.ascx.designer.cs">
       <DependentUpon>DetailUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\StudentGroup\GroupAssign.aspx.cs">
-      <DependentUpon>GroupAssign.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\StudentGroup\GroupAssign.aspx.designer.cs">
-      <DependentUpon>GroupAssign.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\StudentGroup\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
@@ -3621,27 +3569,6 @@
     </Compile>
     <Compile Include="Views\Student\StudentGroup\Listing\ListItemUc.ascx.designer.cs">
       <DependentUpon>ListItemUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\StudentGroup\Listing\ListUc.ascx.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\StudentGroup\Listing\ListUc.ascx.designer.cs">
-      <DependentUpon>ListUc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\StudentStructure\SingleStudentAssignUC.ascx.cs">
-      <DependentUpon>SingleStudentAssignUC.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\StudentStructure\SingleStudentAssignUC.ascx.designer.cs">
-      <DependentUpon>SingleStudentAssignUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx.cs">
-      <DependentUpon>StudentAssignToAStructure.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Student\StudentStructure\StudentAssignToAStructure.ascx.designer.cs">
-      <DependentUpon>StudentAssignToAStructure.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Test\AsyncFileUploadCheck\uc1.ascx.cs">
       <DependentUpon>uc1.ascx</DependentUpon>
@@ -3706,27 +3633,6 @@
     <Compile Include="Views\UserControls\ReqImageUC.ascx.designer.cs">
       <DependentUpon>ReqImageUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Structure\StructureSelection.ascx.cs">
-      <DependentUpon>StructureSelection.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\UserControls\Structure\StructureSelection.ascx.designer.cs">
-      <DependentUpon>StructureSelection.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\Structure\TreeViewOverriden\TreeView.aspx.cs">
-      <DependentUpon>TreeView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\UserControls\Structure\TreeViewOverriden\TreeView.aspx.designer.cs">
-      <DependentUpon>TreeView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\Structure\TreeViewOverriden\TreeViewUc.ascx.cs">
-      <DependentUpon>TreeViewUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\UserControls\Structure\TreeViewOverriden\TreeViewUc.ascx.designer.cs">
-      <DependentUpon>TreeViewUc.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\TreeTest\ThreButtonColorful\NodeUc.ascx.cs">
       <DependentUpon>NodeUc.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3787,11 +3693,14 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\CourseFileResource\" />
+    <Folder Include="ViewsSite\DashBoard\Student\CourseSection\" />
     <Folder Include="Views\ActivityResource\Availability\" />
     <Folder Include="Views\All_Resusable_Codes\Paging\" />
+    <Folder Include="Views\Course\Display\CourseList\" />
+    <Folder Include="Views\Course\Display\EachCourse\" />
     <Folder Include="Views\Exam\Exam\Create\" />
-    <Folder Include="Views\Student\StudentGroup\UserControls\" />
-    <Folder Include="Views\Student\Student\" />
+    <Folder Include="Views\Message\" />
+    <Folder Include="Views\UserControls\Structure\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

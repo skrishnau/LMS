@@ -31,11 +31,11 @@ namespace One.Views.Class
                             }
                         }
                     }
-                    catch { Response.Redirect("~/Views/Course/List.aspx"); }
+                    catch { Response.Redirect("~/Views/Course/"); }
                 }
                 else
                 {
-                    Response.Redirect("~/Views/Course/List.aspx");
+                    Response.Redirect("~/Views/Course/");
                 }
                 //load course detail
                 using (var helper = new DbHelper.Subject())

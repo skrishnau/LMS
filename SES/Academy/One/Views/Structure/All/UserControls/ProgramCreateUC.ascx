@@ -23,7 +23,7 @@
                     OnSelectedIndexChanged="cmbSchool_SelectedIndexChanged" Width="160px"></asp:DropDownList>
                 </td>
             </tr>--%>
-             <tr>
+           <%--  <tr>
                 <td>Level&nbsp;</td>
                 <td>
                     <asp:DropDownList ID="cmbLevel" runat="server" Height="21px" Width="159px" OnSelectedIndexChanged="cmbLevel_SelectedIndexChanged"></asp:DropDownList>
@@ -35,7 +35,7 @@
                     <asp:DropDownList ID="cmbFaculty" runat="server" Height="21px" Width="159px"  ></asp:DropDownList>
                     <asp:Label ID="valiFaculty" runat="server" Text="Required" Visible="false" ForeColor="#FF3300"></asp:Label>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td>Description&nbsp;</td>
                 <td>

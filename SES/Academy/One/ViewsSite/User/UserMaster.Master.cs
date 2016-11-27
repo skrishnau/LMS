@@ -68,8 +68,15 @@ namespace One.ViewsSite.User
 
                         SettingsUc settings =
                             (SettingsUc)Page.LoadControl("~/ViewsSite/User/ModulesUc/SettingsUc.ascx");
-                        settings.UserId = user.Id;
+                        //settings.UserId = user.Id;
                         pnlSettings.Controls.Add(settings);
+                    }
+                    else if (user.IsInRole("teacher"))
+                    {
+                        SettingsTeacher teachersettings =
+                           (SettingsTeacher)Page.LoadControl("~/ViewsSite/User/ModulesUc/SettingsTeacher.ascx");
+                        //settings.UserId = user.Id;
+                        pnlSettings.Controls.Add(teachersettings);
                     }
                 }
                 else if (!Request.Url.AbsolutePath.Contains(loginUrl))

@@ -19,15 +19,23 @@ namespace One.Views.Student
                 {
                     listUc.SchoolId = user.SchoolId; //Values.Session.GetSchool(Session);
                     var edit = Request.QueryString["edit"];
-                    if (edit != null)
+                    if ((user.IsInRole("manager") || user.IsInRole("admitter")))
                     {
-                        listUc.Edit = edit;
-                        if (edit == "1")
+                        if (edit != null)
                         {
-                            lnkEdit.NavigateUrl = "~/Views/Student/?edit=0";
-                            lblEdit.Text = "Exit edit";
-                            lnkAdd.Visible = true;
-
+                            listUc.Edit = edit;
+                            if (edit == "1")
+                            {
+                                lnkEdit.NavigateUrl = "~/Views/Student/?edit=0";
+                                lblEdit.Text = "Exit edit";
+                                lnkAdd.Visible = true;
+                            }
+                            else
+                            {
+                                lnkEdit.NavigateUrl = "~/Views/Student/?edit=1";
+                                lblEdit.Text = "Edit";
+                                lnkAdd.Visible = false;
+                            }
                         }
                         else
                         {
@@ -38,8 +46,7 @@ namespace One.Views.Student
                     }
                     else
                     {
-                        lnkEdit.NavigateUrl = "~/Views/Student/?edit=1";
-                        lblEdit.Text = "Edit";
+                        lnkEdit.Visible = false;
                         lnkAdd.Visible = false;
                     }
                 }

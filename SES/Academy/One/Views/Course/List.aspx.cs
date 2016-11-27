@@ -14,46 +14,32 @@ namespace One.Views.Course
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var user = User as CustomPrincipal;
-            if (!IsPostBack)
+            var catId = Request.QueryString["catId"];
+            if (catId != null)
             {
-                if (user != null)
-                {
-                    SchoolId = user.SchoolId;
-                    //categoryCreate.SchoolId = user.SchoolId;
-                }
-                var catId = Request.QueryString["catId"];
-                if (catId != null)
-                {
-                    SelectedCategory = Convert.ToInt32(catId);
-                }
+                Response.Redirect("~/Views/Course/?catId="+catId);
             }
-
-            //pnlCategories.EnableViewState = false;
-            //pnlCategories.ViewStateMode=ViewStateMode.Disabled;
-
-            //categoryCreate.SaveClicked += categoryCreate_SaveClicked;
-            //categoryCreate.CancelClicked += categoryCreate_CancelClicked;
-
-            //courseCreate.SaveClicked += courseCreate_SaveClicked;
-            //courseCreate.CancelClicked += courseCreate_CancelClicked;
-            //if (hidSelectedCategory.Value == "0")
+            else
+            {
+                Response.Redirect("~/Views/Course/");                
+            }
+            //var user = User as CustomPrincipal;
+            //if (!IsPostBack)
             //{
-            //    lnkCourseCreate.Enabled = false;
-            //    imgCourseCreate.Visible = false;
-            //    lnkCourseCreate.Text = "Select Category to add Courses.";
-            //}
-            //else
-            //{
-            //    lnkCourseCreate.Enabled = true;
-            //    imgCourseCreate.Visible = true;
-            //    lnkCourseCreate.Text = "Add Courses";
+            //    if (user != null)
+            //    {
+            //        SchoolId = user.SchoolId;
+            //        //categoryCreate.SchoolId = user.SchoolId;
+            //    }
+            //    var catId = Request.QueryString["catId"];
+            //    if (catId != null)
+            //    {
+            //        SelectedCategory = Convert.ToInt32(catId);
+            //    }
             //}
 
-            //earlier
-            //LoadCategories(user.SchoolId);
 
-            LoadCategoriesAndSubCategories(user.SchoolId);
+            //LoadCategoriesAndSubCategories(user.SchoolId);
         }
 
         public int SchoolId

@@ -20,18 +20,19 @@ namespace One.Views.Structure.All.Master
 
                 if (year != null && subyear != null)
                 {
-                    try
-                    {
-                        var y = Convert.ToInt32(year.ToString());
-                        var s = Convert.ToInt32(subyear.ToString());
-                        using (var helper = new DbHelper.Structure())
-                        {
-                            var dir = helper.GetSructureDirectory(y, s);
-                            CourseListUC.SetProgramDirectory(dir);
-                        }
-                        CourseListUC.LoadCourseList(y, s);
-                    }
-                    catch { Response.Redirect("List.aspx"); }
+                    Response.Redirect("~/Views/Structure/CourseListing.aspx?yId="+year+"&sId="+subyear);
+                    //try
+                    //{
+                    //    var y = Convert.ToInt32(year.ToString());
+                    //    var s = Convert.ToInt32(subyear.ToString());
+                    //    using (var helper = new DbHelper.Structure())
+                    //    {
+                    //        var dir = helper.GetSructureDirectory(y, s);
+                    //        CourseListUC.SetProgramDirectory(dir);
+                    //    }
+                    //    CourseListUC.LoadCourseList(y, s);
+                    //}
+                    //catch { Response.Redirect("List.aspx"); }
 
                 }
                 else

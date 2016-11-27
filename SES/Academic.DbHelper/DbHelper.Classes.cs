@@ -262,7 +262,11 @@ namespace Academic.DbHelper
                         .Where(x => x.SubjectStructure.SubjectId == subjectId)
                         .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
                         .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
-                        .ToList();
+                      .ToList();
+                    for (var i=0 ;i<regular.Count;i++)
+                    {
+                        regular[i].Name = regular[i].GetName;
+                    }
 
                     var notRegular = Context.SubjectClass
                         .Where(s => (!s.IsRegular)
@@ -313,7 +317,10 @@ namespace Academic.DbHelper
                         .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
                         .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
                         .ToList();
-
+                    for (var i = 0; i < regular.Count; i++)
+                    {
+                        regular[i].Name = regular[i].GetName;
+                    }
                     var notRegular = userclass.Select(x => x.SubjectClass) //.SubjectClass
                         .Where(s => (!s.IsRegular)
                                     && (s.StartDate ?? min) <= now
@@ -621,6 +628,23 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
+
+            public object ListGroupsOfClass(int classId)
+            {
+                var cls = Context.SubjectClass.Find(classId);
+                if (cls != null)
+                {
+                    if (cls.HasGrouping)
+                    {
+                        if (cls.UseDefaultGrouping ?? false)
+                        {
+                            
+                        }
+                    }
+                    else return null;
+                }
+                return null;
+            }
         }
     }
 }

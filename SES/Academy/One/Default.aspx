@@ -1,6 +1,20 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="One._Default" %>
+﻿<%@ Page Title="Home Page"  Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="One._Default" %>
 
-<asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
+<%-- MasterPageFile="~/Site.Master" --%>
+
+<%@ Register Src="~/ViewsSite/DashBoard/Student/CourseOverView/LstUc.ascx" TagPrefix="uc1" TagName="LstUc" %>
+
+
+
+<asp:Content runat="server" ID="bodyTitle" ContentPlaceHolderID="BodyTitle">
+    <h3>COURSE OVERVIEW  </h3>
+</asp:Content>
+
+<asp:Content runat="server" ID="contentBody" ContentPlaceHolderID="Body">
+    <uc1:LstUc runat="server" ID="LstUc1" />
+</asp:Content>
+
+<%--<asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
@@ -37,4 +51,8 @@
             <a href="http://go.microsoft.com/fwlink/?LinkId=245143">Learn more…</a>
         </li>
     </ol>
+</asp:Content>--%>
+
+<asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
+    Dashboard
 </asp:Content>

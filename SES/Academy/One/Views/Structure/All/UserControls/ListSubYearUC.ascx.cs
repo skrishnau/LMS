@@ -18,10 +18,7 @@ namespace One.Views.Structure.All.UserControls
 
         }
 
-        public void AddControl(ListUC uc)
-        {
-            this.pnlSubControls.Controls.Add(uc);
-        }
+
 
         public int YearId
         {
@@ -37,9 +34,9 @@ namespace One.Views.Structure.All.UserControls
 
 
         public void SetName(int yearId, int subyearId, string name, string editUrl, int noOfCourses
-            ,string currentBatch ,int programBatchId
-            ,bool edit = false
-            ,string addUrl = "", string addText = "")
+            , string currentBatch, int programBatchId
+            , bool edit = false
+            , string addUrl = "", string addText = "")
         {
             //this.hidStructureId.Value = id.ToString();
             YearId = yearId;
@@ -49,6 +46,7 @@ namespace One.Views.Structure.All.UserControls
             lnkAdd.Visible = edit && addUrl != "";
 
             lblNoOfCourses.Text = noOfCourses.ToString();
+            pnlBody.Style.Add("padding", "5px");
             if (currentBatch == "")
             {
                 row_currentBatch.Visible = false;
@@ -57,11 +55,11 @@ namespace One.Views.Structure.All.UserControls
             }
             else
             {
-                lblCurrentBatch.Text = currentBatch;  
-                pnlBody.BackColor=//Color.LightGreen;
+                lblCurrentBatch.Text = currentBatch;
+                pnlBody.BackColor =//Color.LightGreen;
                     Color.FromArgb(193, 252, 193);
                 lnkCurrentBatch.NavigateUrl =
-                    "~/Views/Student/Batch/StudentDisplay/Students/StudentListInProgramBatch.aspx?pbId="+programBatchId;
+                    "~/Views/Student/Batch/StudentDisplay/Students/StudentListInProgramBatch.aspx?pbId=" + programBatchId;
             }
 
             if (edit)
@@ -72,13 +70,15 @@ namespace One.Views.Structure.All.UserControls
 
                 lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", ""); ;
             }
+            lnkCoursesList.NavigateUrl = "~/Views/Structure/CourseListing.aspx" + "?yId=" + YearId + "&sId=" +
+                                         SubYearId;
         }
 
         protected void lnkCoursesList_Click(object sender, EventArgs e)
         {
             //ViewState["yearId"] = YearId;
             //ViewState["subYearId"] = SubYearId;
-            Response.Redirect("~/Views/Structure/All/Master/CoursesList.aspx" + "?yId=" + YearId + "&sId=" + SubYearId);
+            Response.Redirect("~~/Views/Structure/CourseListing.aspx" + "?yId=" + YearId + "&sId=" + SubYearId);
             //if (CourseClicked != null)
             //{
             //    CourseClicked(this,new StructureEventArgs()

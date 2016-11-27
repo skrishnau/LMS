@@ -24,35 +24,36 @@ namespace One.Views.Structure.All.UserControls
             set
             {
                 hidSchoolId.Value = value.ToString();
-                DbHelper.ComboLoader.LoadLevel(ref cmbLevel, Convert.ToInt32(hidSchoolId.Value), true);
+                //DbHelper.ComboLoader.LoadLevel(ref cmbLevel, Convert.ToInt32(hidSchoolId.Value), true);
             }
         }
-        public int LevelId
-        {
-            get { return Convert.ToInt32(hidLevelId.Value); }
-            set
-            {
-                hidLevelId.Value = value.ToString();
-                cmbLevel.ClearSelection();
-                cmbLevel.SelectedValue = value.ToString();
-                cmbLevel.Enabled = false;
-                DbHelper.ComboLoader.LoadFaculty(ref cmbFaculty, Convert.ToInt32(hidLevelId.Value), true);
-            }
-        }
+        //public int LevelId
+        //{
+        //    get { return Convert.ToInt32(hidLevelId.Value); }
+        //    set
+        //    {
+        //        hidLevelId.Value = value.ToString();
+        //        cmbLevel.ClearSelection();
+        //        cmbLevel.SelectedValue = value.ToString();
+        //        cmbLevel.Enabled = false;
+        //        //DbHelper.ComboLoader.LoadFaculty(ref cmbFaculty, Convert.ToInt32(hidLevelId.Value), true);
+        //    }
+        //}
 
-        public int FacultyId
-        {
-            get { return Convert.ToInt32(hidFacultyId); }
-            set
-            {
-                hidFacultyId.Value = value.ToString();
-                cmbFaculty.ClearSelection();
-                cmbFaculty.SelectedValue = value.ToString();
-                cmbFaculty.Enabled = false;
-                DbHelper.ComboLoader.LoadProgram(ref cmbProgram, Convert.ToInt32(hidFacultyId.Value), true);
+        //public int FacultyId
+        //{
+        //    get { return Convert.ToInt32(hidFacultyId); }
+        //    set
+        //    {
+        //        hidFacultyId.Value = value.ToString();
+        //        cmbFaculty.ClearSelection();
+        //        cmbFaculty.SelectedValue = value.ToString();
+        //        cmbFaculty.Enabled = false;
+        //        DbHelper.ComboLoader.LoadProgram(ref cmbProgram, Convert.ToInt32(hidFacultyId.Value), true);
 
-            }
-        }
+        //    }
+        //}
+
         public int ProgramId
         {
             get { return Convert.ToInt32(hidProgram); }
@@ -66,6 +67,7 @@ namespace One.Views.Structure.All.UserControls
 
             }
         }
+        
         public int YearId
         {
             get { return Convert.ToInt32(hidYear); }

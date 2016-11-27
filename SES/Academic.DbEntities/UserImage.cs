@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities
 {
-    public class UserImage
-    {
-        public int Id { get; set; }
-        //public String Name { get; set; }
-        public byte[] Bytes { get; set; }
-        public string Extension { get; set; }
-    }
+    //public class UserImage
+    //{
+    //    public int Id { get; set; }
+    //    //public String Name { get; set; }
+    //    public byte[] Bytes { get; set; }
+    //    public string Extension { get; set; }
+    //}
 }

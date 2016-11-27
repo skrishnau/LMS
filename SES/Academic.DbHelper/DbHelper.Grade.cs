@@ -18,25 +18,26 @@ namespace Academic.DbHelper
                 Context = new AcademicContext();
             }
 
-            public DbEntities.Grades.GradeType AddOrUpdateGrade(DbEntities.Grades.GradeType grade,
-                List<DbEntities.Grades.GradeValues> gradeValuesList)
+            public DbEntities.Grades.Grade AddOrUpdateGrade(DbEntities.Grades.Grade grade,
+                List<DbEntities.Grades.GradeValue> gradeValuesList)
             {
                 try
                 {
 
                     using (var scope = new TransactionScope())
                     {
-                        var ent = Context.GradeType.Find(grade.Id);
+                        var ent = Context.Grade.Find(grade.Id);
                         if (ent == null)
                         {
-                            ent = Context.GradeType.Add(grade);
+                            ent = Context.Grade.Add(grade);
                             Context.SaveChanges();
-                            for (var i = 0; i < gradeValuesList.Count; i++) // in gradeValuesList)
-                            {
-                                gradeValuesList[i].GradeTypeId = ent.Id;
-                                Context.GradeValues.Add(gradeValuesList[i]);
-                                Context.SaveChanges();
-                            }
+                            if (gradeValuesList != null)
+                                for (var i = 0; i < gradeValuesList.Count; i++) // in gradeValuesList)
+                                {
+                                    gradeValuesList[i].GradeId = ent.Id;
+                                    Context.GradeValue.Add(gradeValuesList[i]);
+                                    Context.SaveChanges();
+                                }
                         }
                         else
                         {
@@ -50,12 +51,12 @@ namespace Academic.DbHelper
                                 ent.TotalMaxValue = grade.TotalMaxValue;
                                 ent.TotalMinValue = grade.TotalMinValue;
 
-                                var lst = Context.GradeValues.Where(x => x.GradeTypeId == ent.Id);
+                                var lst = Context.GradeValue.Where(x => x.GradeId == ent.Id);
                                 foreach (var gv in lst)
                                 {
-                                    Context.GradeValues.Remove(gv);
-                                    Context.SaveChanges();
+                                    Context.GradeValue.Remove(gv);
                                 }
+                                Context.SaveChanges();
                             }
                             else
                             {
@@ -63,15 +64,18 @@ namespace Academic.DbHelper
                                 ent.MinimumPassValue = null;
                                 ent.TotalMaxValue = null;
                                 ent.TotalMinValue = null;
-                                var olderlist = Context.GradeValues.Where(x => x.GradeTypeId == ent.Id).ToList();
+                                var olderlist = Context.GradeValue.Where(x => x.GradeId == ent.Id).ToList();
                                 for (int i = 0; i < olderlist.Count; i++)
                                 {
-                                    Context.GradeValues.Remove(olderlist[i]);
-                                    Context.SaveChanges();
+                                    Context.GradeValue.Remove(olderlist[i]);
                                 }
-                                foreach (var gv in gradeValuesList)
+                                Context.SaveChanges();
+                                if (gradeValuesList != null)
                                 {
-                                    Context.GradeValues.Add(gv);
+                                    foreach (var gv in gradeValuesList)
+                                    {
+                                        Context.GradeValue.Add(gv);
+                                    }
                                     Context.SaveChanges();
                                 }
                             }
@@ -92,19 +96,23 @@ namespace Academic.DbHelper
                 Context.Dispose();
             }
 
-            public List<DbEntities.Grades.GradeType> ListGrades(int schoolId)
+            public List<DbEntities.Grades.Grade> ListGrades(int schoolId)
             {
-                return Context.GradeType.Where(x => (x.SchoolId ?? 0) == schoolId || (x.SchoolId ?? 0) == 0).ToList();
+                return Context.Grade.Where(x => (x.SchoolId ?? 0) == schoolId || (x.SchoolId ?? 0) == 0)
+                    .OrderBy(x=>x.Name)
+                    .ToList();
             }
 
-            public DbEntities.Grades.GradeType GetGrade(int gradeTypeId)
+            public DbEntities.Grades.Grade GetGrade(int gradeTypeId)
             {
-                return Context.GradeType.Find(gradeTypeId);
+                return Context.Grade.Find(gradeTypeId);
             }
 
-            public List<DbEntities.Grades.GradeValues> ListGradeValues(int gradeTypeId)
+            public List<DbEntities.Grades.GradeValue> ListGradeValues(int gradeTypeId)
             {
-                return Context.GradeValues.Where(x => x.GradeTypeId == gradeTypeId).ToList();
+                return Context.GradeValue.Where(x => x.GradeId == gradeTypeId)
+                    .OrderByDescending(x=>x.EquivalentPercentOrPostition)
+                    .ToList();
             }
         }
     }

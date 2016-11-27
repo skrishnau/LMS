@@ -25,15 +25,15 @@ namespace Academic.DbEntities.Exams
         public bool? IsGrade { get; set; }
 
         public int? ObtainedGradeId { get; set; }
-        public virtual Marks.Grade ObtainedGrade { get; set; }
+        public virtual Grades.GradeValue ObtainedGrade { get; set; }
 
         public bool? IsPercent { get; set; }
         public float? ObtainedMarks { get; set; }
 
         public DateTime? PostedDate { get; set; }
 
-        public int? PostedById { get; set; }
-        public virtual Users PostedBy { get; set; }
+        public int? ExamSubjectExaminerId { get; set; }
+        public virtual ExamSubjectExaminer ExamSubjectExaminer { get; set; }
 
         //------------------------- Marking End -----------------------//
 

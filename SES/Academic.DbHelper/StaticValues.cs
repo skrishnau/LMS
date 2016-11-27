@@ -12,6 +12,7 @@ namespace Academic.DbHelper
         public static class StaticValues
         {
             public static string UserImageDirectory = "~/Content/Images/UserImage/";
+            public static string AssignmentDirectory = "~/Content/Images/AssignmentSubmission/";
 
             //public static Dictionary<string, string> StructureType = new Dictionary<string, string>()
             //{
@@ -484,7 +485,7 @@ namespace Academic.DbHelper
             {
                 return new List<string>()
                 {
-                    "Choose",
+                    "",
                     //"What is the last name of the teacher who gave you your first failing grade?"
                     //,
                     "What is your first grade favourite teacher name?"
@@ -499,6 +500,7 @@ namespace Academic.DbHelper
 
                 };
             }
+
         }
     }
 }

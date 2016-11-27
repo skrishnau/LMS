@@ -90,7 +90,7 @@ namespace One.Views.Course.Section
                        
                         arUc.SetData(ar.ActivityOrResource,ar.Name,ar.Description
                             ,ar.ActivityResourceId,ar.ActivityResourceType.ToString(),ar.IconUrl,ar.NavigateUrl
-                            ,SectionId,EditEnabled,SubjectId, ar.Enable);
+                            ,SectionId,EditEnabled,SubjectId,ar.CreateUrl, ar.Enable);
 
                        pnlActAndRes.Controls.Add(arUc);
                     }

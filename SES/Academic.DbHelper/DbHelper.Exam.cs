@@ -191,36 +191,52 @@ namespace Academic.DbHelper
 
             public List<DbEntities.Exams.Exam> GetExamList(int schoolId, int academicYearId, int sessionId = 0)
             {
-                if (sessionId == 0)
+                var lst =
+                       Context.Exam.Where(x =>
+                           x.SchoolId == schoolId
+                           && x.AcademicYearId == academicYearId
+                           && (x.SessionId ?? 0) == sessionId)
+                       .OrderByDescending(x => x.Id)
+                       .ToList();
+                for (int i = 0; i < lst.Count; i++)
                 {
-                    var lst =
-                        Context.Exam.Where(x =>
-                            x.SchoolId == schoolId
-                            && x.AcademicYearId == academicYearId)
-                        .OrderByDescending(x => x.Id)
-                        .ToList();
-                    for (int i = 0; i < lst.Count; i++)
-                    {
-                        if (lst[i].ExamTypeId != null)
-                            lst[i].Name = lst[i].ExamType.Name;
-                    }
-                    return lst;
+                    if (lst[i].ExamTypeId != null)
+                        lst[i].Name = lst[i].ExamType.Name;
                 }
-                else
-                {
-                    var lst = Context.Exam.Where(x =>
-                         x.SchoolId == schoolId
-                         && x.AcademicYearId == academicYearId
-                         && x.SessionId == sessionId)
-                         .OrderByDescending(x => x.Id)
-                         .ToList();
-                    for (int i = 0; i < lst.Count; i++)
-                    {
-                        if (lst[i].ExamTypeId != null)
-                            lst[i].Name = lst[i].ExamType.Name;
-                    }
-                    return lst;
-                }
+                return lst;
+
+
+                //if (sessionId == 0)
+                //{
+                //    var lst =
+                //        Context.Exam.Where(x =>
+                //            x.SchoolId == schoolId
+                //            && x.AcademicYearId == academicYearId
+                //            &&(x.SessionId??0)==sessionId)
+                //        .OrderByDescending(x => x.Id)
+                //        .ToList();
+                //    for (int i = 0; i < lst.Count; i++)
+                //    {
+                //        if (lst[i].ExamTypeId != null)
+                //            lst[i].Name = lst[i].ExamType.Name;
+                //    }
+                //    return lst;
+                //}
+                //else
+                //{
+                //    var lst = Context.Exam.Where(x =>
+                //         x.SchoolId == schoolId
+                //         && x.AcademicYearId == academicYearId
+                //         && x.SessionId == sessionId)
+                //         .OrderByDescending(x => x.Id)
+                //         .ToList();
+                //    for (int i = 0; i < lst.Count; i++)
+                //    {
+                //        if (lst[i].ExamTypeId != null)
+                //            lst[i].Name = lst[i].ExamType.Name;
+                //    }
+                //    return lst;
+                //}
             }
 
             //Used

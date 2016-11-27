@@ -49,24 +49,6 @@ namespace One.Views.Course.Display.EachCourse {
         protected global::System.Web.UI.WebControls.HiddenField hidId;
         
         /// <summary>
-        /// pnlCreateSection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCreateSection;
-        
-        /// <summary>
-        /// CreateSectionUc1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Course.Section.CreateSectionUc CreateSectionUc1;
-        
-        /// <summary>
         /// lnkAddSection control.
         /// </summary>
         /// <remarks>

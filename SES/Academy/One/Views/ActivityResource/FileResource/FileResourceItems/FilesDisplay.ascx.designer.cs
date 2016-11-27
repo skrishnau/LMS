@@ -22,6 +22,15 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
+        /// lblFileNumberError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFileNumberError;
+        
+        /// <summary>
         /// MultiView1 control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidPageKey;
+        
+        /// <summary>
+        /// hidNumberOfFilesToUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidNumberOfFilesToUpload;
         
         /// <summary>
         /// hidFileSaveDirectory control.

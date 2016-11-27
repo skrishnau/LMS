@@ -10,7 +10,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
-
+            <asp:Label ID="lblFileNumberError" runat="server" Text="" Visible="False" ForeColor="red"></asp:Label>
             <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
                     <div class="file-display">
@@ -66,6 +66,7 @@
                 </div>
             </div>
             <asp:HiddenField ID="hidPageKey" runat="server" Value="0" />
+            <asp:HiddenField ID="hidNumberOfFilesToUpload" runat="server" Value="-1" />
             <asp:HiddenField ID="hidFileSaveDirectory" runat="server" Value="" />
             <asp:HiddenField ID="hidFileAcquireMode" runat="server" Value="Multiple" />
         </ContentTemplate>

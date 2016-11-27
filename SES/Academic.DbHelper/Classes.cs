@@ -75,8 +75,8 @@ namespace Academic.DbHelper
 
     public class RunningClassEventArgs : EventArgs
     {
-        public int LevelId { get; set; }
-        public int FacultyId { get; set; }
+        //public int LevelId { get; set; }
+        //public int FacultyId { get; set; }
 
         public int ProgramId { get; set; }
 

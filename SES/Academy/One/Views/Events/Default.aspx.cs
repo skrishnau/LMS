@@ -18,6 +18,11 @@ namespace One.Views.Events
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
+                    //not needed...  self event ko lagi new event rakhnu parxa..
+                    //if (user.IsInRole("manger") || user.IsInRole("organizer"))
+                    //{
+                    //    lnkAddEvent.Visible = 
+                    //}
                     lnkAddEvent.Visible = true;
                     //if (user.IsInRole("manager") || user.IsInRole("organizer"))
                     //{

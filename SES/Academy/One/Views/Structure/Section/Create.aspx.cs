@@ -24,12 +24,12 @@ namespace One.Views.Structure.Section
         protected void cmbSchool_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            DbHelper.ComboLoader.LoadLevel(ref cmbLevel, Convert.ToInt32(cmbLevel.SelectedValue));
+            //DbHelper.ComboLoader.LoadLevel(ref cmbLevel, Convert.ToInt32(cmbLevel.SelectedValue));
         }
 
         protected void cmbLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DbHelper.ComboLoader.LoadFaculty(ref cmbFaculty, Convert.ToInt32(cmbLevel.SelectedValue));
+            //DbHelper.ComboLoader.LoadFaculty(ref cmbFaculty, Convert.ToInt32(cmbLevel.SelectedValue));
 
         }
 

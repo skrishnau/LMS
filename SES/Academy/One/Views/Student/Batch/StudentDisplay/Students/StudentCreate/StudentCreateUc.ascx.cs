@@ -20,6 +20,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            valiUserName.ErrorMessage = "Required";
             //lblSaveStatus.Visible = false;
 
             //==================== The commented code saves the uploaded file in Session in
@@ -59,47 +60,50 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
             //    // DbHelper.ComboLoader.LoadUserType(ref cmbRole, Values.Session.GetSchool(Session), "Student");
             //}
         }
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            var has1 = FileUpload1.HasFile;
-            if (Page.IsValid)
+            using (var helper = new DbHelper.Student())
             {
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
-                    
-                    var createdUser = new Academic.DbEntities.User.Users()
+                    if (helper.DoesUserNameExist(user.SchoolId, txtUserName.Text))
                     {
-                        
-                        CreatedDate = DateTime.Now
-                        ,
-                        Email = txtEmail.Text
-                        ,
-                        FirstName = txtFirstName.Text
-                        ,
-                        LastName = txtLastName.Text
-                        ,
-                        IsActive = true
-                        ,
-                        IsDeleted = false
-                        ,
-                        UserName = txtUserName.Text
-                        ,
-                        Password = txtPassword.Text
-                        ,
-                        Phone = txtPhone1.Text
-                        ,
-                        MiddleName = txtMiddleName.Text
-                    };
-                    var student = new Academic.DbEntities.Students.Student()
+                        valiUserName.ErrorMessage = "Username already exits";
+                        valiUserName.IsValid = false;
+                    }
+                    if (Page.IsValid)
                     {
-                        CRN = txtCRN.Text,
+                        var createdUser = new Academic.DbEntities.User.Users()
+                        {
+                            CreatedDate = DateTime.Now
+                            ,
+                            Email = txtEmail.Text
+                            ,
+                            FirstName = txtFirstName.Text
+                            ,
+                            LastName = txtLastName.Text
+                            ,
+                            IsActive = true
+                            ,
+                            IsDeleted = false
+                            ,
+                            UserName = txtUserName.Text
+                            ,
+                            Password = txtPassword.Text
+                            ,
+                            Phone = txtPhone1.Text
+                            ,
+                            MiddleName = txtMiddleName.Text
+                        };
+                        var student = new Academic.DbEntities.Students.Student()
+                        {
+                            CRN = txtCRN.Text,
                         };
 
-                    createdUser.SchoolId = user.SchoolId;
-                    using (var helper = new DbHelper.Student())
-                    //using (var batchHelper = new DbHelper.Batch())
-                    {
+                        createdUser.SchoolId = user.SchoolId;
+
                         var saved = helper.AddOrUpdateStudent(createdUser, student, ProgramBatchId);
 
                         if (saved != null)
@@ -120,7 +124,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                                 ResetTextAndCombos();
                                 if (SaveClicked != null)
                                 {
-                                    SaveClicked(this, new MessageEventArgs());
+                                    SaveClicked(this, new MessageEventArgs() );
                                 }
                             }
                             else if (btn.ID == "btnCancel")
@@ -134,7 +138,7 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentCreate
                             {
                                 if (SaveClicked != null)
                                 {
-                                    SaveClicked(this, new MessageEventArgs());
+                                    SaveClicked(this, new MessageEventArgs() { Message = "close" });
                                 }
                             }
                         }

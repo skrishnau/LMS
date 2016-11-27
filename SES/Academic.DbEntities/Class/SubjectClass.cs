@@ -71,8 +71,8 @@ namespace Academic.DbEntities.Class
         public DateTime? EndDate { get; set; }
 
         //grouping of students
-        //if false: then use the subject's grouping to group students
         //if hasGrouping = true then this class uses goruping of students else no grouping of  students
+        //if useDefaultGrouping is false: then use the subject's grouping to group students
         public bool HasGrouping { get; set; }
         public bool? UseDefaultGrouping { get; set; }
 
@@ -95,5 +95,7 @@ namespace Academic.DbEntities.Class
 
         //gives all the users for this session of the course.
         public virtual ICollection<UserClass> ClassUsers { get; set; }
+
+        public virtual ICollection<SubjectClassGrouping> SubjectClassGrouping { get; set; }
     }
 }

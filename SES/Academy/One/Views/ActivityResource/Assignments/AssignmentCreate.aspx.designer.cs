@@ -49,6 +49,15 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.CheckBox chkDisplayDesc;
         
         /// <summary>
+        /// ClassesInActivityChoose1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.ActivityResource.Class.ClassesInActivityChoose ClassesInActivityChoose1;
+        
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.TextBox txtWordLimit;
         
         /// <summary>
+        /// lblValiWordLimit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValiWordLimit;
+        
+        /// <summary>
         /// txtMaxFiles control.
         /// </summary>
         /// <remarks>
@@ -155,6 +173,15 @@ namespace One.Views.ActivityResource.Assignments {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMaxFiles;
+        
+        /// <summary>
+        /// lblValiMaxFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValiMaxFile;
         
         /// <summary>
         /// txtMaxSize control.

@@ -22,6 +22,8 @@ namespace One.Views.Office.School
         protected void Page_Load(object sender, EventArgs e)
         {
             file_upload.Style.Add("visibility", " hidden");
+            lblMsg.Visible = false;
+
             if (!IsPostBack)
             {
                 var guid = Guid.NewGuid();
@@ -46,25 +48,24 @@ namespace One.Views.Office.School
                 }
             }
 
-            if (Values.Session.GetUser(Session) > 0)
-            {
-                hidUserId.Value = Values.Session.GetUser(Session).ToString();
-            }
-            else
-            {
-                using (var helper = new DbHelper.Office())
-                {
-                    var sch = helper.GetSchoolOfUser(Values.Session.GetUser(Session));
-                    if (sch != null)
-                    {
-                        //Give to update or edit but not add new.
-                        Response.Redirect("~/Views/Dashboard.aspx");
-                    }
-                }
-                //redirect to login page.
-                Response.Redirect("~/Views/Account/Login.aspx");
-            }
-            lblMsg.Visible = false;
+            //if (Values.Session.GetUser(Session) > 0)
+            //{
+            //    hidUserId.Value = Values.Session.GetUser(Session).ToString();
+            //}
+            //else
+            //{
+            //    using (var helper = new DbHelper.Office())
+            //    {
+            //        //var sch = helper.GetSchoolOfUser(Values.Session.GetUser(Session));
+            //        //if (sch != null)
+            //        //{
+            //        //    //Give to update or edit but not add new.
+            //        //    Response.Redirect("~/Views/Dashboard.aspx");
+            //        //}
+            //    }
+            //    //redirect to login page.
+            //    Response.Redirect("~/Views/Account/Login.aspx");
+            //}
         }
 
         private void PopulateSchoolInfo(CustomPrincipal user)

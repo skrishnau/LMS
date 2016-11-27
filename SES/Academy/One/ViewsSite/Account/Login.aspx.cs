@@ -61,7 +61,7 @@ namespace One.ViewsSite.Account
                             }
                             else
                             {
-                                Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
+                                Response.Redirect("~/");
                             }
                         }
                     }

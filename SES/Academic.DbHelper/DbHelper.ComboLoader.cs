@@ -93,163 +93,163 @@ namespace Academic.DbHelper
 
             #region Level Loading functions
 
-            public static void LoadLevel(ref DropDownList cmbLevel, int SchoolId)
-            {
-                cmbLevel.DataTextField = "Name";
-                cmbLevel.DataValueField = "Id";
-                using (var helper = new DbHelper.Structure())
-                {
-                    var lev = helper.GetLevels(SchoolId);
-                    //if (emptyField)
-                    //{
-                    //    lev.Insert(0, new IdAndName() { Id = 0, Name = "" });
-                    //}
-                    if (lev.Count > 0)
-                    {
+            //public static void LoadLevel(ref DropDownList cmbLevel, int SchoolId)
+            //{
+            //    cmbLevel.DataTextField = "Name";
+            //    cmbLevel.DataValueField = "Id";
+            //    using (var helper = new DbHelper.Structure())
+            //    {
+            //        var lev = helper.GetLevels(SchoolId);
+            //        //if (emptyField)
+            //        //{
+            //        //    lev.Insert(0, new IdAndName() { Id = 0, Name = "" });
+            //        //}
+            //        if (lev.Count > 0)
+            //        {
 
-                        lev.Insert(0, new IdAndName() { Id = 0, Name = "--All--" });
-                    }
-
-
-                    cmbLevel.DataSource = lev;
-                    cmbLevel.DataBind();
-                    //if (selectedValue != 0)
-                    //{
-                    //    var index = lev.IndexOf(lev.First(x => x.Id == selectedValue));
-                    //    cmbLevel.SelectedIndex = (index);
-                    //}
-                }
-            }
-
-            public static void LoadLevel(ref DropDownList cmbLevel, int SchoolId
-                , bool emptyField, int selectedValue = 0)
-            {
-                cmbLevel.DataTextField = "Name";
-                cmbLevel.DataValueField = "Id";
-                using (var helper = new DbHelper.Structure())
-                {
-                    var lev = helper.GetLevels(SchoolId);
-                    if (emptyField)
-                    {
-                        lev.Insert(0, new IdAndName() { Id = 0, Name = "" });
-                    }
-                    //else if (lev.Count > 0)
-                    //{
-
-                    //        lev.Insert(0, new IdAndName() { Id = 0, Name = "--All--" });
-                    //}
+            //            lev.Insert(0, new IdAndName() { Id = 0, Name = "--All--" });
+            //        }
 
 
-                    cmbLevel.DataSource = lev;
-                    cmbLevel.DataBind();
-                    if (selectedValue != 0)
-                    {
-                        var index = lev.IndexOf(lev.First(x => x.Id == selectedValue));
-                        cmbLevel.SelectedIndex = (index);
-                    }
-                }
-            }
+            //        cmbLevel.DataSource = lev;
+            //        cmbLevel.DataBind();
+            //        //if (selectedValue != 0)
+            //        //{
+            //        //    var index = lev.IndexOf(lev.First(x => x.Id == selectedValue));
+            //        //    cmbLevel.SelectedIndex = (index);
+            //        //}
+            //    }
+            //}
 
-            public static void LoadLevel(ref DropDownList cmbLevel, int SchoolId
-                , int selectedValue, bool allField)
-            {
-                cmbLevel.DataTextField = "Name";
-                cmbLevel.DataValueField = "Id";
-                using (var helper = new DbHelper.Structure())
-                {
-                    var lev = helper.GetLevels(SchoolId);
+            //public static void LoadLevel(ref DropDownList cmbLevel, int SchoolId
+            //    , bool emptyField, int selectedValue = 0)
+            //{
+            //    cmbLevel.DataTextField = "Name";
+            //    cmbLevel.DataValueField = "Id";
+            //    using (var helper = new DbHelper.Structure())
+            //    {
+            //        var lev = helper.GetLevels(SchoolId);
+            //        if (emptyField)
+            //        {
+            //            lev.Insert(0, new IdAndName() { Id = 0, Name = "" });
+            //        }
+            //        //else if (lev.Count > 0)
+            //        //{
 
-                    if (lev.Count > 0)
-                    {
-                        if (allField)
-                            lev.Insert(0, new IdAndName() { Id = 0, Name = "All" });
-                    }
+            //        //        lev.Insert(0, new IdAndName() { Id = 0, Name = "--All--" });
+            //        //}
 
 
-                    cmbLevel.DataSource = lev;
-                    cmbLevel.DataBind();
-                    if (selectedValue != 0)
-                    {
-                        var index = lev.IndexOf(lev.First(x => x.Id == selectedValue));
-                        cmbLevel.SelectedIndex = (index);
-                    }
-                }
-            }
+            //        cmbLevel.DataSource = lev;
+            //        cmbLevel.DataBind();
+            //        if (selectedValue != 0)
+            //        {
+            //            var index = lev.IndexOf(lev.First(x => x.Id == selectedValue));
+            //            cmbLevel.SelectedIndex = (index);
+            //        }
+            //    }
+            //}
 
-            public static void LoadLevelWithFirstElementSelected(ref DropDownList cmbLevel, int schoolId, int selectedValue = 0)
-            {
-                cmbLevel.DataTextField = "Name";
-                cmbLevel.DataValueField = "Id";
-                using (var helper = new DbHelper.Structure())
-                {
-                    var lev = helper.GetLevels(schoolId);
+            //public static void LoadLevel(ref DropDownList cmbLevel, int SchoolId
+            //    , int selectedValue, bool allField)
+            //{
+            //    cmbLevel.DataTextField = "Name";
+            //    cmbLevel.DataValueField = "Id";
+            //    using (var helper = new DbHelper.Structure())
+            //    {
+            //        var lev = helper.GetLevels(SchoolId);
 
-                    if (lev.Count > 1 || lev.Count == 0)
-                    {
-                        lev.Insert(0, new IdAndName() { Id = 0, Name = "" });
-                    }
-                    cmbLevel.DataSource = lev;
-                    cmbLevel.DataBind();
-                    if (selectedValue > 0)
-                    {
-                        var index = lev.IndexOf(lev.First(x => x.Id == selectedValue));
-                        if (index >= 0)
-                        {
-                            cmbLevel.SelectedIndex = index;
-                        }
-                    }
-                }
-            }
+            //        if (lev.Count > 0)
+            //        {
+            //            if (allField)
+            //                lev.Insert(0, new IdAndName() { Id = 0, Name = "All" });
+            //        }
+
+
+            //        cmbLevel.DataSource = lev;
+            //        cmbLevel.DataBind();
+            //        if (selectedValue != 0)
+            //        {
+            //            var index = lev.IndexOf(lev.First(x => x.Id == selectedValue));
+            //            cmbLevel.SelectedIndex = (index);
+            //        }
+            //    }
+            //}
+
+            //public static void LoadLevelWithFirstElementSelected(ref DropDownList cmbLevel, int schoolId, int selectedValue = 0)
+            //{
+            //    cmbLevel.DataTextField = "Name";
+            //    cmbLevel.DataValueField = "Id";
+            //    using (var helper = new DbHelper.Structure())
+            //    {
+            //        var lev = helper.GetLevels(schoolId);
+
+            //        if (lev.Count > 1 || lev.Count == 0)
+            //        {
+            //            lev.Insert(0, new IdAndName() { Id = 0, Name = "" });
+            //        }
+            //        cmbLevel.DataSource = lev;
+            //        cmbLevel.DataBind();
+            //        if (selectedValue > 0)
+            //        {
+            //            var index = lev.IndexOf(lev.First(x => x.Id == selectedValue));
+            //            if (index >= 0)
+            //            {
+            //                cmbLevel.SelectedIndex = index;
+            //            }
+            //        }
+            //    }
+            //}
             #endregion Level Loading functions
 
             #region Faculty Load Functions
 
-            public static void LoadFaculty(ref DropDownList cmbFaculty, int levelId, bool emptySelection = false)
-            {
-                cmbFaculty.DataTextField = "Name";
-                cmbFaculty.DataValueField = "Id";
-                //int levelId = Convert.ToInt32((
-                //    cmbLevel.SelectedValue.ToString() == "") ? "0" : cmbLevel.SelectedValue.ToString());
-                using (var helper = new DbHelper.Structure())
-                {
-                    var fac = helper.GetFaculties(levelId);
-                    if (emptySelection)
-                    {
-                        fac.Insert(0, new IdAndName() { Id = 0, Name = "" });
-                    }
-                    else if (fac.Count > 0)
-                        fac.Insert(0, new IdAndName() { Id = 0, Name = "All" });
-                    cmbFaculty.DataSource = fac;
-                    cmbFaculty.DataBind();
-                }
-            }
+            //public static void LoadFaculty(ref DropDownList cmbFaculty, int levelId, bool emptySelection = false)
+            //{
+            //    cmbFaculty.DataTextField = "Name";
+            //    cmbFaculty.DataValueField = "Id";
+            //    //int levelId = Convert.ToInt32((
+            //    //    cmbLevel.SelectedValue.ToString() == "") ? "0" : cmbLevel.SelectedValue.ToString());
+            //    using (var helper = new DbHelper.Structure())
+            //    {
+            //        var fac = helper.GetFaculties(levelId);
+            //        if (emptySelection)
+            //        {
+            //            fac.Insert(0, new IdAndName() { Id = 0, Name = "" });
+            //        }
+            //        else if (fac.Count > 0)
+            //            fac.Insert(0, new IdAndName() { Id = 0, Name = "All" });
+            //        cmbFaculty.DataSource = fac;
+            //        cmbFaculty.DataBind();
+            //    }
+            //}
 
-            public static void LoadFacultyWithFirstElementSelected(ref DropDownList cmbFaculty, int levelId, int selectedValue = 0)
-            {
-                cmbFaculty.DataTextField = "Name";
-                cmbFaculty.DataValueField = "Id";
-                //int levelId = Convert.ToInt32((
-                //    cmbLevel.SelectedValue.ToString() == "") ? "0" : cmbLevel.SelectedValue.ToString());
-                using (var helper = new DbHelper.Structure())
-                {
-                    var fac = helper.GetFaculties(levelId);
-                    if (fac.Count > 1 || fac.Count == 0)
-                    {
-                        fac.Insert(0, new IdAndName() { Id = 0, Name = "" });
-                    }
-                    cmbFaculty.DataSource = fac;
-                    cmbFaculty.DataBind();
+            //public static void LoadFacultyWithFirstElementSelected(ref DropDownList cmbFaculty, int levelId, int selectedValue = 0)
+            //{
+            //    cmbFaculty.DataTextField = "Name";
+            //    cmbFaculty.DataValueField = "Id";
+            //    //int levelId = Convert.ToInt32((
+            //    //    cmbLevel.SelectedValue.ToString() == "") ? "0" : cmbLevel.SelectedValue.ToString());
+            //    using (var helper = new DbHelper.Structure())
+            //    {
+            //        var fac = helper.GetFaculties(levelId);
+            //        if (fac.Count > 1 || fac.Count == 0)
+            //        {
+            //            fac.Insert(0, new IdAndName() { Id = 0, Name = "" });
+            //        }
+            //        cmbFaculty.DataSource = fac;
+            //        cmbFaculty.DataBind();
 
-                    if (selectedValue > 0)
-                    {
-                        var index = fac.IndexOf(fac.First(x => x.Id == selectedValue));
-                        if (index >= 0)
-                        {
-                            cmbFaculty.SelectedIndex = index;
-                        }
-                    }
-                }
-            }
+            //        if (selectedValue > 0)
+            //        {
+            //            var index = fac.IndexOf(fac.First(x => x.Id == selectedValue));
+            //            if (index >= 0)
+            //            {
+            //                cmbFaculty.SelectedIndex = index;
+            //            }
+            //        }
+            //    }
+            //}
 
             #endregion
 
@@ -363,20 +363,20 @@ namespace Academic.DbHelper
 
             #region Role Loading functions
 
+            //Used after github..
             public static void LoadRole(ref DropDownList cmbRole, int schoolId, string defaultSelectedName = "")
             {
-                cmbRole.DataTextField = "Name";
+                cmbRole.DataTextField = "DisplayName";
                 cmbRole.DataValueField = "Id";
 
                 using (var helper = new DbHelper.User())
                 {
                     var type = helper.GetRole(schoolId);
-                    if (type.Count > 0)
-                        type.Insert(0, new Role() { Id = 0, RoleName = "" });
+                    type.Insert(0, new Role() { Id = 0, DisplayName = "" });
                     cmbRole.DataSource = type;
                     cmbRole.DataBind();
 
-                    var index = type.IndexOf(type.First(x => x.RoleName == defaultSelectedName));
+                    var index = type.IndexOf(type.First(x => x.DisplayName == defaultSelectedName));
                     if (index >= 0)
                         cmbRole.SelectedIndex = index;
                 }
@@ -384,14 +384,14 @@ namespace Academic.DbHelper
 
             public static void LoadRoleForUserEnroll(ref DropDownList cmbRole, int schoolId, string defaultSelectedName)
             {
-                cmbRole.DataTextField = "RoleName";
+                cmbRole.DataTextField = "DisplayName";
                 cmbRole.DataValueField = "Id";
 
                 using (var helper = new DbHelper.User())
                 {
                     var type = helper.GetRolesForUserEnrollOption(schoolId);
                     if (type.Count > 0)
-                        type.Insert(0, new Role() { Id = 0, RoleName = "None" });
+                        type.Insert(0, new Role() { Id = 0, DisplayName = "None" });
                     cmbRole.DataSource = type;
                     cmbRole.DataBind();
 

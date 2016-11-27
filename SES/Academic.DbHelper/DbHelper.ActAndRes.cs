@@ -171,7 +171,7 @@ namespace Academic.DbHelper
                                 //grade was choosen from list
                                 //percent
 
-                                if ((grade.ObtainedGrade.GradeType.GradeValueIsInPercentOrPostition ?? false))
+                                if ((grade.ObtainedGrade.Grade.GradeValueIsInPercentOrPostition ?? false))
                                 {
                                     #region Grade is in percent %
 
@@ -197,7 +197,7 @@ namespace Academic.DbHelper
                                     #region Grade is in position
 
                                     var maxPos =
-                                                grade.ObtainedGrade.GradeType.GradeValues.Max(
+                                                grade.ObtainedGrade.Grade.GradeValues.Max(
                                                     x => x.EquivalentPercentOrPostition);
                                     if (maxPos > 0)
                                     {
@@ -400,7 +400,7 @@ namespace Academic.DbHelper
                                             viewModel.SetOtherValues(asg.Name
                                                 , (asg.DispalyDescriptionOnPage ?? false) ? asg.Description : ""
                                                 , asg.DispalyDescriptionOnPage ?? false
-                                                , v.ViewUrl, v.IconPath);
+                                                , v.ViewUrl, v.IconPath,v.CreateUrl);
                                             list.Add(viewModel);
                                         }
                                         break;
@@ -416,7 +416,7 @@ namespace Academic.DbHelper
                                             viewModel.SetOtherValues(forum.Name
                                                 , (forum.DisplayDescriptionOnCoursePage ? forum.Description : "")
                                                 , forum.DisplayDescriptionOnCoursePage
-                                                , v.ViewUrl, v.IconPath);
+                                                , v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
                                         }
                                         break;
@@ -428,7 +428,7 @@ namespace Academic.DbHelper
                                             viewModel.SetOtherValues(choice.Name
                                                 , (choice.DisplayDescriptionOnCoursePage ? choice.Description : "")
                                                 , choice.DisplayDescriptionOnCoursePage
-                                                , v.ViewUrl, v.IconPath);
+                                                , v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
                                         }
                                         break;
@@ -457,7 +457,7 @@ namespace Academic.DbHelper
                                             viewModel.SetOtherValues(book.Name,
                                                 book.DisplayDescriptionOnCourePage ? book.Description : ""
                                                 , book.DisplayDescriptionOnCourePage
-                                                , v.ViewUrl, v.IconPath);
+                                                , v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
                                         }
                                         break;
@@ -473,7 +473,7 @@ namespace Academic.DbHelper
                                                 viewModel.SetOtherValues(file.Name,
                                                     file.ShowDescriptionOnCoursePage ? file.Description : ""
                                                     , file.ShowDescriptionOnCoursePage,
-                                                    v.ViewUrl, mainFile.SubFile.IconPath
+                                                    v.ViewUrl, mainFile.SubFile.IconPath, v.CreateUrl
                                                     );
                                                 list.Add(viewModel);
                                             }
@@ -490,7 +490,7 @@ namespace Academic.DbHelper
                                         {
                                             var v = ActivityResourceValues.LabelResource();
                                             viewModel.SetOtherValues(label.Text, ""
-                                                , false, "", "", false);
+                                                , false, "", "", v.CreateUrl, false);
                                             list.Add(viewModel);
                                         }
                                         break;
@@ -502,7 +502,7 @@ namespace Academic.DbHelper
                                             var v = ActivityResourceValues.PageResource();
                                             viewModel.SetOtherValues(page.Name,
                                                 page.DisplayDescriptionOnPage ? page.Description : ""
-                                                , page.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath);
+                                                , page.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
                                         }
                                         break;
@@ -514,7 +514,7 @@ namespace Academic.DbHelper
                                             var v = ActivityResourceValues.UrlResource();
                                             viewModel.SetOtherValues(url.Name,
                                                 url.DisplayDescriptionOnPage ? url.Description : ""
-                                                , url.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath);
+                                                , url.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
                                         }
                                         break;
@@ -586,7 +586,10 @@ namespace Academic.DbHelper
             }
 
 
-
+            public Assignment GetAssignment(int assignmentId)
+            {
+                return Context.Assignment.Find(assignmentId);
+            }
 
 
 
@@ -1434,6 +1437,8 @@ namespace Academic.DbHelper
 
 
 
+
+           
         }
 
     }

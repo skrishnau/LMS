@@ -1,13 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="One.Views.User.List" %>
 
-<%--<asp:Content runat="server" ID="contentLeft" ContentPlaceHolderID="BodyInnerLeft">
-
-    <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Views/User/Create.aspx" runat="server">Create User</asp:HyperLink>
-    <asp:HyperLink ID="HyperLink2" NavigateUrl="~/Views/Student/StudentList.aspx" runat="server">Students</asp:HyperLink>
-
-</asp:Content>--%>
-
-
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="Body">
     <div style="text-align: center">
         <strong>Users List</strong>
@@ -29,141 +21,18 @@
        
     </div>
     <br />
-    <div>
-        <%-- <table>
-            <tr>
-                <td class="auto-style1">FirstName</td>
-                <td class="auto-style1">LastName</td>
-                <td class="auto-style1">FirstName</td>
-                <td class="auto-style1">FirstName</td>
-                <td class="auto-style1">FirstName</td>
-                <td class="auto-style1">FirstName</td>
-            </tr>
-        </table>--%>
-
-        <%-- <asp:DataList ID="DataList1" runat="server" DataSourceID="ObjectDataSource1" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
-            <AlternatingItemStyle BackColor="#DCDCDC" />
-            <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-            <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-            <ItemStyle BackColor="#EEEEEE" ForeColor="Black" />
-            <ItemTemplate>
-                <asp:HiddenField ID="IdLabel" runat="server" Value='<%# Eval("Id") %>' />
-                <table>
-                    <tr>
-                        <td class="auto-style1">
-                            <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Eval("FirstName") %>' />
-                        </td>
-                        <td class="auto-style1">
-                            <asp:Label ID="LastNameLabel" runat="server" Text='<%# Eval("LastName") %>' />
-                        </td>
-                        <td class="auto-style1">
-                            <asp:Label ID="UserNameLabel" runat="server" Text='<%# Eval("UserName") %>' />
-
-                        </td>
-                        <td class="auto-style1">
-                            <asp:Label ID="PasswordLabel" runat="server" Text='<%# Eval("Password") %>' />
-                        </td>
-                        <td class="auto-style1">
-                            <asp:Label ID="EmailLabel" runat="server" Text='<%# Eval("Email") %>' />
-                        </td>
-                        <td class="auto-style1">
-                            <asp:Label ID="PhoneLabel" runat="server" Text='<%# Eval("Phone") %>' />
-                        </td>
-                        <td class="auto-style1">
-                            <asp:Label ID="CountryLabel" runat="server" Text='<%# Eval("Country") %>' />
-                        </td>
-                        <td class="auto-style1">
-                            <asp:Label ID="LastOnlineLabel" runat="server" Text='<%# Eval("LastOnline") %>' />
-                        </td>
-                    </tr>
-                </table>
-                <%-- below code must be commented all in this datalist  --%>
-        <%--  <br />
-                <br />
-                UserName:
-                <br />
-                Password:
-                <br />
-                Email:
-                <br />
-                EmailDisplay:
-                <asp:Label ID="EmailDisplayLabel" runat="server" Text='<%# Eval("EmailDisplay") %>' />
-                <br />
-                Phone:
-                <br />
-                City:
-                <asp:Label ID="CityLabel" runat="server" Text='<%# Eval("City") %>' />
-                <br />
-                Country:
-                <br />
-                Description:
-                <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Eval("Description") %>' />
-                <br />
-                DOB:
-                <asp:Label ID="DOBLabel" runat="server" Text='<%# Eval("DOB") %>' />
-                <br />
-                IsActive:
-                <asp:Label ID="IsActiveLabel" runat="server" Text='<%# Eval("IsActive") %>' />
-                <br />
-                IsDeleted:
-                <asp:Label ID="IsDeletedLabel" runat="server" Text='<%# Eval("IsDeleted") %>' />
-                <br />
-                GenderId:
-                <asp:Label ID="GenderIdLabel" runat="server" Text='<%# Eval("GenderId") %>' />
-                <br />
-                Gender:
-                <asp:Label ID="GenderLabel" runat="server" Text='<%# Eval("Gender") %>' />
-                <br />
-                SchoolId:
-                <asp:Label ID="SchoolIdLabel" runat="server" Text='<%# Eval("SchoolId") %>' />
-                <br />
-                School:
-                <asp:Label ID="SchoolLabel" runat="server" Text='<%# Eval("School") %>' />
-                <br />
-                Image:
-                <asp:Label ID="ImageLabel" runat="server" Text='<%# Eval("Image") %>' />
-                <br />
-                ImageType:
-                <asp:Label ID="ImageTypeLabel" runat="server" Text='<%# Eval("ImageType") %>' />
-                <br />
-                CreatedDate:
-                <asp:Label ID="CreatedDateLabel" runat="server" Text='<%# Eval("CreatedDate") %>' />
-                <br />
-                LastOnline:
-                <br />
-                UserDivisions:
-                <asp:Label ID="UserDivisionsLabel" runat="server" Text='<%# Eval("UserDivisions") %>' />
-                <br />
-                UserRoles:
-                <asp:Label ID="UserRolesLabel" runat="server" Text='<%# Eval("UserRoles") %>' />
-                <br />
-                FullName:
-                <asp:Label ID="FullNameLabel" runat="server" Text='<%# Eval("FullName") %>' />
-                <br />
-                SecurityQuestion:
-                <asp:Label ID="SecurityQuestionLabel" runat="server" Text='<%# Eval("SecurityQuestion") %>' />
-                <br />
-                SecurityAnswer:
-                <asp:Label ID="SecurityAnswerLabel" runat="server" Text='<%# Eval("SecurityAnswer") %>' />
-                <br />
-                <br />
-            </ItemTemplate>
-
-            <SelectedItemStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-
-        </asp:DataList>--%>
-
-        <asp:GridView ID="GridView1"  runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <div style="width: 99%;">
+        <asp:GridView ID="GridView1" Width="100%" runat="server" AllowPaging="True"
+            AutoGenerateColumns="False" DataSourceID="ObjectDataSource1"
+            CellPadding="4" ForeColor="#333333" GridLines="None">
 
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-            
+
             <Columns>
-                  <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
+                <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
 
-                <asp:TemplateField HeaderText="Image" >
+                <asp:TemplateField HeaderText="Image">
                     <EditItemTemplate>
-
-                        <%--<asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:TextBox>--%>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>'>
@@ -171,29 +40,20 @@
                                 Height="20" Width="20"
                                 ImageUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>' />
                         </asp:HyperLink>
-                        <%--<asp:Label ID="Label8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:Label>--%>
                     </ItemTemplate>
-                    <ItemStyle Width="30"></ItemStyle>
+                    <ItemStyle Width="25"></ItemStyle>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="First Name" SortExpression="FirstName" >
+                <asp:TemplateField HeaderText="Name">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("FirstName") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("FirstName") %>'></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text='<%# GetName(Eval("FirstName"),Eval("MiddleName"),Eval("LastName"))  %>'></asp:Label>
                     </ItemTemplate>
-                    <ItemStyle Width="100"></ItemStyle>
+                    <ItemStyle Width="150"></ItemStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Last Name" SortExpression="LastName">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("LastName") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("LastName") %>'></asp:Label>
-                    </ItemTemplate>
-                    <ItemStyle Width="100"></ItemStyle>
-                </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="Username" SortExpression="UserName">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("UserName") %>'></asp:TextBox>
@@ -203,15 +63,7 @@
                     </ItemTemplate>
                     <ItemStyle Width="100"></ItemStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Password" SortExpression="Password">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Password") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("Password") %>'></asp:Label>
-                    </ItemTemplate>
-                    <ItemStyle Width="100"></ItemStyle>
-                </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="Email" SortExpression="Email">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
@@ -219,7 +71,7 @@
                     <ItemTemplate>
                         <asp:Label ID="Label5" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
                     </ItemTemplate>
-                    <ItemStyle Width="100"></ItemStyle>
+                    <ItemStyle Width="150"></ItemStyle>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Phone" SortExpression="Phone">
                     <EditItemTemplate>
@@ -230,17 +82,7 @@
                     </ItemTemplate>
                     <ItemStyle Width="100"></ItemStyle>
                 </asp:TemplateField>
-                <%--<asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />--%>
-                <asp:TemplateField HeaderText="Country" SortExpression="Country">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Country") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label7" runat="server" Text='<%# Bind("Country") %>'></asp:Label>
-                    </ItemTemplate>
-                    <ItemStyle></ItemStyle>
-                    <ItemStyle Width="100"></ItemStyle>
-                </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="Last Online" SortExpression="LastOnline">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:TextBox>
@@ -250,14 +92,14 @@
                             <asp:Label ID="Label8" runat="server" Text='<%# GetLastOnline(DataBinder.Eval(Container.DataItem,"LastOnline"))  %>'></asp:Label>
                         </span>
                     </ItemTemplate>
-                    <ItemStyle Width="50"></ItemStyle>
+                    <ItemStyle Width="65"></ItemStyle>
                 </asp:TemplateField>
 
             </Columns>
 
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#557d96" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
@@ -268,7 +110,8 @@
 
         </asp:GridView>
 
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="ListAllUsers" TypeName="Academic.DbHelper.DbHelper+User">
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="ListAllUsers"
+            TypeName="Academic.DbHelper.DbHelper+User">
             <SelectParameters>
                 <asp:ControlParameter ControlID="hidSchoolId" DefaultValue="0" Name="schoolId" PropertyName="Value" Type="Int32" />
                 <asp:ControlParameter ControlID="hidPerPage" DefaultValue="0" Name="perPage" PropertyName="Value" Type="Int32" />

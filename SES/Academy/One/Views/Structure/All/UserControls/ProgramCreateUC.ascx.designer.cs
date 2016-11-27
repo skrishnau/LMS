@@ -67,33 +67,6 @@ namespace One.Views.Structure.All.UserControls {
         protected global::System.Web.UI.WebControls.Label valiTxtName;
         
         /// <summary>
-        /// cmbLevel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbLevel;
-        
-        /// <summary>
-        /// cmbFaculty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbFaculty;
-        
-        /// <summary>
-        /// valiFaculty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label valiFaculty;
-        
-        /// <summary>
         /// txtDescription control.
         /// </summary>
         /// <remarks>

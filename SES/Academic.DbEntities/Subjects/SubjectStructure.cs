@@ -40,13 +40,13 @@ namespace Academic.DbEntities.Subjects
         public DateTime? VoidDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-        public int? RemovedInAcademicYearId { get; set; }
-        public int? LastActiveInAcademicYearId { get; set; }
-        public int? WillNotBeActiveFromAcademicYearId { get; set; }
+        //public int? RemovedInAcademicYearId { get; set; }
+        //public int? LastActiveInAcademicYearId { get; set; }
+        //public int? WillNotBeActiveFromAcademicYearId { get; set; }
 
-        public virtual AcademicYear RemovedInAcademicYear { get; set; }
-        public virtual AcademicYear LastActiveInAcademicYear { get; set; }
-        public virtual AcademicYear WillNotBeActiveFromAcademicYear { get; set; }
+        //public virtual AcademicYear RemovedInAcademicYear { get; set; }
+        //public virtual AcademicYear LastActiveInAcademicYear { get; set; }
+        //public virtual AcademicYear WillNotBeActiveFromAcademicYear { get; set; }
 
 
 

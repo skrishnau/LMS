@@ -22,15 +22,6 @@ namespace One.Views.Course.Section.Master {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// pnlContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlContent;
-        
-        /// <summary>
         /// pnlSections control.
         /// </summary>
         /// <remarks>
@@ -49,31 +40,13 @@ namespace One.Views.Course.Section.Master {
         protected global::System.Web.UI.WebControls.HiddenField hidId;
         
         /// <summary>
-        /// pnlCreateSection control.
+        /// lnkAddSection1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCreateSection;
-        
-        /// <summary>
-        /// CreateSectionUc1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Course.Section.CreateSectionUc CreateSectionUc1;
-        
-        /// <summary>
-        /// lnkAddSection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkAddSection;
+        protected global::System.Web.UI.WebControls.HyperLink lnkAddSection1;
         
         /// <summary>
         /// imgAddSection control.
@@ -83,15 +56,6 @@ namespace One.Views.Course.Section.Master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton imgAddSection;
-        
-        /// <summary>
-        /// CreateSectionUc2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Course.Section.CreateSectionUc CreateSectionUc2;
         
         /// <summary>
         /// ActResChooseUc control.

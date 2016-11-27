@@ -20,17 +20,17 @@ namespace One.Views.Academy.ProgramSelection.OnlyListing
 
         }
 
-        public int LevelId
-        {
-            get { return Convert.ToInt32(hidLevelId.Value); }
-            set { hidLevelId.Value = value.ToString(); }
-        }
+        //public int LevelId
+        //{
+        //    get { return Convert.ToInt32(hidLevelId.Value); }
+        //    set { hidLevelId.Value = value.ToString(); }
+        //}
 
-        public int FacultyId
-        {
-            get { return Convert.ToInt32(hidFacultyId.Value); }
-            set { hidFacultyId.Value = value.ToString(); }
-        }
+        //public int FacultyId
+        //{
+        //    get { return Convert.ToInt32(hidFacultyId.Value); }
+        //    set { hidFacultyId.Value = value.ToString(); }
+        //}
 
         public int ProgramId
         {
@@ -68,10 +68,10 @@ namespace One.Views.Academy.ProgramSelection.OnlyListing
             set { hidExamOfClassId.Value = value.ToString(); }
         }
 
-        public void SetIds(int levelId, int facultyId, int programId, int yearId, int subyearId)
+        public void SetIds(int programId, int yearId, int subyearId)
         {
-            hidLevelId.Value = levelId.ToString();
-            hidFacultyId.Value = facultyId.ToString();
+            //hidLevelId.Value = levelId.ToString();
+            //hidFacultyId.Value = facultyId.ToString();
             ProgramId = programId;
             YearId = yearId;
             SubYearId = subyearId;
@@ -152,10 +152,10 @@ namespace One.Views.Academy.ProgramSelection.OnlyListing
             {
                 BatchSelectClicked(this, new RunningClassEventArgs()
                 {
-                    LevelId = LevelId
-                    ,
-                    FacultyId = FacultyId
-                    ,
+                    //LevelId = LevelId
+                    //,
+                    //FacultyId = FacultyId
+                    //,
                     ProgramId = ProgramId
                     ,
                     YearId = YearId

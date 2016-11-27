@@ -130,11 +130,17 @@
             <div style="clear: both;"></div>
             <br/>
             <div style="text-align: center;">
-                <asp:Button runat="server" ID="btnSaveAndContinueAdding" Text="Save and Continue adding" Width="215px" OnClick="btnSaveAndContinueAdding_Click" />
+                <asp:Button runat="server" ID="btnSaveAndContinueAdding" Text="Save and Continue adding" Width="215px" 
+                    CausesValidation="False"
+                    OnClick="btnSaveAndContinueAdding_Click" />
                 &nbsp;&nbsp;&nbsp;
-                <asp:Button runat="server" ID="btnSaveAndReturn" Text="Save and return" Width="176px" OnClick="btnSaveAndReturn_Click" />
+                <asp:Button runat="server" ID="btnSaveAndReturn" Text="Save and return" Width="176px" 
+                    CausesValidation="False"
+                    OnClick="btnSaveAndReturn_Click" />
                 &nbsp;&nbsp;&nbsp;
-                <asp:Button runat="server" ID="btnCancel" Text="Cancel" Width="142px" OnClick="btnCancel_Click" />
+                <asp:Button runat="server" ID="btnCancel" Text="Cancel" Width="142px" 
+                    CausesValidation="False"
+                    OnClick="btnCancel_Click" />
                 <br />
                 <br />
 

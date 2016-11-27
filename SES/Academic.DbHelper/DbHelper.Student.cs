@@ -666,6 +666,12 @@ namespace Academic.DbHelper
                             && !(x.Student.User.IsDeleted ?? false));
                 return stdBatchs.ToList();
             }
+
+            //used
+            public bool DoesUserNameExist(int schoolId, string userName)
+            {
+                return Context.Users.Any(x => x.SchoolId==schoolId && x.UserName == userName);
+            }
         }
 
     }

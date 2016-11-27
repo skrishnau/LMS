@@ -11,14 +11,5 @@ namespace One.Views.Course.Section.Master {
     
     
     public partial class Section {
-        
-        /// <summary>
-        /// CreateSectionUc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Course.Section.CreateSectionUc CreateSectionUc;
     }
 }

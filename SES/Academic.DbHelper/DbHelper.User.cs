@@ -14,6 +14,7 @@ using Academic.DbEntities.User;
 //using Academic.InitialValues;
 using System.IO;
 using System.Web.UI.WebControls;
+using Academic.ViewModel;
 
 namespace Academic.DbHelper
 {
@@ -49,6 +50,7 @@ namespace Academic.DbHelper
                 return Context.Role.FirstOrDefault(x => x.RoleName.ToLower().Equals(roleName.ToLower()));
             }
 
+            //maybe used
             public List<Role> GetRolesForUserEnrollOption(int schoolId)
             {
                 var rolesToSelect = new List<string>()
@@ -113,7 +115,7 @@ namespace Academic.DbHelper
 
             }
             //working
-            public bool SaveUsersRole(List<int> userList, int roleId)
+            public bool SaveUsersRole(List<int> userList, int roleId, List<int> removeList)
             {
                 try
                 {
@@ -123,9 +125,10 @@ namespace Academic.DbHelper
                     {
                         using (var scope = new TransactionScope())
                         {
-                            if (role.RoleName.ToLower() == "teacher")
+                            foreach (var i in userList)
                             {
-                                foreach (var i in userList)
+                                var found = Context.UserRole.Any(x => x.UserId == i && x.RoleId == roleId);
+                                if (!found)
                                 {
                                     var ur = new Academic.DbEntities.User.UserRole()
                                     {
@@ -133,49 +136,21 @@ namespace Academic.DbHelper
                                         RoleId = roleId,
                                         AssignedDate = DateTime.Now.Date
                                     };
-                                    var savedRole = Context.UserRole.Add(ur);
-                                    var usr = Context.Users.Find(i);
-                                    var name = (usr == null) ? "" : usr.FullName;
-
-                                    var teacher = new DbEntities.Teachers.Teacher()
-                                    {
-                                        UserId = i
-                                        ,
-                                        Name = name
-                                        ,
-                                        AppointedDate = date
-                                    };
-                                    var savedteacher = Context.Teacher.Add(teacher);
-                                    Context.SaveChanges();
+                                    Context.UserRole.Add(ur);
                                 }
                             }
-                            else if (role.RoleName.ToLower() == "student")
+                            Context.SaveChanges();
+
+                            foreach (var i in removeList)
                             {
-                                foreach (var i in userList)
+                                var found = Context.UserRole.Where(x => x.UserId == i && x.RoleId == roleId).ToList();
+                                foreach (var f in found)
                                 {
-                                    var ur = new Academic.DbEntities.User.UserRole()
-                                    {
-                                        UserId = i,
-                                        RoleId = roleId,
-                                        AssignedDate = DateTime.Now.Date
-                                    };
-                                    var savedRole = Context.UserRole.Add(ur);
-                                    var usr = Context.Users.Find(i);
-                                    var name = (usr == null) ? "" : usr.FullName;
-
-                                    var std = new DbEntities.Students.Student()
-                                    {
-                                        UserId = i
-                                        ,
-                                        Name = name
-                                        ,
-                                        AssignedDate = date
-                                    };
-                                    var savedStd = Context.Student.Add(std);
-                                    Context.SaveChanges();
+                                    var ur = Context.UserRole.Find(f.Id);
+                                    if (ur != null)
+                                        Context.UserRole.Remove(ur);
                                 }
                             }
-
                             Context.SaveChanges();
                             scope.Complete();
                             return true;
@@ -191,7 +166,7 @@ namespace Academic.DbHelper
 
 
             //User
-            public DbEntities.User.Users AddOrUpdateUser(DbEntities.User.Users user, string roleId, HttpPostedFile file)
+            public DbEntities.User.Users AddOrUpdateUser(DbEntities.User.Users user, string roleId, UserFile userFile)
             {
                 try
                 {
@@ -214,22 +189,18 @@ namespace Academic.DbHelper
                         var ent = Context.Users.Find(user.Id);
                         if (ent == null)
                         {
+                            var img = Context.File.Add(userFile);
+                            Context.SaveChanges();
+                            user.UserImageId = img.Id;
                             ent = Context.Users.Add(user);
                             Context.SaveChanges();
 
-                            //save  image
-                            //var path = Path.Combine(Server.MapPath(StaticValue.UserImageDirectory), image.FileName);
-
-                            //file.SaveAs();
-
-
-                            //new ma matra role Admin hunxa other wise there are many roles for a user
                             if (roleId != "")
                             {
                                 int rolei = Convert.ToInt32(roleId);
                                 if (rolei > 0)
                                 {
-                                    SaveUsersRole(new List<int>() { ent.Id }, rolei);
+                                    SaveUsersRole(new List<int>() { ent.Id }, rolei, new List<int>());
                                     //var role = new UserRole()
                                     //{
                                     //    RoleId = rolei,
@@ -245,7 +216,34 @@ namespace Academic.DbHelper
                         }
                         else
                         {
-                            //remained to add other attributes
+                            if (ent.UserImageId <= 0)
+                            {
+                                var img = Context.File.Add(userFile);
+                                Context.SaveChanges();
+                                ent.UserImageId = img.Id;
+                                //school.ImageId = img.Id;
+
+                                //ent.ImageId = img.Id;
+                                //Context.Dispose();
+                            }
+                            else
+                            {
+                                var img = Context.File.Find(ent.UserImageId);
+                                if (img != null)
+                                {
+                                    img.DisplayName = userFile.DisplayName;
+                                    img.FileName = userFile.FileName;
+                                    img.ModifiedBy = userFile.ModifiedBy;
+                                    img.ModifiedDate = userFile.ModifiedDate;
+                                    img.FileDirectory = userFile.FileDirectory;
+
+                                    img.FileSizeInBytes = userFile.FileSizeInBytes;
+                                    img.FileType = userFile.FileType;
+                                    img.IconPath = userFile.IconPath;
+                                    img.Void = userFile.Void;
+                                    //Context.SaveChanges();
+                                }
+                            }
                             ent.City = user.City;
                             ent.Country = user.Country;
                             ent.DOB = user.DOB;
@@ -254,24 +252,16 @@ namespace Academic.DbHelper
                             ent.FirstName = user.FirstName;
                             ent.EmailDisplay = user.EmailDisplay;
                             ent.Email = user.Email;
-                            //if (imgBytes != null)
-                            //{
-                            //    ent.Image = imgBytes;
-                            //    ent.ImageType = file.ContentType;
-                            //}
                             ent.UserName = user.UserName;
-                            // ent.RoleId = user.RoleId;
                             ent.Phone = user.Phone;
                             ent.IsDeleted = user.IsDeleted;
                             ent.IsActive = user.IsActive;
                             ent.Password = user.Password;
                             ent.LastName = user.LastName;
                             Context.SaveChanges();
-                            //return ent;
                         }
                         scope.Complete();
                         return ent;
-                        //return true;
                     }
                 }
                 catch (Exception)
@@ -459,6 +449,95 @@ namespace Academic.DbHelper
                 }
                 return tea.Where(x => x.LastOnline != null && (date - x.LastOnline).Value.TotalMinutes <= 2).ToList();
             }
+
+
+            //used
+            public List<IdAndName> ListUsersInRole(int schoolId, int roleId, int userId)
+            {
+                var stds = Context.Student.Where(x => x.User.SchoolId == schoolId).Select(x => x.User);
+
+                var allUsers = Context.Users.Where(x => x.SchoolId == schoolId).Except(stds)
+                    .ToList();
+                var lst = new List<IdAndName>();
+
+                var users = new List<Users>();
+                //foreach (var user in allUsers)
+                allUsers.ForEach(user =>
+                {
+                    if (user.UserRoles.Any(x => x.RoleId == roleId))
+                    {
+                        users.Add(user);
+                    }
+                });
+
+
+                //var users = (from u in Context.Users.Where(x => x.SchoolId == schoolId).Except(stds)
+                //             join ur in Context.UserRole on u.Id equals ur.UserId
+                //             join r in Context.Role on ur.RoleId equals r.Id
+                //             where r.Id == roleId
+                //             select u).ToList();
+
+                var found = users.Find(x => x.Id == userId);
+                if (found != null)
+                    users.Remove(found);
+
+                foreach (var u in users)
+                {
+                    lst.Add(new IdAndName() { Id = u.Id, Name = u.FullName });
+                }
+
+
+                return lst.OrderBy(x=>x.Name).ToList();
+            }
+
+            //used
+            public List<IdAndName> ListUsersNotInRole(int schoolId, int roleId, int userId, List<IdAndName> usersInRole)
+            {
+                var stds = Context.Student.Where(x => x.User.SchoolId == schoolId).Select(x => x.User);
+                var allUsers = Context.Users.Where(x => x.SchoolId == schoolId).Except(stds).ToList();
+
+                //allUsers.Where(x=>x.)
+
+                var users = new List<Users>();
+                //foreach (var user in allUsers)
+                allUsers.ForEach(user =>
+                {
+                    if (!user.UserRoles.Any(x => x.RoleId == roleId))
+                    {
+                        users.Add(user);
+                    }
+                });
+
+                var lst = new List<IdAndName>();
+                //users = (from u in allUsers
+                //             join ur in Context.UserRole on u.Id equals ur.UserId
+                //             join r in Context.Role on ur.RoleId equals r.Id
+                //             where r.Id != roleId
+                //             select u).ToList();
+
+                //foreach (var u in allUsers.Except(users))
+                //{
+                //    if (!u.UserRoles.Any())
+                //        lst.Add(new IdAndName() { Id = u.Id, Name = u.FullName });
+                //}
+
+                var found = users.Find(x => x.Id == userId);
+                if (found != null)
+                    users.Remove(found);
+
+                foreach (var u in users)
+                {
+                    lst.Add(new IdAndName() { Id = u.Id, Name = u.FullName });
+                }
+                return lst.Except(usersInRole).OrderBy(x => x.Name).ToList();
+            }
+
+            //used
+            public bool DoesUserNameExist(int schoolId, string userName)
+            {
+                return Context.Users.Any(x => x.SchoolId == schoolId && x.UserName == userName);
+            }
+
         }
     }
 }

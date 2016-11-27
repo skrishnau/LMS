@@ -7,11 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One
-{
-
-
-    public partial class _Default
-    {
+namespace One {
+    
+    
+    public partial class _Default {
+        
+        /// <summary>
+        /// LstUc1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.ViewsSite.DashBoard.Student.CourseOverView.LstUc LstUc1;
     }
 }

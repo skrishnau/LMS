@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using Academic.ViewModel.Subject;
+using One.Values.MemberShip;
 
 namespace One.Views.Structure.All.UserControls.CourseLinkage
 {
@@ -13,11 +14,20 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            AddCourses1.CancelClicked += AddCourses_ReturnClicked;
-            AddCourses1.SaveClicked += AddCourses_ReturnClicked;
-
+            //AddCourses1.CancelClicked += AddCourses_ReturnClicked;
+            //AddCourses1.SaveClicked += AddCourses_ReturnClicked;
+            var user = Page.User as CustomPrincipal;
+            if(user!=null)
             if (!IsPostBack)
             {
+                if (user.IsInRole("manager") )
+                {
+                    btnManageSubject.Visible = true;
+                }
+                else
+                {
+                    btnManageSubject.Visible = false;
+                }
                 using (var helper = new DbHelper.Subject())
                 {
                     var courses = helper.ListCoursesOfStructure(YearId, SubYearId);
@@ -49,7 +59,7 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
             //    dlistCourses.DataSource = courses;
             //    dlistCourses.DataBind();
             //}
-            MultiView1.ActiveViewIndex = 0;
+            //MultiView1.ActiveViewIndex = 0;
         }
 
         public int YearId
@@ -74,8 +84,8 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
 
             hidYearId.Value = yearId.ToString();
             hidSubYearId.Value = subYearId.ToString();
-            AddCourses1.YearId = yearId;
-            AddCourses1.SubYearId = subYearId;
+            //AddCourses1.YearId = yearId;
+            //AddCourses1.SubYearId = subYearId;
 
 
             using (var helper = new DbHelper.Subject())
@@ -88,10 +98,10 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
 
         protected void btnManageSubject_Click(object sender, EventArgs e)
         {
-            AddCourses1.AddDataToSavedViewState();
-            MultiView1.ActiveViewIndex = 1;
+            //AddCourses1.AddDataToSavedViewState();
+            //MultiView1.ActiveViewIndex = 1;
 
-            //Response.Redirect("~/Views/Structure/All/Master/AddCourses.aspx?yId="+YearId+"&sId="+SubYearId);
+            Response.Redirect("~/Views/Structure/AssignCoursesCreate.aspx?yId=" + YearId + "&sId=" + SubYearId);
         }
 
     }

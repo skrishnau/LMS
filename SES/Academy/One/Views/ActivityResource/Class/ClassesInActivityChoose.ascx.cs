@@ -40,8 +40,11 @@ namespace One.Views.ActivityResource.Class
                     var uc = (EachClass)Page.LoadControl
                                     ("~/Views/ActivityResource/Class/EachClass.ascx");
                     uc.SetValues(item);
+                    uc.Visible = !item.Void;
                     uc.RemoveClicked += uc_RemoveClicked;
                     pnlClasses.Controls.Add(uc);
+
+                    
                 }
             }
         }
@@ -55,6 +58,13 @@ namespace One.Views.ActivityResource.Class
                 {
                     var roles = ViewState["Roles"] as List<string>;
                     var list = helper.ListCurrentClassesOfTeacher(SubjectId, UserId, roles, selectedList);
+                    list.ForEach(x =>
+                    {
+                        if (x.HasGrouping)
+                        {
+                            //x.
+                        }
+                    });
                     list.Insert(0, new SubjectClass() { Name = "", Id = 0 });
                     ddlClass.DataSource = list;
                     ddlClass.DataBind();
@@ -128,6 +138,7 @@ namespace One.Views.ActivityResource.Class
                         uc.SetValues(item);
                         uc.RemoveClicked += uc_RemoveClicked;
                         pnlClasses.Controls.Add(uc);
+                        pnlClasses.Visible = true;
                         ddlClass.Items.Remove(sel);
                     }
                 }
@@ -146,14 +157,25 @@ namespace One.Views.ActivityResource.Class
                     var found = list.Find(x => x.Id == send.ClassId);
                     if (found != null)
                     {
-                        if (list.Remove(found))
+                        found.Void = true;
+                        //if (list.Remove(found))
+                        //{
+                        send.Visible = false;
+                        ddlClass.Items.Add(new ListItem(found.Name, found.Id.ToString()));
+                        //}
+                        if (list.All(x => (x.Void)))
                         {
-                            send.Visible = false;
+                            pnlClasses.Visible = false;
                         }
-
                     }
                 }
             }
+        }
+
+        public List<IdAndName> GetClasses()
+        {
+            var list = ViewState["SelectedClasses"] as List<IdAndName>;
+            return list;
         }
     }
 }

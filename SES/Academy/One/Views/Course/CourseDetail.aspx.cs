@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using One.Values.MemberShip;
 
 namespace One.Views.Course
 {
@@ -13,49 +14,83 @@ namespace One.Views.Course
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var user = Page.User as CustomPrincipal;
+            if(user!=null)
             if (!IsPostBack)
             {
-                var courseId = Request.QueryString["cId"];
-                if (courseId != null)
+                if (user.IsInRole("manager") || user.IsInRole("course-editor"))
                 {
-                    lnkView.NavigateUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId="+courseId;
-                    lnkEdit.NavigateUrl = "~/Views/Course/CourseCreate.aspx?crsId="+courseId;
-
-                    hidCourseId.Value = courseId;
-                    lnkNewClass.NavigateUrl = "~/Views/Class/CourseSessionCreate.aspx?cId=" + courseId;
-                    try
-                    {
-                        using (var helper = new DbHelper.Classes())
-                        {
-                            var sessions = helper.ListClassesOfSubject(Convert.ToInt32(courseId),"All");
-                            dlistClasses.DataSource = sessions;
-                            dlistClasses.DataBind();
-                        }
-                    }
-                    catch { Response.Redirect("~/Views/Course/List.aspx"); }
+                    lnkEdit.Visible = true;
+                    lnkDelete.Visible = true;
+                    lnkNewClass.Visible = true;
+                    pnlClasses.Visible = true;
+                    LoadInitialData();
+                }
+                else if (user.IsInRole("teacher"))
+                {
+                    lnkEdit.Visible = false;
+                    lnkDelete.Visible = false;
+                    lnkNewClass.Visible = false;
+                    pnlClasses.Visible = true;
+                    LoadInitialData();
                 }
                 else
                 {
-                    Response.Redirect("~/Views/Course/List.aspx");
+                    lnkEdit.Visible = false;
+                    lnkDelete.Visible = false;
+                    lnkNewClass.Visible = false;
+                    pnlClassFilter.Visible = false;
+                    dlistClasses.Visible = false;
+                    pnlClasses.Visible = false;
                 }
-                //load course detail
-                using (var helper = new DbHelper.Subject())
-                {
-                    try
-                    {
-                        var cId = Convert.ToInt32(courseId);
-                        var sub = helper.GetCourse(cId);
-                        if (sub != null)
-                        {
-                            lblFullName.Text = sub.FullName;
-                            lblCategory.Text = sub.SubjectCategory.Name;
-                            lblShortName.Text = sub.ShortName;
-                            lblHeading.Text = sub.FullName;
-                        }
 
+              
+            }
+        }
+
+
+        private void LoadInitialData()
+        {
+            var courseId = Request.QueryString["cId"];
+            if (courseId != null)
+            {
+                lnkView.NavigateUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + courseId;
+                lnkEdit.NavigateUrl = "~/Views/Course/CourseCreate.aspx?crsId=" + courseId;
+
+                hidCourseId.Value = courseId;
+                lnkNewClass.NavigateUrl = "~/Views/Class/CourseSessionCreate.aspx?cId=" + courseId;
+                try
+                {
+                    using (var helper = new DbHelper.Classes())
+                    {
+                        var sessions = helper.ListClassesOfSubject(Convert.ToInt32(courseId), "All");
+                        dlistClasses.DataSource = sessions;
+                        dlistClasses.DataBind();
                     }
-                    catch { }
                 }
+                catch { Response.Redirect("~/Views/Course/"); }
+            }
+            else
+            {
+                Response.Redirect("~/Views/Course/");
+            }
+            //load course detail
+            using (var helper = new DbHelper.Subject())
+            {
+                try
+                {
+                    var cId = Convert.ToInt32(courseId);
+                    var sub = helper.GetCourse(cId);
+                    if (sub != null)
+                    {
+                        lblFullName.Text = sub.FullName;
+                        lblCategory.Text = sub.SubjectCategory.Name;
+                        lblShortName.Text = sub.ShortName;
+                        lblHeading.Text = sub.FullName;
+                    }
+
+                }
+                catch { }
             }
         }
 
@@ -74,7 +109,9 @@ namespace One.Views.Course
                 if (completed == "True")
                 {
                     //return Color.LightGreen;
-                    return Color.FromArgb(188, 244, 188);
+                    //return Color.FromArgb(215, 227, 231);
+                    return Color.FromArgb(191, 191, 191);
+                    //return Color.FromArgb(188, 244, 188);
                 }
                 var startD = (startDate == null) ? DateTime.MinValue : Convert.ToDateTime(startDate);
                 var endD = (endDate == null) ? DateTime.MaxValue : Convert.ToDateTime(endDate.ToString());
@@ -83,20 +120,25 @@ namespace One.Views.Course
                 if (startD.Date > DateTime.Now.Date)
                 {
                     //return Color.LightYellow;
-                    return Color.FromArgb(253, 253, 194);
+                    return Color.FromArgb(251, 251, 63);
+                    //return Color.FromArgb(253, 253, 194);
                 }
                 else if (endD < DateTime.Now)
                 {
                     //return Color.LightPink;
-                    return Color.FromArgb(253, 214, 220);
+                    return Color.FromArgb(255, 154, 170);
+                    //return Color.FromArgb(253, 214, 220);
                 }
                 //return Color.LightBlue;
-                return Color.FromArgb(215, 227, 231);
+                //return Color.FromArgb(215, 227, 231);
+                return Color.FromArgb(0, 234, 0);
             }
             catch
             {
                 //return Color.LightBlue;
-                return Color.FromArgb(215, 227, 231);
+                //return Color.FromArgb(215, 227, 231);
+                return Color.FromArgb(0, 234, 0);
+                //return Color.FromArgb(188, 244, 188);
             }
 
         }

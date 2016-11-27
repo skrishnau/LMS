@@ -41,45 +41,45 @@ namespace One.Views.Structure.All.UserControls
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            bool isValid = true;
-            if (txtName.Text == "")
-            {
-                txtNameVali.Visible = true;
-                isValid = false;
-            }
-            if (isValid)
-            {
-                using (var helper = new DbHelper.Structure())
-                {
-                    var level = new Academic.DbEntities.Structure.Level()
-                    {
-                        Name = txtName.Text
-                        ,
-                        Description = txtDescription.Text
-                        ,
-                        Id = this._id
-                        ,
-                        SchoolId = this.SchoolId
+            //bool isValid = true;
+            //if (txtName.Text == "")
+            //{
+            //    txtNameVali.Visible = true;
+            //    isValid = false;
+            //}
+            //if (isValid)
+            //{
+            //    using (var helper = new DbHelper.Structure())
+            //    {
+            //        var level = new Academic.DbEntities.Structure.Level()
+            //        {
+            //            Name = txtName.Text
+            //            ,
+            //            Description = txtDescription.Text
+            //            ,
+            //            Id = this._id
+            //            ,
+            //            SchoolId = this.SchoolId
 
-                    };
-                    var saved = helper.AddOrUpdateLevel(level);
-                    if (saved != null)
-                    {
-                        if (SaveClickedEvent != null)
-                        {
-                            SaveClickedEvent(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
-                        }
-                        ClearCreateTextBoxes();
-                    }
-                    else
-                    {
-                        if (SaveClickedEvent != null)
-                        {
-                            SaveClickedEvent(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
-                        }
-                    }
-                }
-            }
+            //        };
+            //        var saved = helper.AddOrUpdateLevel(level);
+            //        if (saved != null)
+            //        {
+            //            if (SaveClickedEvent != null)
+            //            {
+            //                SaveClickedEvent(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
+            //            }
+            //            ClearCreateTextBoxes();
+            //        }
+            //        else
+            //        {
+            //            if (SaveClickedEvent != null)
+            //            {
+            //                SaveClickedEvent(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         void ClearCreateTextBoxes()

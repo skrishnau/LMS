@@ -171,16 +171,16 @@ namespace One.Views.Structure.All.UserControls
 
         private void LoadLevel()
         {
-            DbHelper.ComboLoader.LoadLevel(ref cmbLevels, SchoolId, true);//Values.Session.GetSchool(Session)
+            //DbHelper.ComboLoader.LoadLevel(ref cmbLevels, SchoolId, true);//Values.Session.GetSchool(Session)
             pnlLevelCreate.Visible = false;
             LevelCreate.SchoolId = SchoolId; 
         }
 
         private void LoadFaculties()
         {
-            DbHelper.ComboLoader.LoadFaculty(ref cmbFaculties
-                , Convert.ToInt32(cmbLevels.SelectedValue)
-                ,true);
+            //DbHelper.ComboLoader.LoadFaculty(ref cmbFaculties
+            //    , Convert.ToInt32(cmbLevels.SelectedValue)
+            //    ,true);
             FacultyCreateUC.SchoolId = SchoolId;
             FacultyCreateUC.LevelId = Convert.ToInt32(cmbLevels.SelectedValue);
         }
@@ -191,9 +191,9 @@ namespace One.Views.Structure.All.UserControls
                 , Convert.ToInt32(cmbFaculties.SelectedValue)
                 ,true);
             //DbHelper.ComboLoader.LoadFaculty(ref cmbFaculties, Convert.ToInt32(cmbLevels.SelectedValue));
-            ProgramCreateUC.SchoolId = SchoolId;
-            ProgramCreateUC.LevelId = Convert.ToInt32(cmbLevels.SelectedValue);
-            ProgramCreateUC.FacultyId = Convert.ToInt32(cmbFaculties.SelectedValue);
+            //ProgramCreateUC.SchoolId = SchoolId;
+            //ProgramCreateUC.LevelId = Convert.ToInt32(cmbLevels.SelectedValue);
+            //ProgramCreateUC.FacultyId = Convert.ToInt32(cmbFaculties.SelectedValue);
         }
 
         private void LoadYears()
@@ -214,8 +214,8 @@ namespace One.Views.Structure.All.UserControls
                 , Convert.ToInt32(cmbYear.SelectedValue)
                 ,true);
             SubYearCreateUC.SchoolId = SchoolId;
-            SubYearCreateUC.LevelId = Convert.ToInt32(cmbLevels.SelectedValue);
-            SubYearCreateUC.FacultyId = Convert.ToInt32(cmbFaculties.SelectedValue);
+            //SubYearCreateUC.LevelId = Convert.ToInt32(cmbLevels.SelectedValue);
+            //SubYearCreateUC.FacultyId = Convert.ToInt32(cmbFaculties.SelectedValue);
             SubYearCreateUC.ProgramId = Convert.ToInt32(cmbPrograms.SelectedValue);
             SubYearCreateUC.YearId = Convert.ToInt32(cmbYear.SelectedValue);
         }

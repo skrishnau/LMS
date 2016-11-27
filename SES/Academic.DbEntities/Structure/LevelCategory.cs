@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Academic.DbEntities.Structure
 {
-    public class LevelCategory
-    {
-        public int Id { get; set; }
-        public String Name { get; set; }
-        public String Rank { get; set; }
+    //public class LevelCategory
+    //{
+    //    public int Id { get; set; }
+    //    public String Name { get; set; }
+    //    public String Rank { get; set; }
 
-        public virtual ICollection<Level> Levels { get; set; }
-    }
+    //    public virtual ICollection<Level> Levels { get; set; }
+    //}
 }

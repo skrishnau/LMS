@@ -1,0 +1,116 @@
+﻿  //protected void btnAddValue_Click(object sender, EventArgs e)
+        //{
+        //    //FROMM VIEWSTATE
+        //    var list = ViewState["values"] as List<int>;
+        //    if (list != null)
+        //    {
+        //        var id = 1;
+        //        if (list.Any())
+        //            id = list.Max() + 1;
+        //        list.Add(id);
+
+        //        var valuesUc = (GradeValuesUC)Page.LoadControl
+        //           ("~/Views/Grade/GradeValuesUC.ascx");
+        //        valuesUc.LocalId = id;
+        //        valuesUc.TextMode = GetMode();
+        //        //        //valuesUc.GradeValueId = l.Id;
+        //        valuesUc.RemoveClicked += valuesUc_RemoveClicked;
+        //        GradeTypeUc.AddControl(valuesUc);
+        //        //pnlGradeValues.Controls.Add(valuesUc);
+        //    }
+
+
+            //var list = Session["cntrl" + hidPageKey.Value] as List<GradeValuesDataType>;
+
+
+            //if (list != null)
+            //{
+            //    var id = 0;
+            //    if (list.Any())
+            //        id = list.Max(x => x.Id);
+
+
+            //    var valuesUc = (GradeValuesUC)Page.LoadControl(
+            //        "~/Views/Grade/GradeValuesUC.ascx");
+
+            //    valuesUc.TextMode = GetMode();
+            //    valuesUc.RemoveClicked += valuesUc_RemoveClicked;
+
+            //    valuesUc.LocalId = id + 1;
+
+            //    var newval = new GradeValuesDataType() { Id = id + 1 };
+            //    //if (rdbtnlistEquivalentRepresentation.SelectedIndex == 1)
+            //    //{
+            //    //    //valuesUc.EquivalentValue = minVal;
+            //    //    newval.Equivalent = minVal;
+            //    //}
+            //    list.Add(newval);
+            //    pnlGradeValues.Controls.Add(valuesUc);
+            //}
+
+        //}
+
+        //void GetValues(List<GradeValuesDataType> list, out int id, out int minVal)
+        //{
+        //    id = 0;
+        //    if (list.Any())
+        //        id = list.Max(x => x.Id);
+        //    minVal = 0;
+
+        //    //var sorted = list.Select(x => (int)x.Equivalent).Distinct().ToList();
+        //    var inList = new List<int>();
+        //    foreach (var cntrl in pnlGradeValues.Controls)
+        //    {
+        //        var valuesCntrl = cntrl as GradeValuesUC;
+        //        if (valuesCntrl != null)
+        //        {
+        //            inList.Add((int)valuesCntrl.EquivalentValue);
+        //        }
+        //    }
+        //    inList = inList.Distinct().ToList();
+        //    inList.Sort();
+
+        //    inList.Sort();
+        //    if (inList.Any())
+        //        minVal = inList[0];
+        //    for (int i = 1; i < inList.Count; i++)
+        //    {
+        //        if (inList[i] > minVal && inList[i] != minVal + 1)
+        //        {
+        //            //minVal++;
+        //            break;
+        //        }
+        //        minVal = inList[i];
+        //    }
+        //    minVal++;
+        //}
+
+        //void valuesUc_RemoveClicked(object sender, IdAndNameEventArgs e)
+        //{
+
+        //    //FROM VIEWSTATE
+        //    var cntrl = sender as GradeValuesUC;
+        //    var list = ViewState["values"] as List<int>;
+        //    if (cntrl != null && list != null)//
+        //    {
+        //        var val = list.Find(X => X == e.Id);
+        //        pnlGradeValues.Controls.Remove(cntrl);
+        //        list.Remove(val);
+        //    }
+
+
+
+        //    //FROM SESSION
+        //    //var cntrl = sender as GradeValuesUC;
+        //    ////var list = Session["cntrl" + hidPageKey.Value] as List<GradeValuesDataType>;
+        //    //if (cntrl != null)//&& list != null
+        //    //{
+        //    //    // var val = list.Find(x => x.Id == e.Id);
+        //    //    // if (val != null)
+        //    //    {
+        //    //        pnlGradeValues.Controls.Remove(cntrl);
+        //    //        // list.Remove(val);
+        //    //    }
+        //    //}
+
+        //}

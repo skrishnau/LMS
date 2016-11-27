@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListOfSectionsInCourseUC.ascx.cs" Inherits="One.Views.Course.Section.Master.ListOfSectionsInCourseUC" %>
 
-<%@ Register Src="~/Views/Course/Section/CreateSectionUc.ascx" TagPrefix="uc1" TagName="CreateSectionUc" %>
+<%--<%@ Register Src="~/Views/Course/Section/CreateSectionUc.ascx" TagPrefix="uc1" TagName="CreateSectionUc" %>--%>
 <%@ Register Src="~/Views/Course/ActivityAndResource/ActResChoose/ActResChooseUc.ascx" TagPrefix="uc1" TagName="ActResChooseUc" %>
 
 
@@ -10,7 +10,7 @@
         <ContentTemplate>
 
             <%-- Section List --%>
-            <asp:Panel ID="pnlContent" runat="server">
+            <%--<asp:Panel ID="pnlContent" runat="server">--%>
 
                 <div>
                     <div>
@@ -20,33 +20,30 @@
                         <asp:HiddenField ID="hidId" runat="server" Value="0" />
                     </div>
                 </div>
-            </asp:Panel>
-            <asp:Panel ID="pnlCreateSection" runat="server" Visible="False">
+            <%--</asp:Panel>--%>
+           <%-- <asp:Panel ID="pnlCreateSection" runat="server" Visible="False">
                 <uc1:CreateSectionUc runat="server" ID="CreateSectionUc1" />
 
-            </asp:Panel>
+            </asp:Panel>--%>
 
 
             <br />
             <div style="clear: both;"></div>
             <div>
-                <asp:LinkButton ID="lnkAddSection" ClientIDMode="Static" Visible="False"
+                <asp:HyperLink ID="lnkAddSection1" ClientIDMode="Static" Visible="False"
                     CssClass="link_smaller"
-                     runat="server" OnClick="lnkAddSection_Click">
+                     runat="server" >
                     <asp:ImageButton ID="imgAddSection" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png"  ToolTip="Add Section to this Course" />
                     Add Sections
-                </asp:LinkButton>
+                </asp:HyperLink>
             </div>
 
-            <div id="sessioncreatediv" style="display: none">
-                <%--This is a simple popup--%>
-                <uc1:CreateSectionUc runat="server" ID="CreateSectionUc2" />
-            </div>
+            
 
             <div id="activitychoosediv" style="display: none">
                 <uc1:ActResChooseUc runat="server" ID="ActResChooseUc" ClientIDMode="Static" />
             </div>
-
+            <a id="last"></a>
             <%-- END --%>
         </ContentTemplate>
     </asp:UpdatePanel>
@@ -57,7 +54,7 @@
 
     <script type="text/javascript">
 
-        $("[class*=link]").on("click", function () {
+        $("[class*=link_act_res]").on("click", function () {
 
             var dlg = $("#activitychoosediv")
                 .dialog({
@@ -74,7 +71,7 @@
             var parameter = Sys.WebForms.PageRequestManager.getInstance();
             parameter.add_endRequest(function () {
                 //jquery code again for working after postback
-                $("[class*=link]").on("click", function () {
+                $("[class*=link_act_res]").on("click", function () {
                     var dlg = $("#activitychoosediv")
                         .dialog({
                             width: 450,

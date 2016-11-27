@@ -28,7 +28,7 @@
         <ContentTemplate>
 
             <div style="text-align: center; font-weight: 700; font-size: 1.3em;">
-                New Class Create
+                New Course Session
         <hr />
             </div>
 

@@ -37,7 +37,8 @@
             <div>
                 <strong>Exams of Classes</strong>
                 <hr  />
-                <div style="margin-left: 20px; width: 50%;  border: 2px solid lightgray; padding: 5px 10px 5px 10px;">
+                <%-- style="margin-left: 15px; width: 50%;  border: 1px solid lightgray; padding: 10px;" --%>
+                <div class="data-entry-section-body">
                     <asp:Panel ID="pnlClasses" runat="server">
                     </asp:Panel>
                 </div>
@@ -49,7 +50,7 @@
             <strong>Notice</strong>
             <hr />
             <div style="clear: both;"></div>
-            <div style="width: 100%; padding: 4px; border: 2px solid lightblue;" runat="server" id="noticeDiv">
+            <div style=" padding: 4px; border: 2px dashed darkgray;" runat="server" id="noticeDiv">
                 <asp:Literal ID="Literal1" runat="server"></asp:Literal>
 
                 <%--<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>--%>

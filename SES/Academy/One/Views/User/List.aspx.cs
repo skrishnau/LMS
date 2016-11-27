@@ -23,6 +23,24 @@ namespace One.Views.User
             }
         }
 
+        public string GetName(object first, object mid, object last)
+        {
+            var s = "";
+            if (first != null)
+            {
+                s = first.ToString();
+            }
+            if (mid != null)
+            {
+                s += " "+mid;
+            }
+            if (last != null)
+            {
+                s += " "+last;
+            }
+            return s;
+        }
+
         public string GetImageUrl(object imageId)
         {
             if (imageId != null)

@@ -184,6 +184,15 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.HiddenField hidSchoolId;
         
         /// <summary>
+        /// JSField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder JSField;
+        
+        /// <summary>
         /// right_panel control.
         /// </summary>
         /// <remarks>

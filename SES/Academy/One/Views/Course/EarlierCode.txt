@@ -137,3 +137,149 @@
 
 
 
+
+		 #region Load Categories --dispaly tree like structure.. i.e. bars in front of category names.
+
+        // Note :: ├ ==>1 ,    └ ==> 2 .   ┌ ==> 3 ,   │ ==> 4 ,  empty ==> 0
+
+        //void LoadCategoriesAndSubCategories(int schoolId)
+        //{
+        //    using (var helper = new DbHelper.Subject())
+        //    {
+        //        var cats = helper.ListAllCategories(schoolId);
+        //        var list = new List<int>();
+        //        for (var c = 0; c < cats.Count; c++)
+        //        {
+        //            var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
+        //            catUc.Deselect();
+
+        //            if (c == 0 && cats.Count > 1)
+        //            {
+        //                list.Add(3);
+        //            }
+        //            else if (c == cats.Count - 1)
+        //            {
+        //                list.Add(2);
+        //            }
+        //            else
+        //            {
+        //                list.Add(1);
+        //            }
+        //            catUc.SetNameAndIdOfCategory(cats[c].Id, cats[c].Name, list);
+        //            catUc.NameClicked += catUc_NameClicked;
+        //            catUc.ID = "category_" + cats[c].Id;
+        //            pnlCategories.Controls.Add(catUc);
+
+        //            GetSubCats(catUc, helper, schoolId, cats[c].Id, list);
+        //            list.RemoveAt(list.Count - 1);
+        //        }
+        //    }
+        //}
+
+
+        //// Note :: ├ ==>1 ,    └ ==> 2 .   ┌ ==> 3 ,   │ ==> 4 ,  empty ==> 0
+        //void GetSubCats(Category.ListUC parentUc, DbHelper.Subject helper, int schoolId, int categoryId, List<int> parentPaddingList)
+        //{
+        //    var subcats = helper.ListSubCategories(schoolId, categoryId);
+        //    var list = new List<int>();
+        //    if (subcats.Count > 0)
+        //    {
+        //        foreach (var i in parentPaddingList)
+        //        {
+        //            if (i == 1 || i == 3 || i == 4)
+        //            {
+        //                list.Add(4);
+        //            }
+        //            else
+        //            {
+        //                list.Add(0);
+        //            }
+        //        }
+        //    }
+        //    for (var s = 0; s < subcats.Count; s++)
+        //    {
+        //        var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
+        //        catUc.Deselect();
+
+
+        //        if (s == subcats.Count - 1)
+        //        {
+        //            list.Add(2);
+        //        }
+        //        else
+        //        {
+        //            list.Add(1);
+        //        }
+
+        //        catUc.SetNameAndIdOfCategory(subcats[s].Id, subcats[s].Name, list);
+        //        catUc.NameClicked += catUc_NameClicked;
+        //        catUc.ID = "category_" + subcats[s].Id;
+        //        //parentUc.AddSubCategories(catUc);
+        //        pnlCategories.Controls.Add(catUc);
+
+        //        GetSubCats(catUc, helper, schoolId, subcats[s].Id, list);
+        //        list.RemoveAt(list.Count - 1);
+        //    }
+        //}
+
+        #endregion
+
+
+
+        //void courseCreate_SaveClicked(object sender, MessageEventArgs e)
+        //{
+        //    //var user = User as CustomPrincipal;
+        //    if (SchoolId > 0)
+        //        LoadCourses(SelectedCategory);
+        //    //MultiView1.ActiveViewIndex = 0;
+        //    lblHeading.Text = "Course and Category Management";
+        //}
+
+        //private void courseCreate_CancelClicked(object sender, MessageEventArgs e)
+        //{
+        //    //MultiView1.ActiveViewIndex = 0;
+        //    lblHeading.Text = "Course and Category Management";
+        //}
+
+        //void categoryCreate_SaveClicked(object sender, MessageEventArgs e)
+        //{
+        //    //var user = User as CustomPrincipal;
+        //    //if (user != null)
+        //    //{
+        //    //pnlCategories.Controls.Clear();
+        //    SelectedCategory = e.SavedId;
+        //    //LoadCategories(SchoolId);
+        //    //}
+        //    //MultiView1.ActiveViewIndex = 0;
+        //    lblHeading.Text = "Course and Category Management";
+        //}
+
+        //private void categoryCreate_CancelClicked(object sender, MessageEventArgs e)
+        //{
+        //    //MultiView1.ActiveViewIndex = 0;
+        //    lblHeading.Text = "Course and Category Management";
+        //}
+
+        //bool selectedAlready = false;
+
+
+        //Category Listing
+        //======================= Category listing ================================//
+
+
+
+
+		//protected void LinkButton1_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("~/Views/Course/Category/Create.aspx");
+        //}
+
+        //protected void LinkButton2_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("~/Views/Course/CourseEntryForm.aspx");
+        //}
+
+
+
+
+

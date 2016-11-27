@@ -10,8 +10,8 @@
 
     <td class="pc-subyear-option">
         <asp:PlaceHolder ID="pnlStructure" runat="server" Visible="False">
-            <span style="min-height: 20px; border: 1px solid darkgray; margin-left: 15px;">
-                <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Class/class.png" Height="14" Width="14" />
+            <span style="min-height: 20px; border: 1px solid darkgray; margin-left: 15px; ">
+                <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Class/class-icon.png"  />
                 <asp:DropDownList ID="ddlStructure" runat="server" Height="20"
                     DataValueField="Id" DataTextField="Name">
                     <Items>
@@ -23,8 +23,8 @@
     </td>
 
     <td class="pc-programbatch-option">
-        <span style="border: 1px solid darkgray; min-height: 20px; margin-left: 15px;">
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Users/group.png" Height="14" Width="14" />
+        <span style="border: 1px solid darkgray; min-height: 20px; margin-left: 15px; padding-left: 2px;">
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Users/user_group-icon.png"  />
             <asp:DropDownList ID="ddlStudentGrps" runat="server" Height="20"
                 DataValueField="Id" DataTextField="Name" AutoPostBack="True"
                 OnSelectedIndexChanged="ddlStudentGrps_SelectedIndexChanged">

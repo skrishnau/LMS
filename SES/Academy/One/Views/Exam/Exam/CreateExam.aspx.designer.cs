@@ -31,15 +31,6 @@ namespace One.Views.Exam.Exam {
         protected global::System.Web.UI.WebControls.DropDownList cmbExamType;
         
         /// <summary>
-        /// valiType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiType;
-        
-        /// <summary>
         /// HyperLink1 control.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,15 @@ namespace One.Views.Exam.Exam {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        
+        /// <summary>
+        /// valiType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiType;
         
         /// <summary>
         /// pnlEntry control.
@@ -184,6 +184,15 @@ namespace One.Views.Exam.Exam {
         protected global::One.Views.Academy.ProgramSelection.OnlyListing.ProgramSelection ProgramSelection1;
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// chkPublish control.
         /// </summary>
         /// <remarks>
@@ -236,5 +245,14 @@ namespace One.Views.Exam.Exam {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSaveExam;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }
