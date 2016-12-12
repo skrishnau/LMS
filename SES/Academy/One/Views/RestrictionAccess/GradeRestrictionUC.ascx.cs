@@ -14,23 +14,24 @@ namespace One.Views.RestrictionAccess
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             //populate activity list in ddlActivity..
-            using (var helper = new DbHelper.Subject())
-            {
-                var course = helper.Find(SubjectId);
-                if (course != null)
-                {
-                    var lst = new List<Academic.DbEntities.ActivityAndResource.ActivityResource>();
-                    course.SubjectSections.Where(x => !(x.Void ?? false)).ToList().ForEach(x =>
-                    {
-                        var activities = x.ActivityResources.Where(n => !(n.Void ?? false) && n.ActivityOrResource)
-                             .OrderBy(o=>o.Name).ToList();
-                        lst.AddRange(activities);
-                    });
-                    ddlActivityChoose.DataSource = lst;
-                    ddlActivityChoose.DataBind();
-                }
-            }
+            //using (var helper = new DbHelper.Subject())
+            //{
+            //    var course = helper.Find(SubjectId);
+            //    if (course != null)
+            //    {
+            //        var lst = new List<Academic.DbEntities.ActivityAndResource.ActivityResource>();
+            //        course.SubjectSections.Where(x => !(x.Void ?? false)).ToList().ForEach(x =>
+            //        {
+            //            var activities = x.ActivityResources.Where(n => !(n.Void ?? false) && n.ActivityOrResource)
+            //                 .OrderBy(o=>o.Name).ToList();
+            //            lst.AddRange(activities);
+            //        });
+            //        ddlActivityChoose.DataSource = lst;
+            //        ddlActivityChoose.DataBind();
+            //    }
+            //}
         }
 
         public int GradeRestrictionId
@@ -97,12 +98,13 @@ namespace One.Views.RestrictionAccess
             }
         }
 
-        public void SetIds(string parentId, string absoluteId, string relativeId, string type)
+        public void SetIds(string parentId, string absoluteId, string relativeId, string type, int subjectId)
         {
             ParentId = parentId;
             AbsoluteId = absoluteId;
             RelativeId = relativeId;
             Type = type;
+            SubjectId = subjectId;
         }
 
         public int SubjectId
@@ -113,33 +115,41 @@ namespace One.Views.RestrictionAccess
 
 
 
-        public void SetData( GradeRestriction res )
-        {
-          if (res != null)
-            {
-                GradeRestrictionId = res.Id;
-                ddlActivityChoose.SelectedValue = res.ActivityResourceId.ToString();
-                RestrictionId = res.RestrictionId;
-                chkLessThan.Checked = res.MustBeLessThan;
+        //public void SetData(GradeRestriction res)
+        //{
+        //    if (res != null)
+        //    {
+        //        GradeRestrictionId = res.Id;
+        //        ddlActivityChoose.SelectedValue = res.ActivityResourceId.ToString();
+        //        RestrictionId = res.RestrictionId;
+        //        chkLessThan.Checked = res.MustBeLessThan;
 
-                if (res.MustBeGreaterThanOrEqualTo)
-                {
-                    chkGreaterThanOrEqualTo.Checked = res.MustBeGreaterThanOrEqualTo;
-                    txtGreaterThanOrEqualTo.Text = res.GreaterThanOrEqualToValue == null
-                        ? "0"
-                        : res.GreaterThanOrEqualToValue.ToString();
-                }
-                if (res.MustBeLessThan)
-                {
-                    chkLessThan.Checked = res.MustBeLessThan;
-                    txtLessThan.Text = res.LessThanValue == null ? "0" : res.LessThanValue.ToString();
-                }
-            }
-        }
+        //        if (res.MustBeGreaterThanOrEqualTo)
+        //        {
+        //            chkGreaterThanOrEqualTo.Checked = res.MustBeGreaterThanOrEqualTo;
+        //            txtGreaterThanOrEqualTo.Text = res.GreaterThanOrEqualToValue == null
+        //                ? "0"
+        //                : res.GreaterThanOrEqualToValue.ToString();
+        //        }
+        //        if (res.MustBeLessThan)
+        //        {
+        //            chkLessThan.Checked = res.MustBeLessThan;
+        //            txtLessThan.Text = res.LessThanValue == null ? "0" : res.LessThanValue.ToString();
+        //        }
+        //    }
+        //}
 
+        public bool IsValid = true;
         //used
+
         public Academic.DbEntities.AccessPermission.GradeRestriction GetGradeRestriction()
         {
+            if (ddlActivityChoose.SelectedValue == "0")
+            {
+                lblError.Visible = true;
+                IsValid = false;
+                return new GradeRestriction();
+            }
             var gr = new GradeRestriction()
             {
                 Id = GradeRestrictionId
@@ -177,7 +187,7 @@ namespace One.Views.RestrictionAccess
 
         protected void chkGreaterThanOrEqualTo_CheckedChanged(object sender, EventArgs e)
         {
-                txtGreaterThanOrEqualTo.Enabled = chkGreaterThanOrEqualTo.Checked;
+            txtGreaterThanOrEqualTo.Enabled = chkGreaterThanOrEqualTo.Checked;
         }
 
         protected void chkLessThan_CheckedChanged(object sender, EventArgs e)
@@ -185,5 +195,42 @@ namespace One.Views.RestrictionAccess
             txtLessThan.Enabled = chkLessThan.Checked;
         }
 
+        /// <summary>
+        /// [0]- activityId i.e. ActivityResource table id, 
+        /// [1]- Must be Greater than (T/F)
+        /// [2]- Greater than value
+        /// [3]- Must be less than (T/F)
+        /// [4]- Less than value
+        /// </summary>
+        /// <param name="constraint"></param>
+        public void SetValues(params object[] constraint)
+        {
+            if (constraint != null)
+                try
+                {
+                    if (constraint.Length == 5)
+                    {
+                        ddlActivityChoose.SelectedValue = constraint[0].ToString();
+                        chkGreaterThanOrEqualTo.Checked = Convert.ToBoolean(constraint[1].ToString());
+                        txtGreaterThanOrEqualTo.Enabled = chkGreaterThanOrEqualTo.Checked;
+                        if (chkGreaterThanOrEqualTo.Checked)
+                        {
+                            txtGreaterThanOrEqualTo.Text = constraint[2].ToString();
+                        }
+
+                        chkLessThan.Checked = Convert.ToBoolean(constraint[3].ToString());
+                        txtLessThan.Enabled = chkLessThan.Checked;
+                        if (chkLessThan.Checked)
+                        {
+                            txtLessThan.Text = constraint[4].ToString();
+                        }
+
+                    }
+                }
+                catch
+                {
+                    lblError.Visible = true;
+                }
+        }
     }
 }

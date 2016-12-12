@@ -32,8 +32,8 @@ namespace Academic.DbEntities.ActivityAndResource
 
         public bool CustomTitles { get; set; }
 
-        //public int RestrictionId { get; set; }
-        //public virtual Restriction Restriction { get; set; }
+        //public int ActivityResourceId { get; set; }
+        //public virtual ActivityResource ActivityResource { get; set; }
 
 
     }

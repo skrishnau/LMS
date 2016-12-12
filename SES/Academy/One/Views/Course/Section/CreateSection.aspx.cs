@@ -30,12 +30,12 @@ namespace One.Views.Course.Section
                             if (section != null)
                             {
                                 SubjectId = section.SubjectId;
-                                lblHeading.Text = "Section Edit";
                                 //btnDelete.Visible = true;
                                 txtName.Text = section.Name;
                                 txtDesc.Text = section.Summary;
                                 chkShow.Checked = section.ShowSummary ?? false;
-
+                                //after assigning section datatype , all is taken care in restrictionUC
+                                RestrictionUC1.SectionId = sectionId;
                             }
                         }
                     }
@@ -82,30 +82,31 @@ namespace One.Views.Course.Section
         public int SubjectId
         {
             get { return Convert.ToInt32(hidSubjectId.Value); }
-            set { hidSubjectId.Value = value.ToString(); }
+            set
+            {
+                hidSubjectId.Value = value.ToString();
+                RestrictionUC1.SubjectId = value;
+            }
         }
 
         public int SectionId
         {
-            get { return (int)(ViewState["SectionId"] ?? 0); }
-            set { ViewState["SectionId"] = value; }
+            get { return Convert.ToInt32(hidSectionId.Value); }
+            set { hidSectionId.Value = value.ToString(); }
         }
 
-        public string RedirectUrl
-        {
-            get { return (string)(ViewState["RedirectUrl"] ?? ""); }
-            set { ViewState["RedirectUrl"] = value; }
-        }
-
-        //protected void lnkAccessPermission_Click(object sender, EventArgs e)
-        //{
-        //    pnlAccessPermission.Visible = !pnlAccessPermission.Visible;
-        //}
+       
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             using (var helper = new DbHelper.SubjectSection())
             {
+                var restriction = RestrictionUC1.GetRestriction();
+                if (!RestrictionUC1.IsValid)
+                {
+                    lblError.Visible = true;
+                    return;
+                }
                 var sec = new Academic.DbEntities.Subjects.SubjectSection()
                 {
                     Id = SectionId
@@ -115,99 +116,29 @@ namespace One.Views.Course.Section
                     Summary = txtDesc.Text
                     ,
                     ShowSummary = chkShow.Checked
-                        //,Restrictions = 
                    ,
                     SubjectId = SubjectId
                 };
-                var saved = helper.AddOrUpdateSection(sec);
+                var saved = helper.AddOrUpdateSection(sec,restriction);
 
 
                 if (saved!=null)
                 {
                     Response.Redirect("~/Views/Course/Section/?SubId=" + SubjectId + "&edit=1" + "#section_"+saved.Id);
-                    //OnSaveEvent(this, DbHelper.StaticValues.SuccessSaveMessageEventArgs);
                 }
                 else
                 {
                     lblError.Visible = true;
-                    //OnSaveEvent(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
                 }
-
-                //else if (!String.IsNullOrEmpty(RedirectUrl))
-                //{
-                //    ViewState["Saved"] = saved;
-                //    string url = RedirectUrl + "?SubId=" + SubjectId;
-                //    Response.Redirect(url);
-                //}
             }
         }
 
-        //protected void btnDelete_Click(object sender, EventArgs e)
-        //{
-        //    using (var helper = new DbHelper.SubjectSection())
-        //    {
-        //        bool deleted = helper.MakeSectionVoid(SectionId);
-        //        //if (OnSaveEvent != null)
-        //        {
-        //            if (deleted)
-        //            {
-        //                //OnSaveEvent(this, DbHelper.StaticValues.SuccessDeleteMessageEventArgs);
-        //            }
-        //            else
-        //            {
-        //                //OnSaveEvent(this, DbHelper.StaticValues.ErrorDeleteMessageEventArgs);
-
-        //            }
-        //        }
-        //        //else if (!String.IsNullOrEmpty(RedirectUrl))
-        //        //{
-        //        //    ViewState["Saved"] = deleted;
-        //        //    string url = RedirectUrl + "?SubId=" + SubjectId;
-        //        //    Response.Redirect(url);
-        //        //}
-        //    }
-        //}
-
-        //protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
-        //{
-
-        //}
-
-        //protected void btnClose_Click(object sender, ImageClickEventArgs e)
-        //{
-        //    txtDesc.Text = "";
-        //    txtName.Text = "";
-        //    //Restrictions nullify
-
-        //    //if (OnCloseClick != null)
-        //    {
-        //        //OnCloseClick(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
-        //    }
-        //    //else if (!String.IsNullOrEmpty(RedirectUrl))
-        //    //{
-        //    //    ViewState["Saved"] = true;
-        //    //    string url = RedirectUrl + "?SubId=" + SubjectId;
-        //    //    Response.Redirect(url);
-        //    //}
-        //}
+     
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Course/Section/?SubId="+SubjectId+"edit=1"+"#last");
-            //txtDesc.Text = "";
-            //txtName.Text = "";
-            //Restrictions nullify
-
-            //if (OnCloseClick != null)
-            //{
-            //    OnCloseClick(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
-            //}
-            //else if (!String.IsNullOrEmpty(RedirectUrl))
-            //{
-            //    ViewState["Saved"] = true;
-            //    string url = RedirectUrl + "?SubId=" + SubjectId;
-            //    Response.Redirect(url);
-            //}
+            Response.Redirect("~/Views/Course/Section/?SubId="+SubjectId+"&edit=1"+"#section_"+SectionId);
+           
         }
     }
 }

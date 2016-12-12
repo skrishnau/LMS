@@ -19,6 +19,7 @@ namespace One.ViewsSite.User
                 var loginUrl = "ViewsSite/Account/Login.aspx";
                 if (user != null)
                 {
+                    EarlierUc.EmptyData += EarlierUc_EmptyData;
                     //check for school
                     UserId = user.Id;
                     SchoolId = user.SchoolId;
@@ -86,6 +87,11 @@ namespace One.ViewsSite.User
                 }
 
             }
+        }
+
+        void EarlierUc_EmptyData(object sender, EventArgs e)
+        {
+            EarlierUc.Visible = false;
         }
 
         public int UserId

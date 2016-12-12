@@ -62,4 +62,13 @@
             });
     </script>
 </asp:Content>
+<asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
+    Label Edit
+</asp:Content>
+<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
+    <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
+    <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
+</asp:Content>
+
+
 

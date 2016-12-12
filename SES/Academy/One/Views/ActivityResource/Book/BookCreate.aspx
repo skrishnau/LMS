@@ -7,13 +7,15 @@
 
 <asp:Content runat="server" ID="headcontent1" ContentPlaceHolderID="head">
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
+    <%--<link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />--%>
+    <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
 </asp:Content>
 
 
 <asp:Content runat="server" ID="contnet1" ContentPlaceHolderID="Body">
     <div class="create-edit-whole">
         <h3 class="heading-of-create-edit">
-            <asp:Label ID="lblHeading" runat="server" Text="New Book Create "></asp:Label>
+            <asp:Label ID="lblHeading" runat="server" Text="Book Edit"></asp:Label>
         </h3>
         <div class="data-entry-body">
             <div class="data-entry-section">
@@ -25,19 +27,19 @@
                     <table>
                         <tr>
                             <td class="data-type">Name</td>
-                            <td class="data-entry">
+                            <td class="data-value">
                                 <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Description</td>
-                            <td class="data-entry">
+                            <td class="data-value">
                                 <CKEditor:CKEditorControl ID="CKEditor1" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Display discription on course page</td>
-                            <td class="data-entry">
+                            <td class="data-value">
                                 <asp:CheckBox ID="chkDisplayDescription" runat="server" />
                             </td>
                         </tr>
@@ -99,6 +101,9 @@
             <div class="save-div">
                 <asp:Button ID="btnSave" runat="server" Text="Save and return to Course" OnClick="btnSave_Click" />
                 &nbsp;&nbsp;
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_OnClick" />
+                &nbsp; &nbsp;
+                <asp:Label ID="lblError" runat="server" Text="Error on input" ForeColor="red"></asp:Label>
             </div>
         </div>
     </div>
@@ -120,3 +125,8 @@
 
     </script>
 </asp:Content>
+
+<asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
+    Book edit
+</asp:Content>
+

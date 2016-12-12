@@ -20,7 +20,13 @@ namespace Academic.DbEntities.AccessPermission
         public bool Constraint { get; set; }
 
         public DateTime Date { get; set; }
+        
+        
         //in fomat _:_ 24 hour format
+        /// <summary>
+        /// unused
+        /// </summary>
+        [Obsolete]
         public string Time { get; set; }
 
     }

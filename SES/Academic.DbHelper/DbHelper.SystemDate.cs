@@ -119,7 +119,7 @@ namespace Academic.DbHelper
             public static List<string> GetHours()
             {
                 var lst = new List<string>();
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i <= 9; i++)
                 {
                     lst.Add("0"+i.ToString());
                 }
@@ -130,10 +130,23 @@ namespace Academic.DbHelper
                 return lst;
             }
 
+            public static string GetStringFormOfHourOrMinute(int time)
+            {
+                if (time >= 0 && time <= 9)
+                {
+                    return "0" + time;
+                }
+                else 
+                {
+                    return time.ToString();
+                }
+                return "00";
+            }
+
             public static List<string> GetMinutes()
             {
                 var lst = new List<string>();
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i <= 9; i++)
                 {
                     lst.Add("0" + i.ToString());
                 }

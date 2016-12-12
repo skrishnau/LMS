@@ -70,9 +70,8 @@ h5, h6 {
     }
 
 /* Items display */
-.item {
+/*.item {
     margin: 10px 5px 10px;
-    /*background-color: #e0e0e0;*/
     border: 1.8px solid darkgray;
 
 }
@@ -80,9 +79,8 @@ h5, h6 {
     font: 2em bold;
     padding: 10px 10px 15px;
     margin: 10px 10px 10px;
-    /*background-color: #f0fff0;*/
-    /*//font-size: 2em;*/
-}
+    
+}*/
 .item-Option {
     font: 1em serif;
 }

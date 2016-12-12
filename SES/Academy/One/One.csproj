@@ -1487,6 +1487,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="TestingOnly\AutoCompleteTest.aspx" />
     <Content Include="TestingOnly\Dialog\WebForm1.aspx" />
     <Content Include="TestingOnly\JqueryModalDialog.aspx" />
     <Content Include="TestingOnly\WebForm1.aspx" />
@@ -1497,6 +1498,7 @@
     <Content Include="ViewsSite\DashBoard\Student\CourseOverView\LstUc.ascx" />
     <Content Include="ViewsSite\DashBoard\Student\CourseOverView\CourseMessageUC.ascx" />
     <Content Include="ViewsSite\DashBoard\Student\CourseOverView\CourseUc.ascx" />
+    <Content Include="ViewsSite\DashBoard\Student\CourseOverView\unusedCode.txt" />
     <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\CourseMessageUC.ascx" />
     <Content Include="ViewsSite\DashBoard\Student\ExtraCourses\ItemUc.ascx" />
     <Content Include="ViewsSite\Default.aspx" />
@@ -1581,6 +1583,7 @@
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialogStyles.css" />
+    <Content Include="Views\All_Resusable_Codes\Error\ErrorPage.aspx" />
     <Content Include="Views\All_Resusable_Codes\FileTasks\FilePicker.ascx" />
     <Content Include="Views\All_Resusable_Codes\FileTasks\FilePickerDialog.ascx" />
     <Content Include="Views\All_Resusable_Codes\FileTasks\FileUploadUc.ascx" />
@@ -1612,6 +1615,7 @@
     <Content Include="Views\Course\Default.aspx" />
     <Content Include="Views\Course\EarlierCode.txt" />
     <Content Include="Views\Course\Section\Default.aspx" />
+    <Content Include="Views\Course\Section\EarlierCodes.txt" />
     <Content Include="Views\Course\Section\Master\CourseSectionListing.aspx" />
     <Content Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx" />
     <Content Include="Views\Default.aspx" />
@@ -1894,6 +1898,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TestingOnly\AutoCompleteTest.aspx.cs">
+      <DependentUpon>AutoCompleteTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestingOnly\AutoCompleteTest.aspx.designer.cs">
+      <DependentUpon>AutoCompleteTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestingOnly\Dialog\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
@@ -2554,6 +2565,13 @@
     </Compile>
     <Compile Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx.designer.cs">
       <DependentUpon>Dialog1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\Error\ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\Error\ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\All_Resusable_Codes\FileTasks\FilePicker.ascx.cs">
       <DependentUpon>FilePicker.ascx</DependentUpon>

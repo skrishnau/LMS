@@ -161,13 +161,7 @@ h5, h6 {
     }
 
 /* Items display */
-.item {
-    margin: 10px 10px 10px 5px;
-    /*background-color: #e0e0e0;*/
-    border: 1.8px solid darkgray;
-    overflow: hidden;
-    width: 97%;
-}
+
 
 .item-student {
     margin: 5px 5px 5px;
@@ -177,14 +171,7 @@ h5, h6 {
     width: 100%;
 }
 
-.item-heading {
-    font: 2em bold;
-    padding: 10px 10px 15px;
-    margin: 10px 10px 10px;
-    color: #0000b3;
-    /*background-color: #f0fff0;*/
-    /*//font-size: 2em;*/
-}
+
 
 .act-res-heading {
     font: 1.2em bold;

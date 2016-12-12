@@ -535,9 +535,12 @@ namespace Academic.DbHelper
             //used
             public bool DoesUserNameExist(int schoolId, string userName)
             {
-                return Context.Users.Any(x => x.SchoolId == schoolId && x.UserName == userName);
+                return Context.Users.Any(x =>  x.UserName == userName);
             }
 
+
+            //used
+            
         }
     }
 }

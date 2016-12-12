@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbEntities.Class;
 using Academic.DbEntities.User;
 using Academic.DbHelper;
 using Academic.ViewModel;
@@ -15,13 +16,16 @@ namespace One.Views.Class.Enrollment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
-                Session["enrolledList"] = new List<Academic.DbEntities.Class.UserClass>();
+
+
+                ViewState["enrolledList"] = new List<UserClassViewModel>();
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
-
+                    UserId = user.Id;
                     //============================ populate data in dropdownlist ===========//
                     DbHelper.ComboLoader.LoadRoleForUserEnroll(ref ddlAssignRole, user.SchoolId, "student");
 
@@ -73,15 +77,30 @@ namespace One.Views.Class.Enrollment
                         lstAsg.DataSource = asglist;
                         lstAsg.DataBind();
 
-                        Session["enrolledList"] = helper.ListSessionUsers(SubjectSessionId);
+                        ViewState["enrolledList"] = helper.ListSessionUsers(SubjectSessionId);
 
                         var notasgList = helper.ListUsersNotInSubjectSession(
                             SubjectSessionId
                             , asglist.Select(x => x.Id).ToList()
-                            ,user.SchoolId);
+                            , user.SchoolId);
                         lstUnAsg.DataSource = notasgList;
                         lstUnAsg.DataSource = notasgList;
                         lstUnAsg.DataBind();
+
+                        //AutoCompleteExtender1.ServiceMethod = "GetUnassignedUsersList";
+
+                        //group populate
+                        if (session.HasGrouping)
+                        {
+                            pnlGroup.Visible = true;
+                            ddlGroup.DataSource = session.SubjectClassGrouping.ToList();
+                            ddlGroup.DataBind();
+                        }
+                        else
+                        {
+                            pnlGroup.Visible = false;
+                        }
+
                     }
                     //DbHelper.ComboLoader.LoadStudentGroup(ref cmbGroup,
                     //    user.SchoolId, true, GroupId);
@@ -96,6 +115,52 @@ namespace One.Views.Class.Enrollment
             //DateChooser1.Validate = false;
         }
 
+        public int UserId
+        {
+            get { return Convert.ToInt32(hidUserId.Value); }
+            set { hidUserId.Value = value.ToString(); }
+        
+    }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static string[] GetCountries(string prefixText, int count)
+        {
+            var cnt = new string[]
+            {
+                "Nepal", "Us","UK","Pakistan","Afganistan"
+            ,"america","bhutan","India","Bangladesh","syria","Myanmar","Vatican city"
+            };
+            return cnt.Where(x => x.StartsWith(prefixText)).ToArray();
+        }
+
+        public  string[] GetUnassignedUsersList(string prefixText, int count)
+        {
+            using (var helper = new DbHelper.Classes())
+            {
+                //var user = UserId;
+                var user = Page.User as CustomPrincipal;
+                if (user != null)
+                {
+
+                    var asglist = (ViewState["enrolledList"] as List<Academic.ViewModel.UserClassViewModel>)
+                        ?? new List<UserClassViewModel>();
+                    //if (asglist == null)
+                    //    asglist = 
+                    return helper.ListUsersNotInSubjectSession(
+                        SubjectSessionId
+                        , asglist.Select(x => x.Id).ToList()
+                        , user.SchoolId).Select(x => x.FirstName
+                                                     + (string.IsNullOrEmpty(x.MiddleName) ? "" : " " + x.MiddleName)
+                                                     + (string.IsNullOrEmpty(x.LastName) ? "" : " " + x.LastName))
+                                                     .Where(x=>x.StartsWith(prefixText))
+                                                     .ToArray();
+                    //+ x.LastName);
+
+                }
+                return new string[]{};//List<string>();
+            }
+        }
 
 
         public int SubjectSessionId
@@ -116,7 +181,7 @@ namespace One.Views.Class.Enrollment
         //    get { return Convert.ToInt32((txtGroupId.Text == "") ? "0" : txtGroupId.Text); }
         //    set
         //    {
-        //        DbHelper.ComboLoader.LoadStudentGroup(ref cmbGroup, Values.Session.GetSchool(Session), true, GroupId);
+        //        DbHelper.ComboLoader.LoadStudentGroup(ref cmbGroup, Values.ViewState.GetSchool(ViewState), true, GroupId);
         //        cmbGroup.Enabled = false;
         //        this.txtGroupId.Text = value.ToString();
         //    }
@@ -210,7 +275,7 @@ namespace One.Views.Class.Enrollment
                     //{
                     using (var helper = new DbHelper.Classes())
                     {
-                        //var s = helper.AssignStudentToGroup(stdList, grpId, Values.Session.GetUser(Session));
+                        //var s = helper.AssignStudentToGroup(stdList, grpId, Values.ViewState.GetUser(ViewState));
                         //if (s)
                         //{
                         //    Response.Redirect("~/Views/Student/StudentGroup/List.aspx");
@@ -269,17 +334,43 @@ namespace One.Views.Class.Enrollment
 
         private List<Academic.DbEntities.Class.UserClass> GetSubjectSessionUsersList()
         {
-            var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.UserClass>;
+            var enrolledList = ViewState["enrolledList"] as List<UserClassViewModel>;
             if (enrolledList != null)
             {
-                return enrolledList.ToList();
+                var list = new List<Academic.DbEntities.Class.UserClass>();
+                foreach (var uvm in enrolledList)
+                {
+                    list.Add(new UserClass()
+                    {
+                        Id = uvm.Id,
+                        CreatedDate = uvm.CreatedDate
+                        ,
+                        EndDate = uvm.EndDate
+                        ,
+                        EnrollmentDuration = uvm.EnrollmentDuration
+                        ,
+                        RoleId = uvm.RoleId
+                        ,
+                        StartDate = uvm.StartDate
+                        ,
+                        SubjectClassId = uvm.SubjectClassId
+                        ,
+                        Suspended = uvm.Suspended
+                        ,
+                        UserId = uvm.UserId
+                        ,
+                        Void = uvm.Void
+                        ,
+                    });
+                }
+                return list;
             }
-            return new List<Academic.DbEntities.Class.UserClass>();
+            return new List<UserClass>();
         }
 
         //private List<int> GetEnrolledList()
         //{
-        //    var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
+        //    var enrolledList = ViewState["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
         //    if (enrolledList != null)
         //    {
         //        return enrolledList.Where(x => !(x.Void ?? false)).Select(x => x.Id).ToList();
@@ -289,7 +380,7 @@ namespace One.Views.Class.Enrollment
 
         private bool AddToEnrolledList(int userId)
         {
-            var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.UserClass>;
+            var enrolledList = ViewState["enrolledList"] as List<UserClassViewModel>;
             if (enrolledList != null)
             {
 
@@ -309,7 +400,7 @@ namespace One.Views.Class.Enrollment
                 }
                 else
                 {
-                    var ssu = new Academic.DbEntities.Class.UserClass()
+                    var ssu = new UserClassViewModel()
                     {
                         UserId = userId
                         ,
@@ -335,6 +426,8 @@ namespace One.Views.Class.Enrollment
 
                     ssu.EnrollmentDuration = Convert.ToInt32(ddlEnrollmentDuration.SelectedValue);
                     enrolledList.Add(ssu);
+
+
                 }
                 return true;
             }
@@ -343,8 +436,8 @@ namespace One.Views.Class.Enrollment
 
         bool RemoveFromEnrolledList(int userId)
         {
-            //var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
-            var enrolledList = Session["enrolledList"] as List<Academic.DbEntities.Class.UserClass>;
+            //var enrolledList = ViewState["enrolledList"] as List<Academic.DbEntities.Class.SubjectSessionUser>;
+            var enrolledList = ViewState["enrolledList"] as List<UserClassViewModel>;
             if (enrolledList != null)
             {
                 var found = enrolledList.Find(x => x.UserId == userId);
@@ -362,6 +455,11 @@ namespace One.Views.Class.Enrollment
                 return true;
             }
             return false;
+        }
+
+        protected void tstSearchNotEnroll_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         //protected void btnRemove_Click(object sender, EventArgs e)

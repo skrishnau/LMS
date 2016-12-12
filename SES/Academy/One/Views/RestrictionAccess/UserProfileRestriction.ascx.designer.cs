@@ -13,15 +13,6 @@ namespace One.Views.RestrictionAccess {
     public partial class UserProfileRestriction {
         
         /// <summary>
-        /// imgVisibility control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgVisibility;
-        
-        /// <summary>
         /// ddlField control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,24 @@ namespace One.Views.RestrictionAccess {
         protected global::System.Web.UI.WebControls.ImageButton imgClose;
         
         /// <summary>
+        /// dsFields control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource dsFields;
+        
+        /// <summary>
+        /// dsConstraints control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource dsConstraints;
+        
+        /// <summary>
         /// hidParentId control.
         /// </summary>
         /// <remarks>
@@ -92,5 +101,23 @@ namespace One.Views.RestrictionAccess {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidType;
+        
+        /// <summary>
+        /// hidUserProfileRestrictionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidUserProfileRestrictionId;
+        
+        /// <summary>
+        /// hidRestrictionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidRestrictionId;
     }
 }

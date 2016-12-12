@@ -13,6 +13,17 @@
 
              <%--<uc1:UserEnrollUC runat="server" ID="UserEnrollUC" />--%>
              <uc1:UserEnrollUC_ListDisplay runat="server" ID="UserEnrollUC_ListDisplay1" />
+             <asp:TextBox ID="TextBox1" runat="server" Visible="False"></asp:TextBox>
+              <ajaxToolkit:AutoCompleteExtender ID="AutoCompleteExtender1"
+                                                ServiceMethod=""
+                                                MinimumPrefixLength="1"
+                                                CompletionInterval="10"
+                                                EnableCaching="false"
+                                                CompletionSetCount="1"
+                                               TargetControlID="TextBox1"
+                                                runat="server">
+                                            </ajaxToolkit:AutoCompleteExtender>
+             <%--  TargetControlID="txtSearchNotEnroll" --%>
          </div>
          <%-- List of users to add; with filter  --%>
      </div>

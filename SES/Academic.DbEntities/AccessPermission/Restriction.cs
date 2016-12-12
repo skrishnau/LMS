@@ -56,6 +56,7 @@ namespace Academic.DbEntities.AccessPermission
         Group
         , 
         RestrictionSet
+        //,ActivityCompletion
     }
 
 }

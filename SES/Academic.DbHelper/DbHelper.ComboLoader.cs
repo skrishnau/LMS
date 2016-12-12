@@ -57,11 +57,11 @@ namespace Academic.DbHelper
                 using (var helper = new DbHelper.Office())
                 {
                     var schooltype = helper.GetSchoolTypes().ToList();
-                    if (schooltype.Count > 0)
-                    {
-                        schooltype.Insert(0,
-                            new DbEntities.Office.SchoolType() { Id = 0, Name = "--Select One--" });
-                    }
+                    //if (schooltype.Count > 0)
+                    //{
+                    //    schooltype.Insert(0,
+                    //        new DbEntities.Office.SchoolType() { Id = 0, Name = "--Select One--" });
+                    //}
 
                     //if (createNewField)
                     //{

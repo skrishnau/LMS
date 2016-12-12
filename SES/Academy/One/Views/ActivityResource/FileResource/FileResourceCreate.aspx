@@ -20,7 +20,7 @@
 <asp:Content runat="server" ID="contnet1" ContentPlaceHolderID="Body">
     <div class="create-edit-whole">
         <h3 class="heading-of-create-edit">
-            <asp:Label ID="lblHeading" runat="server" Text="Add New File"></asp:Label>
+            <asp:Label ID="lblHeading" runat="server" Text="File Edit"></asp:Label>
         </h3>
         <div class="data-entry-body">
             <div class="data-entry-section">
@@ -31,9 +31,14 @@
                 <div class="data-entry-section-body">
                     <table>
                         <tr>
-                            <td class="data-type">Name</td>
+                            <td class="data-type">Name *</td>
                             <td class="data-entry">
                                 <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" 
+                                    ForeColor="red"
+                                    runat="server" 
+                                    ControlToValidate="txtName"
+                                    ErrorMessage="Required"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -122,6 +127,7 @@
             <div class="save-div">
                 <asp:Button ID="btnSave" runat="server" Text="Save and return to Course" OnClick="btnSave_Click" />
                 &nbsp;&nbsp;
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_OnClick" />
             </div>
         </div>
     </div>

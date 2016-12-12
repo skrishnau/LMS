@@ -90,7 +90,8 @@ namespace One.Views.RestrictionAccess.Main
                             case "grade":
                                 var gradeRestriction = (GradeRestrictionUC)
                                     Page.LoadControl("~/Views/RestrictionAccess/GradeRestrictionUC.ascx");
-                                gradeRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId, resClass.RelativeId, resClass.Name);
+                                gradeRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId
+                                    , resClass.RelativeId, resClass.Name, 0);
                                 gradeRestriction.CloseClicked += RestrictionType_CloseClicked;
 
                                 parent.Controls.Add(gradeRestriction);
@@ -311,7 +312,7 @@ namespace One.Views.RestrictionAccess.Main
                             var gradeRestriction = (GradeRestrictionUC)
                                 Page.LoadControl("~/Views/RestrictionAccess/GradeRestrictionUC.ascx");
                             gradeRestriction.SetIds(resClass.ParentId, resClass.AbsoluteId,
-                                resClass.RelativeId, resClass.Name);
+                                resClass.RelativeId, resClass.Name, 0);
                             _foundMain.AddControl(gradeRestriction);
                             break;
                         case 3:

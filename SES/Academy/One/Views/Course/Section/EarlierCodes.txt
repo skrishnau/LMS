@@ -1,0 +1,64 @@
+﻿   //protected void btnDelete_Click(object sender, EventArgs e)
+        //{
+        //    using (var helper = new DbHelper.SubjectSection())
+        //    {
+        //        bool deleted = helper.MakeSectionVoid(SectionId);
+        //        //if (OnSaveEvent != null)
+        //        {
+        //            if (deleted)
+        //            {
+        //                //OnSaveEvent(this, DbHelper.StaticValues.SuccessDeleteMessageEventArgs);
+        //            }
+        //            else
+        //            {
+        //                //OnSaveEvent(this, DbHelper.StaticValues.ErrorDeleteMessageEventArgs);
+
+        //            }
+        //        }
+        //        //else if (!String.IsNullOrEmpty(RedirectUrl))
+        //        //{
+        //        //    ViewState["Saved"] = deleted;
+        //        //    string url = RedirectUrl + "?SubId=" + SubjectId;
+        //        //    Response.Redirect(url);
+        //        //}
+        //    }
+        //}
+
+        //protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        //{
+
+        //}
+
+        //protected void btnClose_Click(object sender, ImageClickEventArgs e)
+        //{
+        //    txtDesc.Text = "";
+        //    txtName.Text = "";
+        //    //Restrictions nullify
+
+        //    //if (OnCloseClick != null)
+        //    {
+        //        //OnCloseClick(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
+        //    }
+        //    //else if (!String.IsNullOrEmpty(RedirectUrl))
+        //    //{
+        //    //    ViewState["Saved"] = true;
+        //    //    string url = RedirectUrl + "?SubId=" + SubjectId;
+        //    //    Response.Redirect(url);
+        //    //}
+        //}
+
+
+
+		 //public string RedirectUrl
+        //{
+        //    get { return (string)(ViewState["RedirectUrl"] ?? ""); }
+        //    set { ViewState["RedirectUrl"] = value; }
+        //}
+
+        //protected void lnkAccessPermission_Click(object sender, EventArgs e)
+        //{
+        //    pnlAccessPermission.Visible = !pnlAccessPermission.Visible;
+        //}
+
+
+

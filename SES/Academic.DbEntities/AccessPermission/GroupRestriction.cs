@@ -15,11 +15,12 @@ namespace Academic.DbEntities.AccessPermission
     {
         public int Id { get; set; }
 
-        /// <summary>
-        /// true: Class so there may or may not be Group, since Class has Grouping
-        /// false: Group, so there will not be any Class, Group will be taken from Subject
-        /// </summary>
-        public bool ClassOrGroup { get; set; }
+       // /// <summary>
+       // /// true: Class so there may or may not be Group, since Class has Grouping
+       // /// false: Group, so there will not be any Class, Group will be taken from Subject
+       // /// </summary>
+       //[Obsolete]
+       // public bool ClassOrGroup { get; set; }
 
         /// <summary>
         /// 

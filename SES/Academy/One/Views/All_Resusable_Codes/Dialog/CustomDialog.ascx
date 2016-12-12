@@ -47,7 +47,7 @@
                             <asp:Panel ID="pnlItemsControl" runat="server"></asp:Panel>
 
                         </div>
-                        <div>hello this is custom ..</div>
+                        <%--<div>hello this is custom ..</div>--%>
                         <div class="button-div" runat="server" id="buttonsDiv">
                             <span class="button-span">&nbsp;
                                 <asp:Button ID="btnDialogSave" runat="server" Text="Save" Width="70px" Visible="False" 

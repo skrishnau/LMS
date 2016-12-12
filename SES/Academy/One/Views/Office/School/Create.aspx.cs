@@ -139,9 +139,19 @@ namespace One.Views.Office.School
                 }
             }
             countries.Sort();
-            countries.Insert(0, "Select");
+            var i = 0;
+            try
+            {
+                i = countries.IndexOf("Nepal");                
+            }
+            catch
+            {
+            }
+            if(i!=0)
+                countries.Insert(0, "Select");
             ddlCountry.DataSource = countries;
             ddlCountry.DataBind();
+            ddlCountry.SelectedIndex = i;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)

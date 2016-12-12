@@ -9,7 +9,7 @@
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <h3 class="heading-of-listing">
-        School Info
+        College Info
         <%--<asp:Label ID="lblSchoolName" runat="server" Text="School Profile"></asp:Label>--%>
     </h3>
     <hr />
@@ -19,13 +19,13 @@
     <div class="detail-view">
         <table>
             <tr>
-                <td class="data-type">School Name</td>
+                <td class="data-type">College Name</td>
                 <td class="data-place">
                     <asp:Label ID="lblName" runat="server" Text="Label"></asp:Label>
                 </td>
             </tr>
-            <tr>
-                <td class="data-type">School type</td>
+            <tr runat="server" ID="one1" Visible="False">
+                <td class="data-type">College type</td>
                 <td class="data-place">
                     <asp:Label ID="lblSchoolType" runat="server" Text="Label"></asp:Label>
                     
@@ -39,7 +39,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="data-type">School mail Id</td>
+                <td class="data-type">Mail Id</td>
                 <td class="data-place">
                     <asp:Label ID="lblEmail" runat="server" Text="Label"></asp:Label>
                     
@@ -52,7 +52,7 @@
                     
                 </td>
             </tr>
-            <tr>
+            <tr runat="server" ID="two3" Visible="False">
                 <td class="data-type">Country</td>
                 <td class="data-place">
                     <asp:Label ID="lblCountry" runat="server" Text="Label"></asp:Label>

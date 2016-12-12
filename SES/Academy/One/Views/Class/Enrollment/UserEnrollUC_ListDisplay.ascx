@@ -75,7 +75,12 @@
                                                     <asp:Label ID="lblStartingFrom" runat="server" Text="Starting From"></asp:Label>
                                                     <br />
                                                     <asp:DropDownList ID="ddlStartingFrom" runat="server" Height="22px" Width="120px" DataTextField="Name" DataValueField="Id">
-                                                       
+                                                    </asp:DropDownList>
+                                                </p>
+                                                <p runat="server" id="pnlGroup" visible="False">
+                                                    <asp:Label ID="lblGroup" runat="server" Text="Group"></asp:Label>
+                                                    <br />
+                                                    <asp:DropDownList ID="ddlGroup" runat="server" Height="22px" Width="120px" DataTextField="Name" DataValueField="Id">
                                                     </asp:DropDownList>
                                                 </p>
                                             </div>
@@ -97,9 +102,21 @@
                                         <div id="notenrollsearchId" class="user-enroll-search">
                                             <asp:Label ID="lblSearchNotEnrolled" runat="server" Text="Search"></asp:Label>
                                             <br />
-                                            <asp:TextBox ID="tstSearchNotEnroll" runat="server" Text=""></asp:TextBox>
+                                            <asp:TextBox ID="txtSearchNotEnroll" runat="server" Text="" ></asp:TextBox>
+                                            <ajaxToolkit:AutoCompleteExtender ID="AutoCompleteExtender1"
+                                                ServiceMethod="GetCountries"
+                                                MinimumPrefixLength="1"
+                                                CompletionInterval="1000"
+                                                EnableCaching="false"
+                                                CompletionSetCount="1"
+                                                TargetControlID="txtSearchNotEnroll"
+                                                runat="server">
+                                            </ajaxToolkit:AutoCompleteExtender>
+
+                                            <%-- ServiceMethod="GetUnassignedUsersList" --%>
                                             &nbsp;
                                         <asp:Button ID="btnClearNotEnroll" runat="server" Text="Clear" />
+                                            <br />
                                         </div>
                                     </div>
                                 </td>
@@ -117,6 +134,7 @@
 
     </div>
     <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSubjectSessionId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSessionStartDate" runat="server" Value="" />
 

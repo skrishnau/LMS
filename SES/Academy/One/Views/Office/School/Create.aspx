@@ -5,12 +5,12 @@
 <%@ Register Src="~/Views/ActivityResource/FileResource/FileResourceItems/FilesDisplay.ascx" TagPrefix="uc1" TagName="FilesDisplay" %>
 
 <asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
-    School Edit
+    College Edit
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="Body" ID="content">
     <div style="text-align: center">
-        <strong style="font-size: 1.5em;">School Edit</strong>
+        <strong style="font-size: 1.5em;">College Edit</strong>
 
     </div>
     <%-- style="margin: 10px 20px 0; padding: 10px; border: 2px solid lightgray;" --%>
@@ -23,7 +23,7 @@
 
             <table>
                 <tr>
-                    <td class="data-type">School Name*</td>
+                    <td class="data-type">College Name*</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
@@ -31,8 +31,8 @@
                             ControlToValidate="txtName" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr>
-                    <td class="data-type">School Type*</td>
+                <tr runat="server" ID="one1" Visible="False" >
+                    <td class="data-type">College Type*</td>
                     <td class="data-value">
                         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                             <ContentTemplate>
@@ -51,7 +51,7 @@
                 </tr>
 
 
-                <tr>
+                <tr runat="server" ID="two2" Visible="False">
                     <td class="data-type">School location *</td>
                     <td class="data-value">
                         <asp:DropDownList ID="ddlCountry" runat="server"></asp:DropDownList>
@@ -75,7 +75,7 @@
 
 
                 <tr>
-                    <td class="data-type">School Email*</td>
+                    <td class="data-type">Email*</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
@@ -109,7 +109,7 @@
 
 
         <div class="data-entry-section-heading">
-            School Logo
+            Logo
         </div>
         <hr />
         <div class="data-entry-section-body">

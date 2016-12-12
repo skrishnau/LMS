@@ -144,6 +144,7 @@
         h3.heading-of-listing {
             text-align: center;
             margin-top: 3px;
+            font-size: 2em;
         }
 
         div.heading-menu {
@@ -283,7 +284,7 @@
         }
 
         div.detail-view tr {
-            border-bottom: 1px solid grey;
+            /*border-bottom: 1px solid grey;*/
             width: 100%;
             padding: 10px 0;
         }
@@ -354,7 +355,9 @@
         }
 
         .module-whole {
-            margin: 0 5px 10px;
+            margin-bottom: 15px;
+            background-color: lightgoldenrodyellow;
+            padding: 3px;
         }
 
         .modules-title {
@@ -368,11 +371,12 @@
             }
 
         div.modules-heading {
-            width: 100%;
+            /*width: 100%;*/
             border-bottom: 1px solid black;
-            text-align: center;
-            background-color: lightsalmon;
+            text-align: left;
+            background-color: darkslategray;
             color: white;
+            padding:  5px;
         }
 
         .modules-body {
@@ -406,13 +410,15 @@
         }
 
 
-        /*right 20% left 15%*/
-        .right-width {
+        /*right 20% left 15%
             width: 200px;
+        */
+        .right-width {
+            width: 250px;
         }
-
+        /*width: 180px;*/
         .left-width {
-            width: 180px;
+            width: 220px;
         }
 
         .mid-width {
@@ -426,7 +432,7 @@
             top: 0;
             left: 0;
             /*-webkit-border-radius: 2px;*/
-            background-color: black;
+            background-color: darkslategray;
         }
     </style>
 </head>
@@ -454,9 +460,12 @@
 
         <div id="menuDiv" class="menu-div" style="text-align: left; z-index: 10; vertical-align: central; padding: 2px 5px; clear: both; width: 100%;">
             <div style="margin: auto; vertical-align: central;">
-                <a href="~/Views/Office/School/View.aspx" style="text-decoration: none;">
-                    <asp:Label ID="lblSchoolName" runat="server" Text="" Font-Size="1.2em" Font-Bold="True"></asp:Label>
-                </a>
+                &nbsp;
+                 <asp:HyperLink runat="server" ID="lnkSchoolName" NavigateUrl="~/Views/Office/School/View.aspx"
+                     ForeColor="lightgoldenrodyellow"
+                     Font-Underline="False">
+                     <asp:Label ID="lblSchoolName" runat="server" Text="" Font-Size="1.2em" Font-Bold="True"></asp:Label>
+                 </asp:HyperLink>
 
                 <div style="float: left;">
                     <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Icons/School/school-logo.png" Width="30" Height="30" />
@@ -510,8 +519,8 @@
                             </asp:ContentPlaceHolder>
                             <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
                             <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
-                            
-                             <asp:ContentPlaceHolder runat="server" ID="JSField">
+
+                            <asp:ContentPlaceHolder runat="server" ID="JSField">
                             </asp:ContentPlaceHolder>
                         </div>
                         <%-- --------------------------- END --------------------- --%>
@@ -567,7 +576,15 @@
         <%-- Clear Both --%>
         <div style="clear: both;">
             <hr style="color: white; height: 2px;" />
-            @copyright 2000
+            <table style="margin: 0 auto;">
+                <tr>
+                    <td>Home &nbsp;</td>
+                    <td>Profile &nbsp; </td>
+                    <td>News &nbsp; </td>
+                    <td>Notice &nbsp; </td>
+                    <td>Contact &nbsp; </td>
+                </tr>
+            </table>
         </div>
     </form>
 </body>

@@ -159,12 +159,12 @@
 
 
     <style type="text/css">
-        .img-close:hover {
+        /*.img-close:hover {
             background-color: orangered;
         }
 
         .img-close {
-        }
+        }*/
 
         .btnAdd_Restriction {
             width: 80px;

@@ -134,6 +134,34 @@
     <Compile Include="Migrations\201611272038001_student_grouping_added.Designer.cs">
       <DependentUpon>201611272038001_student_grouping_added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612042054475_act_res_id_added_to_all.cs" />
+    <Compile Include="Migrations\201612042054475_act_res_id_added_to_all.Designer.cs">
+      <DependentUpon>201612042054475_act_res_id_added_to_all.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612042254444_act_res_id_deleted_to_all.cs" />
+    <Compile Include="Migrations\201612042254444_act_res_id_deleted_to_all.Designer.cs">
+      <DependentUpon>201612042254444_act_res_id_deleted_to_all.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612061857255_class_removed_from_classRestriction.cs" />
+    <Compile Include="Migrations\201612061857255_class_removed_from_classRestriction.Designer.cs">
+      <DependentUpon>201612061857255_class_removed_from_classRestriction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612102049577_userprofile_updation.cs" />
+    <Compile Include="Migrations\201612102049577_userprofile_updation.Designer.cs">
+      <DependentUpon>201612102049577_userprofile_updation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612110037048_activity_view_added.cs" />
+    <Compile Include="Migrations\201612110037048_activity_view_added.Designer.cs">
+      <DependentUpon>201612110037048_activity_view_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612110151401_no_idea1.cs" />
+    <Compile Include="Migrations\201612110151401_no_idea1.Designer.cs">
+      <DependentUpon>201612110151401_no_idea1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121207342_restriction_added_in_section.cs" />
+    <Compile Include="Migrations\201612121207342_restriction_added_in_section.Designer.cs">
+      <DependentUpon>201612121207342_restriction_added_in_section.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -213,6 +241,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611272038001_student_grouping_added.resx">
       <DependentUpon>201611272038001_student_grouping_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612042054475_act_res_id_added_to_all.resx">
+      <DependentUpon>201612042054475_act_res_id_added_to_all.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612042254444_act_res_id_deleted_to_all.resx">
+      <DependentUpon>201612042254444_act_res_id_deleted_to_all.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612061857255_class_removed_from_classRestriction.resx">
+      <DependentUpon>201612061857255_class_removed_from_classRestriction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612102049577_userprofile_updation.resx">
+      <DependentUpon>201612102049577_userprofile_updation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612110037048_activity_view_added.resx">
+      <DependentUpon>201612110037048_activity_view_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612110151401_no_idea1.resx">
+      <DependentUpon>201612110151401_no_idea1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121207342_restriction_added_in_section.resx">
+      <DependentUpon>201612121207342_restriction_added_in_section.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

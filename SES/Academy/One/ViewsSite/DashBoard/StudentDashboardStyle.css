@@ -11,10 +11,6 @@
     border-bottom: 2px solid black;
 }*/
 
-.item-message :hover {
-    display: block;
-    background-color: #b0c4de;
-}
 
 .item-detail select {
     background-color: #b0e0e6;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
+using Academic.ViewModel;
 
 namespace Academic.DbHelper
 {
@@ -11,6 +12,30 @@ namespace Academic.DbHelper
     {
         public static class StaticValues
         {
+            public static List<string> ListUserFields()
+            {
+                return new List<string>()
+                {
+                    "Username"
+                    ,"First name"
+                    ,"Middle name"
+                    ,"Last name"
+                    ,"Email"
+                };
+            }
+
+            public static List<IdAndName> ListUserFieldConstraints()
+            {
+                return new List<IdAndName>()
+            {
+                new IdAndName(){Id=0,Name = "equals to"},
+                new IdAndName(){Id=1,Name = "contains"},
+                new IdAndName(){Id=2,Name = "does not contain"},
+                new IdAndName(){Id=3,Name = "starts with"},
+                new IdAndName(){Id=4,Name = "ends with"},
+            };
+            }
+
             public static string UserImageDirectory = "~/Content/Images/UserImage/";
             public static string AssignmentDirectory = "~/Content/Images/AssignmentSubmission/";
 

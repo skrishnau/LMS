@@ -38,5 +38,41 @@ namespace One.Views.RestrictionAccess.Custom {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::One.Views.RestrictionAccess.Custom.EachRestriction EachRestriction1;
+        
+        /// <summary>
+        /// hidActivityResourceType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidActivityResourceType;
+        
+        /// <summary>
+        /// hidActivityOrResource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidActivityOrResource;
+        
+        /// <summary>
+        /// hidActivityOrResourceId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidActivityOrResourceId;
+        
+        /// <summary>
+        /// hidSectionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidSectionId;
     }
 }

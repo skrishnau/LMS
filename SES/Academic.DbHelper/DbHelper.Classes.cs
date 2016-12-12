@@ -348,6 +348,7 @@ namespace Academic.DbHelper
                 }
             }
 
+            //used
             /// <summary>
             /// role is a string with roles separatted by commas and no spaces
             /// </summary>
@@ -379,6 +380,10 @@ namespace Academic.DbHelper
                         .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
                         .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
                         .ToList();
+                    for (var i = 0; i < regular.Count; i++)
+                    {
+                        regular[i].Name = regular[i].GetName;
+                    }
 
                     var notRegular = Context.SubjectClass
                         .Where(s => (!s.IsRegular)
@@ -430,7 +435,10 @@ namespace Academic.DbHelper
                         .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
                         .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
                         .ToList();
-
+                    for (var i = 0; i < regular.Count; i++)
+                    {
+                        regular[i].Name = regular[i].GetName;
+                    }
                     var notRegular = userclass.Select(x => x.SubjectClass) //.SubjectClass
                         .Where(s => (!s.IsRegular)
                                     && (s.StartDate ?? min) <= now
@@ -485,21 +493,50 @@ namespace Academic.DbHelper
                         .ThenBy(y => y.LastName);
                     return users.Take(50).ToList();
                 }
-                return Context.Users
-                    .OrderBy(y => y.FirstName)
-                    .ThenBy(t => t.MiddleName)
-                    .ThenBy(y => y.LastName).Take(50).ToList();
+                return new List<Users>();
+                    //Context.Users
+                    //.OrderBy(y => y.FirstName)
+                    //.ThenBy(t => t.MiddleName)
+                    //.ThenBy(y => y.LastName).Take(50).ToList();
             }
 
 
-            public List<UserClass> ListSessionUsers(int subjectSessionId)
+            public List<ViewModel.UserClassViewModel> ListSessionUsers(int subjectSessionId)
             {
                 var subsession = Context.SubjectClass.Find(subjectSessionId);
                 if (subsession != null)
                 {
-                    return subsession.ClassUsers.Where(x => !(x.Void ?? false)).ToList();
+                    var lst = new List<ViewModel.UserClassViewModel>();
+                    var clsusers = subsession.ClassUsers.Where(x => !(x.Void ?? false))
+                        .ToList();
+                    foreach (var uvm in clsusers)
+                    {
+                        lst.Add(new ViewModel.UserClassViewModel()
+                        {
+                            Id = uvm.Id,
+                            CreatedDate = uvm.CreatedDate
+                            ,
+                            EndDate = uvm.EndDate
+                            ,
+                            EnrollmentDuration = uvm.EnrollmentDuration
+                            ,
+                            RoleId = uvm.RoleId
+                            ,
+                            StartDate = uvm.StartDate
+                            ,
+                            SubjectClassId = uvm.SubjectClassId
+                            ,
+                            Suspended = uvm.Suspended
+                            ,
+                            UserId = uvm.UserId
+                            ,
+                            Void = uvm.Void
+                            ,
+                        });
+                    }
+                    return lst;
                 }
-                return new List<UserClass>();
+                return new List<UserClassViewModel>();
             }
 
             public List<DbEntities.User.Users> ListSubjectSessionEnrolledUsers(int subjectSessionId)
@@ -629,17 +666,14 @@ namespace Academic.DbHelper
             }
 
 
-            public object ListGroupsOfClass(int classId)
+            public List<SubjectClassGrouping> ListGroupsOfClass(int classId)
             {
                 var cls = Context.SubjectClass.Find(classId);
                 if (cls != null)
                 {
                     if (cls.HasGrouping)
                     {
-                        if (cls.UseDefaultGrouping ?? false)
-                        {
-                            
-                        }
+                        return cls.SubjectClassGrouping.ToList();
                     }
                     else return null;
                 }

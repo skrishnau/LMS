@@ -10,6 +10,7 @@ namespace One.ViewsSite.User.ModulesUc
 {
     public partial class EarlierUc : System.Web.UI.UserControl
     {
+        public event EventHandler<EventArgs> EmptyData;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -24,7 +25,7 @@ namespace One.ViewsSite.User.ModulesUc
                 var againCurrentSubs = againCurrent.Where(x => x.IsRegular).Select(x => x.SubjectStructure.Subject).Distinct()
                     .Select(x=>x.Id).ToList();
                 //var reg =
-                var run = subClss.Where(x => x.IsRegular && (x.SessionComplete ?? false)).GroupBy(x => x.RunningClass);
+                var run = subClss.Where(x => x.IsRegular && (x.SessionComplete ?? false)).GroupBy(x => x.RunningClass).ToList();
                 foreach (var r in run)
                 {
                     var nodeuc =
@@ -51,10 +52,18 @@ namespace One.ViewsSite.User.ModulesUc
                 }
                 else
                 {
+                    if (!run.Any())
+                    {
+                        if (EmptyData != null)
+                        {
+                            EmptyData(this,new EventArgs());
+                        }
+                    }
                     divNonRegular.Visible = false;
                     dListNonRegularSubjects.DataSource = null;
                     dListNonRegularSubjects.DataBind();
                 }
+                
             }
         }
        

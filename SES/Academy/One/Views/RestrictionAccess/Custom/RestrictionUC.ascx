@@ -2,9 +2,8 @@
 
 
 
-
 <%--<%@ Register Src="~/Views/RestrictionAccess/Main/RestrictionFifth.ascx" TagPrefix="uc1" TagName="RestrictionFifth" %>--%>
-<%@ Register Src="~/Views/RestrictionAccess/ChooseRestrictionTypeUC.ascx" TagPrefix="uc1" TagName="ChooseRestrictionTypeUC" %>
+<%--<%@ Register Src="~/Views/RestrictionAccess/ChooseRestrictionTypeUC.ascx" TagPrefix="uc1" TagName="ChooseRestrictionTypeUC" %>--%>
 <%@ Register Src="~/Views/RestrictionAccess/Custom/EachRestriction.ascx" TagPrefix="uc1" TagName="EachRestriction" %>
 
 
@@ -13,19 +12,26 @@
 <%--<asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">--%>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-        <div style="margin: 20px;">
+        <div style="margin: 10px 20px 0; ">
 
             <%--<uc1:RestrictionFifth runat="server" ID="RestrictionFifth1" />--%>
             <uc1:EachRestriction runat="server" ID="EachRestriction1" />
         </div>
+        
+        <asp:HiddenField ID="hidActivityResourceType" runat="server" Value="0"/>
+        <asp:HiddenField ID="hidActivityOrResource" runat="server" Value="False"/>
+        
+        <asp:HiddenField ID="hidActivityOrResourceId" runat="server" Value="0"/>
+        <asp:HiddenField ID="hidSectionId" runat="server" Value="0"/>
+
 
         <%--  <div id="restrictionchoosedialog" style="display: none;">
             <uc1:ChooseRestrictionTypeUC runat="server" ID="ChooseRestrictionTypeUC1" />
         </div>--%>
-         <script type="text/javascript">
-             $('[class*=date_text_box]').unbind();
-             $('[class*=date_text_box]').datepicker();
-    </script>
+        <script type="text/javascript">
+            $('[class*=date_text_box]').unbind();
+            $('[class*=date_text_box]').datepicker();
+        </script>
     </ContentTemplate>
 </asp:UpdatePanel>
 

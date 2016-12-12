@@ -2,12 +2,14 @@
 
 
 <div class="restriction-uc-whole">
-    <%--<asp:ImageButton ID="imgVisibility" ImageUrl="~/Content/Icons/Visibility/eye_16x20_visible.png" runat="server" />--%>    
-    &nbsp;
+    <%--<asp:ImageButton ID="imgVisibility" ImageUrl="~/Content/Icons/Visibility/eye_16x20_visible.png" runat="server" />--%>
+    <%--&nbsp;--%>
     <span>Grade&nbsp;
-    <asp:DropDownList ID="ddlActivityChoose" runat="server" Height="22px" Width="216px" 
-        ToolTip="Please be sure that target students have access to the selected Activity" DataTextField="Name" 
-        DataValueField="ActivityResourceId">
+    <asp:DropDownList ID="ddlActivityChoose" runat="server" Height="22px" Width="216px"
+        ToolTip="Please be sure that target students have access to the selected Activity" 
+        DataSourceID="dataSourceActivities"
+        DataTextField="Name"
+        DataValueField="Id">
     </asp:DropDownList>
         &nbsp;
     <asp:CheckBox ID="chkGreaterThanOrEqualTo" runat="server" Text="must be ≥" AutoPostBack="True" OnCheckedChanged="chkGreaterThanOrEqualTo_CheckedChanged" />
@@ -23,18 +25,28 @@
     
     </span>
     &nbsp;
+     <span class="img-close">
+         <asp:ImageButton ID="imgClose" CssClass="link-img-close" CausesValidation="False"
+             ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" OnClick="imgClose_Click" />
+     </span>
+    &nbsp;
+    <asp:Label ID="lblError" runat="server" Text="Error in selection" 
+        Visible="False"
+        ForeColor="red"></asp:Label>
+    <asp:ObjectDataSource ID="dataSourceActivities" runat="server" SelectMethod="ListActivitiesOfCourse" TypeName="Academic.DbHelper.DbHelper+ActAndRes"  >
+        <SelectParameters>
+            <asp:ControlParameter ControlID="hidSubjectId" DefaultValue="0" Name="courseId" PropertyName="Value" Type="Int32" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
 
- <asp:ImageButton ID="imgClose" CssClass="img-close" CausesValidation="False"
-     ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" OnClick="imgClose_Click" />
-    
     <asp:HiddenField ID="hidParentId" runat="server" Value="0" />
     <asp:HiddenField ID="hidRelativeId" runat="server" Value="1" />
     <asp:HiddenField ID="hidAbsoluteId" runat="server" Value="1" />
     <asp:HiddenField ID="hidType" runat="server" Value="" />
-    
+
     <asp:HiddenField ID="hidGradeRestrictionId" runat="server" Value="0" />
     <asp:HiddenField ID="hidRestrictionId" runat="server" Value="0" />
-    
+
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
 
 </div>

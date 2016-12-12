@@ -23,12 +23,12 @@
             display: inline-block;
         }
 
-        .img-close:hover {
+        /*.img-close:hover {
             background-color: orangered;
         }
 
         .img-close {
-        }
+        }*/
 
         .btnAdd_Restriction {
             width: 80px;

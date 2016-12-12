@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsUc.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.SettingsUc" %>
 
-<div class="modules-whole">
+<div class="module-whole">
     <%--<strong>Settings</strong>--%>
     <div class="modules-heading">
         <strong>
@@ -9,7 +9,7 @@
     </div>
     <div class="modules-body" style="font-size: 0.9em; font-weight: 500;">
         <asp:HyperLink ID="HyperLink2" runat="server" CssClass="link"
-            NavigateUrl="~/Views/Office/School/View.aspx">∙School</asp:HyperLink>
+            NavigateUrl="~/Views/Office/School/View.aspx">∙College</asp:HyperLink>
         <br />
         <asp:HyperLink ID="HyperLink3" runat="server" CssClass="link"
             NavigateUrl="~/Views/Structure/All/Master/List.aspx">∙Programs</asp:HyperLink>
@@ -18,7 +18,7 @@
             NavigateUrl="~/Views/Student/">∙Batches</asp:HyperLink>
         <br />
         <asp:HyperLink ID="HyperLink4" runat="server" CssClass="link"
-            NavigateUrl="~/Views/Course/">Courses</asp:HyperLink>
+            NavigateUrl="~/Views/Course/">∙Courses</asp:HyperLink>
         <br />
         <span style="margin-left: 10px;">
             <asp:HyperLink ID="HyperLink10" runat="server" CssClass="link"

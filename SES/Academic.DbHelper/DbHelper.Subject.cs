@@ -734,7 +734,7 @@ namespace Academic.DbHelper
 
               }*/
 
-
+            //tag 1
             public List<Academic.DbEntities.Subjects.Subject>[] ListCurrentAndEarlierCoursesOfUser(int userId)
             {
                 //var currAndEarlierCourses = new List<DbEntities.Subjects.Subject>[2];

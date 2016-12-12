@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Academic.Database;
 //using Academic.DbEntities.Subjects.Detail;
 
@@ -38,23 +39,38 @@ namespace Academic.DbHelper
                         .FirstOrDefault(y => y.Id == sectionId);
             }
 
-            public DbEntities.Subjects.SubjectSection AddOrUpdateSection(DbEntities.Subjects.SubjectSection sec)
+            public DbEntities.Subjects.SubjectSection AddOrUpdateSection(DbEntities.Subjects.SubjectSection sec
+                , DbEntities.AccessPermission.Restriction restriction)
             {
                 try
                 {
-                    var ent = Context.SubjectSection.Find(sec.Id);
-                    if (ent == null)
+                    using (var actresHelper = new DbHelper.ActAndRes())
+                    using (var scope = new TransactionScope())
                     {
-                        ent = Context.SubjectSection.Add(sec);
+                        var ent = Context.SubjectSection.Find(sec.Id);
+                        if (ent == null)
+                        {
+                            var res = actresHelper.AddOrUpdateRestriction(0, restriction);
+                            sec.RestrictionId = res.Id;
+                            ent = Context.SubjectSection.Add(sec);
+
+                        }
+                        else
+                        {
+                            ent.Name = sec.Name;
+                            ent.Summary = sec.Summary;
+                            ent.ShowSummary = sec.ShowSummary;
+                            var res = actresHelper.AddOrUpdateRestriction(0, restriction);
+                            if ((ent.RestrictionId ?? 0) == 0)
+                            {
+                                ent.RestrictionId = res.Id;
+                            }
+
+                        }
+                        Context.SaveChanges();
+                        scope.Complete();
+                        return ent;
                     }
-                    else
-                    {
-                        ent.Name = sec.Name;
-                        ent.Summary = sec.Summary;
-                        ent.ShowSummary = sec.ShowSummary;
-                    } 
-                    Context.SaveChanges();
-                    return ent;
                 }
                 catch (Exception)
                 {

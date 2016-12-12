@@ -1,8 +1,32 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DateRestrictionUC.ascx.cs" Inherits="One.Views.RestrictionAccess.DateRestrictionUC" %>
 
+<%--<style type="text/css">
+    input[type="checkbox"] {
+        display: none;
+    }
+
+        input[type="checkbox"] + label span {
+            display: inline-block;
+            width: 19px;
+            height: 19px;
+            margin: -1px 4px 0 0;
+            vertical-align: middle;
+            background: url("~/Content/Icons/Visibility/eye_Visible.png") left top no-repeat;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked + label span {
+            background: url("~/Content/Icons/Visibility/eye_hidden.png") -19px top no-repeat;
+        }
+</style>--%>
+
 <div class="restriction-uc-whole">
-    <%--<asp:ImageButton ID="imgVisibility" ImageUrl="~/Content/Icons/Visibility/eye_16x20_visible.png" runat="server" />    
-    --%>
+
+    <%--<asp:CheckBox ID="chkVisibility" ClientIDMode="Static" runat="server" CssClass="visi-checkbox" />--%>
+    <%--    <input type="checkbox" id="c1" name="cc" />
+    <label for="c1"><span></span></label>--%>
+    <%--<asp:ImageButton ID="imgVisibility" ImageUrl="~/Content/Icons/Visibility/eye_16x20_visible.png" runat="server" />--%>
+
     <span>
         <asp:PlaceHolder ID="pnlFromUntilOption" runat="server">Date&nbsp;
             &nbsp;
@@ -34,8 +58,10 @@
 
     </span>
     &nbsp;
-     <asp:ImageButton ID="imgClose" CssClass="img-close" CausesValidation="False"
-         ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" OnClick="imgClose_Click" />
+    <span class="img-close">
+        <asp:ImageButton ID="imgClose" CssClass="link-img-close" CausesValidation="False"
+            ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" OnClick="imgClose_Click" />
+    </span>
     &nbsp;
     <asp:Label ID="lblError" runat="server" Text="Your selection is invalid" Visible="False" ForeColor="red"></asp:Label>
 

@@ -45,7 +45,9 @@ namespace Academic.DbEntities.ActivityAndResource
         
         public virtual ICollection<ActivityCompletion> ActivityCompletions { get; set; }
         public virtual ICollection<ActivityGrading> ActivityGradings { get; set; }
-
+        public virtual ICollection<ActivityClass> ActivityClasses { get; set; }
+        public virtual ICollection<ActivityResourceView> ActivityResourceViews { get; set; }
+        
     }
 
 }

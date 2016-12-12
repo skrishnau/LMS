@@ -38,6 +38,24 @@ namespace Academic.DbHelper
                 }
             }
 
+            public Users GetUser(string username, string password)
+            {
+                try
+                {
+                    return Context.Users.FirstOrDefault(x => x.UserName.Trim() == username.Trim() && x.Password.Trim() == password.Trim());
+                    //if (user != null)
+                    //{
+                    //    //valid user
+                    //    return true;
+                    //}
+                    //return false;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+
             public List<string> GetUserRoles(string username)
             {
                 try

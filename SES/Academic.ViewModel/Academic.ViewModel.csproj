@@ -75,6 +75,7 @@
     <Compile Include="SystemControl.Office\OfficeViewModel.cs" />
     <Compile Include="Teacher\IImageViewModel.cs" />
     <Compile Include="Teacher\TeacherViewModel.cs" />
+    <Compile Include="UserClassViewModel.cs" />
     <Compile Include="UserViewModel.cs" />
     <Compile Include="User\Notifications.cs" />
   </ItemGroup>

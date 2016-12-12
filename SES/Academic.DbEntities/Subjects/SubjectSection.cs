@@ -27,7 +27,13 @@ namespace Academic.DbEntities.Subjects
         
         public bool? Void { get; set; }
 
+        public int? RestrictionId { get; set; }
+        public virtual AccessPermission.Restriction Restriction { get; set; }
+
+
         public virtual ICollection<ActivityResource> ActivityResources { get; set; }
+
+
 
         //public virtual ICollection<AccessPermission.Restriction> Restrictions{ get; set; }
         //public virtual ICollection<SubjectActivityAndResource> SubjectActivityAndResource { get; set; }

@@ -1,31 +1,51 @@
-﻿.img-close:hover {
-            background-color: orangered;
-        }
+﻿
+.img-close {
+    width: 20px;
+    height: 22px;
+    text-align: center;
+    padding-left: 3px;
+}
 
-        .img-close {
-        }
+    .img-close:hover {
+        background-color: pink;
+        width: 24px;
+        /*height: 24px;*/
+    }
 
-        .btnAdd_Restriction {
-            width: 80px;
-        }
+.link-img-close {
 
-        .restriction-main {
-            border: 2px solid darkgray;
-            margin: 10px 0;
-        }
+}
+    .link-img-close:hover {
+        width: 9px;
+        /*height: 24px;*/
+    }
 
-        .restriction-uc-whole {
-            border: 1px solid lightgrey;
-            padding: 2px 2px 2px 5px;
-            margin: 5px 0;
-            vertical-align: central;
-            background-color: lightgoldenrodyellow;
-        }
 
-        .restriction-body {
-            vertical-align: central;
-        }
+.btnAdd_Restriction {
+    width: 80px;
+}
 
-        .display-none {
-            display: none;
-        }
+.restriction-main {
+    border: 2px solid darkgray;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.restriction-uc-whole {
+    border: 1px solid lightgrey;
+    padding: 2px 2px 2px 5px;
+    margin: 5px 0;
+    vertical-align: central;
+    background-color: lightgoldenrodyellow;
+}
+.restriction-uc-whole:hover {
+    background-color: #d3eef7;
+}
+
+.restriction-body {
+    vertical-align: central;
+}
+
+.display-none {
+    display: none;
+}

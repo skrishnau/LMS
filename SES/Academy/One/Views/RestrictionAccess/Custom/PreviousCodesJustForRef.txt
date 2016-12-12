@@ -1,5 +1,40 @@
-﻿ 
-        //list of activities
+﻿
+
+//using (var helper = new DbHelper.Subject())
+                    //{
+                    //    var course = helper.Find(SubjectId);
+                    //    if (course != null)
+                    //    {
+                    //        course.SubjectSections.Where(x => !(x.Void ?? false)).ToList().ForEach(x =>
+                    //        {
+                    //            x.ActivityResources.Where(n=>!(n.Void??false) && n.ActivityOrResource )
+                    //                .ToList().ForEach(ar =>
+                    //            {
+                    //                //ar.
+                    //            });
+                    //        });
+                    //    }
+                    //}
+
+ 
+         ////var con = RestrictionFourth1.GetAllControls();
+                    ////var grade = RestrictionFourth1.GetAllGradeRestrictionControls();
+                    //string parameter = Request["__EVENTARGUMENT"]; // parameter
+                    //// Request["__EVENTTARGET"]; // btnSave
+                    //if (!string.IsNullOrEmpty(parameter))
+                    //{
+                    //    //after dash(-) there is NoOfChildRestrictions
+                    //    var split = parameter.Split(new char[] { '-' });
+                    //    if (split.Count() >= 2)
+                    //    {
+                    //        //Session["NoOfChildRestrictions"] = split[1];
+                    //        Session["CurrentRestrictionId"] = split[0];
+                    //    }
+                    //}
+		
+		
+		
+		//list of activities
 
 
 

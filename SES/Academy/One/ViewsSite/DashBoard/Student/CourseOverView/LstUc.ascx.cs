@@ -19,24 +19,10 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
             {
                 //CourseUc course = (CourseUc) Page.LoadControl("CourseUc.ascx");
                 //phCourseList.
+                LoadCourses();
             }
-            //lnkJoin_Click(new object(), new EventArgs());
-            //LoadCourses();
-            LoadCourses();
-            //if (UserType == "student")
-            //{
-            //    LoadUnjoinedCourses();
-            //}
-            //else
-            //{
-            //    lnkJoin.Visible = false;
-            //}
+           
         }
-
-        //public void LoadControls(List<> controls)
-        //{
-
-        //} 
 
         #region Properties
 
@@ -69,105 +55,85 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
             get { return hidUserType.Value; }
             set { hidUserType.Value = value; }
         }
-        //public int YearId { get; set; }
-        //public int SubYearId { get; set; }
-
-        //public int RunningClassId { get; set; }
-
-        //public Academic.DbEntities.AcacemicPlacements.RunningClass RunningClass { get; set; }
-
+       
         public List<Academic.ViewModel.AcademicPlacement.StudentSubjectModel> UserSubjectModels { get; set; }
 
         #endregion
 
-        //void LoadCoursesFromDatabase()
-        //{
-        //    using (var acaplcHelper = new DbHelper.AcademicPlacement())
-        //    {
-        //        UserSubjectModels = acaplcHelper.GetClassesOfUser(SchoolId, AcademicYearId, SessionId,
-        //            UserId, UserType);
-        //       // ViewState["StudentSubjects"] = StudentSubjectModels;
-        //    }
-        //}
-
-        //public void LoadCoursesFromViewState()
-        //{
-        //    var subjects = (List<Academic.ViewModel.AcademicPlacement.StudentSubjectModel>)ViewState["StudentSubjects"];
-        //    if (UserSubjectModels == null)
-        //    {
-        //        if (subjects == null)
-        //        {
-        //            using (var acaplcHelper = new DbHelper.AcademicPlacement())
-        //            {
-        //                UserSubjectModels = acaplcHelper.GetClassesOfUser(SchoolId, AcademicYearId, SessionId,
-        //                    UserId,UserType);
-        //                ViewState["StudentSubjects"] = UserSubjectModels;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            UserSubjectModels = subjects;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (subjects == null)
-        //        {
-        //            ViewState["StudentSubjects"] = UserSubjectModels;
-        //        }
-        //    }
-        //}
+     
 
         public void LoadCourses()
         {
-            //using(var acaHelper =new DbHelper.AcademicYear())
-            //using (var acaplcHelper = new DbHelper.AcademicPlacement())
-            //using (var helper = new DbHelper.Subject())
-            //{
-
-            //var clsOfStd = acaplcHelper.GetClassesOfStudent(SchoolId, AcademicYearId, SessionId, StudentId);
-
+            using(var aHelper = new DbHelper.ActAndRes())
             using (var helper = new DbHelper.Subject())
             {
                 try
                 {
-                    var loadType = 0;
-                    if (hidLoadType.Value == "earlier")
-                    {
-                        loadType = 1;
-                    }
-                    else if (hidLoadType.Value != "current" && hidLoadType.Value != "")
-                    {
-                        Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
-                    }
+                   //aHelper.ListActivitiesAndResourcesOfSection()
 
 
                     var user = Page.User as CustomPrincipal;
                     if (user != null)
                     {
+                        
                         //var subjects = helper.GetCurrentRegularSubjectsOfUser(user.Id);
-                        var subjectsArray = helper.ListCurrentAndEarlierCoursesOfUser(user.Id);
+                        //var subjectsArray = helper.ListCurrentAndEarlierCoursesOfUser(user.Id);
+                        List<Academic.DbEntities.Subjects.Subject> subjectsArray ;
+                        if (hidLoadType.Value == "earlier")
+                        {
+                            subjectsArray = helper.ListEarlierSubjectClasses(user.Id)
+                                .Select(x => (x.IsRegular) ? x.SubjectStructure.Subject : x.Subject).ToList();
+                        }
+                        else
+                        {
+                            subjectsArray = helper.ListCurrentSubjectClasses(user.Id)
+                                .Select(x => (x.IsRegular) ? x.SubjectStructure.Subject : x.Subject).ToList();                            
+                        }
                         //foreach (var c in subjects[loadType])
-                        foreach (var c in subjectsArray[loadType])
+                        //foreach (var c in subjectsArray[loadType])
+                        foreach (var c in subjectsArray)
                         {
                             CourseUc uc =
                                 (CourseUc)Page.LoadControl("~/ViewsSite/DashBoard/Student/CourseOverView/CourseUc.ascx");
                             uc.TitleNavigationTarget = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" 
                                 + c.Id;
-                            uc.WithdrawVisible = false;
-
-                            //the below 4 lines were previously uncommented ;
-                            // now these replaced by adjacent 2 lines
-                            //may be ViewModel should be used.. working on it.
-
-                            //uc.Title = c.SubjectName;
-                            //uc.Id = c.SubjectId.ToString();
-                            //uc.SubjectSubscriptionId = c.SubjectSubscriptionId;
-                            //uc.StudentSubjectModel = c;
+                            
+                            uc.Id = c.FullName + "_" + c.Id;
+                            
                             uc.Title = c.FullName;
                             //Messages
                             //foreach messages add message controls to uc
+                            //var seee = c.SubjectSections;
+                            //var sections = c.SubjectSections.Where(x => !(x.Void) ?? false);
+                            //var sections  = c.SubjectSections.AsEnumerable().Where(x => !(x.Void) ?? false).ToList();
+                            foreach(var sec in c.SubjectSections.AsEnumerable().Where(x=>!(x.Void??false)))
                             {
+                                foreach (var act in sec.ActivityResources.AsEnumerable()
+                                    .Where(x=>x.ActivityOrResource && !(x.Void??false)) )
+                                {
+                                    if (act.ActivityResourceViews.Any(x => x.UserId == user.Id))
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        var cuc =
+                                            (CourseMessageUC)
+                                                Page.LoadControl(
+                                                    "~/ViewsSite/DashBoard/Student/CourseOverView/CourseMessageUC.ascx");
+                                        //var thisType = Enum.GetNames(typeof(Enums.Activities))[act.ActivityResourceType-1];
+                                        var thisIcon = ActivityResourceValues.RetriveMethod(actOrRes:true, actResType:(byte)(act.ActivityResourceType));
+                                        if (thisIcon != null)
+                                        {
+                                            cuc.ImageLink = thisIcon.IconPath;
+                                            cuc.Text = "You have new " + (thisIcon.Name);
+                                            cuc.NavigateUrl = thisIcon.ViewUrl;
+                                            uc.AddMessages(cuc);
+                                        }
+                                        //cuc.ImageLink= DbHelper.StaticValues.
+                                    }
+                                    
+                                }
                                 //Messages list
                             }
 
@@ -179,109 +145,11 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                 catch (Exception e) { }
             }
 
-            /*
-
-            LoadCoursesFromDatabase();
-
-            if (UserType == "student")
-            {
-                foreach (
-                    var c in
-                        UserSubjectModels.Where(
-                            x => !(x.Void) && x.Permitted && x.Active && x.Subscribed && !(x.Suspended)))
-                {
-                    CourseUc uc =
-                        (CourseUc) Page.LoadControl("~/ViewsSite/DashBoard/Student/CourseOverView/CourseUc.ascx");
-                    uc.Title = c.SubjectName;
-                    uc.Id = c.SubjectId.ToString();
-                    uc.SubjectSubscriptionId = c.SubjectSubscriptionId;
-                    uc.StudentSubjectModel = c;
-                    //Messages
-                    //foreach messages add message controls to uc
-                    {
-                        //Messages list
-                    }
-
-                    this.pnlJoinedCourseList.Controls.Add(uc);
-                }
-            }
-            else if (UserType == "teacher")
-            {
-                //lnkJoin.Visible = true;
-                foreach (
-                   var c in
-                       UserSubjectModels.Where(
-                           x => !(x.Void) && x.Permitted && x.Active && x.Subscribed && !(x.Suspended)))
-                {
-                    CourseUc uc =
-                        (CourseUc)Page.LoadControl("~/ViewsSite/DashBoard/Student/CourseOverView/CourseUc.ascx");
-                    uc.Title = c.SubjectName;
-
-                    //uc.SubjectSubscriptionId = c.SubjectSubscriptionId;//not for teacher
-                    uc.StudentSubjectModel = c;
-                    //Messages
-                    //foreach messages add message controls to uc
-                    {
-                        //Messages list
-                    }
-
-                    this.pnlJoinedCourseList.Controls.Add(uc);
-                }
-            }
-            //var myCourses = helper.SubectsForStudents(SchoolId,StudentId,AcademicYearId);
-            */
+           
 
         }
 
-        //public void LoadUnjoinedCourses()
-        //{
-        //    LoadCoursesFromDatabase();
-        //    foreach (var c in UserSubjectModels.Where(x => !(x.Void) && (!x.Active || !x.Subscribed) && !(x.Suspended)))
-        //    {
-        //        UnjoinedCoursesUc uc = (UnjoinedCoursesUc)Page.LoadControl("~/ViewsSite/DashBoard/Student/UnJoinedCourses/UnjoinedCoursesUc.ascx");
-        //        //uc.OnSubjectSubscribed += uc_OnSubjectSubscribed;
-        //        uc.Id = c.SubjectId.ToString();
-        //        uc.StudentClassId = c.UserClassId;
-        //        uc.SubjectClassId = c.SubjectClassId;
-        //        uc.Title = c.SubjectName;
-        //        uc.StudentSubjectModel = c;
-        //        //Messages
-        //        //foreach messages add message controls to uc
-        //        {
-        //            //Messages list
-        //        }
-
-        //        this.pnlUnJoinedCourseList.Controls.Add(uc);
-        //    }
-        //}
-
-        //void uc_OnSubjectSubscribed(object sender, EventArgs e)
-        //{
-        //    UnjoinedCoursesUc uc = (UnjoinedCoursesUc)sender;
-        //    if (uc != null)
-        //    {
-        //        uc.
-        //    }
-        //}
-
-
-        //protected void lnkJoin_Click(object sender, EventArgs e)
-        //{
-        //    if (lnkJoin.Text == "Regular Courses")
-        //    {
-        //        lnkJoin.Text = "Extra Courses";
-        //        pnlJoinedCourseList.Visible = true;
-        //        pnlUnJoinedCourseList.Visible = false;
-        //        //LoadJoinedCourses();
-        //    }
-        //    else
-        //    {
-        //        lnkJoin.Text = "Regular Courses";
-        //        pnlJoinedCourseList.Visible = false;
-        //        pnlUnJoinedCourseList.Visible = true;
-        //        //LoadUnjoinedCourses();
-        //    }
-        //}
+       
 
         /// <summary>
         /// Type that are valid: 'current'-->for current, 'earlier'-->for earlier

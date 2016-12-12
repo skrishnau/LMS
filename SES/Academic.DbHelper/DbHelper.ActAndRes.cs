@@ -35,7 +35,7 @@ namespace Academic.DbHelper
 
             #endregion
 
-            private Restriction AddOrUpdateRestriction(int parentId, Restriction restriction)
+            public Restriction AddOrUpdateRestriction(int parentId, Restriction restriction)
             {
                 var found = Context.Restriction.Find(restriction.Id);
                 if (found == null)
@@ -50,7 +50,7 @@ namespace Academic.DbHelper
                         Visibility = restriction.Visibility
                     };
                     if (parentId > 0)
-                        newr.ParentId = restriction.ParentId;
+                        newr.ParentId = parentId;
 
                     //restriction.ParentId = parentId;
                     var savedRes = Context.Restriction.Add(newr);
@@ -61,6 +61,7 @@ namespace Academic.DbHelper
                         {
                             g.RestrictionId = savedRes.Id;
                             Context.GradeRestriction.Add(g);
+                            Context.SaveChanges();
                         });
 
                     if (restriction.GroupRestrictions != null)
@@ -68,6 +69,7 @@ namespace Academic.DbHelper
                         {
                             g.RestrictionId = savedRes.Id;
                             Context.GroupRestriction.Add(g);
+                            Context.SaveChanges();
                         });
 
                     if (restriction.DateRestrictions != null)
@@ -75,6 +77,7 @@ namespace Academic.DbHelper
                         {
                             g.RestrictionId = savedRes.Id;
                             Context.DateRestriction.Add(g);
+                            Context.SaveChanges();
                         });
 
                     if (restriction.UserProfileRestrictions != null)
@@ -82,6 +85,7 @@ namespace Academic.DbHelper
                         {
                             g.RestrictionId = savedRes.Id;
                             Context.UserProfileRestriction.Add(g);
+                            Context.SaveChanges();
                         });
 
                     Context.SaveChanges();
@@ -99,7 +103,182 @@ namespace Academic.DbHelper
                     #region if Restriction exist
 
                     //delete also here..
-                    return null;
+                    found.MatchAllAny = restriction.MatchAllAny;
+                    found.MatchMust = restriction.MatchMust;
+                    found.Visibility = restriction.Visibility;
+                    Context.SaveChanges();
+
+
+                    //int earlierInDb = 0, deleted = 0, added = 0, ;
+
+                    #region Grade
+
+                    var givenGrades = (restriction.GradeRestrictions ?? new List<GradeRestriction>()).Select(x => x.Id);
+                    var gradesFromDb = found.GradeRestrictions.Select(x => x.Id).Except(givenGrades).ToList();
+                    foreach (var g in gradesFromDb)
+                    {
+                        var res = Context.GradeRestriction.Find(g);
+                        if (res != null)
+                        {
+                            Context.GradeRestriction.Remove(res);
+                        }
+                    }
+
+                    if (restriction.GradeRestrictions != null)
+                    {
+                        restriction.GradeRestrictions.ToList().ForEach(g =>
+                        {
+                            var fgrade = Context.GradeRestriction.Find(g.Id);
+                            if (fgrade == null)
+                            {
+                                g.RestrictionId = found.Id;
+                                Context.GradeRestriction.Add(g);
+                                Context.SaveChanges();
+                            }
+                            else
+                            {
+                                fgrade.ActivityResourceId = g.ActivityResourceId;
+                                fgrade.GreaterThanOrEqualToValue = g.GreaterThanOrEqualToValue;
+                                fgrade.MustBeGreaterThanOrEqualTo = g.MustBeGreaterThanOrEqualTo;
+                                fgrade.LessThanValue = g.LessThanValue;
+                                fgrade.MustBeLessThan = g.MustBeLessThan;
+                            }
+
+                        });
+                    }
+
+                    #endregion
+
+                    #region Group
+
+                    var given = (restriction.GroupRestrictions ?? new List<GroupRestriction>()).Select(x => x.Id);
+                    var grpResDb = found.GroupRestrictions.Select(x => x.Id).Except(given).ToList();
+                    foreach (var g in grpResDb)
+                    {
+                        var res = Context.GroupRestriction.Find(g);
+                        if (res != null)
+                        {
+                            Context.GroupRestriction.Remove(res);
+                        }
+                    }
+
+                    if (restriction.GroupRestrictions != null)
+                    {
+                        restriction.GroupRestrictions.ToList().ForEach(g =>
+                        {
+                            var fgrp = Context.GroupRestriction.Find(g.Id);
+                            if (fgrp == null)
+                            {
+                                g.RestrictionId = found.Id;
+                                Context.GroupRestriction.Add(g);
+                                Context.SaveChanges();
+                            }
+                            else
+                            {
+                                //fgrp.ClassOrGroup = g.ClassOrGroup;
+                                fgrp.GroupId = g.GroupId;
+                                fgrp.SubjectClassId = g.SubjectClassId;
+                            }
+
+                        });
+                    }
+
+                    #endregion
+
+                    #region Date
+
+                    var givenDates = (restriction.DateRestrictions ?? new List<DateRestriction>()).Select(x => x.Id);
+                    var datesFromDb = found.DateRestrictions.Select(x => x.Id).Except(givenDates).ToList();
+                    foreach (var g in datesFromDb)
+                    {
+                        var res = Context.DateRestriction.Find(g);
+                        if (res != null)
+                        {
+                            Context.DateRestriction.Remove(res);
+                        }
+                    }
+
+                    if (restriction.DateRestrictions != null)
+                        restriction.DateRestrictions.ToList().ForEach(g =>
+                        {
+                            var fdate = Context.DateRestriction.Find(g.Id);
+                            if (fdate == null)
+                            {
+                                g.RestrictionId = found.Id;
+                                Context.DateRestriction.Add(g);
+                                Context.SaveChanges();
+                            }
+                            else
+                            {
+                                fdate.Constraint = g.Constraint;
+                                fdate.Date = g.Date;
+                                //fdate.Time = g.Time;
+                            }
+                        });
+
+                    #endregion
+
+                    #region UserProfile
+
+                    var givenUser = (restriction.UserProfileRestrictions ?? new List<UserProfileRestriction>()).Select(x => x.Id);
+                    var userFromDb = found.UserProfileRestrictions.Select(x => x.Id).Except(givenUser).ToList();
+                    foreach (var g in userFromDb)
+                    {
+                        var res = Context.UserProfileRestriction.Find(g);
+                        if (res != null)
+                        {
+                            Context.UserProfileRestriction.Remove(res);
+                        }
+                    }
+
+                    if (restriction.UserProfileRestrictions != null)
+                        restriction.UserProfileRestrictions.ToList().ForEach(g =>
+                        {
+                            var fuser = Context.UserProfileRestriction.Find(g.Id);
+                            if (fuser == null)
+                            {
+                                g.RestrictionId = found.Id;
+                                Context.UserProfileRestriction.Add(g);
+                                Context.SaveChanges();
+                            }
+                            else
+                            {
+                                fuser.Value = g.Value;
+                                fuser.Constraint = g.Constraint;
+                                fuser.FieldName = g.FieldName;
+                            }
+                        });
+
+                    #endregion
+
+                    Context.SaveChanges();
+
+                    if ((found.ParentId ?? 0) > 0)
+                    {
+                        var cntgrade = found.GradeRestrictions.Count;
+                        var cntdate = found.DateRestrictions.Count;
+                        var cntuser = found.UserProfileRestrictions.Count;
+                        var cntgroup = found.GroupRestrictions.Count;
+
+                        if ((cntgrade + cntdate + cntuser + cntgroup) == 0)
+                        {
+                            if (found.Restrictions.Count == 0)
+                                if (restriction.Restrictions != null && restriction.Restrictions.Count == 0)
+                                {
+
+                                }
+                        }
+
+                    }
+
+
+                    if (restriction.Restrictions != null)
+                        foreach (var model in restriction.Restrictions)
+                        {
+                            AddOrUpdateRestriction(found.Id, model);
+                        }
+
+                    return found;
 
                     #endregion
                 }
@@ -147,7 +326,7 @@ namespace Academic.DbHelper
 
             }
 
-            private bool EvaluateRestriction(int userId, Restriction res)
+            private bool EvaluateRestriction(Academic.DbEntities.User.Users user, Restriction res)
             {
                 string message = "";
                 var validation = new List<bool>();
@@ -162,7 +341,7 @@ namespace Academic.DbHelper
 
                     foreach (var gres in res.GradeRestrictions)
                     {
-                        var grade = gres.ActivityResource.ActivityGradings.FirstOrDefault(x => x.UserId == userId);
+                        var grade = gres.ActivityResource.ActivityGradings.FirstOrDefault(x => x.UserId == user.Id);
                         if (grade != null)
                         {
                             bool greater = true, lesser = true;
@@ -270,11 +449,127 @@ namespace Academic.DbHelper
                     #endregion
 
 
-                    #region MyRegion
-                    
+                    #region Class
+
+                    foreach (var cls in res.GroupRestrictions)
+                    {
+                        var lsd = cls.SubjectClass.ClassUsers.FirstOrDefault(x => x.UserId == user.Id);
+                        validation.Add(lsd != null);
+                    }
+
                     #endregion
 
 
+                    #region UserProfile
+
+                    foreach (var usr in res.UserProfileRestrictions)
+                    {
+                        switch (usr.FieldName)
+                        {
+                            case "Username":
+                                switch (usr.Constraint)
+                                {
+                                    case 0:
+                                        validation.Add(user.UserName.Equals(usr.Value));
+                                        break;
+                                    case 1:
+                                        validation.Add(user.UserName.Contains(usr.Value));
+                                        break;
+                                    case 2:
+                                        validation.Add(!user.UserName.Contains(usr.Value));
+                                        break;
+                                    case 3:
+                                        validation.Add(user.UserName.StartsWith(usr.Value));
+                                        break;
+                                    case 4:
+                                        validation.Add(user.UserName.EndsWith(usr.Value));
+                                        break;
+                                }
+                                break;
+                            case "First name":
+                                switch (usr.Constraint)
+                                {
+                                    case 0:
+                                        validation.Add(user.FirstName.Equals(usr.Value));
+                                        break;
+                                    case 1:
+                                        validation.Add(user.FirstName.Contains(usr.Value));
+                                        break;
+                                    case 2:
+                                        validation.Add(!user.FirstName.Contains(usr.Value));
+                                        break;
+                                    case 3:
+                                        validation.Add(user.FirstName.StartsWith(usr.Value));
+                                        break;
+                                    case 4:
+                                        validation.Add(user.FirstName.EndsWith(usr.Value));
+                                        break;
+                                }
+                                break;
+                            case "Middle name":
+                                switch (usr.Constraint)
+                                {
+                                    case 0:
+                                        validation.Add(user.MiddleName.Equals(usr.Value));
+                                        break;
+                                    case 1:
+                                        validation.Add(user.MiddleName.Contains(usr.Value));
+                                        break;
+                                    case 2:
+                                        validation.Add(!user.MiddleName.Contains(usr.Value));
+                                        break;
+                                    case 3:
+                                        validation.Add(user.MiddleName.StartsWith(usr.Value));
+                                        break;
+                                    case 4:
+                                        validation.Add(user.MiddleName.EndsWith(usr.Value));
+                                        break;
+                                }
+                                break;
+                            case "Last name":
+                                switch (usr.Constraint)
+                                {
+                                    case 0:
+                                        validation.Add(user.LastName.Equals(usr.Value));
+                                        break;
+                                    case 1:
+                                        validation.Add(user.LastName.Contains(usr.Value));
+                                        break;
+                                    case 2:
+                                        validation.Add(!user.LastName.Contains(usr.Value));
+                                        break;
+                                    case 3:
+                                        validation.Add(user.LastName.StartsWith(usr.Value));
+                                        break;
+                                    case 4:
+                                        validation.Add(user.LastName.EndsWith(usr.Value));
+                                        break;
+                                }
+                                break;
+                            case "Email":
+                                switch (usr.Constraint)
+                                {
+                                    case 0:
+                                        validation.Add(user.Email.Equals(usr.Value));
+                                        break;
+                                    case 1:
+                                        validation.Add(user.Email.Contains(usr.Value));
+                                        break;
+                                    case 2:
+                                        validation.Add(!user.Email.Contains(usr.Value));
+                                        break;
+                                    case 3:
+                                        validation.Add(user.Email.StartsWith(usr.Value));
+                                        break;
+                                    case 4:
+                                        validation.Add(user.Email.EndsWith(usr.Value));
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+
+                    #endregion
 
 
                     #region Overall
@@ -322,6 +617,29 @@ namespace Academic.DbHelper
                 return true;
             }
 
+            public List<ActivityResource> ListActivitiesOfCourse(int courseId)
+            {
+                using (var helper = new DbHelper.Subject())
+                {
+                    var course = helper.Find(courseId);
+                    if (course != null)
+                    {
+                        var lst = new List<Academic.DbEntities.ActivityAndResource.ActivityResource>();
+                        course.SubjectSections.Where(x => !(x.Void ?? false)).ToList().ForEach(x =>
+                        {
+                            var activities = x.ActivityResources.Where(n => !(n.Void ?? false) && n.ActivityOrResource)
+                                 .OrderBy(o => o.Name).ToList();
+                            lst.AddRange(activities);
+                        });
+                        if (lst.Count > 0)
+                            return lst.OrderBy(x=>x.Name).ToList();
+                        return new List<ActivityResource>() { new ActivityResource() { Id = 0, Name = "" } };
+                        //ddlActivityChoose.DataSource = lst;
+                        //ddlActivityChoose.DataBind();
+                    }
+                }
+                return new List<ActivityResource>() { new ActivityResource() { Id = 0, Name = "" } };
+            }
 
             public List<ActivityResourceViewModel> ListActivitiesAndResourcesOfSection(int userId, int sectionId, bool elligible = false)
             {
@@ -364,7 +682,7 @@ namespace Academic.DbHelper
                     {
                         var canView = elligible;
                         if (!canView)
-                            canView = EvaluateRestriction(userId, ar.Restriction);
+                            canView = EvaluateRestriction(user, ar.Restriction);
                         if (canView)//
                         {
                             var viewModel = new ActivityResourceViewModel()
@@ -400,7 +718,7 @@ namespace Academic.DbHelper
                                             viewModel.SetOtherValues(asg.Name
                                                 , (asg.DispalyDescriptionOnPage ?? false) ? asg.Description : ""
                                                 , asg.DispalyDescriptionOnPage ?? false
-                                                , v.ViewUrl, v.IconPath,v.CreateUrl);
+                                                , v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
                                         }
                                         break;
@@ -467,16 +785,31 @@ namespace Academic.DbHelper
                                         if (file != null)
                                         {
                                             var mainFile = Context.FileResourceFiles.Find(file.MainFileId);
-                                            if (mainFile != null)
-                                            {
-                                                var v = ActivityResourceValues.FileResource();
-                                                viewModel.SetOtherValues(file.Name,
-                                                    file.ShowDescriptionOnCoursePage ? file.Description : ""
-                                                    , file.ShowDescriptionOnCoursePage,
-                                                    v.ViewUrl, mainFile.SubFile.IconPath, v.CreateUrl
-                                                    );
-                                                list.Add(viewModel);
-                                            }
+                                            var v = ActivityResourceValues.FileResource();
+                                            viewModel.SetOtherValues(file.Name,
+                                                file.ShowDescriptionOnCoursePage ? file.Description : ""
+                                                , file.ShowDescriptionOnCoursePage,
+                                                v.ViewUrl
+                                                , (mainFile == null)
+                                                    ? "~/Content/Icons/ActivityResource/File/any_file_icon.png"
+                                                    : mainFile.SubFile.IconPath
+                                                , v.CreateUrl
+                                                );
+                                            list.Add(viewModel);
+                                            //if (mainFile != null)
+                                            //{
+
+                                            //}
+                                            //else
+                                            //{
+                                            //    var v = ActivityResourceValues.FileResource();
+                                            //    viewModel.SetOtherValues(file.Name,
+                                            //        file.ShowDescriptionOnCoursePage ? file.Description : ""
+                                            //        , file.ShowDescriptionOnCoursePage,
+                                            //        v.ViewUrl, "", v.CreateUrl
+                                            //        );
+                                            //    list.Add(viewModel);
+                                            //}
                                         }
 
                                         break;
@@ -873,59 +1206,64 @@ namespace Academic.DbHelper
             public DbEntities.ActivityAndResource.BookResource AddOrUpdateBook(
                DbEntities.ActivityAndResource.BookResource book, int sectionId, Restriction restriction)
             {
+
                 try
                 {
-                    var ent = Context.BookResource.Find(book.Id);
-                    if (ent == null)
+                    using (var scope = new TransactionScope())
                     {
-                        //var restrictionn = new DbEntities.AccessPermission.Restriction()
-                        //{
-                        //    MatchAllAny = false,
-                        //    MatchMust = false,
-                        //    Visibility = true
-
-                        //};
-
-                        ////restriction addition is remain
-                        //var restric = Context.Restriction.Add(restrictionn);
-                        //Context.SaveChanges();
-
-                        //book.RestrictionId = restric.Id;
-
-                        ent = Context.BookResource.Add(book);
-                        Context.SaveChanges();
-
-                        SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Book) + 1), ent.Id, sectionId, book.Name, restriction);
-
-                    }
-                    else
-                    {
-                        ent.ChapterFormatting = book.ChapterFormatting;
-                        ent.CustomTitles = book.CustomTitles;
-                        ent.Description = book.Description;
-                        ent.DisplayDescriptionOnCourePage = book.DisplayDescriptionOnCourePage;
-                        ent.Name = book.Name;
-                        ent.StyleOfNavigation = book.StyleOfNavigation;
-
-                        Context.SaveChanges();
-                        var ar = Context.ActivityResource.FirstOrDefault(
-                           x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
-                                && x.ActivityResourceType == (byte)(((int)Enums.Resources.Book) + 1));
-                        if (ar != null)
+                        var ent = Context.BookResource.Find(book.Id);
+                        if (ent == null)
                         {
-                            ar.Name = book.Name;
-                            Context.SaveChanges();
-                        }
-                        //update restriction also;
-                    }
-                    return
-                        ent;
-                }
+                            //var restrictionn = new DbEntities.AccessPermission.Restriction()
+                            //{
+                            //    MatchAllAny = false,
+                            //    MatchMust = false,
+                            //    Visibility = true
 
+                            //};
+
+                            ////restriction addition is remain
+                            //var restric = Context.Restriction.Add(restrictionn);
+                            //Context.SaveChanges();
+
+                            //book.RestrictionId = restric.Id;
+
+                            ent = Context.BookResource.Add(book);
+                            Context.SaveChanges();
+
+                            SaveActivityResourceTable(false, (byte)(((int)Enums.Resources.Book) + 1), ent.Id, sectionId, book.Name, restriction);
+
+                        }
+                        else
+                        {
+                            ent.ChapterFormatting = book.ChapterFormatting;
+                            ent.CustomTitles = book.CustomTitles;
+                            ent.Description = book.Description;
+                            ent.DisplayDescriptionOnCourePage = book.DisplayDescriptionOnCourePage;
+                            ent.Name = book.Name;
+                            ent.StyleOfNavigation = book.StyleOfNavigation;
+
+                            Context.SaveChanges();
+                            var ar = Context.ActivityResource.FirstOrDefault(
+                               x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
+                                    && x.ActivityResourceType == (byte)(((int)Enums.Resources.Book) + 1));
+                            if (ar != null)
+                            {
+                                ar.Name = book.Name;
+                                Context.SaveChanges();
+                            }
+                            //update restriction also;
+                            var res = AddOrUpdateRestriction(0, restriction);
+                        }
+                        scope.Complete();
+                        return ent;
+                    }
+                }
                 catch
                 {
                     return null;
                 }
+
             }
 
             public DbEntities.ActivityAndResource.BookResource GetBook(int bookId)
@@ -1237,7 +1575,6 @@ namespace Academic.DbHelper
                             Context.SaveChanges();
 
                         }
-                        scope.Complete();
                         var ar =
                        Context.ActivityResource.FirstOrDefault(
                            x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
@@ -1247,6 +1584,7 @@ namespace Academic.DbHelper
                             ar.Name = file.Name;
                             Context.SaveChanges();
                         }
+                        scope.Complete();
                         return ent;
 
                     }
@@ -1433,12 +1771,24 @@ namespace Academic.DbHelper
             #endregion
 
 
-
-
-
-
-
-           
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="actOrRes">true/false: T-act, F-res</param>
+            /// <param name="actOrResType">one of the many: assignment, book, etc</param>
+            /// <param name="actOrResId">id of assignement, book , etc</param>
+            public Restriction GetRestriction(bool actOrRes, byte actOrResType, int actOrResId)
+            {
+                var ar = Context.ActivityResource.FirstOrDefault(x => x.ActivityOrResource == actOrRes
+                                                             && x.ActivityResourceType == actOrResType
+                                                             && x.ActivityResourceId == actOrResId);
+                if (ar != null)
+                {
+                    return ar.Restriction;
+                }
+                return null;
+            }
+            
         }
 
     }

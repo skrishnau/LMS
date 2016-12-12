@@ -8,8 +8,15 @@ namespace Academic.ViewModel
 {
     public class RestrictionIdName
     {
-        public int RestrictionId { get; set; }
-        public int RestrictionParentId { get; set; }
+        /// <summary>
+        /// The id of this restriction.. like: id of daterestrcion, id of graderestriction, etc
+        /// </summary>
+        public int RestrictionTypeId { get; set; }
+
+        /// <summary>
+        /// The id of parent restriction, which is restriction only.. 
+        /// </summary>
+        public int RestrictionTypeParentId { get; set; }
 
         /// <summary>
         /// Its not the parent of restriction(database). but its used to control ui . use REstrictionParentId instead.
@@ -27,6 +34,7 @@ namespace Academic.ViewModel
 
         public bool Void { get; set; }
         //public int NoOfChildren { get; set; }
+        public object[] Constraints { get; set; }
 
         public List<RestrictionIdName> Children { get; set; }
 
@@ -42,6 +50,8 @@ namespace Academic.ViewModel
             Children = children;
 
         }
+
+        //core
 
 
     }

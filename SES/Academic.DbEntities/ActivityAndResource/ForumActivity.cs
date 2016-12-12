@@ -13,6 +13,8 @@ namespace Academic.DbEntities.ActivityAndResource
         public string Description { get; set; }
         public bool DisplayDescriptionOnCoursePage { get; set; }
 
+        //public int ActivityResourceId { get; set; }
+        //public virtual ActivityResource ActivityResource { get; set; }
         /// <summary>
         //There are 5 forum types:
         //0: A single simple discussion - A single discussion topic which everyone can reply to (cannot be used with separate groups)

@@ -231,6 +231,7 @@ namespace One.Views.RestrictionAccess
                 RestrictionId = RestrictionId
                 ,
                 Constraint = ddlFromUntil.SelectedIndex == 1
+                ,
             };
             return res;
         }
@@ -241,6 +242,29 @@ namespace One.Views.RestrictionAccess
             LoadOnAutoPostback = loadOnAutoPostBack;
             ShowRemoveButton = removeButtonVisibility;
             ShowFromUntilOption = fromUntilOptionVisibility;
+        }
+
+        /// <summary>
+        /// The constraint should be in the order...
+        ///   Constraint, Date, Time
+        /// </summary>
+        /// <param name="constraints"></param>
+        public void SetValues(params object[] constraints)
+        {
+            if (constraints != null)
+                try
+                {
+                    var fromUntil = Convert.ToBoolean(constraints[0]);
+                    ddlFromUntil.SelectedIndex = fromUntil ? 1 : 0;
+                    var date = Convert.ToDateTime(constraints[1]);
+                    InitialDate = date;
+
+                    //var hrMin = constraints[2].ToString().Split(new char[] { ':' });
+
+                    ddlHour.SelectedValue = DbHelper.SystemDate.GetStringFormOfHourOrMinute(date.Hour);// date.Hour.ToString();//hrMin[0];
+                    ddlMinute.SelectedValue = DbHelper.SystemDate.GetStringFormOfHourOrMinute(date.Minute); //hrMin[1];
+                }
+                catch { }
         }
     }
 }

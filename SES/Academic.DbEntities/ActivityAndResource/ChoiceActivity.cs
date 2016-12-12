@@ -52,7 +52,11 @@ namespace Academic.DbEntities.ActivityAndResource
         public bool ShowColumnForUnAnswered { get; set; }
 
         public bool IncludeResponsesFromInactiveUsers { get; set; }
-        
+
+
+        //public int ActivityResourceId { get; set; }
+        //public virtual ActivityResource ActivityResource { get; set; }
+
         //public int RestrictionId { get; set; }
         //public virtual AccessPermission.Restriction Restriction { get; set; }
 

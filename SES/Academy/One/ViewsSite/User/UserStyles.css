@@ -10,6 +10,8 @@
 h3.heading-of-create-edit {
     text-align: center;
     margin-top: 3px;
+    font-size: 2em;
+    color: darkslategray;
 }
 
 div.create-edit-whole {

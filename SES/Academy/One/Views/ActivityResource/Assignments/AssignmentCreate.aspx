@@ -61,11 +61,11 @@
 
                 </table>
             </div>
-            
+
             <div>
-              <uc1:ClassesInActivityChoose runat="server" ID="ClassesInActivityChoose1" />
+                <uc1:ClassesInActivityChoose runat="server" ID="ClassesInActivityChoose1" />
             </div>
-            
+
 
             <br />
             <div class="data-entry-section-heading">
@@ -140,10 +140,10 @@
                             <tr>
                                 <td class="data-type">Word Limit</td>
                                 <td>
-                                    <asp:TextBox ID="txtWordLimit" Enabled="False" runat="server" 
+                                    <asp:TextBox ID="txtWordLimit" Enabled="False" runat="server"
                                         TextMode="Number"
                                         Width="210px"></asp:TextBox>
-                                    <asp:Label ID="lblValiWordLimit" runat="server" Text="Required" 
+                                    <asp:Label ID="lblValiWordLimit" runat="server" Text="Required"
                                         Visible="False"
                                         ForeColor="red"></asp:Label>
                                 </td>
@@ -152,9 +152,8 @@
                                 <td class="data-type">Maximum Number of Submitted Files</td>
                                 <td>
                                     <asp:TextBox ID="txtMaxFiles" runat="server" Width="210px"
-                                        TextMode="Number"                                        
-                                        ></asp:TextBox>
-                                     <asp:Label ID="lblValiMaxFile" runat="server" Text="Required" 
+                                        TextMode="Number"></asp:TextBox>
+                                    <asp:Label ID="lblValiMaxFile" runat="server" Text="Required"
                                         Visible="False"
                                         ForeColor="red"></asp:Label>
                                 </td>
@@ -163,8 +162,7 @@
                                 <td class="data-type">Maximum Submission Size (in KB)</td>
                                 <td>
                                     <asp:TextBox ID="txtMaxSize" runat="server" Width="210px"
-                                        TextMode="Number"                                        
-                                        ></asp:TextBox>
+                                        TextMode="Number"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
@@ -212,9 +210,9 @@
 
             <div class="data-entry-section-heading">
                 Restriction
+            <hr />
             </div>
 
-            <hr />
             <div class="data-entry-section-body">
                 <uc1:RestrictionUC runat="server" ID="RestrictionUC" />
             </div>

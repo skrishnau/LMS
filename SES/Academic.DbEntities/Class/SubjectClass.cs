@@ -74,6 +74,8 @@ namespace Academic.DbEntities.Class
         //if hasGrouping = true then this class uses goruping of students else no grouping of  students
         //if useDefaultGrouping is false: then use the subject's grouping to group students
         public bool HasGrouping { get; set; }
+
+        [Obsolete]
         public bool? UseDefaultGrouping { get; set; }
 
 

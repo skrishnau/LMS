@@ -78,10 +78,10 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
             Response.Redirect(url);
         }
 
-        public bool WithdrawVisible
-        {
-            get { return lnkWithdraw.Visible; } 
-            set { lnkWithdraw.Visible = value; }
-        }
+        //public bool WithdrawVisible
+        //{
+        //    get { return lnkWithdraw.Visible; } 
+        //    set { lnkWithdraw.Visible = value; }
+        //}
     }
 }

@@ -62,10 +62,10 @@
                             <td>
                                 <asp:DropDownList ID="DropDownList1" runat="server">
                                     <Items>
-                                        <asp:ListItem Text="Use Global Grouping Settings"></asp:ListItem>
-                                        <asp:ListItem Text="Use Grouping From Course"></asp:ListItem>
-                                        <asp:ListItem Text="Custom Grouping For Only This Class"></asp:ListItem>
-                                        <asp:ListItem Text="Don't Use any Grouping"></asp:ListItem>
+                                        <asp:ListItem Value="0" Text="Don't Use any Grouping"></asp:ListItem>
+                                        <asp:ListItem Value="1" Text="Custom Grouping For Only This Class"></asp:ListItem>
+                                        <asp:ListItem Value="2" Text="Use Grouping From Course"></asp:ListItem>
+                                        <asp:ListItem Value="3" Text="Use Global Grouping Settings"></asp:ListItem>
                                     </Items>
                                 </asp:DropDownList>
                             </td>
@@ -108,9 +108,8 @@
                         <span class="auto-style1" style="display: inline-block;"></span>
                         <asp:Button ID="btnSaveAndReturn" runat="server" Width="80px" Text="Save" OnClick="btnSave_Click" />
                         &nbsp;
-                <span style="background-color: red; color: white;">
-                    <asp:Literal ID="lblErrorMsg" Visible="False" runat="server" Text=" Something went wrong. "></asp:Literal>
-
+                <span style=" color: red;">
+                    <asp:Literal ID="lblErrorMsg" Visible="False" runat="server" Text=" Error while saving "></asp:Literal>
                 </span>
                         <%--<asp:Button ID="btnSaveAndEnrollUsers" runat="server" Text="Save" OnClick="btnSave_Click" />--%>
                     </div>

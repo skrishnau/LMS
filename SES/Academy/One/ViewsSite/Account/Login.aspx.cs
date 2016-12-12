@@ -45,18 +45,29 @@ namespace One.ViewsSite.Account
                     var user = User as CustomPrincipal;
                     if (user != null)
                     {
-                        var reurl = FormsAuthentication.GetRedirectUrl(user.UserName, true);
-                        if (!string.IsNullOrEmpty(reurl))
-                        {
-                            UpdateLoginTime(user.Id);
-                            Response.Redirect(reurl);
-                        }
-                        else
+                        //var reurl = FormsAuthentication.GetRedirectUrl(user.UserName, true);
+                        //if (!string.IsNullOrEmpty(reurl))
+                        //{
+                        //    UpdateLoginTime(user.Id);
+                        //    //FormsAuthentication.RedirectFromLoginPage(user.UserName,true);
+                        //    Response.Redirect(reurl);
+                        //}
+                        //else
                         {
                             string returnUrl = Request.QueryString["ReturnUrl"] as string;
                             if (returnUrl != null)
                             {
                                 UpdateLoginTime(user.Id);
+                                var qs = Request.QueryString.ToString().Replace("ReturnUrl=", "");
+
+                                var queries = qs.Split(new char[] { '&' });
+                                var i = 0;
+                                foreach (var q in queries)
+                                {
+                                    if (i > 0)
+                                        returnUrl += "&" + q;
+                                    i++;
+                                }
                                 Response.Redirect(returnUrl);
                             }
                             else
@@ -126,12 +137,13 @@ namespace One.ViewsSite.Account
             using (var acchelper = new DbHelper.CustomAccount())
             {
                 //if (Membership.ValidateUser(viewModel.UserName, viewModel.Password))
-                if (acchelper.CheckUser(viewModel.UserName, viewModel.Password))
+                var user = acchelper.GetUser(viewModel.UserName, viewModel.Password);
+                if (user !=null)
                 {
                     using (var acaHelper = new DbHelper.AcademicYear())
                     using (var helper = new DbHelper.User())
                     {
-                        var user = helper.Users.First(u => u.UserName == viewModel.UserName);
+                        //var user = foundUser;//helper.Users.First(u => u.UserName == viewModel.UserName);
 
                         CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
                         serializeModel.Id = user.Id;
@@ -172,32 +184,47 @@ namespace One.ViewsSite.Account
                         HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                         Response.Cookies.Add(faCookie);
 
-                        var reurl = FormsAuthentication.GetRedirectUrl(viewModel.UserName, true);
-                        if (!string.IsNullOrEmpty(reurl))
-                        {
-                            UpdateLoginTime(user.Id);
-                            Response.Redirect(reurl);
-                        }
-                        else
+                        //var reurl = FormsAuthentication.GetRedirectUrl(viewModel.UserName, true);
+                        //if (!string.IsNullOrEmpty(reurl))
+                        //{
+                        //    UpdateLoginTime(user.Id);
+                        //    //FormsAuthentication.RedirectFromLoginPage(user.UserName, true);
+                        //    Response.Redirect(reurl);
+                        //}
+                        //else
                         {
 
                             //FormsAuthentication.set
                             //return RedirectToAction("Index", "Home");
                             string returnUrl = Request.QueryString["ReturnUrl"] as string;
+                          
+
+
                             if (returnUrl != null)
                             {
                                 //if (returnUrl.Contains("DashBoard%2fStudent") && roles.Contains("student"))
                                 //{
-
                                 //}
+
                                 UpdateLoginTime(user.Id);
+
+                                var qs = Request.QueryString.ToString().Replace("ReturnUrl=", "");
+                                var queries = qs.Split(new char[] { '&' });
+                                var i = 0;
+                                foreach (var q in queries)
+                                {
+                                    if (i > 0)
+                                        returnUrl += "&" + q;
+                                    i++;
+                                }
+                                
                                 Response.Redirect(returnUrl);
                             }
                             else
                             {
                                 //Response.Redirect("~/ViewsSite/Default.aspx");
                                 UpdateLoginTime(user.Id);
-                                Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
+                                Response.Redirect("~/");
                             }
                         }
                     }

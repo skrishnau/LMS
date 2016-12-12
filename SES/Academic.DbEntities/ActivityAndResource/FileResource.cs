@@ -14,7 +14,8 @@ namespace Academic.DbEntities.ActivityAndResource
         public string Description { get; set; }
         public bool ShowDescriptionOnCoursePage { get; set; }
 
-
+        //public int ActivityResourceId { get; set; }
+        //public virtual ActivityResource ActivityResource { get; set; }
         //Appearance
 
         // This setting, together with the file type and whether the browser allows embedding, determines how the file is displayed. Options may include:
@@ -42,5 +43,7 @@ namespace Academic.DbEntities.ActivityAndResource
         /// Id of FileResourceFile table to indicate that this file is set as main file.
         /// </summary>
         public int? MainFileId { get; set; }
+
+        public virtual ICollection<FileItems.FileResourceFiles> FileResourceFiles { get; set; }
     }
 }

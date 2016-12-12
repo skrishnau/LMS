@@ -63,6 +63,9 @@ namespace Academic.DbEntities.ActivityAndResource
         public int CreatedBy { get; set; }
         public int ModifiedBy { get; set; }
 
+        //public int ActivityResourceId { get; set; }
+        //public virtual ActivityResource ActivityResource { get; set; }
+
         public virtual ICollection<AssignmentItems.AssignmentSubmissions> Submissions { get; set; }
 
         //Student Group for whom the assignment is given
