@@ -17,39 +17,61 @@ namespace One.Views.ActivityResource.Assignments
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             AsyncFileUpload1.Style.Add("visibility", " hidden");
-            if (!IsPostBack)
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
             {
-                try
+                if (!IsPostBack)
                 {
-                    var aId = Request.QueryString["arId"];
-                    var subId = Request.QueryString["SubId"];
-                    var secId = Request.QueryString["secId"];
-
-                    //var edit = Request.QueryString["edit"];
-
-                    if (aId != null)
+                    try
                     {
-                        var assId = Convert.ToInt32(aId);
-                        AssignmentId = assId;
-                        LoadActivity(assId);
-                    }
-                    if (subId != null)
-                    {
-                        SubjectId = Convert.ToInt32(subId);
-                        if (secId != null)
+                        var aId = Request.QueryString["arId"];
+                        var subId = Request.QueryString["SubId"];
+                        var secId = Request.QueryString["secId"];
+                        var ucId = Request.QueryString["ucId"];
+
+                        //var edit = Request.QueryString["edit"];
+                        if (ucId == null)
                         {
-                            SectionId = Convert.ToInt32(secId);
+                            Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
                         }
-                    }
-                    var key = Guid.NewGuid().ToString();
-                    FilesDisplay1.PageKey = key;
-                    FilesDisplay1.FileSaveDirectory = DbHelper.StaticValues.AssignmentDirectory;
-                    FilesDisplay1.FileAcquireMode = Enums.FileAcquireMode.Multiple;
-                    Session["FilesList" + key] = new List<FileResourceEventArgs>();
+                        else
+                            UserClassId = Convert.ToInt32(ucId);
 
+                        if (aId != null)
+                        {
+                            var assId = Convert.ToInt32(aId);
+                            AssignmentId = assId;
+                            LoadActivity(assId);
+                        }
+                        else
+                            Response.Redirect("~/");
+
+                        if (subId != null)
+                        {
+                            SubjectId = Convert.ToInt32(subId);
+                            if (secId != null)
+                            {
+                                SectionId = Convert.ToInt32(secId);
+                            }
+                        }
+                        var key = Guid.NewGuid().ToString();
+                        FilesDisplay1.PageKey = key;
+                        FilesDisplay1.FileSaveDirectory = DbHelper.StaticValues.AssignmentDirectory;
+                        FilesDisplay1.FileAcquireMode = Enums.FileAcquireMode.Multiple;
+                        Session["FilesList" + key] = new List<FileResourceEventArgs>();
+
+                    }
+                    catch
+                    {
+                        Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
+                    }
                 }
-                catch { }
+            }
+            else
+            {
+                Response.Redirect("~/");
             }
         }
 
@@ -66,11 +88,19 @@ namespace One.Views.ActivityResource.Assignments
             set { hidSubjectId.Value = value.ToString(); }
         }
 
+        public int UserClassId
+        {
+            get { return Convert.ToInt32(hidUserClassId.Value); }
+            set { hidUserClassId.Value = value.ToString(); }
+        }
+
+
         public int AssignmentId
         {
-            get { return Convert.ToInt32(hidSubmissionId.Value); }
-            set { hidSubmissionId.Value = value.ToString(); }
+            get { return Convert.ToInt32(hidAssignmentId.Value); }
+            set { hidAssignmentId.Value = value.ToString(); }
         }
+
         public int SubmissionId
         {
             get { return Convert.ToInt32(hidSubmissionId.Value); }
@@ -90,7 +120,7 @@ namespace One.Views.ActivityResource.Assignments
 
         #endregion
 
-      
+
         void LoadActivity(int assignmentId)
         {
             using (var helper = new DbHelper.ActAndRes())
@@ -98,21 +128,28 @@ namespace One.Views.ActivityResource.Assignments
                 var ass = helper.GetAssignment(assignmentId);
                 if (ass != null)
                 {
+                    var submission = ass.Submissions.FirstOrDefault(x => x.UserClassId == UserClassId);
+                    if (submission != null)
+                    {
+                        SubmissionId = submission.Id;
+                        if (ass.OnlineText)
+                            CKEditor1.Text = submission.SubmissionText;
+                        //if(ass.FileSubmission)
+                    }
+
 
                     AssignmentId = assignmentId;
                     lblName.Text = ass.Name;
                     lblDescription.Text = ass.Description;
 
-                    if (!(ass.FileSubmission && ass.OnlineText))
-                    {
-                        btnSubmit.Visible = false;
-                    }
-                    else
+                    if (ass.FileSubmission || ass.OnlineText)
                     {
                         if (ass.FileSubmission)
                         {
                             pnlFileSubmit.Visible = true;
-                            lblFileLimit.Text = "(File Limit : " + (ass.MaximumNoOfUploadedFiles ?? 0)+")";
+                            lblFileLimit.Text = "(File Limit : " + (ass.MaximumNoOfUploadedFiles ?? 0) + " files, " +
+                                " Maximum size per file: " + (ass.MaximumSubmissionSize ?? 0) +
+                                "KB)";
                             FilesDisplay1.NumberOfFilesToUpload = ass.MaximumNoOfUploadedFiles ?? 0;
                         }
                         else
@@ -125,7 +162,7 @@ namespace One.Views.ActivityResource.Assignments
                         {
                             //lblScript.Text = WordLimitScript(ass.WordLimit ?? 0);
 
-                            lblWordLimit.Text = "(Word Limit : " + (ass.WordLimit ?? 0)+")";
+                            lblWordLimit.Text = "(Word Limit : " + (ass.WordLimit ?? 0) + " words)";
                             pnlText.Visible = true;
                         }
                         else
@@ -134,13 +171,17 @@ namespace One.Views.ActivityResource.Assignments
                             pnlText.Controls.Clear();
                         }
                     }
+                    else
+                    {
+                        btnSubmit.Visible = false;
+                    }
                 }
             }
         }
 
         private string WordLimitScript(int wLimit)
         {
-            
+
             return
 
                 // Add filter to add or remove element before counting (see CKEDITOR.htmlParser.filter), Default value : null (no filter)
@@ -177,83 +218,107 @@ namespace One.Views.ActivityResource.Assignments
 
         }
 
-     
+
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             var user = Page.User as CustomPrincipal;
             if (user != null)
             {
-
+                var date = DateTime.Now;
                 var submission = new Academic.DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissions()
                 {
                     Id = SubmissionId
                     ,
                     AssignmentId = AssignmentId
                     ,
-                    //UserClassId = 
+                    UserClassId = UserClassId
                 };
-                if (SubmissionId > 0)
-                {
-                    submission.ModifiedDate = DateTime.Now;
-                }
-                else
-                {
-                    submission.SubmittedDate = DateTime.Now;
-                }
-                if (pnlFileSubmit.Visible)
-                {
-                    var files = FilesDisplay1.GetFiles();
-
-                    var filelist = new List<Academic.DbEntities.UserFile>();
-                    //var files = FilesDisplay1.GetFiles();
-                    if (files != null)
-                    {
-                        var sublist = new
-                           List<Academic.DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissionFiles>();
-
-                        foreach (var f in files)
-                        {
-                            var subFile = new Academic.DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissionFiles()
-                            {
-                                AssignmentSubmissionsId = SubmissionId
-                               ,
-                            };
-                            var fileName = Path.GetFileName(f.FilePath);
-                            var fi = new Academic.DbEntities.UserFile()
-                            {
-                                CreatedBy = user.Id
-                                ,
-                                CreatedDate = DateTime.Now
-                                ,
-                                DisplayName = f.FileDisplayName //Path.GetFileName(imageFile.FileName)
-                                ,
-                                FileDirectory = DbHelper.StaticValues.CourseFilesLocation //StaticValue.UserImageDirectory
-                                ,
-                                FileName = fileName
-                                    //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
-                                ,
-                                FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
-                                ,
-                                FileType = f.FileType //imageFile.ContentType
-                                ,
-                                IconPath = f.IconPath
-                                ,
-                                Id = f.Id
-                                ,
-                                //SubjectId = SubjectId
-                            };
-                            filelist.Add(fi);
-                        }
-                    }
-
-
-                }
-
                 if (pnlText.Visible)
                 {
                     submission.SubmissionText = CKEditor1.Text;
-
                 }
+
+                if (SubmissionId > 0)
+                {
+                    submission.ModifiedDate = date;
+                }
+                else
+                {
+                    submission.SubmittedDate = date;
+                }
+
+
+
+                #region Files
+
+                //if (pnlFileSubmit.Visible)
+                //{
+                //    var files = FilesDisplay1.GetFiles();
+
+                //    var filelist = new List<Academic.DbEntities.UserFile>();
+                //    //var files = FilesDisplay1.GetFiles();
+                //    if (files != null)
+                //    {
+                //        var sublist = new
+                //           List<Academic.DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissionFiles>();
+
+                //        foreach (var f in files)
+                //        {
+                //            var subFile = new Academic.DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissionFiles()
+                //            {
+                //                AssignmentSubmissionsId = SubmissionId
+                //               ,FileSubmittedDate = date
+                //            };
+                //            var fileName = Path.GetFileName(f.FilePath);
+                //            var fi = new Academic.DbEntities.UserFile()
+                //            {
+                //                CreatedBy = user.Id
+                //                ,
+                //                CreatedDate = date
+                //                ,
+                //                DisplayName = f.FileDisplayName //Path.GetFileName(imageFile.FileName)
+                //                ,
+                //                FileDirectory = DbHelper.StaticValues.CourseFilesLocation //StaticValue.UserImageDirectory
+                //                ,
+                //                FileName = fileName
+                //                    //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
+                //                ,
+                //                FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
+                //                ,
+                //                FileType = f.FileType //imageFile.ContentType
+                //                ,
+                //                IconPath = f.IconPath
+                //                ,
+                //                Id = f.Id
+                //                ,
+                //                //SubjectId = SubjectId
+                //            };
+                //            filelist.Add(fi);
+                //        }
+                //    }
+
+
+                //}
+
+
+                #endregion
+
+                using (var helper = new DbHelper.Assignments())
+                {
+                    var saved = helper.AddOrUpdateAssignmentSubmission(submission);
+                    if (saved != null)
+                    {
+                        Response.Redirect("~/Views/ActivityResource/Assignments/AssignmentView.aspx?SubId=" + SubjectId +
+                                          "&arId=" + AssignmentId +
+                                          "&secId=" + SectionId
+                            );
+                    }
+                    else
+                    {
+                        lblError.Visible = true;
+                    }
+                }
+
             }
         }
 

@@ -6,20 +6,21 @@
         <div class="module-whole">
             <div class="modules-heading">
                 <asp:HyperLink ID="HyperLink1" CssClass="modules-title" runat="server"
-                    NavigateUrl="~/Views/NoticeBoard/NoticeListing.aspx"
-                    >Notice</asp:HyperLink>
+                    NavigateUrl="~/Views/NoticeBoard/NoticeListing.aspx">Notice</asp:HyperLink>
                 <asp:Label ID="lblNoticeIndication" runat="server" Text="" ForeColor="white" BackColor="red"></asp:Label>
 
             </div>
 
-            <%-- 180px; --%>
-            <div class="modules-body" style="font-size: 0.9em;">
+            <%-- 180px; style="font-size: 0.9em;"--%>
+            <%-- class="modules-body" --%>
+            <div style="overflow: auto">
                 <%-- DataSourceID="NotificationListDS" --%>
                 <asp:DataList ID="DataList1" Height="100%" runat="server" Width="100%" OnItemCommand="DataList1_ItemCommand">
                     <ItemTemplate>
-                        <div style="border-bottom: 1px solid lightgray; vertical-align: top;">
+                        <%-- style="border-bottom: 1px solid lightgray; vertical-align: top;" --%>
+                        <div class="auto-st2-border-zero-margin" style="overflow: no-display; padding: 5px;">
                             <strong>
-                                ●
+                                <%-- ● --%>
                                 <asp:HyperLink ID="HeadiingLabel" CssClass="link" runat="server" Font-Underline="False"
                                     NavigateUrl='<%# "~/Views/NoticeBoard/NoticeDetail.aspx?nId="+Eval("Id") %>'
                                     Text='<%# Eval("Title")  %>'>
@@ -42,10 +43,12 @@
                 <asp:Literal ID="DescriptionLabel" runat="server" Text='<%# Eval("Content") %>' />
             </div>--%>
 
-                            <br />
-                            <em style="font-size: 0.7em; color: grey;">&nbsp;&nbsp;posted on:
-                    <asp:Label ID="UpdatedDateLabel" runat="server" Text='<%# GetPublishDate(Eval("PublishedDate")) %>' />
-                            </em>
+                            <%--<br />--%>
+                            <div style="margin-left: 5px;">
+                                <em style="font-size: 0.7em; color: grey;">&nbsp;&nbsp;posted on:
+                                <asp:Label ID="UpdatedDateLabel" runat="server" Text='<%# GetPublishDate(Eval("PublishedDate")) %>' />
+                                </em>
+                            </div>
                         </div>
 
 

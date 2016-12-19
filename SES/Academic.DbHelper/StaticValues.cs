@@ -12,6 +12,32 @@ namespace Academic.DbHelper
     {
         public static class StaticValues
         {
+            //Errors, always place new error on last of the list
+            public static List<string> Error = new List<string>()
+                                            {
+                                                "",
+                                                "You don't have permission to access the page.",
+
+
+                                            };
+
+            public static string GetEncodedError(int index)
+            {
+                return Encode(Error[index]);
+            }
+
+            //encoding and decoding
+            public static string Encode(string text)
+            {
+                return Convert.ToBase64String(Encoding.UTF8.GetBytes(text));
+            }
+
+            public static string Decode(string text)
+            {
+                return Encoding.UTF8.GetString(Convert.FromBase64String(text));
+            }
+
+
             public static List<string> ListUserFields()
             {
                 return new List<string>()
@@ -50,7 +76,7 @@ namespace Academic.DbHelper
 
             public static class StructureType
             {
-                public static string Level { get { return "lev"; }}
+                public static string Level { get { return "lev"; } }
                 public static string Faculty { get { return "fac"; } }
                 public static string Program { get { return "pro"; } }
                 public static string Year { get { return "yr"; } }
@@ -286,6 +312,9 @@ namespace Academic.DbHelper
                 public static string Notifier { get { return "notifier"; } }
 
                 public static string Admin { get { return "admin"; } }
+
+                public static string Admitter{get { return "admitter"; }}
+                public static string Grader{ get { return "grader"; } }
             }
 
             #endregion

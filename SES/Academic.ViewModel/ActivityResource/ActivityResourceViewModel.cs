@@ -52,21 +52,26 @@ namespace Academic.ViewModel.ActivityResource
 
         public bool Enable { get; set; }
 
+        public string ActivityResourceTypeName { get; set; }
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name">To dispaly as title of activity/ resource</param>
         /// <param name="description">description</param>
+        /// <param name="typeName">type of activity resource . i.e. "Assignment", "Book", "File" etc.</param>
         /// <param name="showDescriptionOnCoursePage">to show or not --description</param>
         /// <param name="navigateUrl">Url of page to go to when clicked on Name of act/res</param>
         /// <param name="iconUrl">icon to show with name </param>
         /// <param name="editurl">iurl for edit </param>
         /// <param name="enable"></param>
-        public void SetOtherValues(string name, string description, bool showDescriptionOnCoursePage
-            , string navigateUrl = "", string iconUrl = "", string editurl="", bool enable = true)
+        public void SetOtherValues(string name, string description, string typeName, bool showDescriptionOnCoursePage
+            , string navigateUrl = "", string iconUrl = "", string editurl="",  bool enable = true)
         {
             Name = name;
             this.Description = description;
+            ActivityResourceTypeName = typeName;
             Enable = enable;
             ShowDescriptionOnPage = showDescriptionOnCoursePage;
             if (!string.IsNullOrEmpty(navigateUrl))

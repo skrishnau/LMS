@@ -550,7 +550,8 @@ namespace Academic.DbHelper
             }
 
             //used after github
-            public List<ViewModel.ActivityResource.UserSubmissionsViewModel> ListUserSubmissionses(int subjectClassId, string type)
+            public List<ViewModel.ActivityResource.UserSubmissionsViewModel> ListUserSubmissionses(
+                int subjectClassId, string type)
             {
                 var subsession = Context.SubjectClass.Find(subjectClassId);
                 if (subsession != null)
@@ -679,6 +680,18 @@ namespace Academic.DbHelper
                 }
                 return null;
             }
+
+            //used
+            public UserClass GetUserClassOfUser(int subjectId, int userId)
+            {
+                return Context.UserClass.FirstOrDefault(
+                    x =>
+                        (x.SubjectClass.IsRegular
+                            ? (x.SubjectClass.SubjectStructure.SubjectId == subjectId):(x.SubjectClass.SubjectId==subjectId)) && x.UserId == userId);
+
+            }
+
+
         }
     }
 }

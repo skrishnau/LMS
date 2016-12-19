@@ -17,11 +17,13 @@ namespace Academic.DbEntities.Grades
         public string Description { get; set; }
 
         /// <summary>
-        /// possible values: "Range" or "Value", 
+        /// 
+        ///  False:Range, True: Value ..
+        /// /////possible values: "Range" or "Value", 
         /// in range--> max and min values are present 
         /// in Value --> gradeValues table contain data (values)
         /// </summary>
-        public string Type { get; set; }
+        public bool RangeOrValue { get; set; }
 
         /// <summary>
         /// true: percent , false: position,   
@@ -34,6 +36,7 @@ namespace Academic.DbEntities.Grades
         public float? TotalMinValue { get; set; }
         public float? MinimumPassValue { get; set; }
 
+        public bool? Void { get; set; }
 
         public int? SchoolId { get; set; }
         public virtual DbEntities.Office.School School { get; set; }

@@ -162,6 +162,34 @@
     <Compile Include="Migrations\201612121207342_restriction_added_in_section.Designer.cs">
       <DependentUpon>201612121207342_restriction_added_in_section.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612131309423_gradeTpe_column_renamed_to_RangeOrValue.cs" />
+    <Compile Include="Migrations\201612131309423_gradeTpe_column_renamed_to_RangeOrValue.Designer.cs">
+      <DependentUpon>201612131309423_gradeTpe_column_renamed_to_RangeOrValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612132341398_jpt.cs" />
+    <Compile Include="Migrations\201612132341398_jpt.Designer.cs">
+      <DependentUpon>201612132341398_jpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612142035416_no_idea2.cs" />
+    <Compile Include="Migrations\201612142035416_no_idea2.Designer.cs">
+      <DependentUpon>201612142035416_no_idea2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612150040550_no_idea3.cs" />
+    <Compile Include="Migrations\201612150040550_no_idea3.Designer.cs">
+      <DependentUpon>201612150040550_no_idea3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612150102215_no_idea4.cs" />
+    <Compile Include="Migrations\201612150102215_no_idea4.Designer.cs">
+      <DependentUpon>201612150102215_no_idea4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612172006412_batch_void_added.cs" />
+    <Compile Include="Migrations\201612172006412_batch_void_added.Designer.cs">
+      <DependentUpon>201612172006412_batch_void_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612190551435_void_in_grade.cs" />
+    <Compile Include="Migrations\201612190551435_void_in_grade.Designer.cs">
+      <DependentUpon>201612190551435_void_in_grade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -262,6 +290,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612121207342_restriction_added_in_section.resx">
       <DependentUpon>201612121207342_restriction_added_in_section.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612131309423_gradeTpe_column_renamed_to_RangeOrValue.resx">
+      <DependentUpon>201612131309423_gradeTpe_column_renamed_to_RangeOrValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612132341398_jpt.resx">
+      <DependentUpon>201612132341398_jpt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612142035416_no_idea2.resx">
+      <DependentUpon>201612142035416_no_idea2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612150040550_no_idea3.resx">
+      <DependentUpon>201612150040550_no_idea3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612150102215_no_idea4.resx">
+      <DependentUpon>201612150102215_no_idea4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612172006412_batch_void_added.resx">
+      <DependentUpon>201612172006412_batch_void_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612190551435_void_in_grade.resx">
+      <DependentUpon>201612190551435_void_in_grade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

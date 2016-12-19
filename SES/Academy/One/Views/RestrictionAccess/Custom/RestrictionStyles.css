@@ -8,17 +8,11 @@
 
     .img-close:hover {
         background-color: pink;
-        width: 24px;
+        /*width: 24px;*/
         /*height: 24px;*/
     }
 
-.link-img-close {
 
-}
-    .link-img-close:hover {
-        width: 9px;
-        /*height: 24px;*/
-    }
 
 
 .btnAdd_Restriction {

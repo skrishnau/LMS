@@ -294,6 +294,7 @@ namespace Academic.DbHelper
 
         public string IconPath { get; set; }
 
+        //public string ActivityResourceTypeName { get; set; }
         /// <summary>
         /// type pos: 1: assignment, 2:chat , 1: book, 2:file, etc.
         ///  It is used to denote the type of act/res in database.. and always starts from 1.

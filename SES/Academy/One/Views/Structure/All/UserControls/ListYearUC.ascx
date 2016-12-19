@@ -6,8 +6,11 @@
                 Name
         </asp:HyperLink>
         &nbsp;
-        <asp:HyperLink ID="lnkEdit" runat="server">
+        <asp:HyperLink ID="lnkEdit" runat="server" CssClass="edit-button">
             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+        </asp:HyperLink>
+         <asp:HyperLink ID="lnkDelete" Visible="False" CssClass="delete-button" runat="server" OnClick="lnkEdit_Click">
+            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/trash.gif" />
         </asp:HyperLink>
     </div>
 

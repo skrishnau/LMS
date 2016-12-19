@@ -85,6 +85,15 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.CheckBox chkFrom;
         
         /// <summary>
+        /// valiFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label valiFrom;
+        
+        /// <summary>
         /// txtDue control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.CheckBox chkDue;
         
         /// <summary>
+        /// valiDue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label valiDue;
+        
+        /// <summary>
         /// txtCutOff control.
         /// </summary>
         /// <remarks>
@@ -119,6 +137,15 @@ namespace One.Views.ActivityResource.Assignments {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkCutOff;
+        
+        /// <summary>
+        /// valiCutOff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label valiCutOff;
         
         /// <summary>
         /// UpdatePanel2 control.
@@ -191,6 +218,15 @@ namespace One.Views.ActivityResource.Assignments {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMaxSize;
+        
+        /// <summary>
+        /// lblValiSubmissionSize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValiSubmissionSize;
         
         /// <summary>
         /// UpdatePanel3 control.

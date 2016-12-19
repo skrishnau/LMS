@@ -13,39 +13,110 @@ namespace One.Views.Grade
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblErrorMaxVal.Visible = false;
+            lblErrorMinVal.Visible = false;
+            lblErrorMinValToPass.Visible = false;
             if (!IsPostBack)
             {
-                pnlValues.Visible = false;
-                ViewState["values"] = new List<GradeViewModel>();
+                //pnlValues.Visible = false;
+                //ViewState["values"] = new List<GradeViewModel>();
             }
             LoadValues();
         }
 
         #region Properties
 
+        public bool IsValid = true;
+
         public float TotalMaxValue
         {
-            get { return (float)Convert.ToDecimal(txtMaxValue.Text); }
+            get
+            {
+                    try
+                    {
+                        return (float) Convert.ToDecimal(txtMaxValue.Text);
+
+                    }
+                    catch
+                    {
+                        if (SelectedType == 0)
+                        {
+                            lblErrorMaxVal.Visible = true;
+                            IsValid = false;
+                            return 0;
+                        }
+                        return 0;
+                    }
+            }
+            set { txtMaxValue.Text = value.ToString("F"); }
         }
 
         public float TotalMinValue
         {
-            get { return (float)Convert.ToDecimal(txtMinValue.Text); }
+            get
+            {
+
+                try
+                {
+                    return (float)Convert.ToDecimal(txtMinValue.Text);
+
+                }
+                catch
+                {
+                    if (SelectedType == 0)
+                    {
+                        lblErrorMinVal.Visible = true;
+                        IsValid = false;
+                        return 0;
+                    }
+                    return 0;
+                }
+
+            }
+            set { txtMinValue.Text = value.ToString("F"); }
         }
 
         public float MinimumPassValue
         {
-            get { return (float)Convert.ToDecimal(txtMinValueToPass.Text); }
+            get
+            {
+                try
+                {
+                    return (float)Convert.ToDecimal(txtMinValueToPass.Text);
+
+                }
+                catch
+                {
+                    if (SelectedType == 0)
+                    {
+                        lblErrorMinValToPass.Visible = true;
+                        IsValid = false;
+                        return 0;
+                    }
+                    return 0;
+                }
+            }
+            set { txtMinValueToPass.Text = value.ToString("F"); }
         }
 
         public int SelectedType
         {
             get { return rdbtnlistType.SelectedIndex; }
+            set
+            {
+                rdbtnlistType.SelectedIndex = value;
+                RadioButtonList1_SelectedIndexChanged(rdbtnlistType,new EventArgs());
+            }
         }
 
         public bool GradeValueIsInPercentOrPostition
         {
             get { return rdbtnlistEquivalentRepresentation.SelectedIndex == 0; }
+            set
+            {
+                rdbtnlistEquivalentRepresentation.SelectedIndex = value ? 0 : 1;
+                rdbtnlistEquivalentRepresentation_SelectedIndexChanged(rdbtnlistEquivalentRepresentation,new EventArgs());
+            }
         }
         public ControlCollection ListControls
         {
@@ -61,6 +132,40 @@ namespace One.Views.Grade
 
 
         #region Events Callback
+
+        //public bool ValuesPanelVisibility
+        //{
+        //    get { return pnlValues.Visible; }
+        //    set
+        //    {
+        //        pnlValues.Visible = value;
+        //        pnlRange.Visible = !value;
+        //    }
+        //}
+
+        public bool ValuesPanelVisibility
+        {
+            get { return pnlValues.Visible; }
+            set
+            {
+                pnlValues.Visible = value;
+                pnlRange.Visible = !value;
+            }
+        }
+
+        public bool RangePanelVisibility
+        {
+            get { return pnlRange.Visible; }
+            set
+            {
+                pnlRange.Visible = value;
+                pnlValues.Visible = !value;
+
+            }
+        }
+
+
+
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -95,10 +200,10 @@ namespace One.Views.Grade
             {
                 var id = 1;
                 if (list.Any())
-                    id = list.Max(x => x.Id) + 1;
+                    id = list.Max(x => x.LocalId) + 1;
                 list.Add(new GradeViewModel()
                 {
-                    Id = id,
+                    LocalId = id,
                     Void = false
                 });
 
@@ -118,7 +223,7 @@ namespace One.Views.Grade
             var list = ViewState["values"] as List<GradeViewModel>;
             if (cntrl != null && list != null)//
             {
-                var val = list.FirstOrDefault(X => X.Id == e.Id);
+                var val = list.FirstOrDefault(X => X.LocalId == e.Id);
                 if (val != null)
                 {
                     cntrl.Visible = false;
@@ -127,6 +232,10 @@ namespace One.Views.Grade
             }
         }
 
+        public void SetValues(List<GradeViewModel> list)
+        {
+            ViewState["values"] = list;//new List<GradeViewModel>();
+        }
         #endregion
 
 
@@ -137,13 +246,15 @@ namespace One.Views.Grade
             var list = ViewState["values"] as List<GradeViewModel>;
             if (list != null)
             {
+                //if()
                 foreach (var grd in list)
                 {
                     var valuesUc = (GradeValuesUC)Page.LoadControl
                        ("~/Views/Grade/GradeValuesUC.ascx");
-                    valuesUc.SetValues(grd.Id, grd.Value, grd.Equivalent, grd.Fail);
-                    valuesUc.ID = "value_" + grd.Id;
+                    valuesUc.SetValues(grd.LocalId, grd.Value, grd.Equivalent, grd.Fail);
+                    valuesUc.ID = "value_" + grd.LocalId;
                     valuesUc.Visible = !grd.Void;
+                    valuesUc.GradeValueId = grd.GradeValueId;
                     valuesUc.TextMode = GetMode();
                     valuesUc.RemoveClicked += valuesUc_RemoveClicked;
                     pnlGradeValues.Controls.Add(valuesUc);
@@ -173,7 +284,7 @@ namespace One.Views.Grade
             foreach (var cntrl in pnlGradeValues.Controls)
             {
                 var valuesCntrl = cntrl as GradeValuesUC;
-                if (valuesCntrl != null && valuesCntrl.Visible)
+                if (valuesCntrl != null )
                 {
                     var eqVal = valuesCntrl.EquivalentValue;
                     if (eqVal == null)
@@ -189,7 +300,7 @@ namespace One.Views.Grade
                         IsFailGrade = valuesCntrl.Fail
                         ,
                         GradeId = GradeId
-                        ,
+                        ,Void = !valuesCntrl.Visible
                     });
                 }
             }

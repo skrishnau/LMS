@@ -14,6 +14,8 @@ namespace One.Views.Student.Batch.Create
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblCommenceDateError.Visible = false;
+
             lblError.Visible = false;
             if (!IsPostBack)
             {
@@ -85,14 +87,15 @@ namespace One.Views.Student.Batch.Create
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            if (BatchId > 0)
-            {
-                Response.Redirect("~/Views/Student/Batch/");
-            }
-            else
-            {
-                Response.Redirect("~/Views/Student/");
-            }
+            Response.Redirect("~/Views/Student/?edit=1");
+            //if (BatchId > 0)
+            //{
+            //    Response.Redirect("~/Views/Student/Batch/");
+            //}
+            //else
+            //{
+            //    Response.Redirect("~/Views/Student/?edit=1");
+            //}
         }
 
 
@@ -100,65 +103,87 @@ namespace One.Views.Student.Batch.Create
         {
             var batchId = BatchId;
             var user = Page.User as CustomPrincipal;
-                if (user != null && Page.IsValid)
+            if (user != null && Page.IsValid)
+            {
+                var date = DateTime.Now;
+                if (txtCommenceDate.Text != "")
                 {
-                    var lst = new List<Academic.DbEntities.Batches.ProgramBatch>();
-                    foreach (ListItem item in CheckBoxList1.Items)
+                    try
                     {
-                        var ids = item.Value.Split(new char[] { '_' });
-                        if (ids.Length >= 2)
-                        {
-                            var pb = new Academic.DbEntities.Batches.ProgramBatch()
-                            {
-                                Id = Convert.ToInt32(ids[1])
-                                ,
-                                ProgramId = Convert.ToInt32(ids[0])
-                                ,
-                                Void = !item.Selected
-                                ,
-                                BatchId = batchId
-                            };
-                            lst.Add(pb);
-                        }
+                        date = Convert.ToDateTime(txtCommenceDate.Text);
                     }
-                    using (var helper = new DbHelper.Batch())
+                    catch
                     {
-                        var batch = new Academic.DbEntities.Batches.Batch()
-                        {
-                            Id = BatchId,
-
-                            Name = txtName.Text
-                            ,
-                            Description = txtDescription.Text
-                            ,
-                            SchoolId = user.SchoolId
-                            ,
-                            CreatedDate = DateTime.Now
-                        };
-
-                        if (txtCommenceDate.Text != "")
-                        {
-                            batch.ClassCommenceDate = Convert.ToDateTime(Convert.ToDateTime(txtCommenceDate.Text).ToLongDateString());
-                        }
-
-                        var saved = helper.AddOrUpdateBatch(batch, lst);
-                        if (saved != null)
-                        {
-                            if (batchId > 0)
-                            {
-                                Response.Redirect("~/Views/Student/Batch/?bId="+batchId);
-                            }
-                            else
-                            {
-                                Response.Redirect("~/Views/Student/");
-                            }
-                        }
-                        else
-                        {
-                            lblError.Visible = true;
-                        }
+                        lblCommenceDateError.Visible = true;
+                        return;
                     }
                 }
+
+                var lst = new List<Academic.DbEntities.Batches.ProgramBatch>();
+                foreach (ListItem item in CheckBoxList1.Items)
+                {
+                    var ids = item.Value.Split(new char[] { '_' });
+                    if (ids.Length >= 2)
+                    {
+                        var pb = new Academic.DbEntities.Batches.ProgramBatch()
+                        {
+                            Id = Convert.ToInt32(ids[1])
+                            ,
+                            ProgramId = Convert.ToInt32(ids[0])
+                            ,
+                            Void = !item.Selected
+                            ,
+                            BatchId = batchId
+                        };
+                        lst.Add(pb);
+                    }
+                }
+                using (var helper = new DbHelper.Batch())
+                {
+                    var batch = new Academic.DbEntities.Batches.Batch()
+                    {
+                        Id = batchId,
+
+                        Name = txtName.Text
+                        ,
+                        Description = txtDescription.Text
+                        ,
+                        SchoolId = user.SchoolId
+                        
+                        
+                    };
+                    if (batchId <= 0)
+                    {
+                        batch.CreatedDate = DateTime.Now;
+                    }
+                    if (!string.IsNullOrEmpty(txtCommenceDate.Text))
+                    {
+                        batch.ClassCommenceDate = date;
+                    }
+                    else
+                    {
+                        batch.ClassCommenceDate = null;
+                    }
+                    
+                    var saved = helper.AddOrUpdateBatch(batch, lst);
+                    if (saved != null)
+                    {
+                        Response.Redirect("~/Views/Student/?edit=1");
+                        //if (batchId > 0)
+                        //{
+                        //    Response.Redirect("~/Views/Student/?edit=1");
+                        //}
+                        //else
+                        //{
+                        //    Response.Redirect("~/Views/Student/Batch/?Id=" + batchId);
+                        //}
+                    }
+                    else
+                    {
+                        lblError.Visible = true;
+                    }
+                }
+            }
         }
 
         public void SetDatasForEdit(int batchId)

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using One.Values;
 
 namespace One.Views.Structure.All.UserControls
@@ -41,8 +42,10 @@ namespace One.Views.Structure.All.UserControls
             //this.hidStructureId.Value = id.ToString();
             YearId = yearId;
             SubYearId = subyearId;
-            lblName.Text = name;
+            lblName.Text = ((subyearId==0)?"●":"♦") + name;
             lnkEdit.Visible = edit;
+            lnkDelete.Visible = edit;
+
             lnkAdd.Visible = edit && addUrl != "";
 
             lblNoOfCourses.Text = noOfCourses.ToString();
@@ -66,6 +69,18 @@ namespace One.Views.Structure.All.UserControls
             {
                 lnkEdit.NavigateUrl = editUrl;
                 lnkAdd.NavigateUrl = addUrl;
+
+                var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                                                DbHelper.StaticValues.Encode("structure") +
+                                                "&progId=0"  
+                                                +"&yeaId="+yearId
+                                                +"&syeaId="+subyearId
+                                                + "&showText="
+                                                + DbHelper.StaticValues.Encode("Are you sure to delete the sub-year, "
+                                                + name + "?")
+                                                ;
+                lnkDelete.NavigateUrl = redUrl;
+
                 lblAddText.Text = addText;
 
                 lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", ""); ;

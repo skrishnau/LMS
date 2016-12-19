@@ -74,7 +74,10 @@ namespace One.Views.Student.Batch
                 foreach (var prog in programs)
                 {
                     var no = prog.StudentBatches.Count(x => !(x.Void ?? false));
-                    var item = (Batch.BatchDetail.DetailItemUc)Page.LoadControl("~/Views/Student/Batch/BatchDetail/DetailItemUc.ascx");
+
+                    var item = (Batch.BatchDetail.DetailItemUc)
+                        Page.LoadControl("~/Views/Student/Batch/BatchDetail/DetailItemUc.ascx");
+
                     item.LoadData(prog.Id, prog.BatchId, prog.NameFromBatch, prog.ProgramId
                         , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void,no);
                     //if (prog.CurrentYear != null)

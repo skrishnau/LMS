@@ -23,7 +23,9 @@ namespace One.Views.ActivityResource.Class
                     UserId = user.Id;
                     ViewState["Roles"] = user.GetRoles();
 
-                    ViewState["SelectedClasses"] = new List<IdAndName>();
+                    var selected = ViewState["SelectedClasses"] as List<IdAndName>;
+                    if (selected == null)
+                        ViewState["SelectedClasses"] = new List<IdAndName>();
                     PopulateClassList();
                 }
             }
@@ -35,6 +37,7 @@ namespace One.Views.ActivityResource.Class
             var selected = ViewState["SelectedClasses"] as List<IdAndName>;
             if (selected != null)
             {
+                pnlClasses.Visible = true;
                 foreach (var item in selected)
                 {
                     var uc = (EachClass)Page.LoadControl
@@ -44,11 +47,14 @@ namespace One.Views.ActivityResource.Class
                     uc.RemoveClicked += uc_RemoveClicked;
                     pnlClasses.Controls.Add(uc);
 
-                    
+
                 }
             }
         }
-
+        public void PopulateClassPanel(List<IdAndName> classes)
+        {
+            ViewState["SelectedClasses"] = classes;
+        }
         private void PopulateClassList(List<IdAndName> selectedList = null)
         {
             using (var helper = new DbHelper.Classes())
@@ -58,13 +64,13 @@ namespace One.Views.ActivityResource.Class
                 {
                     var roles = ViewState["Roles"] as List<string>;
                     var list = helper.ListCurrentClassesOfTeacher(SubjectId, UserId, roles, selectedList);
-                    list.ForEach(x =>
-                    {
-                        if (x.HasGrouping)
-                        {
-                            //x.
-                        }
-                    });
+                    //list.ForEach(x =>
+                    //{
+                    //    if (x.HasGrouping)
+                    //    {
+                    //        //x.
+                    //    }
+                    //});
                     list.Insert(0, new SubjectClass() { Name = "", Id = 0 });
                     ddlClass.DataSource = list;
                     ddlClass.DataBind();
@@ -106,41 +112,20 @@ namespace One.Views.ActivityResource.Class
                 var sel = ddlClass.SelectedItem;
                 if (sel != null)
                 {
-                    //if (sel.Value == "0")
-                    //{
-                    //    foreach (ListItem s in ddlClass.Items)
-                    //    {
-                    //        var item = new IdAndName()
-                    //        {
-                    //            Id = Convert.ToInt32(s.Value)
-                    //            ,
-                    //            Name = s.Text
-                    //        };
-                    //        list.Add(item);
-                    //        var uc = (EachClass)Page.LoadControl
-                    //            ("~/Views/ActivityResource/Class/EachClass.ascx");
-                    //        uc.SetValues(item);
-                    //        uc.RemoveClicked += uc_RemoveClicked;
-                    //        pnlClasses.Controls.Add(uc);
-                    //    }
-                    //}
-                    //else
+                    var item = new IdAndName()
                     {
-                        var item = new IdAndName()
-                        {
-                            Id = Convert.ToInt32(sel.Value)
-                            ,
-                            Name = sel.Text
-                        };
-                        list.Add(item);
-                        var uc = (EachClass)Page.LoadControl
-                                ("~/Views/ActivityResource/Class/EachClass.ascx");
-                        uc.SetValues(item);
-                        uc.RemoveClicked += uc_RemoveClicked;
-                        pnlClasses.Controls.Add(uc);
-                        pnlClasses.Visible = true;
-                        ddlClass.Items.Remove(sel);
-                    }
+                        Id = Convert.ToInt32(sel.Value)
+                        ,
+                        Name = sel.Text
+                    };
+                    list.Add(item);
+                    var uc = (EachClass)Page.LoadControl
+                            ("~/Views/ActivityResource/Class/EachClass.ascx");
+                    uc.SetValues(item);
+                    uc.RemoveClicked += uc_RemoveClicked;
+                    pnlClasses.Controls.Add(uc);
+                    pnlClasses.Visible = true;
+                    ddlClass.Items.Remove(sel);
                 }
             }
             //PopulateClasses(list);
@@ -175,7 +160,7 @@ namespace One.Views.ActivityResource.Class
         public List<IdAndName> GetClasses()
         {
             var list = ViewState["SelectedClasses"] as List<IdAndName>;
-            return list;
+            return list ?? new List<IdAndName>();
         }
     }
 }

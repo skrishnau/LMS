@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using One.Values;
+using One.Values.MemberShip;
 
 namespace One.Views.Course.Section
 {
@@ -65,65 +66,48 @@ namespace One.Views.Course.Section
 
         void LoadSectionDetail()
         {
-            
-            using(var ahelper = new DbHelper.ActAndRes())
-            using (var helper = new DbHelper.SubjectSection())
-            {
-                var elligible = ElligibleToView;
-                var section = helper.Find(SectionId);
-                if (section != null)
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
+                using (var ahelper = new DbHelper.ActAndRes())
+                using (var helper = new DbHelper.SubjectSection())
                 {
-                    lnkAddActOrRes.ID = "lnkAddActOrRes_" + SubjectId + "_" + SectionId;
-                    lnkAddActOrRes.Attributes.Add("name", SectionName);
-                    lblTitle.Text = section.Name;
-                    lblSummary.Text = section.Summary;
-
-
-
-                    var ars = ahelper.ListActivitiesAndResourcesOfSection(UserId,SectionId,elligible);
-                    foreach (var ar in ars)
+                    var elligible = ElligibleToView;
+                    var section = helper.Find(SectionId);
+                    if (section != null)
                     {
                         
-                        var arUc =
-                            (ActivityAndResourceUc)
-                                Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
-                       
-                        arUc.SetData(ar.ActivityOrResource,ar.Name,ar.Description
-                            ,ar.ActivityResourceId,ar.ActivityResourceType.ToString(),ar.IconUrl,ar.NavigateUrl
-                            ,SectionId,EditEnabled,SubjectId,ar.CreateUrl, ar.Enable);
+                        lnkAddActOrRes.ID = "lnkAddActOrRes_" + SubjectId + "_" + SectionId;
+                        lnkAddActOrRes.Attributes.Add("name", SectionName);
+                        lblTitle.Text = section.Name;
+                        lblSummary.Text = section.Summary;
 
-                       pnlActAndRes.Controls.Add(arUc);
+                        var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                                                   DbHelper.StaticValues.Encode("courseSection") +
+                                                   "&crsId=" + SubjectId +
+                                                   "&secId=" + SectionId
+                                                   + "&showText="
+                                                   + DbHelper.StaticValues.Encode("Are you sure to delete the section, " 
+                                                   + section.Name + "?")
+                                                   ;
+                        lnkDelete.NavigateUrl = redUrl;
+
+
+                        var ars = ahelper.ListActivitiesAndResourcesOfSection(UserId, SectionId, elligible);
+                        foreach (var ar in ars)
+                        {
+
+                            var arUc =
+                                (ActivityAndResourceUc)
+                                    Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
+
+                            arUc.SetData(ar.ActivityOrResource, ar.Name, ar.Description
+                                , ar.ActivityResourceId,ar.Id, ar.ActivityResourceType, ar.IconUrl, ar.NavigateUrl
+                                , SectionId, EditEnabled, SubjectId, ar.CreateUrl,ar.ActivityResourceTypeName, ar.Enable);
+
+                            pnlActAndRes.Controls.Add(arUc);
+                        }
                     }
-                    //var actAndRess = section.SubjectActivityAndResource;
-
-                    //foreach (var sar in actAndRess)
-                    //{
-                    //    ActivityAndResourceUc uc =
-                    //                (ActivityAndResourceUc)Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
-                    //    uc.Title = sar.Title;
-                    //    uc.ActivityAndResourceId = sar.Id;
-                    //    if (sar.ShowDesctiptionOnPage)
-                    //        uc.Summary = sar.Description;
-                    //    uc.Type = sar.Type;
-
-                    //    pnlActAndRes.Controls.Add(uc);
-                    //}
-
-                    //foreach (var sar in section.Assignments)
-                    //{
-                    //    ActivityAndResourceUc uc =
-                    //                (ActivityAndResourceUc)Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
-                    //    uc.Title = sar.Name;
-                    //    uc.ActivityAndResourceId = sar.Id;
-                    //    if (sar.DispalyDescriptionOnPage??false)
-                    //        uc.Summary = sar.Description;
-                    //    uc.ImageUrl = Enums.ActivityImagePath[(int) Enums.Activities.Assignment];
-                    //    uc.Type = "Assignment";
-
-                    //    pnlActAndRes.Controls.Add(uc);
-                    //}
                 }
-            }
         }
 
 
@@ -155,6 +139,19 @@ namespace One.Views.Course.Section
             Response.Redirect(url);
 
 
+            //string url = "~/Views/Course/Section/CreateSection.aspx";
+            //string url = "~/Views/Course/Section/Master/test_uc_delete_on_unused.ascx";
+            //Server.TransferRequest(url, false);
+        }
+        protected void lnkDelete_Click(object sender, EventArgs e)
+        {
+            var url = "~/Views/Course/Section/CreateSection.aspx" + "?SecId=" + SectionId;
+            ////// url += "&ReturnUrl=" + Request.Url.PathAndQuery;
+            url += "&ReturnUrl=" + Request.Url.AbsolutePath;
+            url += "&SubId=" + this.SubjectId;
+            Response.Redirect(url);
+
+           
             //string url = "~/Views/Course/Section/CreateSection.aspx";
             //string url = "~/Views/Course/Section/Master/test_uc_delete_on_unused.ascx";
             //Server.TransferRequest(url, false);
@@ -200,6 +197,8 @@ namespace One.Views.Course.Section
             {
                 lnkEdit.Visible = value;
                 lnkEdit.Enabled = value;
+                lnkDelete.Visible = value;
+                lnkDelete.Enabled = value;
                 lnkAddActOrRes.Enabled = value;
                 lnkAddActOrRes.Visible = value;
             }
@@ -207,7 +206,7 @@ namespace One.Views.Course.Section
         }
 
         public void SetData(bool editEnabled, bool showSummary, int subjectId, int subjectSectionId
-            , string subjectSectionName, int userId,bool elligibleToView)
+            , string subjectSectionName, int userId, bool elligibleToView)
         {
             EditEnabled = editEnabled;
             SummaryVisible = showSummary;

@@ -5,20 +5,40 @@
         <h3 class="heading-of-listing">Notices
         </h3>
         <hr />
-        
-        <div style="text-align: right">
-            <asp:HyperLink ID="lnkAddNotice" runat="server" CssClass="link"
-                Visible="False">
-                <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png"/>
-                New notice
-            </asp:HyperLink>
-        </div>
 
-        <div class="detail-view">
+        <div>
+            <table style="width: 99%;">
+                <tr>
+                    <td>
+                       
 
-            <asp:DataList ID="DataList1" runat="server" DataSourceID="NotificationListDS">
+                    </td>
+                    <td>
+                      <%--  <div style="text-align: right;">
+                            <asp:HyperLink ID="lnkEdit" runat="server">
+                                <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                                <asp:Label ID="lblEdit" runat="server" Text="Edit"></asp:Label>
+                            </asp:HyperLink>
+                        </div>--%>
+                         <div style="text-align: right; margin: 5px;">
+                            <asp:HyperLink ID="lnkAddNotice" runat="server" CssClass="link"
+                                Visible="False">
+                                <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
+                                New notice
+                            </asp:HyperLink>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+
+
+
+            <%--  class="detail-view" --%>
+
+            <asp:DataList ID="DataList1" runat="server" DataSourceID="NotificationListDS" Width="98%">
                 <ItemTemplate>
-                    <div >
+                    <div class="auto-st2" style="padding: 10px;">
                         <asp:HiddenField ID="IdLabel" runat="server" Value='<%# Eval("Id") %>' />
                         <strong>
                             <asp:HyperLink ID="HeadiingLabel" runat="server"

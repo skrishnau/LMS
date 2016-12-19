@@ -77,66 +77,37 @@ namespace One.Views.Structure
                     var puc = (ListUC)Page
                         .LoadControl("~/Views/Structure/All/UserControls/ListUC.ascx")
                           ;
-                    puc.SetName(p.Id, "♦" + p.Name
+                    puc.SetName(p.Id, p.Name
                         , "~/Views/Structure/StructureCreate.aspx?strId=" + p.Id + "&strTyp=pro"
                         , edit
                          , "~/Views/Structure/StructureCreate.aspx?pId=" + p.Id + "&strTyp=yr", "Add Year"
                         );
                     pnlListing.Controls.Add(puc);
 
-                    helper.GetYears(p.Id).ForEach(y =>
-                    {
-                        var subyears = helper.GetSubYears(y.Id, true);
+                    p.Year.Where(x => !(x.Void ?? false))
+                        .OrderBy(x => x.Position)
+                        .ToList()
+                        //helper.GetYears(p.Id)
+                        .ForEach(y =>
+                        {
+                            var subyears = y.SubYears.Where(x => !(x.Void ?? false) && (x.ParentId??0)==0)
+                                .OrderBy(or => or.Position)
+                                .ToList();
+                            //helper.GetSubYears(y.Id, true);
 
-                        if (!subyears.Any())
-                        {
-                            //display course info in this year since no subyear
-                            //course info is only in subyearUC
-                            var yuc = (ListSubYearUC)Page
-                                    .LoadControl("~/Views/Structure/All/UserControls/ListSubYearUC.ascx");
-                            //yuc.CourseClicked+=subYear_CourseClicked;
-                            var pbname = "";
-                            int pbId = 0;
-                            var pb =
-                                y.RunningClasses.FirstOrDefault(x => (x.SubYearId ?? 0) == 0 && (x.IsActive ?? true)
-                                                                        && x.AcademicYear.IsActive
-                                                                        && !(x.Completed ?? false));
-                            if (pb != null)
+                            if (!subyears.Any())
                             {
-                                if (pb.ProgramBatchId != null)
-                                {
-                                    pbname = pb.ProgramBatch.NameFromBatch;
-                                    pbId = pb.ProgramBatchId ?? 0;
-                                }
-                            }
-                            yuc.SetName(y.Id, 0, "●" + y.Name
-                                , "~/Views/Structure/StructureCreate.aspx?strId=" + y.Id + "&strTyp=yr"
-                                , y.SubjectStructures.Count(x => !(x.Void??false) && (x.SubYearId ?? 0) == 0)
-                                , pbname, pbId
-                                , edit
-                                 , "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&strTyp=syr", "Add Sub-Year"
-                                );
-                            puc.AddControl(yuc);
-                        }
-                        else
-                        {
-                            var yuc = (ListYearUC)Page
-                                       .LoadControl("~/Views/Structure/All/UserControls/ListYearUC.ascx");
-                            yuc.SetName(y.Id, "●" + y.Name
-                                , "~/Views/Structure/StructureCreate.aspx?strId=" + y.Id + "&strTyp=yr"
-                                , edit
-                                 , "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&strTyp=syr", "Add Sub-Year"
-                                );
-                            puc.AddControl(yuc);
-                            //get subyears
-                            subyears.ForEach(s =>
-                            {
+                                //display course info in this year since no subyear
+                                //course info is only in subyearUC
+                                var yuc = (ListSubYearUC)Page
+                                        .LoadControl("~/Views/Structure/All/UserControls/ListSubYearUC.ascx");
+                                //yuc.CourseClicked+=subYear_CourseClicked;
                                 var pbname = "";
                                 int pbId = 0;
                                 var pb =
-                                    s.RunningClasses.FirstOrDefault(x => (x.IsActive ?? true) && x.Session.IsActive
-                                                                                && !(x.Completed ?? false))
-                                    ;
+                                    y.RunningClasses.FirstOrDefault(x => (x.SubYearId ?? 0) == 0 && (x.IsActive ?? true)
+                                                                            && x.AcademicYear.IsActive
+                                                                            && !(x.Completed ?? false));
                                 if (pb != null)
                                 {
                                     if (pb.ProgramBatchId != null)
@@ -145,24 +116,60 @@ namespace One.Views.Structure
                                         pbId = pb.ProgramBatchId ?? 0;
                                     }
                                 }
-
-                                var suc = (ListSubYearUC)Page
-                                    .LoadControl("~/Views/Structure/All/UserControls/ListSubYearUC.ascx");
-                                //suc.CourseClicked += subYear_CourseClicked;
-                                suc.SetName(y.Id, s.Id, "♦" + s.Name
-                                    , "~/Views/Structure/StructureCreate.aspx?strId=" + s.Id + "&strTyp=syr"
-                                    , s.SubjectStructures.Count(x=>!(x.Void??false))
+                                yuc.SetName(y.Id, 0, y.Name
+                                    , "~/Views/Structure/StructureCreate.aspx?strId=" + y.Id + "&strTyp=yr"
+                                    , y.SubjectStructures.Count(x => !(x.Void ?? false) && (x.SubYearId ?? 0) == 0)
                                     , pbname, pbId
-                                    , edit);
-                                yuc.AddControl(suc);
-                            });
-                            //add subyear
-                            //var hyper = new HyperLink() { NavigateUrl = "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&strTyp=syr" };
-                            //hyper.Controls.Add(new Label(){Text = "Add Sub-year"});
-                            //hyper.Controls.Add(new Image() { ImageUrl = "~/Content/Icons/Add/Add-icon.png" });
-                            //yuc.AddControl(hyper);
-                        }
-                    });
+                                    , edit
+                                     , "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&strTyp=syr", "Add Sub-Year"
+                                    );
+                                puc.AddControl(yuc);
+                            }
+                            else
+                            {
+                                var yuc = (ListYearUC)Page
+                                           .LoadControl("~/Views/Structure/All/UserControls/ListYearUC.ascx");
+                                yuc.SetName(y.Id, y.Name
+                                    , "~/Views/Structure/StructureCreate.aspx?strId=" + y.Id + "&strTyp=yr"
+                                    , edit
+                                     , "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&strTyp=syr", "Add Sub-Year"
+                                    );
+                                puc.AddControl(yuc);
+                                //get subyears
+                                subyears.ForEach(s =>
+                                {
+                                    var pbname = "";
+                                    int pbId = 0;
+                                    var pb =
+                                        s.RunningClasses.FirstOrDefault(x => (x.IsActive ?? true) && x.Session.IsActive
+                                                                                    && !(x.Completed ?? false))
+                                        ;
+                                    if (pb != null)
+                                    {
+                                        if (pb.ProgramBatchId != null)
+                                        {
+                                            pbname = pb.ProgramBatch.NameFromBatch;
+                                            pbId = pb.ProgramBatchId ?? 0;
+                                        }
+                                    }
+
+                                    var suc = (ListSubYearUC)Page
+                                        .LoadControl("~/Views/Structure/All/UserControls/ListSubYearUC.ascx");
+                                    //suc.CourseClicked += subYear_CourseClicked;
+                                    suc.SetName(y.Id, s.Id, s.Name
+                                        , "~/Views/Structure/StructureCreate.aspx?strId=" + s.Id + "&strTyp=syr"
+                                        , s.SubjectStructures.Count(x => !(x.Void ?? false))
+                                        , pbname, pbId
+                                        , edit);
+                                    yuc.AddControl(suc);
+                                });
+                                //add subyear
+                                //var hyper = new HyperLink() { NavigateUrl = "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&strTyp=syr" };
+                                //hyper.Controls.Add(new Label(){Text = "Add Sub-year"});
+                                //hyper.Controls.Add(new Image() { ImageUrl = "~/Content/Icons/Add/Add-icon.png" });
+                                //yuc.AddControl(hyper);
+                            }
+                        });
                 });
 
                 //levels.ForEach(l =>

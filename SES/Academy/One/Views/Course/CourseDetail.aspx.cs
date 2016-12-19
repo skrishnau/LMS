@@ -15,83 +15,96 @@ namespace One.Views.Course
         protected void Page_Load(object sender, EventArgs e)
         {
             var user = Page.User as CustomPrincipal;
-            if(user!=null)
-            if (!IsPostBack)
-            {
-                if (user.IsInRole("manager") || user.IsInRole("course-editor"))
+            if (user != null)
+                if (!IsPostBack)
                 {
-                    lnkEdit.Visible = true;
-                    lnkDelete.Visible = true;
-                    lnkNewClass.Visible = true;
-                    pnlClasses.Visible = true;
-                    LoadInitialData();
-                }
-                else if (user.IsInRole("teacher"))
-                {
-                    lnkEdit.Visible = false;
-                    lnkDelete.Visible = false;
-                    lnkNewClass.Visible = false;
-                    pnlClasses.Visible = true;
-                    LoadInitialData();
-                }
-                else
-                {
-                    lnkEdit.Visible = false;
-                    lnkDelete.Visible = false;
-                    lnkNewClass.Visible = false;
-                    pnlClassFilter.Visible = false;
-                    dlistClasses.Visible = false;
-                    pnlClasses.Visible = false;
-                }
+                    if (user.IsInRole("manager") || user.IsInRole("course-editor"))
+                    {
+                        lnkEdit.Visible = true;
+                        lnkDelete.Visible = true;
+                        lnkNewClass.Visible = true;
+                        pnlClasses.Visible = true;
+                        LoadInitialData();
+                    }
+                    else if (user.IsInRole("teacher"))
+                    {
+                        lnkEdit.Visible = false;
+                        lnkDelete.Visible = false;
+                        lnkNewClass.Visible = false;
+                        pnlClasses.Visible = true;
+                        LoadInitialData();
+                    }
+                    else
+                    {
+                        lnkEdit.Visible = false;
+                        lnkDelete.Visible = false;
+                        lnkNewClass.Visible = false;
+                        pnlClassFilter.Visible = false;
+                        dlistClasses.Visible = false;
+                        pnlClasses.Visible = false;
+                    }
 
-              
-            }
+
+                }
         }
 
 
         private void LoadInitialData()
         {
             var courseId = Request.QueryString["cId"];
-            if (courseId != null)
+            try
             {
-                lnkView.NavigateUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + courseId;
-                lnkEdit.NavigateUrl = "~/Views/Course/CourseCreate.aspx?crsId=" + courseId;
-
-                hidCourseId.Value = courseId;
-                lnkNewClass.NavigateUrl = "~/Views/Class/CourseSessionCreate.aspx?cId=" + courseId;
-                try
-                {
-                    using (var helper = new DbHelper.Classes())
-                    {
-                        var sessions = helper.ListClassesOfSubject(Convert.ToInt32(courseId), "All");
-                        dlistClasses.DataSource = sessions;
-                        dlistClasses.DataBind();
-                    }
-                }
-                catch { Response.Redirect("~/Views/Course/"); }
-            }
-            else
-            {
-                Response.Redirect("~/Views/Course/");
-            }
-            //load course detail
-            using (var helper = new DbHelper.Subject())
-            {
-                try
+                if (courseId != null)
                 {
                     var cId = Convert.ToInt32(courseId);
-                    var sub = helper.GetCourse(cId);
-                    if (sub != null)
+                    using (var cHelper = new DbHelper.Classes())
+                    using (var helper = new DbHelper.Subject())
                     {
-                        lblFullName.Text = sub.FullName;
-                        lblCategory.Text = sub.SubjectCategory.Name;
-                        lblShortName.Text = sub.ShortName;
-                        lblHeading.Text = sub.FullName;
-                    }
 
+                        var sub = helper.GetCourse(cId);
+                        if (sub == null)
+                        {
+                            Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
+                            return;
+                        }
+                        //if (sub != null)
+                        {
+                            if ((sub.Void ?? false))
+                            {
+                                Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
+                                return;
+                            }
+                            lblFullName.Text = sub.FullName;
+                            lblCategory.Text = sub.SubjectCategory.Name;
+                            lblShortName.Text = sub.ShortName;
+                            lblHeading.Text = sub.FullName;
+
+                            //other componenets
+                            lnkNewClass.NavigateUrl = "~/Views/Class/CourseSessionCreate.aspx?cId=" + courseId;
+
+                            lnkView.NavigateUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + courseId;
+                            lnkEdit.NavigateUrl = "~/Views/Course/CourseCreate.aspx?crsId=" + courseId;
+                            lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                                                    DbHelper.StaticValues.Encode("course") +
+                                                    "&crsId=" + courseId +
+                                                    "&catId=" + sub.SubjectCategoryId
+                                                    + "&showText="
+                                                    + DbHelper.StaticValues.Encode("Are you sure to delete the course " + sub.FullName + "?")
+                                                    ;
+
+                            hidCourseId.Value = courseId;
+
+                            var sessions = cHelper.ListClassesOfSubject(cId, "All");
+                            dlistClasses.DataSource = sessions;
+                            dlistClasses.DataBind();
+                        }
+                    }
                 }
-                catch { }
+                else { Response.Redirect("~/Views/Course/"); }
             }
+            catch { Response.Redirect("~/Views/Course/"); }
+            //load course detail
+
         }
 
         public int CourseId

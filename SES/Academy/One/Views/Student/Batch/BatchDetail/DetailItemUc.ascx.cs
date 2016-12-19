@@ -14,9 +14,7 @@ namespace One.Views.Student.Batch.BatchDetail
         {
             if (!IsPostBack)
             {
-                lnkProgrameName.NavigateUrl =
-                    "~/Views/Student/Batch/StudentDisplay/Students/StudentListInProgramBatch.aspx?pbId=" +
-                    ProgramBatchId;
+                
             }
         }
         #region Properties
@@ -80,6 +78,8 @@ namespace One.Views.Student.Batch.BatchDetail
             CourseCompleted = studyCompleted ?? false;
             BatchId = batchId;
             ProgramBatchId = id;
+            lnkProgrameName.NavigateUrl = "~/Views/Student/Batch/Student/?pbId=" + id;
+
             ProgramId = programId;
             lblNoOfStudents.Text = noOfStudents.ToString();
             

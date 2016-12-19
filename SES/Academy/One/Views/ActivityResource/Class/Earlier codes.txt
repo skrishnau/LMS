@@ -1,0 +1,19 @@
+﻿ //if (sel.Value == "0")
+                    //{
+                    //    foreach (ListItem s in ddlClass.Items)
+                    //    {
+                    //        var item = new IdAndName()
+                    //        {
+                    //            Id = Convert.ToInt32(s.Value)
+                    //            ,
+                    //            Name = s.Text
+                    //        };
+                    //        list.Add(item);
+                    //        var uc = (EachClass)Page.LoadControl
+                    //            ("~/Views/ActivityResource/Class/EachClass.ascx");
+                    //        uc.SetValues(item);
+                    //        uc.RemoveClicked += uc_RemoveClicked;
+                    //        pnlClasses.Controls.Add(uc);
+                    //    }
+                    //}
+                    //else

@@ -103,6 +103,15 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+        
+        /// <summary>
         /// hidSubmissionId control.
         /// </summary>
         /// <remarks>
@@ -155,6 +164,15 @@ namespace One.Views.ActivityResource.Assignments {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidFileLimit;
+        
+        /// <summary>
+        /// hidUserClassId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidUserClassId;
         
         /// <summary>
         /// lblScript control.

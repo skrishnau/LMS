@@ -60,5 +60,10 @@ namespace Academic.DbEntities.User
 
 
         public virtual ICollection<Class.UserClass> Classes { get; set; }
+
+        /// <summary>
+        /// Only one student is found 
+        /// </summary>
+        public virtual ICollection<Students.Student> Student { get; set; }
     }
 }

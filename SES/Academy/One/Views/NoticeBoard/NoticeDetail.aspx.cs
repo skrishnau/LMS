@@ -20,41 +20,48 @@ namespace One.Views.NoticeBoard
                     var user = Page.User as CustomPrincipal;
                     if (user != null)
                     {
-
                         var nId = Request.QueryString["nId"];
                         var noticeId = Convert.ToInt32(nId);
                         if (nId != null)
                         {
-                            if(user.IsInRole("manager"))
-                            {
-                                divPublished.Visible = true;
-                            }else
-                            {
-                                divPublished.Visible = false;
-                            }
-                            lnkEdit.NavigateUrl = "~/Views/NoticeBoard/NoticeCreate.aspx?nId=" + noticeId;
                             using (var helper = new DbHelper.Notice())
                             {
                                 var notice = helper.GetNotice(noticeId);
                                 if (notice != null)
                                 {
+
+                                    if ((user.IsInRole("manager") || user.IsInRole("notifier")))
+                                    {
+                                        lnkEdit.NavigateUrl = "~/Views/NoticeBoard/NoticeCreate.aspx?nId=" + noticeId;
+                                        lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx"
+                                            + "?task=" + DbHelper.StaticValues.Encode("notice")
+                                            + "&nId=" + notice.Id;
+                                        divPublished.Visible = true;
+                                        menuEditDelete.Visible = true;
+                                        //lnkEdit.Visible = true;
+                                        //lnkDelete.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        menuEditDelete.Visible = false;
+                                        //lnkEdit.Visible = false;
+                                        //lnkDelete.Visible = false;
+                                        divPublished.Visible = false;
+                                    }
+
                                     lblNoticeName.Text = notice.Title;
                                     chkPublished.Checked = notice.PublishNoticeToNoticeBoard;
 
                                     lblNoticeContent.Text = notice.Content;
                                     var text = "";
-                                    text = notice.PublishedDate == null
+                                    lblPstdOn.Text = notice.PublishedDate == null
                                         ? ""
-                                        : "<br/> Posted on: &nbsp;&nbsp;" 
-                                        + notice.PublishedDate.Value.ToShortDateString();
-                                    text += "<br/> Viewers: &nbsp;&nbsp;" + 
+                                        : notice.PublishedDate.Value.ToShortDateString();
+                                    lblViewers.Text +=
                                         ((notice.NoticePublishTo ?? false) ? "Everyone" : "Only Users");
 
-                                    
-
-                                    lblPostedOn.Text = text;
-
-                                    var updaetd = helper.AddOrUpdateNoticeNotification(Convert.ToInt32(nId), user.Id);
+                                    //lblPostedOn.Text = text;
+                                    helper.AddOrUpdateNoticeNotification(Convert.ToInt32(nId), user.Id);
 
                                 }
                             }

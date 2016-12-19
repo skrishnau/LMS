@@ -19,14 +19,37 @@ namespace One.Views.Grade
             {
                 if (!IsPostBack)
                 {
-
+                    var edit = Request.QueryString["edit"];
                     if (user.IsInRole("manager") || user.IsInRole("grader") || user.IsInRole("course-editor"))
                     {
-                        lnkAddGrade.Visible = true;
+                        if (edit != null)
+                        {
+                            if (edit == "1")
+                            {
+                                Edit = true;
+                                hidTask.Value = DbHelper.StaticValues.Encode("grade");
+                                lnkEdit.NavigateUrl = "~/Views/Grade/GradeListing.aspx?edit=0";
+                                lblEdit.Text = "Exit edit";
+                                lnkAddGrade.Visible = true;
+                            }
+                            else
+                            {
+                                lnkEdit.NavigateUrl = "~/Views/Grade/GradeListing.aspx?edit=1";
+                                lblEdit.Text = "Edit";
+                                Edit = false;
+                                lnkAddGrade.Visible = false;                        
+                            }
+                        }
+                        else
+                        {
+                            lnkEdit.NavigateUrl = "~/Views/Grade/GradeListing.aspx?edit=1";
+                            lblEdit.Text = "Edit";
+                            Edit = false;
+                        }
                     }
                     else
                     {
-                        lnkAddGrade.Visible = false;                        
+                        lnkEdit.Visible = false;
                     }
 
                     using (var helper = new DbHelper.Grade())
@@ -36,7 +59,24 @@ namespace One.Views.Grade
                     }
                 }
             }
-            else Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
+            else Response.Redirect("~/");
         }
+
+        public bool Edit
+        {
+            get { return Convert.ToBoolean(hidEdit.Value); }
+            set { hidEdit.Value = value.ToString(); }
+        }
+
+        public bool IsEditable(object schoolId)
+        {
+            if (schoolId == null)
+            {
+                return false;
+            }
+            return true;
+        }
+        
+
     }
 }

@@ -49,6 +49,15 @@ namespace One.Views.Grade {
         protected global::System.Web.UI.WebControls.TextBox txtMaxValue;
         
         /// <summary>
+        /// lblErrorMaxVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMaxVal;
+        
+        /// <summary>
         /// txtMinValue control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace One.Views.Grade {
         protected global::System.Web.UI.WebControls.TextBox txtMinValue;
         
         /// <summary>
+        /// lblErrorMinVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMinVal;
+        
+        /// <summary>
         /// txtMinValueToPass control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace One.Views.Grade {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMinValueToPass;
+        
+        /// <summary>
+        /// lblErrorMinValToPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMinValToPass;
         
         /// <summary>
         /// pnlValues control.

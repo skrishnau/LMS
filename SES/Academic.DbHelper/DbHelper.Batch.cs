@@ -126,13 +126,15 @@ namespace Academic.DbHelper
 
             public List<Academic.DbEntities.Batches.Batch> GetBatchList(int schoolId)
             {
-                return Context.Batch.Include(i => i.ProgramBatches).Where(x => x.SchoolId == schoolId)
+                return Context.Batch.Include(i => i.ProgramBatches).Where(x => x.SchoolId == schoolId && !(x.Void ?? false))
                     .OrderByDescending(y => y.ClassCommenceDate ?? y.CreatedDate).ToList();
             }
 
             public List<Academic.DbEntities.Batches.Batch> GetBatchList(int schoolId, int numberOfItems, int pageNo)
             {
-                return Context.Batch.Include(i => i.ProgramBatches).Where(x => x.SchoolId == schoolId)
+                return Context.Batch.Include(i => i.ProgramBatches).Where(x =>
+                                                                            x.SchoolId == schoolId
+                                                                            && !(x.Void ?? false))
                     .OrderByDescending(y => y.ClassCommenceDate ?? y.CreatedDate).Skip(pageNo * numberOfItems)
                     .Take(numberOfItems).ToList();
             }
@@ -279,6 +281,9 @@ namespace Academic.DbHelper
                         {
                             ent.Name = batch.Name;
                             ent.Description = batch.Description;
+                            ent.ClassCommenceDate = batch.ClassCommenceDate;
+                            //ent.Void = batch.Void
+
                             Context.SaveChanges();
                             foreach (var pb in progBatchList)
                             {
@@ -380,7 +385,10 @@ namespace Academic.DbHelper
             public List<IdAndName> ListCurrentProgramBatches(int programId)
             {
                 var list = new List<IdAndName>();
-                var lst = Context.ProgramBatch.Where(x => x.ProgramId == programId && !(x.PassOut ?? false)).ToList();
+                var lst = Context.ProgramBatch.Where(x => x.ProgramId == programId && !(x.PassOut ?? false)
+                    && !(x.Batch.Void ?? false))
+                    .OrderByDescending(y => y.Batch.ClassCommenceDate ?? y.Batch.CreatedDate)
+                    .ToList();
                 foreach (var l in lst)
                 {
                     list.Add(new IdAndName()
@@ -417,6 +425,25 @@ namespace Academic.DbHelper
             //        .Select(x=>x.Batch)
             //        .OrderByDescending(y => y.ClassCommenceDate ?? y.CreatedDate).ToList();
             //}
+
+            public bool DeleteBatch(int batchId)
+            {
+                try
+                {
+                    var batch = Context.Batch.Find(batchId);
+                    if (batch != null)
+                    {
+                        batch.Void = true;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+                return false;
+            }
         }
     }
 }

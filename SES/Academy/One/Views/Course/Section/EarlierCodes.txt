@@ -62,3 +62,31 @@
 
 
 
+		 //var actAndRess = section.SubjectActivityAndResource;
+
+                        //foreach (var sar in actAndRess)
+                        //{
+                        //    ActivityAndResourceUc uc =
+                        //                (ActivityAndResourceUc)Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
+                        //    uc.Title = sar.Title;
+                        //    uc.ActivityAndResourceId = sar.Id;
+                        //    if (sar.ShowDesctiptionOnPage)
+                        //        uc.Summary = sar.Description;
+                        //    uc.Type = sar.Type;
+
+                        //    pnlActAndRes.Controls.Add(uc);
+                        //}
+
+                        //foreach (var sar in section.Assignments)
+                        //{
+                        //    ActivityAndResourceUc uc =
+                        //                (ActivityAndResourceUc)Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
+                        //    uc.Title = sar.Name;
+                        //    uc.ActivityAndResourceId = sar.Id;
+                        //    if (sar.DispalyDescriptionOnPage??false)
+                        //        uc.Summary = sar.Description;
+                        //    uc.ImageUrl = Enums.ActivityImagePath[(int) Enums.Activities.Assignment];
+                        //    uc.Type = "Assignment";
+
+                        //    pnlActAndRes.Controls.Add(uc);
+                        //}

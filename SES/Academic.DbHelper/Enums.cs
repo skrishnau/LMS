@@ -11,6 +11,18 @@ namespace Academic.DbHelper
     //{
     public static class Enums
     {
+        //Modules enum
+        public enum Modules
+        {
+            CourseCategory, Course, CourseSection, 
+        }
+
+        public static string CourseModule()
+        {
+            return "course";
+        }
+
+
         public enum StructureType
         {
             Level, Faculty, Program, Year, Subyear

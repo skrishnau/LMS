@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Academic.DbEntities.ActivityAndResource;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,7 +54,9 @@ namespace Academic.DbEntities.Class
         //public int? SubjectUserGroupId { get; set; }
         //public virtual Subjects.SubjectUserGroup SubjectUserGroup { get; set; }
         public virtual ICollection<UserClassGrouping> UserClassGroupings { get; set; }
+        public virtual ICollection<ActivityGrading> ActivityGradings { get; set; }
 
+        
         public virtual ICollection<ActivityAndResource.AssignmentItems.AssignmentSubmissions> AssignmentSubmissions { get; set; }
     }
 }

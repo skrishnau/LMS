@@ -13,6 +13,9 @@ namespace Academic.DbEntities.Class
     {
         public int Id { get; set; }
 
+        /// <summary>
+        /// Name of Class
+        /// </summary>
         public string GetName
         {
             get

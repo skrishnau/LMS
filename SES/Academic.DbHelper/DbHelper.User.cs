@@ -419,37 +419,54 @@ namespace Academic.DbHelper
                 return Context.Users.Where(x => x.FirstName.StartsWith(nameStartsWith)).Take(50).ToList();
             }
 
+            //public List<Users> GetOnlineUsers(int userId, int schoolId)
+            //{
+            //    var date = DateTime.Now;
+
+            //    var tea = (from u in Context.Users.Where(y => y.SchoolId == schoolId)
+            //               join ur in Context.UserRole on u.Id equals ur.UserId
+            //               join r in
+            //                   Context.Role.Where(
+            //                       x => x.RoleName == "teacher" || x.RoleName == "manager" && (x.SchoolId ?? 0) == 0)
+            //                   on ur.RoleId equals r.Id
+            //               select u).ToList();//new Users { FirstName = u.FullName }
+
+
+
+            //    var selftea = tea.Find(x => x.Id == userId);
+            //    if (selftea != null)
+            //        tea.Remove(selftea);
+
+
+
+            //    var std = Context.StudentBatch.FirstOrDefault(x => x.Student.UserId == userId);
+            //    if (std != null)
+            //    {
+            //        var others = std.ProgramBatch.StudentBatches.Select(y => y.Student.User)
+            //           .Where(x => x.SchoolId == schoolId)
+            //            //&& x.LastOnline != null && (x.LastOnline - date).Value.TotalMinutes<= 2)
+            //            .ToList();
+
+            //        var self = others.Find(x => x.Id == userId);
+            //        if (self != null)
+            //            others.Remove(self);
+            //        tea.AddRange(others);
+            //    }
+            //    return tea.Where(x => x.LastOnline != null && (date - x.LastOnline).Value.TotalMinutes <= 2).ToList();
+            //}
+
             public List<Users> GetOnlineUsers(int userId, int schoolId)
             {
                 var date = DateTime.Now;
-
-                var tea = (from u in Context.Users.Where(y => y.SchoolId == schoolId)
-                           join ur in Context.UserRole on u.Id equals ur.UserId
-                           join r in
-                               Context.Role.Where(
-                                   x => x.RoleName == "teacher" || x.RoleName == "manager" && (x.SchoolId ?? 0) == 0)
-                               on ur.RoleId equals r.Id
-                           select u).ToList();//new Users { FirstName = u.FullName }
-                var selftea = tea.Find(x => x.Id == userId);
-                if (selftea != null)
-                    tea.Remove(selftea);
-
-                var std = Context.StudentBatch.FirstOrDefault(x => x.Student.UserId == userId);
-                if (std != null)
-                {
-                    var others = std.ProgramBatch.StudentBatches.Select(y => y.Student.User)
-                       .Where(x => x.SchoolId == schoolId)
-                        //&& x.LastOnline != null && (x.LastOnline - date).Value.TotalMinutes<= 2)
-                        .ToList();
-
-                    var self = others.Find(x => x.Id == userId);
-                    if (self != null)
-                        others.Remove(self);
-                    tea.AddRange(others);
-                }
-                return tea.Where(x => x.LastOnline != null && (date - x.LastOnline).Value.TotalMinutes <= 2).ToList();
+                var users = Context.Users.Where(x => (x.SchoolId??0) == schoolId
+                    && !x.Student.Any())
+                    .ToList();
+                var self = users.Find(x => x.Id == userId);
+                if (self != null)
+                    users.Remove(self);
+                    //&& 
+                return users.Where(x=>x.LastOnline != null && (date - x.LastOnline).Value.TotalMinutes <= 2).ToList();
             }
-
 
             //used
             public List<IdAndName> ListUsersInRole(int schoolId, int roleId, int userId)

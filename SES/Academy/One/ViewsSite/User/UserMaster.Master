@@ -107,6 +107,13 @@
                 background-color: white;
             }
 
+        .auto-st2-hover-display-dark {
+        }
+
+        .auto-st2-hover-display-dark:hover {
+            background-color: #ededc9;
+        }
+
         .auto-st2-no-margin {
         }
 
@@ -121,6 +128,16 @@
         }
 
             .auto-st2-border-no-margin:hover {
+                background-color: #e4f5fa;
+            }
+
+        .auto-st2-border-zero-margin {
+            margin: 1px;
+            border: 1px solid lightgrey;
+            -webkit-border-radius: 5px;
+        }
+
+            .auto-st2-border-zero-margin:hover {
                 background-color: #e4f5fa;
             }
 
@@ -145,6 +162,14 @@
             text-align: center;
             margin-top: 3px;
             font-size: 2em;
+            color: darkslategray;
+        }
+
+        h3.heading-of-display {
+            text-align: left;
+            margin-top: 3px;
+            font-size: 2em;
+            color: darkslategray;
         }
 
         div.heading-menu {
@@ -294,11 +319,11 @@
             display: inline-block;
         }
 
-            div.detail-view td.data-type {
+            /*div.detail-view td.data-type {
                 width: 170px;
                 padding: 10px 0;
                 display: inline-block;
-            }
+            }*/
 
             div.detail-view td.data-place {
                 /*width: 170px;*/
@@ -358,6 +383,7 @@
             margin-bottom: 15px;
             background-color: lightgoldenrodyellow;
             padding: 3px;
+            /*-webkit-border-radius: 5px;*/
         }
 
         .modules-title {
@@ -376,7 +402,9 @@
             text-align: left;
             background-color: darkslategray;
             color: white;
-            padding:  5px;
+            padding: 5px;
+            -webkit-border-radius: 5px;
+            margin-bottom: 5px;
         }
 
         .modules-body {
@@ -403,6 +431,7 @@
         .table-whole {
             width: 100%;
             vertical-align: top;
+            border-spacing: 5px;
         }
 
         .body-whole {
@@ -431,6 +460,7 @@
             position: fixed;
             top: 0;
             left: 0;
+            border-bottom: white solid 1px;
             /*-webkit-border-radius: 2px;*/
             background-color: darkslategray;
         }

@@ -13,14 +13,15 @@
 
 
 <asp:Content runat="server" ID="titleContent" ContentPlaceHolderID="title">
-    Assignment create
+    Assignment edit
 </asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
     <div class="data-entry-body">
-        <h3 class="data-entry-heading">New Assignment
+        <h3 class="heading-of-create-edit"> Assignment edit
         </h3>
+        <hr />
         <br />
 
 
@@ -83,6 +84,9 @@
                                     <asp:CheckBox ID="chkFrom" ClientIDMode="Static" runat="server"
                                         AutoPostBack="True" Checked="True"
                                         CausesValidation="False" OnCheckedChanged="chk_CheckedChanged" />
+                                     <asp:Label ID="valiFrom" runat="server" Text="Required"
+                                        Visible="False"
+                                        ForeColor="red"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
@@ -92,6 +96,9 @@
                                     <asp:CheckBox ID="chkDue" ClientIDMode="Static" runat="server"
                                         AutoPostBack="True" Checked="True"
                                         OnCheckedChanged="chk_CheckedChanged" CausesValidation="False" />
+                                     <asp:Label ID="valiDue" runat="server" Text="Required"
+                                        Visible="False"
+                                        ForeColor="red"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
@@ -101,6 +108,9 @@
                                     <asp:CheckBox ID="chkCutOff" ClientIDMode="Static" runat="server"
                                         AutoPostBack="True" Checked="True"
                                         OnCheckedChanged="chk_CheckedChanged" CausesValidation="False" />
+                                     <asp:Label ID="valiCutOff" runat="server" Text="Required"
+                                        Visible="False"
+                                        ForeColor="red"></asp:Label>
                                 </td>
                             </tr>
 
@@ -163,6 +173,9 @@
                                 <td>
                                     <asp:TextBox ID="txtMaxSize" runat="server" Width="210px"
                                         TextMode="Number"></asp:TextBox>
+                                    <asp:Label ID="lblValiSubmissionSize" runat="server" Text="Required"
+                                        Visible="False"
+                                        ForeColor="red"></asp:Label>
                                 </td>
                             </tr>
                         </table>
@@ -182,7 +195,9 @@
                             <tr>
                                 <td class="data-type">Grade Type</td>
                                 <td>
-                                    <asp:DropDownList ID="ddlGradeType" runat="server" Height="21px" Width="210px" AutoPostBack="True" DataTextField="Name" DataValueField="Id" OnSelectedIndexChanged="ddlGradeType_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlGradeType" runat="server" Height="21px" Width="210px"
+                                         AutoPostBack="True" DataTextField="Name" DataValueField="Id" 
+                                        OnSelectedIndexChanged="ddlGradeType_SelectedIndexChanged"></asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="gradeListVali"
                                         ControlToValidate="ddlGradeType"
                                         runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
@@ -192,7 +207,8 @@
                                 <td class="data-type">Maximum Grade</td>
                                 <td>
                                     <asp:TextBox ID="txtMaxGradde" runat="server" Width="210px"></asp:TextBox>
-                                    <asp:DropDownList ID="ddlMaximumGrade" runat="server" Width="210px" Visible="False" DataTextField="Value" DataValueField="Id"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlMaximumGrade" runat="server" Width="210px" Visible="False" 
+                                        DataTextField="Value" DataValueField="Id"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
@@ -228,7 +244,7 @@
                         <asp:Button ID="btnAssignmentSave" ValidationGroup="grpAss" runat="server" Text="Save" Width="100" OnClick="btnSave_Click" />
                         &nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btnAssignmentCancel" ValidationGroup="cancelAss" runat="server" Text="Cancel" Width="100" OnClick="btnCancel_Click" CausesValidation="False" />
-                        <asp:Label ID="lblError" runat="server" Text="Sorry, Couldn't Save! Please review this form." ForeColor="#FF3300" Visible="False"></asp:Label>
+                        <asp:Label ID="lblError" runat="server" Text="Couldn't Save! Please review this form." ForeColor="#FF3300" Visible="False"></asp:Label>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

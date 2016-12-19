@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Academic.DbHelper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -41,15 +42,46 @@ namespace One.Views.Course.Section
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="actOrRes"></param>
+        /// <param name="title"></param>
+        /// <param name="description"></param>
+        /// <param name="actOrResId">ids of assignment , book etc.</param>
+        /// <param name="actResId">id of ActivityResource table data</param>
+        /// <param name="actResType"></param>
+        /// <param name="imageUrl"></param>
+        /// <param name="navigateUrl"></param>
+        /// <param name="sectionId"></param>
+        /// <param name="edit"></param>
+        /// <param name="subjectId"></param>
+        /// <param name="editurl"></param>
+        /// <param name="typeName"></param>
+        /// <param name="enable"></param>
 
-        public void SetData(bool actOrRes, string title, string description, int actResId, string actResType, string imageUrl, string navigateUrl
-            , int sectionId, bool edit, int subjectId,string editurl, bool enable = true)
+        public void SetData(bool actOrRes, string title, string description, int actOrResId, int actResId
+            , byte actResType, string imageUrl, string navigateUrl
+            , int sectionId, bool edit, int subjectId,string editurl, string typeName, bool enable = true)
         {
             if (edit)
             {
                 pnlHeading.CssClass = "course-act-res-whole-in-edit-mode";
                 lnkEdit.Visible = true;
-                lnkEdit.NavigateUrl = editurl+ "?SubId=" + subjectId + "&arId=" + actResId + "&secId=" + sectionId + "&edit=" + (edit ? 1 : 0);;
+                lnkEdit.NavigateUrl = editurl+ "?SubId=" + subjectId + "&arId=" + actOrResId + "&secId=" + sectionId + "&edit=" + (edit ? 1 : 0);;
+               
+                var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                                                  DbHelper.StaticValues.Encode("actRes") +
+                                                  "&crsId=" + subjectId +
+                                                  "&secId=" + sectionId
+                                                  +"&actResId="+actResId
+                                                  //+ "&showText="
+                                                  //+ DbHelper.StaticValues.Encode("Are you sure to delete the " 
+                                                  //+ typeName.ToLower() +", "
+                                                  //+ title + "?")
+                                                  ;
+                lnkDelete.Visible = true;
+                lnkDelete.NavigateUrl = redUrl;
             }
             else
             {
@@ -59,11 +91,11 @@ namespace One.Views.Course.Section
             ActOrRes = actOrRes;
             Title = title;
             Description = description;
-            ActResId = actResId;
-            ActResType = actResType;
+            ActResId = actOrResId;
+            ActResType = actResType.ToString();
 
             
-            lblTitle.NavigateUrl = navigateUrl + "?SubId=" + subjectId + "&arId=" + actResId + "&secId=" + sectionId + "&edit=" + (edit ? 1 : 0);
+            lblTitle.NavigateUrl = navigateUrl + "?SubId=" + subjectId + "&arId=" + actOrResId + "&secId=" + sectionId + "&edit=" + (edit ? 1 : 0);
             imgIcon.ImageUrl = imageUrl;
 
             lblTitle.Enabled = enable;

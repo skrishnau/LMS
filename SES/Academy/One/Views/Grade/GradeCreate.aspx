@@ -6,16 +6,19 @@
 
 <asp:Content runat="server" ID="contentBodyid" ContentPlaceHolderID="Body">
     <h3 class="heading-of-create-edit">
-        <asp:Label ID="lblHeading" runat="server" Text="New Grade Type"></asp:Label>
+        <asp:Label ID="lblHeading" runat="server" Text="Grade edit"></asp:Label>
     </h3>
     <hr />
     <br />
     <%-- class="data-entry-body" --%>
-    <div >
+    <div class="data">
 
         <div class="data-entry-section">
-            <div class="data-entry-heading">General</div>
+            <div class="data-entry-section-heading">
+                General
             <hr />
+
+            </div>
             <div class="data-entry-section-body">
 
                 <table>
@@ -37,27 +40,33 @@
                     <tr>
                         <td class="data-type">Type
                         </td>
-                        <td class="data-value" >
-                            <uc1:GradeTypeUc runat="server" id="GradeTypeUc1" />
+                        <td class="data-value">
+                            <uc1:GradeTypeUc runat="server" ID="GradeTypeUc1" />
                         </td>
                     </tr>
                 </table>
 
             </div>
             <div class="save-div">
-            <asp:Button ID="btnSave" runat="server" Text="Save" Width="75px" ValidationGroup="gradevaligroup" OnClick="btnSave_OnClick" />
+                <asp:Button ID="btnSave" runat="server" Text="Save" Width="75px" ValidationGroup="gradevaligroup" OnClick="btnSave_OnClick" />
                 &nbsp; &nbsp;
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="75px" 
+                    ValidationGroup="cancelgroup" OnClick="btnCancel_OnClick" />
+
                 <asp:Label ID="lblError" runat="server" Text="Error while saving." Visible="False" ForeColor="red"></asp:Label>
-        </div>
+            </div>
         </div>
 
-        
+
     </div>
     <%--<asp:HiddenField ID="hidPageKey" runat="server" Value="0" />--%>
     <asp:HiddenField ID="hidId" runat="server" Value="0" />
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
+</asp:Content>
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="title">
+   Grade edit
 </asp:Content>
 
 

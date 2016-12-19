@@ -22,22 +22,13 @@ namespace One.Views.ActivityResource.Class {
         protected global::System.Web.UI.WebControls.Label lblClassName;
         
         /// <summary>
-        /// ddlGroup control.
+        /// imgClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGroup;
-        
-        /// <summary>
-        /// lnkRemove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkRemove;
+        protected global::System.Web.UI.WebControls.ImageButton imgClose;
         
         /// <summary>
         /// hidClassId control.

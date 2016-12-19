@@ -91,7 +91,7 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                         }
                         //foreach (var c in subjects[loadType])
                         //foreach (var c in subjectsArray[loadType])
-                        foreach (var c in subjectsArray)
+                        foreach (var c in subjectsArray.Distinct())
                         {
                             CourseUc uc =
                                 (CourseUc)Page.LoadControl("~/ViewsSite/DashBoard/Student/CourseOverView/CourseUc.ascx");

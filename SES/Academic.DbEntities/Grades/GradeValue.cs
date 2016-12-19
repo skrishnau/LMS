@@ -22,6 +22,8 @@ namespace Academic.DbEntities.Grades
         /// </summary>
         public float? EquivalentPercentOrPostition { get; set; }
 
+        public bool? Void { get; set; }
+
         //public int? Postition { get; set; }
 
 

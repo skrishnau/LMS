@@ -14,19 +14,21 @@
                                 Courses
         </asp:HyperLink>
     </div>
-    <div class="modules-body">
+    <%-- class="modules-body" --%>
+    <div >
         <asp:PlaceHolder ID="pnlRegularCourses" runat="server"></asp:PlaceHolder>
         <div runat="server" id="divNonRegular" visible="False">
             <hr />
-            <asp:DataList ID="dListNonRegularSubjects" runat="server">
+            <asp:DataList ID="dListNonRegularSubjects" runat="server" Width="98%">
                 <%-- DataSourceID="RegularCourseDS" --%>
                 <ItemTemplate>
-                    <div style="">
+                    <div class="auto-st2">
                         <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("Id") %>' />
-                        <asp:HyperLink ID="HyperLink5" runat="server"
+                        <asp:HyperLink ID="HyperLink5" runat="server"  CssClass="link"
                             NavigateUrl='<%# "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId="+Eval("Id") %>'
                             Font-Underline="False" ToolTip='<%# Eval("FullName") %>'>
-                                        ■&nbsp;<%# Eval("ShortName") %>
+                                       &nbsp;<%# Eval("ShortName") %>
+                            <%--  ■ --%>
                         </asp:HyperLink>
                     </div>
                 </ItemTemplate>

@@ -13,7 +13,7 @@ namespace Academic.DbEntities.ActivityAndResource.AssignmentItems
         public string SubmissionText { get; set; }
 
         public DateTime SubmittedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         
         public int UserClassId { get; set; }
         public virtual UserClass UserClass { get; set; }

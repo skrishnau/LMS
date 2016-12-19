@@ -33,7 +33,7 @@
     </asp:ListView>
 
 
-    <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+    <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />--%>
 
     <asp:HiddenField ID="hidARId" runat="server" Value="0" />
     <asp:HiddenField ID="hidARType" runat="server" Value="" />

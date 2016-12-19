@@ -580,7 +580,7 @@ namespace Academic.DbHelper
 
             public List<DbEntities.Subjects.Subject> ListCourses(int categoryId)
             {
-                return Context.Subject.Where(x => x.SubjectCategoryId == categoryId)
+                return Context.Subject.Where(x => x.SubjectCategoryId == categoryId && !(x.Void??false))
                     .OrderBy(y => y.FullName).ToList();
             }
 
@@ -864,6 +864,49 @@ namespace Academic.DbHelper
             {
                 return Context.SubjectCategory.Find(categoryId);
             }
+
+            #region Delette functions
+
+            public bool DeleteCourse(int courseId)
+            {
+                try
+                {
+                    var course = Context.Subject.Find(courseId);
+                    if (course != null)
+                    {
+                        course.Void = true;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public bool DeleteSection(int sectionId)
+            {
+                try
+                {
+                    var section = Context.SubjectSection.Find(sectionId);
+                    if (section != null)
+                    {
+                        section.Void = true;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            #endregion
+            
         }
     }
 }

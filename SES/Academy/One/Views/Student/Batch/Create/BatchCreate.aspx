@@ -29,7 +29,8 @@
                     <td class="data-type">Display Name</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" ValidationGroup="create" ID="validatorName" ControlToValidate="txtName" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator runat="server" ValidationGroup="create" ID="validatorName" 
+                            ControlToValidate="txtName" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -37,6 +38,9 @@
                     <td class="data-value">
                         <asp:TextBox ID="txtCommenceDate" runat="server" TextMode="DateTimeLocal"
                             ClientIDMode="Static"></asp:TextBox>
+                         <asp:Label runat="server"  ID="lblCommenceDateError" 
+                             Text="Required and should be in date format" ForeColor="#FF3300" Visible="False"></asp:Label>
+                  
                     </td>
                 </tr>
                 <tr>

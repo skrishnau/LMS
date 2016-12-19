@@ -17,14 +17,97 @@ namespace One.Views.Grade
         {
             lblError.Text = "Error while saving.";
             lblError.Visible = false;
-            if (!IsPostBack)
+            var user = Page.User as CustomPrincipal;
+            if (user != null && (user.IsInRole("manager")
+                                  || user.IsInRole(DbHelper.StaticValues.Roles.Grader)
+                                  || user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor)))
             {
-                //divValues.Visible = false;
-                //var key = Guid.NewGuid().ToString();
-                //hidPageKey.Value = key;
+                if (!IsPostBack)
+                {
+                    GradeTypeUc1.SetValues(new List<GradeViewModel>());
+                    GradeTypeUc1.RangePanelVisibility = true;
+                    var gradeId = Request.QueryString["gId"];
+                    if (gradeId != null)
+                    {
+                        using (var helper = new DbHelper.Grade())
+                            try
+                            {
+                                var gId = Convert.ToInt32(gradeId);
+                                GradeId = gId;
+                                var grade = helper.GetGrade(gId);
+                                if (grade != null)
+                                {
+                                    if (grade.SchoolId == user.SchoolId)
+                                    {
+                                        txtName.Text = grade.Name;
+                                        txtDescription.Text = grade.Description;
+                                        GradeTypeUc1.SelectedType = grade.RangeOrValue ? 1 : 0;
+                                        GradeTypeUc1.ValuesPanelVisibility = grade.RangeOrValue;
 
-                //ViewState["values"] = new List<int>();
+                                        #region VAlues
+
+                                        GradeTypeUc1.GradeValueIsInPercentOrPostition =
+                                                grade.GradeValueIsInPercentOrPostition ?? false;
+                                        var lst = new List<GradeViewModel>();
+                                        var i = 1;
+                                        foreach (var v in grade.GradeValues.Where(x => !(x.Void ?? false)).ToList())
+                                        {
+                                            lst.Add(new GradeViewModel()
+                                            {
+                                                Value = v.Value,
+                                                Equivalent = (v.EquivalentPercentOrPostition ?? 0)
+                                                ,
+                                                Fail = v.IsFailGrade ?? false
+                                                ,
+                                                GradeValueId = v.Id
+                                                ,
+                                                Void = false
+                                                ,
+                                                LocalId = i
+                                            });
+                                            i++;
+                                        }
+                                        GradeTypeUc1.SetValues(lst);
+
+                                        #endregion
+
+                                        #region Range
+
+                                        GradeTypeUc1.TotalMaxValue = (grade.TotalMaxValue ?? 0);
+                                        GradeTypeUc1.TotalMinValue = grade.TotalMinValue ?? 0;
+                                        GradeTypeUc1.MinimumPassValue = grade.MinimumPassValue ?? 0;
+
+                                        #endregion
+
+                                        //if (grade.RangeOrValue) //values
+                                        //{
+                                        //}
+                                        //else //range
+                                        //{
+                                        //    GradeTypeUc1.RangePanelVisibility = true;
+                                        //}
+                                    }
+                                    else Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
+                                }
+                                else Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
+                            }
+                            catch
+                            {
+                                Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
+                            }
+                    }
+                    //else
+                    //{
+                    //    GradeTypeUc1.SetValues(new List<GradeViewModel>());
+                    //}
+                    //divValues.Visible = false;
+                    //var key = Guid.NewGuid().ToString();
+                    //hidPageKey.Value = key;
+
+                    //ViewState["values"] = new List<int>();
+                }
             }
+            else Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
 
 
         }
@@ -37,63 +120,96 @@ namespace One.Views.Grade
                 if (user != null)
                     using (var helper = new DbHelper.Grade())
                     {
-                        var selectedType = GradeTypeUc1.SelectedType;
+                        var rangeOrValue = GradeTypeUc1.SelectedType == 1;
                         var grade = new Academic.DbEntities.Grades.Grade()
                         {
+                            Id = GradeId,
                             Description = txtDescription.Text
                             ,
                             Name = txtName.Text
                             ,
-                            Type = (selectedType == 0) ? "Range" : "Values"
-                            ,
+                            //Type = (selectedType == 1) //? "Range" : "Values"
+                            //,
                             SchoolId = user.SchoolId
+                            ,
+                            RangeOrValue = rangeOrValue
                         };
-                        if (selectedType == 0)//Range
+                        //grade.RangeOrValue = selectedType == 1;//false;
+
+                        grade.TotalMaxValue = GradeTypeUc1.TotalMaxValue;
+                        grade.TotalMinValue = GradeTypeUc1.TotalMinValue;
+                        grade.MinimumPassValue = GradeTypeUc1.MinimumPassValue;
+
+
+                        #region VAlues
+
+                        var listOfValues = GradeTypeUc1.GetGradeValues();
+                        if (listOfValues == null)
                         {
-                            grade.TotalMaxValue = GradeTypeUc1.TotalMaxValue;
-                            grade.TotalMinValue = GradeTypeUc1.TotalMinValue;
-                            grade.MinimumPassValue = GradeTypeUc1.MinimumPassValue;
-                            var saved = helper.AddOrUpdateGrade(grade, null);
-                            if (saved != null)
-                            {
-                                Response.Redirect("~/Views/Grade/GradeListing.aspx");
-                            }
-                            else
-                            {
-                                lblError.Visible = true;
-                            }
+                            lblError.Text = "Input Error.";
+                            lblError.Visible = true;
+                            return;
                         }
-                        else//Values
+
+                        if (!GradeTypeUc1.IsValid)
                         {
-                            var listOfValues = GradeTypeUc1.GetGradeValues();
-                            if (listOfValues == null)
-                            {
-                                lblError.Text = "Input Error.";
-                                lblError.Visible = true;
-                                return;
-                            }
-                            grade.GradeValueIsInPercentOrPostition = GradeTypeUc1.GradeValueIsInPercentOrPostition;
-                            var saved = helper.AddOrUpdateGrade(grade, listOfValues);
-                            if (saved != null)
-                            {
-                                Response.Redirect("~/Views/Grade/GradeListing.aspx");
-                            }
-                            else
-                            {
-                                lblError.Visible = true;
-                            }
+                            lblError.Visible = true;
+                            return;
                         }
+
+
+                        grade.GradeValueIsInPercentOrPostition = GradeTypeUc1.GradeValueIsInPercentOrPostition;
+                        var saved = helper.AddOrUpdateGrade(grade, listOfValues);
+                        if (saved != null)
+                        {
+                            Response.Redirect("~/Views/Grade/GradeListing.aspx?edit=1");
+                        }
+                        else
+                        {
+                            lblError.Visible = true;
+                        }
+
+                        #endregion
+
+
+                        //if (selectedType == 0)//Range
+                        //{
+
+                        //    var saved = helper.AddOrUpdateGrade(grade, null);
+                        //    if (saved != null)
+                        //    {
+                        //        Response.Redirect("~/Views/Grade/GradeListing.aspx?edit=1");
+                        //    }
+                        //    else
+                        //    {
+                        //        lblError.Visible = true;
+                        //    }
+                        //}
+                        //else//Values
+                        //{
+                        //    //grade.RangeOrValue = true;
+
+
+                        //}
                     }
             }
             catch { }
         }
+
         public int GradeId
         {
             get { return Convert.ToInt32(hidId.Value); }
-            set { hidId.Value = value.ToString(); }
+            set
+            {
+                hidId.Value = value.ToString();
+                GradeTypeUc1.GradeId = value;
+            }
         }
 
 
-
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Grade/GradeListing.aspx?edit=1");
+        }
     }
 }

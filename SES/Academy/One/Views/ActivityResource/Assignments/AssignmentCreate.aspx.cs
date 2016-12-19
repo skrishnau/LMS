@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.ActivityResource.Assignments
@@ -15,48 +16,70 @@ namespace One.Views.ActivityResource.Assignments
         {
             lblValiMaxFile.Visible = false;
             lblValiWordLimit.Visible = false;
+            lblValiSubmissionSize.Visible = false;
+
+            valiDue.Visible = false;
+            valiFrom.Visible = false;
+            valiCutOff.Visible = false;
 
             var user = User as CustomPrincipal;
 
             lblError.Visible = false;
             if (user != null)
-                if (!IsPostBack)
+            {
+                if (user.IsInRole("teacher") || user.IsInRole("manager") ||
+                   user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor))
                 {
-                    var aId = Request.QueryString["arId"];
-                    var subId = Request.QueryString["SubId"];
-                    var secId = Request.QueryString["SecId"];
-                    try
+                    if (!IsPostBack)
                     {
-                        if (subId != null && secId != null)
+                        var aId = Request.QueryString["arId"];
+                        var subId = Request.QueryString["SubId"];
+                        var secId = Request.QueryString["SecId"];
+                        try
                         {
-                            var sId = Convert.ToInt32(subId);
-                            SectionId = Convert.ToInt32(secId);
-                            SubjectId = sId;
+                            if (subId != null && secId != null)
+                            {
+                                var sId = Convert.ToInt32(subId);
+                                SectionId = Convert.ToInt32(secId);
+                                SubjectId = sId;
 
-                            ClassesInActivityChoose1.SubjectId = sId;
-                            RestrictionUC.SubjectId = sId;
+                                ClassesInActivityChoose1.SubjectId = sId;
+                                RestrictionUC.SubjectId = sId;
 
+                            }
+
+                            if (aId != null)
+                            {
+                                AssignmentId = Convert.ToInt32(aId);
+                                LoadInitial(user);
+                                LoadAssignment();
+                            }
+                            else
+                            {
+                                LoadInitial(user);
+                            }
                         }
-                        if (aId != null)
+                        catch
                         {
-                            AssignmentId = Convert.ToInt32(aId);
-                            LoadAssignment();
+                            Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
                         }
-                    }
-                    catch
-                    {
-                        Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
-                    }
-                    LoadInitial(user);
-                    //var grdType = Values.StaticValues.GradeTypeList;
-                    //ddlGradeType.DataSource = grdType;
-                    //ddlGradeType.DataBind();
+                        //var grdType = Values.StaticValues.GradeTypeList;
+                        //ddlGradeType.DataSource = grdType;
+                        //ddlGradeType.DataBind();
 
-                    //var submissionType = Values.StaticValues.SubmissionTypeList;
-                    //ddlSubmissionType.DataSource = submissionType;
-                    //ddlSubmissionType.DataBind();
+                        //var submissionType = Values.StaticValues.SubmissionTypeList;
+                        //ddlSubmissionType.DataSource = submissionType;
+                        //ddlSubmissionType.DataBind();
 
+                    }
                 }
+                else
+                    Response.Redirect("~/");
+            }
+            else
+            {
+                Response.Redirect("~/");
+            }
         }
 
         private void LoadInitial(CustomPrincipal user)
@@ -68,69 +91,180 @@ namespace One.Views.ActivityResource.Assignments
                     ddlGradeType.DataSource = gradelist;
                     ddlGradeType.DataBind();
 
-                    if (gradelist.Any())
-                    {
-                        var grade = gradelist[0]; //gradeHelper.GetGrade(Convert.ToInt32(ddlGradeType.SelectedValue));
-                        if (txtMaxGradde != null)
+                    if (AssignmentId <= 0)
+                        if (gradelist.Any())
                         {
-                            if (grade.Type == "range")
-                            {
-                                ddlMaximumGrade.Visible = false;
-                                ddlGradeToPass.Visible = false;
-
-                                txtGradeToPass.Visible = true;
-                                txtMaxGradde.Visible = true;
-                            }
-                            else
-                            {
-                                ddlMaximumGrade.Visible = true;
-                                ddlGradeToPass.Visible = true;
-
-                                txtGradeToPass.Visible = false;
-                                txtMaxGradde.Visible = false;
-
-                                var gradeValues = gradeHelper.ListGradeValues(grade.Id);
-                                ddlMaximumGrade.DataSource = gradeValues;
-                                ddlGradeToPass.DataSource = gradeValues;
-                                ddlMaximumGrade.DataBind();
-                                ddlGradeToPass.DataBind();
-                            }
+                            var grade = gradelist[0]; //gradeHelper.GetGrade(Convert.ToInt32(ddlGradeType.SelectedValue));
+                            RangeOrValue = grade.RangeOrValue;
+                            SetGradeValuesDataSource(grade);
                         }
-                    }
                 }
         }
 
+        private void SetGradeValuesDataSource(Academic.DbEntities.Grades.Grade grade)
+        {
+            if (grade.RangeOrValue) //value
+            {
+                var gradeValues = grade.GradeValues
+                    .OrderByDescending(x => x.EquivalentPercentOrPostition).ToList();
+
+                ddlMaximumGrade.DataSource = gradeValues;
+                ddlMaximumGrade.DataBind();
+
+                ddlGradeToPass.DataSource = gradeValues;
+                ddlGradeToPass.DataBind();
+            }
+            else//range
+            {
+                ddlGradeToPass.DataSource = null;
+                ddlGradeToPass.DataBind();
+                ddlMaximumGrade.DataSource = null;
+                ddlMaximumGrade.DataBind();
+            }
+        }
 
 
+        public bool RangeOrValue
+        {
+            set
+            {
+                if (!value)//range
+                {
+                    ddlMaximumGrade.Visible = false;
+                    ddlGradeToPass.Visible = false;
+
+                    txtGradeToPass.Visible = true;
+                    txtMaxGradde.Visible = true;
+                }
+                else//values
+                {
+                    ddlMaximumGrade.Visible = true;
+                    ddlGradeToPass.Visible = true;
+
+                    txtGradeToPass.Visible = false;
+                    txtMaxGradde.Visible = false;
+                }
+            }
+        }
 
         private void LoadAssignment()
         {
             using (var helper = new DbHelper.ActAndRes())
             {
+
                 var ass = helper.GetAssignment(AssignmentId);
                 if (ass != null)
                 {
+                    RestrictionUC.SetActivityResource(true, ((int)Enums.Activities.Assignment) + 1, ass.Id);
+                    var actRes = helper.GetActivityResource(true, ((int)Enums.Activities.Assignment) + 1, ass.Id);
+                    if (actRes != null)
+                    {
+                        var classes = new List<IdAndName>();
+                        foreach (var cls in actRes.ActivityClasses.AsEnumerable())
+                        {
+                            classes.Add(new IdAndName()
+                            {
+                                Id = cls.SubjectClassId
+                                ,
+                                Name = cls.SubjectClass.IsRegular ? cls.SubjectClass.GetName : cls.SubjectClass.Name
+                                ,
+                                Void = false
+                            });
+                        }
+                        ClassesInActivityChoose1.PopulateClassPanel(classes);
+                    }
                     txtName.Text = ass.Name;
-                    txtGradeToPass.Text = ass.GradeToPass;
-                    txtMaxGradde.Text = ass.MaximumGrade;
-                    txtMaxFiles.Text = (ass.MaximumNoOfUploadedFiles ?? 0).ToString();
-                    txtWordLimit.Text = ass.WordLimit.ToString();
-
                     CKEditor1.Text = ass.Description;
-
-
-
-                    chkFrom.Checked = ass.SubmissionFrom != null;
-                    chkFileSubmission.Checked = ass.FileSubmission;
-                    chkDue.Checked = ass.DueDate != null;
-                    chkCutOff.Checked = ass.CutOffDate != null;
-                    chkOnlineSubmission.Checked = ass.OnlineText;
                     chkDisplayDesc.Checked = ass.DispalyDescriptionOnPage ?? false;
+                    ddlGradeType.SelectedValue = ass.GradeTypeId.ToString();
+                    RangeOrValue = ass.GradeType.RangeOrValue;
+                    if (!ass.GradeType.RangeOrValue)//== "Range"
+                    {
+                        txtGradeToPass.Text = ass.GradeToPass;
+                        txtMaxGradde.Text = ass.MaximumGrade;
+                    }
+                    else
+                    {
+                        ddlMaximumGrade.SelectedValue = ass.MaximumGrade;
+                        ddlGradeToPass.SelectedValue = ass.GradeToPass;
+                    }
 
 
-                    txtCutOff.Text = ass.CutOffDate == null ? "" : ass.CutOffDate.Value.ToShortDateString();
-                    txtDue.Text = ass.DueDate == null ? "" : ass.DueDate.Value.ToShortDateString();
-                    txtFrom.Text = ass.SubmissionFrom == null ? "" : ass.SubmissionFrom.Value.ToShortDateString();
+                    #region File and online submission
+
+                    if (ass.FileSubmission)
+                    {
+                        chkFileSubmission.Checked = true;
+                        txtMaxFiles.Text = (ass.MaximumNoOfUploadedFiles ?? 0).ToString();
+                        txtMaxSize.Text = (ass.MaximumSubmissionSize ?? 0).ToString();
+                        txtMaxFiles.Enabled = true;
+                        txtMaxSize.Enabled = true;
+                    }
+                    else
+                    {
+                        chkFileSubmission.Checked = false;
+                        txtMaxFiles.Enabled = false;
+                        txtMaxSize.Enabled = false;
+                    }
+
+                    if (ass.OnlineText)
+                    {
+
+                        chkOnlineSubmission.Checked = true;
+                        txtWordLimit.Text = ass.WordLimit.ToString();
+                        txtWordLimit.Enabled = true;
+                    }
+                    else
+                    {
+                        chkOnlineSubmission.Checked = false;
+                        txtWordLimit.Enabled = false;
+                    }
+
+                    #endregion
+
+
+                    #region Date
+
+                    if (ass.CutOffDate != null)
+                    {
+                        chkCutOff.Checked = true;
+                        txtCutOff.Text = ass.CutOffDate.Value.ToShortDateString();
+
+                    }
+                    else
+                    {
+                        chkCutOff.Checked = false;
+                        txtCutOff.Enabled = false;
+                    }
+
+                    if (ass.DueDate != null)
+                    {
+                        chkDue.Checked = true;
+                        txtDue.Text = ass.DueDate.Value.ToShortDateString();
+                        txtDue.Enabled = true;
+                    }
+                    else
+                    {
+                        chkDue.Checked = false;
+                        txtDue.Enabled = false;
+                    }
+
+                    if (ass.SubmissionFrom != null)
+                    {
+                        chkFrom.Checked = true;
+                        txtFrom.Text = ass.SubmissionFrom == null ? "" : ass.SubmissionFrom.Value.ToShortDateString();
+                        txtFrom.Enabled = true;
+
+                    }
+                    else
+                    {
+                        chkFrom.Checked = false;
+                        txtFrom.Enabled = false;
+                    }
+
+                    #endregion
+
+
                 }
             }
         }
@@ -150,7 +284,11 @@ namespace One.Views.ActivityResource.Assignments
         public int SubjectId
         {
             get { return Convert.ToInt32(hidSubjectId.Value); }
-            set { hidSubjectId.Value = value.ToString(); }
+            set
+            {
+                hidSubjectId.Value = value.ToString();
+                RestrictionUC.SubjectId = value;
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -163,12 +301,9 @@ namespace One.Views.ActivityResource.Assignments
 
             //if (string.IsNullOrEmpty(ddlSubmissionType.SelectedValue))
             //    submissionListVali.IsValid = false;
-
+            var isValid = true;
             if (string.IsNullOrEmpty(ddlGradeType.SelectedValue))
                 gradeListVali.IsValid = false;
-
-            if (!Page.IsValid)
-                return;
 
             using (var helper = new DbHelper.ActAndRes())
             {
@@ -181,7 +316,7 @@ namespace One.Views.ActivityResource.Assignments
                     if (!RestrictionUC.IsValid)
                     {
                         lblError.Visible = true;
-                        return;
+                        isValid = false;
                     }
 
                     if (SectionId > 0)
@@ -196,76 +331,136 @@ namespace One.Views.ActivityResource.Assignments
                                 ,
                                 Description = CKEditor1.Text
                                 ,
-                                GradeToPass = txtGradeToPass.Text
-                                ,
                                 DispalyDescriptionOnPage = chkDisplayDesc.Checked
-                                ,
-                                GradeTypeId = Convert.ToInt32(ddlGradeType.SelectedValue)
                                 ,
                                 Name = txtName.Text
                                 ,
                                 FileSubmission = chkFileSubmission.Checked
                                 ,
                                 OnlineText = chkOnlineSubmission.Checked
-
-
                             };
+
+                            if (ddlGradeType.SelectedValue != "0")
+                            {
+                                assg.GradeTypeId = Convert.ToInt32(ddlGradeType.SelectedValue);
+                                if (ddlMaximumGrade.Visible && ddlGradeToPass.Visible)
+                                {
+                                    assg.MaximumGrade = ddlMaximumGrade.SelectedValue;
+                                    assg.GradeToPass = ddlGradeToPass.SelectedValue;
+                                }
+                                else if (txtMaxGradde.Visible && txtGradeToPass.Visible)
+                                {
+                                    assg.MaximumGrade = txtMaxGradde.Text;
+                                    assg.GradeToPass = txtGradeToPass.Text;
+                                }
+                            }
+
+
+
+                            #region File and online submission
+
                             if (chkFileSubmission.Checked)
                             {
-                                if (string.IsNullOrEmpty(txtMaxFiles.Text))
+                                try
+                                {
+                                    assg.MaximumNoOfUploadedFiles = Convert.ToInt32(txtMaxFiles.Text);
+                                }
+                                catch (Exception)
                                 {
                                     lblValiMaxFile.Visible = true;
-                                    return;
+                                    isValid = false;
+                                }
+                                try
+                                {
+                                    assg.MaximumSubmissionSize = Convert.ToInt32(txtMaxSize.Text);
+                                }
+                                catch
+                                {
+                                    lblValiSubmissionSize.Visible = true;
+                                    isValid = false;
                                 }
                             }
+                            else
+                            {
+                                assg.MaximumNoOfUploadedFiles = null;
+                                assg.MaximumSubmissionSize = null;
+                            }
+
                             if (chkOnlineSubmission.Checked)
                             {
-                                if (string.IsNullOrEmpty(txtWordLimit.Text))
+                                try
+                                {
+                                    assg.WordLimit = Convert.ToInt32(txtWordLimit.Text);
+
+                                }
+                                catch
                                 {
                                     lblValiWordLimit.Visible = true;
-                                    return;
+                                    isValid = false;
                                 }
                             }
-
-                            //if (ddlSubmissionType.SelectedValue == "Online")
-                            //{
-                            //    assg.WordLimit = Convert.ToInt32(txtWordLimit.Text);
-                            //}
-                            //else
-                            if (ddlMaximumGrade.Visible && ddlGradeToPass.Visible)
+                            else
                             {
-                                assg.MaximumGrade = ddlMaximumGrade.SelectedValue;
-                                assg.GradeToPass = ddlGradeToPass.SelectedValue;
-                            }
-                            else if (txtMaxGradde.Visible && txtGradeToPass.Visible)
-                            {
-                                assg.MaximumGrade = txtMaxGradde.Text;
-                                assg.GradeToPass = txtGradeToPass.Text;
+                                assg.WordLimit = null;
                             }
 
-                            if (chkFileSubmission.Checked)
-                            {
-                                assg.MaximumNoOfUploadedFiles = Convert.ToInt32(txtMaxFiles.Text);
-                                assg.MaximumSubmissionSize = Convert.ToInt32(txtMaxSize.Text);
-                            }
-                            if (chkOnlineSubmission.Checked)
-                            {
-                                assg.WordLimit = Convert.ToInt32(txtWordLimit.Text);
-                            }
 
-                            if (!String.IsNullOrEmpty(txtFrom.Text))
-                            {
-                                assg.SubmissionFrom = Convert.ToDateTime(txtFrom.Text);
-                            }
-                            if (!String.IsNullOrEmpty(txtDue.Text))
-                            {
-                                assg.DueDate = Convert.ToDateTime(txtDue.Text);
-                            }
-                            if (!String.IsNullOrEmpty(txtCutOff.Text))
-                            {
-                                assg.CutOffDate = Convert.ToDateTime(txtCutOff.Text);
-                            }
+                            #endregion
 
+
+                            #region Dates
+
+                            if (chkFrom.Checked)
+                            {
+                                try
+                                {
+                                    assg.SubmissionFrom = Convert.ToDateTime(txtFrom.Text);
+
+                                }
+                                catch (Exception)
+                                {
+                                    valiFrom.Visible = true;
+                                    isValid = false;
+                                }
+                            }
+                            else assg.SubmissionFrom = null;
+
+                            if (chkDue.Checked)
+                            {
+                                try
+                                {
+                                    assg.DueDate = Convert.ToDateTime(txtDue.Text);
+                                }
+                                catch
+                                {
+                                    valiDue.Visible = true;
+                                    isValid = false;
+                                }
+                            }
+                            else assg.DueDate = null;
+
+
+                            if (chkCutOff.Checked)
+                            {
+                                try
+                                {
+                                    assg.CutOffDate = Convert.ToDateTime(txtCutOff.Text);
+                                }
+                                catch
+                                {
+                                    valiCutOff.Visible = true;
+                                    isValid = false;
+                                }
+                            }
+                            else assg.CutOffDate = null;
+                            #endregion
+
+                            #region Classes
+
+                            var cls = ClassesInActivityChoose1.GetClasses();
+
+
+                            #endregion
 
                             if (AssignmentId > 0)
                             {
@@ -278,16 +473,24 @@ namespace One.Views.ActivityResource.Assignments
                                 assg.CreatedBy = user.Id;
                             }
 
-
-                            var saved = helper.AddOrUpdateAssignmentActivity(assg, SectionId, restriction);
-                            if (saved != null)
+                            if (isValid && Page.IsValid)
                             {
-                                Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
+                                var saved = helper.AddOrUpdateAssignmentActivity(assg, SectionId, restriction, cls);
+                                if (saved != null)
+                                {
+                                    Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" +
+                                                      SubjectId + "&edit=1#section_" + SectionId);
+                                }
+                                else
+                                {
+                                    lblError.Visible = true;
+                                }
                             }
                             else
                             {
                                 lblError.Visible = true;
                             }
+
                         }
                         catch { }
                     }
@@ -329,31 +532,37 @@ namespace One.Views.ActivityResource.Assignments
             using (var helper = new DbHelper.Grade())
             {
                 var grade = helper.GetGrade(Convert.ToInt32(ddlGradeType.SelectedValue));
-                if (txtMaxGradde != null)
+                //if (txtMaxGradde != null)
+                //{
+                if (grade != null)
                 {
-                    if (grade.Type == "Range")
-                    {
-                        ddlMaximumGrade.Visible = false;
-                        ddlGradeToPass.Visible = false;
-
-                        txtGradeToPass.Visible = true;
-                        txtMaxGradde.Visible = true;
-                    }
-                    else
-                    {
-                        ddlMaximumGrade.Visible = true;
-                        ddlGradeToPass.Visible = true;
-
-                        txtGradeToPass.Visible = false;
-                        txtMaxGradde.Visible = false;
-
-                        var gradeValues = helper.ListGradeValues(grade.Id);
-                        ddlMaximumGrade.DataSource = gradeValues;
-                        ddlGradeToPass.DataSource = gradeValues;
-                        ddlMaximumGrade.DataBind();
-                        ddlGradeToPass.DataBind();
-                    }
+                    RangeOrValue = grade.RangeOrValue;
+                    SetGradeValuesDataSource(grade);
                 }
+
+                //if (!grade.RangeOrValue)//range
+                //{
+                //    ddlMaximumGrade.Visible = false;
+                //    ddlGradeToPass.Visible = false;
+
+                //    txtGradeToPass.Visible = true;
+                //    txtMaxGradde.Visible = true;
+                //}
+                //else//values
+                //{
+                //    ddlMaximumGrade.Visible = true;
+                //    ddlGradeToPass.Visible = true;
+
+                //    txtGradeToPass.Visible = false;
+                //    txtMaxGradde.Visible = false;
+
+                //    var gradeValues = helper.ListGradeValues(grade.Id);
+                //    ddlMaximumGrade.DataSource = gradeValues;
+                //    ddlGradeToPass.DataSource = gradeValues;
+                //    ddlMaximumGrade.DataBind();
+                //    ddlGradeToPass.DataBind();
+                //}
+                //}
 
             }
         }

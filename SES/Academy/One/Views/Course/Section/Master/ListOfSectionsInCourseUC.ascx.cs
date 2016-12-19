@@ -111,45 +111,58 @@ namespace One.Views.Course.Section.Master
                         var user = Page.User as CustomPrincipal;
                         var elligible = false;
                         if (user != null)
-                        using (var chelper = new DbHelper.Classes())
-                        {
-                            var roles = user.GetRoles();
-                            //Context.UserClass.Any(x=>x.subje)
-                           // var roles = user.GetRoles().Select(x => x.Role.RoleName).ToList();
-                            if (roles.Contains(DbHelper.StaticValues.Roles.CourseEditor.ToString())
-                                || roles.Contains(DbHelper.StaticValues.Roles.Manager.ToString())
-                                || roles.Contains(DbHelper.StaticValues.Roles.Admin))
+                            using (var chelper = new DbHelper.Classes())
                             {
-                                elligible = true;
+                                var roles = user.GetRoles();
+                                //Context.UserClass.Any(x=>x.subje)
+                                // var roles = user.GetRoles().Select(x => x.Role.RoleName).ToList();
+                                if (roles.Contains(DbHelper.StaticValues.Roles.CourseEditor.ToString())
+                                    || roles.Contains(DbHelper.StaticValues.Roles.Manager.ToString())
+                                    || roles.Contains(DbHelper.StaticValues.Roles.Admin)
+                                    ||roles.Contains("teacher"))
+                                {
+                                    elligible = true;
+
+                                }
+                                //else
+                                //{
+                                //    //teacher
+                                //    elligible = (chelper.IsUserElligibleToViewSubjectSection(SubjectId, UserId));
+                                //}
+
+                                var unVoidedSections = sections.Where(x => !(x.Void ?? false));
+
+                                using (var ahelper = new DbHelper.ActAndRes())
+                                    foreach (var subjectSection in unVoidedSections)
+                                    {
+                                        var canView = elligible;
+                                        if (!canView)
+                                            canView = ahelper.EvaluateRestriction(null, subjectSection.Restriction, user.Id);
+                                        if (canView) //
+                                        {
+                                            SectionUc sectionuc =
+                                                (SectionUc)Page.LoadControl("~/Views/Course/Section/SectionUc.ascx");
+                                            sectionuc.AddActResClicked += sectionuc_AddActResClicked;
+
+                                            //sectionuc.EditEnabled = EditEnabled;
+                                            //sectionuc.SummaryVisible = subjectSection.ShowSummary ?? false;
+                                            //sectionuc.SubjectId = subjectSection.SubjectId;
+                                            //sectionuc.SectionId = subjectSection.Id;
+                                            //sectionuc.SectionName = subjectSection.Name;
+
+                                            sectionuc.SetData(EditEnabled, subjectSection.ShowSummary ?? false
+                                                , subjectSection.SubjectId, subjectSection.Id
+                                                , subjectSection.Name, UserId, elligible);
+
+                                            var sectionlbl = new Literal()
+                                            {
+                                                Text = "<a  name='section_" + subjectSection.Id + "'></a>"
+                                            };
+                                            pnlSections.Controls.Add(sectionlbl);
+                                            pnlSections.Controls.Add(sectionuc);
+                                        }
+                                    }
                             }
-                            //else
-                            //{
-                            //    //teacher
-                            //    elligible = (chelper.IsUserElligibleToViewSubjectSection(SubjectId, UserId));
-                            //}
-                        }
-
-                        var unVoidedSections = sections.Where(x => !(x.Void ?? false));
-
-                        foreach (var subjectSection in unVoidedSections)
-                        {
-                            SectionUc sectionuc = (SectionUc)Page.LoadControl("~/Views/Course/Section/SectionUc.ascx");
-                            sectionuc.AddActResClicked += sectionuc_AddActResClicked;
-
-                            //sectionuc.EditEnabled = EditEnabled;
-                            //sectionuc.SummaryVisible = subjectSection.ShowSummary ?? false;
-                            //sectionuc.SubjectId = subjectSection.SubjectId;
-                            //sectionuc.SectionId = subjectSection.Id;
-                            //sectionuc.SectionName = subjectSection.Name;
-
-                            sectionuc.SetData(EditEnabled,subjectSection.ShowSummary??false
-                                ,subjectSection.SubjectId,subjectSection.Id
-                                ,subjectSection.Name,UserId, elligible);
-
-                            var sectionlbl = new Literal() { Text = "<a  name='section_" + subjectSection.Id + "'></a>" };
-                            pnlSections.Controls.Add(sectionlbl);
-                            pnlSections.Controls.Add(sectionuc);
-                        }
                     }
                 }
             }

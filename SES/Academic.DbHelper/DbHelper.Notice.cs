@@ -51,7 +51,7 @@ namespace Academic.DbHelper
                 }
             }
 
-            public bool DeleteNotices(int id)
+            public bool DeleteNotice(int id)
             {
                 try
                 {
@@ -72,7 +72,12 @@ namespace Academic.DbHelper
 
             public List<DbEntities.Notices.Notice> ListNotices(int schoolId, int userId, bool displayAll)
             {
-                var notices = Context.Notice.Where(x => (x.SchoolId == schoolId && !(x.Void ?? false))).ToList();
+                var notices = Context.Notice.Where(x => (x.SchoolId == schoolId && !(x.Void ?? false)))
+                    .OrderByDescending(x => x.PublishedDate)
+                    .ThenByDescending(x => x.UpdatedDate)
+                    .ThenByDescending(x => x.CreatedDate)
+                    .Take(20)
+                    .ToList();
                 if (displayAll)
                 {
                     return notices;

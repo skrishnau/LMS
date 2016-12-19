@@ -24,6 +24,8 @@ namespace Academic.DbEntities.Batches
         public int SchoolId { get; set; }
         public School School { get; set; }
 
+        public bool? Void { get; set; }
+
         public virtual ICollection<ProgramBatch> ProgramBatches { get; set; }
 
     }

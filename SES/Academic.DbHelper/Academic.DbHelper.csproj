@@ -57,6 +57,7 @@
     <Compile Include="DbHelper.AcademicPlacement.cs" />
     <Compile Include="DbHelper.AcademicYear.cs" />
     <Compile Include="DbHelper.ActAndRes.cs" />
+    <Compile Include="DbHelper.Assignments.cs" />
     <Compile Include="DbHelper.Batch.cs" />
     <Compile Include="DbHelper.Classes.cs" />
     <Compile Include="DbHelper.ComboLoader.cs" />

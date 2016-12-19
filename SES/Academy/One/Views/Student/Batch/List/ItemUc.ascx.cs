@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 
 namespace One.Views.Student.Batch.List
 {
@@ -25,9 +26,27 @@ namespace One.Views.Student.Batch.List
         {
             BatchId = id;
             lnkName.Text = "● " + name;
+
             lnkEdit.Visible = edit;
+            lnkDelete.Visible = edit;
+
+            if (classCommenceDate != null)
+            {
+                lblClassCommenceFrom.Text = classCommenceDate.Value.ToString("D");
+            }
             if (edit)
+            {
                 lnkEdit.NavigateUrl = ("~/Views/Student/Batch/Create/BatchCreate.aspx" + "?bId=" + BatchId);
+
+                var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                                                   DbHelper.StaticValues.Encode("batch") +
+                                                   "&batchId=" + id 
+                                                   + "&showText="
+                                                   + DbHelper.StaticValues.Encode("Are you sure to delete the batch, "
+                                                   + name + "?")
+                                                   ;
+                lnkDelete.NavigateUrl = redUrl;
+            }
 
             //lblCurrentlyIn.Text = batch.
             //lblStartYear.Text = classCommenceDate==null?"":classCommenceDate.Value.ToShortDateString();

@@ -19,7 +19,7 @@ namespace One.ViewsSite.User.ModulesUc
                 {
                     var notices = helper.GetNotices(SchoolId,UserId);
 
-                    DataList1.DataSource = notices;
+                    DataList1.DataSource = notices.Take(5).ToList();
                     DataList1.DataBind();
 
                     var unViewed = notices.Where(x => (x.Void ?? false)).ToList();

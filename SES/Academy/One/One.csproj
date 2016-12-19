@@ -1218,11 +1218,14 @@
     <Content Include="Content\Icons\Close\dialog_close.png" />
     <Content Include="Content\Icons\Close\white_cross.png" />
     <Content Include="Content\Icons\delete\trash.gif" />
+    <Content Include="Content\Icons\delete\remove_icon_color.png" />
+    <Content Include="Content\Icons\delete\trash_earlier.gif" />
     <Content Include="Content\Icons\delete\undo_delete.png" />
     <Content Include="Content\Icons\Done_Save\basic-save.png" />
     <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
     <Content Include="Content\Icons\Edit\edit_orange.png" />
     <Content Include="Content\Icons\Exclamation\exclamation.png" />
+    <Content Include="Content\Icons\Exclamation\warning.png" />
     <Content Include="Content\Icons\File\file_add.png" />
     <Content Include="Content\Icons\File\excel_icon.png" />
     <Content Include="Content\Icons\File\file_icon.png" />
@@ -1545,9 +1548,9 @@
     <Content Include="Views\Academy\UserControls\AcademicYearListUC.ascx" />
     <Content Include="Views\Academy\UserControls\SessionsListingInAYDetailUC.ascx" />
     <Content Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx" />
+    <Content Include="Views\ActivityResource\Assignments\AssignmentCheckCreate.aspx" />
     <Content Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx" />
     <Content Include="Views\ActivityResource\Assignments\AssignmentView.aspx" />
-    <Content Include="Views\ActivityResource\Assignments\GradingUc.ascx" />
     <Content Include="Views\ActivityResource\Assignments\SubmitAssignmentCreate.aspx" />
     <Content Include="Views\ActivityResource\Assignments\TeacherViewUc.ascx" />
     <Content Include="Views\ActivityResource\Book\BookCreate.aspx" />
@@ -1561,6 +1564,7 @@
     <Content Include="Views\ActivityResource\Choice\Default.aspx" />
     <Content Include="Views\ActivityResource\Class\ClassesInActivityChoose.ascx" />
     <Content Include="Views\ActivityResource\Class\EachClass.ascx" />
+    <Content Include="Views\ActivityResource\Class\Earlier codes.txt" />
     <Content Include="Views\ActivityResource\FileResource\DownloadingPage.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FileOption.ascx" />
@@ -1573,13 +1577,18 @@
     <Content Include="Views\ActivityResource\Forum\EachDiscussionUc.ascx" />
     <Content Include="Views\ActivityResource\Forum\ForumCreate.aspx" />
     <Content Include="Views\ActivityResource\Forum\ForumView.aspx" />
+    <Content Include="Views\ActivityResource\Grading\ClassGradeDisplayUc.ascx" />
     <Content Include="Views\ActivityResource\Grading\Default.aspx" />
+    <Content Include="Views\ActivityResource\Grading\GradeUc.ascx" />
+    <Content Include="Views\ActivityResource\Grading\StudentGradeDispalyUc.ascx" />
+    <Content Include="Views\ActivityResource\Grading\UserGradeDisplayUc.ascx" />
     <Content Include="Views\ActivityResource\Label\LabelCreate.aspx" />
     <Content Include="Views\ActivityResource\Label\LabelView.aspx" />
     <Content Include="Views\ActivityResource\Page\PageCreate.aspx" />
     <Content Include="Views\ActivityResource\Page\PageView.aspx" />
     <Content Include="Views\ActivityResource\Url\UrlCreate.aspx" />
     <Content Include="Views\ActivityResource\Url\UrlView.aspx" />
+    <Content Include="Views\All_Resusable_Codes\Delete\DeleteForm.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\Dialog1.aspx" />
     <Content Include="Views\All_Resusable_Codes\Dialog\CustomDialogStyles.css" />
@@ -1737,6 +1746,7 @@
     <Content Include="Views\Student\Batch\Create\CreateBatchUc.ascx" />
     <Content Include="Views\Student\Batch\List\ItemUc.ascx" />
     <Content Include="Views\Student\Batch\List\listUc.ascx" />
+    <Content Include="Views\Student\Batch\Student\Default.aspx" />
     <Content Include="Views\Student\Default.aspx" />
     <Content Include="Views\Student\StudentGroup\EachGroupDetail\DetailUc.ascx" />
     <Content Include="Views\Student\StudentGroup\List.aspx" />
@@ -2307,6 +2317,13 @@
     <Compile Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx.designer.cs">
       <DependentUpon>SingleProgramInListingUC.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\AssignmentCheckCreate.aspx.cs">
+      <DependentUpon>AssignmentCheckCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Assignments\AssignmentCheckCreate.aspx.designer.cs">
+      <DependentUpon>AssignmentCheckCreate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActivityResource\Assignments\AssignmentCreate.aspx.cs">
       <DependentUpon>AssignmentCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2320,13 +2337,6 @@
     </Compile>
     <Compile Include="Views\ActivityResource\Assignments\AssignmentView.aspx.designer.cs">
       <DependentUpon>AssignmentView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ActivityResource\Assignments\GradingUc.ascx.cs">
-      <DependentUpon>GradingUc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\ActivityResource\Assignments\GradingUc.ascx.designer.cs">
-      <DependentUpon>GradingUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\ActivityResource\Assignments\SubmitAssignmentCreate.aspx.cs">
       <DependentUpon>SubmitAssignmentCreate.aspx</DependentUpon>
@@ -2503,12 +2513,40 @@
     <Compile Include="Views\ActivityResource\Forum\ForumView.aspx.designer.cs">
       <DependentUpon>ForumView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ActivityResource\Grading\ClassGradeDisplayUc.ascx.cs">
+      <DependentUpon>ClassGradeDisplayUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\ClassGradeDisplayUc.ascx.designer.cs">
+      <DependentUpon>ClassGradeDisplayUc.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActivityResource\Grading\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\ActivityResource\Grading\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\GradeUc.ascx.cs">
+      <DependentUpon>GradeUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\GradeUc.ascx.designer.cs">
+      <DependentUpon>GradeUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\StudentGradeDispalyUc.ascx.cs">
+      <DependentUpon>StudentGradeDispalyUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\StudentGradeDispalyUc.ascx.designer.cs">
+      <DependentUpon>StudentGradeDispalyUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\UserGradeDisplayUc.ascx.cs">
+      <DependentUpon>UserGradeDisplayUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\UserGradeDisplayUc.ascx.designer.cs">
+      <DependentUpon>UserGradeDisplayUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\ActivityResource\Label\LabelCreate.aspx.cs">
       <DependentUpon>LabelCreate.aspx</DependentUpon>
@@ -2551,6 +2589,13 @@
     </Compile>
     <Compile Include="Views\ActivityResource\Url\UrlView.aspx.designer.cs">
       <DependentUpon>UrlView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\Delete\DeleteForm.aspx.cs">
+      <DependentUpon>DeleteForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\Delete\DeleteForm.aspx.designer.cs">
+      <DependentUpon>DeleteForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\All_Resusable_Codes\Dialog\CustomDialog.ascx.cs">
       <DependentUpon>CustomDialog.ascx</DependentUpon>
@@ -3559,6 +3604,13 @@
     </Compile>
     <Compile Include="Views\Student\Batch\List\listUc.ascx.designer.cs">
       <DependentUpon>listUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Student\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Student\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

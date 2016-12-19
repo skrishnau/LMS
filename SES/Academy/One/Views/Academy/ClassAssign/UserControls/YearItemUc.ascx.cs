@@ -33,7 +33,7 @@ namespace One.Views.Academy.ClassAssign.UserControls
         public int ProgramBatchId
         {
             get { return Convert.ToInt32(ddlStudentGrps.SelectedValue); }
-            set { ddlStudentGrps.SelectedValue = value.ToString(); }
+            set { try { ddlStudentGrps.SelectedValue = value.ToString(); } catch { } }
         }
 
         public int RunningClassId

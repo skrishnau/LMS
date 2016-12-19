@@ -14,7 +14,10 @@
                 <asp:Image ID="imgedt" runat="server" 
                     ImageUrl="~/Content/Icons/Edit/edit_orange.png"/>
             </asp:HyperLink>
-
+         <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" OnClick="lnkEdit_Click">
+            <asp:Image ID="Image2" runat="server"
+                ImageUrl="~/Content/Icons/delete/trash.gif" />
+        </asp:HyperLink>
 
     </div>
     <div class="course-act-res-body" id="divDescription" runat="server">

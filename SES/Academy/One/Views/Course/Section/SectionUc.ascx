@@ -13,6 +13,10 @@
             <asp:Image ID="imgEditBtn" runat="server"
                 ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
         </asp:LinkButton>
+         <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" OnClick="lnkEdit_Click">
+            <asp:Image ID="Image2" runat="server"
+                ImageUrl="~/Content/Icons/delete/trash.gif" />
+        </asp:HyperLink>
     </h3>
     <%-- class="item-summary" --%>
     <div style="margin-left: 25px;">

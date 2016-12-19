@@ -22,6 +22,15 @@ namespace One.Views.NoticeBoard {
         protected global::System.Web.UI.WebControls.Label lblNoticeName;
         
         /// <summary>
+        /// menuEditDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuEditDelete;
+        
+        /// <summary>
         /// lnkEdit control.
         /// </summary>
         /// <remarks>
@@ -58,13 +67,22 @@ namespace One.Views.NoticeBoard {
         protected global::System.Web.UI.WebControls.CheckBox chkPublished;
         
         /// <summary>
-        /// lblPostedOn control.
+        /// lblPstdOn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPostedOn;
+        protected global::System.Web.UI.WebControls.Label lblPstdOn;
+        
+        /// <summary>
+        /// lblViewers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblViewers;
         
         /// <summary>
         /// lblNoticeContent control.

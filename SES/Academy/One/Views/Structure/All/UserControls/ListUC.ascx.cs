@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 
 namespace One.Views.Structure.All.UserControls
 {
@@ -29,8 +30,9 @@ namespace One.Views.Structure.All.UserControls
         public void SetName(int id, string name, string editUrl, bool edit=false, string addUrl="",string addText="")
         {
             this.hidStructureId.Value = id.ToString();
-            this.lblName.Text = name;
+            this.lblName.Text = "♦" + name;
             lnkEdit.Visible = edit;
+            lnkDelete.Visible = edit;
             lnkAdd.Visible = edit;
             if (edit)
             {
@@ -38,6 +40,15 @@ namespace One.Views.Structure.All.UserControls
                 lnkAdd.NavigateUrl = addUrl;
                 lblAddText.Text = addText;
                 lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", "");
+               
+                var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                                                  DbHelper.StaticValues.Encode("structure") +
+                                                  "&progId=" + id
+                                                  + "&showText="
+                                                  + DbHelper.StaticValues.Encode("Are you sure to delete the program, "
+                                                  + name + "?")
+                                                  ;
+                lnkDelete.NavigateUrl = redUrl;
             }
         }
     }

@@ -206,22 +206,22 @@ namespace Academic.DbHelper
 
             public List<Year> GetYears(int programId)
             {
-                return Context.Year.Where(x => x.ProgramId == programId).ToList();
-                    //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
+                return Context.Year.Where(x => x.ProgramId == programId && !(x.Void??false)).ToList();
+                //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
             }
 
             public List<SubYear> GetSubYears(int yearId, bool onlyTopLevelLoad = false, int? parentId = null)
             {
                 if (onlyTopLevelLoad)
                     return Context.SubYear.Where(x => x.YearId == yearId && x.ParentId == null).ToList();
-                        //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
+                //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
                 if (parentId == null)
                     return Context.SubYear.Where(x => x.YearId == yearId && x.ParentId == null).ToList();
-                        //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
+                //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
                 else
                 {
                     return Context.SubYear.Where(x => x.ParentId == parentId).ToList();
-                        //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
+                    //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
                 }
             }
 
@@ -363,7 +363,7 @@ namespace Academic.DbHelper
                 else if (schoolId != 0)
                 {
                     var years = from //l in Context.Level
-                                //join f in Context.Faculty //on l.Id equals f.LevelId
+                                    //join f in Context.Faculty //on l.Id equals f.LevelId
                                  p in Context.Program //on f.Id equals p.FacultyId
                                 join y in Context.Year on p.Id equals y.ProgramId
                                 where p.SchoolId == schoolId
@@ -412,7 +412,7 @@ namespace Academic.DbHelper
                 var year = Context.Year.Find(yearId);
                 if (year != null)
                 {
-                    var min = year.Program.Year.Where(x =>  !(x.Void ?? false)
+                    var min = year.Program.Year.Where(x => !(x.Void ?? false)
                                                            && x.Position < year.Position)
                         .OrderByDescending(x => x.Position);
                     var mn = min.First();
@@ -443,13 +443,13 @@ namespace Academic.DbHelper
                         else
                         {
 
-                            var prevyear = subyear.Year.Program.Year.Where(x =>  !(x.Void ?? false)
+                            var prevyear = subyear.Year.Program.Year.Where(x => !(x.Void ?? false)
                                                                && x.Position < subyear.Year.Position)
                                                                .OrderByDescending(x => x.Position);
                             var minYear = prevyear.First();
                             if (minYear != null)
                             {
-                                var maxSubYear = minYear.SubYears.Where(x =>  !(x.Void ?? false))
+                                var maxSubYear = minYear.SubYears.Where(x => !(x.Void ?? false))
                                     .OrderByDescending(x => x.Position).First();
                                 if (maxSubYear != null)
                                 {
@@ -487,7 +487,7 @@ namespace Academic.DbHelper
                     if (sub != null)
                     {
                         dir = //sub.Year.Program.Faculty.Level.Name + ">"
-                              //+ sub.Year.Program.Faculty.Name + ">"
+                            //+ sub.Year.Program.Faculty.Name + ">"
                                sub.Year.Program.Name + ">"
                               + sub.Year.Name + ">"
                               + sub.Name;
@@ -499,7 +499,7 @@ namespace Academic.DbHelper
                     if (year != null)
                     {
                         dir = //year.Program.Faculty.Level.Name + ">"
-                        //      + year.Program.Faculty.Name + ">"
+                            //      + year.Program.Faculty.Name + ">"
                                year.Program.Name + ">"
                               + year.Name;
                     }
@@ -542,10 +542,67 @@ namespace Academic.DbHelper
 
             public List<Program> ListPrograms(int schoolId)
             {
-                return Context.Program.Where(x => x.SchoolId == schoolId && !(x.Void??false)).ToList();
+                return Context.Program.Where(x => x.SchoolId == schoolId && !(x.Void ?? false)).ToList();
             }
 
             #endregion
+
+            public bool DeleteProgram(int programId)
+            {
+                try
+                {
+                    var program = Context.Program.Find(programId);
+                    if (program != null)
+                    {
+                        program.Void = true;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public bool DeleteYear(int yearId)
+            {
+                try
+                {
+                    var year = Context.Year.Find(yearId);
+                    if (year != null)
+                    {
+                        year.Void = true;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public bool DeleteSubYear(int subyearId)
+            {
+                try
+                {
+                    var subYear = Context.SubYear.Find(subyearId);
+                    if (subYear != null)
+                    {
+                        subYear.Void = true;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
     }
 }

@@ -8,13 +8,13 @@
     <%--<uc1:DetailUc runat="server" id="DetailUc" />--%>
 
     <div style="padding: 5px;">
-        <div style="margin:  5px;  ">
+        <h3 class="heading-of-display">
+            <asp:Label runat="server" ID="lblBatchName"></asp:Label>
+        </h3>
+        <div style="margin: 5px;">
             <div style="margin: 2px 2px 10px 0;">
-                <span style="font-size: 1.6em; font-weight: bold;">
-                    <asp:Label runat="server" ID="lblBatchName"></asp:Label>
-                </span>
-                &nbsp;&nbsp;
-        <%-- <span style="margin: 15px; font-size: 0.7em;">
+
+                <%-- <span style="margin: 15px; font-size: 0.7em;">
              <asp:HyperLink ID="lnkEdit" runat="server" NavigateUrl="~/Views/Student/Batch/Create/BatchCreate.aspx">
                  <asp:Image ID="Image1" Height="13px" Width="13px" runat="server" ImageUrl="~/Content/Icons/Edit/edit_black_and_white.png" />
                  &nbsp; Edit

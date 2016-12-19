@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EarlierUc_NodesUc.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.EarlierUc_NodesUc" %>
 
-<div>
+<div class="auto-st2-hover-display-dark">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div style="border-bottom: 1px solid #a0522d;">
@@ -13,15 +13,17 @@
             </div>
             <div style="margin-left: 5px;">
 
-                <asp:DataList ID="dListCourses" runat="server">
+                <asp:DataList ID="dListCourses" runat="server" Width="98%">
                     <%--DataSourceID="RegularCourseDS"  --%>
                     <ItemTemplate>
-                        <div style="margin: 0 5px 0  10px;">
+                        <%--style="margin: 0 5px 0  10px;"--%>
+                        <div class="auto-st2">
                             <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("Id") %>' />
                             <asp:HyperLink ID="HyperLink5" runat="server" CssClass="link"
                                 NavigateUrl='<%# "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId="+Eval("Id") %>'
                                 Font-Underline="False" ToolTip='<%# Eval("FullName") %>'>
-                                        ■&nbsp;<%# Eval("ShortName") %>
+                                        &nbsp;<%# Eval("ShortName") %>
+                                <%-- ■ --%>
                             </asp:HyperLink>
                         </div>
                     </ItemTemplate>

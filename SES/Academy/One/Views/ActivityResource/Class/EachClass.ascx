@@ -2,21 +2,22 @@
 
 <div>
     <asp:Label ID="lblClassName" runat="server" Text="Label"></asp:Label>
-    
+
     &nbsp; &nbsp;
-    <strong>Group : </strong>
-    <asp:DropDownList ID="ddlGroup" runat="server"></asp:DropDownList>
+   <%-- <strong>Group : </strong>
+    <asp:DropDownList ID="ddlGroup" runat="server"></asp:DropDownList>--%>
     <div class="tooltip">
-        <sup>
-
-            <asp:LinkButton ID="lnkRemove" runat="server" Font-Names="arial,tahoma" Font-Bold="True" 
+        <%-- <asp:LinkButton ID="lnkRemove" runat="server" Font-Names="arial,tahoma" Font-Bold="True"
                 CssClass="removeButton"
-                Text="X" 
+                Text="X"
                 OnClick="lnkRemove_Click" Font-Underline="False">
-
-        <%--<asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Close/cross_8x14_top.png"/>--%>
-            </asp:LinkButton>
-        </sup>
+               
+                <%--<asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Close/cross_8x14_top.png"/>
+            </asp:LinkButton>--%>
+        <span class="img-close">
+            <asp:ImageButton ID="imgClose" CssClass="link-img-close" CausesValidation="False"
+                ImageUrl="~/Content/Icons/Close/cross_8x20_center.png" runat="server" OnClick="lnkRemove_Click" />
+        </span>
         <span class="tooltiptext">Remove</span>
     </div>
     <asp:HiddenField ID="hidClassId" runat="server" Value="0" />

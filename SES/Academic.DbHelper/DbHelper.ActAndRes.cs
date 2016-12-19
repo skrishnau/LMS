@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -287,7 +288,8 @@ namespace Academic.DbHelper
 
 
             private void SaveActivityResourceTable(bool actOrRes, byte actResType, int actresId
-                , int sectionId, string name, Restriction restriction)
+                , int sectionId, string name, Restriction restriction
+                , List<IdAndName> classes = null)
             {
                 int pos = 0;
                 var poslist = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId);
@@ -321,16 +323,55 @@ namespace Academic.DbHelper
                 Context.ActivityResource.Add(actRes);
                 Context.SaveChanges();
 
+                SaveClassOfActivities(actRes.Id, classes);
+
                 #endregion
 
 
             }
 
-            private bool EvaluateRestriction(Academic.DbEntities.User.Users user, Restriction res)
+            public bool SaveClassOfActivities(int actResId, List<IdAndName> classes)
             {
-                string message = "";
-                var validation = new List<bool>();
+                if (classes != null)
+                    foreach (var c in classes)
+                    {
+                        var cls = Context.ActivityClass.FirstOrDefault(x => x.ActivityResourceId == actResId
+                                                                            && x.SubjectClassId == c.Id);
 
+                        if (cls == null && !c.Void)
+                        {
+                            Context.ActivityClass.Add(new ActivityClass()
+                            {
+                                ActivityResourceId = actResId,
+                                SubjectClassId = c.Id
+                            });
+                            Context.SaveChanges();
+                        }
+                        else if (cls != null && c.Void)
+                        {
+                            Context.ActivityClass.Remove(cls);
+                            Context.SaveChanges();
+                        }
+
+                    }
+                return true;
+            }
+
+            /// <summary>
+            /// Either user or userId should be provided.
+            /// </summary>
+            /// <param name="user"></param>
+            /// <param name="res"></param>
+            /// <param name="userId"></param>
+            /// <returns></returns>
+            public bool EvaluateRestriction(Academic.DbEntities.User.Users user, Restriction res, int userId = 0)
+            {
+                //string message = "";
+                var validation = new List<bool>();
+                if (userId > 0)
+                {
+                    user = Context.Users.Find(userId);
+                }
                 //grade
                 var date = DateTime.Now;
 
@@ -341,7 +382,7 @@ namespace Academic.DbHelper
 
                     foreach (var gres in res.GradeRestrictions)
                     {
-                        var grade = gres.ActivityResource.ActivityGradings.FirstOrDefault(x => x.UserId == user.Id);
+                        var grade = gres.ActivityResource.ActivityGradings.FirstOrDefault(x => x.UserClass.UserId == user.Id);
                         if (grade != null)
                         {
                             bool greater = true, lesser = true;
@@ -448,7 +489,6 @@ namespace Academic.DbHelper
 
                     #endregion
 
-
                     #region Class
 
                     foreach (var cls in res.GroupRestrictions)
@@ -458,7 +498,6 @@ namespace Academic.DbHelper
                     }
 
                     #endregion
-
 
                     #region UserProfile
 
@@ -632,7 +671,7 @@ namespace Academic.DbHelper
                             lst.AddRange(activities);
                         });
                         if (lst.Count > 0)
-                            return lst.OrderBy(x=>x.Name).ToList();
+                            return lst.OrderBy(x => x.Name).ToList();
                         return new List<ActivityResource>() { new ActivityResource() { Id = 0, Name = "" } };
                         //ddlActivityChoose.DataSource = lst;
                         //ddlActivityChoose.DataBind();
@@ -687,6 +726,7 @@ namespace Academic.DbHelper
                         {
                             var viewModel = new ActivityResourceViewModel()
                             {
+                                Id = ar.Id,
                                 ActivityOrResource = ar.ActivityOrResource
                                 ,
                                 ActivityResourceType = ar.ActivityResourceType
@@ -717,6 +757,7 @@ namespace Academic.DbHelper
                                             var v = ActivityResourceValues.AssignmentActivity();
                                             viewModel.SetOtherValues(asg.Name
                                                 , (asg.DispalyDescriptionOnPage ?? false) ? asg.Description : ""
+                                                , Enums.Activities.Assignment.ToString()
                                                 , asg.DispalyDescriptionOnPage ?? false
                                                 , v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
@@ -733,6 +774,7 @@ namespace Academic.DbHelper
                                             var v = ActivityResourceValues.ForumActivity();
                                             viewModel.SetOtherValues(forum.Name
                                                 , (forum.DisplayDescriptionOnCoursePage ? forum.Description : "")
+                                                , Enums.Activities.Forum.ToString()
                                                 , forum.DisplayDescriptionOnCoursePage
                                                 , v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
@@ -745,6 +787,7 @@ namespace Academic.DbHelper
                                             var v = ActivityResourceValues.ChoiceActivity();
                                             viewModel.SetOtherValues(choice.Name
                                                 , (choice.DisplayDescriptionOnCoursePage ? choice.Description : "")
+                                                , Enums.Activities.Choice.ToString()
                                                 , choice.DisplayDescriptionOnCoursePage
                                                 , v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
@@ -774,6 +817,7 @@ namespace Academic.DbHelper
                                             var v = ActivityResourceValues.BookResource();
                                             viewModel.SetOtherValues(book.Name,
                                                 book.DisplayDescriptionOnCourePage ? book.Description : ""
+                                                , Enums.Resources.Book.ToString()
                                                 , book.DisplayDescriptionOnCourePage
                                                 , v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
@@ -788,6 +832,7 @@ namespace Academic.DbHelper
                                             var v = ActivityResourceValues.FileResource();
                                             viewModel.SetOtherValues(file.Name,
                                                 file.ShowDescriptionOnCoursePage ? file.Description : ""
+                                                , Enums.Resources.File.ToString()
                                                 , file.ShowDescriptionOnCoursePage,
                                                 v.ViewUrl
                                                 , (mainFile == null)
@@ -823,6 +868,7 @@ namespace Academic.DbHelper
                                         {
                                             var v = ActivityResourceValues.LabelResource();
                                             viewModel.SetOtherValues(label.Text, ""
+                                                , Enums.Resources.Label.ToString()
                                                 , false, "", "", v.CreateUrl, false);
                                             list.Add(viewModel);
                                         }
@@ -835,6 +881,7 @@ namespace Academic.DbHelper
                                             var v = ActivityResourceValues.PageResource();
                                             viewModel.SetOtherValues(page.Name,
                                                 page.DisplayDescriptionOnPage ? page.Description : ""
+                                                , Enums.Resources.Page.ToString()
                                                 , page.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
                                         }
@@ -847,6 +894,7 @@ namespace Academic.DbHelper
                                             var v = ActivityResourceValues.UrlResource();
                                             viewModel.SetOtherValues(url.Name,
                                                 url.DisplayDescriptionOnPage ? url.Description : ""
+                                                , Enums.Resources.Url.ToString()
                                                 , url.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath, v.CreateUrl);
                                             list.Add(viewModel);
                                         }
@@ -868,7 +916,8 @@ namespace Academic.DbHelper
             public DbEntities.ActivityAndResource.Assignment AddOrUpdateAssignmentActivity(
                 DbEntities.ActivityAndResource.Assignment asg,
                 int sectionId
-                , Restriction restriction)
+                , Restriction restriction
+                , List<IdAndName> classes)
             {
                 using (var scope = new TransactionScope())
                 {
@@ -880,40 +929,46 @@ namespace Academic.DbHelper
 
                         SaveActivityResourceTable(true, (byte)(((int)Enums.Activities.Assignment) + 1), ent.Id, sectionId,
                             asg.Name, restriction);
-
-                        //return ent;
                     }
                     else
                     {
-                        //ent.CutOffDate = asg.CutOffDate;
-                        //    ent.Description = asg.Description;
-                        //    ent.DispalyDescriptionOnPage = asg.DispalyDescriptionOnPage;
-                        //    ent.DueDate = asg.DueDate;
-                        //    ent.GradeToPass = asg.GradeToPass;
-                        //    ent.GradeType = asg.GradeType;
-                        //    ent.MaximumGrade = asg.MaximumGrade;
-                        //    ent.MaximumNoOfUploadedFiles = asg.MaximumNoOfUploadedFiles;
-                        //    ent.MaximumSubmissionSize = asg.MaximumSubmissionSize;
-                        //    ent.ModifiedBy = asg.ModifiedBy;
-                        //    ent.ModifiedDate = asg.ModifiedDate;
-                        //    ent.SubmissionFrom = asg.SubmissionFrom;
-                        //   // ent.SubmissionType = asg.SubmissionType;
-                        //    ent.Name = asg.Name;
-                        //    ent.WordLimit = asg.WordLimit;
-                        //    Context.SaveChanges();
-                        //    return ent;
-                    }
-                    var ar =
-                        Context.ActivityResource.FirstOrDefault(
-                            x => !x.ActivityOrResource && x.ActivityResourceId == ent.Id
-                                 && x.ActivityResourceType == (byte)(((int)Enums.Activities.Assignment) + 1));
-                    if (ar != null)
-                    {
-                        ar.Name = asg.Name;
-                        Context.SaveChanges();
-                    }
-                    scope.Complete();
+                        ent.Name = asg.Name;
+                        ent.DispalyDescriptionOnPage = asg.DispalyDescriptionOnPage;
+                        ent.Description = asg.Description;
 
+                        ent.ModifiedBy = asg.ModifiedBy;
+                        ent.ModifiedDate = asg.ModifiedDate;
+
+                        ent.CutOffDate = asg.CutOffDate;
+                        ent.DueDate = asg.DueDate;
+                        ent.SubmissionFrom = asg.SubmissionFrom;
+
+                        ent.GradeTypeId = asg.GradeTypeId;
+                        ent.MaximumGrade = asg.MaximumGrade;
+                        ent.GradeToPass = asg.GradeToPass;
+
+                        ent.FileSubmission = asg.FileSubmission;
+                        ent.MaximumNoOfUploadedFiles = asg.MaximumNoOfUploadedFiles;
+                        ent.MaximumSubmissionSize = asg.MaximumSubmissionSize;
+
+                        ent.OnlineText = asg.OnlineText;
+                        ent.WordLimit = asg.WordLimit;
+
+                        Context.SaveChanges();
+                        var res = AddOrUpdateRestriction(0, restriction);
+
+                        var ar = Context.ActivityResource.FirstOrDefault(
+                                    x => x.ActivityOrResource && x.ActivityResourceId == ent.Id
+                                        && x.ActivityResourceType == (byte)(((int)Enums.Activities.Assignment) + 1));
+                        if (ar != null)
+                        {
+                            SaveClassOfActivities(ar.Id, classes);
+                            ar.Name = asg.Name;
+                            Context.SaveChanges();
+                        }
+                    }
+
+                    scope.Complete();
                     return ent;
                 }
             }
@@ -1214,20 +1269,6 @@ namespace Academic.DbHelper
                         var ent = Context.BookResource.Find(book.Id);
                         if (ent == null)
                         {
-                            //var restrictionn = new DbEntities.AccessPermission.Restriction()
-                            //{
-                            //    MatchAllAny = false,
-                            //    MatchMust = false,
-                            //    Visibility = true
-
-                            //};
-
-                            ////restriction addition is remain
-                            //var restric = Context.Restriction.Add(restrictionn);
-                            //Context.SaveChanges();
-
-                            //book.RestrictionId = restric.Id;
-
                             ent = Context.BookResource.Add(book);
                             Context.SaveChanges();
 
@@ -1788,7 +1829,57 @@ namespace Academic.DbHelper
                 }
                 return null;
             }
-            
+
+            public ActivityResource GetActivityResource(bool actOrRes, byte actOrResType, int actOrResId)
+            {
+                return Context.ActivityResource.Include(x => x.ActivityClasses).FirstOrDefault(x => x.ActivityOrResource == actOrRes
+                                                             && x.ActivityResourceType == actOrResType
+                                                             && x.ActivityResourceId == actOrResId);
+            }
+
+            public ActivityResource GetActivityResource(int arId)
+            {
+                return Context.ActivityResource.Find(arId);
+            }
+
+            public ActivityGrading AddOrUpdateActivityGrading(ActivityGrading actGrading)
+            {
+                var ent = Context.ActivityGrading.Find(actGrading.Id);
+                if (ent == null)
+                {
+                    ent = Context.ActivityGrading.Add(actGrading);
+                    Context.SaveChanges();
+                }
+                else
+                {
+                    ent.ModifiedDate = actGrading.ModifiedDate;
+                    ent.ModifiedById = actGrading.ModifiedById;
+                    ent.ObtainedGradeId = actGrading.ObtainedGradeId;
+                    ent.ObtainedGradeMarks = actGrading.ObtainedGradeMarks;
+                    ent.Remarks = actGrading.Remarks;
+                    Context.SaveChanges();
+                }
+                return ent;
+            }
+
+            public bool DeleteActivityResource(int arId)
+            {
+                try
+                {
+                    var ar = Context.ActivityResource.Find(arId);
+                    if (ar != null)
+                    {
+                        ar.Void = true;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
 
     }
