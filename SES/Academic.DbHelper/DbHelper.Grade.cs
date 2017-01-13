@@ -145,6 +145,52 @@ namespace Academic.DbHelper
                     return false;
                 }
             }
+
+            #region Grade Conversion
+
+            public float ConvertPercentToRange(float max, float min, float obtained)
+            {
+                return (float)(min + (((1.0 * obtained / 100.0)) * (max - min)));
+            }
+
+            public float ConvertRangeToPercent(float max, float min, float obtained)
+            {
+                return (float)(((1.0 * obtained - min) / (max - min)) * 100.0);
+            }
+
+            public float ConvertPositionToPercent(DbEntities.Grades.Grade grade, int position)
+            {
+                try
+                {
+                    var maxGrade =
+                        grade.GradeValues.OrderByDescending(x => x.EquivalentPercentOrPostition).FirstOrDefault();
+                    if (maxGrade != null)
+                    {
+                        if (maxGrade.EquivalentPercentOrPostition != null)
+                        {
+                            var percent = (float) ((1.0*position/maxGrade.EquivalentPercentOrPostition ?? 0)*100);
+                            return percent;
+
+                        }
+                        return 0;
+                    }
+                    return 0;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+
+            public int ConvertPercentToPosition(DbEntities.Grades.Grade grade, float percent)
+            {
+                return 0;
+            }
+
+            #endregion
+
+
+
         }
     }
 }

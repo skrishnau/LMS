@@ -55,7 +55,8 @@ namespace Academic.DbEntities.Class
         //public virtual Subjects.SubjectUserGroup SubjectUserGroup { get; set; }
         public virtual ICollection<UserClassGrouping> UserClassGroupings { get; set; }
         public virtual ICollection<ActivityGrading> ActivityGradings { get; set; }
-
+        public virtual ICollection<ActivityResourceView> ActivityResourceViews { get; set; }
+        
         
         public virtual ICollection<ActivityAndResource.AssignmentItems.AssignmentSubmissions> AssignmentSubmissions { get; set; }
     }

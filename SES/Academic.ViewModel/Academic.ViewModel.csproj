@@ -51,6 +51,7 @@
     <Compile Include="AcademicViewModel.cs" />
     <Compile Include="Account\AccountViewModel.cs" />
     <Compile Include="ActivityResource\ActivityResourceViewModel.cs" />
+    <Compile Include="ActivityResource\ActivityViewModel.cs" />
     <Compile Include="ActivityResource\UserSubmissions.cs" />
     <Compile Include="Batch\BatchViewModel.cs" />
     <Compile Include="ChoiceViewModel.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Resources\ResourceViewModel.cs" />
     <Compile Include="RestrictionIdName.cs" />
     <Compile Include="Structure\StructureViewModel.cs" />
+    <Compile Include="StudentReportViewModel.cs" />
     <Compile Include="Student\StudentViewModel.cs" />
     <Compile Include="Student\StudentViewModelWithAllParam.cs" />
     <Compile Include="Subject\Subject.cs" />

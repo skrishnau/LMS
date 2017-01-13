@@ -15,56 +15,74 @@ namespace One.Views.Academy
         {
             if (!IsPostBack)
             {
-                BindGrid();
+                var user = Page.User as CustomPrincipal;
+                var edt = Request.QueryString["edit"];
+                if (user != null)
+                {
+                    if ((user.IsInRole("manager") || user.IsInRole("admitter") || user.IsInRole("admin")))
+                    {
+                        if (edt != null)
+                        {
+                            var edit = edt == "1";
+                            Edit = edit;
+                            if (edit)
+                            {
+                                lnkEdit.NavigateUrl = "~/Views/Academy/List.aspx?edit=0";
+                                lblEdit.Text = "Exit edit";
+                                //lnkAdd.Visible = true;
+                                pnlOtherEdits.Visible = true;
+                            }
+                            else
+                            {
+                                lnkEdit.NavigateUrl = "~/Views/Academy/List.aspx?edit=1";
+                                lblEdit.Text = "Edit";
+                                //lnkAdd.Visible = false;
+                                pnlOtherEdits.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lnkEdit.NavigateUrl = "~/Views/Academy/List.aspx?edit=1";
+                            lblEdit.Text = "Edit";
+                            pnlOtherEdits.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lnkEdit.Visible = false;
+                        pnlOtherEdits.Visible = false;
+                    }
+                    BindGrid(user);
+                }
+                
 
             }
         }
 
-        private void BindGrid()
+        public bool Edit
         {
-            var user = Page.User as CustomPrincipal;
-            if (user != null)
-            //if (user.SchoolId > 0)
-            {
-                if (user.IsInRole("manager"))
+            get { return Convert.ToBoolean(hidEdit.Value); }
+            set { hidEdit.Value = value.ToString(); }
+        }
+        private void BindGrid(CustomPrincipal user)
+        {
+            var edit = Edit;
+            if (lnkEdit.Visible || user.IsInRole("teacher"))
+                using (var helper = new DbHelper.AcademicYear())
                 {
-                    lnkAdd.Visible = true;
-                    btnAutoUpdate.Visible = true;
-                }
-                else
-                {
-                    lnkAdd.Visible = false;
-                    btnAutoUpdate.Visible = false;
-                }
-
-                if (lnkAdd.Visible || user.IsInRole("teacher"))
-                    using (var helper = new DbHelper.AcademicYear())
+                    var aca = helper.GetAcademicYearListForSchool(
+                        user.SchoolId);
+                    foreach (var ay in aca)
                     {
-                        var aca = helper.GetAcademicYearListForSchool(
-                            user.SchoolId);
-                        //for (var i = 0; i < aca.Count; i++)
-                        //{
-                        //    var ses = helper.GetSessionListForAcademicYear(aca[i].Id);
-                        //    aca[i].SchoolId = ses.Count;
-
-                        //}
-                        //GridView1.DataSource = aca;
-                        //GridView1.DataBind();
-
-                        foreach (var ay in aca)
-                        {
-                            var uc =
-                                (UserControls.AcademicYearListUC)
-                                    Page.LoadControl("~/Views/Academy/UserControls/AcademicYearListUC.ascx");
-                            uc.LoadAcademicYear(
-                                ay.Id, ay.Name, ay.StartDate, ay.EndDate
-                                , ay.IsActive, ay.Sessions.ToList(), ay.Completed ?? false);
-                            pnlAcademicYearListing.Controls.Add(uc);
-                        }
-
+                        var uc =
+                            (UserControls.AcademicYearListUC)
+                                Page.LoadControl("~/Views/Academy/UserControls/AcademicYearListUC.ascx");
+                        uc.LoadAcademicYear(
+                            ay.Id, ay.Name, ay.StartDate, ay.EndDate
+                            , ay.IsActive, ay.Sessions.ToList(), ay.Completed ?? false, edit);
+                        pnlAcademicYearListing.Controls.Add(uc);
                     }
-            }
-
+                }
         }
 
         public string GetDatePartOnly(object date)

@@ -21,68 +21,92 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
 
             if (!IsPostBack)
             {
-                //FileResourceEventArgs--> Icon path is the path of the image... FileName is the file path
-                //Session["LatestFile"]=new FileResourceEventArgs();
-                FilePickerDialog1.SetValues("File picker", null, "", "");
+                if (string.IsNullOrEmpty(PageKey))
+                {
+                    var guid = Guid.NewGuid().ToString();
+                    hidPageKey.Value = guid;
+                    PageKey = guid;
+                    lblNoOfFiles.Text = "Files : 0" + " / " + hidNumberOfFilesToUpload.Value;
 
+                }
+                //FileResourceEventArgs--> Icon path is the path of the image... FileName is the file path
+                FilePickerDialog1.SetValues("File picker", null, "", "");
             }
             else
             {
                 var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
                 if (files != null)
                 {
-                    foreach (var iname in files)
-                    {
-                        //if (iname.Visible)
-                        {
-                            var image = new ImageButton()
-                            {
-                                ImageUrl = iname.IconPath
-                                ,
-                                CausesValidation = false,
-                                Height = 50,
-                                Width = 50,
-                                ImageAlign = ImageAlign.Left
-                                ,
-                                Visible = iname.Visible
-                            };
-                            pnlFiles.Controls.Add(image);
-                        }
-
-                    }
+                    PopuateImage(files);
                 }
             }
             //FilePickerDialog1.FileChoosen += FilePickerDialog1_FileChoosen;
             FilePickerDialog1.UploadClicked += FilePickerDialog1_UploadClicked;
         }
 
+        List<FileResourceEventArgs> GetData()
+        {
+
+            var lst = new List<FileResourceEventArgs>()
+            {
+                new FileResourceEventArgs()
+                {
+                    FileDisplayName= "08_chapter 3.pdf"
+                    ,FilePath= "~/Content/Images/AssignmentSubmission/3eed4cab-6551-484a-b4e1-ca07a22dee7b.pdf"
+                    ,FileSizeInBytes= 29983
+                    ,FileType= "application/pdf"
+                    ,IconPath= "~/Content/Icons/File/pdf_icon.png"
+                    ,Id= 0
+                    ,LocalId= "1"
+                    ,Visible= true
+                }
+                ,
+                new FileResourceEventArgs()
+                {
+                    FileDisplayName= "BE_Computer_6th.pdf"
+                    ,FilePath= "~/Content/Images/AssignmentSubmission/3c811ffd-1454-4f31-af87-21eaa4fa90a1.pdf"
+                    ,FileSizeInBytes= 61188
+                    ,FileType= "application/pdf"
+                    ,IconPath= "~/Content/Icons/File/pdf_icon.png"
+                    ,Id= 0
+                    ,LocalId= "2"
+                    ,Visible= true
+                }
+                ,
+            };
+            return lst;
+        }
+
         void FilePickerDialog1_UploadClicked(object sender, FileResourceEventArgs e)
         {
             var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
-
-            if (files != null)
+           
+            if (files != null && e != null)
             {
+                var enabled = Enabled;
                 if (FileAcquireMode == Enums.FileAcquireMode.Single)
                 {
                     if (files.Count >= 1)
                         files[files.Count - 1].Visible = false;
                 }
+                var file = (EachFile)
+                    Page.LoadControl("~/Views/ActivityResource/FileResource/FileResourceItems/EachFile.ascx");
+                file.Visible = e.Visible;
+                file.ID = "file_" + e.LocalId;
+                file.SetData(e.IconPath, e.FileDisplayName, 0, e.LocalId, enabled,e.FilePath);
+                file.RemoveClicked += file_RemoveClicked;
+
+                pnlFiles.Controls.Add(file);
+                FilePickerDialog1.CloseDialog();
+
+                //problem is here
                 files.Add(e);
-                var image = new ImageButton()
-                {
-                    ImageUrl = e.IconPath,
-                    CausesValidation = false,
-                    Height = 50,
-                    Width = 50,
-                    ImageAlign = ImageAlign.Left
-                    ,
-                    Visible = e.Visible
-                };
-                pnlFiles.Controls.Clear();
-                pnlFiles.Controls.Add(image);
+                lblNoOfFiles.Text = "Files : " + files.Count(x => x.Visible) + " / " + hidNumberOfFilesToUpload.Value;
             }
             FilePickerDialog1.CloseDialog();
         }
+
+
 
         public void FilePickerDialog1_FileChoosen(object sender, FileResourceEventArgs e)
         {
@@ -94,25 +118,17 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
             if (files != null)
             {
-                if (NumberOfFilesToUpload != -1)
+                if (files.Count >= NumberOfFilesToUpload)
                 {
-                    if (files.Count >= NumberOfFilesToUpload)
-                    {
-                        lblFileNumberError.Visible = true;
-                        lblFileNumberError.Text = "Only " + NumberOfFilesToUpload + " allowed.";
-                        return;
-                    }
-                    else
-                    {
-                        FilePickerDialog1.OpenDialog();
-                    }
+                    lblFileNumberError.Visible = true;
+                    lblFileNumberError.Text = "Only " + NumberOfFilesToUpload + " allowed.";
+                    return;
                 }
                 else
                 {
                     FilePickerDialog1.OpenDialog();
                 }
             }
-
         }
 
         protected void lnkAddFolder_Click(object sender, EventArgs e)
@@ -156,7 +172,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
 
         public List<FileResourceEventArgs> GetFiles()
         {
-            var list = new List<Academic.DbEntities.UserFile>();
+            //var list = new List<Academic.DbEntities.UserFile>();
             var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
             if (FileAcquireMode == Enums.FileAcquireMode.Single && files != null)
             {
@@ -167,60 +183,78 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
                 }
             }
             return files;
-
-            //if (files != null)
-            //{
-            //    foreach (var f in files)
-            //    {
-
-            //        var file = new Academic.DbEntities.UserFile()
-            //        {
-            //            //CreatedBy = 
-            //            CreatedDate = DateTime.Now
-            //        };
-
-            //        var image = new ImageButton()
-            //        {
-            //            ImageUrl = f.IconPath
-            //            ,
-            //            CausesValidation = false,
-            //            Height = 50,
-            //            Width = 50,
-            //            ImageAlign = ImageAlign.Left
-            //        };
-            //        pnlFiles.Controls.Add(image);
-            //    }
-            //}
         }
 
-        public void SetInitialValues(List<FileResourceEventArgs> list)
+        private void PopuateImage(List<FileResourceEventArgs> list)
         {
-            Session["FilesList" + PageKey] = list;
+            lblNoOfFiles.Text = "Files : " + list.Count(x => x.Visible) +
+                               " / " + hidNumberOfFilesToUpload.Value;
+            var enabled = Enabled;
             foreach (var iname in list)
             {
-                //if (iname.Visible)
-                {
-                    var image = new ImageButton()
-                    {
-                        ImageUrl = iname.IconPath
-                        ,
-                        CausesValidation = false,
-                        Height = 50,
-                        Width = 50,
-                        ImageAlign = ImageAlign.Left
-                        ,
-                        Visible = iname.Visible
-                    };
-                    pnlFiles.Controls.Add(image);
-                }
+                var file = (EachFile)
+                   Page.LoadControl("~/Views/ActivityResource/FileResource/FileResourceItems/EachFile.ascx");
+                file.Visible = iname.Visible;
+                //file.Enabled = 
+                file.ID = "file_" + iname.LocalId;
 
+                var fileName = iname.FileDisplayName;
+                var wrapedName = fileName;
+                if (fileName.Length > 7)
+                {
+                    wrapedName = fileName.Substring(0, 7) + "...";
+                }
+                file.SetData(iname.IconPath, wrapedName, iname.Id, iname.LocalId,enabled,iname.FilePath);
+                file.RemoveClicked += file_RemoveClicked;
+
+                pnlFiles.Controls.Add(file);
+                FilePickerDialog1.LocalId = Convert.ToInt32(iname.LocalId);
             }
+        }
+        void file_RemoveClicked(object sender, IdAndNameEventArgs e)
+        {
+            var file = sender as EachFile;
+            if (file != null)
+            {
+                var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
+                if (files != null)
+                {
+                    var lFound = files.Find(x => x.LocalId == e.RefIdString);
+                    if (lFound != null)
+                    {
+                        file.Visible = false;
+                        lFound.Visible = false;
+                    }
+                }
+            }
+        }
+        public void SetInitialValues(List<FileResourceEventArgs> list)
+        {
+            var guid = Guid.NewGuid().ToString();
+            hidPageKey.Value = guid;
+            PageKey = guid;
+            Session["FilesList" + PageKey] = list;
+            PopuateImage(list);
         }
 
         public int NumberOfFilesToUpload
         {
             get { return Convert.ToInt32(hidNumberOfFilesToUpload.Value); }
             set { hidNumberOfFilesToUpload.Value = value.ToString(); }
+        }
+
+        public bool Enabled
+        {
+            set
+            {
+                //pnlFiles.Enabled = value;
+                //lnkAddFile.Enabled = value;
+                //lnkAddFolder.Enabled = value;
+
+                lnkAddFile.Visible = value;
+                lnkAddFolder.Visible = value;
+            }
+            get { return lnkAddFile.Visible; }
         }
     }
 }

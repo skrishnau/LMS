@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/Default.aspx" title="Home"  description="This is home">
+
+    <!--Notice-->
+    <siteMapNode url="~/Views/NoticeBoard/NoticeListing.aspx"  title="Notices"  description="notice list">
+      <siteMapNode url="~/Views/NoticeBoard/NoticeDetail.aspx" title="Notice detail" description="notice deatil" />
+      <siteMapNode url="~/Views/NoticeBoard/NoticeCreate.aspx" roles="manager notifier" title="Notice create" description="notice create"/>
+    </siteMapNode>
+
+    <!--Events-->
+
+
+    <!--Courses-->
+    <siteMapNode url="~/Views/Course/Default.aspx" title="Courses" description="course list">
+      <siteMapNode url="~/Views/Course/CourseDetail.aspx" title="Course detail" description="course detail">
+        <siteMapNode url="~/Views/Course/Section/Default.aspx" title="Course view" description="course view"/>
+      </siteMapNode>
+    </siteMapNode>
+
+    <siteMapNode url="" title=""  description="" />
+  </siteMapNode>
+</siteMap>

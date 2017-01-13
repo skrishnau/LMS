@@ -32,6 +32,111 @@ namespace Academic.DbHelper
                 return Context.SubjectClass.Find(subjectSessionId);
             }
 
+            //used
+            public Academic.DbEntities.Class.SubjectClass GetSubjectClassReport(int subjectClassId,
+                out List<StudentReportViewModel> studentReports, out List<IdAndName> activityNames )
+            {
+                using (var gradeHelper = new DbHelper.Grade())
+                {
+                    
+                studentReports = new List<StudentReportViewModel>();
+                activityNames = new List<IdAndName>();
+                var cls = Context.SubjectClass.Find(subjectClassId);
+                if (cls != null)
+                {
+                    var actreses = cls.ActivityClasses.Select(x => x.ActivityResource).ToList();
+                    var userClses = cls.ClassUsers.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false)).ToList();
+                    for (var a=0;a<actreses.Count;a++)
+                    {
+                       activityNames.Add(new IdAndName()
+                       {
+                           Id = actreses[a].Id
+                           ,Name = actreses[a].Name
+                           ,IdInString = (actreses[a].ActivityResourceId).ToString()
+                           ,Value=(actreses[a].WeightInGradeSheet??0).ToString("F")
+                       });
+                    }
+
+                    foreach (var usrcls in userClses)
+                    {
+                        var std = new StudentReportViewModel()
+                        {
+                            StudentId = usrcls.User.Id,
+                            StudentName = (string.IsNullOrEmpty(usrcls.User.FirstName) ? "" : usrcls.User.FirstName)
+                                            + (string.IsNullOrEmpty(usrcls.User.MiddleName) ? "" : usrcls.User.MiddleName)
+                                            + (string.IsNullOrEmpty(usrcls.User.LastName) ? "" : usrcls.User.LastName)
+                                            ,
+                        };
+
+                        var image = usrcls.User.UserImage;
+                        if (image!= null)
+                        {
+                            std.ImageUrl = image.FileDirectory + image.FileName;
+                        }
+                        var st =usrcls.User.Student.FirstOrDefault();
+                        std.CRN = st != null ? st.CRN : "";
+                        var activities = new List<ActivityViewModel>();
+                        std.ActivityViewModels = activities;
+                        var total = (float) 0.0;
+                        for(var b=0;b<actreses.Count;b++)
+                        {
+                            var ar = actreses[b];
+                            var actVm = new ActivityViewModel()
+                            {
+                                Id = ar.Id
+                                ,Name=ar.Name
+                                
+                                //,ActivityResourceId = ar.ActivityResourceId
+                            };
+                            var grade = ar.ActivityGradings.FirstOrDefault(x => x.UserClassId == usrcls.Id);
+                            if (grade != null)
+                            {
+                                if (grade.ObtainedGradeId != null)
+                                {
+                                    if (grade.ObtainedGrade.Grade.GradeValueIsInPercentOrPostition ?? false)
+                                    {
+                                        //percent
+                                        var obtRelative = (float)((1.0 * (grade.ObtainedGrade.EquivalentPercentOrPostition ?? 0) / 100.00)*(1.0 * ar.WeightInGradeSheet ?? 0));
+                                        actVm.ObtainedMarks = obtRelative.ToString("F");
+                                        total += obtRelative;
+                                    }
+                                    else
+                                    {
+                                        //position
+                                        var obt=
+                                            (gradeHelper.ConvertPositionToPercent(grade.ObtainedGrade.Grade,
+                                               (int)(grade.ObtainedGrade.EquivalentPercentOrPostition??0)));
+                                        var obtRelative = (float)((1.0 * (obt) / 100.00) * (1.0 * ar.WeightInGradeSheet ?? 0));
+                                        actVm.ObtainedMarks = obtRelative.ToString("F");
+                                        total += obtRelative;
+                                    }
+
+                                }
+                                else
+                                {
+                                    var obtRelative = (float)((1.0 * (grade.ObtainedGradeMarks ?? 0) / 100.00) * (1.0 * ar.WeightInGradeSheet ?? 0));
+
+                                    actVm.ObtainedMarks = obtRelative.ToString("F");
+                                    total += obtRelative;
+                                }
+                            }
+                            else
+                            {
+                                actVm.ObtainedMarks = "-";
+                            }
+                            
+                            activities.Add(actVm);
+                        }
+                        std.TotalMarks = total.ToString("F");
+                        studentReports.Add(std);
+                    }
+                    return cls;
+                }
+                studentReports = null;
+                return null;
+                }
+            }
+
             #endregion
 
 
@@ -189,7 +294,7 @@ namespace Academic.DbHelper
                     && (x.UserId == userId)
                     && !(x.Suspended ?? false)).ToList();
 
-                if (userclass.Select(x => x.SubjectClass) 
+                if (userclass.Select(x => x.SubjectClass)
                             .Where(s => s.IsRegular)
                             .Any(x => x.SubjectStructure.SubjectId == subjectId))
                     return true;
@@ -215,6 +320,20 @@ namespace Academic.DbHelper
                 var userclass = Context.UserClass.Where(x => !(x.Void ?? false)
                     && (x.UserId == userId)
                     && !(x.Suspended ?? false)).ToList();
+
+                //var re = userclass.Select(x => x.SubjectClass)// SubjectClass
+                //        .Where(s =>  (s.StartDate ?? min) <= now
+                //            && (s.EndDate ?? max) >= now
+                //            && !(s.SessionComplete ?? false)
+                //            &&((s.IsRegular)
+                //            ?s.SubjectStructure.SubjectId == subjectId
+                //            : s.SubjectId == subjectId)
+
+                //            )
+                ////.Where(x => x.SubjectStructure.SubjectId == subjectId)
+                //.OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
+                //.ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
+                //.ToList();
 
                 var regular = userclass.Select(x => x.SubjectClass)// SubjectClass
                          .Where(s => s.IsRegular
@@ -263,7 +382,7 @@ namespace Academic.DbHelper
                         .OrderByDescending(o => o.CreatedDate).ThenBy(t => t.RunningClass.ProgramBatch.Batch.Name)
                         .ThenBy(t => t.RunningClass.ProgramBatch.Program.Name)
                       .ToList();
-                    for (var i=0 ;i<regular.Count;i++)
+                    for (var i = 0; i < regular.Count; i++)
                     {
                         regular[i].Name = regular[i].GetName;
                     }
@@ -494,10 +613,10 @@ namespace Academic.DbHelper
                     return users.Take(50).ToList();
                 }
                 return new List<Users>();
-                    //Context.Users
-                    //.OrderBy(y => y.FirstName)
-                    //.ThenBy(t => t.MiddleName)
-                    //.ThenBy(y => y.LastName).Take(50).ToList();
+                //Context.Users
+                //.OrderBy(y => y.FirstName)
+                //.ThenBy(t => t.MiddleName)
+                //.ThenBy(y => y.LastName).Take(50).ToList();
             }
 
 
@@ -595,7 +714,7 @@ namespace Academic.DbHelper
                     }
 
                     ent.Name = subjectSession.Name;
-                    ent.UseDefaultGrouping = subjectSession.UseDefaultGrouping;
+                    //ent.UseDefaultGrouping = subjectSession.UseDefaultGrouping;
                     Context.SaveChanges();
                     return true;
 
@@ -682,16 +801,41 @@ namespace Academic.DbHelper
             }
 
             //used
-            public UserClass GetUserClassOfUser(int subjectId, int userId)
+            //public UserClass GetUserClassOfUser(int subjectId, int userId)
+            //{
+            //    return Context.UserClass.FirstOrDefault(
+            //        x =>
+            //            (x.SubjectClass.IsRegular
+            //                ? (x.SubjectClass.SubjectStructure.SubjectId == subjectId):(x.SubjectClass.SubjectId==subjectId)) && x.UserId == userId);
+
+            //}
+
+            //used
+            public List<UserClass> GetCurrentUserClassesOfUser(int subjectId, int userId)
             {
-                return Context.UserClass.FirstOrDefault(
+                var date = DateTime.Now;
+                return Context.UserClass.Where(
                     x =>
                         (x.SubjectClass.IsRegular
-                            ? (x.SubjectClass.SubjectStructure.SubjectId == subjectId):(x.SubjectClass.SubjectId==subjectId)) && x.UserId == userId);
+                            ? (x.SubjectClass.SubjectStructure.SubjectId == subjectId)
+                            : (x.SubjectClass.SubjectId == subjectId))
+                            && x.UserId == userId
+                            && !(x.Void ?? false)
+                            && (!(x.SubjectClass.SessionComplete ?? false)
+                                    || (x.SubjectClass.StartDate <= date && x.EndDate >= date)
+                                )
+                            && !(x.Suspended ?? false)
+
+                            ).ToList();
 
             }
 
 
+
+            public UserClass GetUserClass(int userClassId)
+            {
+                return Context.UserClass.Find(userClassId);
+            }
         }
     }
 }

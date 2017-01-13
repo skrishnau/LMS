@@ -10,13 +10,13 @@ namespace Academic.DbEntities.ActivityAndResource
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
-        public virtual User.Users User { get; set; }
+        public int UserClassId { get; set; }
+        public virtual Class.UserClass UserClass { get; set; }
 
-        public int ActivityResourceId { get; set; }
-        public virtual ActivityResource ActivityResource { get; set; }
+        public int ActivityClassId { get; set; }
+        public virtual ActivityClass ActivityClass { get; set; }
 
-
+        public DateTime ViewedDate { get; set; }
 
     }
 }

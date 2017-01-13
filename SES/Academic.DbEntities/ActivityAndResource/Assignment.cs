@@ -77,5 +77,7 @@ namespace Academic.DbEntities.ActivityAndResource
 
         //public int? RestrictionId { get; set; }
         //public AccessPermission.Restriction Restriction { get; set; }
+
+        public bool ShowGradeToStudents { get; set; }
     }
 }

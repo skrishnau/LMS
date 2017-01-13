@@ -15,6 +15,8 @@ namespace One.ViewsSite.User
         protected void Page_Load(object sender, EventArgs e)
         {
             {
+
+
                 var user = Page.User as CustomPrincipal;
                 var loginUrl = "ViewsSite/Account/Login.aspx";
                 if (user != null)
@@ -29,35 +31,58 @@ namespace One.ViewsSite.User
                         CoursesUc.UserId = user.Id;
                         EarlierUc.UserId = user.Id;
 
-                        NoticeBoardUc.UserId = user.Id;
-                        EventsUc.UserId = user.Id;
+
                         using (var helper = new DbHelper.Office())
                         {
                             var school = helper.GetSchoolOfUser(user.Id);
                             if (school != null)
                             {
-                                NoticeBoardUc.SchoolId = school.Id;
-                                EventsUc.SchoolId = school.Id;
-                                OnlineUsersUc.UserId = user.Id;
-                                OnlineUsersUc.SchoolId = school.Id;
+
                                 //imgSchool.ImageUrl = "~/Content/Images/"
                                 lblSchoolName.Text = school.Name;
                                 SchoolId = user.SchoolId;
                                 var f = helper.GetSchoolImage(school.ImageId);
                                 if (f != null)
                                     imgSchool.ImageUrl = f.FileDirectory + f.FileName;
+
+                                if (Request.Url.AbsolutePath.ToLower().StartsWith("/default.aspx"))
+                                {
+                                    //noticeboarduc,eventsuc, onlineusersuc
+                                    var noticeBoardUc =
+                                        (ModulesUc.NoticeBoardUc)
+                                            Page.LoadControl("~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx");
+                                    noticeBoardUc.UserId = user.Id;
+                                    noticeBoardUc.SchoolId = school.Id;
+                                    pnlRight.Controls.Add(noticeBoardUc);
+
+                                    var eventsUc = (ModulesUc.EventsUc)
+                                        Page.LoadControl("~/ViewsSite/User/ModulesUc/EventsUc.ascx");
+                                    eventsUc.UserId = user.Id;
+                                    eventsUc.SchoolId = school.Id;
+                                    pnlRight.Controls.Add(eventsUc);
+
+                                    var onlineUsersUc = (ModulesUc.OnlineUsersUc)
+                                        Page.LoadControl("~/ViewsSite/User/ModulesUc/OnlineUsersUc.ascx");
+                                    onlineUsersUc.UserId = user.Id;
+                                    onlineUsersUc.SchoolId = school.Id;
+                                    pnlRight.Controls.Add(onlineUsersUc);
+
+                                    right_panel.Visible = true;
+                                }
                             }
                         }
-                        if (Request.Url.AbsolutePath.Contains("BookView")
-                            ||Request.Url.AbsolutePath.Contains("Create"))
-                        {
-                            right_panel.Visible = false;
-                        }
+
+                        //if (Request.Url.AbsolutePath.Contains("BookView")
+                        //    || Request.Url.AbsolutePath.Contains("Create")
+                        //    || Request.Url.AbsolutePath.Contains("Report"))
+                        //{
+                        //    right_panel.Visible = false;
+                        //}
                     }
 
                     UpdateLoginTime(user.Id);
 
-                    
+
                     if (user.IsInRole("manager"))
                     {
                         var schoolCreateUrl = "Views/Office/School/Create.aspx";
@@ -82,8 +107,8 @@ namespace One.ViewsSite.User
                 }
                 else if (!Request.Url.AbsolutePath.Contains(loginUrl))
                 {
-                 //+"?ReturnUrl="+Page.Request.Url.PathAndQuery   
-                    Response.Redirect("~/" + loginUrl + "?ReturnUrl=" + Page.Request.Url.PathAndQuery);
+                    //+"?ReturnUrl="+Page.Request.Url.PathAndQuery   
+                    Response.Redirect("~/" + loginUrl);//+ "?ReturnUrl=" + Page.Request.Url.PathAndQuery
                 }
 
             }

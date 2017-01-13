@@ -15,6 +15,7 @@ namespace One.Views.NoticeBoard
         {
             if (!IsPostBack)
             {
+                
                 try
                 {
                     var user = Page.User as CustomPrincipal;
@@ -29,7 +30,12 @@ namespace One.Views.NoticeBoard
                                 var notice = helper.GetNotice(noticeId);
                                 if (notice != null)
                                 {
-
+                                    //if (SiteMap.CurrentNode != null)
+                                    //{
+                                    //    SiteMap.CurrentNode.ReadOnly = false;
+                                    //    var tempnode = SiteMap.CurrentNode;
+                                    //    tempnode.Title = notice.Title;
+                                    //}
                                     if ((user.IsInRole("manager") || user.IsInRole("notifier")))
                                     {
                                         lnkEdit.NavigateUrl = "~/Views/NoticeBoard/NoticeCreate.aspx?nId=" + noticeId;

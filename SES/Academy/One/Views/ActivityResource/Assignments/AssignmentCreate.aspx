@@ -7,6 +7,8 @@
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register Src="~/Views/ActivityResource/Class/ClassesInActivityChoose.ascx" TagPrefix="uc1" TagName="ClassesInActivityChoose" %>
+<%@ Register Src="~/Views/ActivityResource/Grading/ActivityResource/GradeInActivityUc.ascx" TagPrefix="uc1" TagName="GradeInActivityUc" %>
+
 
 
 
@@ -187,41 +189,9 @@
                 Grade
             </div>
             <hr />
-            <div class="data-entry-section-body">
-
-                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                    <ContentTemplate>
-                        <table style="margin: 0 20px 0;">
-                            <tr>
-                                <td class="data-type">Grade Type</td>
-                                <td>
-                                    <asp:DropDownList ID="ddlGradeType" runat="server" Height="21px" Width="210px"
-                                         AutoPostBack="True" DataTextField="Name" DataValueField="Id" 
-                                        OnSelectedIndexChanged="ddlGradeType_SelectedIndexChanged"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="gradeListVali"
-                                        ControlToValidate="ddlGradeType"
-                                        runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="data-type">Maximum Grade</td>
-                                <td>
-                                    <asp:TextBox ID="txtMaxGradde" runat="server" Width="210px"></asp:TextBox>
-                                    <asp:DropDownList ID="ddlMaximumGrade" runat="server" Width="210px" Visible="False" 
-                                        DataTextField="Value" DataValueField="Id"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="data-type">Grade to Pass</td>
-                                <td>
-                                    <asp:TextBox ID="txtGradeToPass" runat="server" Width="210px"></asp:TextBox>
-                                    <asp:DropDownList ID="ddlGradeToPass" runat="server" Width="210px" Visible="False" DataTextField="Value" DataValueField="Id"></asp:DropDownList>
-                                </td>
-                            </tr>
-                        </table>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </div>
+            
+            <%-- Grade selection  --%>
+            <uc1:GradeInActivityUc runat="server" id="GradeInActivityUc1" />
             <br />
 
             <div class="data-entry-section-heading">

@@ -20,6 +20,7 @@ namespace Academic.DbEntities.ActivityAndResource
         public int SubjectClassId { get; set; }
         public virtual Class.SubjectClass SubjectClass { get; set; }
 
+        public virtual ICollection<ActivityResourceView> ActivityResourceViews { get; set; }
 
     }
 }

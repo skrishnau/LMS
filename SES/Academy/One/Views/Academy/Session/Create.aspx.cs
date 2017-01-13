@@ -73,17 +73,17 @@ namespace One.Views.Academy.Session
 
                     if (aca != null)
                     {
-                        lblHeading.Text = "New Session Create";
-                        lblAcademicHeading.Text = @"Session create in Academic Year: """ + aca.Name + @"""";
-                        lblAcademicStart.Text = "Start Date: " + aca.StartDate.ToShortDateString();
-                        lblAcademicEnd.Text = "End Date:   " + aca.EndDate.ToShortDateString();
+                        //lblHeading.Text = "New Session Create";
+                        lblAcademicHeading.Text =  aca.Name ;
+                        lblAcademicStart.Text =  aca.StartDate.ToString("D");
+                        lblAcademicEnd.Text =  aca.EndDate.ToString("D");
 
                         ViewState["AcademicYearStartDate"] = aca.StartDate.Date;
                         ViewState["AcademicYearEndDate"] = aca.EndDate.Date;
                     }
                     if (session != null)
                     {
-                        lblHeading.Text = @"Edit Session """ + session.Name + @"""";
+                        //lblHeading.Text = @"Edit Session """ + session.Name + @"""";
                         LoadSessionData(session);
                     }
                     //LoadSessionParametersAndDate();
@@ -185,7 +185,8 @@ namespace One.Views.Academy.Session
                     {
                         //if (!task)
                         //{
-                        Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId);
+                        Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId
+                            +"&edit=1");
                         //Response.Redirect("~/Views/Academy/List.aspx");
                         //}
                         //else

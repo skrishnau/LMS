@@ -983,6 +983,44 @@ namespace Academic.DbHelper
             //        }
             //    }
             //}
+
+            public bool DeleteAcademicYear(int acaId)
+            {
+                try
+                {
+                    var academic = Context.AcademicYear.Find(acaId);
+                    if (academic != null)
+                    {
+                        academic.Void = true;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public bool DeleteSession(int sessionId)
+            {
+                try
+                {
+                    var session = Context.Session.Find(sessionId);
+                    if (session != null)
+                    {
+                        session.Void = true;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
     }
 }

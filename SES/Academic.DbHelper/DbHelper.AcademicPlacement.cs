@@ -80,15 +80,15 @@ namespace Academic.DbHelper
                                         //CreatedBy = User.Id
                                         CreatedDate = date.Date
                                         ,
-                                        CreatedTime = date.Hour + ":" + date.Minute + ":" + date.Second
-                                        ,
+                                        //CreatedTime = date.Hour + ":" + date.Minute + ":" + date.Second
+                                        //,
                                         IsRegular = true
                                         ,
                                         RunningClassId = savedRC.Id
                                         ,
                                         SubjectStructureId = subS.Id
                                         ,
-                                        UseDefaultGrouping = true
+                                        //UseDefaultGrouping = true
                                     };
                                     var savedSubjectClass = Context.SubjectClass.Add(subjectClass);
                                     Context.SaveChanges();
@@ -198,15 +198,15 @@ namespace Academic.DbHelper
                                         //CreatedBy = User.Id
                                         CreatedDate = date.Date
                                     ,
-                                        CreatedTime = date.Hour + ":" + date.Minute + ":" + date.Second
-                                    ,
+                                        //CreatedTime = date.Hour + ":" + date.Minute + ":" + date.Second
+                                    //,
                                         IsRegular = true
                                     ,
                                         RunningClassId = ent.Id
                                     ,
                                         SubjectStructureId = subS.Id
                                     ,
-                                        UseDefaultGrouping = true
+                                        //UseDefaultGrouping = true
                                     };
                                     var savedSubjectClass = Context.SubjectClass.Add(subjectClass);
                                     Context.SaveChanges();
@@ -369,13 +369,13 @@ namespace Academic.DbHelper
             //}
 
             public List<DbEntities.AcacemicPlacements.RunningClass> GetClassesOfAcademicYear
-                (int AcademicYearId, int sessionId = 0)
+                (int academicYearId, int sessionId = 0)
             {
                 List<DbEntities.AcacemicPlacements.RunningClass> list;
                 if (sessionId <= 0)
                 {
                     list = Context.RunningClass
-                        .Where(x => x.AcademicYearId == AcademicYearId && (x.IsActive ?? true)).ToList();//&& !(x.Void ?? false)
+                        .Where(x => x.AcademicYearId == academicYearId && (x.IsActive ?? true)).ToList();//&& !(x.Void ?? false)
                 }
                 else //if (sessionId > 0)
                 {

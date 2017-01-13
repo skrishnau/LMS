@@ -22,13 +22,18 @@ namespace One.Views.Academy.AcademicYear
                     var aId = Request.QueryString["aId"];
                     if (aId != null)
                     {
+                        btnSaveAndAddSessions.Visible = false;
                         using (var helper = new DbHelper.AcademicYear())
                         {
                             var acad = helper.GetAcademicYear(Convert.ToInt32(aId));
                             if (acad != null)
                             {
+
                                 hidId.Value = aId;
-                                lblHeading.Text = acad.Name;
+                                txtName.Text = acad.Name;
+                                txtStart.Text = acad.StartDate.ToShortDateString();
+                                txtEnd.Text = acad.EndDate.ToShortDateString();
+                                //lblHeading.Text = acad.Name;
                             }
                         }
                     }
@@ -91,7 +96,7 @@ namespace One.Views.Academy.AcademicYear
                                 }
                                 else
                                 {
-                                    Response.Redirect("~/Views/Academy/List.aspx");
+                                    Response.Redirect("~/Views/Academy/List.aspx?edit=1");
                                 }
                             }
                            

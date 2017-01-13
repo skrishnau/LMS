@@ -85,6 +85,15 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems {
         protected global::System.Web.UI.WebControls.Image Image2;
         
         /// <summary>
+        /// lblNoOfFiles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblNoOfFiles;
+        
+        /// <summary>
         /// View2 control.
         /// </summary>
         /// <remarks>
@@ -118,7 +127,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder pnlFiles;
+        protected global::System.Web.UI.WebControls.Panel pnlFiles;
         
         /// <summary>
         /// FilePickerDialog1 control.

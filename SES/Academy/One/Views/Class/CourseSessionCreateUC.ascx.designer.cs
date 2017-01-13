@@ -49,22 +49,22 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valiName;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlGroupingOfStudents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGroupingOfStudents;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// ddlEnrollmentMethod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEnrollmentMethod;
         
         /// <summary>
         /// txtStart control.
@@ -76,6 +76,15 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.TextBox txtStart;
         
         /// <summary>
+        /// valiStartDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiStartDate;
+        
+        /// <summary>
         /// txtEnd control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace One.Views.Class {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEnd;
+        
+        /// <summary>
+        /// valiEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiEndDate;
         
         /// <summary>
         /// btnSaveAndReturn control.
@@ -100,7 +118,7 @@ namespace One.Views.Class {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblErrorMsg;
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
         
         /// <summary>
         /// hidCourseId control.

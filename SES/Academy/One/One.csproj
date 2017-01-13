@@ -1164,6 +1164,7 @@
     <Content Include="Content\Icons\ActivityResource\Assignment\document1-icon.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\assignment_with_yellow_pencil.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\document-icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Assignment\document_submit_icon.png" />
     <Content Include="Content\Icons\ActivityResource\Book\Add.png" />
     <Content Include="Content\Icons\ActivityResource\Book\book.png" />
     <Content Include="Content\Icons\ActivityResource\Book\book_chapter_add.png" />
@@ -1239,8 +1240,12 @@
     <Content Include="Content\Icons\File\word_icon.png" />
     <Content Include="Content\Icons\Help\help_blu.png" />
     <Content Include="Content\Icons\Hide\hide-menu-left.png" />
+    <Content Include="Content\Icons\Home\home_2.png" />
+    <Content Include="Content\Icons\Home\home_icon.png" />
     <Content Include="Content\Icons\Indent\circle_dot.png" />
     <Content Include="Content\Icons\Indent\square_dot.png" />
+    <Content Include="Content\Icons\New\new_icon.png" />
+    <Content Include="Content\Icons\New\new_submission_icon.png" />
     <Content Include="Content\Icons\Participation\degree_icon.jpg" />
     <Content Include="Content\Icons\Participation\in.png" />
     <Content Include="Content\Icons\Participation\out.png" />
@@ -1509,6 +1514,7 @@
     <Content Include="ViewsSite\UserControls\ListItemUC.ascx" />
     <Content Include="ViewsSite\User\Dashboard\Dashboard.aspx" />
     <Content Include="ViewsSite\User\ModulesUc\CoursesUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\Course\ManagerCourseUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\EarlierUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\EarlierUc_NodesUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\EventDetailUC.ascx" />
@@ -1567,6 +1573,7 @@
     <Content Include="Views\ActivityResource\Class\Earlier codes.txt" />
     <Content Include="Views\ActivityResource\FileResource\DownloadingPage.aspx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx" />
+    <Content Include="Views\ActivityResource\FileResource\FileResourceItems\EachFile.ascx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FileOption.ascx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceItems\FilesDisplay.ascx" />
     <Content Include="Views\ActivityResource\FileResource\FileResourceView.aspx" />
@@ -1577,6 +1584,7 @@
     <Content Include="Views\ActivityResource\Forum\EachDiscussionUc.ascx" />
     <Content Include="Views\ActivityResource\Forum\ForumCreate.aspx" />
     <Content Include="Views\ActivityResource\Forum\ForumView.aspx" />
+    <Content Include="Views\ActivityResource\Grading\ActivityResource\GradeInActivityUc.ascx" />
     <Content Include="Views\ActivityResource\Grading\ClassGradeDisplayUc.ascx" />
     <Content Include="Views\ActivityResource\Grading\Default.aspx" />
     <Content Include="Views\ActivityResource\Grading\GradeUc.ascx" />
@@ -1651,6 +1659,9 @@
     <Content Include="Views\Office\Default.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
+    <Content Include="Views\Report\Default.aspx" />
+    <Content Include="Views\Report\EarlierCodes.txt" />
+    <Content Include="Views\Report\StudentReportUc.ascx" />
     <Content Include="Views\Resource\Note.txt" />
     <Content Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx" />
     <Content Include="Views\RestrictionAccess\ChooseRestrictionTypeUC.ascx" />
@@ -1774,6 +1785,7 @@
     </Content>
     <Content Include="Bundle.config" />
     <Content Include="ViewsSite\UserSite.Master" />
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -2064,6 +2076,13 @@
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\CoursesUc.ascx.designer.cs">
       <DependentUpon>CoursesUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\Course\ManagerCourseUc.ascx.cs">
+      <DependentUpon>ManagerCourseUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\Course\ManagerCourseUc.ascx.designer.cs">
+      <DependentUpon>ManagerCourseUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\EarlierUc.ascx.cs">
       <DependentUpon>EarlierUc.ascx</DependentUpon>
@@ -2443,6 +2462,13 @@
     <Compile Include="Views\ActivityResource\FileResource\FileResourceCreate.aspx.designer.cs">
       <DependentUpon>FileResourceCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\EachFile.ascx.cs">
+      <DependentUpon>EachFile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\EachFile.ascx.designer.cs">
+      <DependentUpon>EachFile.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActivityResource\FileResource\FileResourceItems\FileOption.ascx.cs">
       <DependentUpon>FileOption.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2512,6 +2538,13 @@
     </Compile>
     <Compile Include="Views\ActivityResource\Forum\ForumView.aspx.designer.cs">
       <DependentUpon>ForumView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\ActivityResource\GradeInActivityUc.ascx.cs">
+      <DependentUpon>GradeInActivityUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ActivityResource\Grading\ActivityResource\GradeInActivityUc.ascx.designer.cs">
+      <DependentUpon>GradeInActivityUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\ActivityResource\Grading\ClassGradeDisplayUc.ascx.cs">
       <DependentUpon>ClassGradeDisplayUc.ascx</DependentUpon>
@@ -2995,6 +3028,20 @@
     </Compile>
     <Compile Include="Views\Office\School\View.aspx.designer.cs">
       <DependentUpon>View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Report\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\StudentReportUc.ascx.cs">
+      <DependentUpon>StudentReportUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Report\StudentReportUc.ascx.designer.cs">
+      <DependentUpon>StudentReportUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\RestrictionAccess\ActivityCompleteRestrictionUC.ascx.cs">
       <DependentUpon>ActivityCompleteRestrictionUC.ascx</DependentUpon>

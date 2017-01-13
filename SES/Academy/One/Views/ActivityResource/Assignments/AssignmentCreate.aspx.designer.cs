@@ -229,67 +229,13 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::System.Web.UI.WebControls.Label lblValiSubmissionSize;
         
         /// <summary>
-        /// UpdatePanel3 control.
+        /// GradeInActivityUc1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
-        /// <summary>
-        /// ddlGradeType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGradeType;
-        
-        /// <summary>
-        /// gradeListVali control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator gradeListVali;
-        
-        /// <summary>
-        /// txtMaxGradde control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMaxGradde;
-        
-        /// <summary>
-        /// ddlMaximumGrade control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMaximumGrade;
-        
-        /// <summary>
-        /// txtGradeToPass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGradeToPass;
-        
-        /// <summary>
-        /// ddlGradeToPass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGradeToPass;
+        protected global::One.Views.ActivityResource.Grading.ActivityResource.GradeInActivityUc GradeInActivityUc1;
         
         /// <summary>
         /// RestrictionUC control.

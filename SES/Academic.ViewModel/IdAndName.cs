@@ -13,7 +13,7 @@ namespace Academic.ViewModel
         public string Name { get; set; }
         public string IdInString { get; set; }
 
-
+        public string Value { get; set; }
         public bool Void { get; set; }
     }
 
@@ -24,6 +24,7 @@ namespace Academic.ViewModel
             Visible = true;
         }
         public int Id { get; set; }
+        public string LocalId { get; set; }
 
         public long FileSizeInBytes { get; set; }
         /// <summary>

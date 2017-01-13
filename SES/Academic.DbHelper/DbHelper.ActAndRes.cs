@@ -289,7 +289,8 @@ namespace Academic.DbHelper
 
             private void SaveActivityResourceTable(bool actOrRes, byte actResType, int actresId
                 , int sectionId, string name, Restriction restriction
-                , List<IdAndName> classes = null)
+                , List<IdAndName> classes = null
+                , float? weightInGradeSheet = null)
             {
                 int pos = 0;
                 var poslist = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId);
@@ -318,8 +319,12 @@ namespace Academic.DbHelper
                                    ,
                                    RestrictionId = res.Id
                                    ,
-                                   Name = name,
+                                   Name = name
+                                   ,
+                                   WeightInGradeSheet = weightInGradeSheet
+
                                };
+
                 Context.ActivityResource.Add(actRes);
                 Context.SaveChanges();
 
@@ -680,232 +685,293 @@ namespace Academic.DbHelper
                 return new List<ActivityResource>() { new ActivityResource() { Id = 0, Name = "" } };
             }
 
-            public List<ActivityResourceViewModel> ListActivitiesAndResourcesOfSection(int userId, int sectionId, bool elligible = false)
+            public List<ActivityResourceViewModel> ListActivitiesAndResourcesOfSection(int userId, int sectionId,
+                bool elligible = false)
             {
-                var actres = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId
-                                                                 && !(x.Void ?? false)).ToList();
-                var list = new List<ActivityResourceViewModel>();
-                var user = Context.Users.Find(userId);
-
-                #region Commented
-
-                //var first = actres.FirstOrDefault();
-                //var elligible = false;
-                //if (first != null)
-                //{
-                //    var subjectId = first.SubjectSection.Subject.Id;
-                //    using (var helper = new DbHelper.Classes())
-                //    {
-                //        //Context.UserClass.Any(x=>x.subje)
-                //        var roles = user.UserRoles.Select(x => x.Role.RoleName).ToList();
-                //if (roles.Contains(StaticValues.Roles.CourseEditor.ToString())
-                //            || roles.Contains(StaticValues.Roles.Manager.ToString())
-                //            || roles.Contains(StaticValues.Roles.Admin))
-                //        {
-                //            elligible = true;
-                //        }
-                //        else
-                //        {
-                //            //teacher
-                //            elligible = (helper.IsUserElligibleToViewSubjectSection(subjectId, userId));
-                //        }
-                //    }
-                //}
-
-                #endregion
-
-
-                if (user != null)
+                var date = DateTime.Now;
+                var section = Context.SubjectSection.Find(sectionId);
+                if (section != null)
                 {
-                    foreach (var ar in actres)
+                    var actres = Context.ActivityResource.Where(x => x.SubjectSectionId == sectionId
+                                                                     && !(x.Void ?? false)).ToList();
+                    var list = new List<ActivityResourceViewModel>();
+                    var user = Context.Users.Find(userId);
+
+                    #region Commented
+
+                    //var first = actres.FirstOrDefault();
+                    //var elligible = false;
+                    //if (first != null)
+                    //{
+                    //    var subjectId = first.SubjectSection.Subject.Id;
+                    //    using (var helper = new DbHelper.Classes())
+                    //    {
+                    //        //Context.UserClass.Any(x=>x.subje)
+                    //        var roles = user.UserRoles.Select(x => x.Role.RoleName).ToList();
+                    //if (roles.Contains(StaticValues.Roles.CourseEditor.ToString())
+                    //            || roles.Contains(StaticValues.Roles.Manager.ToString())
+                    //            || roles.Contains(StaticValues.Roles.Admin))
+                    //        {
+                    //            elligible = true;
+                    //        }
+                    //        else
+                    //        {
+                    //            //teacher
+                    //            elligible = (helper.IsUserElligibleToViewSubjectSection(subjectId, userId));
+                    //        }
+                    //    }
+                    //}
+
+                    #endregion
+
+                    var classesOfUser = new List<DbEntities.Class.UserClass>();
+
+                    using (var helper = new DbHelper.Classes())
                     {
-                        var canView = elligible;
-                        if (!canView)
-                            canView = EvaluateRestriction(user, ar.Restriction);
-                        if (canView)//
+                        classesOfUser = helper.GetCurrentUserClassesOfUser(section.SubjectId, userId);
+
+
+                        //var clsListInt = classesOfUser.Select(x => x.SubjectClassId).ToList();
+
+                        if (user != null)
                         {
-                            var viewModel = new ActivityResourceViewModel()
+                            foreach (var ar in actres)
                             {
-                                Id = ar.Id,
-                                ActivityOrResource = ar.ActivityOrResource
-                                ,
-                                ActivityResourceType = ar.ActivityResourceType
-                                ,
-                                ActivityResourceId = ar.ActivityResourceId
-                                ,
-                                SubjectSectionId = ar.SubjectSectionId
-                                ,
-                                Position = ar.Position
-                                //newly added
-                                //,
-                                //NavigateUrl = value.ViewUrl
-                                //,
-                                //IconUrl = value.IconPath
-
-                            };
-
-                            if (ar.ActivityOrResource)
-                            {
-                                //activity
-
-                                switch (ar.ActivityResourceType - 1)
-                                {
-                                    case (int)Enums.Activities.Assignment: //Assignment
-                                        var asg = Context.Assignment.Find(ar.ActivityResourceId);
-                                        if (asg != null)
-                                        {
-                                            var v = ActivityResourceValues.AssignmentActivity();
-                                            viewModel.SetOtherValues(asg.Name
-                                                , (asg.DispalyDescriptionOnPage ?? false) ? asg.Description : ""
-                                                , Enums.Activities.Assignment.ToString()
-                                                , asg.DispalyDescriptionOnPage ?? false
-                                                , v.ViewUrl, v.IconPath, v.CreateUrl);
-                                            list.Add(viewModel);
-                                        }
-                                        break;
-                                    case (int)Enums.Activities.Chat: //chat
-
-                                        break;
-
-                                    case (int)Enums.Activities.Forum: //forum
-                                        var forum = Context.ForumActivity.Find(ar.ActivityResourceId);
-                                        if (forum != null)
-                                        {
-                                            var v = ActivityResourceValues.ForumActivity();
-                                            viewModel.SetOtherValues(forum.Name
-                                                , (forum.DisplayDescriptionOnCoursePage ? forum.Description : "")
-                                                , Enums.Activities.Forum.ToString()
-                                                , forum.DisplayDescriptionOnCoursePage
-                                                , v.ViewUrl, v.IconPath, v.CreateUrl);
-                                            list.Add(viewModel);
-                                        }
-                                        break;
-                                    case (int)Enums.Activities.Choice:
-                                        var choice = Context.ChoiceActivity.Find(ar.ActivityResourceId);
-                                        if (choice != null)
-                                        {
-                                            var v = ActivityResourceValues.ChoiceActivity();
-                                            viewModel.SetOtherValues(choice.Name
-                                                , (choice.DisplayDescriptionOnCoursePage ? choice.Description : "")
-                                                , Enums.Activities.Choice.ToString()
-                                                , choice.DisplayDescriptionOnCoursePage
-                                                , v.ViewUrl, v.IconPath, v.CreateUrl);
-                                            list.Add(viewModel);
-                                        }
-                                        break;
-                                    case (int)Enums.Activities.Lession: //lession
-
-                                        break;
-                                    case (int)Enums.Activities.Wiki: //wiki
-
-                                        break;
-                                    case (int)Enums.Activities.Workshop: //Workshop
-
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                //resource
-                                switch ((ar.ActivityResourceType - 1))
+                                var canView = elligible;
+                                if (!canView)
+                                    canView = EvaluateRestriction(user, ar.Restriction);
+                                if (canView) //
                                 {
 
-                                    case (int)Enums.Resources.Book: //Book
-                                        var book = Context.BookResource.Find(ar.ActivityResourceId);
-                                        if (book != null)
+
+
+                                    var viewModel = new ActivityResourceViewModel()
+                                    {
+                                        Id = ar.Id,
+                                        ActivityOrResource = ar.ActivityOrResource
+                                        ,
+                                        ActivityResourceType = ar.ActivityResourceType
+                                        ,
+                                        ActivityResourceId = ar.ActivityResourceId
+                                        ,
+                                        SubjectSectionId = ar.SubjectSectionId
+                                        ,
+                                        Position = ar.Position
+                                            //newly added
+                                            //,
+                                            //NavigateUrl = value.ViewUrl
+                                            //,
+                                            //IconUrl = value.IconPath
+                                        ,
+                                        New = false
+                                    };
+                                    //new or not
+                                    DbEntities.Class.UserClass classMatch = null;
+                                    foreach (var cls in ar.ActivityClasses)
+                                    {
+                                         classMatch =
+                                            classesOfUser.FirstOrDefault(x => x.SubjectClassId == cls.SubjectClassId);
+                                        if (classMatch != null)
                                         {
-                                            var v = ActivityResourceValues.BookResource();
-                                            viewModel.SetOtherValues(book.Name,
-                                                book.DisplayDescriptionOnCourePage ? book.Description : ""
-                                                , Enums.Resources.Book.ToString()
-                                                , book.DisplayDescriptionOnCourePage
-                                                , v.ViewUrl, v.IconPath, v.CreateUrl);
-                                            list.Add(viewModel);
+                                            //check for view 
+                                            var viewed =
+                                                cls.ActivityResourceViews.FirstOrDefault(a => a.UserClassId == classMatch.Id);
+                                            //!cls.ActivityResourceViews.ToList().Exists(x => x.UserClassId == classMatch.Id)
+                                            if (viewed != null)
+                                            {
+                                                if ((date - viewed.ViewedDate).TotalDays < 1)
+                                                {
+                                                    viewModel.New = true;
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                viewModel.New = true;
+                                                break;
+                                            }
                                         }
-                                        break;
+                                    }
 
-                                    case (int)Enums.Resources.File: //file
-                                        var file = Context.FileResource.Find(ar.ActivityResourceId);
-                                        if (file != null)
+                                    if (ar.ActivityOrResource)
+                                    {
+                                        //activity
+
+                                        switch (ar.ActivityResourceType - 1)
                                         {
-                                            var mainFile = Context.FileResourceFiles.Find(file.MainFileId);
-                                            var v = ActivityResourceValues.FileResource();
-                                            viewModel.SetOtherValues(file.Name,
-                                                file.ShowDescriptionOnCoursePage ? file.Description : ""
-                                                , Enums.Resources.File.ToString()
-                                                , file.ShowDescriptionOnCoursePage,
-                                                v.ViewUrl
-                                                , (mainFile == null)
-                                                    ? "~/Content/Icons/ActivityResource/File/any_file_icon.png"
-                                                    : mainFile.SubFile.IconPath
-                                                , v.CreateUrl
-                                                );
-                                            list.Add(viewModel);
-                                            //if (mainFile != null)
-                                            //{
+                                            case (int)Enums.Activities.Assignment: //Assignment
+                                                var asg = Context.Assignment.Find(ar.ActivityResourceId);
+                                                if (asg != null)
+                                                {
+                                                    var v = ActivityResourceValues.AssignmentActivity();
+                                                    viewModel.SetOtherValues(asg.Name
+                                                        , (asg.DispalyDescriptionOnPage ?? false) ? asg.Description : ""
+                                                        , Enums.Activities.Assignment.ToString()
+                                                        , asg.DispalyDescriptionOnPage ?? false
+                                                        , v.ViewUrl, v.IconPath, v.CreateUrl);
+                                                    list.Add(viewModel);
+                                                    if (classMatch != null 
+                                                        && (classMatch.Role.RoleName=="teacher" || classMatch.Role.RoleName=="manager"))
+                                                    {
+                                                        var users = asg.Submissions.Count;//.OrderByDescending(x => x.SubmittedDate).Select(x => x.UserClassId).ToList();
+                                                        var gradings = ar.ActivityGradings.Count;//.Select(x=>x.UserClassId).ToList();
+                                                        //var anyUnGraded = act.ActivityGradings.Any(x =>
+                                                        //    !users.Contains(x.UserClassId));
+                                                        if (users > gradings)
+                                                        {
+                                                            // new submission icon
+                                                            viewModel.NewSubmission = true;
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                                break;
+                                            case (int)Enums.Activities.Chat: //chat
 
-                                            //}
-                                            //else
-                                            //{
-                                            //    var v = ActivityResourceValues.FileResource();
-                                            //    viewModel.SetOtherValues(file.Name,
-                                            //        file.ShowDescriptionOnCoursePage ? file.Description : ""
-                                            //        , file.ShowDescriptionOnCoursePage,
-                                            //        v.ViewUrl, "", v.CreateUrl
-                                            //        );
-                                            //    list.Add(viewModel);
-                                            //}
+                                                break;
+
+                                            case (int)Enums.Activities.Forum: //forum
+                                                var forum = Context.ForumActivity.Find(ar.ActivityResourceId);
+                                                if (forum != null)
+                                                {
+                                                    var v = ActivityResourceValues.ForumActivity();
+                                                    viewModel.SetOtherValues(forum.Name
+                                                        , (forum.DisplayDescriptionOnCoursePage ? forum.Description : "")
+                                                        , Enums.Activities.Forum.ToString()
+                                                        , forum.DisplayDescriptionOnCoursePage
+                                                        , v.ViewUrl, v.IconPath, v.CreateUrl);
+                                                    list.Add(viewModel);
+                                                }
+                                                break;
+                                            case (int)Enums.Activities.Choice:
+                                                var choice = Context.ChoiceActivity.Find(ar.ActivityResourceId);
+                                                if (choice != null)
+                                                {
+                                                    var v = ActivityResourceValues.ChoiceActivity();
+                                                    viewModel.SetOtherValues(choice.Name
+                                                        , (choice.DisplayDescriptionOnCoursePage ? choice.Description : "")
+                                                        , Enums.Activities.Choice.ToString()
+                                                        , choice.DisplayDescriptionOnCoursePage
+                                                        , v.ViewUrl, v.IconPath, v.CreateUrl);
+                                                    list.Add(viewModel);
+                                                }
+                                                break;
+                                            case (int)Enums.Activities.Lession: //lession
+
+                                                break;
+                                            case (int)Enums.Activities.Wiki: //wiki
+
+                                                break;
+                                            case (int)Enums.Activities.Workshop: //Workshop
+
+                                                break;
                                         }
-
-                                        break;
-                                    case (int)Enums.Resources.Folder:
-
-                                        break;
-
-                                    case (int)(Enums.Resources.Label):
-                                        var label = Context.LabelResource.Find(ar.ActivityResourceId);
-                                        if (label != null)
+                                    }
+                                    else
+                                    {
+                                        //resource
+                                        switch ((ar.ActivityResourceType - 1))
                                         {
-                                            var v = ActivityResourceValues.LabelResource();
-                                            viewModel.SetOtherValues(label.Text, ""
-                                                , Enums.Resources.Label.ToString()
-                                                , false, "", "", v.CreateUrl, false);
-                                            list.Add(viewModel);
-                                        }
-                                        break;
 
-                                    case (int)(Enums.Resources.Page):
-                                        var page = Context.PageResource.Find(ar.ActivityResourceId);
-                                        if (page != null)
-                                        {
-                                            var v = ActivityResourceValues.PageResource();
-                                            viewModel.SetOtherValues(page.Name,
-                                                page.DisplayDescriptionOnPage ? page.Description : ""
-                                                , Enums.Resources.Page.ToString()
-                                                , page.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath, v.CreateUrl);
-                                            list.Add(viewModel);
-                                        }
-                                        break;
+                                            case (int)Enums.Resources.Book: //Book
+                                                var book = Context.BookResource.Find(ar.ActivityResourceId);
+                                                if (book != null)
+                                                {
+                                                    var v = ActivityResourceValues.BookResource();
+                                                    viewModel.SetOtherValues(book.Name,
+                                                        book.DisplayDescriptionOnCourePage ? book.Description : ""
+                                                        , Enums.Resources.Book.ToString()
+                                                        , book.DisplayDescriptionOnCourePage
+                                                        , v.ViewUrl, v.IconPath, v.CreateUrl);
+                                                    list.Add(viewModel);
+                                                }
+                                                break;
 
-                                    case (int)(Enums.Resources.Url):
-                                        var url = Context.UrlResource.Find(ar.ActivityResourceId);
-                                        if (url != null)
-                                        {
-                                            var v = ActivityResourceValues.UrlResource();
-                                            viewModel.SetOtherValues(url.Name,
-                                                url.DisplayDescriptionOnPage ? url.Description : ""
-                                                , Enums.Resources.Url.ToString()
-                                                , url.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath, v.CreateUrl);
-                                            list.Add(viewModel);
-                                        }
-                                        break;
+                                            case (int)Enums.Resources.File: //file
+                                                var file = Context.FileResource.Find(ar.ActivityResourceId);
+                                                if (file != null)
+                                                {
+                                                    var mainFile = Context.FileResourceFiles.Find(file.MainFileId);
+                                                    var v = ActivityResourceValues.FileResource();
+                                                    viewModel.SetOtherValues(file.Name,
+                                                        file.ShowDescriptionOnCoursePage ? file.Description : ""
+                                                        , Enums.Resources.File.ToString()
+                                                        , file.ShowDescriptionOnCoursePage,
+                                                        v.ViewUrl
+                                                        , (mainFile == null)
+                                                            ? "~/Content/Icons/ActivityResource/File/any_file_icon.png"
+                                                            : mainFile.SubFile.IconPath
+                                                        , v.CreateUrl
+                                                        );
+                                                    list.Add(viewModel);
+                                                    //if (mainFile != null)
+                                                    //{
 
+                                                    //}
+                                                    //else
+                                                    //{
+                                                    //    var v = ActivityResourceValues.FileResource();
+                                                    //    viewModel.SetOtherValues(file.Name,
+                                                    //        file.ShowDescriptionOnCoursePage ? file.Description : ""
+                                                    //        , file.ShowDescriptionOnCoursePage,
+                                                    //        v.ViewUrl, "", v.CreateUrl
+                                                    //        );
+                                                    //    list.Add(viewModel);
+                                                    //}
+                                                }
+
+                                                break;
+                                            case (int)Enums.Resources.Folder:
+
+                                                break;
+
+                                            case (int)(Enums.Resources.Label):
+                                                var label = Context.LabelResource.Find(ar.ActivityResourceId);
+                                                if (label != null)
+                                                {
+                                                    var v = ActivityResourceValues.LabelResource();
+                                                    viewModel.SetOtherValues(label.Text, ""
+                                                        , Enums.Resources.Label.ToString()
+                                                        , false, "", "", v.CreateUrl, false);
+                                                    list.Add(viewModel);
+                                                }
+                                                break;
+
+                                            case (int)(Enums.Resources.Page):
+                                                var page = Context.PageResource.Find(ar.ActivityResourceId);
+                                                if (page != null)
+                                                {
+                                                    var v = ActivityResourceValues.PageResource();
+                                                    viewModel.SetOtherValues(page.Name,
+                                                        page.DisplayDescriptionOnPage ? page.Description : ""
+                                                        , Enums.Resources.Page.ToString()
+                                                        , page.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath, v.CreateUrl);
+                                                    list.Add(viewModel);
+                                                }
+                                                break;
+
+                                            case (int)(Enums.Resources.Url):
+                                                var url = Context.UrlResource.Find(ar.ActivityResourceId);
+                                                if (url != null)
+                                                {
+                                                    var v = ActivityResourceValues.UrlResource();
+                                                    viewModel.SetOtherValues(url.Name,
+                                                        url.DisplayDescriptionOnPage ? url.Description : ""
+                                                        , Enums.Resources.Url.ToString()
+                                                        , url.DisplayDescriptionOnPage, v.ViewUrl, v.IconPath, v.CreateUrl);
+                                                    list.Add(viewModel);
+                                                }
+                                                break;
+
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
+                    return list;
                 }
-                return list;
+                return new List<ActivityResourceViewModel>();
             }
 
             //========================= ACTIVITY===================//
@@ -917,7 +983,8 @@ namespace Academic.DbHelper
                 DbEntities.ActivityAndResource.Assignment asg,
                 int sectionId
                 , Restriction restriction
-                , List<IdAndName> classes)
+                , List<IdAndName> classes
+                , float weightInGradeSheet)
             {
                 using (var scope = new TransactionScope())
                 {
@@ -928,7 +995,8 @@ namespace Academic.DbHelper
                         Context.SaveChanges();
 
                         SaveActivityResourceTable(true, (byte)(((int)Enums.Activities.Assignment) + 1), ent.Id, sectionId,
-                            asg.Name, restriction);
+                            asg.Name, restriction,classes:classes, weightInGradeSheet: weightInGradeSheet);
+
                     }
                     else
                     {
@@ -954,6 +1022,8 @@ namespace Academic.DbHelper
                         ent.OnlineText = asg.OnlineText;
                         ent.WordLimit = asg.WordLimit;
 
+                        ent.ShowGradeToStudents = asg.ShowGradeToStudents;
+
                         Context.SaveChanges();
                         var res = AddOrUpdateRestriction(0, restriction);
 
@@ -964,6 +1034,7 @@ namespace Academic.DbHelper
                         {
                             SaveClassOfActivities(ar.Id, classes);
                             ar.Name = asg.Name;
+                            ar.WeightInGradeSheet = weightInGradeSheet;
                             Context.SaveChanges();
                         }
                     }
@@ -1559,24 +1630,11 @@ namespace Academic.DbHelper
                         var ent = Context.FileResource.Find(file.Id);
                         if (ent == null)
                         {
-                            //get restriction from the ui not auto add
-                            //var restriction = new DbEntities.AccessPermission.Restriction()
-                            //{
-                            //    Visibility = false,
-                            //    MatchAllAny = false,
-                            //    MatchMust = true,
-                            //};
-
-                            //var res = Context.Restriction.Add(restriction);
-                            //Context.SaveChanges();
-
-                            //file.RestrictionId = res.Id;
                             ent = Context.FileResource.Add(file);
                             Context.SaveChanges();
 
-                            //files add
                             int i = 0;
-                            foreach (var f in fileList)
+                            foreach (var f in fileList.Where(x=>!(x.Void??false)))
                             {
                                 var savedFile = Context.File.Add(f);
                                 Context.SaveChanges();
@@ -1614,6 +1672,51 @@ namespace Academic.DbHelper
 
                             //modify restriction here
                             Context.SaveChanges();
+
+                            int i = 0;
+                            foreach (var f in fileList)
+                            {
+                                var earlier = Context.File.Find(f.Id);
+                                if (earlier == null)
+                                {
+                                    var savedFile = Context.File.Add(f);
+                                    Context.SaveChanges();
+
+                                    var savedFileResFile = Context.FileResourceFiles.Add(new FileResourceFiles()
+                                    {
+                                        FileResourceId = ent.Id
+                                        ,
+                                        SubFileId = savedFile.Id
+                                        ,
+                                    });
+                                    Context.SaveChanges();
+
+                                    if (i == 0)
+                                    {
+                                        ent.MainFileId = savedFileResFile.Id;
+                                        Context.SaveChanges();
+                                    }
+                                }
+                                else
+                                {
+                                   
+                                    earlier.Void = f.Void;
+                                    if (f.Void ?? false)
+                                    {
+                                       var fnd = Context.FileResourceFiles.FirstOrDefault(
+                                            x => x.FileResourceId == ent.Id && x.SubFileId == earlier.Id);
+                                        if (fnd != null)
+                                        {
+                                            ent.MainFileId = null;
+                                            Context.FileResourceFiles.Remove(fnd);
+                                            Context.SaveChanges();
+                                        }
+                                        
+                                    }
+                                    Context.SaveChanges();
+                                }
+                                i++;
+                            }
 
                         }
                         var ar =
@@ -1879,6 +1982,41 @@ namespace Academic.DbHelper
                 {
                     return false;
                 }
+            }
+
+            public void SetActivityResourceView(int activityResourceId, int subjectId, int userId)
+            {
+                var date = DateTime.Now;
+                using (var clsHelper = new DbHelper.Classes())
+                {
+                    //var userclasses = clsHelper.GetCurrentUserClassesOfUser(subjectId, userId);
+                    var activityClasses = Context.ActivityClass.Where(x => x.ActivityResourceId == activityResourceId
+                        ).ToList();
+
+                    foreach (var u in clsHelper.GetCurrentUserClassesOfUser(subjectId, userId))
+                    {
+                        //var related = activityClasses.Where(x => x.SubjectClassId == u.SubjectClassId).ToList();
+                        foreach (var r in activityClasses.Where(x => x.SubjectClassId == u.SubjectClassId))
+                        {
+                            //var viewed = Context.ActivityResourceView.Any(x => x.UserClassId == u.Id
+                            //                                                              && x.ActivityClassId == r.Id);
+                            if (!Context.ActivityResourceView.Any(x => x.UserClassId == u.Id
+                                                                       && x.ActivityClassId == r.Id))
+                            {
+                                Context.ActivityResourceView.Add(new ActivityResourceView()
+                                {
+                                    ActivityClassId = r.Id
+                                    ,
+                                    UserClassId = u.Id
+                                    ,
+                                    ViewedDate = date
+                                });
+                                Context.SaveChanges();
+                            }
+                        }
+                    }
+                }
+
             }
         }
 

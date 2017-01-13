@@ -46,6 +46,8 @@ namespace One.Views.Course.Section
         /// 
         /// </summary>
         /// <param name="actOrRes"></param>
+        /// <param name="isNew"></param>
+        /// <param name="newSubmission"></param>
         /// <param name="title"></param>
         /// <param name="description"></param>
         /// <param name="actOrResId">ids of assignment , book etc.</param>
@@ -60,10 +62,23 @@ namespace One.Views.Course.Section
         /// <param name="typeName"></param>
         /// <param name="enable"></param>
 
-        public void SetData(bool actOrRes, string title, string description, int actOrResId, int actResId
+        public void SetData(bool actOrRes,bool isNew,bool newSubmission, string title, string description, int actOrResId, int actResId
             , byte actResType, string imageUrl, string navigateUrl
             , int sectionId, bool edit, int subjectId,string editurl, string typeName, bool enable = true)
         {
+            if (isNew)
+            {
+                imgNew.Visible = true;
+                imgNew.ImageUrl = "~/Content/Icons/New/new_icon.png";
+                imgNew.ToolTip = "New to you";
+            }
+            if (newSubmission)
+            {
+                imgNew.Visible = true;
+                imgNew.ImageUrl = "~/Content/Icons/New/new_submission_icon.png";
+                imgNew.ToolTip = "New submission pending for grade";
+            }
+
             if (edit)
             {
                 pnlHeading.CssClass = "course-act-res-whole-in-edit-mode";

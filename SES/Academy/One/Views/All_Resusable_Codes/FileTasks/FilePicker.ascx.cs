@@ -54,7 +54,19 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             }
         }
 
+        public int LocalId
+        {
+            get { return Convert.ToInt32(hidLocalId.Value); }
+            set { hidLocalId.Value = value.ToString(); }
+        }
+
         protected void file_upload_UploadedComplete(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
+        {
+            Upload(e);
+
+        }
+
+        private void Upload(AjaxControlToolkit.AsyncFileUploadEventArgs e)
         {
             if (string.IsNullOrEmpty(FileSaveDirectory))
                 lblMessage.Visible = true;
@@ -87,18 +99,38 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 //var url = "~/Content/Images/CourseFileResource/" + fileName;
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "fileName",
                 //      "top.$get(\"" + hdnFileFolder.ClientID + "\").value = '" + url + "';", true);
-
                 var iconPath = GetIconForFile(guidName);
+                var wrappedName = fileName;
+
+                if (fileName.Length > 7)
+                {
+                    wrappedName = fileName.Substring(0, 7)+"...";
+                }
+
+                //for (var i=0;i<fileName.Length;i++)// f in fileName)
+                //{
+                //    if (i%4 == 0 && i != 0)
+                //    {
+                //        wrappedName += "<wbr/>" + fileName[i];
+                //    }
+                //    else wrappedName += fileName[i];
+                //}
                 var valuetoSave = new FileResourceEventArgs()
-                                    {
-                                        FileDisplayName = fileName,
-                                        FilePath = FileSaveDirectory + guidName,
-                                        IconPath = iconPath
-                                        ,
-                                        FileSizeInBytes = file_upload.PostedFile.ContentLength
-                                        ,
-                                        FileType = file_upload.PostedFile.ContentType
-                                    };
+                {
+                    FileDisplayName = wrappedName,
+                    FilePath = FileSaveDirectory + guidName,
+                    IconPath = iconPath
+                    ,
+                    FileSizeInBytes = file_upload.PostedFile.ContentLength
+                    ,
+                    FileType = file_upload.PostedFile.ContentType
+                    ,Visible = true
+                };
+                var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
+                var localId = (files==null?0:files.Count)+1;
+                LocalId = localId;
+                valuetoSave.LocalId = localId.ToString();
+                //LocalId++;
                 //if (FileAcquireMode == Enums.FileAcquireMode.Single)
                 //{
                 //    //here delete the previous uploaded file                    
@@ -108,6 +140,43 @@ namespace One.Views.All_Resusable_Codes.FileTasks
 
                 Session["LatestFile" + PageKey] = valuetoSave;
             }
+        }
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            UploadClick();
+            //if (UploadClicked != null)
+            //{
+            //    UploadClicked(this, null);
+            //}
+        }
+
+        private void UploadClick()
+        {
+            var latest = Session["LatestFile" + PageKey] as FileResourceEventArgs;
+            if (latest != null)
+            {
+                if (UploadClicked != null)
+                {
+                    if (FileAcquireMode == Enums.FileAcquireMode.Single)
+                    {
+                        //here delete the previous uploaded file                    
+                        DeletePreviousUploadedFile();
+                        Session["JustUploaded" + PageKey] = latest;
+
+                    }
+
+                    UploadClicked(this, latest);
+                    //if (UploadClicked != null)
+                    //{
+                    //    UploadClicked(this, null);
+                    //}
+                }
+            }
+            else if (UploadClicked != null)
+            {
+                UploadClicked(this, null);
+            }
+            Session["LatestFile" + PageKey] = null;
         }
 
         private void DeletePreviousUploadedFile()
@@ -208,25 +277,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             return iconLocation + "file_icon.png";
         }
 
-        protected void btnUpload_Click(object sender, EventArgs e)
-        {
-            var latest = Session["LatestFile" + PageKey] as FileResourceEventArgs;
-            if (latest != null)
-            {
-                if (UploadClicked != null)
-                {
-                    if (FileAcquireMode == Enums.FileAcquireMode.Single)
-                    {
-                        //here delete the previous uploaded file                    
-                        DeletePreviousUploadedFile();
-                        Session["JustUploaded" + PageKey] = latest;
 
-                    }
-                    UploadClicked(this, latest);
-                }
-            }
-            Session["LatestFile" + PageKey] = null;
-        }
 
 
 

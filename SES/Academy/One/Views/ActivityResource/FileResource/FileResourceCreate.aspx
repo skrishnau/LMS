@@ -6,7 +6,7 @@
 <%@ Register Src="~/Views/RestrictionAccess/Custom/RestrictionUC.ascx" TagPrefix="uc1" TagName="RestrictionUC" %>
 <%@ Register Src="~/Views/ActivityResource/FileResource/FileResourceItems/FilesDisplay.ascx" TagPrefix="uc1" TagName="FilesDisplay" %>
 
-<%@   Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit"  TagPrefix="ajax"%>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 
 <%--<%@ Register Src="~/Views/All_Resusable_Codes/Dialog/CustomDialog.ascx" TagPrefix="uc1" TagName="CustomDialog" %>--%>
 
@@ -14,6 +14,8 @@
 <asp:Content runat="server" ID="headcontent1" ContentPlaceHolderID="head">
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
     <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
+    <link href="../../../Content/CSSes/ToolTip.css" rel="stylesheet" />
+
 </asp:Content>
 
 
@@ -34,9 +36,9 @@
                             <td class="data-type">Name *</td>
                             <td class="data-entry">
                                 <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" 
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11"
                                     ForeColor="red"
-                                    runat="server" 
+                                    runat="server"
                                     ControlToValidate="txtName"
                                     ErrorMessage="Required"></asp:RequiredFieldValidator>
                             </td>
@@ -55,10 +57,10 @@
                         </tr>
                         <%-- Files upload and view --%>
                         <tr>
-                            <td class="data-type" >Select files</td>
+                            <td class="data-type">Select files</td>
                             <td>
                                 <ajaxToolkit:AsyncFileUpload ID="AsyncFileUpload1" runat="server" Visible="True" />
-                               
+
                                 <uc1:FilesDisplay runat="server" ID="FilesDisplay1" />
 
                             </td>
@@ -144,3 +146,7 @@
             });
     </script>
 </asp:Content>
+
+<%--<asp:Content runat="server" ID="headcontent" ContentPlaceHolderID="head">
+
+</asp:Content>--%>

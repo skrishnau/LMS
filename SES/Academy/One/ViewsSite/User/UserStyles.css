@@ -55,6 +55,13 @@ td.data-value-bold {
     padding: 10px 0;
     font-weight: 600;
 }
+
+td.data-value-bold-dark-back {
+    padding: 10px 0;
+    font-weight: 600;
+    background-color: darkslategray;
+    color: white;
+}
 /*div.data-entry-body td.data-entry {
         padding: 10px 0;
         display: inline-block;

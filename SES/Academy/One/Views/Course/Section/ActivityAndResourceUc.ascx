@@ -6,18 +6,25 @@
         <asp:Image ID="imgIcon" runat="server" ImageUrl="" AlternateText="" Height="22" Width="22" />
 
         <asp:HyperLink ID="lblTitle" CssClass="course-act-res-title" runat="server" Text="Heading">
-                     
         </asp:HyperLink>
+        
+        &nbsp;
+        <span>
+            <asp:Image ID="imgNew" runat="server" Visible="False" />
+        </span>
+
         &nbsp;
             
-            <asp:HyperLink ID="lnkEdit" CssClass="course-act-res-title" runat="server" Visible="False" >
-                <asp:Image ID="imgedt" runat="server" 
-                    ImageUrl="~/Content/Icons/Edit/edit_orange.png"/>
+            <asp:HyperLink ID="lnkEdit" CssClass="course-act-res-title" runat="server" Visible="False">
+                <asp:Image ID="imgedt" runat="server"
+                    ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
             </asp:HyperLink>
-         <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" OnClick="lnkEdit_Click">
+        <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" OnClick="lnkEdit_Click">
             <asp:Image ID="Image2" runat="server"
                 ImageUrl="~/Content/Icons/delete/trash.gif" />
         </asp:HyperLink>
+
+
 
     </div>
     <div class="course-act-res-body" id="divDescription" runat="server">

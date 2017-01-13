@@ -90,6 +90,42 @@
                 background-color: #e4f5fa;
             }
 
+        .hover-dotted {
+            margin: 6px 4px;
+            padding: 5px;
+            border: 1px solid lightgrey;
+            -webkit-border-radius: 5px;
+        }
+
+            .hover-dotted:hover {
+                background-color: #e4f5fa;
+                border: 1px dotted lightgray;
+            }
+
+        .topzero {
+            top: 0;
+            vertical-align: top;
+        }
+
+        .breadcrumb {
+            height: 30px;
+            /*background-color: lightgoldenrodyellow;*/
+            margin: 6px 4px;
+        }
+
+        .auto-st2-backcolor-white {
+            margin: 6px;
+            padding: 5px;
+            border: 1px solid lightgrey;
+            -webkit-border-radius: 5px;
+            background-color: white;
+            clear: both;
+        }
+
+            .auto-st2-backcolor-white:hover {
+                background-color: #e4f5fa;
+            }
+
         .auto-st2-inline-block {
             display: inline-block;
             /*border: 1px solid lightgrey;*/
@@ -110,9 +146,17 @@
         .auto-st2-hover-display-dark {
         }
 
-        .auto-st2-hover-display-dark:hover {
-            background-color: #ededc9;
+            .auto-st2-hover-display-dark:hover {
+                background-color: #ededc9;
+            }
+
+        .auto-st2-remove-button {
         }
+
+            .auto-st2-remove-button:hover {
+                background-color: pink;
+                text-decoration: underline;
+            }
 
         .auto-st2-no-margin {
         }
@@ -435,7 +479,7 @@
         }
 
         .body-whole {
-            margin-top: 45px;
+            margin-top: 50px;
         }
 
 
@@ -488,7 +532,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div id="menuDiv" class="menu-div" style="text-align: left; z-index: 10; vertical-align: central; padding: 2px 5px; clear: both; width: 100%;">
+        <div id="menuDiv" class="menu-div" style="text-align: left; z-index: 10; vertical-align: central; padding: 7px 5px 2px; clear: both; width: 100%;">
             <div style="margin: auto; vertical-align: central;">
                 &nbsp;
                  <asp:HyperLink runat="server" ID="lnkSchoolName" NavigateUrl="~/Views/Office/School/View.aspx"
@@ -501,9 +545,20 @@
                     <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Icons/School/school-logo.png" Width="30" Height="30" />
                 </div>
 
-                <div style="position: fixed; right: 0; top: 0; margin-right: 10px; margin-top: 5px;" class="clearfix">
+                <%-- position: fixed; right: 0; top: 0; margin-right: 10px; margin-top: 5px; --%>
+                <div style="float: right; padding-right: 20px;" class="clearfix">
+                   <%-- <span style="margin: 0 auto; padding: 0 20px;">
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/">
+                            <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Home/home_2.png" />
+                        </asp:HyperLink>
+                    </span>--%>
+                    <input type="text" name="search" placeholder="Search..">
+                    <asp:TextBox ID="TextBox1" runat="server" Enabled="False" Visible="False"></asp:TextBox>
+                    &nbsp;&nbsp;
                     <asp:LoginName ID="LoginName1" runat="server" Font-Size="1.1em" />
+                    &nbsp;&nbsp;
                     <asp:LoginStatus ID="LoginStatus1" runat="server" ForeColor="white" Font-Size="0.9em" />
+
                 </div>
             </div>
 
@@ -511,8 +566,32 @@
             </asp:ContentPlaceHolder>
         </div>
         <div style="clear: both;"></div>
+
+
+
         <div class="body-whole">
+            <%--  style="padding: 5px;" --%>
+            <div style="clear: both; margin: 2px;"></div>
+            <div style="">
+                <span>
+                    <asp:SiteMapPath ID="SiteMapPath1" runat="server" Height="100%" CssClass="breadcrumb">
+                        <NodeStyle CssClass="auto-st2-backcolor-white"></NodeStyle>
+                        <PathSeparatorStyle ForeColor="white"></PathSeparatorStyle>
+                    </asp:SiteMapPath>
+                </span>
+
+            </div>
+
             <table class="table-whole">
+                <%-- SiteMap --%>
+                <%-- <tr>
+                    <td>
+                        <span class="breadcrumb">
+                            <asp:SiteMapPath ID="SiteMapPath2" runat="server">
+                            </asp:SiteMapPath>
+                        </span>
+                    </td>
+                </tr>--%>
 
                 <tr style="vertical-align: top;">
 
@@ -561,24 +640,25 @@
 
                     <%-- ======================= Right sidebar ======================= --%>
 
-                    <td class="right-width" runat="server" id="right_panel">
+                    <td class="right-width" runat="server" id="right_panel" visible="False">
                         <%-- ------------------------- START -------------------- --%>
+                        <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
                         <%-- class="right-sidebar" --%>
                         <div>
                             <%--  style="overflow: auto; margin-top: 5px; height:180px;" --%>
                             <%-- class="dashboard-modules" --%>
-                            <div>
+                            <%-- <div>
                                 <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
-                            </div>
-                            <div>
-                                <%--<uc1:NewsUc runat="server" ID="NewsUc" />--%>
-                            </div>
-                            <div>
+                            </div>--%>
+                            <%--   <div>
+                               <uc1:NewsUc runat="server" ID="NewsUc" />
+                            </div>--%>
+                            <%-- <div>
                                 <uc1:EventsUc runat="server" ID="EventsUc" />
                             </div>
                             <div>
                                 <uc1:OnlineUsersUc runat="server" ID="OnlineUsersUc" />
-                            </div>
+                            </div>--%>
                         </div>
                         <%-- --------------------------- END --------------------- --%>
                     </td>
@@ -606,13 +686,29 @@
         <%-- Clear Both --%>
         <div style="clear: both;">
             <hr style="color: white; height: 2px;" />
-            <table style="margin: 0 auto;">
+            <table style="margin: 0 auto; ">
                 <tr>
-                    <td>Home &nbsp;</td>
-                    <td>Profile &nbsp; </td>
-                    <td>News &nbsp; </td>
-                    <td>Notice &nbsp; </td>
-                    <td>Contact &nbsp; </td>
+                    <td>
+                        <asp:HyperLink ID="HyperLink1" runat="server" 
+                            ForeColor="white" CssClass="link"
+                             NavigateUrl="~/">Home</asp:HyperLink> &nbsp;
+                    </td>
+                    <%--<td>Profile &nbsp; </td>--%>
+                    <td>
+                        <asp:HyperLink ID="HyperLink2" runat="server"                            
+                            ForeColor="white" CssClass="link"
+                             NavigateUrl="~/Views/NoticeBoard/NoticeListing.aspx">
+                            Notice
+                        </asp:HyperLink>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <asp:HyperLink ID="HyperLink3" runat="server" 
+                            ForeColor="white" CssClass="link"
+                            NavigateUrl="~/Views/Events/">Events</asp:HyperLink>
+                         &nbsp;
+                    </td>
+                    <%--<td>Contact &nbsp; </td>--%>
                 </tr>
             </table>
         </div>

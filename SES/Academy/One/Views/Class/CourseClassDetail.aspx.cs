@@ -17,18 +17,49 @@ namespace One.Views.Class
                 var classId = Request.QueryString["ccId"];
                 if (classId != null)
                 {
+                    var clsId = Convert.ToInt32(classId);
+                    SubjectClassId = clsId;
                     hidSubjectSessionId.Value = classId;
-                }
-                using (var helper = new DbHelper.Classes())
-                {
-                    ListView1.DataSource =  helper.ListSubjectSessionEnrolledUsers(SubjectSessionId);
-                    ListView1.DataBind();
-                    
+
+                    using (var helper = new DbHelper.Classes())
+                    {
+                        var cls = helper.GetSubjectSession(clsId);
+                        if (cls != null)
+                        {
+                            lnkReport.NavigateUrl = "~/Views/Report/?ccId="+cls.Id;
+                            lblClassName.Text = cls.IsRegular ? cls.GetName : cls.Name;
+                            lblCourseName.Text = cls.IsRegular
+                                ? cls.SubjectStructure.Subject.FullName
+                                : cls.Subject.FullName;
+
+                            
+                            lblEndDate.Text = cls.EndDate==null ? "N/A":cls.EndDate.Value.ToString("D");
+                            lblStartDate.Text = cls.StartDate == null ? "N/A" : cls.StartDate.Value.ToString("D");
+
+
+                            //lblEnrollmentMethod.Text = cls.
+                            
+                            var grp = "No grouping";
+                            if (cls.HasGrouping)
+                            {
+                                grp = "";
+                                cls.SubjectClassGrouping.ToList().ForEach(c =>
+                                {
+                                    grp += cls.Name + ", ";
+                                });
+                                grp = grp.TrimEnd(new char[]{','});
+                            }
+                            lblGrouping.Text = grp;
+                            ListView1.DataSource = helper.ListSubjectSessionEnrolledUsers(clsId);
+                            ListView1.DataBind();
+                        }
+                        
+                    }
                 }
             }
         }
 
-        public int SubjectSessionId
+        public int SubjectClassId
         {
             get { return Convert.ToInt32(hidSubjectSessionId.Value); }
             set { hidSubjectSessionId.Value = value.ToString(); }

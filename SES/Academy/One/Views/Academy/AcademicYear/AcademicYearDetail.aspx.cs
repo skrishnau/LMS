@@ -23,28 +23,48 @@ namespace One.Views.Academy.AcademicYear
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
-                    if (user.IsInRole("manager"))
-                    {
-                        Editable = true;
-                        btnMarkComplete.Visible = true;
-                        btnActivate.Visible = true;
-                        lnkAddClasses.Visible = true;
-                        lnknewSession.Visible = true;
-                    }
-                    else
-                    {
-                        Editable = false;
-                        btnMarkComplete.Visible = false;
-                        btnActivate.Visible = false;
-                        lnkAddClasses.Visible = false;
-                        lnknewSession.Visible = false;
-                    }
+                    var edt = Request.QueryString["edit"];
+
                     var aId = Request.QueryString["aId"];
                     if (aId != null)
                     {
                         try
                         {
                             AcademicYearId = Convert.ToInt32(aId);
+                            if ((user.IsInRole("manager") || user.IsInRole("admitter") || user.IsInRole("admin")))
+                            {
+                                if (edt != null)
+                                {
+                                    var edit = edt == "1";
+                                    Edit = edit;
+                                    if (edit)
+                                    {
+                                        lnkEdit.NavigateUrl = "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId="
+                                                                    + aId + "&edit=0";
+                                        lblEdit.Text = "Exit edit";
+                                        MakeEditable(true);
+                                    }
+                                    else
+                                    {
+                                        lnkEdit.NavigateUrl =
+                                            "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + aId + "&edit=1";
+                                        lblEdit.Text = "Edit";
+                                        MakeEditable(false);
+                                    }
+                                }
+                                else
+                                {
+                                    lnkEdit.NavigateUrl =
+                                        "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + aId + "&edit=1";
+                                    lblEdit.Text = "Edit";
+                                    MakeEditable(false);
+                                }
+                            }
+                            else
+                            {
+                                lnkEdit.Visible = false;
+                                MakeEditable(false);
+                            }
                             lnknewSession.NavigateUrl = "~/Views/Academy/Session/Create.aspx?aId=" + aId;
                             lnkAddClasses.NavigateUrl = "~/Views/Academy/ClassAssign/ClassAssignCreate.aspx?aId=" + aId;
                         }
@@ -59,11 +79,37 @@ namespace One.Views.Academy.AcademicYear
             LoadData();
         }
 
-        public bool Editable
+        public bool Edit
         {
             get { return Convert.ToBoolean(hidEditable.Value); }
             set { hidEditable.Value = value.ToString(); }
         }
+
+        public void MakeEditable(bool edit)
+        {
+            if (edit)
+            {
+                //Editable = true;
+                btnMarkComplete.Visible = true;
+                btnActivate.Visible = true;
+                lnkAddClasses.Visible = true;
+                lnknewSession.Visible = true;
+            }
+            else
+            {
+                //Editable = false;
+                btnMarkComplete.Visible = false;
+                btnActivate.Visible = false;
+                lnkAddClasses.Visible = false;
+                lnknewSession.Visible = false;
+            }
+        }
+
+        //public bool Editable
+        //{
+        //    get { return Convert.ToBoolean(hidEditable.Value); }
+        //    set { hidEditable.Value = value.ToString(); }
+        //}
 
         public int AcademicYearId
         {
@@ -74,13 +120,15 @@ namespace One.Views.Academy.AcademicYear
 
         public void LoadData()
         {
+            var edit = Edit;
             using (var helper = new DbHelper.AcademicYear())
             {
                 var academic = helper.GetAcademicYear(AcademicYearId);
                 if (academic != null)
                 {
-                    lblEndDate.Text = academic.EndDate.ToShortDateString();
-                    lblStartDate.Text = academic.StartDate.ToShortDateString();
+                    lblPageTitle.Text = academic.Name;
+                    lblEndDate.Text = academic.EndDate.ToString("D");
+                    lblStartDate.Text = academic.StartDate.ToString("D");
                     string name = "";
 
                     if (academic.Completed ?? false)
@@ -103,12 +151,13 @@ namespace One.Views.Academy.AcademicYear
 
                     lblAcademicYearName.Text = academic.Name + name;
 
-                    foreach (var sess in academic.Sessions.ToList())
+                    foreach (var sess in academic.Sessions.Where(x=>!(x.Void??false)).ToList())
                     {
                         var sessUc = (Academy.UserControls.SessionsListingInAYDetailUC)
                             Page.LoadControl("~/Views/Academy/UserControls/SessionsListingInAYDetailUC.ascx");
-                        sessUc.LoadSessionData(academic.Id, sess.Id, sess.Name, sess.StartDate
-                            , sess.EndDate,sess.IsActive, sess.Completed ?? false, Editable);
+                        sessUc.LoadSessionData(academic.Id, sess.Id, sess.Name
+                            , sess.StartDate, sess.EndDate
+                            , sess.IsActive, sess.Completed ?? false, Edit);
                         pnlSessions.Controls.Add(sessUc);
                     }
 

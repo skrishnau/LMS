@@ -16,13 +16,16 @@ namespace One.ViewsSite.User.ModulesUc
 
         }
 
-       
+
 
         public void SetStructureData(Academic.DbEntities.Structure.Year year
             , Academic.DbEntities.Structure.SubYear subYear
-            ,List<Academic.DbEntities.Subjects.Subject> subjectsList, bool earlier=false )
+            , List<Academic.DbEntities.Subjects.Subject> subjectsList
+            
+            , bool earlier = false)
         {
-            lblStructureName.Text = year.Name + ((subYear == null) ? "" : (" / "+subYear.Name));
+            if (year != null)
+                lblStructureName.Text = year.Name + ((subYear == null) ? "" : (" / " + subYear.Name));
             dListCourses.DataSource = subjectsList;
             dListCourses.DataBind();
             if (earlier)

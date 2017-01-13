@@ -1,0 +1,54 @@
+﻿
+
+
+  <asp:ListView ID="ListView1" runat="server">
+                <LayoutTemplate>
+                    <%--  border-collapse: collapse; --%>
+                    <table id="Table1" runat="server" style="width: 99%;">
+                        <thead>
+                            <tr style="background-color: darkslategray; color: white;">
+                                <td>Image</td>
+                                <td>Name</td>
+                                <%-- <td>Email</td>
+                               <td>Last Access to Course</td>
+                                <td>Roles</td>
+                                <td>Groups</td>--%>
+                            </tr>
+                        </thead>
+                        <tr runat="server" id="itemPlaceholder">
+                        </tr>
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>'>
+                                <asp:Image ID="Image1" runat="server"
+                                    Height="20" Width="20"
+                                    ImageUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>' />
+                            </asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:Label ID="Label1" runat="server" Text='<%# GetName(DataBinder.Eval(Container.DataItem,"FirstName"),Eval("MiddleName"),Eval("LastName"))  %>'></asp:Label>
+                        </td>
+
+
+
+
+                        <%-- <td>
+                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
+                        </td>
+                        <td>
+                            <span style="font-size: 0.8em">
+                                <asp:Label ID="Label8" runat="server" Text='<%# GetLastOnline(DataBinder.Eval(Container.DataItem,"LastOnline"))  %>'></asp:Label>
+                            </span>
+                        </td>
+                        <td>
+                            <tr></tr>
+                        </td>
+                        <td>
+                            <asp:Label ID="lblGroup" runat="server" Text=""></asp:Label>
+                        </td>--%>
+                    </tr>
+                </ItemTemplate>
+            </asp:ListView>

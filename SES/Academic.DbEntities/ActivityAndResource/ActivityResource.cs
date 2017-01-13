@@ -28,6 +28,8 @@ namespace Academic.DbEntities.ActivityAndResource
 
         public string Name { get; set; }
 
+        public float? WeightInGradeSheet { get; set; }
+
         /// <summary>
         /// Position of this Activity/Resource in UI(wwebpage)
         /// </summary>
@@ -46,7 +48,6 @@ namespace Academic.DbEntities.ActivityAndResource
         public virtual ICollection<ActivityCompletion> ActivityCompletions { get; set; }
         public virtual ICollection<ActivityGrading> ActivityGradings { get; set; }
         public virtual ICollection<ActivityClass> ActivityClasses { get; set; }
-        public virtual ICollection<ActivityResourceView> ActivityResourceViews { get; set; }
         
     }
 

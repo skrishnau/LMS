@@ -3,7 +3,9 @@
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="MainContent">
     <asp:Login ID="Login1" runat="server" OnAuthenticate="Login1_Authenticate"></asp:Login>
-    <a id="registerLink" runat="server" href="~/ViewsSite/Account/Register.aspx">Register</a>
+    <asp:HyperLink ID="registerLink1" runat="server" 
+        Enabled="false"
+         href="~/ViewsSite/Account/Register.aspx">Register</asp:HyperLink>
 
     <%--<asp:LoginView ID="LoginView1" runat="server">
         <AnonymousTemplate>

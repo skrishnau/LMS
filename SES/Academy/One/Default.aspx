@@ -56,3 +56,9 @@
 <asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
     Dashboard
 </asp:Content>
+
+
+
+<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
+    <link href="Content/CSSes/ToolTip.css" rel="stylesheet" />
+</asp:Content>

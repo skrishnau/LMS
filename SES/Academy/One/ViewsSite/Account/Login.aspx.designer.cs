@@ -22,12 +22,12 @@ namespace One.ViewsSite.Account {
         protected global::System.Web.UI.WebControls.Login Login1;
         
         /// <summary>
-        /// registerLink control.
+        /// registerLink1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor registerLink;
+        protected global::System.Web.UI.WebControls.HyperLink registerLink1;
     }
 }

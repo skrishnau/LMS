@@ -54,6 +54,8 @@ namespace Academic.ViewModel.ActivityResource
 
         public string ActivityResourceTypeName { get; set; }
 
+        public bool New { get; set; }
+        public bool NewSubmission { get; set; }
 
         /// <summary>
         /// 
@@ -84,5 +86,7 @@ namespace Academic.ViewModel.ActivityResource
             }
 
         }
+
+
     }
 }

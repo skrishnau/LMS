@@ -14,7 +14,7 @@ namespace Academic.DbEntities.Class
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of Class
+        /// Name of Class  :::: cls.IsRegular ? cls.GetName : cls.Name
         /// </summary>
         public string GetName
         {
@@ -67,6 +67,9 @@ namespace Academic.DbEntities.Class
         public int? SubjectId { get; set; }
         public virtual Subjects.Subject Subject { get; set; }
 
+        /// <summary>
+        /// to get class name::::::   cls.IsRegular ? cls.GetName : cls.Name
+        /// </summary>
         public string Name { get; set; }
 
         //overall Part.
@@ -78,8 +81,8 @@ namespace Academic.DbEntities.Class
         //if useDefaultGrouping is false: then use the subject's grouping to group students
         public bool HasGrouping { get; set; }
 
-        [Obsolete]
-        public bool? UseDefaultGrouping { get; set; }
+        //[Obsolete]
+        //public bool? UseDefaultGrouping { get; set; }
 
 
 
@@ -92,13 +95,21 @@ namespace Academic.DbEntities.Class
         //Its the date in which this class-subjectt is opened.
         //i.e the date of create
         public DateTime CreatedDate { get; set; }
-        public string CreatedTime { get; set; }
+        //[Obsolete]
+        //public string CreatedTime { get; set; }
         public int? CreatedBy { get; set; }
 
         public DateTime? CompletionMarkedDate { get; set; }
+
         public int? CompleteMarkedByUserId { get; set; }
 
+        /// <summary>
+        /// 0: Automatic , 1: Manual only , 2: Self Enrollment
+        /// </summary>
+        public byte EnrollmentMethod { get; set; }
+        
         //gives all the users for this session of the course.
+        public virtual ICollection<ActivityAndResource.ActivityClass> ActivityClasses { get; set; }
         public virtual ICollection<UserClass> ClassUsers { get; set; }
 
         public virtual ICollection<SubjectClassGrouping> SubjectClassGrouping { get; set; }

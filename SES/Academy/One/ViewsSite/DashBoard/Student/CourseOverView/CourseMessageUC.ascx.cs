@@ -34,6 +34,14 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
             set { linkMessage.NavigateUrl = value; }
         }
 
+        public string ToolTip
+        {
+            set
+            {
+                //linkMessage.ToolTip = value; 
+                lblToolTip.Text = value;
+            }
+        }
 
         #endregion
 

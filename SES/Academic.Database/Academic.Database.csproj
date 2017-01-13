@@ -190,6 +190,30 @@
     <Compile Include="Migrations\201612190551435_void_in_grade.Designer.cs">
       <DependentUpon>201612190551435_void_in_grade.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612200352403_act_view.cs" />
+    <Compile Include="Migrations\201612200352403_act_view.Designer.cs">
+      <DependentUpon>201612200352403_act_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612200656489_act_view1.cs" />
+    <Compile Include="Migrations\201612200656489_act_view1.Designer.cs">
+      <DependentUpon>201612200656489_act_view1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612210008512_view_date_added.cs" />
+    <Compile Include="Migrations\201612210008512_view_date_added.Designer.cs">
+      <DependentUpon>201612210008512_view_date_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612212336230_class_some_modification.cs" />
+    <Compile Include="Migrations\201612212336230_class_some_modification.Designer.cs">
+      <DependentUpon>201612212336230_class_some_modification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612230035016_weight_added.cs" />
+    <Compile Include="Migrations\201612230035016_weight_added.Designer.cs">
+      <DependentUpon>201612230035016_weight_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612240043065_assignment_modified.cs" />
+    <Compile Include="Migrations\201612240043065_assignment_modified.Designer.cs">
+      <DependentUpon>201612240043065_assignment_modified.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -311,6 +335,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612190551435_void_in_grade.resx">
       <DependentUpon>201612190551435_void_in_grade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200352403_act_view.resx">
+      <DependentUpon>201612200352403_act_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200656489_act_view1.resx">
+      <DependentUpon>201612200656489_act_view1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612210008512_view_date_added.resx">
+      <DependentUpon>201612210008512_view_date_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612212336230_class_some_modification.resx">
+      <DependentUpon>201612212336230_class_some_modification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612230035016_weight_added.resx">
+      <DependentUpon>201612230035016_weight_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612240043065_assignment_modified.resx">
+      <DependentUpon>201612240043065_assignment_modified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

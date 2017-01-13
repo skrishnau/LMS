@@ -74,18 +74,26 @@
                     <%-- ---update panel here --%>
                     <div>
                         <div runat="server" id="pnlClasses" visible="False">
-                            <strong>Classes</strong>
-                            <%--<span>Use filter to filter the completed, Due and Not-started yet coureses</span>--%>
-                            <div style="float: right;">
-                                <span style="text-align: right; display: block;">
+                            <div>
+                                <strong>Classes</strong>
+                                <%--<span>Use filter to filter the completed, Due and Not-started yet coureses</span>--%>
+
+                                <span style="margin-left: 10px;">
                                     <asp:HyperLink ID="lnkNewClass" runat="server" CssClass="link_smaller"
                                         ToolTip="For different group studying the Course at the same time, there can be different Subject Sessions,so as to differentiate the course content for each group.">
                                         <asp:Image ID="Image1" ImageUrl="~/Content/Icons/Add/Add-icon.png" runat="server" />
                                         Create New Class
                                     </asp:HyperLink>
                                 </span>
+                                <div style="float: right;">
+                                    <asp:HyperLink ID="lnkEditClasses" runat="server">
+                                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                                        <asp:Label ID="lblEditClasses" runat="server" Text="Edit Classes"></asp:Label>
+                                    </asp:HyperLink>
+                                </div>
+                                <div style="clear: both;"></div>
                             </div>
-                            <div style="clear: both;"></div>
+
                             <hr />
                             <%-- List of currently studying students --%>
                             <%-- Give to choose the year --%>
@@ -163,7 +171,7 @@
                                         <table>
                                             <tr>
                                                 <td style="width: 15px;">
-                                                    <asp:Panel runat="server" ID="panel1" Width="15" Height="80"
+                                                    <asp:Panel runat="server" ID="panel1" Width="15" Height="70"
                                                         BackColor='<%# GetCompletedColor(DataBinder.Eval(
                                                         Container.DataItem,"SessionComplete")
                                                         ,Eval("StartDate") ,Eval("EndDate")
@@ -171,11 +179,26 @@
                                                     </asp:Panel>
                                                 </td>
                                                 <td>
-                                                    <div style="font-size: 1.2em; padding-left: 10px;">
+                                                    <div style="font-size: 1.2em; padding-left: 10px; padding-top: 3px;">
                                                         <asp:HyperLink ID="lblName" runat="server" CssClass="link"
                                                             NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("Id") %>'
                                                             Text='<%# Eval("GetName") %>'></asp:HyperLink>
                                                         <asp:Literal ID="lblRegularOrNot" runat="server" Text=""></asp:Literal>
+
+                                                        <%--&nbsp;
+                                                        <asp:HyperLink ID="lnkEdit" runat="server" Visible='<%# Edit %>'
+
+                                                            >
+                                                            <asp:Image ID="imgEditBtn" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                                                        </asp:HyperLink>
+                                                        &nbsp;
+                                                        <asp:HyperLink ID="lnkDelete" runat="server" Visible='<%# Edit %>'
+
+                                                             >
+                                                            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/trash.gif" />
+                                                        </asp:HyperLink>--%>
+
+
                                                     </div>
                                                     <div style="padding: 0 25px 10px;">
                                                         No. of Sections:
@@ -199,6 +222,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+        <asp:HiddenField ID="hidEditClasses" runat="server" Value="False" />
     </div>
 </asp:Content>
 

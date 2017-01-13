@@ -103,6 +103,15 @@ namespace One.Views.All_Resusable_Codes.FileTasks {
         protected global::System.Web.UI.WebControls.HiddenField hidPageKey;
         
         /// <summary>
+        /// hidLocalId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidLocalId;
+        
+        /// <summary>
         /// hidFileSaveDirectory control.
         /// </summary>
         /// <remarks>

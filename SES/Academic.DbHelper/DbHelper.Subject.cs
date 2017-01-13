@@ -651,9 +651,23 @@ namespace Academic.DbHelper
                         .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && !(x.SessionComplete ?? false))
                         .ToList();
 
+
                     return subSession;
                 }
                 return new List<DbEntities.Class.SubjectClass>();
+            }
+            public List<DbEntities.Class.UserClass> ListCurrentUserClasses(int userId)
+            {
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                        .Where(x=>!(x.SubjectClass.Void??false) && !(x.SubjectClass.SessionComplete??false))
+                        //.Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && !(x.SessionComplete ?? false))
+                        .ToList();
+                    return subSession;
+                }
+                return new List<DbEntities.Class.UserClass>();
             }
 
             public List<DbEntities.Class.SubjectClass> ListEarlierSubjectClasses(int userId)

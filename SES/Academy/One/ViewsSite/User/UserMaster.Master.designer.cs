@@ -85,6 +85,15 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.Image imgSchool;
         
         /// <summary>
+        /// TextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        
+        /// <summary>
         /// LoginName1 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace One.ViewsSite.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder Menu;
+        
+        /// <summary>
+        /// SiteMapPath1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SiteMapPath SiteMapPath1;
         
         /// <summary>
         /// CoursesUc control.
@@ -211,30 +229,39 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.HtmlControls.HtmlTableCell right_panel;
         
         /// <summary>
-        /// NoticeBoardUc control.
+        /// pnlRight control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.NoticeBoardUc NoticeBoardUc;
+        protected global::System.Web.UI.WebControls.Panel pnlRight;
         
         /// <summary>
-        /// EventsUc control.
+        /// HyperLink1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.EventsUc EventsUc;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
-        /// OnlineUsersUc control.
+        /// HyperLink2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.OnlineUsersUc OnlineUsersUc;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
+        
+        /// <summary>
+        /// HyperLink3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
     }
 }

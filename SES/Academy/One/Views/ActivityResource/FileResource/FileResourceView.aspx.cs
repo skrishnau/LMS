@@ -22,43 +22,53 @@ namespace One.Views.ActivityResource.FileResource
                 var edit = Request.QueryString["edit"];
                 try
                 {
-                    FileResourceId = Convert.ToInt32(arId);
-
-                    using (var helper = new DbHelper.ActAndRes())
+                    if (arId != null)
                     {
-                        var fileRes = helper.GetFileResource(FileResourceId);
-                        if (fileRes != null)
-                        {
-                            var file = helper.GetFileOfFileResource(fileRes.MainFileId ?? 0);
-                            if (file != null)
-                            {
-                                var fullPath = file.SubFile.FileDirectory + file.SubFile.FileName;
-                                switch (fileRes.Display)
-                                {
-                                    case 0:
-                                        frame.Src = fullPath;
-                                        break;
-                                    case 1://embed//iframe
-                                        frame.Src = fullPath;
-                                        break;
-                                    case 2://force donload
-                                        ProcessRequest(Context, fullPath);
-                                        break;
-                                    case 3://open//only file in same window
+                        #region File Resource
 
-                                        break;
-                                    case 4://popup
-                                        if (subId != null && edit != null && secId != null)
-                                        {
-                                            OpenWindow(fullPath);
-                                            Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx" +
-                                                              "?SubId" + subId + "&edit=" + edit);
-                                        }
-                                        break;
+                        FileResourceId = Convert.ToInt32(arId);
+
+                        using (var helper = new DbHelper.ActAndRes())
+                        {
+
+                            var fileRes = helper.GetFileResource(FileResourceId);
+                            if (fileRes != null)
+                            {
+                                var file = helper.GetFileOfFileResource(fileRes.MainFileId ?? 0);
+                                if (file != null)
+                                {
+                                    var fullPath = file.SubFile.FileDirectory + file.SubFile.FileName;
+                                    switch (fileRes.Display)
+                                    {
+                                        case 0:
+                                            frame.Src = fullPath;
+                                            break;
+                                        case 1: //embed//iframe
+                                            frame.Src = fullPath;
+                                            break;
+                                        case 2: //force donload
+                                            ProcessRequest(Context, fullPath);
+                                            break;
+                                        case 3: //open//only file in same window
+
+                                            break;
+                                        case 4: //popup
+                                            if (subId != null && edit != null && secId != null)
+                                            {
+                                                OpenWindow(fullPath);
+                                                Response.Redirect(
+                                                    "~/Views/Course/Section/Master/CourseSectionListing.aspx" +
+                                                    "?SubId" + subId + "&edit=" + edit);
+                                            }
+                                            break;
+                                    }
                                 }
                             }
                         }
+
+                        #endregion
                     }
+                    
                 }
                 catch { }
 

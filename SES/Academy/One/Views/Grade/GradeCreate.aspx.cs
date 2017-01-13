@@ -25,7 +25,7 @@ namespace One.Views.Grade
                 if (!IsPostBack)
                 {
                     GradeTypeUc1.SetValues(new List<GradeViewModel>());
-                    GradeTypeUc1.RangePanelVisibility = true;
+                    GradeTypeUc1.ValuesPanelVisibility = true;
                     var gradeId = Request.QueryString["gId"];
                     if (gradeId != null)
                     {

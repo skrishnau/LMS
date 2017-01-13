@@ -190,3 +190,38 @@
         //public int RunningClassId { get; set; }
 
         //public Academic.DbEntities.AcacemicPlacements.RunningClass RunningClass { get; set; }
+
+
+		//var actClasses = act.ActivityClasses.ToList();
+                                        //if(actClasses.Any())
+                                        //{
+                                        //var acs = .Select(x => x.SubjectClass);
+
+                                        // evaluate if the user is in the class and evaluate restriction 
+                                        //if all return true then
+                                        //evaluate activityResourceViews and if ther's no data then show notification
+                                        //}
+                                        //if (act.ActivityResourceViews.Any(x => x.UserClassId == user.Id))
+                                        //{
+
+                                        //}
+                                        //else
+                                        //{
+                                        //    var cuc =
+                                        //        (CourseMessageUC)
+                                        //            Page.LoadControl(
+                                        //                "~/ViewsSite/DashBoard/Student/CourseOverView/CourseMessageUC.ascx");
+                                        //    //var thisType = Enum.GetNames(typeof(Enums.Activities))[act.ActivityResourceType-1];
+                                        //    var thisIcon = ActivityResourceValues.RetriveMethod(actOrRes: true, actResType: (byte)(act.ActivityResourceType));
+                                        //    if (thisIcon != null)
+                                        //    {
+                                        //        cuc.ImageLink = thisIcon.IconPath;
+                                        //        cuc.Text = "You have new " + (thisIcon.Name);
+                                        //        cuc.NavigateUrl = thisIcon.ViewUrl;
+                                        //        uc.AddMessages(cuc);
+                                        //    }
+                                        //    //cuc.ImageLink= DbHelper.StaticValues.
+                                        //}
+
+
+

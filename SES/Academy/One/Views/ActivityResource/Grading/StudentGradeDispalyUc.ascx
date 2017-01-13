@@ -3,7 +3,7 @@
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 
-<table style="width: 98%;">
+<table >
     <tr>
         <td class="data-type">Status</td>
         <td class="data-value">
@@ -24,15 +24,11 @@
             <%--<asp:Literal ID="lblRemarks" runat="server" Text=""></asp:Literal>--%>
         </td>
     </tr>
-    <tr>
-        <td></td>
-        <td>
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" Width="200" Height="30" OnClick="btnSubmit_OnClick" />
-
-        </td>
-    </tr>
 
 </table>
+<div style="text-align: center;">
+    <asp:Button ID="btnSubmit" runat="server" Text="Submit" Width="200" Height="30" OnClick="btnSubmit_OnClick" />
+</div>
 <%--<div style="text-align: center; padding: 5px;">
 </div>--%>
 <asp:HiddenField ID="hidReturnUrl" runat="server" Value="" />

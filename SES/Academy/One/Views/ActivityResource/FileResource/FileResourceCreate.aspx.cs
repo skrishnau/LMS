@@ -43,9 +43,7 @@ namespace One.Views.ActivityResource.FileResource
                     Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
                 }
 
-                var guid = Guid.NewGuid();
-                hidPageKey.Value = guid.ToString();
-                FilesDisplay1.PageKey = guid.ToString();
+                
                 FilesDisplay1.FileSaveDirectory = DbHelper.StaticValues.CourseFilesLocation;
                 FilesDisplay1.FileAcquireMode = Enums.FileAcquireMode.Multiple;
             }
@@ -67,7 +65,7 @@ namespace One.Views.ActivityResource.FileResource
                     chkShowType.Checked = fileR.ShowType;
                     chkShowUploadModifiedDate.Checked = fileR.ShowUploadModifiedDate;
                     ddlDisplay.SelectedIndex = fileR.Display;
-
+                    var i = 1;
                     foreach (var f in fileR.FileResourceFiles)
                     {
                         files.Add(new FileResourceEventArgs()
@@ -79,7 +77,9 @@ namespace One.Views.ActivityResource.FileResource
                             FilePath = f.SubFile.FileDirectory+"/"+f.SubFile.FileName,
                             FileDisplayName = f.SubFile.DisplayName,
                             FileSizeInBytes = f.SubFile.FileSizeInBytes
+                            ,LocalId = i.ToString()
                         });
+                        i++;
                     }
                     FilesDisplay1.SetInitialValues(files);
                     RestrictionUC.SetActivityResource(false, ((int)Enums.Resources.File) + 1, fileR.Id);
@@ -164,6 +164,7 @@ namespace One.Views.ActivityResource.FileResource
                         var fileName = Path.GetFileName(f.FilePath);
                         var fi = new Academic.DbEntities.Subjects.SubjectFile()
                         {
+                            Id=f.Id,
                             CreatedBy = user.Id
                             ,
                             CreatedDate = DateTime.Now
@@ -182,6 +183,7 @@ namespace One.Views.ActivityResource.FileResource
                             IconPath = f.IconPath
                             ,
                             SubjectId = SubjectId
+                            ,Void = !f.Visible
                         };
                         list.Add(fi);
                     }

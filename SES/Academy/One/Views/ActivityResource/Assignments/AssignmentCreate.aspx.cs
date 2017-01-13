@@ -51,12 +51,12 @@ namespace One.Views.ActivityResource.Assignments
                             if (aId != null)
                             {
                                 AssignmentId = Convert.ToInt32(aId);
-                                LoadInitial(user);
+                                GradeInActivityUc1.LoadInitial(user);
                                 LoadAssignment();
                             }
                             else
                             {
-                                LoadInitial(user);
+                                GradeInActivityUc1.LoadInitial(user);
                             }
                         }
                         catch
@@ -82,70 +82,12 @@ namespace One.Views.ActivityResource.Assignments
             }
         }
 
-        private void LoadInitial(CustomPrincipal user)
-        {
-            if (user != null)
-                using (var gradeHelper = new DbHelper.Grade())
-                {
-                    var gradelist = gradeHelper.ListGrades(user.SchoolId);
-                    ddlGradeType.DataSource = gradelist;
-                    ddlGradeType.DataBind();
+       
 
-                    if (AssignmentId <= 0)
-                        if (gradelist.Any())
-                        {
-                            var grade = gradelist[0]; //gradeHelper.GetGrade(Convert.ToInt32(ddlGradeType.SelectedValue));
-                            RangeOrValue = grade.RangeOrValue;
-                            SetGradeValuesDataSource(grade);
-                        }
-                }
-        }
-
-        private void SetGradeValuesDataSource(Academic.DbEntities.Grades.Grade grade)
-        {
-            if (grade.RangeOrValue) //value
-            {
-                var gradeValues = grade.GradeValues
-                    .OrderByDescending(x => x.EquivalentPercentOrPostition).ToList();
-
-                ddlMaximumGrade.DataSource = gradeValues;
-                ddlMaximumGrade.DataBind();
-
-                ddlGradeToPass.DataSource = gradeValues;
-                ddlGradeToPass.DataBind();
-            }
-            else//range
-            {
-                ddlGradeToPass.DataSource = null;
-                ddlGradeToPass.DataBind();
-                ddlMaximumGrade.DataSource = null;
-                ddlMaximumGrade.DataBind();
-            }
-        }
+       
 
 
-        public bool RangeOrValue
-        {
-            set
-            {
-                if (!value)//range
-                {
-                    ddlMaximumGrade.Visible = false;
-                    ddlGradeToPass.Visible = false;
-
-                    txtGradeToPass.Visible = true;
-                    txtMaxGradde.Visible = true;
-                }
-                else//values
-                {
-                    ddlMaximumGrade.Visible = true;
-                    ddlGradeToPass.Visible = true;
-
-                    txtGradeToPass.Visible = false;
-                    txtMaxGradde.Visible = false;
-                }
-            }
-        }
+       
 
         private void LoadAssignment()
         {
@@ -171,100 +113,94 @@ namespace One.Views.ActivityResource.Assignments
                                 Void = false
                             });
                         }
+
+                        txtName.Text = ass.Name;
+                        CKEditor1.Text = ass.Description;
+                        chkDisplayDesc.Checked = ass.DispalyDescriptionOnPage ?? false;
+
                         ClassesInActivityChoose1.PopulateClassPanel(classes);
+
+                        GradeInActivityUc1.SetGradeValues(actRes,ass);
+
+
+                        #region File and online submission
+
+                        if (ass.FileSubmission)
+                        {
+                            chkFileSubmission.Checked = true;
+                            txtMaxFiles.Text = (ass.MaximumNoOfUploadedFiles ?? 0).ToString();
+                            txtMaxSize.Text = (ass.MaximumSubmissionSize ?? 0).ToString();
+                            txtMaxFiles.Enabled = true;
+                            txtMaxSize.Enabled = true;
+                        }
+                        else
+                        {
+                            chkFileSubmission.Checked = false;
+                            txtMaxFiles.Enabled = false;
+                            txtMaxSize.Enabled = false;
+                        }
+
+                        if (ass.OnlineText)
+                        {
+
+                            chkOnlineSubmission.Checked = true;
+                            txtWordLimit.Text = ass.WordLimit.ToString();
+                            txtWordLimit.Enabled = true;
+                        }
+                        else
+                        {
+                            chkOnlineSubmission.Checked = false;
+                            txtWordLimit.Enabled = false;
+                        }
+
+                        #endregion
+
+
+                        #region Date
+
+                        if (ass.CutOffDate != null)
+                        {
+                            chkCutOff.Checked = true;
+                            txtCutOff.Text = ass.CutOffDate.Value.ToShortDateString();
+
+                        }
+                        else
+                        {
+                            chkCutOff.Checked = false;
+                            txtCutOff.Enabled = false;
+                        }
+
+                        if (ass.DueDate != null)
+                        {
+                            chkDue.Checked = true;
+                            txtDue.Text = ass.DueDate.Value.ToShortDateString();
+                            txtDue.Enabled = true;
+                        }
+                        else
+                        {
+                            chkDue.Checked = false;
+                            txtDue.Enabled = false;
+                        }
+
+                        if (ass.SubmissionFrom != null)
+                        {
+                            chkFrom.Checked = true;
+                            txtFrom.Text = ass.SubmissionFrom == null
+                                ? ""
+                                : ass.SubmissionFrom.Value.ToShortDateString();
+                            txtFrom.Enabled = true;
+
+                        }
+                        else
+                        {
+                            chkFrom.Checked = false;
+                            txtFrom.Enabled = false;
+                        }
+
+                        #endregion
+
+                        //here
                     }
-                    txtName.Text = ass.Name;
-                    CKEditor1.Text = ass.Description;
-                    chkDisplayDesc.Checked = ass.DispalyDescriptionOnPage ?? false;
-                    ddlGradeType.SelectedValue = ass.GradeTypeId.ToString();
-                    RangeOrValue = ass.GradeType.RangeOrValue;
-                    if (!ass.GradeType.RangeOrValue)//== "Range"
-                    {
-                        txtGradeToPass.Text = ass.GradeToPass;
-                        txtMaxGradde.Text = ass.MaximumGrade;
-                    }
-                    else
-                    {
-                        ddlMaximumGrade.SelectedValue = ass.MaximumGrade;
-                        ddlGradeToPass.SelectedValue = ass.GradeToPass;
-                    }
-
-
-                    #region File and online submission
-
-                    if (ass.FileSubmission)
-                    {
-                        chkFileSubmission.Checked = true;
-                        txtMaxFiles.Text = (ass.MaximumNoOfUploadedFiles ?? 0).ToString();
-                        txtMaxSize.Text = (ass.MaximumSubmissionSize ?? 0).ToString();
-                        txtMaxFiles.Enabled = true;
-                        txtMaxSize.Enabled = true;
-                    }
-                    else
-                    {
-                        chkFileSubmission.Checked = false;
-                        txtMaxFiles.Enabled = false;
-                        txtMaxSize.Enabled = false;
-                    }
-
-                    if (ass.OnlineText)
-                    {
-
-                        chkOnlineSubmission.Checked = true;
-                        txtWordLimit.Text = ass.WordLimit.ToString();
-                        txtWordLimit.Enabled = true;
-                    }
-                    else
-                    {
-                        chkOnlineSubmission.Checked = false;
-                        txtWordLimit.Enabled = false;
-                    }
-
-                    #endregion
-
-
-                    #region Date
-
-                    if (ass.CutOffDate != null)
-                    {
-                        chkCutOff.Checked = true;
-                        txtCutOff.Text = ass.CutOffDate.Value.ToShortDateString();
-
-                    }
-                    else
-                    {
-                        chkCutOff.Checked = false;
-                        txtCutOff.Enabled = false;
-                    }
-
-                    if (ass.DueDate != null)
-                    {
-                        chkDue.Checked = true;
-                        txtDue.Text = ass.DueDate.Value.ToShortDateString();
-                        txtDue.Enabled = true;
-                    }
-                    else
-                    {
-                        chkDue.Checked = false;
-                        txtDue.Enabled = false;
-                    }
-
-                    if (ass.SubmissionFrom != null)
-                    {
-                        chkFrom.Checked = true;
-                        txtFrom.Text = ass.SubmissionFrom == null ? "" : ass.SubmissionFrom.Value.ToShortDateString();
-                        txtFrom.Enabled = true;
-
-                    }
-                    else
-                    {
-                        chkFrom.Checked = false;
-                        txtFrom.Enabled = false;
-                    }
-
-                    #endregion
-
-
                 }
             }
         }
@@ -302,8 +238,14 @@ namespace One.Views.ActivityResource.Assignments
             //if (string.IsNullOrEmpty(ddlSubmissionType.SelectedValue))
             //    submissionListVali.IsValid = false;
             var isValid = true;
-            if (string.IsNullOrEmpty(ddlGradeType.SelectedValue))
-                gradeListVali.IsValid = false;
+
+            var grade = GradeInActivityUc1.GetGrade();
+
+            if (grade == null)
+                return;
+            //if (string.IsNullOrEmpty(ddlGradeType.SelectedValue))
+            //    gradeListVali.IsValid = false;
+
 
             using (var helper = new DbHelper.ActAndRes())
             {
@@ -340,20 +282,27 @@ namespace One.Views.ActivityResource.Assignments
                                 OnlineText = chkOnlineSubmission.Checked
                             };
 
-                            if (ddlGradeType.SelectedValue != "0")
+                            if (grade.GradeTypeId > 0)
                             {
-                                assg.GradeTypeId = Convert.ToInt32(ddlGradeType.SelectedValue);
-                                if (ddlMaximumGrade.Visible && ddlGradeToPass.Visible)
-                                {
-                                    assg.MaximumGrade = ddlMaximumGrade.SelectedValue;
-                                    assg.GradeToPass = ddlGradeToPass.SelectedValue;
-                                }
-                                else if (txtMaxGradde.Visible && txtGradeToPass.Visible)
-                                {
-                                    assg.MaximumGrade = txtMaxGradde.Text;
-                                    assg.GradeToPass = txtGradeToPass.Text;
-                                }
+                                assg.GradeTypeId = grade.GradeTypeId;
+                                assg.MaximumGrade = grade.MaximumGradeInString;//ddlMaximumGrade.SelectedValue;
+                                assg.GradeToPass = grade.GradeToPassInString;//ddlGradeToPass.SelectedValue;
                             }
+                            
+                            //if (ddlGradeType.SelectedValue != "0")
+                            //{
+                            //    assg.GradeTypeId = Convert.ToInt32(ddlGradeType.SelectedValue);
+                            //    if (ddlMaximumGrade.Visible && ddlGradeToPass.Visible)
+                            //    {
+                            //        assg.MaximumGrade = ddlMaximumGrade.SelectedValue;
+                            //        assg.GradeToPass = ddlGradeToPass.SelectedValue;
+                            //    }
+                            //    else if (txtMaxGradde.Visible && txtGradeToPass.Visible)
+                            //    {
+                            //        assg.MaximumGrade = txtMaxGradde.Text;
+                            //        assg.GradeToPass = txtGradeToPass.Text;
+                            //    }
+                            //}
 
 
 
@@ -472,10 +421,30 @@ namespace One.Views.ActivityResource.Assignments
                                 assg.CreatedDate = DateTime.Now;
                                 assg.CreatedBy = user.Id;
                             }
-
+                            
+                            //var weight = (float)0.0;
+                            var weight = grade.WeightInGradeSheetInFloat ?? 0;
+                            assg.ShowGradeToStudents = grade.ShowGradeToStudents;
+                            //try
+                            //{
+                            //    if (!string.IsNullOrEmpty(txtWeightInGradeSheet.Text))
+                            //    {
+                            //        weight = (float)Convert.ToDecimal(txtWeightInGradeSheet.Text);
+                            //        if (weight < 0 || weight > 100)
+                            //        {
+                            //            valiWeightInGradeSheet.Visible = true;
+                            //            return;
+                            //        }
+                            //    }
+                            //}
+                            //catch
+                            //{
+                            //    valiWeightInGradeSheet.Visible = true;
+                            //    return;
+                            //}
                             if (isValid && Page.IsValid)
                             {
-                                var saved = helper.AddOrUpdateAssignmentActivity(assg, SectionId, restriction, cls);
+                                var saved = helper.AddOrUpdateAssignmentActivity(assg, SectionId, restriction, cls, weight);
                                 if (saved != null)
                                 {
                                     Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" +
@@ -527,45 +496,6 @@ namespace One.Views.ActivityResource.Assignments
             }
         }
 
-        protected void ddlGradeType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            using (var helper = new DbHelper.Grade())
-            {
-                var grade = helper.GetGrade(Convert.ToInt32(ddlGradeType.SelectedValue));
-                //if (txtMaxGradde != null)
-                //{
-                if (grade != null)
-                {
-                    RangeOrValue = grade.RangeOrValue;
-                    SetGradeValuesDataSource(grade);
-                }
-
-                //if (!grade.RangeOrValue)//range
-                //{
-                //    ddlMaximumGrade.Visible = false;
-                //    ddlGradeToPass.Visible = false;
-
-                //    txtGradeToPass.Visible = true;
-                //    txtMaxGradde.Visible = true;
-                //}
-                //else//values
-                //{
-                //    ddlMaximumGrade.Visible = true;
-                //    ddlGradeToPass.Visible = true;
-
-                //    txtGradeToPass.Visible = false;
-                //    txtMaxGradde.Visible = false;
-
-                //    var gradeValues = helper.ListGradeValues(grade.Id);
-                //    ddlMaximumGrade.DataSource = gradeValues;
-                //    ddlGradeToPass.DataSource = gradeValues;
-                //    ddlMaximumGrade.DataBind();
-                //    ddlGradeToPass.DataBind();
-                //}
-                //}
-
-            }
-        }
 
     }
 }

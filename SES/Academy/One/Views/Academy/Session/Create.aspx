@@ -13,27 +13,41 @@
 
     <div class="data-entry-body">
         <h3 class="heading-of-create-edit">
-            <asp:Label ID="lblHeading" runat="server" Text="New Session Create in: "></asp:Label>
+            <asp:Label ID="lblHeading" runat="server" Text="Session edit "></asp:Label>
         </h3>
         <hr />
 
         <div class="data-entry-section">
-            <span style="font-size: 1.1em; font-weight: 700;">
-                <asp:Label ID="lblAcademicHeading" runat="server" Text=""></asp:Label>
-            </span>
-            <br />
-            <div class="data-entry-section-body">
-                &nbsp;&nbsp;&nbsp;<asp:Label ID="lblAcademicStart" runat="server" Text=""></asp:Label>
-                <br />
-                &nbsp;&nbsp;&nbsp;<asp:Label ID="lblAcademicEnd" runat="server" Text=""></asp:Label>
-            </div>
-            <hr />
+
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
 
                     <div class="data-entry-section-body">
 
                         <table>
+                            <tr>
+                                <td><strong>Academic year
+                                </strong>
+                                </td>
+                                <td>
+                                    <strong>
+                                        <asp:Label ID="lblAcademicHeading" runat="server" Text=""></asp:Label>
+                                    </strong>
+                                    <table>
+                                        <tr>
+                                            <td><strong>Start date</strong></td>
+                                            <td>
+                                                <asp:Label ID="lblAcademicStart" runat="server" Text=""></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>End date</strong></td>
+                                            <td>
+                                                <asp:Label ID="lblAcademicEnd" runat="server" Text=""></asp:Label></td>
+                                            <br />
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="data-type">Session Name
                                 </td>
@@ -74,10 +88,11 @@
                         &nbsp;--%>
                         <asp:Button ID="btnSaveAndReturn" runat="server" OnClick="btnSave_Click"
                             ValidationGroup="savegrp"
-                             Text="Save" Width="83px"  />
-                        &nbsp;&nbsp;&nbsp; <asp:Button ID="btnCancel" 
+                            Text="Save" Width="83px" />
+                        &nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnCancel"
                             ValidationGroup="cancelgrp"
-                            runat="server" Text="Cancel" Width="102px" OnClick="btnCancel_Click"/>
+                            runat="server" Text="Cancel" Width="102px" OnClick="btnCancel_Click" />
                         &nbsp;
                         <asp:Label ID="lblError" runat="server" Text="Error while saving" ForeColor="red" Visible="False"></asp:Label>
                     </div>
@@ -191,5 +206,5 @@
 
 </asp:Content>
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="title">
-    Session create
+    Session edit
 </asp:Content>

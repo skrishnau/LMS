@@ -6,7 +6,7 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <div class="data-entry-section">
         <h3 class="heading-of-create-edit">
-            <asp:Label ID="lblHeading" runat="server" Text="New Academic Year"></asp:Label>
+            <asp:Label ID="lblHeading" runat="server" Text="Academic year edit"></asp:Label>
         </h3>
             <hr />
         <div class="data-entry-section-body">
@@ -102,5 +102,5 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="title">
-    Academic Year add
+    Academic Year edit
 </asp:Content>

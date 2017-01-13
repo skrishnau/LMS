@@ -3,7 +3,8 @@
 <div class="auto-st2-hover-display-dark">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div style="border-bottom: 1px solid #a0522d;">
+            <%--  style="border-bottom: 1px solid #a0522d;" --%>
+            <div>
                 <em>
                     <asp:LinkButton ID="LinkButton1" runat="server" Enabled="False" OnClick="LinkButton1_Click">
                         <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Arrow/arrow_down.png" Height="10" Width="10" Visible="False" />

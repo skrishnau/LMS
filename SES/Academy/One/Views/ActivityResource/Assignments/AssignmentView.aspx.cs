@@ -16,7 +16,6 @@ namespace One.Views.ActivityResource.Assignments
         protected void Page_Load(object sender, EventArgs e)
         {
             var user = Page.User as CustomPrincipal;
-            using (var ahelper = new DbHelper.ActAndRes())
                 if (user != null)
                 {
                     try
@@ -33,7 +32,7 @@ namespace One.Views.ActivityResource.Assignments
                             var assId = Convert.ToInt32(aId);
                             AssignmentId = assId;
 
-                            PopulateClasses(ahelper, user);
+                            PopulateClasses( user);
                         }
                         else { Response.Redirect("~/"); }
 
@@ -41,257 +40,282 @@ namespace One.Views.ActivityResource.Assignments
                     catch { }
                 }
         }
-
-        private void PopulateClasses(DbHelper.ActAndRes ahelper, CustomPrincipal user)
+        //DbHelper.ActAndRes ahelper,
+        private void PopulateClasses(CustomPrincipal user)
         {
-            var actres = ahelper.GetActivityResource(true, (byte)(Enums.Activities.Assignment + 1), AssignmentId);
-
-            if (actres != null)
+            using (var ahelper = new DbHelper.ActAndRes())
             {
-                var submitButtonVisiblity = true;
-                var colorChange = false;
-                //Color backColor = Color.White;
-                //Color foreColor = Color.Black;
-                var status = "";
-                var grade = "N/A";
-                var remarks = "";
+                var actres = ahelper.GetActivityResource(true, (byte) (Enums.Activities.Assignment + 1), AssignmentId);
 
-                var assignmentId = AssignmentId;
-
-                #region Restriction
-
-                var elligible = false;
-                var roles = user.GetRoles();
-                if (roles.Contains(DbHelper.StaticValues.Roles.CourseEditor.ToString())
-                                  || roles.Contains(DbHelper.StaticValues.Roles.Manager.ToString())
-                                  || roles.Contains(DbHelper.StaticValues.Roles.Admin)
-                                  || roles.Contains("teacher"))
+                if (actres != null)
                 {
-                    elligible = true;
-                }
 
-                var canView = elligible;
-                if (!canView)
-                    canView = ahelper.EvaluateRestriction(null, actres.Restriction, user.Id);
-                else
-                    submitButtonVisiblity = false;
+                    ahelper.SetActivityResourceView(actres.Id, SubjectId, user.Id);
+                    var submitButtonVisiblity = true;
+                    var colorChange = false;
+                    //Color backColor = Color.White;
+                    //Color foreColor = Color.Black;
+                    var status = "";
+                    var grade = "N/A";
+                    var remarks = "";
 
-                if (canView)
-                {
-                    #region Assignment Load
+                    var assignmentId = AssignmentId;
 
-                    var date = DateTime.Now;
-                    var ass = ahelper.GetAssignment(assignmentId);
-                    if (ass != null)
+                    #region Restriction and all codes
+
+                    var elligible = false;
+                    var roles = user.GetRoles();
+                    if (roles.Contains(DbHelper.StaticValues.Roles.CourseEditor.ToString())
+                        || roles.Contains(DbHelper.StaticValues.Roles.Manager.ToString())
+                        || roles.Contains(DbHelper.StaticValues.Roles.Admin)
+                        || roles.Contains("teacher"))
                     {
-                        var timeRemaining = "N/A";
-                        //actres will be used for restriction n class
-                        lblName.Text = ass.Name;
-                        lblDescription.Text = ass.Description;
+                        elligible = true;
+                    }
 
-                        #region Date and time Calculation
+                    var canView = elligible;
+                    if (!canView)
+                        canView = ahelper.EvaluateRestriction(null, actres.Restriction, user.Id);
+                    //else
+                    //    submitButtonVisiblity = false;
 
-                        if (ass.SubmissionFrom != null)
+                    if (canView)
+                    {
+                        #region Assignment Load
+
+                        var date = DateTime.Now;
+                        var ass = ahelper.GetAssignment(assignmentId);
+                        if (ass != null)
                         {
-                            if (ass.SubmissionFrom > date)
+                            var timeRemaining = "N/A";
+                            //actres will be used for restriction n class
+                            lblName.Text = ass.Name;
+                            lblPageTitle.Text = ass.Name;
+                            lblDescription.Text = ass.Description;
+
+                            #region Date and time Calculation
+
+                            if (ass.SubmissionFrom != null)
                             {
-                                var rem = (ass.SubmissionFrom.Value - date);
-                                timeRemaining = (rem.Days > 0 ? (rem.Days + " days ") : "")
-                                    + (rem.Hours > 0 ? (rem.Hours + " hours ") : "")
-                                    + (rem.Minutes > 0 ? (rem.Minutes + " minutes ") : "")
-                                    + " for submission start.";
-                                submitButtonVisiblity = false;
+                                if (ass.SubmissionFrom > date)
+                                {
+                                    var rem = (ass.SubmissionFrom.Value - date);
+                                    timeRemaining = (rem.Days > 0 ? (rem.Days + " days ") : "")
+                                                    + (rem.Hours > 0 ? (rem.Hours + " hours ") : "")
+                                                    + (rem.Minutes > 0 ? (rem.Minutes + " minutes ") : "")
+                                                    + " for submission start.";
+                                    submitButtonVisiblity = false;
+                                }
+
                             }
 
-                        }
-
-                        if (ass.DueDate != null)
-                        {
-                            lblDueDate.Text = ass.DueDate.Value.ToString("f");
-                            if (ass.DueDate < date)
+                            if (ass.DueDate != null)
                             {
-                                var rem = (date - ass.DueDate.Value);
-                                timeRemaining = (rem.Days > 0 ? (rem.Days + " days ") : "")
-                                    + (rem.Hours > 0 ? (rem.Hours + " hours ") : "")
-                                    + (rem.Minutes > 0 ? (rem.Minutes + " minutes ") : "")
-                                    + " elapsed since due date.";
-                                //timeRemaining = "Due date finished on " + ass.DueDate.Value.ToString("f");
-                                colorChange = true;
-                                //backColor = Color.DeepPink;
-                                //foreColor = Color.White;
+                                lblDueDate.Text = ass.DueDate.Value.ToString("f");
+                                if (ass.DueDate < date)
+                                {
+                                    var rem = (date - ass.DueDate.Value);
+                                    timeRemaining = (rem.Days > 0 ? (rem.Days + " days ") : "")
+                                                    + (rem.Hours > 0 ? (rem.Hours + " hours ") : "")
+                                                    + (rem.Minutes > 0 ? (rem.Minutes + " minutes ") : "")
+                                                    + " elapsed since due date.";
+                                    //timeRemaining = "Due date finished on " + ass.DueDate.Value.ToString("f");
+                                    colorChange = true;
+                                    //backColor = Color.DeepPink;
+                                    //foreColor = Color.White;
+                                }
+                                else
+                                {
+                                    var rem = (ass.DueDate.Value - date);
+                                    timeRemaining = (rem.Days > 0 ? (rem.Days + " days ") : "")
+                                                    + (rem.Hours > 0 ? (rem.Hours + " hours ") : "")
+                                                    + (rem.Minutes > 0 ? (rem.Minutes + " minutes ") : "")
+                                                    + " for submission end.";
+                                }
                             }
                             else
                             {
-                                var rem = (ass.DueDate.Value - date);
-                                timeRemaining = (rem.Days > 0 ? (rem.Days + " days ") : "")
-                                    + (rem.Hours > 0 ? (rem.Hours + " hours ") : "")
-                                    + (rem.Minutes > 0 ? (rem.Minutes + " minutes ") : "")
-                                    + " for submission end.";
+                                lblDueDate.Text = "N/A";
                             }
-                        }
-                        else
-                        {
-                            lblDueDate.Text = "N/A";
-                        }
-                        if (ass.CutOffDate != null && ass.CutOffDate < date)
-                        {
-                            timeRemaining = "Sumission period end.";
-                            submitButtonVisiblity = false;
-                        }
-                        lblTimeRemaining.Text = timeRemaining;
-
-
-                        #endregion
-
-
-                    #endregion
-
-                        foreach (var c in actres.ActivityClasses)
-                        {
-                            var userclass = c.SubjectClass.ClassUsers.FirstOrDefault(y => y.UserId == user.Id);
-                            if (userclass != null)
+                            if (ass.CutOffDate != null && ass.CutOffDate < date)
                             {
-                                #region Each class view initialize
+                                timeRemaining = "Sumission period end.";
+                                submitButtonVisiblity = false;
+                            }
+                            lblTimeRemaining.Text = timeRemaining;
 
-                                var subCls = c.SubjectClass;
-                                var classUc = (ClassGradeDisplayUc)
-                                       Page.LoadControl("~/Views/ActivityResource/Grading/ClassGradeDisplayUc.ascx");
-                                classUc.SetData(subCls.IsRegular ? subCls.GetName : subCls.Name);
-                                if (subCls.SessionComplete ?? false)
+
+                            #endregion
+
+
+                            #endregion
+
+                            foreach (var c in actres.ActivityClasses)
+                            {
+                                var userclass = c.SubjectClass.ClassUsers.FirstOrDefault(y => y.UserId == user.Id);
+                                if (userclass != null)
                                 {
-                                    classUc.Enable = false;
-                                }
-                                pnlGradeList.Controls.Add(classUc);
-                                pnlGradeList.Controls.Add(new Literal() { Text = "<br />" });
-                                pnlGradeList.Controls.Add(new Literal() { Text = "<br />" });
+                                    #region Each class view initialize
 
-                                #endregion
-
-                                if (userclass.Role.RoleName == "student")
-                                {
-                                    #region submit view display
-
-                                    if (!(subCls.SessionComplete ?? false))
+                                    var subCls = c.SubjectClass;
+                                    var classUc = (ClassGradeDisplayUc)
+                                        Page.LoadControl("~/Views/ActivityResource/Grading/ClassGradeDisplayUc.ascx");
+                                    classUc.SetData(subCls.IsRegular ? subCls.GetName : subCls.Name);
+                                    if (subCls.SessionComplete ?? false)
                                     {
-                                        //disable the submit button
-                                        var stdGradeUc = (StudentGradeDispalyUc)
-                                            Page.LoadControl("~/Views/ActivityResource/Grading/StudentGradeDispalyUc.ascx");
+                                        classUc.Enable = false;
+                                    }
+                                    pnlGradeList.Controls.Add(classUc);
+                                    pnlGradeList.Controls.Add(new Literal() {Text = "<br />"});
+                                    pnlGradeList.Controls.Add(new Literal() {Text = "<br />"});
 
-                                        //stdGradeUc.RedirectUrl = "~/Views/ActivityResource/Grading/?actResId=" + actres.Id +
-                                        //                                "&SubId=" + SubjectId +
-                                        //                                "&secId=" + SectionId;
+                                    #endregion
 
-                                        stdGradeUc.RedirectUrl = "~/Views/ActivityResource/Assignments/SubmitAssignmentCreate.aspx?arId="
-                                                                 + AssignmentId + "&SubId=" + SubjectId + "&secId=" +
-                                                                 SectionId + "&ucId=" + userclass.Id;
+                                    if (userclass.Role.RoleName == "student")
+                                    {
+                                        #region submit view display
 
-                                        stdGradeUc.SubmitButtonVisible = ass.FileSubmission || ass.OnlineText;
-
-                                        #region Submissions
-
-                                        var subm = ass.Submissions.FirstOrDefault(x => x.UserClass.UserId == user.Id);
-                                        if (subm != null)
+                                        classUc.ShowStudentListTableHeading = false;
+                                        if (!(subCls.SessionComplete ?? false))
                                         {
-                                            status = "Submitted on : "
-                                                + ((subm.ModifiedDate == null) ? subm.SubmittedDate.ToString("f")
-                                                : subm.ModifiedDate.Value.ToString("f"));
-                                            stdGradeUc.SubmitButtonText = "Edit Submission";
-                                        }
-                                        else
-                                        {
-                                            status = "Not submitted yet";
-                                        }
+                                            //disable the submit button
+                                            var stdGradeUc = (StudentGradeDispalyUc)
+                                                Page.LoadControl(
+                                                    "~/Views/ActivityResource/Grading/StudentGradeDispalyUc.ascx");
 
-                                        var obtgrade = actres.ActivityGradings.FirstOrDefault(x => x.UserClassId == subm.UserClassId);
-                                        var submissionEnabled = true;
-                                        if (obtgrade != null)
-                                        {
-                                            if (obtgrade.ObtainedGradeId != null)
+                                            //stdGradeUc.RedirectUrl = "~/Views/ActivityResource/Grading/?actResId=" + actres.Id +
+                                            //                                "&SubId=" + SubjectId +
+                                            //                                "&secId=" + SectionId;
+
+                                            stdGradeUc.RedirectUrl = "~/Views/ActivityResource/Assignments/SubmitAssignmentCreate.aspx?arId="
+                                                                     + AssignmentId + "&SubId=" + SubjectId + "&secId=" +
+                                                                     SectionId + "&ucId=" + userclass.Id;
+
+                                            stdGradeUc.SubmitButtonVisible = ass.FileSubmission || ass.OnlineText;
+
+                                            #region Submissions
+
+                                            var subm = ass.Submissions.FirstOrDefault(x => x.UserClass.UserId == user.Id);
+                                            var submissionEnabled = true;
+                                            if (subm != null)
                                             {
-                                                grade = obtgrade.ObtainedGrade.Value;
+                                                status = "Submitted on : "
+                                                         +
+                                                         ((subm.ModifiedDate == null)
+                                                             ? subm.SubmittedDate.ToString("f")
+                                                             : subm.ModifiedDate.Value.ToString("f"));
+                                                stdGradeUc.SubmitButtonText = "Edit Submission";
+                                                var obtgrade = actres.ActivityGradings.FirstOrDefault(
+                                                                   x => x.UserClassId == subm.UserClassId);
+                                                if (obtgrade != null)
+                                                {
+                                                    if (obtgrade.ObtainedGradeId != null)
+                                                    {
+                                                        grade = obtgrade.ObtainedGrade.Value;
+                                                    }
+                                                    else
+                                                    {
+                                                        grade = (obtgrade.ObtainedGradeMarks ?? 0).ToString("F");
+                                                    }
+                                                    submissionEnabled = false;//since already graded
+                                                    remarks = obtgrade.Remarks;
+                                                }
                                             }
                                             else
                                             {
-                                                grade = (obtgrade.ObtainedGradeMarks ?? 0).ToString("F");
+                                                status = "Not submitted yet";
                                             }
-                                            submissionEnabled = false;
-                                            remarks = obtgrade.Remarks;
+
+                                           
+
+
+                                            #endregion
+
+                                            classUc.AddControlsOusideOfTable(stdGradeUc);
+                                            stdGradeUc.SubmitButtonVisible = submitButtonVisiblity;
+                                            if (colorChange)
+                                            {
+                                                stdGradeUc.SubmitDueIndicator = true;
+
+                                                lblTimeRemaining.ForeColor = Color.Red;
+
+                                                //lblTimeRemaining.ForeColor = foreColor;
+
+                                                //stdGradeUc.SubmitButtonBackColor = backColor;
+                                                //stdGradeUc.SubmitButtonForeColor = foreColor;
+                                            }
+                                            stdGradeUc.SetData(status, grade, remarks, submissionEnabled,ass.ShowGradeToStudents);
                                         }
 
 
                                         #endregion
 
-                                        classUc.AddControlsOusideOfTable(stdGradeUc);
-                                        stdGradeUc.SubmitButtonVisible = submitButtonVisiblity;
-                                        if (colorChange)
-                                        {
-                                            stdGradeUc.SubmitDueIndicator = true;
-
-                                            lblTimeRemaining.ForeColor = Color.Red;
-
-                                            //lblTimeRemaining.ForeColor = foreColor;
-
-                                            //stdGradeUc.SubmitButtonBackColor = backColor;
-                                            //stdGradeUc.SubmitButtonForeColor = foreColor;
-                                        }
-                                        stdGradeUc.SetData(status, grade,remarks, submissionEnabled);
+                                        //ucStdRole.Add(userclass);
                                     }
-
-
-                                    #endregion
-                                    //ucStdRole.Add(userclass);
-                                }
-                                else if (userclass.Role.RoleName == "teacher")
-                                {
-                                    //grade uc display for that class
-
-                                    #region Grading view display , start of teacher role
-
-                                    var any = false;
-                                    foreach (var clsUser in subCls.ClassUsers)
+                                    else if (userclass.Role.RoleName == "teacher"
+                                        || userclass.Role.RoleName == "manager")
                                     {
-                                        //initialize each user uc
-                                        if (clsUser.Role.RoleName == "student" && !(clsUser.Void ?? false))
-                                        {
-                                            var userUc = (UserGradeDisplayUc)
-                                                Page.LoadControl(
-                                                    "~/Views/ActivityResource/Grading/UserGradeDisplayUc.ascx");
-                                            userUc.SectionId = SectionId;
-                                            userUc.SubjectId = SubjectId;
-                                            userUc.SetData(clsUser, actres.Id, ass.Id, actres.ActivityResourceType);
-                                            classUc.AddControls(userUc);
-                                            any = true;
+                                        //grade uc display for that class
 
+                                        #region Grading view display , start of teacher role
+
+                                        classUc.ShowStudentListTableHeading = true;
+                                        var any = false;
+                                        foreach (var clsUser in subCls.ClassUsers.Where(x=>!(x.Void??false)))
+                                        {
+                                            //initialize each user uc
+                                            if (clsUser.Role.RoleName == "student" && !(clsUser.Void ?? false))
+                                            {
+                                                var userUc = (UserGradeDisplayUc)
+                                                    Page.LoadControl(
+                                                        "~/Views/ActivityResource/Grading/UserGradeDisplayUc.ascx");
+                                                userUc.SectionId = SectionId;
+                                                userUc.SubjectId = SubjectId;
+                                                userUc.SetData(clsUser, actres.Id, ass.Id, actres.ActivityResourceType);
+                                                classUc.AddControls(userUc);
+                                                any = true;
+
+                                            }
+                                           
                                         }
-                                    }
 
-                                    if (!any)
-                                    {
-                                        classUc.AddControlsInsideTable(new Literal()
+                                        if (!any)
                                         {
-                                            Text = "<tr>" +
-                                                   "<td>" +
-                                                   "No students found." +
-                                                   "</td>" +
-                                                   "</tr>"
-                                        }, false);
-                                    }
+                                            classUc.AddControlsInsideTable(new Literal()
+                                            {
+                                                Text = "<tr>" +
+                                                       "<td>" +
+                                                       "No students found." +
+                                                       "</td>" +
+                                                       "</tr>"
+                                            }, false);
+                                        }
 
-                                    #endregion of teacher role
+                                        #endregion of teacher role
+
+                                    }
 
                                 }
-
-                            }
-                        }//foreach end
+                            } //foreach end
+                        }
+                        else
+                        {
+                            Response.Redirect("~/");
+                        }
                     }
-                    else { Response.Redirect("~/"); }
+                    else
+                    {
+                        Response.Redirect("~/");
+                    }
+
+                    #endregion
+
                 }
-                else { Response.Redirect("~/"); }
-
-                #endregion
-
+                else
+                {
+                    Response.Redirect("~/");
+                }
             }
-            else { Response.Redirect("~/"); }
         }
 
 

@@ -15,12 +15,12 @@ namespace One.Views.Class
             if (!IsPostBack)
             {
                 var courseId = Request.QueryString["cId"];
+                var classId = Request.QueryString["ccId"];
                 if (courseId != null)
                 {
                     //hidCourseId.Value = courseId;
                     try
                     {
-                        
                         CourseSessionCreateUC1.SetCourseId(courseId);
                         using (var helper = new DbHelper.Subject())
                         {
@@ -30,6 +30,7 @@ namespace One.Views.Class
                                 CourseSessionCreateUC1.CourseName = course.FullName;
                             }
                         }
+
                     }
                     catch { Response.Redirect("~/Views/Course/"); }
                 }

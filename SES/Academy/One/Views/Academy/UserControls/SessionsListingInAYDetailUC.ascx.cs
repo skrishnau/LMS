@@ -38,51 +38,46 @@ namespace One.Views.Academy.UserControls
             get { return lnkSessionName.Visible; }
         }
 
-        public void LoadSessionData(int academicYearId, int sessionId, string name, DateTime start, DateTime end
-          , bool active, bool sesComplete,bool editable,bool showSessionName=true)
+        public void LoadSessionData(int academicYearId, int sessionId, string sessionName, DateTime start, DateTime end
+          , bool active, bool sesComplete, bool edit)
         {
             hidAcademicYearId.Value = academicYearId.ToString();
             hidSessionId.Value = sessionId.ToString();
 
-            if (showSessionName)
-            {
-                lnkSessionName.Text = name; //
-                lblActiveIndicator.Text = ((sesComplete) ? " (Complete)" : (active ? " (Active)" : ""));
-            }
-            else
-            {
-                lnkSessionName.Visible = false;
-                lblActiveIndicator.Visible = false;
-            }
+            lnkSessionName.Text = sessionName; //
+            lblActiveIndicator.Text = ((sesComplete) ? " (Complete)" : (active ? " (Active)" : ""));
 
-            lnkSessionName.NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?aId=" 
+            lnkEdit.Visible = edit;
+            lnkDelete.Visible = edit;
+
+            if (edit)
+            {
+                lnkEditClasses.NavigateUrl = "~/Views/Academy/ClassAssign/ClassAssignCreate.aspx?aId="
                     + academicYearId + "&sId=" + sessionId;
-            lblStartDate.Text = start.ToShortDateString();
-
-            lblEndDate.Text = end.ToShortDateString();
-
-            if (editable)
-            {
-                lnkEditClasses.NavigateUrl = "~/Views/Academy/ClassAssign/ClassAssignCreate.aspx?aId=" 
-                    + academicYearId + "&sId=" + sessionId;
-               
+                lnkEdit.NavigateUrl = "~/Views/Academy/Session/Create.aspx?aId=" + academicYearId + "&sId=" + sessionId;
+                if ((active || sesComplete))
+                    lnkDelete.Visible = false;
+                else
+                    lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                                            DbHelper.StaticValues.Encode("session") + "&acaId=" + academicYearId+
+                                            "&sessId="+sessionId;
             }
+            lnkSessionName.NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?aId="
+                    + academicYearId + "&sId=" + sessionId;
+
+            lblStartDate.Text = start.ToString("D");
+            lblEndDate.Text = end.ToString("D");
             //GetPrograms in these sessions and add to pnlPrograms
             LoadPrograms();
-            lnkEditClasses.Visible = !sesComplete && editable;
+            lnkEditClasses.Visible = !sesComplete && edit;
 
             if (sesComplete)
             {
-                divBody.Style.Add("border-left","10px solid lightgrey");
-                //pnlbody.BackColor = //Color.LightGray;
-                //Color.FromArgb(225, 225, 225);
+                divBody.Style.Add("border-left", "10px solid lightgrey");
             }
             else if (active)
             {
                 divBody.Style.Add("border-left", "10px solid green");
-                
-                //pnlbody.BackColor = //Color.LightGreen;
-                //    Color.FromArgb(193, 252, 193);
             }
         }
 

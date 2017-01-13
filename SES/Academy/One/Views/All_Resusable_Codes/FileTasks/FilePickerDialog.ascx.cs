@@ -356,5 +356,13 @@ namespace One.Views.All_Resusable_Codes.FileTasks
         #endregion
 
 
+
+        public int LocalId
+        {
+            set
+            {
+                FilePicker1.LocalId = value;
+            }
+        }
     }
 }

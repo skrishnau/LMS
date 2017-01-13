@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 
 namespace One.Views.Academy.UserControls
 {
@@ -18,12 +19,25 @@ namespace One.Views.Academy.UserControls
 
         public void LoadAcademicYear(int academicYearId, string name, DateTime startDate
             , DateTime endDate, bool active, List<Academic.DbEntities.Session> sessionList
-            , bool complete)
+            , bool complete, bool edit)
         {
             lnkAcademicYearName.Text = " " + name + " ";
-            lnkAcademicYearName.NavigateUrl = "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + academicYearId;
-            lblEndDate.Text = endDate.ToShortDateString();
-            lblStartDate.Text = startDate.ToShortDateString();
+            lnkAcademicYearName.NavigateUrl = "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + academicYearId
+                + "&edit=" + (edit ? "1" : "0");
+            if (edit)
+            {
+                lnkEdit.NavigateUrl = "~/Views/Academy/AcademicYear/AcademyCreate.aspx?aId=" + academicYearId;
+                if ((active || complete))
+                    lnkDelete.Visible = false;
+                else
+                    lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                                            DbHelper.StaticValues.Encode("academicYear") + "&acaId=" + academicYearId;
+            }
+            lnkEdit.Visible = edit;
+            lnkDelete.Visible = edit;
+
+            lblEndDate.Text = endDate.ToString("D");
+            lblStartDate.Text = startDate.ToString("D");
             if (complete)
             {
                 lblActiveIndicator.Text = " (Complete)";
@@ -69,11 +83,11 @@ namespace One.Views.Academy.UserControls
                     if (active && sess.IsActive)
                     {
                         //hypSes.BackColor = Color.LightGreen;
-                        var activeIndicator = new Label() { Text = " (Active)", ForeColor = Color.Green };
+                        var activeIndicator = new Label() { Text = " (Active)", ForeColor = Color.DarkGreen };
                         pnlSessionsList.Controls.Add(activeIndicator);
                     }
                     //hypSes.Attributes.Add("margin","2px 0");
-                    pnlSessionsList.Controls.Add(new Literal() { Text = "<br />" });
+                    pnlSessionsList.Controls.Add(new Literal() { Text = ", " });
                     //pnlSessionsList.Controls.Add(new HtmlGenericControl("br"));
                 }
             }

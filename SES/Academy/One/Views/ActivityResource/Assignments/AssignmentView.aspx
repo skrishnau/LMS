@@ -53,27 +53,14 @@
         </div>
 
         <asp:Panel ID="pnlGradeList" runat="server"></asp:Panel>
-
-        <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
-            <asp:View ID="View1" runat="server">
-                <br />
-
-                <%--<asp:Button ID="btnSubmit" runat="server" Text="Submit" Visible="False" OnClick="btnSubmit_OnClick" />--%>
-            </asp:View>
-
-            <asp:View ID="View2" runat="server">
-                <%--<uc1:TeacherViewUc runat="server" ID="TeacherViewUc" />--%>
-
-                <%--<uc1:GradeUc runat="server" ID="GradeUc1" />--%>
-                <%--<asp:Button ID="btnGrade" runat="server" Text=" Grade " OnClick="btnGrade_OnClick" />--%>
-            </asp:View>
-
-        </asp:MultiView>
-
     </div>
 
     <asp:HiddenField ID="hidAssignmentId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSectionId" runat="server" Value="0" />
     <asp:HiddenField ID="hidUserClassId" runat="server" Value="0" />
+</asp:Content>
+
+<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="title">
+    <asp:Literal ID="lblPageTitle" runat="server" Text="Assignment view"></asp:Literal>
 </asp:Content>

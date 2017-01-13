@@ -95,12 +95,12 @@ namespace One.Views.Course.Section
                         var ars = ahelper.ListActivitiesAndResourcesOfSection(UserId, SectionId, elligible);
                         foreach (var ar in ars)
                         {
-
+                            //foreach(var cls in ar.)
                             var arUc =
                                 (ActivityAndResourceUc)
                                     Page.LoadControl("~/Views/Course/Section/ActivityAndResourceUc.ascx");
 
-                            arUc.SetData(ar.ActivityOrResource, ar.Name, ar.Description
+                            arUc.SetData(ar.ActivityOrResource,ar.New,ar.NewSubmission, ar.Name, ar.Description
                                 , ar.ActivityResourceId,ar.Id, ar.ActivityResourceType, ar.IconUrl, ar.NavigateUrl
                                 , SectionId, EditEnabled, SubjectId, ar.CreateUrl,ar.ActivityResourceTypeName, ar.Enable);
 

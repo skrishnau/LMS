@@ -43,6 +43,7 @@
         </tr>
     </table>
     <asp:HiddenField ID="hidPageKey" runat="server" Value="0" />
+            <asp:HiddenField ID="hidLocalId" runat="server" Value="1" />
             <asp:HiddenField ID="hidFileSaveDirectory" runat="server" Value="" />
             <asp:HiddenField ID="hidFileAcquireMode" runat="server" Value="Multiple" />
 </div>
