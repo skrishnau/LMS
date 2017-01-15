@@ -31,7 +31,7 @@
                             ControlToValidate="txtName" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr runat="server" ID="one1" Visible="False" >
+                <tr runat="server" id="one1" visible="False">
                     <td class="data-type">College Type*</td>
                     <td class="data-value">
                         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
@@ -51,7 +51,7 @@
                 </tr>
 
 
-                <tr runat="server" ID="two2" Visible="False">
+                <tr runat="server" id="two2" visible="False">
                     <td class="data-type">School location *</td>
                     <td class="data-value">
                         <asp:DropDownList ID="ddlCountry" runat="server"></asp:DropDownList>
@@ -68,8 +68,12 @@
                     <td class="data-value">
                         <asp:TextBox ID="txtPhone" runat="server" TextMode="Phone"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="valiPhone" runat="server"
-                            ControlToValidate="cmbSchoolType"
+                            ControlToValidate="txtPhone"
                             ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                        <%-- <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                            ForeColor="red" ControlToValidate="txtPhone"
+                            ValidationExpression="^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$"
+                            ErrorMessage="Not a phone number"></asp:RegularExpressionValidator>--%>
                     </td>
                 </tr>
 
@@ -80,6 +84,10 @@
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
                             ErrorMessage="Required" ControlToValidate="txtEmail" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="regexEmailValid" runat="server" ForeColor="red"
+                            ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                            ControlToValidate="txtEmail" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
+
                     </td>
                 </tr>
 
@@ -124,6 +132,22 @@
 
                         </div>
                         <uc1:FilesDisplay runat="server" ID="FilesDisplay1" />
+                        <script>
+                            //function AssemblyFileUpload_Started(sender, args) {
+                            //    var filename = args.get_fileName();
+                            //    var ext = filename.substring(filename.lastIndexOf(".") + 1);
+                            //    if (ext != 'png') {
+                            //        throw {
+                            //            name: "Invalid File Type",
+                            //            level: "Error",
+                            //            message: "Invalid File Type (Only .png)",
+                            //            htmlMessage: "Invalid File Type (Only .png)"
+                            //        }
+                            //        return false;
+                            //    }
+                            //    return true;
+                            //}
+                        </script>
                         <ajaxToolkit:AsyncFileUpload ID="file_upload" runat="server" Visible="True" />
                         <%--<asp:FileUpload ID="FileUpload1" runat="server" />--%>
                         <%--<div style="float: left;">

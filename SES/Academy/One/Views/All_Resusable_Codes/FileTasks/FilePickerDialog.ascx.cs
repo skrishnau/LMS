@@ -38,6 +38,21 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             }
         }
 
+        //public string FileType = "All";
+        public string FileType
+        {
+            set { FilePicker1.FileType = value; }
+        }
+        /// <summary>
+        /// preceeded by '.'
+        /// </summary>
+        //public string FileExtension = "All";
+
+        public string FileExtension
+        {
+            set { FilePicker1.FileExtension = value; }
+        }
+
         public string FileSaveDirectory
         {
             get { return hidFileSaveDirectory.Value; }

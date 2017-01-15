@@ -66,6 +66,27 @@ namespace One.Views.All_Resusable_Codes.FileTasks
 
         }
 
+        //public string FileType = "All";
+
+        public string FileType
+        {
+            get { return hidFileType.Value; }
+            set { hidFileType.Value = value; }
+        }
+
+        /// <summary>
+        /// preceeded by '.'
+        /// </summary>
+        //public string FileExtension = "All";
+        public string FileExtension
+        {
+            get { return hidFileExtension.Value; }
+            set { hidFileExtension.Value = value; }
+        }
+
+
+        private bool _unwantedfileType = false;
+
         private void Upload(AjaxControlToolkit.AsyncFileUploadEventArgs e)
         {
             if (string.IsNullOrEmpty(FileSaveDirectory))
@@ -76,6 +97,30 @@ namespace One.Views.All_Resusable_Codes.FileTasks
 
             var fileName = Path.GetFileName(e.FileName);
             if (fileName == null) return;
+
+            //ADDED later
+            if (FileType != "All")
+            {
+                if (!file_upload.ContentType.ToLower().Contains(FileType.ToLower()))
+                {
+                    lblMessage.Visible = true;
+                    lblMessage.Text = "Only " + FileType + " allowed";
+                    _unwantedfileType = true;
+                    return;
+                }
+
+            }
+            //added later
+            if (FileExtension != "All")
+            {
+                if (Path.GetExtension(file_upload.FileName.ToLower()) != (FileExtension.ToLower()))
+                {
+                    lblMessage.Visible = true;
+                    lblMessage.Text = "Only " + FileExtension.TrimStart('.') + " files allowed";
+                    _unwantedfileType = true;
+                    return;
+                }
+            }
 
             //var extension = Path.GetExtension(fileName);
             //using (var helper = new Academic.DbHelper.DbHelper.WorkingWithFiles())
@@ -104,7 +149,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
 
                 if (fileName.Length > 7)
                 {
-                    wrappedName = fileName.Substring(0, 7)+"...";
+                    wrappedName = fileName.Substring(0, 7) + "...";
                 }
 
                 //for (var i=0;i<fileName.Length;i++)// f in fileName)
@@ -124,10 +169,11 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                     FileSizeInBytes = file_upload.PostedFile.ContentLength
                     ,
                     FileType = file_upload.PostedFile.ContentType
-                    ,Visible = true
+                    ,
+                    Visible = true
                 };
                 var files = Session["FilesList" + PageKey] as List<FileResourceEventArgs>;
-                var localId = (files==null?0:files.Count)+1;
+                var localId = (files == null ? 0 : files.Count) + 1;
                 LocalId = localId;
                 valuetoSave.LocalId = localId.ToString();
                 //LocalId++;
@@ -143,6 +189,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
         }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            //ADDED later
             UploadClick();
             //if (UploadClicked != null)
             //{
@@ -155,6 +202,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             var latest = Session["LatestFile" + PageKey] as FileResourceEventArgs;
             if (latest != null)
             {
+
                 if (UploadClicked != null)
                 {
                     if (FileAcquireMode == Enums.FileAcquireMode.Single)
@@ -174,7 +222,46 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             }
             else if (UploadClicked != null)
             {
-                UploadClicked(this, null);
+                if (FileType != "All")
+                {
+                    lblMessage.Visible = true;
+                    lblMessage.Text = "Only " + FileType + " allowed";
+                    //return;
+                    //if (!latest.FileType.ToLower().Contains(FileType.ToLower()))
+                    //{
+
+                    //}
+                }
+                if (FileExtension != "All")
+                {
+                    lblMessage.Visible = true;
+                    lblMessage.Text = "Only " + FileExtension.TrimStart('.') + " files allowed";
+                    //if (Path.GetExtension(latest.FilePath.ToLower()) != (FileExtension.ToLower()))
+                    //{
+                    //    //return;
+                    //}
+                }
+                //UploadClicked(this, null);
+
+                //original
+                //if (FileType != "All")
+                //{
+                //    if (!latest.FileType.ToLower().Contains(FileType.ToLower()))
+                //    {
+                //        lblMessage.Visible = true;
+                //        lblMessage.Text = "Only " + FileType + " allowed";
+                //        return;
+                //    }
+                //}
+                //if (FileExtension != "All")
+                //{
+                //    if (Path.GetExtension(latest.FilePath.ToLower()) != (FileExtension.ToLower()))
+                //    {
+                //        lblMessage.Visible = true;
+                //        lblMessage.Text = "Only " + FileExtension.TrimStart('.') + " files allowed";
+                //        return;
+                //    }
+                //}
             }
             Session["LatestFile" + PageKey] = null;
         }

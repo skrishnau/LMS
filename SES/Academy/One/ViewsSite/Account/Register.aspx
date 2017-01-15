@@ -10,6 +10,7 @@
             text-align: right;
             padding: 8px;
         }
+
         .reg-field {
             text-align: left;
             padding: 8px;
@@ -26,21 +27,20 @@
             </div>
             <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
+                   <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>--%>
 
                             <div style="text-align: center;">
                                 <table>
-                                    
+
                                     <tr>
                                         <td class="reg-data">First Name </td>
                                         <td class="reg-field">
                                             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                                             *
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
                                                 ErrorMessage="Required" ForeColor="red"
-                                                ControlToValidate="txtUserName"
-                                                ></asp:RequiredFieldValidator>
+                                                ControlToValidate="txtUserName"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -49,7 +49,7 @@
                                             <asp:TextBox ID="txtMiddleName" runat="server"></asp:TextBox>
                                         </td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <td class="reg-data">Last Name </td>
                                         <td class="reg-field">
@@ -62,38 +62,35 @@
                                         <td class="reg-field">
                                             <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
                                             *
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                                                 ErrorMessage="Required" ForeColor="red"
-                                                ControlToValidate="txtUserName"
-                                                ></asp:RequiredFieldValidator>
+                                                ControlToValidate="txtUserName"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="reg-data">Password: </td>
                                         <td class="reg-field">
                                             <asp:TextBox ID="txtPassword" runat="server"
-                                                TextMode="Password"
-                                                ></asp:TextBox>
+                                                TextMode="Password"></asp:TextBox>
                                             *
-                                            <ajaxToolkit:PasswordStrength TargetControlID="txtPassword" ID="PasswordStrength1" runat="server" PreferredPasswordLength="6"/>
-                                              <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                                                  
+                                            <ajaxToolkit:PasswordStrength TargetControlID="txtPassword" ID="PasswordStrength1" runat="server" PreferredPasswordLength="6" />
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                                                 ErrorMessage="Required" ForeColor="red"
-                                                ControlToValidate="txtPassword"
-                                                ></asp:RequiredFieldValidator>
+                                                ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td  class="reg-data">Confirm Password: </td>
+                                        <td class="reg-data">Confirm Password: </td>
                                         <td class="reg-field">
                                             <asp:TextBox ID="txtConfirmPassword" runat="server"
-                                                TextMode="Password"                                                
-                                                ></asp:TextBox>
+                                                TextMode="Password"></asp:TextBox>
                                             *
-                                              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                                                ErrorMessage="Required" ForeColor="red"
-                                                ControlToValidate="txtConfirmPassword"
-                                                ></asp:RequiredFieldValidator>
+                                              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                                                  ErrorMessage="Required" ForeColor="red"
+                                                  ControlToValidate="txtConfirmPassword"></asp:RequiredFieldValidator>
+                                            <asp:CompareValidator ID="CompareValidator1" runat="server" ForeColor="red"
+                                                ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword"
+                                                ErrorMessage="Paasword and Confirm Password must match"></asp:CompareValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -101,10 +98,12 @@
                                         <td class="reg-field">
                                             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                                             *
-                                              <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
-                                                ErrorMessage="Required" ForeColor="red"
-                                                ControlToValidate="txtEmail"
-                                                ></asp:RequiredFieldValidator>
+                                              <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
+                                                  ErrorMessage="Required" ForeColor="red"
+                                                  ControlToValidate="txtEmail"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="regexEmailValid" runat="server" ForeColor="red"
+                                                ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                                                ControlToValidate="txtEmail" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -113,37 +112,36 @@
                                             <asp:DropDownList ID="ddlSecurityQuestion" runat="server" Height="20px">
                                             </asp:DropDownList>
                                             *
-                                               <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
-                                                ErrorMessage="Required" ForeColor="red"
-                                                ControlToValidate="ddlSecurityQuestion"
-                                                ></asp:RequiredFieldValidator>
+                                               <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
+                                                   ErrorMessage="Required" ForeColor="red"
+                                                   ControlToValidate="ddlSecurityQuestion"></asp:RequiredFieldValidator>
                                         </td>
-                                    </tr> 
+                                    </tr>
                                     <tr>
                                         <td class="reg-data">Security Answer: </td>
                                         <td class="reg-field">
                                             <asp:TextBox ID="txtSecurityAnswer" runat="server"></asp:TextBox>
                                             *
-                                               <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
-                                                ErrorMessage="Required" ForeColor="red"
-                                                ControlToValidate="txtSecurityAnswer"
-                                                ></asp:RequiredFieldValidator>
+                                               <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
+                                                   ErrorMessage="Required" ForeColor="red"
+                                                   ControlToValidate="txtSecurityAnswer"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
 
                                 </table>
-                                <div style="width: 180px;">
-                                    <asp:Label ID="lblPasswordError" runat="server" ForeColor="red" Visible="false" ClientIDMode="Static"
-                                        Text="The password and confirm password must match."></asp:Label>
-                                </div>
-                                <br/>
-                                <div style="text-align: left; margin-left: 150px;">
-                                    <asp:Button ID="btnCreate" runat="server" Text="Create User" OnClick="btnCreate_Clicked" />
-                                </div>
-                            </div>
 
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
+                                <br />
+
+                            </div>
+                            <div class="save-div">
+                                <asp:Button ID="btnCreate" runat="server" Text="Create User" OnClick="btnCreate_Clicked" />
+                                &nbsp;
+                                    <asp:Label ID="lblError" runat="server" ForeColor="red" Visible="false"
+                                        ClientIDMode="Static"
+                                        Text="Error while registering"></asp:Label>
+                            </div>
+                    <%--    </ContentTemplate>
+                    </asp:UpdatePanel>--%>
 
                 </asp:View>
 

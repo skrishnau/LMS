@@ -27,17 +27,17 @@ namespace One.ViewsSite.Account
                 ddlSecurityQuestion.DataSource = DbHelper.StaticValues.SecurityQuestion();
                 ddlSecurityQuestion.DataBind();
             }
-            lblPasswordError.Visible = false;
+            lblError.Visible = false;
         }
 
         protected void btnCreate_Clicked(object sender, EventArgs e)
         {
-            if (txtPassword.Text != txtConfirmPassword.Text)
-            {
-                lblPasswordError.Text = "Paasword and Confirm Password must match";
-                lblPasswordError.Visible = true;
-                return;
-            }
+            //if (txtPassword.Text != txtConfirmPassword.Text)
+            //{
+            //    lblPasswordError.Text = "Paasword and Confirm Password must match";
+            //    lblPasswordError.Visible = true;
+            //    return;
+            //}
             if (Page.IsValid)
             {
                 var user = new Academic.DbEntities.User.Users()
@@ -68,8 +68,8 @@ namespace One.ViewsSite.Account
                     }
                     else
                     {
-                        lblPasswordError.Visible = true;
-                        lblPasswordError.Text = success;
+                        lblError.Visible = true;
+                        lblError.Text = success;
                     }
                 }
             }

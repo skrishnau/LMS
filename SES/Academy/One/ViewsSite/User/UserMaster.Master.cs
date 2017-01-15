@@ -25,6 +25,7 @@ namespace One.ViewsSite.User
                     //check for school
                     UserId = user.Id;
                     SchoolId = user.SchoolId;
+                    lnkLoginName.Text = user.UserName;
                     if (!IsPostBack)
                     {
                         //using(var fileHelper = new DbHelper.WorkingWithFiles())
@@ -137,6 +138,12 @@ namespace One.ViewsSite.User
             {
                 helper.UpadateUsersLoginTime(userId);
             }
+        }
+
+        protected void lnkLoginName_OnClick(object sender, EventArgs e)
+        {
+            //redirect to profile
+            Response.Redirect("~/Views/Profile.aspx");
         }
     }
 }

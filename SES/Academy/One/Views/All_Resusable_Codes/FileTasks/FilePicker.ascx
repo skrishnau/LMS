@@ -27,11 +27,15 @@
             <%-- ============== Body ========= --%>
             <td>
                 <asp:Panel ID="pnlBody" runat="server"></asp:Panel>
-                <div runat="server" ID="pnlUpload" ClientIDMode="Static" 
-                     style="text-align: center; overflow-x: auto; vertical-align: central;">
-                    <ajaxToolkit:AsyncFileUpload ID="file_upload" runat="server" OnUploadedComplete="file_upload_UploadedComplete" />
+                <div runat="server" id="pnlUpload" clientidmode="Static"
+                    style="text-align: center; overflow-x: auto; vertical-align: central;">
+                    <ajaxToolkit:AsyncFileUpload ID="file_upload" runat="server"
+                         
+                        OnUploadedComplete="file_upload_UploadedComplete" />
+
+                    <%--OnClientUploadError="" OnClientUploadStarted="AssemblyFileUpload_Started"--%>
                     <br />
-                    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" 
+                    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click"
                         CausesValidation="False" ValidationGroup="filepicker"
                         Width="93px" />
                     &nbsp; &nbsp;
@@ -43,7 +47,9 @@
         </tr>
     </table>
     <asp:HiddenField ID="hidPageKey" runat="server" Value="0" />
-            <asp:HiddenField ID="hidLocalId" runat="server" Value="1" />
-            <asp:HiddenField ID="hidFileSaveDirectory" runat="server" Value="" />
-            <asp:HiddenField ID="hidFileAcquireMode" runat="server" Value="Multiple" />
+    <asp:HiddenField ID="hidLocalId" runat="server" Value="1" />
+    <asp:HiddenField ID="hidFileSaveDirectory" runat="server" Value="" />
+    <asp:HiddenField ID="hidFileAcquireMode" runat="server" Value="Multiple" />
+    <asp:HiddenField ID="hidFileType" runat="server" Value="All" />
+    <asp:HiddenField ID="hidFileExtension" runat="server" Value="All" />
 </div>

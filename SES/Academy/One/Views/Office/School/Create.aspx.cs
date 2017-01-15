@@ -26,6 +26,7 @@ namespace One.Views.Office.School
 
             if (!IsPostBack)
             {
+                FilesDisplay1.FileType = "Image";
                 var guid = Guid.NewGuid();
                 hidPageKey.Value = guid.ToString();
                 FilesDisplay1.PageKey = hidPageKey.Value;

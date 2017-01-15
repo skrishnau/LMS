@@ -170,6 +170,21 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
             }
         }
 
+        public string FileType
+        {
+            set { FilePickerDialog1.FileType = value; }
+        }
+        /// <summary>
+        /// preceeded by '.'
+        /// </summary>
+        //public string FileExtension = "All";
+
+        public string FileExtension
+        {
+            set { FilePickerDialog1.FileExtension = value; }
+        }
+
+
         public List<FileResourceEventArgs> GetFiles()
         {
             //var list = new List<Academic.DbEntities.UserFile>();

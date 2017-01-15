@@ -94,13 +94,13 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
-        /// LoginName1 control.
+        /// lnkLoginName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginName LoginName1;
+        protected global::System.Web.UI.WebControls.LinkButton lnkLoginName;
         
         /// <summary>
         /// LoginStatus1 control.

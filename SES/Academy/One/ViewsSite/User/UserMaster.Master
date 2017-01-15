@@ -113,77 +113,6 @@
             margin: 6px 4px;
         }
 
-        .auto-st2-backcolor-white {
-            margin: 6px;
-            padding: 5px;
-            border: 1px solid lightgrey;
-            -webkit-border-radius: 5px;
-            background-color: white;
-            clear: both;
-        }
-
-            .auto-st2-backcolor-white:hover {
-                background-color: #e4f5fa;
-            }
-
-        .auto-st2-inline-block {
-            display: inline-block;
-            /*border: 1px solid lightgrey;*/
-            /*-webkit-border-radius: 5px;*/
-        }
-
-            .auto-st2-inline-block:hover {
-                color: darkorange;
-            }
-
-        .auto-st2-white {
-        }
-
-            .auto-st2-white:hover {
-                background-color: white;
-            }
-
-        .auto-st2-hover-display-dark {
-        }
-
-            .auto-st2-hover-display-dark:hover {
-                background-color: #ededc9;
-            }
-
-        .auto-st2-remove-button {
-        }
-
-            .auto-st2-remove-button:hover {
-                background-color: pink;
-                text-decoration: underline;
-            }
-
-        .auto-st2-no-margin {
-        }
-
-            .auto-st2-no-margin:hover {
-                background-color: #e4f5fa;
-            }
-
-        .auto-st2-border-no-margin {
-            margin: 6px;
-            border: 1px solid lightgrey;
-            -webkit-border-radius: 5px;
-        }
-
-            .auto-st2-border-no-margin:hover {
-                background-color: #e4f5fa;
-            }
-
-        .auto-st2-border-zero-margin {
-            margin: 1px;
-            border: 1px solid lightgrey;
-            -webkit-border-radius: 5px;
-        }
-
-            .auto-st2-border-zero-margin:hover {
-                background-color: #e4f5fa;
-            }
 
         .link_button {
             background-color: lightpink;
@@ -555,7 +484,8 @@
                     <input type="text" name="search" placeholder="Search..">
                     <asp:TextBox ID="TextBox1" runat="server" Enabled="False" Visible="False"></asp:TextBox>
                     &nbsp;&nbsp;
-                    <asp:LoginName ID="LoginName1" runat="server" Font-Size="1.1em" />
+                    <%--<asp:LoginName ID="LoginName1" runat="server" Font-Size="1.1em" />--%>
+                    <asp:LinkButton ID="lnkLoginName" runat="server" OnClick="lnkLoginName_OnClick" ForeColor="white" CssClass="link">user</asp:LinkButton>
                     &nbsp;&nbsp;
                     <asp:LoginStatus ID="LoginStatus1" runat="server" ForeColor="white" Font-Size="0.9em" />
 

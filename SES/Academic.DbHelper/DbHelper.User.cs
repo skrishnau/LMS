@@ -286,7 +286,7 @@ namespace Academic.DbHelper
             }
 
 
-            private Users GetUser(int userId)
+            public Users GetUser(int userId)
             {
                 return Context.Users.Find(userId);
             }
@@ -557,7 +557,42 @@ namespace Academic.DbHelper
 
 
             //used
-            
+
+
+            public bool ChangePassword(int userId,string oldPassword, string newPassword)
+            {
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    if (user.Password.Equals(oldPassword))
+                    {
+                        user.Password = newPassword;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+
+            public bool ChangeSecurityQuestion(int userId, string password, string question, string answer)
+            {
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    if (user.Password.Equals(password))
+                    {
+                        user.SecurityQuestion = question;
+                        user.SecurityAnswer = answer;
+                        Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+
+
         }
     }
 }

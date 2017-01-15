@@ -1151,6 +1151,8 @@
     <Content Include="ckEditor_Test\FirstPage.html" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\CSSes\All.css" />
+    <Content Include="Content\CSSes\ListingStyles.css" />
+    <Content Include="Content\CSSes\Master.css" />
     <Content Include="Content\CSSes\StudentMaster.css" />
     <Content Include="Content\CSSes\ToolTip.css" />
     <Content Include="Content\DatePickerResourses\jquery-1.8.3.js" />
@@ -1659,6 +1661,7 @@
     <Content Include="Views\Office\Default.aspx" />
     <Content Include="Views\Office\School\SchoolType\Create.aspx" />
     <Content Include="Views\Office\School\View.aspx" />
+    <Content Include="Views\Profile.aspx" />
     <Content Include="Views\Report\Default.aspx" />
     <Content Include="Views\Report\EarlierCodes.txt" />
     <Content Include="Views\Report\StudentReportUc.ascx" />
@@ -3028,6 +3031,13 @@
     </Compile>
     <Compile Include="Views\Office\School\View.aspx.designer.cs">
       <DependentUpon>View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Report\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

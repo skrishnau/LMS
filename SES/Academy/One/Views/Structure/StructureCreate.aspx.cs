@@ -28,24 +28,18 @@ namespace One.Views.Structure
                     {
                         StructureType = type;
                         LoadStructureType();
+                        var strId = Request.QueryString["strId"];
+                        var pId = Request.QueryString["pId"];
+                        if (strId != null)
+                        {
+                            StructureId = Convert.ToInt32(strId);
+                            LoadStructure();
+                        }
+                        else if (pId != null)
+                        {
+                            ParentId = Convert.ToInt32(pId);
+                        }
                     }
-
-                    var strId = Request.QueryString["strId"];
-                    var pId = Request.QueryString["pId"];
-                    if (strId != null)
-                    {
-                        StructureId = Convert.ToInt32(strId);
-                        LoadStructure();
-                    }
-                    else if (pId != null)
-                    {
-                        ParentId = Convert.ToInt32(pId);
-                    }
-                    //else if(type != "pro")
-                    //{
-                    //    Response.Redirect("~/Views/Structure/All/Master/List.aspx");
-                    //}
-
                 }
                 catch
                 {
@@ -74,6 +68,7 @@ namespace One.Views.Structure
                     lblHeading.Text = "Year edit";
                     lblTabHead.Text = "Year edit";
                     position_row.Visible = true;
+
                     break;
                 case "syr":
                     lblHeading.Text = "Sub-year edit";
@@ -261,7 +256,8 @@ namespace One.Views.Structure
                     Id = this.StructureId
                     ,
                     ProgramId = ParentId
-                    ,Position = Convert.ToInt32(string.IsNullOrEmpty(txtPosition.Text)?"0":txtPosition.Text)
+                    ,
+                    Position = Convert.ToInt32(string.IsNullOrEmpty(txtPosition.Text) ? "0" : txtPosition.Text)
                 };
 
                 if (StructureId == 0)
