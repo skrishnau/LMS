@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using DotNetOpenAuth.AspNet.Clients;
 using One.Values.MemberShip;
 
@@ -126,6 +127,28 @@ namespace One.Views.Academy.AcademicYear
                 var academic = helper.GetAcademicYear(AcademicYearId);
                 if (academic != null)
                 {
+
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit="+(Edit?"1":"0")
+                                ,Void=true
+                            },
+                            new IdAndName()
+                            {
+                                Name = academic.Name
+                            }
+                        };
+                        SiteMapUc.SetData(list);
+                    }
                     lblPageTitle.Text = academic.Name;
                     lblEndDate.Text = academic.EndDate.ToString("D");
                     lblStartDate.Text = academic.StartDate.ToString("D");

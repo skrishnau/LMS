@@ -13,6 +13,15 @@ namespace One.Views.Student.Batch.Student {
     public partial class Default {
         
         /// <summary>
+        /// SiteMapUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        
+        /// <summary>
         /// lblProgramBatchName control.
         /// </summary>
         /// <remarks>
@@ -31,76 +40,49 @@ namespace One.Views.Student.Batch.Student {
         protected global::System.Web.UI.WebControls.Label lblCurrentlyIn;
         
         /// <summary>
-        /// lblAddMethod control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddMethod;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// ddlAddStudent control.
+        /// lnkAddStudent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAddStudent;
+        protected global::System.Web.UI.WebControls.LinkButton lnkAddStudent;
         
         /// <summary>
-        /// MultiView1 control.
+        /// Image3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+        protected global::System.Web.UI.WebControls.Image Image3;
         
         /// <summary>
-        /// View0 control.
+        /// lblAddText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View0;
+        protected global::System.Web.UI.WebControls.Literal lblAddText;
         
         /// <summary>
-        /// View1 control.
+        /// CustomDialog1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
-        
-        /// <summary>
-        /// StudentCreateUc1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.Student.Batch.StudentDisplay.Students.StudentCreate.StudentCreateUc StudentCreateUc1;
-        
-        /// <summary>
-        /// View2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
-        
-        /// <summary>
-        /// View3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3;
+        protected global::One.Views.All_Resusable_Codes.Dialog.CustomDialog CustomDialog1;
         
         /// <summary>
         /// StudentListUC11 control.

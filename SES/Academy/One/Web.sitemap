@@ -4,20 +4,75 @@
 
     <!--Notice-->
     <siteMapNode url="~/Views/NoticeBoard/NoticeListing.aspx"  title="Notices"  description="notice list">
-      <siteMapNode url="~/Views/NoticeBoard/NoticeDetail.aspx" title="Notice detail" description="notice deatil" />
-      <siteMapNode url="~/Views/NoticeBoard/NoticeCreate.aspx" roles="manager notifier" title="Notice create" description="notice create"/>
+      <siteMapNode url="~/Views/NoticeBoard/NoticeDetail.aspx" title="Notice Name" description="notice deatil" />
+      <siteMapNode url="~/Views/NoticeBoard/NoticeCreate.aspx" roles="manager notifier" title="Notice edit" description="notice edit"/>
     </siteMapNode>
-
-    <!--Events-->
-
 
     <!--Courses-->
     <siteMapNode url="~/Views/Course/Default.aspx" title="Courses" description="course list">
-      <siteMapNode url="~/Views/Course/CourseDetail.aspx" title="Course detail" description="course detail">
-        <siteMapNode url="~/Views/Course/Section/Default.aspx" title="Course view" description="course view"/>
+      <siteMapNode url="~/Views/Course/CategoryCreate.aspx" title="Category edit" description="category edit"/>
+      <siteMapNode url="~/Views/Course/CourseDetail.aspx" title="Course name" description="course detail">
+        <siteMapNode url="~/Views/Class/CourseClassDetail.aspx" title="Class" description="class view">
+          <siteMapNode url="~/Views/Class/Enrollment/Enrollment.aspx" title="Users enroll" description="users enroll"/>
+        </siteMapNode>
+        <siteMapNode url="~/Views/Class/CourseSessionCreate.aspx" title="Class edit" description="class edit"/>
+      </siteMapNode>
+      <siteMapNode url="~/Views/Course/Section/Default.aspx" title="Course content view" description="course content view"/>
+      <siteMapNode url="~/Views/Course/CourseCreate.aspx" title="Course edit" description="course edit"/>
+    </siteMapNode>
+
+    <!--Programs-->
+    <siteMapNode url="~/Views/Structure/Default.aspx" title="Manage programs" description="Manage programs">
+      <siteMapNode url="~/Views/Structure/StructureCreate.aspx" title="Structure edit" description="structure edit">
+      </siteMapNode>
+      <siteMapNode url="~/Views/Structure/CourseListing.aspx" title="Structure Name" description="structure name">
+        <siteMapNode url="~/Views/Structure/AssignCoursesCreate.aspx" title="Assign courses" description="assign courses"/>
       </siteMapNode>
     </siteMapNode>
 
-    <siteMapNode url="" title=""  description="" />
+    <!--Batch-->
+    <siteMapNode url="~/Views/Student/Default.aspx" title="Batches" description="batches">
+      <siteMapNode url="~/Views/Student/Batch/Default.aspx" title="Batch name" description="batch name">
+        <siteMapNode url="~/Views/Student/Batch/Student/Default.aspx" title="Program name" description="program name">
+          <siteMapNode url="~/Views/Student/Batch/Student/StudentCreate.aspx" title="Student edit" description="student edit"/>
+        </siteMapNode>
+      </siteMapNode>
+      <siteMapNode url="~/Views/Student/Batch/Create/BatchCreate.aspx" title="Batch edit" description="batch edit"/>
+    </siteMapNode>
+
+    <!--User-->
+    <siteMapNode url="~/Views/User/List.aspx" title="Users" description="users">
+      <siteMapNode url="~/Views/User/Create.aspx" title="User edit" description="user edit"/>
+      <siteMapNode url="~/Views/Role/Assign.aspx" title="Role assign" description="role assign"/>
+    </siteMapNode>
+
+    <!--College and profile-->
+    <siteMapNode url="~/Views/Office/Default.aspx" title="College"  description="college" >
+      <siteMapNode url="~/Views/Office/School/Create.aspx" title="College edit"  description="college edit" />
+    </siteMapNode>
+    <siteMapNode url="~/Views/Profile.aspx" title="Profile"  description="profile" />
+
+    <!--Grade-->
+    <siteMapNode url="~/Views/Grade/GradeListing.aspx" title="Grades"  description="grades" >
+      <siteMapNode url="~/Views/Grade/GradeDetail.aspx" title="Grade Name" description="grade"/>
+      <siteMapNode url="~/Views/Grade/GradeCreate.aspx" title="Grade edit" description="grade edit"/>
+    </siteMapNode>
+
+    <!--Academic session-->
+    <siteMapNode url="~/Views/Academy/List.aspx" title="Manage academic year" description="manage academic year">
+      <siteMapNode url="~/Views/Academy/AcademicYear/AcademyCreate.aspx" title="Academic year edit" description="academic year edit"></siteMapNode>
+      <siteMapNode url="~/Views/Academy/AcademicYear/AcademicYearDetail.aspx" title="Academic year name" description="academic year name">
+        <siteMapNode url="~/Views/Academy/ClassAssign/ClassAssignCreate.aspx" title="class assign" description="class assign"/>
+        <siteMapNode url="~/Views/Academy/Session/Create.aspx" title="Session edit" description="session edit"/>
+        <siteMapNode url="~/Views/Academy/Session/SessionDetail.aspx" title="Session Name" description="session">
+          <siteMapNode url="~/Views/Academy/Activation/Activate.aspx" title="Activate" description="activate"/>
+        </siteMapNode>
+      </siteMapNode>
+    </siteMapNode>
+
+    <!--Events-->
+    <siteMapNode url="~/Views/Events/Default.aspx" title="Events" description="events">
+      <siteMapNode url="~/Views/Events/EventCreate.aspx" title="Event edit" description="event edit"/>
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

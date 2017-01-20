@@ -13,6 +13,15 @@ namespace One.Views.Academy.Session {
     public partial class Create {
         
         /// <summary>
+        /// SiteMapUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        
+        /// <summary>
         /// lblHeading control.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,24 @@ namespace One.Views.Academy.Session {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valiEnd;
         
         /// <summary>
+        /// hidSessionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidSessionId;
+        
+        /// <summary>
+        /// hidAcademicYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidAcademicYear;
+        
+        /// <summary>
         /// btnSaveAndReturn control.
         /// </summary>
         /// <remarks>
@@ -137,23 +164,5 @@ namespace One.Views.Academy.Session {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblError;
-        
-        /// <summary>
-        /// hidSessionId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSessionId;
-        
-        /// <summary>
-        /// hidAcademicYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidAcademicYear;
     }
 }

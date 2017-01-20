@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using One.Values.MemberShip;
 using Academic.DbEntities.Subjects;
+using Academic.ViewModel;
 
 namespace One.Views.Course
 {
@@ -39,6 +40,27 @@ namespace One.Views.Course
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                ,Void=true
+                            }
+                            ,
+                            new IdAndName(){
+                                Name = "Course edit"
+                            }
+                        };
+                        SiteMapUc.SetData(list);
+                    }
                     var categoryId = Convert.ToInt32(catId);
                     CategoryId = categoryId;
                     using (var helper = new DbHelper.Subject())
@@ -49,7 +71,7 @@ namespace One.Views.Course
                         {
                             if (category.SchoolId == user.SchoolId)
                             {
-                                lblHeading.Text = "Add course in category : "+category.Name;
+                                lblHeading.Text = "Add course in category : " + category.Name;
                                 lblPageTitle.Text = "Add course";
                             }
                         }
@@ -74,9 +96,37 @@ namespace One.Views.Course
         {
             using (var helper = new DbHelper.Subject())
             {
+
                 var course = helper.GetCourse(courseId);
                 if (course != null)
                 {
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                ,Void=true
+                            }
+                            ,
+                            new IdAndName(){
+                                Name = course.FullName
+                                ,Value = "~/Views/Course/CourseDetail.aspx?cId="+course.Id
+                                ,Void = true
+                            }
+                            ,new IdAndName()
+                            {
+                                Name="Edit"
+                            }
+                        };
+                        SiteMapUc.SetData(list);
+                    }
                     txtName.Text = course.FullName;
                     txtShortName.Text = course.ShortName;
                     txtCode.Text = course.Code;
@@ -111,10 +161,11 @@ namespace One.Views.Course
                         FullName = txtName.Text,
                         ShortName = txtShortName.Text,
                         Code = txtCode.Text,
-                        Credit = Convert.ToInt32(txtCredit.Text),
+                        Credit = Convert.ToInt32(string.IsNullOrEmpty(txtCredit.Text) ? "0" : txtCredit.Text),
                         SubjectCategoryId = CategoryId,
                         Summary = CKEditor1.Text
                     };
+
                     if (CourseId == 0)
                     {
                         subject.CreatedDate = DateTime.Now.Date;
@@ -129,7 +180,7 @@ namespace One.Views.Course
                                 Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + CourseId);
                             else
                             {
-                                Response.Redirect("~/Views/Course/?catId="+CategoryId);
+                                Response.Redirect("~/Views/Course/?catId=" + CategoryId);
                             }
                         }
                         else

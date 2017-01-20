@@ -65,5 +65,14 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidSubYearId;
+        
+        /// <summary>
+        /// hidEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidEdit;
     }
 }

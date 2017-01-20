@@ -13,6 +13,15 @@ namespace One.Views.Academy.ClassAssign {
     public partial class ClassAssignCreate {
         
         /// <summary>
+        /// SiteMapUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        
+        /// <summary>
         /// lblAcademicInfo control.
         /// </summary>
         /// <remarks>

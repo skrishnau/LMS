@@ -1,0 +1,50 @@
+﻿body {
+}
+
+h3.heading-of-create-edit {
+    text-align: center;
+    margin-top: 3px;
+    font-size: 2em;
+    color: darkslategray;
+}
+
+td.data-type {
+    width: 170px;
+    padding: 10px 0;
+    display: inline-block;
+}
+
+td.data-type-bold {
+    width: 170px;
+    padding: 10px 0;
+    display: inline-block;
+    font-weight: 600;
+}
+
+
+td.data-value {
+    padding: 10px 0;
+    /*display: inline-block;*/
+}
+
+td.data-value-bold {
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+div.save-div {
+    padding: 10px 0;
+    margin-left: 185px;
+}
+
+div.data-entry-section-body table {
+    margin: 0 10px 0;
+}
+
+div.data-entry-section-body tr {
+    vertical-align: top;
+}
+
+div.data-entry-section-body td {
+    vertical-align: top;
+}

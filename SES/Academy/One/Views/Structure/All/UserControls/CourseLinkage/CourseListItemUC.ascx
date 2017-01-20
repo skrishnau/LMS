@@ -10,10 +10,10 @@
         <asp:LinkButton ID="lblName" runat="server" CssClass="no-underline" OnClick="lblName_Click">
         </asp:LinkButton>
     </span>
-    &nbsp;
-    (
-        <asp:Label ID="lblCode" runat="server" Text='<%# Eval("Code") %>' />
-    )
+    <%--&nbsp;
+    (--%>
+        <asp:Label ID="lblCode" runat="server" Text="" />
+    <%--)--%>
     
     
     <asp:HiddenField ID="hidCourseId" Value="0" runat="server" />

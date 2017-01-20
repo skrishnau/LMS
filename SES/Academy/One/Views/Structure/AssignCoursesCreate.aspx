@@ -1,6 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="AssignCoursesCreate.aspx.cs" Inherits="One.Views.Structure.AssignCoursesCreate" %>
 
 
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
+
 
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="body">

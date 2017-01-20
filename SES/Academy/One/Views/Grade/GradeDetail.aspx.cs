@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.Grade
@@ -31,6 +32,24 @@ namespace One.Views.Grade
                         var grade = helper.GetGrade(Convert.ToInt32(gradeId));
                         if (grade != null)
                         {
+                            if (SiteMap.CurrentNode != null)
+                            {
+                                var list = new List<IdAndName>()
+                                {
+                                   new IdAndName(){
+                                                Name=SiteMap.RootNode.Title
+                                                ,Value =  SiteMap.RootNode.Url
+                                                ,Void=true
+                                            },
+                                    new IdAndName(){
+                                        Name = SiteMap.CurrentNode.ParentNode.Title
+                                        ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                        ,Void=true
+                                    },
+                                    new IdAndName(){Name = grade.Name}
+                                };
+                                SiteMapUc.SetData(list);
+                            }
                             if ((grade.SchoolId ?? 0) == 0 || (grade.SchoolId ?? 0) == user.SchoolId)
                             {
 

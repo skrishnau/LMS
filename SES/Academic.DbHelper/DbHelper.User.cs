@@ -189,9 +189,14 @@ namespace Academic.DbHelper
                         var ent = Context.Users.Find(user.Id);
                         if (ent == null)
                         {
-                            var img = Context.File.Add(userFile);
-                            Context.SaveChanges();
-                            user.UserImageId = img.Id;
+                            if (userFile != null)
+                            {
+                                var img = Context.File.Add(userFile);
+                                Context.SaveChanges();
+                                user.UserImageId = img.Id;
+                            }
+
+
                             ent = Context.Users.Add(user);
                             Context.SaveChanges();
 
@@ -218,9 +223,13 @@ namespace Academic.DbHelper
                         {
                             if (ent.UserImageId <= 0)
                             {
-                                var img = Context.File.Add(userFile);
-                                Context.SaveChanges();
-                                ent.UserImageId = img.Id;
+                                if (userFile != null)
+                                {
+                                    var img = Context.File.Add(userFile);
+                                    Context.SaveChanges();
+                                    ent.UserImageId = img.Id;
+                                }
+
                                 //school.ImageId = img.Id;
 
                                 //ent.ImageId = img.Id;
@@ -229,7 +238,7 @@ namespace Academic.DbHelper
                             else
                             {
                                 var img = Context.File.Find(ent.UserImageId);
-                                if (img != null)
+                                if (img != null && userFile!=null)
                                 {
                                     img.DisplayName = userFile.DisplayName;
                                     img.FileName = userFile.FileName;
@@ -458,14 +467,14 @@ namespace Academic.DbHelper
             public List<Users> GetOnlineUsers(int userId, int schoolId)
             {
                 var date = DateTime.Now;
-                var users = Context.Users.Where(x => (x.SchoolId??0) == schoolId
+                var users = Context.Users.Where(x => (x.SchoolId ?? 0) == schoolId
                     && !x.Student.Any())
                     .ToList();
                 var self = users.Find(x => x.Id == userId);
                 if (self != null)
                     users.Remove(self);
-                    //&& 
-                return users.Where(x=>x.LastOnline != null && (date - x.LastOnline).Value.TotalMinutes <= 2).ToList();
+                //&& 
+                return users.Where(x => x.LastOnline != null && (date - x.LastOnline).Value.TotalMinutes <= 2).ToList();
             }
 
             //used
@@ -504,7 +513,7 @@ namespace Academic.DbHelper
                 }
 
 
-                return lst.OrderBy(x=>x.Name).ToList();
+                return lst.OrderBy(x => x.Name).ToList();
             }
 
             //used
@@ -552,14 +561,14 @@ namespace Academic.DbHelper
             //used
             public bool DoesUserNameExist(int schoolId, string userName)
             {
-                return Context.Users.Any(x =>  x.UserName == userName);
+                return Context.Users.Any(x => x.UserName == userName);
             }
 
 
             //used
 
 
-            public bool ChangePassword(int userId,string oldPassword, string newPassword)
+            public bool ChangePassword(int userId, string oldPassword, string newPassword)
             {
                 var user = Context.Users.Find(userId);
                 if (user != null)

@@ -63,13 +63,13 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
             hidCourseId.Value = id.ToString();
             chkbox.Text = name ;
             //lblName.Text = name;
-            lblCode.Text = " "+code;
+            lblCode.Text = " "+(string.IsNullOrEmpty(code) ? "" : "&nbsp; (" + code + ")");
 
 
              chkbox.Checked = selected;
             chkbox.Enabled = !saved;
         }
-
+       
         public void SetCheckBoxId(string chkboxId)
         {
             chkbox.ID = chkboxId;

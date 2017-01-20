@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListYearUC.ascx.cs" Inherits="One.Views.Structure.All.UserControls.ListYearUC" %>
 
-<div runat="server" id="panel" style="margin: 3px 3px 3px 0; width: 100%;">
+<div runat="server" id="panel" style="margin: 3px 3px 10px 0; width: 100%;">
     <div class="block" style="font-weight: 600">
         <asp:HyperLink ID="lblName" runat="server">
                 Name

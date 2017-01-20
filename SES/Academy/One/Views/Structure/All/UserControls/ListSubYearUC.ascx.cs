@@ -42,13 +42,20 @@ namespace One.Views.Structure.All.UserControls
             //this.hidStructureId.Value = id.ToString();
             YearId = yearId;
             SubYearId = subyearId;
-            lblName.Text = ((subyearId==0)?"●":"♦") + name;
+            lnkName.Text = ((subyearId==0)?"●":"♦") + name;
+            if (subyearId == 0)
+            {
+                lblNoOfCourses.Visible = false;
+            }
+            else
+            {
+                lblNoOfCourses.Text = "No. of courses : " + noOfCourses.ToString();                
+            }
             lnkEdit.Visible = edit;
             lnkDelete.Visible = edit;
 
             lnkAdd.Visible = edit && addUrl != "";
 
-            lblNoOfCourses.Text = noOfCourses.ToString();
             pnlBody.Style.Add("padding", "5px");
             if (currentBatch == "")
             {
@@ -80,13 +87,11 @@ namespace One.Views.Structure.All.UserControls
                                                 + name + "?")
                                                 ;
                 lnkDelete.NavigateUrl = redUrl;
-
                 lblAddText.Text = addText;
-
                 lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", ""); ;
             }
-            lnkCoursesList.NavigateUrl = "~/Views/Structure/CourseListing.aspx" + "?yId=" + YearId + "&sId=" +
-                                         SubYearId;
+            lnkName.NavigateUrl = "~/Views/Structure/CourseListing.aspx" + "?yId=" + YearId + "&sId=" +
+                SubYearId+"&edit="+(edit?"1":"0");
         }
 
         protected void lnkCoursesList_Click(object sender, EventArgs e)

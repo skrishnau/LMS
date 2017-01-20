@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.Course
@@ -14,10 +15,27 @@ namespace One.Views.Course
         protected void Page_Load(object sender, EventArgs e)
         {
             var user = User as CustomPrincipal;
-            if (!IsPostBack)
+            if (user != null)
             {
-                if (user != null)
+                if (!IsPostBack)
                 {
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.Title
+                                //,Value = SiteMap.CurrentNode.ParentNode.Url
+                                //,Void=true
+                            }
+                        };
+                        SiteMapUc.SetData(list);
+                    }
                     if (user.IsInRole("manager") || user.IsInRole("course-editor"))
                     {
                         lnkCoursCreate.Visible = true;
@@ -32,14 +50,15 @@ namespace One.Views.Course
                     }
                     SchoolId = user.SchoolId;
                     //categoryCreate.SchoolId = user.SchoolId;
+
+                    var catId = Request.QueryString["catId"];
+                    if (catId != null)
+                    {
+                        SelectedCategory = Convert.ToInt32(catId);
+                    }
                 }
-                var catId = Request.QueryString["catId"];
-                if (catId != null)
-                {
-                    SelectedCategory = Convert.ToInt32(catId);
-                }
+                LoadCategoriesAndSubCategories(user.SchoolId);
             }
-            LoadCategoriesAndSubCategories(user.SchoolId);
         }
 
         public int SchoolId
@@ -69,6 +88,10 @@ namespace One.Views.Course
             {
                 var cats = helper.ListAllCategories(schoolId);
                 var list = new List<int>();
+                if (!cats.Any())
+                {
+                    lnkCoursCreate.Visible = false;
+                }
                 for (var c = 0; c < cats.Count; c++)
                 {
                     var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
@@ -209,6 +232,17 @@ namespace One.Views.Course
             //}
 
         }
-        
+
+        public string GetCode(object code)
+        {
+            if (code != null)
+            {
+                var c = code.ToString();
+                return String.IsNullOrEmpty(c) ? "" : "&nbsp;(" + c + ")";//"&nbsp;(" + code + ")";
+
+            }
+            return "";
+        }
+
     }
 }

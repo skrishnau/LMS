@@ -2,6 +2,10 @@
 
 <%@ Register Src="~/Views/Course/Section/Master/ListOfSectionsInCourseUC.ascx" TagPrefix="uc1" TagName="ListOfSectionsInCourseUC" %>
 
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
 
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
@@ -33,6 +37,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <br />
+    <asp:HiddenField ID="hidEdit" runat="server" Value="0" />
 </asp:Content>
 
 

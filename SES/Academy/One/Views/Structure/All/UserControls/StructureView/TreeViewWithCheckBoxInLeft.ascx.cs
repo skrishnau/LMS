@@ -32,7 +32,7 @@ namespace One.Views.Structure.All.UserControls.StructureView
 
 
         //  // Note :: ├ ==>1 ,    └ ==> 2 .   ┌ ==> 3 ,   │ ==> 4 ,  empty ==> 0
-        public void LoadStructure(int schoolId, List<Academic.ViewModel.Batch.BatchViewModel> progList)
+        public void LoadStructure1(int schoolId, List<Academic.ViewModel.Batch.BatchViewModel> progList)
         {
             if (progList != null)
                 using (var batchHelper = new DbHelper.Batch())

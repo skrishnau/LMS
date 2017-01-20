@@ -26,11 +26,11 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
 
         #region Properties
 
-        public int SchoolId
-        {
-            get { return Convert.ToInt32(hidSchoolId.Value); }
-            set { hidSchoolId.Value = value.ToString(); }
-        }
+        //public int SchoolId
+        //{
+        //    get { return Convert.ToInt32(hidSchoolId.Value); }
+        //    set { hidSchoolId.Value = value.ToString(); }
+        //}
 
         public int AcademicYearId
         {

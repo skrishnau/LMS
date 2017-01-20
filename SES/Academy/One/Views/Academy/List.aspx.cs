@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.Academy
@@ -19,6 +20,23 @@ namespace One.Views.Academy
                 var edt = Request.QueryString["edit"];
                 if (user != null)
                 {
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.Title
+                                //,Value = SiteMap.CurrentNode.ParentNode.Url
+                                //,Void=true
+                            }
+                        };
+                        SiteMapUc.SetData(list);
+                    }
                     if ((user.IsInRole("manager") || user.IsInRole("admitter") || user.IsInRole("admin")))
                     {
                         if (edt != null)

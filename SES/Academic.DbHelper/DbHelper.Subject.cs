@@ -559,7 +559,7 @@ namespace Academic.DbHelper
             public List<SubjectCategory> ListAllCategories(int schoolId)
             {
                 return Context.SubjectCategory
-                    .Where(x => x.SchoolId == schoolId && (x.ParentId ?? 0) == 0)
+                    .Where(x => x.SchoolId == schoolId && (x.ParentId ?? 0) == 0 && !(x.IsVoid??false))
                     .OrderBy(x => x.Name).ToList();
             }
 

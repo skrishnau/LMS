@@ -1,5 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="NoticeListing.aspx.cs" Inherits="One.Views.NoticeBoard.NoticeListing" %>
 
+
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
+
+
+
 <asp:Content runat="server" ID="contentbody" ContentPlaceHolderID="Body">
     <div>
         <h3 class="heading-of-listing">Notices
@@ -9,18 +17,15 @@
         <div>
             <table style="width: 99%;">
                 <tr>
+                    <td></td>
                     <td>
-                       
-
-                    </td>
-                    <td>
-                      <%--  <div style="text-align: right;">
+                        <%--  <div style="text-align: right;">
                             <asp:HyperLink ID="lnkEdit" runat="server">
                                 <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
                                 <asp:Label ID="lblEdit" runat="server" Text="Edit"></asp:Label>
                             </asp:HyperLink>
                         </div>--%>
-                         <div style="text-align: right; margin: 5px;">
+                        <div style="text-align: right; margin: 5px;">
                             <asp:HyperLink ID="lnkAddNotice" runat="server" CssClass="link"
                                 Visible="False">
                                 <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
@@ -69,4 +74,8 @@
             <asp:HiddenField ID="hidDisplayAll" runat="server" Value="False" />
         </div>
     </div>
+</asp:Content>
+
+<asp:Content runat="server" ID="content1" ContentPlaceHolderID="title">
+    Notices
 </asp:Content>

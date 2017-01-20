@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.ViewModel;
 
 namespace One.Views.Role
 {
@@ -11,7 +12,30 @@ namespace One.Views.Role
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (SiteMap.CurrentNode != null)
+                {
+                    var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                ,Void=true
+                            },
+                            new IdAndName()
+                            {
+                                Name = SiteMap.CurrentNode.Title
+                            }
+                        };
+                    SiteMapUc.SetData(list);
+                }
+            }
         }
     }
 }

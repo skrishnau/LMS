@@ -13,6 +13,15 @@ namespace One.Views.Role {
     public partial class Assign1 {
         
         /// <summary>
+        /// SiteMapUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        
+        /// <summary>
         /// Assign control.
         /// </summary>
         /// <remarks>

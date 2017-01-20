@@ -1,6 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="CourseCreate.aspx.cs" Inherits="One.Views.Course.CourseCreate" %>
 
-<%@ Register Src="~/Views/Course/Course/CreateUC.ascx" TagPrefix="uc1" TagName="CreateUC" %>
+<%--<%@ Register Src="~/Views/Course/Course/CreateUC.ascx" TagPrefix="uc1" TagName="CreateUC" %>--%>
+
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
 
 
 
@@ -44,21 +49,21 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="data-type">Code*</td>
+                                <td class="data-type">Code</td>
                                 <td class="data-value">
                                     <asp:TextBox ID="txtCode" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCode"
+                                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCode"
                                         ValidationGroup="courseCreateGroup"
-                                        ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                                        ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>--%>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="data-type">Credit*</td>
+                                <td class="data-type">Credit</td>
                                 <td class="data-value">
                                     <asp:TextBox ID="txtCredit" runat="server" TextMode="Number" ToolTip="General. It can be changed as per class."></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCredit"
+                                    <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCredit"
                                         ValidationGroup="courseCreateGroup"
-                                        ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                                        ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>--%>
                                 </td>
                             </tr>
 
@@ -98,4 +103,9 @@
 
 <asp:Content runat="server" ID="contenttitle" ContentPlaceHolderID="title">
     <asp:Literal ID="lblPageTitle" runat="server"></asp:Literal>
+</asp:Content>
+
+
+<asp:Content runat="server" ID="content1" ContentPlaceHolderID="head">
+    <link href="../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>

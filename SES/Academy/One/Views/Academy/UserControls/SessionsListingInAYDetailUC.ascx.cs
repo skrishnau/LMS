@@ -63,7 +63,7 @@ namespace One.Views.Academy.UserControls
                                             "&sessId="+sessionId;
             }
             lnkSessionName.NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?aId="
-                    + academicYearId + "&sId=" + sessionId;
+                + academicYearId + "&sId=" + sessionId+"&edit="+(edit?"1":"0");
 
             lblStartDate.Text = start.ToString("D");
             lblEndDate.Text = end.ToString("D");

@@ -12,6 +12,9 @@ namespace Academic.DbHelper
     {
         public static class StaticValues
         {
+            //sitemap
+
+
             //Errors, always place new error on last of the list
             public static List<string> Error = new List<string>()
                                             {

@@ -1,5 +1,12 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="AcademicYearDetail.aspx.cs" Inherits="One.Views.Academy.AcademicYear.AcademicYearDetail" %>
 
+
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content4" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
+
+
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <h3 class="heading-of-listing">
         <asp:Label ID="lblAcademicYearName" runat="server" Text=""></asp:Label>
@@ -47,7 +54,7 @@
         <%-- Programs listing --%>
         <br />
         <div class="data-entry-section">
-            <div class="data-entry-section-heading">
+            <div runat="server" Visible="False" ID="classesOfAY" class="data-entry-section-heading" style="visibility: hidden;"  >
                 Classes:
                    <div style="float: right; font-weight: 400;">
                        <asp:HyperLink ID="lnkAddClasses" runat="server" CssClass="link_smaller"
@@ -59,8 +66,9 @@
                        </asp:HyperLink>
                    </div>
                 <div style="clear: both;"></div>
+                <hr />
             </div>
-            <hr />
+
             <div class="data-entry-section-body">
 
                 <%--<div style="clear: both;"></div>--%>

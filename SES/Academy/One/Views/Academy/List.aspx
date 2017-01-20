@@ -1,7 +1,15 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="One.Views.Academy.List" %>
 
+
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
+
+
+
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
-    <h3 class="heading-of-listing" >
+    <h3 class="heading-of-listing">
         <strong>Academic year List</strong>
         <hr />
     </h3>

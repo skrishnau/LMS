@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.ViewModel;
 
 namespace One.Views.Class
 {
@@ -27,7 +28,47 @@ namespace One.Views.Class
                             var course = helper.GetCourse(CourseSessionCreateUC1.CourseId);
                             if (course != null)
                             {
+
+                                if (SiteMap.CurrentNode != null)
+                                {
+                                    var list = new List<IdAndName>()
+                                    {
+                                        new IdAndName()
+                                        {
+                                            Name = SiteMap.RootNode.Title
+                                            ,
+                                            Value = SiteMap.RootNode.Url
+                                            ,
+                                            Void = true
+                                        },
+                                        new IdAndName()
+                                        {
+                                            Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
+                                            ,
+                                            Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url
+                                            ,
+                                            Void = true
+                                        },
+                                        new IdAndName()
+                                        {
+                                            Name = course.FullName
+                                            ,
+                                            Value = SiteMap.CurrentNode.ParentNode.Url + "?cId=" + course.Id + "&edit=1"
+                                            ,
+                                            Void = true
+                                        },
+                                        new IdAndName()
+                                        {
+                                            Name = "Class edit"
+                                        }
+                                    };
+                                    SiteMapUc.SetData(list);
+                                }
                                 CourseSessionCreateUC1.CourseName = course.FullName;
+                            }
+                            else
+                            {
+                                Response.Redirect("~/Views/Course/");
                             }
                         }
 

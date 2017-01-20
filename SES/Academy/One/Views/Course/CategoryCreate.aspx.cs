@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.Course
@@ -19,6 +20,27 @@ namespace One.Views.Course
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                ,Void=true
+                            },
+                            new IdAndName()
+                            {
+                                Name = "Category edit"
+                            }
+                        };
+                        SiteMapUc.SetData(list);
+                    }
                     Create1.SchoolId = user.SchoolId;
                     var catId = Request.QueryString["catId"];
                     if (catId != null)

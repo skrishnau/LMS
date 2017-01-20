@@ -1,0 +1,144 @@
+﻿/*div {
+            /*font-family: Helvetica, Verdana, Geneva,Tahoma, sans-serif;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }*/
+.inline {
+    display: inline;
+}
+
+h3.heading-of-listing {
+    text-align: center;
+    margin-top: 3px;
+    font-size: 2em;
+    color: darkslategray;
+}
+
+h3.heading-of-display {
+    text-align: left;
+    margin-top: 3px;
+    font-size: 2em;
+    color: darkslategray;
+}
+
+/*body of sections*/
+div.data-entry-section {
+    margin-left: 15px;
+}
+
+div.data-entry-section-heading {
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+    div.data-entry-section-heading hr {
+        border: none;
+        background-color: darkgray;
+        height: 1px;
+    }
+
+div.data-entry-section-body {
+    margin-left: 20px;
+    /*margin: 0 20px 0;*/
+}
+
+div.data-entry-body div.data-entry-section hr {
+    border: none;
+    background-color: darkgray;
+    height: 1px;
+}
+
+/*end of body of sections*/
+
+
+
+.sitemap-items {
+    margin: 6px;
+    padding: 5px;
+    /*border: 1px solid lightgrey;*/
+    -webkit-border-radius: 5px;
+    /*background-color: white;*/
+    clear: both;
+    text-align: center;
+}
+
+    .sitemap-items:hover {
+        /*background-color: #e4f5fa;*/
+        background-color: darkslategray;
+    }
+
+/*----------Check ----------*/
+
+h1, h2, h3,
+h4, h5, h6 {
+    color: #000;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+/*-------------------------check end*/
+
+
+/*LInks*/
+.link, .link:visited {
+    color: blue;
+    text-decoration: none;
+}
+
+    .link:hover {
+        color: darkorange;
+        text-decoration: underline;
+    }
+
+    .link:active {
+        color: blueviolet;
+        text-decoration: underline;
+    }
+
+/*link white*/
+.link-white, .link-white:visited {
+    color: white;
+    text-decoration: none;
+}
+
+    .link-white:hover {
+        /*color: darkorange;*/
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    .link-white:active {
+        color: blueviolet;
+        text-decoration: underline;
+    }
+/*link grey*/
+.link-grey, .link-grey:visited {
+    color: lightgray;
+    text-decoration: none;
+}
+
+    .link-grey:hover {
+        /*color: white;
+        font-weight: 700;
+        text-decoration: underline;*/
+    }
+
+    .link-grey:active {
+        color: blueviolet;
+        text-decoration: underline;
+    }
+
+
+.link_smaller {
+    font-weight: 400;
+    font-size: 0.9em;
+    color: darkblue;
+    text-decoration: none;
+}
+
+    .link_smaller:hover {
+        color: darkorange;
+        text-decoration: underline;
+    }

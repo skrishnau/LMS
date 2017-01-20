@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 using One.Views.Academy.ProgramSelection;
 
@@ -62,6 +63,34 @@ namespace One.Views.Academy.ClassAssign
                         var ses = helper.GetSession(SessionId);
                         if (ses != null)
                         {
+                            if (SiteMap.CurrentNode != null)
+                            {
+                                var list = new List<IdAndName>()
+                                {
+                                   new IdAndName(){
+                                                Name=SiteMap.RootNode.Title
+                                                ,Value =  SiteMap.RootNode.Url
+                                                ,Void=true
+                                            },
+                                    new IdAndName(){
+                                        Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
+                                        ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url+"?edit=1"
+                                        ,Void=true
+                                    }
+                                    ,new IdAndName()
+                                    {
+                                        Name = aca.Name
+                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?aId="+aca.Id+"&edit=1"
+                                        ,Void = true
+                                    }
+                                    ,new IdAndName()
+                                    {
+                                        Name = "Classes"
+                                    }
+                                };
+                                SiteMapUc.SetData(list);
+                            }
+
                             if (aca.Sessions.Select(x => x.Id).Contains(ses.Id))
                             {
                                 lblAcademicInfo.Text += " and 'Session' : " + ses.Name;

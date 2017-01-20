@@ -13,6 +13,15 @@ namespace One.Views.Student.Batch {
     public partial class Default {
         
         /// <summary>
+        /// SiteMapUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        
+        /// <summary>
         /// lblBatchName control.
         /// </summary>
         /// <remarks>
@@ -49,12 +58,12 @@ namespace One.Views.Student.Batch {
         protected global::System.Web.UI.WebControls.HiddenField hidBatchId;
         
         /// <summary>
-        /// Literal1 control.
+        /// lblTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.WebControls.Literal lblTitle;
     }
 }

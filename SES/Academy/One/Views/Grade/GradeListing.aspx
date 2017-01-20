@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="GradeListing.aspx.cs" Inherits="One.Views.Grade.GradeListing" %>
 
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
 
 
 <asp:Content runat="server" ID="bodyId" ContentPlaceHolderID="Body">
@@ -49,7 +53,7 @@
         <%--</div>--%>
         <asp:HiddenField ID="hidEdit" runat="server" Value="False" />
         <asp:HiddenField ID="hidTask" runat="server" Value="grd" />
-        
+
     </div>
 </asp:Content>
 

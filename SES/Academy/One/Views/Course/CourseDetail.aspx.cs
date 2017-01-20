@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.Course
@@ -23,7 +24,7 @@ namespace One.Views.Course
                     {
                         var courseId = Convert.ToInt32(csId);
 
-                        
+
 
                         if (user.IsInRole("manager") || user.IsInRole("course-editor") || user.IsInRole("admitter"))
                         {
@@ -69,7 +70,7 @@ namespace One.Views.Course
                             lnkDelete.Visible = true;
                             pnlClasses.Visible = true;
                             LoadInitialData(courseId);
-                            
+
                             lnkEditClasses.Visible = true;
                             //lnkNewClass.Visible = editable;
 
@@ -129,6 +130,32 @@ namespace One.Views.Course
                             Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
                             return;
                         }
+
+                        if ((sub.Void ?? false))
+                        {
+                            Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
+                            return;
+                        }
+                        if (SiteMap.CurrentNode != null)
+                        {
+                            var list = new List<IdAndName>()
+                            {
+                               new IdAndName(){
+                                            Name=SiteMap.RootNode.Title
+                                            ,Value =  SiteMap.RootNode.Url
+                                            ,Void=true
+                                        },
+                                new IdAndName(){
+                                    Name = SiteMap.CurrentNode.ParentNode.Title
+                                    ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                    ,Void=true
+                                }
+                                , new IdAndName(){
+                                    Name = sub.FullName
+                                }
+                            };
+                            SiteMapUc.SetData(list);
+                        }
                         //if (sub != null)
                         {
                             //if (SiteMap.CurrentNode != null)
@@ -137,11 +164,9 @@ namespace One.Views.Course
                             //    SiteMap.CurrentNode.Title = sub.FullName;
                             //    SiteMap.CurrentNode.Url = Request.Url.PathAndQuery;
                             //}
-                            if ((sub.Void ?? false))
-                            {
-                                Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
-                                return;
-                            }
+
+
+
                             lblFullName.Text = sub.FullName;
                             lblCategory.Text = sub.SubjectCategory.Name;
                             lblShortName.Text = sub.ShortName;
@@ -149,8 +174,10 @@ namespace One.Views.Course
 
                             //other componenets
                             lnkNewClass.NavigateUrl = "~/Views/Class/CourseSessionCreate.aspx?cId=" + courseId;
-
-                            lnkView.NavigateUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + courseId;
+                            
+                            //lnkView.NavigateUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + courseId
+                            lnkView.NavigateUrl = "~/Views/Course/Section/?SubId=" + courseId
+                                + "&frmDetailView=1";
                             lnkEdit.NavigateUrl = "~/Views/Course/CourseCreate.aspx?crsId=" + courseId;
                             lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
                                                     DbHelper.StaticValues.Encode("course") +

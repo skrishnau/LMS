@@ -13,6 +13,15 @@ namespace One.Views.Academy.AcademicYear {
     public partial class AcademicYearDetail {
         
         /// <summary>
+        /// SiteMapUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        
+        /// <summary>
         /// lblAcademicYearName control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace One.Views.Academy.AcademicYear {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEndDate;
+        
+        /// <summary>
+        /// classesOfAY control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl classesOfAY;
         
         /// <summary>
         /// lnkAddClasses control.

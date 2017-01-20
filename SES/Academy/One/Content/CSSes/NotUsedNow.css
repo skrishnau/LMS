@@ -1,0 +1,124 @@
+﻿
+div.detail-view table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 10px;
+}
+
+div.detail-view tr {
+    /*border-bottom: 1px solid grey;*/
+    width: 100%;
+    padding: 10px 0;
+}
+
+div.detail-view td {
+    padding: 10px 0;
+    display: inline-block;
+}
+
+    /*div.detail-view td.data-type {
+                width: 170px;
+                padding: 10px 0;
+                display: inline-block;
+            }*/
+
+    div.detail-view td.data-place {
+        /*width: 170px;*/
+        /*width: 100%;*/
+        padding: 10px 0;
+        display: inline-block;
+    }
+
+/*div.data-entry-section-body td.data-place {*/
+    /*width: 170px;*/
+    /*width: 100%;*/
+    /*padding: 10px 0;*/
+    /*display: inline-block;*/
+/*}*/
+
+div.data-entry-body td.data-field {
+    /*width: 170px;*/
+    padding: 10px 0;
+    /*display: inline-block;*/
+}
+
+.link_button {
+    background-color: lightpink;
+    border: 1px solid lightcoral;
+    padding: 2px;
+}
+
+.table-detail {
+    border-collapse: collapse;
+}
+
+.row-detail {
+    border-bottom: 1px solid grey;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.data-detail {
+    width: 170px;
+    padding: 10px 0;
+    display: inline-block;
+}
+
+.auto-st1 {
+    margin: 3px;
+    padding: 10px;
+    -webkit-border-radius: 5px;
+}
+
+.hover-dotted {
+    margin: 6px 4px;
+    padding: 5px;
+    border: 1px solid lightgrey;
+    -webkit-border-radius: 5px;
+}
+
+    .hover-dotted:hover {
+        background-color: #e4f5fa;
+        border: 1px dotted lightgray;
+    }
+
+.topzero {
+    top: 0;
+    vertical-align: top;
+}
+
+div.heading-menu {
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: -7px;
+    font-family: sans-serif, Arial, Helvetica;
+}
+
+.modules-body-for-event {
+    /*overflow: auto;*/
+    background-color: lightgoldenrodyellow;
+    /*padding: 5px;*/
+    font-family: arial, verdena;
+    font-size: 0.7em;
+}
+
+/*May be used later*/
+.breadcrumb {
+    height: 30px;
+    /*background-color: lightgoldenrodyellow;*/
+    margin: 6px 4px;
+}
+
+/*----------------Course view with  secions and activitites and resources-----------------*/
+
+.file-display {
+    background-color: #557d96;
+    padding: 2px 5px;
+}
+
+.form-element-row-height {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+/*-- end of may be used later--*/

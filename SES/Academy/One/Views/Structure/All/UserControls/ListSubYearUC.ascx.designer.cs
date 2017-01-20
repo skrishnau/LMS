@@ -31,13 +31,13 @@ namespace One.Views.Structure.All.UserControls {
         protected global::System.Web.UI.WebControls.Panel pnlBody;
         
         /// <summary>
-        /// lblName control.
+        /// lnkName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lblName;
+        protected global::System.Web.UI.WebControls.HyperLink lnkName;
         
         /// <summary>
         /// lnkEdit control.
@@ -101,15 +101,6 @@ namespace One.Views.Structure.All.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCurrentBatch;
-        
-        /// <summary>
-        /// lnkCoursesList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkCoursesList;
         
         /// <summary>
         /// lblNoOfCourses control.

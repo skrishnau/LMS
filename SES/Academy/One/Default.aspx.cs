@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One
@@ -25,7 +26,18 @@ namespace One
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
-                    LstUc1.SchoolId = user.SchoolId;//Values.Session.GetSchool(Session);
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                       // ,Value =  SiteMap.RootNode.Url
+                                    },
+                        };
+                        SiteMapUc.SetData(list);
+                    }
+                    //LstUc1.SchoolId = user.SchoolId;//Values.Session.GetSchool(Session);
                     LstUc1.UserId = user.Id;//Values.Session.GetUser(Session);
                     LstUc1.AcademicYearId = user.AcademicYearId;//Values.Session.GetAcademicYear(Session);
                     LstUc1.SessionId = user.SessionId;//Values.Session.GetSession(Session);

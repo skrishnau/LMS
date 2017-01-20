@@ -1,8 +1,16 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="One.Views.Student.Batch.Default" %>
 
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+
+
+<%--<%@ Register Src="~/ViewsSite/User/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>--%>
+
+
 
 <%--<%@ Register Src="~/Views/Student/Batch/BatchDetail/DetailUc.ascx" TagPrefix="uc1" TagName="DetailUc" %>--%>
-
+<asp:Content runat="server" ID="content2" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" id="SiteMapUc" />
+</asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <%--<uc1:DetailUc runat="server" id="DetailUc" />--%>
@@ -28,8 +36,8 @@
 
         </div>
         <div style="padding: 5px;">
-            <strong>Programs in this batch</strong>
-            <hr />
+            <%--<strong>Programs in this batch</strong>
+            <hr />--%>
             <div style="margin: 10px; padding-left: 10px;">
                 <asp:PlaceHolder ID="pnlProgramsInTheBatch" runat="server"></asp:PlaceHolder>
             </div>
@@ -40,5 +48,5 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="titlecontent" ContentPlaceHolderID="title">
-    <asp:Literal ID="Literal1" runat="server" Text="Batch Detail"></asp:Literal>
+    <asp:Literal ID="lblTitle" runat="server" Text="Batch Detail"></asp:Literal>
 </asp:Content>

@@ -31,7 +31,7 @@
                             <td class="data-value">
                                 <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                                    ErrorMessage="Required"
+                                    ErrorMessage="Required" ValidationGroup="required"
                                     ControlToValidate="txtFirstName" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -54,7 +54,7 @@
                             <td class="data-value">
                                 <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="valiUserName" runat="server"
-                                    ErrorMessage="Required"
+                                    ErrorMessage="Required" ValidationGroup="required"
                                     ControlToValidate="txtUserName" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -64,7 +64,7 @@
                             <td class="data-value">
                                 <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
-                                    ErrorMessage="Required"
+                                    ErrorMessage="Required" ValidationGroup="required"
                                     ControlToValidate="txtPassword" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -74,8 +74,12 @@
                             <td class="data-value">
                                 <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                                    ErrorMessage="Required"
+                                    ErrorMessage="Required" ValidationGroup="required"
                                     ControlToValidate="txtEmail" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="regexEmailValid" runat="server" ForeColor="red"
+                                    ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                                    ValidationGroup="required"
+                                    ControlToValidate="txtEmail" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
 
                             </td>
                         </tr>
@@ -188,12 +192,13 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
+            <br />
 
 
-            <div class="save-div">
-                <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
-            </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>
+    <div class="save-div">
+        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="required" />
+    </div>
 </div>

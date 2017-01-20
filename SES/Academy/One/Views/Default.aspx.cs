@@ -24,7 +24,7 @@ namespace One.Views
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
-                    LstUc1.SchoolId = user.SchoolId;//Values.Session.GetSchool(Session);
+                    //LstUc1.SchoolId = user.SchoolId;//Values.Session.GetSchool(Session);
                     LstUc1.UserId = user.Id;//Values.Session.GetUser(Session);
                     LstUc1.AcademicYearId = user.AcademicYearId;//Values.Session.GetAcademicYear(Session);
                     LstUc1.SessionId = user.SessionId;//Values.Session.GetSession(Session);

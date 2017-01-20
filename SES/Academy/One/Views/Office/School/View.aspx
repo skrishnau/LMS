@@ -2,6 +2,8 @@
 
 <%--<%@ MasterType virtualpath="~/ViewsSite/User/UserMaster.Master" %>--%>
 
+
+
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <h3 class="heading-of-listing">
         <asp:Label ID="lblSchoolName" runat="server" Text="School Profile"></asp:Label>

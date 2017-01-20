@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.Academy.Session
@@ -59,9 +60,37 @@ namespace One.Views.Academy.Session
                     if (academic != null)
                     {
                         var session = academic.Sessions.FirstOrDefault(x => x.Id == sId);
-
+                        var editQuery = Request.QueryString["edit"];
+                        var edit = (editQuery ?? "0").ToString();
                         if (session != null)
                         {
+                            if (SiteMap.CurrentNode != null)
+                            {
+                                var list = new List<IdAndName>()
+                                {
+                                   new IdAndName(){
+                                                Name=SiteMap.RootNode.Title
+                                                ,Value =  SiteMap.RootNode.Url
+                                                ,Void=true
+                                            },
+                                    new IdAndName(){
+                                        Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
+                                        ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url+"?edit="+(edit)
+                                        ,Void=true
+                                    },
+                                    new IdAndName()
+                                    {
+                                        Name = academic.Name
+                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?aId=1&edit="+edit
+                                        ,Void = true
+                                    },
+                                    new IdAndName()
+                                    {
+                                        Name = session.Name
+                                    }
+                                };
+                                SiteMapUc.SetData(list);
+                            }
                             //lblEnd.Text = session.EndDate.ToShortDateString();
                             //lblStart.Text = session.StartDate.ToShortDateString();
                             string name = "";

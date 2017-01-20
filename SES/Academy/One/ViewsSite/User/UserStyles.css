@@ -7,14 +7,9 @@
 
 /* CREATE OR EDIT form STYLES (working and tested)*/
 
-h3.heading-of-create-edit {
-    text-align: center;
-    margin-top: 3px;
-    font-size: 2em;
-    color: darkslategray;
-}
 
-div.create-edit-whole {
+
+/*div.create-edit-whole {
 }
 
 div.data-entry-body {
@@ -23,38 +18,14 @@ div.data-entry-body {
 
     div.data-entry-body table {
         border-collapse: collapse;
-        /*width: 100%;*/
     }
 
     div.data-entry-body tr {
         vertical-align: top;
         width: 100%;
         padding: 10px 0;
-    }
+    }*/
 
-td.data-type {
-    width: 170px;
-    padding: 10px 0;
-    display: inline-block;
-}
-
-td.data-type-bold {
-    width: 170px;
-    padding: 10px 0;
-    display: inline-block;
-    font-weight: 600;
-}
-
-
-td.data-value {
-    padding: 10px 0;
-    /*display: inline-block;*/
-}
-
-td.data-value-bold {
-    padding: 10px 0;
-    font-weight: 600;
-}
 
 td.data-value-bold-dark-back {
     padding: 10px 0;
@@ -67,41 +38,13 @@ td.data-value-bold-dark-back {
         display: inline-block;
     }*/
 
-div.save-div {
-    padding: 10px 0;
-    margin-left: 190px;
-}
-
-div.data-entry-section {
-    margin-left: 15px;
-}
-
-div.data-entry-section-heading {
-    font-size: 1.1em;
-    font-weight: 700;
-}
-
-    div.data-entry-section-heading hr {
-        border: none;
-        background-color: darkgray;
-        height: 1px;
-    }
 /*Temp delete this after updating the respective classs name in ui*/
 div.data-entry-heading {
     font-weight: 700;
 }
 /*eend*/
 
-div.data-entry-section-body {
-    margin-left: 20px;
-    /*margin: 0 20px 0;*/
-}
 
-div.data-entry-body div.data-entry-section hr {
-    border: none;
-    background-color: darkgray;
-    height: 1px;
-}
 /*div.data-entry-section hr {
     border: none;
     background-color: darkgray;

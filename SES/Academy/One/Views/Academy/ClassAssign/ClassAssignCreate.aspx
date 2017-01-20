@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="ClassAssignCreate.aspx.cs" Inherits="One.Views.Academy.ClassAssign.ClassAssignCreate" %>
 
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
 
 
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="Body">
@@ -26,4 +30,13 @@
         &nbsp; &nbsp;
         <asp:Label ID="lblError" runat="server" Text="Error while saving." ForeColor="red" Visible="False"></asp:Label>
     </div>
+</asp:Content>
+
+
+
+<asp:Content runat="server" ID="content1" ContentPlaceHolderID="head">
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content runat="server" ID="content2" ContentPlaceHolderID="title">
+    Class assign
 </asp:Content>

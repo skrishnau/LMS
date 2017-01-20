@@ -79,11 +79,12 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
             lblProgramDirectory.Text = dir;
         }
 
-        public void LoadCourseList(int yearId, int subYearId = 0)
+        public void LoadCourseList(string edit,int yearId, int subYearId = 0)
         {
 
             hidYearId.Value = yearId.ToString();
             hidSubYearId.Value = subYearId.ToString();
+            hidEdit.Value = edit;
             //AddCourses1.YearId = yearId;
             //AddCourses1.SubYearId = subYearId;
 
@@ -104,5 +105,14 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
             Response.Redirect("~/Views/Structure/AssignCoursesCreate.aspx?yId=" + YearId + "&sId=" + SubYearId);
         }
 
+        public string GetCode(object code)
+        {
+            if(code!=null)
+            {
+                var c = code.ToString();
+                return (string.IsNullOrEmpty(c) ? "" : "&nbsp; (" + c + ")");
+            }
+            return "";
+        }
     }
 }

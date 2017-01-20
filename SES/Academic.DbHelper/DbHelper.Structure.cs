@@ -206,7 +206,7 @@ namespace Academic.DbHelper
 
             public List<Year> GetYears(int programId)
             {
-                return Context.Year.Where(x => x.ProgramId == programId && !(x.Void??false)).ToList();
+                return Context.Year.Where(x => x.ProgramId == programId && !(x.Void ?? false)).ToList();
                 //.Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
             }
 
@@ -488,8 +488,8 @@ namespace Academic.DbHelper
                     {
                         dir = //sub.Year.Program.Faculty.Level.Name + ">"
                             //+ sub.Year.Program.Faculty.Name + ">"
-                               sub.Year.Program.Name + ">"
-                              + sub.Year.Name + ">"
+                               sub.Year.Program.Name + " / "
+                              + sub.Year.Name + " / "
                               + sub.Name;
                     }
                 }
@@ -594,6 +594,52 @@ namespace Academic.DbHelper
                     {
                         subYear.Void = true;
                         Context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public bool CopyYearsAndSubyears(int fromProgram, int toProgram)
+            {
+                try
+                {
+                    var fp = GetProgram(fromProgram);
+                    var tp = GetProgram(toProgram);
+                    if (fp != null && tp != null)
+                    {
+                        foreach (var yea in fp.Year.Where(x => !(x.Void ?? false)))
+                        {
+                            var newYear = new Year()
+                            {
+                                ProgramId = toProgram
+                                ,
+                                Name = yea.Name
+                                ,
+                                Position = yea.Position
+                                ,
+                            };
+                            var savedYear = Context.Year.Add(newYear);
+                            Context.SaveChanges();
+                            foreach (var syea in yea.SubYears.Where(x => !(x.Void ?? false)))
+                            {
+                                var newSubYear = new SubYear()
+                                {
+                                    YearId = savedYear.Id
+                                    ,
+                                    Name = syea.Name
+                                    ,
+                                    Position = syea.Position
+                                    ,
+                                };
+                                var savedSubYear = Context.SubYear.Add(newSubYear);
+                                Context.SaveChanges();
+                            }
+                        }
                         return true;
                     }
                     return false;

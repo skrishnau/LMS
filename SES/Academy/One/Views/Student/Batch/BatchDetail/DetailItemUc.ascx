@@ -1,10 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DetailItemUc.ascx.cs" Inherits="One.Views.Student.Batch.BatchDetail.DetailItemUc" %>
 
 
-<div class="item">
+<div class="auto-st2">
     <asp:Panel ID="pnlBody" runat="server">
         <div style="font-size: 1.1em ; font-weight: 700; padding: 5px; margin: 5px;">
-            <asp:HyperLink ID="lnkProgrameName" runat="server" Text="" 
+            <asp:HyperLink ID="lnkProgrameName" runat="server" Text=""  CssClass="link"
                  ></asp:HyperLink>
         </div>
         <div style="margin-left: 30px; padding-bottom: 10px;">

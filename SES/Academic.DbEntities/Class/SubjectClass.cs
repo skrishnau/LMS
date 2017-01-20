@@ -14,7 +14,7 @@ namespace Academic.DbEntities.Class
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of Class  :::: cls.IsRegular ? cls.GetName : cls.Name
+        /// returns Name of Class  : cls.IsRegular ? cls.GetName : cls.Name
         /// </summary>
         public string GetName
         {
@@ -31,6 +31,26 @@ namespace Academic.DbEntities.Class
                     }
                 else
                     return Name;
+            }
+        }
+        //
+        public string GetCourseFullName
+        {
+            get
+            {
+                if (IsRegular)
+                    return SubjectStructure == null ? "" : SubjectStructure.Subject.FullName;
+                return Subject == null ? "" : Subject.FullName;
+            }
+        }
+
+        public int GetCourseId
+        {
+            get
+            {
+                if (IsRegular)
+                    return SubjectStructure == null ? 0 : SubjectStructure.Subject.Id;
+                return Subject == null ? 0 : Subject.Id;
             }
         }
         /// <summary>
@@ -107,7 +127,7 @@ namespace Academic.DbEntities.Class
         /// 0: Automatic , 1: Manual only , 2: Self Enrollment
         /// </summary>
         public byte EnrollmentMethod { get; set; }
-        
+
         //gives all the users for this session of the course.
         public virtual ICollection<ActivityAndResource.ActivityClass> ActivityClasses { get; set; }
         public virtual ICollection<UserClass> ClassUsers { get; set; }

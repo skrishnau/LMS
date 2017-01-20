@@ -13,6 +13,15 @@ namespace One.Views.Structure {
     public partial class StructureCreate {
         
         /// <summary>
+        /// SiteMapUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        
+        /// <summary>
         /// lblHeading control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace One.Views.Structure {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidStructureType;
+        
+        /// <summary>
+        /// lblCopyError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCopyError;
         
         /// <summary>
         /// txtName control.
@@ -101,6 +119,15 @@ namespace One.Views.Structure {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPosition;
+        
+        /// <summary>
+        /// CustomDialog1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.Dialog.CustomDialog CustomDialog1;
         
         /// <summary>
         /// Save control.

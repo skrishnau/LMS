@@ -73,9 +73,12 @@ namespace One.Views.Office.School
         {
             using (var helper = new DbHelper.Office())
             {
+               
                 var sch = helper.GetSchoolOfUser(user.Id);
+
                 if (sch != null)
                 {
+
                     hidSchoolId.Value = sch.Id.ToString();
                     txtCity.Text = sch.City;
                     txtCode.Text = sch.Code;
@@ -121,6 +124,24 @@ namespace One.Views.Office.School
                                 };
                         FilesDisplay1.SetInitialValues(new List<FileResourceEventArgs>() { image });
                     }
+                }
+                if (SiteMap.CurrentNode != null)
+                {
+                    var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = sch==null?SiteMap.CurrentNode.ParentNode.Title:sch.Name
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                ,Void=true
+                            },
+                            new IdAndName(){Name = "Edit"}
+                        };
+                    SiteMapUc.SetData(list);
                 }
             }
         }

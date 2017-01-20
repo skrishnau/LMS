@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using One.Values.MemberShip;
+using Academic.ViewModel;
 
 namespace One.Views.Grade
 {
@@ -19,6 +20,24 @@ namespace One.Views.Grade
             {
                 if (!IsPostBack)
                 {
+
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.Title
+                                //,Value = SiteMap.CurrentNode.ParentNode.Url
+                                //,Void=true
+                            }
+                        };
+                        SiteMapUc.SetData(list);
+                    }
                     var edit = Request.QueryString["edit"];
                     if (user.IsInRole("manager") || user.IsInRole("grader") || user.IsInRole("course-editor"))
                     {

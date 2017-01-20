@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.Structure
@@ -15,41 +16,107 @@ namespace One.Views.Structure
         protected void Page_Load(object sender, EventArgs e)
         {
             lblError.Visible = false;
+            CustomDialog1.ItemClick += CustomDialog1_ItemClick;
             if (!IsPostBack)
             {
-                try
+                var user = Page.User as CustomPrincipal;
+                if (user != null)
+                    try
+                    {
+                        var type = Request.QueryString["strTyp"];
+                        if (type == null)
+                        {
+                            Response.Redirect("~/Views/Structure/All/Master/List.aspx", true);
+                        }
+                        else
+                        {
+                            StructureType = type;
+                            LoadStructureType();
+                            var strId = Request.QueryString["strId"];
+                            var pId = Request.QueryString["pId"];
+                            if (strId != null)
+                            {
+                                StructureId = Convert.ToInt32(strId);
+                                LoadStructure();
+                            }
+                            else if (pId != null)// there must be parent id if (structure id is not given)
+                            {
+                                var parentId = Convert.ToInt32(pId);
+                                ParentId = parentId;
+
+                                //if year creation is choosen then check if there are any other year in this program
+                                //if no year then give to choose the program from which year and subyear can be imported
+                                if (type == "yr")
+                                {
+                                    using (var helper = new DbHelper.Structure())
+                                    {
+                                        var prog = helper.GetProgram(parentId);
+                                        if (prog != null)
+                                        {
+                                            var cnt = prog.Year.Count;
+                                            if (!(prog.Year.Any(x => !(x.Void ?? false))))
+                                            {
+                                                //show dialog to choose another program and 
+                                                var programs = helper.GetPrograms(user.SchoolId);
+                                                var thisone = programs.Find(x => x.Id == parentId);
+                                                if (thisone != null) programs.Remove(thisone);
+                                                //there has to be another program to choose so check for it
+                                                if (programs.Count > 1)
+                                                {
+                                                    //show dialog // and list all the programs to choose
+                                                    var items = programs.Select(x => new IdAndName()
+                                                    {
+                                                        Name = x.Name,
+                                                        Id = x.Id
+                                                    }).ToList();
+                                                    items.Add(new IdAndName() { Id = 0, Name = "I would like to add manually" });
+                                                    CustomDialog1.SetValues("Choose program to copy from", items, "", "cancel");
+                                                    CustomDialog1.OpenDialog();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        Response.Redirect("~/Views/Structure/?edit=1");
+                    }
+            }
+        }
+
+        void CustomDialog1_ItemClick(object sender, IdAndNameEventArgs e)
+        {
+            //copy the year and sub-years from the choosen program  to this program
+            if (e.Id == 0)
+            {
+                CustomDialog1.CloseDialog();
+                return;
+            }
+            using (var helper = new DbHelper.Structure())
+            {
+                var copied = helper.CopyYearsAndSubyears(e.Id, ParentId);
+                if (copied)
                 {
-                    var type = Request.QueryString["strTyp"];
-                    if (type == null)
-                    {
-                        Response.Redirect("~/Views/Structure/All/Master/List.aspx", true);
-                    }
-                    else
-                    {
-                        StructureType = type;
-                        LoadStructureType();
-                        var strId = Request.QueryString["strId"];
-                        var pId = Request.QueryString["pId"];
-                        if (strId != null)
-                        {
-                            StructureId = Convert.ToInt32(strId);
-                            LoadStructure();
-                        }
-                        else if (pId != null)
-                        {
-                            ParentId = Convert.ToInt32(pId);
-                        }
-                    }
+                    Response.Redirect("~/Views/Structure/?edit=1");
                 }
-                catch
+                else
                 {
-                    Response.Redirect("~/Views/Structure/All/Master/List.aspx");
+                    lblCopyError.Visible = true;
+                    CustomDialog1.CloseDialog();
                 }
             }
         }
 
         private void LoadStructureType()
         {
+            var newNode = new IdAndName()
+            {
+                Name="Structure edit"
+            };
             switch (StructureType)
             {
                 //case "lev":
@@ -60,22 +127,43 @@ namespace One.Views.Structure
                 //    lblHeading.Text = "Faculty edit";
                 //    lblTabHead.Text = "Faculty edit";
                 //    break;
+
                 case "pro":
                     lblHeading.Text = "Program edit";
                     lblTabHead.Text = "Program edit";
+                    newNode.Name = "Program edit";
                     break;
                 case "yr":
                     lblHeading.Text = "Year edit";
                     lblTabHead.Text = "Year edit";
                     position_row.Visible = true;
+                    newNode.Name = "Year edit";
 
                     break;
                 case "syr":
                     lblHeading.Text = "Sub-year edit";
                     lblTabHead.Text = "Sub-year edit";
                     position_row.Visible = true;
+                    newNode.Name = "Sub-year edit";
                     break;
-
+            }
+            if (SiteMap.CurrentNode != null)
+            {
+                var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit=1"
+                                ,Void=true
+                            }
+                            ,newNode
+                        };
+                SiteMapUc.SetData(list);
             }
         }
 

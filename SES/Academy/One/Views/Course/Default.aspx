@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/ViewsSite/User/UserMaster.Master" CodeBehind="Default.aspx.cs" Inherits="One.Views.Course.Default" %>
 
-
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
@@ -48,7 +51,7 @@
                                         <%-- end --%>
                                         <div style="text-align: left; padding: 5px 0; margin: 10px 0; background-color: white;">
                                             &nbsp;
-                                                <asp:LinkButton ID="lnkCatCreate" runat="server" OnClick="lnkCatCreate_Click">
+                                                <asp:LinkButton ID="lnkCatCreate" runat="server" OnClick="lnkCatCreate_Click" CssClass="link">
                                                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                                                     New Category
                                                 </asp:LinkButton>
@@ -72,7 +75,7 @@
                                                     <asp:Label ID="lblCoursesTitle" runat="server" Text=""></asp:Label>
                                                 </strong>
                                                     <div style="float: right;">
-                                                        <asp:LinkButton ID="lnkCoursCreate" runat="server" Visible="False"
+                                                        <asp:LinkButton ID="lnkCoursCreate" runat="server" Visible="False" CssClass="link"
                                                             OnClick="lnkCoursCreate_Click">
                                                             <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                                                             Add Course
@@ -111,9 +114,10 @@
                                                                 ●&nbsp;
                                                                 <asp:HyperLink ID="HyperLink1" runat="server"
                                                                     NavigateUrl='<%# "~/Views/Course/CourseDetail.aspx?cId="+Eval("Id") %>'><%# Eval("FullName") %></asp:HyperLink>
-                                                            &nbsp;(
-                                                            <asp:Label ID="CodeLabel" runat="server" Text='<%# Eval("Code") %>' />
-                                                            )
+                                                            <%--&nbsp;(--%>
+                                                            <asp:Label ID="CodeLabel" runat="server" 
+                                                                Text='<%# GetCode(Eval("Code")) %>' />
+                                                            <%--)--%>
                                                             <br />
 
                                                         </ItemTemplate>

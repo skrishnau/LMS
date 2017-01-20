@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.Academy.Activation
@@ -27,12 +28,44 @@ namespace One.Views.Academy.Activation
                         {
                             if (aId != null)
                             {
+
                                 var acaId = Convert.ToInt32(aId);
                                 AcademicYearId = acaId;
                                 var aca = helper.GetAcademicYear(acaId);
 
                                 if (task != null && aca != null)
                                 {
+                                    #region SiteMap
+
+                                    if (SiteMap.CurrentNode != null)
+                                    {
+                                        var list = new List<IdAndName>()
+                                    {
+                                        new IdAndName(){
+                                                    Name=SiteMap.RootNode.Title
+                                                    ,Value =  SiteMap.RootNode.Url
+                                                    ,Void=true
+                                                },
+                                        new IdAndName(){
+                                            Name = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Title
+                                            ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Url+"?edit=1"
+                                            ,Void=true
+                                        },
+                                        new IdAndName()
+                                        {
+                                            Name = aca.Name
+                                            ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url+"?aId="+aId+"&edit=1"
+                                            ,Void = true
+                                        },
+                                        new IdAndName()
+                                        {
+                                            Name = (task == "activate")?"Activate":"Mark Complete"
+                                        }
+                                    };
+                                        SiteMapUc.SetData(list);
+                                    }
+
+                                    #endregion
                                     if (aca.SchoolId != user.SchoolId)
                                         Response.Redirect("~/Views/Academy/List.aspx");
                                     Task = task;
@@ -79,6 +112,45 @@ namespace One.Views.Academy.Activation
                                 var sess = helper.GetSession(sessId);
                                 if (task != null && sess != null)
                                 {
+                                    #region SiteMap
+
+                                    if (SiteMap.CurrentNode != null)
+                                    {
+                                        var list = new List<IdAndName>()
+                                    {
+                                        new IdAndName(){
+                                                    Name=SiteMap.RootNode.Title
+                                                    ,Value =  SiteMap.RootNode.Url
+                                                    ,Void=true
+                                                },
+                                        new IdAndName(){
+                                            Name = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Title
+                                            ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Url+"?edit=1"
+                                            ,Void=true
+                                        },
+                                        new IdAndName()
+                                        {
+                                            Name = sess.AcademicYear.Name
+                                            ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url
+                                                +"?aId="+sess.AcademicYearId+"&edit=1"
+                                            ,Void = true
+                                        },
+                                        new IdAndName()
+                                        {
+                                            Name = sess.Name
+                                            ,Value = SiteMap.CurrentNode.ParentNode.Url+"?aId="+sess.AcademicYearId
+                                                +"&sId="+sess.Id+"&edit=1"
+                                            ,Void = true
+                                        },
+                                        new IdAndName()
+                                        {
+                                            Name = (task == "activate")?"Activate":"Mark Complete"
+                                        }
+                                    };
+                                        SiteMapUc.SetData(list);
+                                    }
+
+                                    #endregion
                                     if (sess.AcademicYear.SchoolId != user.SchoolId)
                                         Response.Redirect("~/Views/Academy/List.aspx");
                                     Task = task;

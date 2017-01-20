@@ -1,0 +1,30 @@
+﻿/*Program choose*/
+
+.pc-table {
+    margin-left: 25px;
+    border-collapse: collapse;
+}
+
+.pc-table-row {
+    vertical-align: central;
+    padding: 7px;
+    /*border-bottom: 1px dashed lightgray;*/
+}
+
+.pc-year-name {
+    vertical-align: central;
+    padding: 7px;
+    /*border-bottom: 1px dashed lightgray;*/
+}
+
+.pc-subyear-option {
+    vertical-align: central;
+    padding: 7px;
+    /*border-bottom: 1px dashed lightgray;*/
+}
+
+.pc-programbatch-option {
+    vertical-align: central;
+    padding: 7px;
+    /*border-bottom: 1px dashed lightgray;*/
+}

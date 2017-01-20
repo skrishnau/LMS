@@ -1,5 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="NoticeDetail.aspx.cs" Inherits="One.Views.NoticeBoard.NoticeDetail" %>
 
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
+
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <div style="width: 100%;">
         <h3 class="heading-of-listing">
@@ -54,4 +59,7 @@
             </div>
         </div>
     </div>
+</asp:Content>
+<asp:Content runat="server" ID="content2" ContentPlaceHolderID="title">
+    <asp:Literal ID="lblTitle" runat="server"></asp:Literal>
 </asp:Content>

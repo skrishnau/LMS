@@ -140,7 +140,7 @@ namespace One.Views.User
 
 
                         var files = FilesDisplay.GetFiles();
-                        var image = new UserFile();
+                        UserFile image = null;
                         if (files != null)
                         {
                             if (files.Count >= 1)

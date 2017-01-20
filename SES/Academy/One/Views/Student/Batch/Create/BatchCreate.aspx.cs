@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 using One.Views.Structure.All.UserControls.StructureView;
 
@@ -23,6 +24,27 @@ namespace One.Views.Student.Batch.Create
                 if (user != null)
                     try
                     {
+                        if (SiteMap.CurrentNode != null)
+                        {
+                            var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit=1"
+                                ,Void=true
+                            }
+                            ,new IdAndName()
+                            {
+                                Name = SiteMap.CurrentNode.Title
+                            }
+                        };
+                            SiteMapUc.SetData(list);
+                        }
                         var id = Request.QueryString["bId"];
                         if (id != null)
                         {

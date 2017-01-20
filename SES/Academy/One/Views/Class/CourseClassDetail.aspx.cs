@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 
 namespace One.Views.Class
 {
@@ -26,11 +27,41 @@ namespace One.Views.Class
                         var cls = helper.GetSubjectSession(clsId);
                         if (cls != null)
                         {
+                            var clsname = cls.GetName;
+                            var coursefullname = cls.GetCourseFullName;
+                            lblTitle.Text = clsname;
+                            if (SiteMap.CurrentNode != null)
+                            {
+                                var list = new List<IdAndName>()
+                                {
+                                   new IdAndName(){
+                                                Name=SiteMap.RootNode.Title
+                                                ,Value =  SiteMap.RootNode.Url
+                                                ,Void=true
+                                            },
+                                    new IdAndName(){
+                                        Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
+                                        ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url
+                                        ,Void=true
+                                    },
+                                    new IdAndName(){
+                                        Name = cls.GetCourseFullName
+                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?cId="+(cls.GetCourseId)
+                                        ,Void=true
+                                    }
+                                    ,
+                                    new IdAndName()
+                                    {
+                                        Name = clsname
+                                    }
+                                };
+                                SiteMapUc.SetData(list);
+                            }
                             lnkReport.NavigateUrl = "~/Views/Report/?ccId="+cls.Id;
-                            lblClassName.Text = cls.IsRegular ? cls.GetName : cls.Name;
-                            lblCourseName.Text = cls.IsRegular
-                                ? cls.SubjectStructure.Subject.FullName
-                                : cls.Subject.FullName;
+                            lblClassName.Text = clsname;//cls.IsRegular ? cls.GetName : cls.Name;
+                            lblCourseName.Text = coursefullname;//cls.IsRegular
+                                //? cls.SubjectStructure.Subject.FullName
+                                //: cls.Subject.FullName;
 
                             
                             lblEndDate.Text = cls.EndDate==null ? "N/A":cls.EndDate.Value.ToString("D");

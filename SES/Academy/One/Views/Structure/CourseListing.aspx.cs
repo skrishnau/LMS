@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 
 namespace One.Views.Structure
 {
@@ -26,10 +27,31 @@ namespace One.Views.Structure
                         var s = Convert.ToInt32(subyear.ToString());
                         using (var helper = new DbHelper.Structure())
                         {
+
                             var dir = helper.GetSructureDirectory(y, s);
                             CourseListUC.SetProgramDirectory(dir);
+                            var editQuery = Request.QueryString["edit"];
+                            var edit = (editQuery ?? "0").ToString();
+                            if (SiteMap.CurrentNode != null)
+                            {
+                                var list = new List<IdAndName>()
+                                {
+                                   new IdAndName(){
+                                                Name=SiteMap.RootNode.Title
+                                                ,Value =  SiteMap.RootNode.Url
+                                                ,Void=true
+                                            },
+                                    new IdAndName(){
+                                        Name = SiteMap.CurrentNode.ParentNode.Title
+                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit="+edit
+                                        ,Void=true
+                                    },
+                                    new IdAndName(){Name = dir}
+                                };
+                                SiteMapUc.SetData(list);
+                            }
+                            CourseListUC.LoadCourseList(edit, y, s);
                         }
-                        CourseListUC.LoadCourseList(y, s);
                     }
                     catch { Response.Redirect("~/Views/Structure/All/Master/List.aspx"); }
 

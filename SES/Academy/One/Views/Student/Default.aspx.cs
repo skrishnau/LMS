@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using One.Values.MemberShip;
+using Academic.ViewModel;
 
 namespace One.Views.Student
 {
@@ -17,6 +18,22 @@ namespace One.Views.Student
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.Title
+                                //,Value = SiteMap.CurrentNode.Url
+                            }
+                        };
+                        SiteMapUc.SetData(list);
+                    }
                     listUc.SchoolId = user.SchoolId; //Values.Session.GetSchool(Session);
                     var edit = Request.QueryString["edit"];
                     if ((user.IsInRole("manager") || user.IsInRole("admitter")))

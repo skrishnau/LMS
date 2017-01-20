@@ -1,6 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/ViewsSite/User/UserMaster.Master" CodeBehind="AcademyCreate.aspx.cs" Inherits="One.Views.Academy.AcademicYear.AcademyCreate" %>
 
 
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
 
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
@@ -77,6 +81,8 @@
       <script type="text/javascript" src="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.min.js"></script>
     <script src="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.js" type="text/javascript"></script>
     <link href="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.css" rel="stylesheet" type="text/css" />
+    
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 
     <script>
         function pageLoad() {

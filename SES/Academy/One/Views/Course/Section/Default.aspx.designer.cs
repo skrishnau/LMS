@@ -13,6 +13,15 @@ namespace One.Views.Course.Section {
     public partial class Default {
         
         /// <summary>
+        /// SiteMapUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace One.Views.Course.Section {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::One.Views.Course.Section.Master.ListOfSectionsInCourseUC ListOfSectionsInCourseUC1;
+        
+        /// <summary>
+        /// hidEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidEdit;
         
         /// <summary>
         /// lblPageTitle control.

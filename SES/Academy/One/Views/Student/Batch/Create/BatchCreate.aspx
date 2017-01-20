@@ -1,17 +1,20 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="BatchCreate.aspx.cs" Inherits="One.Views.Student.Batch.Create.BatchCreate" %>
 
-<%@ Register Src="~/Views/Student/Batch/Create/CreateBatchUc.ascx" TagPrefix="uc1" TagName="CreateBatchUc" %>
-
+<%--<%@ Register Src="~/Views/Student/Batch/Create/CreateBatchUc.ascx" TagPrefix="uc1" TagName="CreateBatchUc" %>--%>
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <%--<uc1:CreateBatchUc runat="server" ID="CreateBatchUc" />--%>
 
-    <%@ Register Src="~/Views/Structure/All/UserControls/StructureView/TreeViewWithCheckBoxInLeft.ascx" TagPrefix="uc1" TagName="TreeViewWithCheckBoxInLeft" %>
+    <%--<%@ Register Src="~/Views/Structure/All/UserControls/StructureView/TreeViewWithCheckBoxInLeft.ascx" TagPrefix="uc1" TagName="TreeViewWithCheckBoxInLeft" %>--%>
 
 
 
     <div class="data-entry-section">
-        <h3 class="heading-of-create-edit">Batch Create
+        <h3 class="heading-of-create-edit">Batch edit
         </h3>
         <hr />
         <br />
@@ -111,7 +114,8 @@
     <script type="text/javascript" src="../../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.min.js"></script>
     <script src="../../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.js" type="text/javascript"></script>
     <link href="../../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.css" rel="stylesheet" type="text/css" />
-
+    <link href="../../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
+    <link href="../../../../Content/CSSes/CreateEditStyles.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
     Batch Create

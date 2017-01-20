@@ -5,14 +5,14 @@
     <asp:Panel ID="pnlBody" runat="server">
         <div class="block">
             <span style="font-weight: 600">
-                <asp:HyperLink ID="lblName" runat="server">
-                Name
+                <asp:HyperLink ID="lnkName" runat="server" CssClass="link">
+                
                 </asp:HyperLink>
                 &nbsp;
-        <asp:HyperLink ID="lnkEdit" runat="server" CssClass="edit-button">
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-        </asp:HyperLink>
-                <asp:HyperLink ID="lnkDelete" Visible="False"  CssClass="delete-button" runat="server" OnClick="lnkEdit_Click">
+                <asp:HyperLink ID="lnkEdit" runat="server" CssClass="edit-button">
+                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                </asp:HyperLink>
+                <asp:HyperLink ID="lnkDelete" Visible="False" CssClass="delete-button" runat="server" OnClick="lnkEdit_Click">
                     <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/trash.gif" />
                 </asp:HyperLink>
             </span>
@@ -30,10 +30,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:HyperLink ID="lnkCoursesList" runat="server">
-                                <span style="font-weight: 500; font-style: italic;">No. Of Courses: &nbsp;</span>
-                                <asp:Label ID="lblNoOfCourses" runat="server" Text="0"></asp:Label>
-                            </asp:HyperLink>
+                            <em>
+                            <asp:Label ID="lblNoOfCourses" runat="server" Text="0"></asp:Label>
+                            </em>
+                            <%--<asp:HyperLink ID="lnkCoursesList" runat="server">
+                                <span style="font-weight: 500; font-style: italic;"></span>
+                            </asp:HyperLink>--%>
                             <%-- <div style="float: right; position: absolute; background-color: red; min-height: 900px; min-width: 100px;">
                             <asp:Panel ID="pnlcourseList" runat="server"></asp:Panel>
                         </div>--%>
@@ -49,7 +51,7 @@
                 </table>
 
             </div>
-            <div>
+            <div style="margin-left: 20px;">
                 <asp:HyperLink ID="lnkAdd" runat="server" Visible="False" CssClass="link">
                     <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                     <asp:Literal ID="lblAddText" runat="server" Text=""></asp:Literal>

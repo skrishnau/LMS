@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.ViewModel;
 
 namespace One.Views.Student.Batch
 {
@@ -24,6 +25,7 @@ namespace One.Views.Student.Batch
                 {
                     //here id is BatchId
                     var id = Request.QueryString["Id"];
+                    
                     if (id != null)
                     {
                         int idInt = 0;
@@ -61,13 +63,37 @@ namespace One.Views.Student.Batch
         public void LoadData()
         {
             //BatchId = Convert.ToInt32(id);
+            var editQuery = Request.QueryString["edit"];
+            var edit = (editQuery ?? "0").ToString();
             using (var helper = new DbHelper.Batch())
             {
                 var batch = helper.GetBatch(BatchId);
                 if (batch != null)
                 {
+
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit="+edit
+                                ,Void=true
+                            }
+                            , new IdAndName(){Name = batch.Name}
+                        };
+                        SiteMapUc.SetData(list);
+                        //SiteMap.CurrentNode.ReadOnly = false;
+                        //SiteMap.CurrentNode.Title = batch.Name;
+                    }
                     lblBatchName.Text = batch.Name;
                     lblSummary.Text = batch.Description;
+                    lblTitle.Text = batch.Name;
 
                 }
                 var programs = helper.GetProgramBatchList(BatchId);
@@ -79,7 +105,7 @@ namespace One.Views.Student.Batch
                         Page.LoadControl("~/Views/Student/Batch/BatchDetail/DetailItemUc.ascx");
 
                     item.LoadData(prog.Id, prog.BatchId, prog.NameFromBatch, prog.ProgramId
-                        , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void,no);
+                        , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void, no,edit);
                     //if (prog.CurrentYear != null)
                     //{
                     //    item.CurrentYear = prog.CurrentYear.Name;

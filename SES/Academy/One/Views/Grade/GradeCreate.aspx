@@ -2,6 +2,10 @@
 
 <%@ Register Src="~/Views/Grade/GradeTypeUc.ascx" TagPrefix="uc1" TagName="GradeTypeUc" %>
 
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
 
 
 <asp:Content runat="server" ID="contentBodyid" ContentPlaceHolderID="Body">
@@ -45,16 +49,16 @@
                         </td>
                     </tr>
                 </table>
-
-            </div>
-            <div class="save-div">
-                <asp:Button ID="btnSave" runat="server" Text="Save" Width="75px" ValidationGroup="gradevaligroup" OnClick="btnSave_OnClick" />
-                &nbsp; &nbsp;
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="75px" 
+                <div class="save-div">
+                    <asp:Button ID="btnSave" runat="server" Text="Save" Width="75px" ValidationGroup="gradevaligroup" OnClick="btnSave_OnClick" />
+                    &nbsp; &nbsp;
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="75px"
                     ValidationGroup="cancelgroup" OnClick="btnCancel_OnClick" />
 
-                <asp:Label ID="lblError" runat="server" Text="Error while saving." Visible="False" ForeColor="red"></asp:Label>
+                    <asp:Label ID="lblError" runat="server" Text="Error while saving." Visible="False" ForeColor="red"></asp:Label>
+                </div>
             </div>
+
         </div>
 
 
@@ -64,9 +68,10 @@
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
+    <link href="../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="title">
-   Grade edit
+    Grade edit
 </asp:Content>
 
 

@@ -2,14 +2,19 @@
 
 <%@ Register Src="~/Views/Course/Category/Create.ascx" TagPrefix="uc1" TagName="Create" %>
 
-
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
 <asp:Content runat="server" ID="bodyocntent" ContentPlaceHolderID="Body">
-    <div style="text-align: center">
-        <h3 class="heading-of-create-edit">
-            <asp:Label ID="lblCategoryName" runat="server" Text="Add Category"></asp:Label>
-        </h3>
-        <hr />
-    </div>
+    <h3 class="heading-of-create-edit">
+        <asp:Label ID="lblCategoryName" runat="server" Text="Category edit"></asp:Label>
+    </h3>
+    <hr />
     <uc1:Create runat="server" ID="Create1" />
 </asp:Content>
 
+
+<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="title">
+    Category edit
+</asp:Content>

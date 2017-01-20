@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
+
 //using Academic.InitialValues;
 
 namespace One.Views.Academy.Session
@@ -69,23 +71,53 @@ namespace One.Views.Academy.Session
                 using (var helper = new DbHelper.AcademicYear())
                 {
                     var aca = helper.GetAcademicYear(AcademicYearId);
-                    var session = helper.GetSession(SessionId);
+                  
 
                     if (aca != null)
                     {
+                        if (SiteMap.CurrentNode != null)
+                        {
+                            var list = new List<IdAndName>()
+                                {
+                                   new IdAndName(){
+                                                Name=SiteMap.RootNode.Title
+                                                ,Value =  SiteMap.RootNode.Url
+                                                ,Void=true
+                                            },
+                                    new IdAndName(){
+                                        Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
+                                        ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url+"?edit=1"
+                                        ,Void=true
+                                    },
+                                    new IdAndName()
+                                    {
+                                        Name = aca.Name
+                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?aId=1&edit=1"
+                                        ,Void = true
+                                    },
+                                    new IdAndName()
+                                    {
+                                        Name = "Session edit"
+                                    }
+                                };
+                            SiteMapUc.SetData(list);
+                        }
                         //lblHeading.Text = "New Session Create";
-                        lblAcademicHeading.Text =  aca.Name ;
-                        lblAcademicStart.Text =  aca.StartDate.ToString("D");
-                        lblAcademicEnd.Text =  aca.EndDate.ToString("D");
+                        lblAcademicHeading.Text = aca.Name;
+                        lblAcademicStart.Text = aca.StartDate.ToString("D");
+                        lblAcademicEnd.Text = aca.EndDate.ToString("D");
 
                         ViewState["AcademicYearStartDate"] = aca.StartDate.Date;
                         ViewState["AcademicYearEndDate"] = aca.EndDate.Date;
+
+                        var session = helper.GetSession(SessionId);
+                        if (session != null)
+                        {
+                            //lblHeading.Text = @"Edit Session """ + session.Name + @"""";
+                            LoadSessionData(session);
+                        }
                     }
-                    if (session != null)
-                    {
-                        //lblHeading.Text = @"Edit Session """ + session.Name + @"""";
-                        LoadSessionData(session);
-                    }
+
                     //LoadSessionParametersAndDate();
                 }
 
@@ -114,7 +146,7 @@ namespace One.Views.Academy.Session
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId);
+            Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId+"&edit=1");
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -186,7 +218,7 @@ namespace One.Views.Academy.Session
                         //if (!task)
                         //{
                         Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId
-                            +"&edit=1");
+                            + "&edit=1");
                         //Response.Redirect("~/Views/Academy/List.aspx");
                         //}
                         //else

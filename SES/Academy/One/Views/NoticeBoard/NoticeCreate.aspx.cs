@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.NoticeBoard
@@ -16,34 +17,78 @@ namespace One.Views.NoticeBoard
             lblErrorMsg.Visible = false;
             if (!IsPostBack)
             {
+
+                var user = Page.User as CustomPrincipal;
+                if (user != null)
                 {
-                    var user = Page.User as CustomPrincipal;
-                    if (user != null)
+                    IdAndName noticeName = null;
+                    var nId = Request.QueryString["nId"];
+                    if (nId != null)
                     {
-                        var nId = Request.QueryString["nId"];
-                        if (nId != null)
+                        NoticeId = Convert.ToInt32(nId);
+                        using (var helper = new DbHelper.Notice())
                         {
-                            NoticeId = Convert.ToInt32(nId);
-                            using (var helper = new DbHelper.Notice())
+                            var notice = helper.GetNotice(NoticeId);
+                            if (notice != null)
                             {
-                                var notice = helper.GetNotice(NoticeId);
-                                if (notice != null)
-                                {
-                                    txtHeading.Text = notice.Title;
-                                    CKEditor1.Text = notice.Content;
-                                    chkPublish.Checked = notice.PublishNoticeToNoticeBoard;
-                                    ddlPublishTo.SelectedIndex = (notice.NoticePublishTo ?? false) ? 0 : 1;
+                                noticeName = new IdAndName() { Name = notice.Title, Value = "~/Views/NoticeBoard/NoticeDetail.aspx?nId=" + notice.Id, Void = true };
+                                txtHeading.Text = notice.Title;
+                                CKEditor1.Text = notice.Content;
+                                chkPublish.Checked = notice.PublishNoticeToNoticeBoard;
+                                ddlPublishTo.SelectedIndex = (notice.NoticePublishTo ?? false) ? 0 : 1;
 
-                                    ddlPublishTo.Visible = notice.PublishNoticeToNoticeBoard;
+                                ddlPublishTo.Visible = notice.PublishNoticeToNoticeBoard;
 
-                                    lblPageitle.Text = "Notice Edit";
+                                lblPageitle.Text = "Notice Edit";
 
-                                    //var updaetd = helper.AddOrUpdateNoticeNotification(Convert.ToInt32(nId), user.Id);
-                                }
+                                //var updaetd = helper.AddOrUpdateNoticeNotification(Convert.ToInt32(nId), user.Id);
                             }
                         }
                     }
+
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                            {
+                               new IdAndName(){
+                                            Name=SiteMap.RootNode.Title
+                                            ,Value =  SiteMap.RootNode.Url
+                                            ,Void=true
+                                        },
+                                        new IdAndName()
+                                        {
+                                            Name = SiteMap.CurrentNode.ParentNode.Title
+                                            ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                            ,Void = true
+                                        }
+                                        ,
+                                       
+                            };
+                        if (noticeName != null)
+                        {
+                            list.Add(noticeName);
+                            //list.Add(new IdAndName(){});
+                            list.Add(new IdAndName()
+                            {
+                                Name = "Edit"
+                                //,Value = SiteMap.CurrentNode.Url
+                                //,Void=true
+                            });
+                        }
+                        else
+                        {
+                             list.Add(new IdAndName()
+                            {
+                                Name = SiteMap.CurrentNode.Title
+                                //,Value = SiteMap.CurrentNode.Url
+                                //,Void=true
+                            });
+                        }
+                       
+                        SiteMapUc.SetData(list);
+                    }
                 }
+
             }
         }
 

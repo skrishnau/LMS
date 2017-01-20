@@ -112,6 +112,15 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.LoginStatus LoginStatus1;
         
         /// <summary>
+        /// Image1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+        
+        /// <summary>
         /// Menu control.
         /// </summary>
         /// <remarks>
@@ -121,13 +130,13 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder Menu;
         
         /// <summary>
-        /// SiteMapPath1 control.
+        /// SiteMapPlace control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapPath SiteMapPath1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder SiteMapPlace;
         
         /// <summary>
         /// CoursesUc control.

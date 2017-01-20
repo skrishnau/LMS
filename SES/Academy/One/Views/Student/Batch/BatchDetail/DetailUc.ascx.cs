@@ -36,6 +36,8 @@ namespace One.Views.Student.Batch.BatchDetail
 
         public void LoadData()
         {
+            var editQuery = Request.QueryString["edit"];
+            var edit = (editQuery ?? "0").ToString();
             //BatchId = Convert.ToInt32(id);
             using (var helper = new DbHelper.Batch())
             {
@@ -53,7 +55,7 @@ namespace One.Views.Student.Batch.BatchDetail
 
                     DetailItemUc item = (DetailItemUc)Page.LoadControl("~/Views/Student/Batch/BatchDetail/DetailItemUc.ascx");
                     item.LoadData(prog.Id, prog.BatchId, prog.NameFromBatch, prog.ProgramId
-                        , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void,no);
+                        , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void,no,edit);
                     //if (prog.CurrentYear != null)
                     //{
                     //    item.CurrentYear = prog.CurrentYear.Name;

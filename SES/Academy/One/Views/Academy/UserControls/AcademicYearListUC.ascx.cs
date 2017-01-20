@@ -70,8 +70,11 @@ namespace One.Views.Academy.UserControls
             }
             else
             {
+                var count = sessionList.Count;
+                var i = 0;
                 foreach (var sess in sessionList)
                 {
+                    i++;
                     var hypSes = new HyperLink()
                     {
                         Text = sess.Name
@@ -87,7 +90,8 @@ namespace One.Views.Academy.UserControls
                         pnlSessionsList.Controls.Add(activeIndicator);
                     }
                     //hypSes.Attributes.Add("margin","2px 0");
-                    pnlSessionsList.Controls.Add(new Literal() { Text = ", " });
+                    if (count > i)
+                        pnlSessionsList.Controls.Add(new Literal() { Text = ", " });
                     //pnlSessionsList.Controls.Add(new HtmlGenericControl("br"));
                 }
             }

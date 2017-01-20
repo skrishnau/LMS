@@ -1,0 +1,33 @@
+﻿
+
+.category-text {
+    display: block;
+    overflow: auto;
+    font-size: 1.2em;
+    word-wrap: normal;
+    /*background-color: white;*/
+}
+
+    .category-text:hover {
+        background-color: #dcecf1;
+        color: darkorange;
+    }
+
+.pnlcls {
+    display: block;
+    padding: 2px;
+}
+
+/*.linkbutton, .linkbutton:visited {
+    text-decoration: none;
+}
+
+    .linkbutton:hover {
+        color: darkorange;
+        text-decoration: underline;
+    }
+
+    .linkbutton:active {
+        color: blueviolet;
+        text-decoration: underline;
+    }*/

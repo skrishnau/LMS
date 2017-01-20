@@ -24,6 +24,26 @@ namespace One.Views.Grade
             {
                 if (!IsPostBack)
                 {
+
+                    if (SiteMap.CurrentNode != null)
+                    {
+                        var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                ,Void=true
+                            },
+                            new IdAndName(){Name="Grade edit"}
+                        };
+                        SiteMapUc.SetData(list);
+                    }
+
                     GradeTypeUc1.SetValues(new List<GradeViewModel>());
                     GradeTypeUc1.ValuesPanelVisibility = true;
                     var gradeId = Request.QueryString["gId"];
