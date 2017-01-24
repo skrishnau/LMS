@@ -24,8 +24,9 @@ namespace One.Views.Student.Batch.List
         public void LoadData(int id, string name, string description, int noOfPrograms, DateTime? classCommenceDate, bool edit)
         {
             BatchId = id;
-            lnkName.Text = name;//"● " +
-            lnkName.NavigateUrl = ("~/Views/Student/Batch/" + "?Id=" + BatchId+"&edit="+(edit?"1":"0"));
+            //currently new
+            lblName.Text = name;//"● " +
+            lnkBody.NavigateUrl = ("~/Views/Student/Batch/" + "?Id=" + BatchId+"&edit="+(edit?"1":"0"));
 
             lnkEdit.Visible = edit;
             lnkDelete.Visible = edit;

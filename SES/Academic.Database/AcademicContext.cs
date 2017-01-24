@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Academic.DbEntities.AcacemicPlacements;
 using Academic.DbEntities.Global;
+using Academic.DbEntities.Messages;
 using Academic.DbEntities.Teachers;
 
 //using Academic.DbEntities;
@@ -30,6 +31,9 @@ namespace Academic.Database
 
         }
 
+
+        //Message
+        public DbSet<Message> Message { get; set; }
 
         public DbSet<AcademicYear> AcademicYear { get; set; }
         public DbSet<Session> Session { get; set; }

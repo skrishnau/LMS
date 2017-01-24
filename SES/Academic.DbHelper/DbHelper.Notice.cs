@@ -109,6 +109,7 @@ namespace Academic.DbHelper
                     .OrderByDescending(x => x.PublishedDate)
                     .ThenByDescending(x => x.UpdatedDate)
                     .ThenByDescending(x => x.CreatedDate)
+                    .Take(10)
                     .ToList();
 
                 //Used: after github
@@ -116,27 +117,30 @@ namespace Academic.DbHelper
                 //Here 'Void' column is used as Viewed--> so all viewed are represented by
                 //Void= false and all unviewed by Void=true
                 //since exclamation on notice is shown when not viewed , so Void = true for not viewed
-                var notification = Context.NoticeNotification.Where(x => x.UserId == userId).Select(x => x.NoticeId);
-                for (var i = 0; i < n.Count; i++)
-                {
-                    if (notification.Contains(n[i].Id))
-                    {
-                        //here void is used as viewed as 
-                        n[i].Void = false;
-                    }
-                    else
-                    {
-                        n[i].Void = true;
-                    }
-                }
+                //var notification = Context.NoticeNotification.Where(x => x.UserId == userId).Select(x => x.NoticeId);
+                //for (var i = 0; i < n.Count; i++)
+                //{
+                //    if (notification.Contains(n[i].Id))
+                //    {
+                //        //here void is used as viewed as 
+                //        n[i].Void = false;
+                //    }
+                //    else
+                //    {
+                //        n[i].Void = true;
+                //    }
+                //}
+
+
+
                 //var count = n.Count();
                 //if (count <= 10) count = 0;
                 //else if (count < 20) count = count % 10;
                 //else count = count - 10;
                 ////count = (count%10)*(count/10);
                 //var s = n.Skip(count);
-                var s = n.Take(10);
-                return s.ToList();
+                //var s = n.Take(10);
+                return n.ToList();
             }
 
 

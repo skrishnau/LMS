@@ -9,20 +9,19 @@
 
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
-    <h3 class="heading-of-listing">
-        <strong>Academic year List</strong>
-        <hr />
+    <h3 class="heading-of-listing">Academic year List
     </h3>
+    <hr />
 
 
     <%-- class="menu" style="clear: both; margin: 20px 5px; padding: 10px;" --------------Menu------------- --%>
     <div>
-        <div style="text-align: right;">
+       <%-- <div style="text-align: right;">
             <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
                 <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
                 <asp:Label ID="lblEdit" runat="server" Text="Edit"></asp:Label>
             </asp:HyperLink>
-        </div>
+        </div>--%>
         <div runat="server" id="pnlOtherEdits" visible="False">
             <asp:HyperLink ID="lnkAdd" runat="server" CssClass="link"
                 NavigateUrl="~/Views/Academy/AcademicYear/AcademyCreate.aspx">

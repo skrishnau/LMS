@@ -24,7 +24,7 @@ namespace One.Views.Academy.AcademicYear
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
-                    var edt = Request.QueryString["edit"];
+                    var edt = Session["editMode"] as string;//Request.QueryString["edit"];
 
                     var aId = Request.QueryString["aId"];
                     if (aId != null)
@@ -40,34 +40,34 @@ namespace One.Views.Academy.AcademicYear
                                     Edit = edit;
                                     if (edit)
                                     {
-                                        lnkEdit.NavigateUrl = "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId="
-                                                                    + aId + "&edit=0";
-                                        lblEdit.Text = "Exit edit";
+                                        //lnkEdit.NavigateUrl = "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId="
+                                        //                            + aId + "&edit=0";
+                                        //lblEdit.Text = "Exit edit";
                                         MakeEditable(true);
                                     }
                                     else
                                     {
-                                        lnkEdit.NavigateUrl =
-                                            "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + aId + "&edit=1";
-                                        lblEdit.Text = "Edit";
+                                        //lnkEdit.NavigateUrl =
+                                        //    "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + aId + "&edit=1";
+                                        //lblEdit.Text = "Edit";
                                         MakeEditable(false);
                                     }
                                 }
                                 else
                                 {
-                                    lnkEdit.NavigateUrl =
-                                        "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + aId + "&edit=1";
-                                    lblEdit.Text = "Edit";
+                                    //lnkEdit.NavigateUrl =
+                                    //    "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + aId + "&edit=1";
+                                    //lblEdit.Text = "Edit";
                                     MakeEditable(false);
                                 }
                             }
                             else
                             {
-                                lnkEdit.Visible = false;
+                                //lnkEdit.Visible = false;
                                 MakeEditable(false);
                             }
                             lnknewSession.NavigateUrl = "~/Views/Academy/Session/Create.aspx?aId=" + aId;
-                            lnkAddClasses.NavigateUrl = "~/Views/Academy/ClassAssign/ClassAssignCreate.aspx?aId=" + aId;
+                            //lnkAddClasses.NavigateUrl = "~/Views/Academy/ClassAssign/ClassAssignCreate.aspx?aId=" + aId;
                         }
                         catch
                         {
@@ -91,17 +91,17 @@ namespace One.Views.Academy.AcademicYear
             if (edit)
             {
                 //Editable = true;
-                btnMarkComplete.Visible = true;
-                btnActivate.Visible = true;
-                lnkAddClasses.Visible = true;
+                //btnMarkComplete.Visible = true;
+                //btnActivate.Visible = true;
+                //lnkAddClasses.Visible = true;
                 lnknewSession.Visible = true;
             }
             else
             {
                 //Editable = false;
-                btnMarkComplete.Visible = false;
-                btnActivate.Visible = false;
-                lnkAddClasses.Visible = false;
+                //btnMarkComplete.Visible = false;
+                //btnActivate.Visible = false;
+                //lnkAddClasses.Visible = false;
                 lnknewSession.Visible = false;
             }
         }
@@ -157,19 +157,19 @@ namespace One.Views.Academy.AcademicYear
                     if (academic.Completed ?? false)
                     {
                         name = " (Complete)";
-                        btnMarkComplete.Visible = false;
-                        btnActivate.Visible = false;
-                        lnkAddClasses.Visible = false;
+                        //btnMarkComplete.Visible = false;
+                        //btnActivate.Visible = false;
+                        //lnkAddClasses.Visible = false;
                         lnknewSession.Visible = false;
                     }
                     else if (academic.IsActive)
                     {
                         name = " (Active)";
-                        btnActivate.Visible = false;
+                        //btnActivate.Visible = false;
                     }
                     else
                     {
-                        btnMarkComplete.Visible = false;
+                        //btnMarkComplete.Visible = false;
                     }
 
                     lblAcademicYearName.Text = academic.Name + name;
@@ -180,7 +180,7 @@ namespace One.Views.Academy.AcademicYear
                             Page.LoadControl("~/Views/Academy/UserControls/SessionsListingInAYDetailUC.ascx");
                         sessUc.LoadSessionData(academic.Id, sess.Id, sess.Name
                             , sess.StartDate, sess.EndDate
-                            , sess.IsActive, sess.Completed ?? false, Edit);
+                            , sess.IsActive, sess.Completed ?? false, Edit,false);
                         pnlSessions.Controls.Add(sessUc);
                     }
 
@@ -188,16 +188,16 @@ namespace One.Views.Academy.AcademicYear
 
             }
 
-            using (var helper = new DbHelper.AcademicPlacement())
-            {
-                var classes = helper.ListRunningRunningClasses(AcademicYearId, 0);//.OrderBy(p=>p.ProgramBatch.Program.Name);
+            //using (var helper = new DbHelper.AcademicPlacement())
+            //{
+            //    var classes = helper.ListRunningRunningClasses(AcademicYearId, 0);//.OrderBy(p=>p.ProgramBatch.Program.Name);
 
-                if (classes.Any())
-                    pnlSessionPrograms.Visible = true;
+            //    if (classes.Any())
+            //        pnlSessionPrograms.Visible = true;
 
-                ListView1.DataSource = classes;
-                ListView1.DataBind();
-            }
+            //    ListView1.DataSource = classes;
+            //    ListView1.DataBind();
+            //}
         }
 
         protected void btnActivate_Click(object sender, EventArgs e)

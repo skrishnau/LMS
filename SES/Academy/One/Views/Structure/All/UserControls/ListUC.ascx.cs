@@ -51,5 +51,18 @@ namespace One.Views.Structure.All.UserControls
                 lnkDelete.NavigateUrl = redUrl;
             }
         }
+
+        protected void lnkName_OnClick(object sender, EventArgs e)
+        {
+            pnlSubControls.Visible = !pnlSubControls.Visible;
+            if (pnlSubControls.Visible)
+            {
+                imgShowHide.ImageUrl = "~/Content/Icons/Arrow/down-arrow.png";
+            }
+            else
+            {
+                imgShowHide.ImageUrl = "~/Content/Icons/Arrow/right-arrow.png";
+            }
+        }
     }
 }

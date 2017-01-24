@@ -10,16 +10,16 @@
 
 
 <asp:Content runat="server" ID="Content3" ContentPlaceHolderID="SiteMapPlace">
-    <uc1:SiteMapUc runat="server" id="SiteMapUc" />
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
 </asp:Content>
 
 <asp:Content runat="server" ID="body" ContentPlaceHolderID="Body">
+    <h3 class="heading-of-listing">
+        <asp:Label ID="lblProgramBatchName" runat="server" Text=""></asp:Label>
+    </h3>
+    <hr />
+    <div data>
 
-    <div>
-        <h3 class="heading-of-create-edit">
-            <asp:Label ID="lblProgramBatchName" runat="server" Text=""></asp:Label>
-        </h3>
-        <hr />
         <br />
         <div class="data-entry-section-body">
 
@@ -66,7 +66,7 @@
             <div style="clear: both;"></div>
             <hr />
             <uc2:StudentListUC runat="server" ID="StudentListUC11" />
-            
+
 
             <%--
                 Student create

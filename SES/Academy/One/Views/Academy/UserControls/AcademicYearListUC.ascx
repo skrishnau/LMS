@@ -15,7 +15,7 @@
                      <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/remove_icon_color.png" />
                  </asp:HyperLink>
         </span>
-        <asp:Label ID="lblActiveIndicator" runat="server" Text=""></asp:Label>
+        <%--<asp:Label ID="lblActiveIndicator" runat="server" Text=""></asp:Label>--%>
     </div>
     <div style="margin: 1px 5px 2px 20px;">
         <table>

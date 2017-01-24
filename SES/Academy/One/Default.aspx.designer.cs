@@ -22,12 +22,12 @@ namespace One {
         protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
         
         /// <summary>
-        /// LstUc1 control.
+        /// pnlBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.DashBoard.Student.CourseOverView.LstUc LstUc1;
+        protected global::System.Web.UI.WebControls.Panel pnlBody;
     }
 }

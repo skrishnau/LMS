@@ -93,6 +93,7 @@
     <Compile Include="Grades\Grade.cs" />
     <Compile Include="Grades\GradeValue.cs" />
     <Compile Include="Group\StudentGrouping.cs" />
+    <Compile Include="Messages\Message.cs" />
     <Compile Include="Newss\News.cs" />
     <Compile Include="Subjects\EnrolmentMethods.cs" />
     <Compile Include="Class\SubjectClass.cs" />

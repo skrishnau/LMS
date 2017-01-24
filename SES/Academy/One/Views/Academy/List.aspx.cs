@@ -17,7 +17,7 @@ namespace One.Views.Academy
             if (!IsPostBack)
             {
                 var user = Page.User as CustomPrincipal;
-                var edt = Request.QueryString["edit"];
+                var edt = Session["editMode"] as string;//Request.QueryString["edit"];
                 if (user != null)
                 {
                     if (SiteMap.CurrentNode != null)
@@ -45,29 +45,29 @@ namespace One.Views.Academy
                             Edit = edit;
                             if (edit)
                             {
-                                lnkEdit.NavigateUrl = "~/Views/Academy/List.aspx?edit=0";
-                                lblEdit.Text = "Exit edit";
+                                //lnkEdit.NavigateUrl = "~/Views/Academy/List.aspx?edit=0";
+                                //lblEdit.Text = "Exit edit";
                                 //lnkAdd.Visible = true;
                                 pnlOtherEdits.Visible = true;
                             }
                             else
                             {
-                                lnkEdit.NavigateUrl = "~/Views/Academy/List.aspx?edit=1";
-                                lblEdit.Text = "Edit";
+                                //lnkEdit.NavigateUrl = "~/Views/Academy/List.aspx?edit=1";
+                                //lblEdit.Text = "Edit";
                                 //lnkAdd.Visible = false;
                                 pnlOtherEdits.Visible = false;
                             }
                         }
                         else
                         {
-                            lnkEdit.NavigateUrl = "~/Views/Academy/List.aspx?edit=1";
-                            lblEdit.Text = "Edit";
+                            //lnkEdit.NavigateUrl = "~/Views/Academy/List.aspx?edit=1";
+                            //lblEdit.Text = "Edit";
                             pnlOtherEdits.Visible = false;
                         }
                     }
                     else
                     {
-                        lnkEdit.Visible = false;
+                        //lnkEdit.Visible = false;
                         pnlOtherEdits.Visible = false;
                     }
                     BindGrid(user);
@@ -85,7 +85,7 @@ namespace One.Views.Academy
         private void BindGrid(CustomPrincipal user)
         {
             var edit = Edit;
-            if (lnkEdit.Visible || user.IsInRole("teacher"))
+            if (user.IsInRole("manager") || user.IsInRole("teacher"))
                 using (var helper = new DbHelper.AcademicYear())
                 {
                     var aca = helper.GetAcademicYearListForSchool(

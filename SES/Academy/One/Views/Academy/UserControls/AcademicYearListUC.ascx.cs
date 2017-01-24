@@ -40,8 +40,8 @@ namespace One.Views.Academy.UserControls
             lblStartDate.Text = startDate.ToString("D");
             if (complete)
             {
-                lblActiveIndicator.Text = " (Complete)";
-                lblActiveIndicator.ForeColor = Color.DarkGray;
+                //lblActiveIndicator.Text = " (Complete)";
+                //lblActiveIndicator.ForeColor = Color.DarkGray;
                 divBody.Style.Add("border-left", "10px solid lightgrey");
 
                 //pnlBody.BackColor = //Color.LightGray;
@@ -51,8 +51,8 @@ namespace One.Views.Academy.UserControls
             {
 
                 //pnlBody.BackColor = Color.LightGreen;
-                lblActiveIndicator.Text = " (Active)";
-                lblActiveIndicator.ForeColor = Color.Green;
+                //lblActiveIndicator.Text = " (Active)";
+                //lblActiveIndicator.ForeColor = Color.Green;
                 divBody.Style.Add("border-left", "10px solid green");
                 //pnlBody.BackColor = //Color.LightGreen;
                 //                        Color.FromArgb(193, 252, 193);

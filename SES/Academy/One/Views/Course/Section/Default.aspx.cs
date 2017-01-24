@@ -29,7 +29,7 @@ namespace One.Views.Course.Section
                          || user.IsInRole(DbHelper.StaticValues.Roles.Manager)
                          || user.IsInRole(DbHelper.StaticValues.Roles.Teacher)))
                     {
-                        var edit = Request.QueryString["edit"];
+                        var edit = Session["editMode"] as string;//Request.QueryString["edit"];
                         _path = Request.Url.AbsolutePath + "?SubId=" + id;
                         if (edit != null)
                         {
@@ -39,8 +39,8 @@ namespace One.Views.Course.Section
                                 //edit on all sections
                                 //link on edit 
                                 Edit = "1";
-                                lnkEdit.NavigateUrl = _path + "&edit=0";
-                                lblEdit.Text = "Exit Edit mode";
+                                //lnkEdit.NavigateUrl = _path + "&edit=0";
+                                //lblEdit.Text = "Exit Edit mode";
                                 //ListOfSectionsInCourseUC1.AddNewButtonVisibility = true;
                                 ListOfSectionsInCourseUC1.EditEnabled = true;
 
@@ -48,22 +48,22 @@ namespace One.Views.Course.Section
                             else
                             {
                                 Edit = "0";
-                                lnkEdit.NavigateUrl = _path + "&edit=1";
-                                lblEdit.Text = "Edit";
+                                //lnkEdit.NavigateUrl = _path + "&edit=1";
+                                //lblEdit.Text = "Edit";
                             }
                         }
                         else
                         {
                             //Request.Url.PathAndQuery
-                            lnkEdit.NavigateUrl = _path + "&edit=1";
-                            lblEdit.Text = "Edit";
+                            //lnkEdit.NavigateUrl = _path + "&edit=1";
+                            //lblEdit.Text = "Edit";
                         }
 
                     }
                     else
                     {
-                        lnkEdit.Visible = false;
-                        lnkEdit.Enabled = false;
+                        //lnkEdit.Visible = false;
+                        //lnkEdit.Enabled = false;
                     }
                 }
 
@@ -113,7 +113,7 @@ namespace One.Views.Course.Section
                         };
                         if (sId != null && yId != null)
                         {
-                            lnkEdit.NavigateUrl += "&yId=" + yId + "&sId=" + sId;
+                            //lnkEdit.NavigateUrl += "&yId=" + yId + "&sId=" + sId;
                             list.Add(new IdAndName()
                             {
                                 Name = "Manage Programs"
@@ -135,7 +135,7 @@ namespace One.Views.Course.Section
                         }
                         else if (fromCls != null)
                         {
-                            lnkEdit.NavigateUrl += "&frmDetailView=" + fromCls;
+                            //lnkEdit.NavigateUrl += "&frmDetailView=" + fromCls;
                             list.Add(new IdAndName()
                             {
                                 Name = SiteMap.CurrentNode.ParentNode.Title

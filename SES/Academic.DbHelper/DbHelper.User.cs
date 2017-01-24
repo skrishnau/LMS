@@ -343,11 +343,42 @@ namespace Academic.DbHelper
 
 
             //listing of users
-            public List<Users> ListAllUsers(int schoolId, int perPage, int pageNo)
+            public List<Users> ListAllUsers(int schoolId, int perPage, int pageNo
+                ,string filterName="", string filterUsername="",
+                string filteremail = "")
             {
                 var list = Context.Users.Where(x => x.SchoolId == schoolId)
                     .OrderBy(y => y.FirstName).ThenBy(t => t.LastName)
                     .Skip(perPage * (pageNo - 1)).Take(perPage);
+
+                if (!string.IsNullOrEmpty(filterUsername))
+                {
+                    var uname = filterUsername.ToLower();
+                    list=list.Where(x => x.UserName.ToLower().Equals(uname));
+                }
+                if (!string.IsNullOrEmpty(filteremail))
+                {
+                    var email = filteremail.ToLower();
+                    list = list.Where(x => x.Email.ToLower().Equals(email));
+                }
+                var newList = new List<Users>();
+                if (!string.IsNullOrEmpty(filterName))
+                {
+                    var split = filterName.ToLower().Split(new char[] {' '});
+                    var newSplit =split.Where(x => !string.IsNullOrEmpty(x)).ToList();
+                    foreach (var u in list)
+                    {
+                        foreach (var s in newSplit)
+                        {
+                            if (u.FullName.ToLower().Contains(s))
+                            {
+                                newList.Add(u);
+                                break;
+                            }
+                        }
+                    }
+                    return newList;
+                }
                 return list.ToList();
             }
 

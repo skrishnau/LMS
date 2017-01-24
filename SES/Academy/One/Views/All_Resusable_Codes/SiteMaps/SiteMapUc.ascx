@@ -13,7 +13,7 @@
                     NavigateUrl='<%# Eval("Value") %>'></asp:HyperLink>
             </span>
             <%--&nbsp;--%>
-            <asp:Label ID="Label1" runat="server" Visible='<%# Eval("Void") %>' Text=">" ForeColor="white"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Visible='<%# Eval("Void") %>' Text=">" ForeColor="#393939"></asp:Label>
         </ItemTemplate>
     </asp:ListView>
 </div>

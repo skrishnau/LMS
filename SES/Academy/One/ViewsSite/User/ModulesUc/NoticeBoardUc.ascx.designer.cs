@@ -40,6 +40,15 @@ namespace One.ViewsSite.User.ModulesUc {
         protected global::System.Web.UI.WebControls.Label lblNoticeIndication;
         
         /// <summary>
+        /// lblEmptyNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmptyNotice;
+        
+        /// <summary>
         /// DataList1 control.
         /// </summary>
         /// <remarks>

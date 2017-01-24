@@ -2,9 +2,10 @@
 }
 
 h3.heading-of-create-edit {
-    text-align: center;
+    text-align: left;
     margin-top: 3px;
     font-size: 2em;
+    font-weight: 400;
     color: darkslategray;
 }
 

@@ -7,11 +7,10 @@
 
 
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="Body">
-    <div style="text-align: center">
-        <strong>Users List</strong>
-
+    <h3 class="heading-of-listing">
+        Users
+    </h3>
         <hr />
-    </div>
 
     <div>
         <div style="float: right;">
@@ -23,14 +22,48 @@
                 Assign Role
             </asp:HyperLink>
         </div>
-        search filter criterias:::
-       
+        
+        <div style="float: left; border: 1px solid lightgray;">
+            
+            <asp:LinkButton ID="lnkFilterPanel" runat="server" OnClick="lnkFilterPanel_OnClick">Filter
+                <asp:Image ID="imgFilter" runat="server" ImageUrl="~/Content/Icons/Arrow/right-arrow.png"/>
+            </asp:LinkButton>
+            <br />
+            <asp:Panel ID="pnlFilter" runat="server" Visible="False">
+                <table>
+                    <tr>
+                        <td>Name</td>
+                        <td>
+                            <asp:TextBox ID="txtNameFilter" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Username</td>
+                        <td>
+                            <asp:TextBox ID="txtUsernameFilter" runat="server"></asp:TextBox>                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Email</td>
+                        <td>
+                            <asp:TextBox ID="txtEmailFilter" runat="server"></asp:TextBox>                            
+                        </td>
+                    </tr>
+                    
+                </table>
+                <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_OnClick"/>
+            </asp:Panel>
+        </div>
+       <div style="clear: both;"></div>
     </div>
     <br />
-    <div style="width: 99%;">
+    
+    <div style="width: 99%; margin-top: 20px">
         <asp:GridView ID="GridView1" Width="100%" runat="server" AllowPaging="True"
             AutoGenerateColumns="False" DataSourceID="ObjectDataSource1"
-            CellPadding="4" ForeColor="#333333" GridLines="None">
+            CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No users">
 
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
 
@@ -122,6 +155,9 @@
                 <asp:ControlParameter ControlID="hidSchoolId" DefaultValue="0" Name="schoolId" PropertyName="Value" Type="Int32" />
                 <asp:ControlParameter ControlID="hidPerPage" DefaultValue="0" Name="perPage" PropertyName="Value" Type="Int32" />
                 <asp:ControlParameter ControlID="hidPageNo" DefaultValue="0" Name="pageNo" PropertyName="Value" Type="Int32" />
+                <asp:ControlParameter ControlID="txtNameFilter" DefaultValue="" Name="filterName" PropertyName="Text" Type="String" />
+                <asp:ControlParameter ControlID="txtUsernameFilter" DefaultValue="" Name="filterUsername" PropertyName="Text" Type="String" />
+                <asp:ControlParameter ControlID="txtEmailFilter" DefaultValue="" Name="filteremail" PropertyName="Text" Type="String" />
             </SelectParameters>
         </asp:ObjectDataSource>
 

@@ -6,10 +6,18 @@
     display: inline;
 }
 
+hr {
+    /*display: none;*/
+    border: none;
+    height: 5px;
+}
+
 h3.heading-of-listing {
-    text-align: center;
+    text-align: left;
     margin-top: 3px;
     font-size: 2em;
+    font-weight: 400;
+
     color: darkslategray;
 }
 
@@ -17,6 +25,7 @@ h3.heading-of-display {
     text-align: left;
     margin-top: 3px;
     font-size: 2em;
+    font-weight: 400;
     color: darkslategray;
 }
 
@@ -63,7 +72,7 @@ div.data-entry-body div.data-entry-section hr {
 
     .sitemap-items:hover {
         /*background-color: #e4f5fa;*/
-        background-color: darkslategray;
+        background-color: white;
     }
 
 /*----------Check ----------*/
@@ -99,35 +108,41 @@ h3 {
 
 /*link white*/
 .link-white, .link-white:visited {
-    color: white;
+    color: #393939;
     text-decoration: none;
+    display: inline-block;
 }
 
     .link-white:hover {
-        /*color: darkorange;*/
-        font-weight: 700;
+        color: black;
+        font-weight: 500;
         text-decoration: underline;
+        display: inline-block;
     }
 
     .link-white:active {
         color: blueviolet;
         text-decoration: underline;
+        display: inline-block;
     }
 /*link grey*/
 .link-grey, .link-grey:visited {
-    color: lightgray;
+    color: #858575;
     text-decoration: none;
+    display: inline-block;
 }
 
     .link-grey:hover {
         /*color: white;
         font-weight: 700;
         text-decoration: underline;*/
+        display: inline-block;
     }
 
     .link-grey:active {
         color: blueviolet;
         text-decoration: underline;
+        display: inline-block;
     }
 
 

@@ -2,6 +2,14 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode url="~/Default.aspx" title="Home"  description="This is home">
 
+    <!--Current or earlier courses--> 
+    <siteMapNode url="~/Views/Courses/Default.aspx" title="Current or earlier courses" description="current and earlier courses">
+      
+    </siteMapNode>
+    
+    <!--Search-->
+    <siteMapNode url="~/Views/Search/Default.aspx" title="Search" description="search"/>
+    
     <!--Notice-->
     <siteMapNode url="~/Views/NoticeBoard/NoticeListing.aspx"  title="Notices"  description="notice list">
       <siteMapNode url="~/Views/NoticeBoard/NoticeDetail.aspx" title="Notice Name" description="notice deatil" />

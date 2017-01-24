@@ -14,13 +14,13 @@
     </h3>
     <hr />
 
-    <div style="float: right;">
+   <%-- <div style="float: right;">
         <asp:HyperLink ID="lnkEdit" runat="server">
             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
             <asp:Label ID="lblEdit" runat="server" Text="Edit"></asp:Label>
         </asp:HyperLink>
+    </div>--%>
 
-    </div>
     <div style="clear: both;"></div>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

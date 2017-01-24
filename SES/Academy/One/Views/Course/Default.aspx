@@ -8,12 +8,11 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
 
-    <div style="text-align: center; font-size: 1.3em;">
-        <strong>
-            <asp:Label ID="lblHeading" runat="server" Text="Course and Category Management"></asp:Label></strong>
-        <hr />
-    </div>
-    <br />
+    <h3 class="heading-of-listing">
+        <asp:Label ID="lblHeading" runat="server" Text="Course and Category Management"></asp:Label>
+    </h3>
+    <hr />
+   <%-- <br />--%>
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
             <%--<asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">--%>
@@ -30,17 +29,17 @@
                                 <%-- ================================================================================ --%>
                                 <%-- %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%  --%>
                                 <%-- Category side width: 28%; fdcab6--%>
-                                <td style="width: 200px;  vertical-align: top; ">
+                                <td style="width: 200px; vertical-align: top;">
                                     <div id="categoryDiv"
-                                        class="text-wrap-div" style="overflow-y: scroll; width: 300px; height: 100%; ">
+                                        class="text-wrap-div" style="overflow-y: scroll; width: 300px; height: 100%;">
 
                                         <%-- <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                                     <ContentTemplate>--%>
                                         <%-- list of categories --%>
-                                        <div style="text-align: center; padding: 5px 0; margin: 0 0 3px;  font-weight: bold; background-color: #cacfd2;">
+                                        <div style="text-align: center; padding: 5px 0; margin: 0 0 3px; font-weight: bold; background-color: #f1f1f1;">
                                             Categories
                                         </div>
-                                        <div style="padding-left: 5px;" >
+                                        <div style="padding-left: 5px;">
                                             <asp:PlaceHolder ID="pnlCategories" runat="server"></asp:PlaceHolder>
                                         </div>
                                         <asp:HiddenField ID="hidSelectedCategory" Value="0" runat="server" />
@@ -64,12 +63,12 @@
                                 <%-- ============================================================================================= --%>
                                 <%-- %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%  --%>
                                 <%-- Course side --%>
-                                <td style="vertical-align: top; width: 100%;">
-                                    <div style="min-height: 100%; border: 2px solid #cacfd2;">
+                                <td style="vertical-align: top; width: 100%; border-left: 2px solid #cacfd2;">
+                                    <div style="min-height: 100%;">
                                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                             <%-- list of courses in this category --%>
                                             <ContentTemplate>
-                                                <div style="text-align: center; padding: 3px; background-color: #cacfd2">
+                                                <div style="text-align: center; padding: 3px; background-color: #f1f1f1">
                                                     Courses in category :&nbsp;
                                                 <strong>
                                                     <asp:Label ID="lblCoursesTitle" runat="server" Text=""></asp:Label>
@@ -83,7 +82,8 @@
                                                     </div>
                                                     <div style="clear: both;"></div>
                                                 </div>
-                                                <div id="courseDiv" style="background-color: azure; padding: 0 0 20px 5px;">
+                                                <%-- azure --%>
+                                                <div id="courseDiv" style="background-color: white; padding: 0 0 20px 5px;">
 
 
 
@@ -115,7 +115,7 @@
                                                                 <asp:HyperLink ID="HyperLink1" runat="server"
                                                                     NavigateUrl='<%# "~/Views/Course/CourseDetail.aspx?cId="+Eval("Id") %>'><%# Eval("FullName") %></asp:HyperLink>
                                                             <%--&nbsp;(--%>
-                                                            <asp:Label ID="CodeLabel" runat="server" 
+                                                            <asp:Label ID="CodeLabel" runat="server"
                                                                 Text='<%# GetCode(Eval("Code")) %>' />
                                                             <%--)--%>
                                                             <br />

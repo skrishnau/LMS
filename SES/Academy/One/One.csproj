@@ -1213,6 +1213,8 @@
     <Content Include="Content\Icons\Arrow\arrow_fat_up.png" />
     <Content Include="Content\Icons\Arrow\arrow_left.png" />
     <Content Include="Content\Icons\Arrow\arrow_right.png" />
+    <Content Include="Content\Icons\Arrow\down-arrow.png" />
+    <Content Include="Content\Icons\Arrow\right-arrow.png" />
     <Content Include="Content\Icons\astreeview-node.gif" />
     <Content Include="Content\Icons\calendar_image.png" />
     <Content Include="Content\Icons\Check\checked_blue_18x18.png" />
@@ -1234,6 +1236,11 @@
     <Content Include="Content\Icons\Done_Save\basic-save.png" />
     <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
     <Content Include="Content\Icons\Edit\edit_orange.png" />
+    <Content Include="Content\Icons\Event\calendar-icon-round.png" />
+    <Content Include="Content\Icons\Event\events-icon-red.png" />
+    <Content Include="Content\Icons\Event\event_icon.png" />
+    <Content Include="Content\Icons\Event\icon_event.png" />
+    <Content Include="Content\Icons\Exclamation\exclamation_icon.png" />
     <Content Include="Content\Icons\Exclamation\exclamation.png" />
     <Content Include="Content\Icons\Exclamation\warning.png" />
     <Content Include="Content\Icons\File\file_add.png" />
@@ -1253,8 +1260,13 @@
     <Content Include="Content\Icons\Home\home_icon.png" />
     <Content Include="Content\Icons\Indent\circle_dot.png" />
     <Content Include="Content\Icons\Indent\square_dot.png" />
+    <Content Include="Content\Icons\Message\email.png" />
     <Content Include="Content\Icons\New\new_icon.png" />
     <Content Include="Content\Icons\New\new_submission_icon.png" />
+    <Content Include="Content\Icons\Notice\agt_announcements.png" />
+    <Content Include="Content\Icons\Notice\agt_announcements_excla.png" />
+    <Content Include="Content\Icons\Notice\bell_notice.png" />
+    <Content Include="Content\Icons\Notice\notification-icon.png" />
     <Content Include="Content\Icons\Participation\degree_icon.jpg" />
     <Content Include="Content\Icons\Participation\in.png" />
     <Content Include="Content\Icons\Participation\out.png" />
@@ -1268,6 +1280,7 @@
     <Content Include="Content\Icons\req.png" />
     <Content Include="Content\Icons\School\school-logo.png" />
     <Content Include="Content\Icons\Search\search2.png" />
+    <Content Include="Content\Icons\Settings\setting_glow.png" />
     <Content Include="Content\Icons\Settings\settings-icon.png" />
     <Content Include="Content\Icons\setting_1.png" />
     <Content Include="Content\Icons\Star\star_red.png" />
@@ -1523,8 +1536,10 @@
     <Content Include="ViewsSite\UserControls\LeftSideBar.ascx" />
     <Content Include="ViewsSite\UserControls\ListItemUC.ascx" />
     <Content Include="ViewsSite\User\Dashboard\Dashboard.aspx" />
+    <Content Include="ViewsSite\User\ModulesUc\CoursesMenuUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\CoursesUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\Course\ManagerCourseUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\EarlierCodes\NoticeBoardUc.txt" />
     <Content Include="ViewsSite\User\ModulesUc\EarlierUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\EarlierUc_NodesUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\EventDetailUC.ascx" />
@@ -1532,6 +1547,7 @@
     <Content Include="ViewsSite\User\ModulesUc\FilesUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\NewsUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\NoticeBoardUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\NoticeItemUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\SettingsTeacher.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\SettingsUc.ascx" />
@@ -1616,6 +1632,7 @@
     <Content Include="Views\All_Resusable_Codes\FileTasks\FilePicker.ascx" />
     <Content Include="Views\All_Resusable_Codes\FileTasks\FilePickerDialog.ascx" />
     <Content Include="Views\All_Resusable_Codes\FileTasks\FileUploadUc.ascx" />
+    <Content Include="Views\All_Resusable_Codes\ListDisplay\ItemUc.ascx" />
     <Content Include="Views\All_Resusable_Codes\SiteMaps\SiteMapUc.ascx" />
     <Content Include="Views\Class\CourseClassDetail.aspx" />
     <Content Include="Views\Class\CourseSessionCreate.aspx" />
@@ -1625,6 +1642,7 @@
     <Content Include="Views\Class\Enrollment\testOfSelectInListView.aspx" />
     <Content Include="Views\Class\Enrollment\UserEnrollUC.ascx" />
     <Content Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx" />
+    <Content Include="Views\Courses\Default.aspx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChooseUc.ascx" />
     <Content Include="Views\Course\ActivityAndResource\Chooseer\AutoCloseSolution.aspx" />
@@ -1694,6 +1712,8 @@
     <Content Include="Views\RestrictionAccess\Main\TestOfUC.aspx" />
     <Content Include="Views\RestrictionAccess\Main\WebFormFifth.aspx" />
     <Content Include="Views\RestrictionAccess\UserProfileRestriction.ascx" />
+    <Content Include="Views\Search\Default.aspx" />
+    <Content Include="Views\Setting\Default.aspx" />
     <Content Include="Views\Setting\Setting1.aspx" />
     <Content Include="Views\Structure\All\Master\AddCourses.aspx" />
     <Content Include="Views\Structure\All\Master\CoursesList.aspx" />
@@ -2064,6 +2084,13 @@
     <Compile Include="ViewsSite\User\Dashboard\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\CoursesMenuUc.ascx.cs">
+      <DependentUpon>CoursesMenuUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\CoursesMenuUc.ascx.designer.cs">
+      <DependentUpon>CoursesMenuUc.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\CoursesUc.ascx.cs">
       <DependentUpon>CoursesUc.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2126,6 +2153,13 @@
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\NoticeBoardUc.ascx.designer.cs">
       <DependentUpon>NoticeBoardUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\NoticeItemUc.ascx.cs">
+      <DependentUpon>NoticeItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\NoticeItemUc.ascx.designer.cs">
+      <DependentUpon>NoticeItemUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx.cs">
       <DependentUpon>OnlineUsersUc.ascx</DependentUpon>
@@ -2680,6 +2714,13 @@
     <Compile Include="Views\All_Resusable_Codes\FileTasks\FileUploadUc.ascx.designer.cs">
       <DependentUpon>FileUploadUc.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\All_Resusable_Codes\ListDisplay\ItemUc.ascx.cs">
+      <DependentUpon>ItemUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\All_Resusable_Codes\ListDisplay\ItemUc.ascx.designer.cs">
+      <DependentUpon>ItemUc.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\All_Resusable_Codes\SiteMaps\SiteMapUc.ascx.cs">
       <DependentUpon>SiteMapUc.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2742,6 +2783,13 @@
     </Compile>
     <Compile Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx.designer.cs">
       <DependentUpon>UserEnrollUC_ListDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Courses\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Courses\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx.cs">
       <DependentUpon>ActResChoose.aspx</DependentUpon>
@@ -3155,6 +3203,20 @@
     </Compile>
     <Compile Include="Views\RestrictionAccess\UserProfileRestriction.ascx.designer.cs">
       <DependentUpon>UserProfileRestriction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Search\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Search\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Setting\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\Setting1.aspx.cs">
       <DependentUpon>Setting1.aspx</DependentUpon>
@@ -3699,6 +3761,7 @@
     <Folder Include="Views\Course\Display\EachCourse\" />
     <Folder Include="Views\Exam\Exam\Create\" />
     <Folder Include="Views\Message\" />
+    <Folder Include="Views\Settings\" />
     <Folder Include="Views\UserControls\Structure\" />
   </ItemGroup>
   <ItemGroup>

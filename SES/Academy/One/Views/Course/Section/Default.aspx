@@ -22,13 +22,13 @@
             <hr />
 
 
-            <div style="text-align: right; margin-right: 15px;">
+<%--            <div style="text-align: right; margin-right: 15px;">
                 <asp:HyperLink ID="lnkEdit"
                     runat="server">
                     <asp:Image ID="ImageButton1" runat="server"
                         ImageUrl="~/Content/Icons/Edit/edit_orange.png" /><asp:Literal ID="lblEdit" runat="server"></asp:Literal>
                 </asp:HyperLink>
-            </div>
+            </div>--%>
             <%--<uc1:CourseDetailUc runat="server" ID="CourseDetailUc1" />--%>
             <uc1:ListOfSectionsInCourseUC runat="server" ID="ListOfSectionsInCourseUC1" />
             <%--<asp:Panel ID="Panel1" runat="server" Visible="False">

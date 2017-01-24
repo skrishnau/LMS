@@ -12,23 +12,23 @@
         <asp:Label ID="lblAcademicYearName" runat="server" Text=""></asp:Label>
     </h3>
     <hr />
-    <div style="text-align: right;">
+    <%--    <div style="text-align: right;">
         <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
             <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
             <asp:Label ID="lblEdit" runat="server" Text="Edit"></asp:Label>
         </asp:HyperLink>
-    </div>
-    <div style="text-align: center;">
+    </div>--%>
+    <%--<div style="text-align: center;">--%>
 
 
-        <%--<asp:Button ID="Button2" runat="server" Text="Update Academic year/ Session " />--%>
-        <asp:Button ID="btnActivate" runat="server" Text="Activate this Academic Year"
+    <%--<asp:Button ID="Button2" runat="server" Text="Update Academic year/ Session " />--%>
+    <%-- <asp:Button ID="btnActivate" runat="server" Text="Activate this Academic Year"
             OnClick="btnActivate_Click" Visible="False" />
-        &nbsp;
-            <asp:Button ID="btnMarkComplete" runat="server" Text="Mark this as completed"
+        &nbsp;--%>
+    <%--   <asp:Button ID="btnMarkComplete" runat="server" Text="Mark this as completed"
                 Visible="False"
-                OnClick="btnMarkComplete_Click" />
-    </div>
+                OnClick="btnMarkComplete_Click" />--%>
+    <%--</div>--%>
     <div>
         <asp:Label ID="lblError" runat="server" Text="Error while saving" ForeColor="red" Visible="False"></asp:Label>
     </div>
@@ -53,8 +53,8 @@
 
         <%-- Programs listing --%>
         <br />
-        <div class="data-entry-section">
-            <div runat="server" Visible="False" ID="classesOfAY" class="data-entry-section-heading" style="visibility: hidden;"  >
+    <%--    <div class="data-entry-section">
+            <div runat="server" visible="False" id="classesOfAY" class="data-entry-section-heading" style="visibility: hidden;">
                 Classes:
                    <div style="float: right; font-weight: 400;">
                        <asp:HyperLink ID="lnkAddClasses" runat="server" CssClass="link_smaller"
@@ -70,15 +70,8 @@
             </div>
 
             <div class="data-entry-section-body">
-
-                <%--<div style="clear: both;"></div>--%>
-
-
                 <asp:Panel ID="pnlSessionPrograms" runat="server" Visible="False">
-
-
                     <div style="width: 50%;">
-
                         <asp:ListView ID="ListView1" runat="server">
                             <LayoutTemplate>
                                 <table runat="server" id="table1" style="border-collapse: collapse; border: 1px solid lightgray;">
@@ -121,7 +114,7 @@
 
             <asp:Panel ID="pnlAcademicPrograms" runat="server">
             </asp:Panel>
-        </div>
+        </div>--%>
         <br />
 
 

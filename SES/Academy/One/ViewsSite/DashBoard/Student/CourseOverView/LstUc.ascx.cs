@@ -97,7 +97,7 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                         {
                             CourseUc uc =
                                 (CourseUc)Page.LoadControl("~/ViewsSite/DashBoard/Student/CourseOverView/CourseUc.ascx");
-                            var navigationUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId="
+                            var navigationUrl = "~/Views/Course/Section/?SubId="
                                 + c.Id;
 
                             uc.TitleNavigationTarget = navigationUrl;

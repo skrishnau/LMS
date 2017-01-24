@@ -22,15 +22,20 @@ namespace One.ViewsSite.User.ModulesUc
                     DataList1.DataSource = notices.Take(5).ToList();
                     DataList1.DataBind();
 
-                    var unViewed = notices.Where(x => (x.Void ?? false)).ToList();
-                    if (!unViewed.Any())
+                    if (notices.Any())
                     {
-                        lblNoticeIndication.Visible = false;
+                        lblEmptyNotice.Visible = false;
                     }
-                    else
-                    {
-                        lblNoticeIndication.Text = "&nbsp; " + unViewed.Count + " &nbsp; ";
-                    }
+
+                    //var unViewed = notices.Where(x => (x.Void ?? false)).ToList();
+                    //if (!unViewed.Any())
+                    //{
+                    //    lblNoticeIndication.Visible = false;
+                    //}
+                    //else
+                    //{
+                    //    lblNoticeIndication.Text = "&nbsp; " + unViewed.Count + " &nbsp; ";
+                    //}
                    
                     //updatedatabase
                     //if (unViewed.Count > 0)

@@ -9,15 +9,15 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
-    <h3 class="heading-of-listing">Batch List
+    <h3 class="heading-of-listing">Batches
     </h3>
     <hr />
-    <div style="text-align: right;">
+    <%--<div style="text-align: right;">
         <asp:HyperLink ID="lnkEdit" runat="server" >
             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
             <asp:Label ID="lblEdit" runat="server" Text="Edit"></asp:Label>
         </asp:HyperLink>
-    </div>
+    </div>--%>
     
     <div>
         <asp:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/Views/Student/Batch/Create/BatchCreate.aspx" Visible="False">
@@ -34,6 +34,6 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
-    Batch List
+    Batch list
 </asp:Content>
 

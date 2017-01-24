@@ -34,6 +34,10 @@ namespace One.ViewsSite.User.ModulesUc
                 var users = helper.GetOnlineUsers(UserId, SchoolId);
                 DataList1.DataSource = users;
                 DataList1.DataBind();
+                if (users.Any())
+                {
+                    lblEmptyOnlineUsers.Visible = false;
+                }
             }
         }
 

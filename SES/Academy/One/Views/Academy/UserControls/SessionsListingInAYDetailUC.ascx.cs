@@ -39,7 +39,7 @@ namespace One.Views.Academy.UserControls
         }
 
         public void LoadSessionData(int academicYearId, int sessionId, string sessionName, DateTime start, DateTime end
-          , bool active, bool sesComplete, bool edit)
+          , bool active, bool sesComplete, bool edit, bool showClasses = true)
         {
             hidAcademicYearId.Value = academicYearId.ToString();
             hidSessionId.Value = sessionId.ToString();
@@ -59,16 +59,21 @@ namespace One.Views.Academy.UserControls
                     lnkDelete.Visible = false;
                 else
                     lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
-                                            DbHelper.StaticValues.Encode("session") + "&acaId=" + academicYearId+
-                                            "&sessId="+sessionId;
+                                            DbHelper.StaticValues.Encode("session") + "&acaId=" + academicYearId +
+                                            "&sessId=" + sessionId;
             }
             lnkSessionName.NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?aId="
-                + academicYearId + "&sId=" + sessionId+"&edit="+(edit?"1":"0");
+                + academicYearId + "&sId=" + sessionId + "&edit=" + (edit ? "1" : "0");
 
             lblStartDate.Text = start.ToString("D");
             lblEndDate.Text = end.ToString("D");
             //GetPrograms in these sessions and add to pnlPrograms
-            LoadPrograms();
+            if (showClasses)
+                LoadPrograms();
+            else
+            {
+                pnlClasses.Controls.Clear();
+            }
             lnkEditClasses.Visible = !sesComplete && edit;
 
             if (sesComplete)

@@ -60,7 +60,7 @@ namespace One.Views.Academy.Session
                     if (academic != null)
                     {
                         var session = academic.Sessions.FirstOrDefault(x => x.Id == sId);
-                        var editQuery = Request.QueryString["edit"];
+                        var editQuery = Session["editMode"] as string;//Request.QueryString["edit"];
                         var edit = (editQuery ?? "0").ToString();
                         if (session != null)
                         {
@@ -119,7 +119,7 @@ namespace One.Views.Academy.Session
                             //var sessUc = (Academy.UserControls.SessionsListingInAYDetailUC)
                             //    Page.LoadControl("~/Views/Academy/UserControls/SessionsListingInAYDetailUC.ascx");
                             SessionsListingInAYDetailUC.LoadSessionData(academic.Id, session.Id, session.Name, session.StartDate
-                                , session.EndDate, session.IsActive, session.Completed ?? false, Editable);
+                                , session.EndDate, session.IsActive, session.Completed ?? false, edit=="1");
                             //pnl.Controls.Add(sessUc);
                         }
                     }

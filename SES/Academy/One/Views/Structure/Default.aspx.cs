@@ -19,28 +19,28 @@ namespace One.Views.Structure
 
             if (!IsPostBack)
             {
-                var edit = Request.QueryString["edit"];
+                var edit = Session["editMode"] as string;//Request.QueryString["edit"];
                 if (edit != null)
                 {
                     Edit = edit;
-                    if (edit == "1")
-                    {
-                        lnkEdit.NavigateUrl =
-                            "~/Views/Structure/All/Master/List.aspx?edit=0";
-                        lblEdit.Text = "Exit Edit";
-                    }
-                    else
-                    {
-                        lnkEdit.NavigateUrl =
-                            "~/Views/Structure/All/Master/List.aspx?edit=1";
-                        lblEdit.Text = "Edit";
-                    }
+                //    if (edit == "1")
+                //    {
+                //        lnkEdit.NavigateUrl =
+                //            "~/Views/Structure/All/Master/List.aspx?edit=0";
+                //        lblEdit.Text = "Exit Edit";
+                //    }
+                //    else
+                //    {
+                //        lnkEdit.NavigateUrl =
+                //            "~/Views/Structure/All/Master/List.aspx?edit=1";
+                //        lblEdit.Text = "Edit";
+                //    }
                 }
-                else
-                {
-                    lnkEdit.NavigateUrl = "~/Views/Structure/All/Master/List.aspx?edit=1";
-                    lblEdit.Text = "Edit";
-                }
+                //else
+                //{
+                //    lnkEdit.NavigateUrl = "~/Views/Structure/All/Master/List.aspx?edit=1";
+                //    lblEdit.Text = "Edit";
+                //}
             }
 
             if (user != null)
@@ -66,12 +66,12 @@ namespace One.Views.Structure
                 if (!user.IsInRole("manager"))
                 {
                     Edit = "0";
-                    lnkEdit.Visible = false;
+                    //lnkEdit.Visible = false;
                     lnkAdd.Visible = false;
                 }
                 else if (Edit == "1")
                 {
-                    lnkEdit.Visible = true;
+                    //lnkEdit.Visible = true;
                     lnkAdd.Visible = true;
                     lnkAdd.NavigateUrl = "~/Views/Structure/StructureCreate.aspx?pId=" + user.SchoolId + "&strTyp=pro";
                     lblAddText.Text = "Add Program";

@@ -123,5 +123,33 @@ namespace One.Views.User
         {
             Response.Redirect("~/Views/Role/Assign.aspx");
         }
+
+        protected void btnFilter_OnClick(object sender, EventArgs e)
+        {
+            //var name = txtNameFilter.Text;
+            //var email = txtEmailFilter.Text;
+            //var username = txtUsernameFilter.Text;
+            //var user = Page.User as CustomPrincipal;
+            //if(user!=null)
+            //using (var helper = new DbHelper.User())
+            //{
+            //    var users = helper.ListAllUsers(user.SchoolId,100,1,name,username,email);
+            //    GridView1.DataSource = users;
+            //    GridView1.DataBind();
+            //}
+        }
+
+        protected void lnkFilterPanel_OnClick(object sender, EventArgs e)
+        {
+            pnlFilter.Visible = !pnlFilter.Visible;
+            if (pnlFilter.Visible)
+            {
+                imgFilter.ImageUrl = "~/Content/Icons/Arrow/down-arrow.png";
+            }
+            else
+            {
+                imgFilter.ImageUrl = "~/Content/Icons/Arrow/right-arrow.png";                
+            }
+        }
     }
 }

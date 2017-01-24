@@ -13,6 +13,15 @@ namespace One.Views.Student.Batch.List {
     public partial class ItemUc {
         
         /// <summary>
+        /// lnkBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkBody;
+        
+        /// <summary>
         /// hidBatchId control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,13 @@ namespace One.Views.Student.Batch.List {
         protected global::System.Web.UI.WebControls.HiddenField hidBatchId;
         
         /// <summary>
-        /// lnkName control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkName;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
         /// lnkEdit control.

@@ -85,13 +85,13 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.Image imgSchool;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
         
         /// <summary>
         /// lnkLoginName control.
@@ -103,13 +103,58 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.LinkButton lnkLoginName;
         
         /// <summary>
-        /// LoginStatus1 control.
+        /// imgMessageIcon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginStatus LoginStatus1;
+        protected global::System.Web.UI.WebControls.Image imgMessageIcon;
+        
+        /// <summary>
+        /// lblEmptyMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmptyMessage;
+        
+        /// <summary>
+        /// plHolderMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder plHolderMessage;
+        
+        /// <summary>
+        /// imgNotificationIcon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgNotificationIcon;
+        
+        /// <summary>
+        /// lblEmptyEvent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmptyEvent;
+        
+        /// <summary>
+        /// plHolderEvent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder plHolderEvent;
         
         /// <summary>
         /// Image1 control.
@@ -119,6 +164,24 @@ namespace One.ViewsSite.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Image1;
+        
+        /// <summary>
+        /// lnkSettingMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkSettingMenu;
+        
+        /// <summary>
+        /// LoginStatus1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginStatus LoginStatus1;
         
         /// <summary>
         /// Menu control.
@@ -139,22 +202,40 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder SiteMapPlace;
         
         /// <summary>
-        /// CoursesUc control.
+        /// lnkEditMode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.CoursesUc CoursesUc;
+        protected global::System.Web.UI.WebControls.LinkButton lnkEditMode;
         
         /// <summary>
-        /// EarlierUc control.
+        /// Image2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.ViewsSite.User.ModulesUc.EarlierUc EarlierUc;
+        protected global::System.Web.UI.WebControls.Image Image2;
+        
+        /// <summary>
+        /// lblEditMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEditMode;
+        
+        /// <summary>
+        /// CoursesMenuUc1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.ViewsSite.User.ModulesUc.CoursesMenuUc CoursesMenuUc1;
         
         /// <summary>
         /// pnlSettings control.
@@ -164,6 +245,24 @@ namespace One.ViewsSite.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder pnlSettings;
+        
+        /// <summary>
+        /// middlePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell middlePanel;
+        
+        /// <summary>
+        /// pnlBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlBody;
         
         /// <summary>
         /// pnlBodyMessage control.

@@ -9,41 +9,33 @@
 
 <%--<%@ Register Src="~/Views/Student/Batch/BatchDetail/DetailUc.ascx" TagPrefix="uc1" TagName="DetailUc" %>--%>
 <asp:Content runat="server" ID="content2" ContentPlaceHolderID="SiteMapPlace">
-    <uc1:SiteMapUc runat="server" id="SiteMapUc" />
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
 </asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <%--<uc1:DetailUc runat="server" id="DetailUc" />--%>
+    <h3 class="heading-of-display">
+        <asp:Label runat="server" ID="lblBatchName"></asp:Label>
+    </h3>
+    <hr/>
+    <div style="font-size: 1em; margin-left: 25px;">
+        <asp:Label runat="server" ID="lblSummary"></asp:Label>
+    </div>
+    <%--<div style="margin: 5px;">--%>
+    <%--<div style="margin: 2px 2px 10px 0;">--%>
 
-    <div style="padding: 5px;">
-        <h3 class="heading-of-display">
-            <asp:Label runat="server" ID="lblBatchName"></asp:Label>
-        </h3>
-        <div style="margin: 5px;">
-            <div style="margin: 2px 2px 10px 0;">
-
-                <%-- <span style="margin: 15px; font-size: 0.7em;">
+    <%-- <span style="margin: 15px; font-size: 0.7em;">
              <asp:HyperLink ID="lnkEdit" runat="server" NavigateUrl="~/Views/Student/Batch/Create/BatchCreate.aspx">
                  <asp:Image ID="Image1" Height="13px" Width="13px" runat="server" ImageUrl="~/Content/Icons/Edit/edit_black_and_white.png" />
                  &nbsp; Edit
              </asp:HyperLink>
-
          </span>--%>
-            </div>
-            <div style="font-size: 1em; margin-left: 25px;">
-                <asp:Label runat="server" ID="lblSummary"></asp:Label>
-            </div>
-
-        </div>
-        <div style="padding: 5px;">
-            <%--<strong>Programs in this batch</strong>
-            <hr />--%>
-            <div style="margin: 10px; padding-left: 10px;">
-                <asp:PlaceHolder ID="pnlProgramsInTheBatch" runat="server"></asp:PlaceHolder>
-            </div>
-        </div>
-        <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />
+    <%--</div>--%>
+    <%--</div>--%>
+    <div class="data-entry-section-body">
+        <asp:PlaceHolder ID="pnlProgramsInTheBatch" runat="server"></asp:PlaceHolder>
     </div>
+    <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />
 
 </asp:Content>
 

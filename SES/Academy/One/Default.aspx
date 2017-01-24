@@ -9,12 +9,13 @@
     <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
 </asp:Content>
 
-<asp:Content runat="server" ID="bodyTitle" ContentPlaceHolderID="BodyTitle">
+<%--<asp:Content runat="server" ID="bodyTitle" ContentPlaceHolderID="BodyTitle">
     <h3>COURSE OVERVIEW  </h3>
-</asp:Content>
+</asp:Content>--%>
 
 <asp:Content runat="server" ID="contentBody" ContentPlaceHolderID="Body">
-    <uc1:LstUc runat="server" ID="LstUc1" />
+    <asp:Panel ID="pnlBody" runat="server"></asp:Panel>
+    <%--<uc1:LstUc runat="server" ID="LstUc1" />--%>
 </asp:Content>
 
 <%--<asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">

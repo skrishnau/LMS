@@ -11,7 +11,22 @@ namespace One.ViewsSite.User.ModulesUc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                var thisUrl = Request.Url.AbsolutePath;
+                if (thisUrl.Contains("/Views/Student/"))
+                    lnkBatch.CssClass = "list-unmargined-selected-item";
+                else if (thisUrl.Contains("/Views/Academy/"))
+                    lnkAcademicSession.CssClass = "list-unmargined-selected-item";
+                else if (thisUrl.Contains("/Views/Course/"))
+                    lnkCourse.CssClass = "list-unmargined-selected-item";
+                else if (thisUrl.Contains("/Views/Structure"))
+                    lnkPrograms.CssClass = "list-unmargined-selected-item";
+                else if (thisUrl.Contains("/Views/User/") || thisUrl.Contains("/Views/Role"))
+                    lnkUsers.CssClass = "list-unmargined-selected-item";
+                
 
+            }
         }
         public int UserId
         {

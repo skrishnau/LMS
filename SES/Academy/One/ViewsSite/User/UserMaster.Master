@@ -8,6 +8,8 @@
 <%@ Register Src="~/ViewsSite/User/ModulesUc/OnlineUsersUc.ascx" TagPrefix="uc1" TagName="OnlineUsersUc" %>--%>
 
 <%@ Register Src="~/ViewsSite/User/ModulesUc/EarlierUc.ascx" TagPrefix="uc1" TagName="EarlierUc" %>
+<%@ Register Src="~/ViewsSite/User/ModulesUc/CoursesMenuUc.ascx" TagPrefix="uc1" TagName="CoursesMenuUc" %>
+
 
 
 
@@ -95,20 +97,65 @@
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Home/home_2.png" />
                         </asp:HyperLink>
                     </span>--%>
-                    <input type="text" name="search" placeholder="Search..">
-                    <asp:TextBox ID="TextBox1" runat="server" Enabled="False" Visible="False"></asp:TextBox>
+                    <%--<input type="text" name="search" placeholder="Search.." id="txtSearch" onkey>--%>
+                    <%--<asp:TextBox ID="txtSearch" runat="server"  ClientIDMode="Static"></asp:TextBox>--%>
+                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Search courses.."></asp:TextBox>
+                    <script type="text/javascript">
+                        //document.getElementById("txtSearch")
+                        //    .addEventListener("keyup", function (event) {
+                        //        event.preventDefault();
+                        //        if (event.keyCode == 13) {
+                        //            var txt = document.getElementById("txtSearch").value;
+                        //            __doPostBack('txtSearch', txt);
+                        //            //document.getElementById("id_of_button").click();
+                        //        }
+                        //});
+                        //function KeyPressedInSearch(parameter) {
+                        //    __doPostBack('btnSave', parameter)
+                        //}
+                    </script>
                     &nbsp;&nbsp;
                     <%--<asp:LoginName ID="LoginName1" runat="server" Font-Size="1.1em" />--%>
                     <asp:LinkButton ID="lnkLoginName" runat="server" OnClick="lnkLoginName_OnClick" ForeColor="white" CssClass="link">user</asp:LinkButton>
                     &nbsp;&nbsp;
-                    <asp:LoginStatus ID="LoginStatus1" runat="server" ForeColor="white" Font-Size="0.9em" />
+                    
+                  
+                    <div class="dropdown">
+                        <span class="dropbtn">
+                            <asp:Image ID="imgMessageIcon" runat="server" ImageUrl="~/Content/Icons/Message/email.png" />
+                            <sup>
+                                <%--<asp:Image ID="imgNoticeIndicator" runat="server" ImageUrl="~/Content/Icons/Exclamation/exclamation_icon.png" />--%>
+                                <%--<asp:Label ID="lblNoticeIndication" runat="server" Text="" ForeColor="white" BackColor="red" ></asp:Label>--%>
+                            </sup>
+                        </span>
+
+                        <div class="dropdown-content">
+                            <asp:Label ID="lblEmptyMessage" runat="server" Text="No new messages"></asp:Label>
+                            <asp:PlaceHolder ID="plHolderMessage" runat="server"></asp:PlaceHolder>
+                        </div>
+                    </div>
+                    &nbsp;
+                      <div class="dropdown">
+                        <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn" ImageUrl="~/Content/Icons/Notice/notification-icon.png" />
+                        <div class="dropdown-content">
+                            <asp:Label ID="lblEmptyEvent" runat="server" Text="No new notices"></asp:Label>
+                            <asp:PlaceHolder ID="plHolderEvent" runat="server"></asp:PlaceHolder>
+                        </div>
+                    </div>
+                    &nbsp;
+
                     <div class="dropdown">
                         <%--<button class="dropbtn">Dropdown</button>--%>
-                        <asp:Image ID="Image1" runat="server" CssClass="dropbtn" ImageUrl="~/Content/Icons/Settings/settings-icon.png" />
+                        <asp:Image ID="Image1" runat="server" CssClass="dropbtn" ImageUrl="~/Content/Icons/Settings/setting_glow.png" />
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <%-- <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>--%>
+                            <%--<a href="#">Settings</a>--%>
+                            <asp:HyperLink ID="lnkSettingMenu" runat="server" Visible="False" NavigateUrl="~/Views/Setting/">
+                                Settings
+                            </asp:HyperLink>
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
+
                         </div>
                     </div>
                     <style type="text/css">
@@ -123,20 +170,45 @@
                         }
 
                         /* The container <div> - needed to position the dropdown content */
-                        /*.dropdown {
+                        .dropdown {
                             position: relative;
                             display: inline-block;
-                        }*/
-
-                        /*test only*/
-                        .dropdown .dropdown-content{
-                            /*position: relative;*/
-                            /*display: inline-block;*/
-                            width: 120px;
-                            bottom: 100%;
-                            left: 50%;
-                            margin-left: -60px;
                         }
+
+                            /* Show the dropdown menu on hover */
+                            .dropdown:hover .dropdown-content {
+                                display: block;
+                            }
+
+                            /* Change the background color of the dropdown button when the dropdown content is shown */
+                            .dropdown:hover .dropbtn {
+                                /*background-color: #3e8e41;*/
+                                background-color: #8fbc8f;
+                            }
+                            /*test only*/
+                            .dropdown .dropdown-content {
+                                /*position: relative;*/
+                                /*display: inline-block;*/
+                                width: 120px;
+                                /*bottom: 100%;
+                            left: 50%;*/
+                                top: 100%;
+                                right: 0%;
+                                margin-left: -60px;
+                            }
+
+                                .dropdown .dropdown-content::after {
+                                    content: " ";
+                                    position: absolute;
+                                    /*top: 0%; /* At the bottom of the tooltip --100%*/
+                                    /*left: 100%;/*earlier 50%*/
+                                    bottom: 100%;
+                                    right: 100%;
+                                    margin-left: -5px;
+                                    border-width: 5px;
+                                    border-style: solid;
+                                    border-color: black transparent transparent transparent;
+                                }
                         /*end of test only*/
 
                         /* Dropdown Content (Hidden by Default) */
@@ -144,55 +216,53 @@
                             display: none;
                             position: absolute;
                             /*position: relative;*/
-                            background-color: #f9f9f9;
+                            /*background-color: #f9f9f9;*/
+                            background-color: #557d96;
+                            border: 1px solid white;
                             min-width: 160px;
                             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                         }
 
-                        .dropdown .dropdown-content::after {
-                            content: " ";
-                            position: absolute;
-                            top: 100%; /* At the bottom of the tooltip */
-                            left: 50%;
-                            margin-left: -5px;
-                            border-width: 5px;
-                            border-style: solid;
-                            border-color: black transparent transparent transparent;
-                        }
-                        /* Links inside the dropdown */
-                        .dropdown-content a {
-                            color: black;
-                            padding: 12px 16px;
-                            text-decoration: none;
-                            display: block;
-                        }
-
-                            /* Change color of dropdown links on hover */
-                            .dropdown-content a:hover {
-                                background-color: #f1f1f1;
+                            /*.dropdown-content a {
+                                color: white;
+                            }*/
+                            .dropdown-content a {
+                                color: white;
+                                padding: 12px 16px;
+                                text-decoration: none;
+                                display: block;
                             }
+                                /* Links inside the dropdown */
 
-                        /* Show the dropdown menu on hover */
-                        .dropdown:hover .dropdown-content {
-                            display: block;
-                        }
+                                /* Change color of dropdown links on hover */
+                                .dropdown-content a:hover {
+                                    /*background-color: #f1f1f1;*/
+                                    background-color: #f1f1f1;
+                                    color: black;
+                                }
 
-                        /* Change the background color of the dropdown button when the dropdown content is shown */
-                        .dropdown:hover .dropbtn {
-                            background-color: #3e8e41;
-                        }
+                                    .dropdown-content a:hover a {
+                                        color: black;
+                                    }
                     </style>
+
                 </div>
             </div>
 
             <asp:ContentPlaceHolder ID="Menu" runat="server">
             </asp:ContentPlaceHolder>
+
         </div>
+
         <div style="clear: both;"></div>
 
 
 
         <div class="body-whole">
+            <%-- style="left: 0; top: 50px; position: fixed;" --%>
+
+            <%--  --%>
+
             <%--  style="padding: 5px;" --%>
             <%--<div style="clear: both; margin: 2px;"></div>--%>
             <%-- <div style="">
@@ -204,14 +274,26 @@
                 </span>
 
             </div>--%>
-            <div>
-                <asp:ContentPlaceHolder ID="SiteMapPlace" runat="server">
-                </asp:ContentPlaceHolder>
+            <div style="padding: 5px 0; background-color: #f1f1f1;">
+                <div style="float: left;">
+                    <asp:ContentPlaceHolder ID="SiteMapPlace" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div style="float: right;">
+                    <asp:LinkButton ID="lnkEditMode" runat="server" OnClick="lnkEditMode_OnClick" CssClass="link-white" Visible="False">
+                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                        <asp:Label ID="lblEditMode" runat="server" Text="Turn on edit mode"></asp:Label>
+                    </asp:LinkButton>
+                </div>
+                <div style="clear: both;"></div>
             </div>
+            <div style="clear: both;"></div>
 
-            <table class="table-whole">
-                <%-- SiteMap --%>
-                <%-- <tr>
+            <div class="inner-body">
+
+                <table class="table-whole">
+                    <%-- SiteMap --%>
+                    <%-- <tr>
                     <td>
                         <span class="breadcrumb">
                             <asp:SiteMapPath ID="SiteMapPath2" runat="server">
@@ -220,81 +302,87 @@
                     </td>
                 </tr>--%>
 
-                <tr style="vertical-align: top;">
+                    <tr style="vertical-align: top;">
 
-                    <%--  =================== Left sidebar ========================= --%>
-                    <td class="left-width">
-                        <%-- ----------------------START------------------------ --%>
-                        <%-- class="leftsidebar" --%>
-                        <div style="width: 100%;">
+                        <%--  =================== Left sidebar ========================= --%>
+                        <td class="left-width">
+                            <%-- ----------------------START------------------------ --%>
+                            <%-- class="leftsidebar" --%>
+                            <div style="width: 100%;">
 
-                            <%-- Subjects --%>
-                            <uc1:CoursesUc runat="server" ID="CoursesUc" />
-                            <uc1:EarlierUc runat="server" ID="EarlierUc" />
-                            <%--<uc1:EventsUc runat="server" ID="EventsUc1" />--%>
-                            <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
-                            <%--  --%>
-                        </div>
-                        <%-- -------------------------END------------------------ --%>
-                    </td>
-                    <%-- ============================= END ========================= --%>
+                                <%-- Subjects --%>
+                                <uc1:CoursesMenuUc runat="server" ID="CoursesMenuUc1" />
+                                <%--<uc1:CoursesUc runat="server" ID="CoursesUc" />
+                                <uc1:EarlierUc runat="server" ID="EarlierUc" />--%>
+
+                                <%--<uc1:EventsUc runat="server" ID="EventsUc1" />--%>
+                                <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
+                                <%--  --%>
+                            </div>
+                            <%-- -------------------------END------------------------ --%>
+                        </td>
+                        <%-- ============================= END ========================= --%>
 
 
 
-                    <%-- ======================= Middle ======================= --%>
-                    <td class="mid-width">
-                        <%-- ------------------------- START -------------------- --%>
-                        <%-- style="float: left; width: 60%; overflow: hidden; margin: 15px 5px 20px;" --%>
-                        <div id="bodyDiv">
-                            <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
-                                <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
+                        <%-- ======================= Middle ======================= --%>
+                        <td class="mid-width" runat="server" id="middlePanel">
+                            <%-- ------------------------- START -------------------- --%>
+                            <%-- style="float: left; width: 60%; overflow: hidden; margin: 15px 5px 20px;" --%>
+                            <asp:Panel ID="pnlBody" runat="server">
+                                <div id="bodyDiv">
+                                    <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
+                                        <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
+                                    </asp:Panel>
+                                    <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
+                                    </asp:ContentPlaceHolder>
+                                    <asp:ContentPlaceHolder ID="Body" runat="server">
+                                    </asp:ContentPlaceHolder>
+                                    <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+                                    <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+
+                                    <asp:ContentPlaceHolder runat="server" ID="JSField">
+                                    </asp:ContentPlaceHolder>
+                                </div>
                             </asp:Panel>
-                            <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
-                            </asp:ContentPlaceHolder>
-                            <asp:ContentPlaceHolder ID="Body" runat="server">
-                            </asp:ContentPlaceHolder>
-                            <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
-                            <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
 
-                            <asp:ContentPlaceHolder runat="server" ID="JSField">
-                            </asp:ContentPlaceHolder>
-                        </div>
-                        <%-- --------------------------- END --------------------- --%>
-                    </td>
-                    <%-- ============================= END ========================= --%>
+                            <%-- --------------------------- END --------------------- --%>
+                        </td>
+                        <%-- ============================= END ========================= --%>
 
 
 
-                    <%-- ======================= Right sidebar ======================= --%>
+                        <%-- ======================= Right sidebar ======================= --%>
 
-                    <td class="right-width" runat="server" id="right_panel" visible="False">
-                        <%-- ------------------------- START -------------------- --%>
-                        <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
-                        <%-- class="right-sidebar" --%>
-                        <div>
-                            <%--  style="overflow: auto; margin-top: 5px; height:180px;" --%>
-                            <%-- class="dashboard-modules" --%>
-                            <%-- <div>
+                        <td class="right-width" runat="server" id="right_panel" visible="False">
+                            <%-- ------------------------- START -------------------- --%>
+                            <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
+                            <%-- class="right-sidebar" --%>
+                            <div>
+                                <%--  style="overflow: auto; margin-top: 5px; height:180px;" --%>
+                                <%-- class="dashboard-modules" --%>
+                                <%-- <div>
                                 <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
                             </div>--%>
-                            <%--   <div>
+                                <%--   <div>
                                <uc1:NewsUc runat="server" ID="NewsUc" />
                             </div>--%>
-                            <%-- <div>
+                                <%-- <div>
                                 <uc1:EventsUc runat="server" ID="EventsUc" />
                             </div>
                             <div>
                                 <uc1:OnlineUsersUc runat="server" ID="OnlineUsersUc" />
                             </div>--%>
-                        </div>
-                        <%-- --------------------------- END --------------------- --%>
-                    </td>
-                    <%-- ============================= END ========================= --%>
-                </tr>
+                            </div>
+                            <%-- --------------------------- END --------------------- --%>
+                        </td>
+                        <%-- ============================= END ========================= --%>
+                    </tr>
 
 
 
-            </table>
+                </table>
+            </div>
         </div>
 
         <div style="clear: both;"></div>
@@ -312,29 +400,39 @@
 
         <%-- Clear Both --%>
         <div style="clear: both;">
-            <hr style="color: white; height: 2px;" />
+            <hr style="color: darkgray; background-color: darkgray; height: 1px; display: block;" />
             <table style="margin: 0 auto;">
                 <tr>
                     <td>
-                        <asp:HyperLink ID="HyperLink1" runat="server"
-                            ForeColor="white" CssClass="link"
-                            NavigateUrl="~/">Home</asp:HyperLink>
-                        &nbsp;
+                        <span class="sitemap-items">
+
+                            <asp:HyperLink ID="HyperLink1" runat="server"
+                                CssClass="link-white"
+                                NavigateUrl="~/">Home</asp:HyperLink>
+                            &nbsp;
+                        </span>
                     </td>
                     <%--<td>Profile &nbsp; </td>--%>
                     <td>
-                        <asp:HyperLink ID="HyperLink2" runat="server"
-                            ForeColor="white" CssClass="link"
-                            NavigateUrl="~/Views/NoticeBoard/NoticeListing.aspx">
+                        <span class="sitemap-items">
+
+                            <asp:HyperLink ID="HyperLink2" runat="server"
+                                CssClass="link-white"
+                                NavigateUrl="~/Views/NoticeBoard/NoticeListing.aspx">
                             Notice
-                        </asp:HyperLink>
-                        &nbsp;
+                            </asp:HyperLink>
+
+                            &nbsp;
+                        </span>
                     </td>
                     <td>
-                        <asp:HyperLink ID="HyperLink3" runat="server"
-                            ForeColor="white" CssClass="link"
-                            NavigateUrl="~/Views/Events/">Events</asp:HyperLink>
-                        &nbsp;
+                        <span class="sitemap-items">
+
+                            <asp:HyperLink ID="HyperLink3" runat="server"
+                                CssClass="link-white"
+                                NavigateUrl="~/Views/Events/">Events</asp:HyperLink>
+                            &nbsp;
+                        </span>
                     </td>
                     <%--<td>Contact &nbsp; </td>--%>
                 </tr>
