@@ -15,6 +15,7 @@ hr {
 h3.heading-of-listing {
     text-align: left;
     margin-top: 3px;
+    margin-bottom: 10px;
     font-size: 2em;
     font-weight: 400;
 
@@ -146,14 +147,3 @@ h3 {
     }
 
 
-.link_smaller {
-    font-weight: 400;
-    font-size: 0.9em;
-    color: darkblue;
-    text-decoration: none;
-}
-
-    .link_smaller:hover {
-        color: darkorange;
-        text-decoration: underline;
-    }

@@ -6,7 +6,7 @@
 <head runat="server">
     <title></title>
     <style type="text/css">
-        .list-item {
+        /*.list-item {
             padding: 2px;
             margin: 10px;
         }
@@ -14,7 +14,7 @@
             .list-item:hover {
                 background-color: lightblue;
                 border: 2px solid mediumblue;
-            }
+            }*/
     </style>
 </head>
 <body>

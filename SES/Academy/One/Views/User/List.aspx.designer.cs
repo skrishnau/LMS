@@ -22,6 +22,24 @@ namespace One.Views.User {
         protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
         
         /// <summary>
+        /// lnkAddNewUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkAddNewUser;
+        
+        /// <summary>
+        /// lnkAssignRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkAssignRole;
+        
+        /// <summary>
         /// lnkFilterPanel control.
         /// </summary>
         /// <remarks>

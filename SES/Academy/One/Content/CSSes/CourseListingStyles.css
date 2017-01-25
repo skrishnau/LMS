@@ -1,17 +1,17 @@
 ﻿
 
-.category-text {
+/*.category-text {
     display: block;
     overflow: auto;
     font-size: 1.2em;
     word-wrap: normal;
-    /*background-color: white;*/
-}
+    background-color: white;
+}*/
 
-    .category-text:hover {
+    /*.category-text:hover {
         background-color: #dcecf1;
         color: darkorange;
-    }
+    }*/
 
 .pnlcls {
     display: block;

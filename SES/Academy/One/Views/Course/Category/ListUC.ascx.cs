@@ -59,42 +59,42 @@ namespace One.Views.Course.Category
                 var pos = 0;
                 foreach (var i in treeLinkImages)
                 {
-                    if (pos == 0)
-                    {
-                        if (i == 0)
-                        {
+                     if (pos == 0)
+                     {
+                         if (i == 0)
+                         {
 
-                            PlaceHolder1.Controls.Add(new Label() { Width = 18 });
-                        }
-                        else
-                        {
-                            PlaceHolder1.Controls.Add(new Label() { Width = 4 });
-                            PlaceHolder1.Controls.Add(new Image()
-                            {
-                                Width = 14,
-                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
-                            });
-                        }
-                        pos = 1;
-                    }
-                    else
-                    {
-                        if (i == 0)
-                        {
+                             PlaceHolder1.Controls.Add(new Label() { Width = 18 });
+                         }
+                         else
+                         {
+                             PlaceHolder1.Controls.Add(new Label() { Width = 4 });
+                             PlaceHolder1.Controls.Add(new Image()
+                             {
+                                 Width = 14,
+                                 ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
+                             });
+                         }
+                         pos = 1;
+                     }
+                     else
+                     {
+                         if (i == 0)
+                         {
 
-                            PlaceHolder1.Controls.Add(new Label() { Width = 30 });
-                        }
-                        else
-                        {
-                            PlaceHolder1.Controls.Add(new Label() { Width = 14 });
-                            PlaceHolder1.Controls.Add(new Image()
-                            {
-                                Width = 16,
-                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
-                            });
-                        }
-                    }
-
+                             PlaceHolder1.Controls.Add(new Label() { Width = 30 });
+                         }
+                         else
+                         {
+                             PlaceHolder1.Controls.Add(new Label() { Width = 14 });
+                             PlaceHolder1.Controls.Add(new Image()
+                             {
+                                 Width = 16,
+                                 ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
+                             });
+                         }
+                     }
+                     
                     ///not used
                     //if (i == 0)
                     //{

@@ -22,7 +22,9 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
             {
                 if (user.IsInRole("manager") )
                 {
-                    btnManageSubject.Visible = true;
+                    var edit = (Session["editMode"] as string) ?? "0";
+
+                    btnManageSubject.Visible = edit=="1";
                 }
                 else
                 {

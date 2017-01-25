@@ -16,6 +16,7 @@ namespace One.Views.User
         {
             if (!IsPostBack)
             {
+
                 var user = User as CustomPrincipal;
                 if (user != null)
                 {
@@ -36,6 +37,23 @@ namespace One.Views.User
                         };
                         SiteMapUc.SetData(list);
                     }
+                    var edit = (Session["editMode"] as string)??"0";
+                    if (user.IsInRole("manager"))
+                    {
+                        var editable = edit == "1";
+                        lnkAddNewUser.Visible = editable;
+                        lnkAssignRole.Visible = editable;
+                    }
+                    else
+                    {
+                        lnkAddNewUser.Visible = false;
+                        lnkAssignRole.Visible = false;
+                    }
+                    
+
+
+
+
                     hidSchoolId.Value = user.SchoolId.ToString();
                 }
             }
@@ -106,11 +124,11 @@ namespace One.Views.User
                 catch
                 {
 
-                    return "Never Online";
+                    return "Never";
                 }
 
             }
-            return "Never Online";
+            return "Never";
         }
 
 

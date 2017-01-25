@@ -1152,6 +1152,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\CSSes\ActResStyles.css" />
     <Content Include="Content\CSSes\All.css" />
+    <Content Include="Content\CSSes\BasicStyles.css" />
     <Content Include="Content\CSSes\CourseListingStyles.css" />
     <Content Include="Content\CSSes\CreateEditStyles.css" />
     <Content Include="Content\CSSes\ListingStyles.css" />

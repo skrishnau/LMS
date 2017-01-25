@@ -22,15 +22,6 @@ namespace One.Views.Student.Batch.List {
         protected global::System.Web.UI.WebControls.HyperLink lnkBody;
         
         /// <summary>
-        /// hidBatchId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidBatchId;
-        
-        /// <summary>
         /// lblName control.
         /// </summary>
         /// <remarks>
@@ -83,5 +74,14 @@ namespace One.Views.Student.Batch.List {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblClassCommenceFrom;
+        
+        /// <summary>
+        /// hidBatchId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidBatchId;
     }
 }

@@ -30,7 +30,7 @@
                 <asp:PlaceHolder ID="pnlListing" runat="server"></asp:PlaceHolder>
 
                 <div>
-                    <asp:HyperLink ID="lnkAdd" runat="server" Visible="False">
+                    <asp:HyperLink ID="lnkAdd" runat="server" Visible="False" CssClass="link-dark">
                         <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                         <asp:Literal ID="lblAddText" runat="server" Text=""></asp:Literal>
                     </asp:HyperLink>

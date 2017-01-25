@@ -15,6 +15,7 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <%--<uc1:DetailUc runat="server" id="DetailUc" />--%>
     <h3 class="heading-of-display">
+        
         <asp:Label runat="server" ID="lblBatchName"></asp:Label>
     </h3>
     <hr/>
@@ -32,7 +33,7 @@
          </span>--%>
     <%--</div>--%>
     <%--</div>--%>
-    <div class="data-entry-section-body">
+    <div class="list">
         <asp:PlaceHolder ID="pnlProgramsInTheBatch" runat="server"></asp:PlaceHolder>
     </div>
     <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />

@@ -14,18 +14,18 @@
 
     <div>
         <div style="float: right;">
-            <asp:HyperLink runat="server" NavigateUrl="~/Views/User/Create.aspx">
+            <asp:HyperLink runat="server" ID="lnkAddNewUser" NavigateUrl="~/Views/User/Create.aspx" CssClass="link-dark">
                 Add New User
             </asp:HyperLink>
             &nbsp;&nbsp;&nbsp;
-            <asp:HyperLink runat="server" NavigateUrl="~/Views/Role/Assign.aspx">
+            <asp:HyperLink runat="server" ID="lnkAssignRole" NavigateUrl="~/Views/Role/Assign.aspx" CssClass="link-dark">
                 Assign Role
             </asp:HyperLink>
         </div>
         
         <div style="float: left; border: 1px solid lightgray;">
             
-            <asp:LinkButton ID="lnkFilterPanel" runat="server" OnClick="lnkFilterPanel_OnClick">Filter
+            <asp:LinkButton ID="lnkFilterPanel" runat="server" OnClick="lnkFilterPanel_OnClick" CssClass="link-dark">Filter
                 <asp:Image ID="imgFilter" runat="server" ImageUrl="~/Content/Icons/Arrow/right-arrow.png"/>
             </asp:LinkButton>
             <br />
@@ -122,7 +122,7 @@
                     <ItemStyle Width="100"></ItemStyle>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Last Online" SortExpression="LastOnline">
+                <asp:TemplateField HeaderText="Online" SortExpression="Online">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:TextBox>
                     </EditItemTemplate>
@@ -138,7 +138,8 @@
 
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#557d96" Font-Bold="True" ForeColor="White" />
+            <%--  BackColor="#557d96" Font-Bold="True" ForeColor="White" --%>
+            <HeaderStyle CssClass="data-list-header" />
             <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />

@@ -23,7 +23,7 @@
             </asp:HyperLink>
         </div>--%>
         <div runat="server" id="pnlOtherEdits" visible="False">
-            <asp:HyperLink ID="lnkAdd" runat="server" CssClass="link"
+            <asp:HyperLink ID="lnkAdd" runat="server" CssClass="link-dark"
                 NavigateUrl="~/Views/Academy/AcademicYear/AcademyCreate.aspx">
                 <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                 New Academic Year

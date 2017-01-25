@@ -9,8 +9,18 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
-    <h3 class="heading-of-listing">Batches
-    </h3>
+    <div>
+        <h3 class="heading-of-listing">Batches
+        <span class="list-heading-option">
+            <asp:HyperLink ID="lnkAdd" runat="server"
+                NavigateUrl="~/Views/Student/Batch/Create/BatchCreate.aspx" Visible="False">
+                <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
+                New Batch
+            </asp:HyperLink>
+        </span>
+        </h3>
+    </div>
+
     <hr />
     <%--<div style="text-align: right;">
         <asp:HyperLink ID="lnkEdit" runat="server" >
@@ -18,13 +28,10 @@
             <asp:Label ID="lblEdit" runat="server" Text="Edit"></asp:Label>
         </asp:HyperLink>
     </div>--%>
-    
-    <div>
-        <asp:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/Views/Student/Batch/Create/BatchCreate.aspx" Visible="False">
-            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-            New Batch
-        </asp:HyperLink>
-    </div>
+
+    <%-- <div>
+        
+    </div>--%>
     <div>
         <uc1:listUc runat="server" ID="listUc" />
     </div>

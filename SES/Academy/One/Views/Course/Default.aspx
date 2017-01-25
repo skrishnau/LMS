@@ -12,7 +12,7 @@
         <asp:Label ID="lblHeading" runat="server" Text="Course and Category Management"></asp:Label>
     </h3>
     <hr />
-   <%-- <br />--%>
+    <%-- <br />--%>
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
             <%--<asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">--%>
@@ -36,7 +36,8 @@
                                         <%-- <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                                     <ContentTemplate>--%>
                                         <%-- list of categories --%>
-                                        <div style="text-align: center; padding: 5px 0; margin: 0 0 3px; font-weight: bold; background-color: #f1f1f1;">
+                                        <%-- style="text-align: center; padding: 5px 0; margin: 0 0 3px; font-weight: bold; background-color: #f1f1f1;" --%>
+                                        <div class="data-list-header">
                                             Categories
                                         </div>
                                         <div style="padding-left: 5px;">
@@ -50,7 +51,8 @@
                                         <%-- end --%>
                                         <div style="text-align: left; padding: 5px 0; margin: 10px 0; background-color: white;">
                                             &nbsp;
-                                                <asp:LinkButton ID="lnkCatCreate" runat="server" OnClick="lnkCatCreate_Click" CssClass="link">
+                                                <asp:LinkButton ID="lnkCatCreate" runat="server" OnClick="lnkCatCreate_Click"
+                                                    CssClass="link-dark">
                                                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                                                     New Category
                                                 </asp:LinkButton>
@@ -68,13 +70,14 @@
                                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                             <%-- list of courses in this category --%>
                                             <ContentTemplate>
-                                                <div style="text-align: center; padding: 3px; background-color: #f1f1f1">
+                                                <div class="data-list-header">
                                                     Courses in category :&nbsp;
                                                 <strong>
                                                     <asp:Label ID="lblCoursesTitle" runat="server" Text=""></asp:Label>
                                                 </strong>
                                                     <div style="float: right;">
-                                                        <asp:LinkButton ID="lnkCoursCreate" runat="server" Visible="False" CssClass="link"
+                                                        <asp:LinkButton ID="lnkCoursCreate" runat="server" Visible="False"
+                                                            CssClass="link-dark-for-dark-backcolor"
                                                             OnClick="lnkCoursCreate_Click">
                                                             <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                                                             Add Course
@@ -85,40 +88,30 @@
                                                 <%-- azure --%>
                                                 <div id="courseDiv" style="background-color: white; padding: 0 0 20px 5px;">
 
-
-
                                                     <asp:Panel ID="pnlCourses" runat="server">
                                                     </asp:Panel>
 
-
-                                                    <div style="text-align: right; padding: 10px 10px 0 0;">
-
-
-
-                                                        <%-- <asp:HyperLink ID="lnkCoursCreate" runat="server" 
-                                                                    Na="lnkCoursCreate_Click">
-                                                                    <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-                                                                    Add Course
-                                                                </asp:HyperLink>--%>
-                                                    </div>
-
                                                     <%-- DataSourceID="courseListingDS" --%>
-                                                    <asp:DataList ID="dlistCourses" runat="server">
+                                                    <asp:DataList ID="dlistCourses" runat="server" Width="99%">
                                                         <ItemTemplate>
 
                                                             <%--<asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />--%>
-                                                            <asp:HiddenField ID="HiddenField2" runat="server" Value='<%# Eval("Id") %>' />
+                                                            <%--<asp:HiddenField ID="HiddenField2" runat="server" Value='<%# Eval("Id") %>' />--%>
 
                                                             <%--<asp:Label ID="NameLabel" runat="server" Text='<%# Eval("Name") %>' />--%>
-                                                    
-                                                                ●&nbsp;
-                                                                <asp:HyperLink ID="HyperLink1" runat="server"
-                                                                    NavigateUrl='<%# "~/Views/Course/CourseDetail.aspx?cId="+Eval("Id") %>'><%# Eval("FullName") %></asp:HyperLink>
-                                                            <%--&nbsp;(--%>
-                                                            <asp:Label ID="CodeLabel" runat="server"
-                                                                Text='<%# GetCode(Eval("Code")) %>' />
-                                                            <%--)--%>
-                                                            <br />
+                                                            <%--<div class="list-item">--%>
+
+                                                                <%--●&nbsp;--%>
+                                                                <asp:HyperLink ID="HyperLink1" runat="server" CssClass="list-item-heading-normal"
+                                                                    NavigateUrl='<%# "~/Views/Course/CourseDetail.aspx?cId="+Eval("Id") %>'>
+                                                                    <%# Eval("FullName") %>
+                                                                    <asp:Label ID="CodeLabel" runat="server"
+                                                                        Text='<%# GetCode(Eval("Code")) %>' />
+                                                                </asp:HyperLink>
+                                                                <%--&nbsp;(--%>
+
+                                                                <%--)--%>
+                                                            <%--</div>--%>
 
                                                         </ItemTemplate>
                                                     </asp:DataList>

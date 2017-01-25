@@ -1,13 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DetailItemUc.ascx.cs" Inherits="One.Views.Student.Batch.BatchDetail.DetailItemUc" %>
 
 
-<div class="auto-st2">
+<div class="list-item">
     <asp:Panel ID="pnlBody" runat="server">
-        <div style="font-size: 1.1em ; font-weight: 700; padding: 5px; margin: 5px;">
-            <asp:HyperLink ID="lnkProgrameName" runat="server" Text=""  CssClass="link"
+        <div >
+            <asp:HyperLink ID="lnkProgrameName" runat="server" Text=""  CssClass="list-item-heading"
                  ></asp:HyperLink>
         </div>
-        <div style="margin-left: 30px; padding-bottom: 10px;">
+        <div class="list-item-description">
             Total Students:&nbsp;
             <asp:HyperLink ID="lblNoOfStudents" runat="server" Text="0"></asp:HyperLink>
 

@@ -36,8 +36,8 @@ namespace One.Views.Structure.All.UserControls
 
         public void SetName(int yearId, int subyearId, string name, string editUrl, int noOfCourses
             , string currentBatch, int programBatchId
-            , bool edit = false
-            , string addUrl = "", string addText = "")
+            , bool edit = false)
+            //, string addUrl = "", string addText = "")
         {
             //this.hidStructureId.Value = id.ToString();
             YearId = yearId;
@@ -54,20 +54,20 @@ namespace One.Views.Structure.All.UserControls
             lnkEdit.Visible = edit;
             lnkDelete.Visible = edit;
 
-            lnkAdd.Visible = edit && addUrl != "";
+            //lnkAdd.Visible = edit && addUrl != "";
 
             pnlBody.Style.Add("padding", "5px");
             if (currentBatch == "")
             {
                 row_currentBatch.Visible = false;
-                pnlBody.BackColor = //Color.LightGray;
-                Color.FromArgb(225, 225, 225);
+                //pnlBody.BackColor = //Color.LightGray;
+                //Color.FromArgb(225, 225, 225);
             }
             else
             {
                 lblCurrentBatch.Text = currentBatch;
-                pnlBody.BackColor =//Color.LightGreen;
-                    Color.FromArgb(193, 252, 193);
+                //pnlBody.BackColor =//Color.LightGreen;
+                //    Color.FromArgb(193, 252, 193);
                 lnkCurrentBatch.NavigateUrl =
                     "~/Views/Student/Batch/StudentDisplay/Students/StudentListInProgramBatch.aspx?pbId=" + programBatchId;
             }
@@ -75,7 +75,7 @@ namespace One.Views.Structure.All.UserControls
             if (edit)
             {
                 lnkEdit.NavigateUrl = editUrl;
-                lnkAdd.NavigateUrl = addUrl;
+                //lnkAdd.NavigateUrl = addUrl;
 
                 var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
                                                 DbHelper.StaticValues.Encode("structure") +
@@ -87,8 +87,8 @@ namespace One.Views.Structure.All.UserControls
                                                 + name + "?")
                                                 ;
                 lnkDelete.NavigateUrl = redUrl;
-                lblAddText.Text = addText;
-                lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", ""); ;
+                //lblAddText.Text = addText;
+                //lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", ""); ;
             }
             lnkName.NavigateUrl = "~/Views/Structure/CourseListing.aspx" + "?yId=" + YearId + "&sId=" +
                 SubYearId+"&edit="+(edit?"1":"0");

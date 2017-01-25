@@ -38,9 +38,10 @@ namespace One.Views.Course
                     }
                     if (user.IsInRole("manager") || user.IsInRole("course-editor"))
                     {
-                        lnkCoursCreate.Visible = true;
-                        lnkCatCreate.Visible = true;
-                        Manager = true;
+                        var edit = ((Session["editMode"] as string) ?? "0")=="1";
+                        lnkCoursCreate.Visible = edit;
+                        lnkCatCreate.Visible = edit;
+                        Manager = edit;
                     }
                     else
                     {
@@ -99,7 +100,7 @@ namespace One.Views.Course
 
                     list.Add(1);
 
-                    catUc.SetNameAndIdOfCategory(cats[c].Id, cats[c].Name, list, false);
+                    catUc.SetNameAndIdOfCategory(cats[c].Id, cats[c].Name, list, false);//list
                     catUc.NameClicked += catUc_NameClicked;
                     catUc.ID = "category_" + cats[c].Id;
                     pnlCategories.Controls.Add(catUc);
@@ -141,11 +142,13 @@ namespace One.Views.Course
 
                 list.Add((parentPaddingList[parentPaddingList.Count - 1] == 1) ? 2 : 1);
 
-                catUc.SetNameAndIdOfCategory(subcats[s].Id, subcats[s].Name, list, false);
+                catUc.SetNameAndIdOfCategory(subcats[s].Id, subcats[s].Name, list, false);//list
+
                 catUc.NameClicked += catUc_NameClicked;
                 catUc.ID = "category_" + subcats[s].Id;
                 //parentUc.AddSubCategories(catUc);
                 pnlCategories.Controls.Add(catUc);
+                
 
 
                 if ((selectedCat == subcats[s].Id && !IsPostBack) || selectedCat == 0)

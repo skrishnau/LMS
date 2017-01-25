@@ -11,7 +11,6 @@
     <h3 class="heading-of-listing">
         <asp:Label ID="lblAcademicYearName" runat="server" Text=""></asp:Label>
     </h3>
-    <hr />
     <%--    <div style="text-align: right;">
         <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
             <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
@@ -29,31 +28,31 @@
                 Visible="False"
                 OnClick="btnMarkComplete_Click" />--%>
     <%--</div>--%>
-    <div>
+  <%--  <div>
         <asp:Label ID="lblError" runat="server" Text="Error while saving" ForeColor="red" Visible="False"></asp:Label>
+    </div>--%>
+    <div class="">
+        <table>
+            <tr>
+                <td class="auto-style1">Start Date  :</td>
+                <td>
+                    <asp:Label ID="lblStartDate" runat="server" Text=""></asp:Label></td>
+            </tr>
+            <tr>
+                <td class="auto-style1">End Date  :</td>
+                <td>
+                    <asp:Label ID="lblEndDate" runat="server" Text=""></asp:Label>
+                </td>
+            </tr>
+        </table>
     </div>
 
-
     <div class="data-entry-body">
-        <div class="data-entry-section">
-            <table>
-                <tr>
-                    <td class="auto-style1"><strong>Start Date</strong></td>
-                    <td>
-                        <asp:Label ID="lblStartDate" runat="server" Text=""></asp:Label></td>
-                </tr>
-                <tr>
-                    <td class="auto-style1"><strong>End Date</strong></td>
-                    <td>
-                        <asp:Label ID="lblEndDate" runat="server" Text=""></asp:Label>
-                    </td>
-                </tr>
-            </table>
-        </div>
+
 
         <%-- Programs listing --%>
         <br />
-    <%--    <div class="data-entry-section">
+        <%--    <div class="data-entry-section">
             <div runat="server" visible="False" id="classesOfAY" class="data-entry-section-heading" style="visibility: hidden;">
                 Classes:
                    <div style="float: right; font-weight: 400;">
@@ -128,7 +127,7 @@
                         <strong>Sessions</strong>
                     </div>
                     <div style="float: right;">
-                        <asp:HyperLink ID="lnknewSession" runat="server" CssClass="link_smaller"
+                        <asp:HyperLink ID="lnknewSession" runat="server" CssClass="link-dark"
                             Visible="False">
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                             Add Session

@@ -1,18 +1,18 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SessionsListingInAYDetailUC.ascx.cs" Inherits="One.Views.Academy.UserControls.SessionsListingInAYDetailUC" %>
 
 <%-- style="border: 1px solid lightgrey; "class="data-entry-section" style="border: 1px solid darkgray; padding: 5px; margin: 8px 0;" --%>
-<div class="auto-st2" runat="server" id="divBody">
+<div class="list-item" runat="server" id="divBody">
     <%--<asp:Panel ID="pnlbody" runat="server" CssClass="auto-st1">--%>
-    <strong>
-        <asp:HyperLink ID="lnkSessionName" runat="server" Text="Label" CssClass="link"></asp:HyperLink></strong>
-    &nbsp;         
-    <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
-        <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-    </asp:HyperLink>
-    &nbsp;
-    <asp:HyperLink ID="lnkDelete" runat="server" CssClass="link">
-        <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/delete/remove_icon_color.png" />
-    </asp:HyperLink>
+    <asp:HyperLink ID="lnkSessionName" runat="server" Text="Label" CssClass="link-dark-bold"></asp:HyperLink>
+    <span class="list-item-option">
+        <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
+            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+        </asp:HyperLink>
+        <asp:HyperLink ID="lnkDelete" runat="server" CssClass="link">
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/delete/remove_icon_color.png" />
+        </asp:HyperLink>
+    </span>
+
     <asp:Label ID="lblActiveIndicator" runat="server" Text=""></asp:Label>
     <div class="data-entry-section">
         <table>

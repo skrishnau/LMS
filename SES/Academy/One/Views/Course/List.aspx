@@ -174,7 +174,7 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
     <style type="text/css">
-        .text-wrap-div {
+        /*.text-wrap-div {
             word-wrap: normal;
         }
 
@@ -186,7 +186,7 @@
             overflow: hidden;
             white-space: pre-line;
             text-overflow: ellipsis;
-        }
+        }*/
     </style>
 </asp:Content>
 

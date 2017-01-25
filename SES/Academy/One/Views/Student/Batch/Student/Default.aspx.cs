@@ -28,7 +28,9 @@ namespace One.Views.Student.Batch.Student
                 {
                     if (user.IsInRole("manager") || user.IsInRole("admitter"))
                     {
-                        lnkAddStudent.Visible = true;
+                        var edit = (Session["editMode"] as string)??"0";
+                        
+                        lnkAddStudent.Visible = edit=="1";
                         //lblAddMethod.Visible = true;
                         // <asp:ListItem Text="Choose..." Value="-1"></asp:ListItem>
                         //<asp:ListItem Text="Create Student" Value="0"></asp:ListItem>

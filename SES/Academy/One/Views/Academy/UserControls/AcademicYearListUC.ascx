@@ -1,19 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AcademicYearListUC.ascx.cs" Inherits="One.Views.Academy.UserControls.AcademicYearListUC" %>
 
-<div class="auto-st2" runat="server" id="divBody">
+<div class="list-item" runat="server" id="divBody">
 
     <%--<asp:Panel ID="pnlBody" runat="server" CssClass="auto-st1">--%>
     <div>
-        <span style="font-size: 1.2em; font-weight: 700;">
-            <asp:HyperLink ID="lnkAcademicYearName" runat="server" CssClass="link"></asp:HyperLink>
-            &nbsp;
-                 <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
-                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-                 </asp:HyperLink>
-            &nbsp;
-                <asp:HyperLink ID="lnkDelete" runat="server" CssClass="link">
-                     <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/remove_icon_color.png" />
-                 </asp:HyperLink>
+        <asp:HyperLink ID="lnkAcademicYearName" runat="server" CssClass="list-item-heading"></asp:HyperLink>
+        <span class="list-item-option">
+            <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+            </asp:HyperLink>
+            <asp:HyperLink ID="lnkDelete" runat="server" CssClass="link">
+                <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/remove_icon_color.png" />
+            </asp:HyperLink>
         </span>
         <%--<asp:Label ID="lblActiveIndicator" runat="server" Text=""></asp:Label>--%>
     </div>

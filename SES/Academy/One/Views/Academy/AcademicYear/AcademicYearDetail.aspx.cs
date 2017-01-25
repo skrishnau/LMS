@@ -16,9 +16,9 @@ namespace One.Views.Academy.AcademicYear
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblError.Visible = false;
-            lblError.Text = "Error while saving";
-            lblError.ForeColor = Color.Red;
+            //lblError.Visible = false;
+            //lblError.Text = "Error while saving";
+            //lblError.ForeColor = Color.Red;
             if (!IsPostBack)
             {
                 var user = Page.User as CustomPrincipal;
