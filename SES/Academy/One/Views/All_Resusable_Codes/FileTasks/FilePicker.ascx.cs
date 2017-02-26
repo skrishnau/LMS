@@ -35,6 +35,22 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             }
         }
 
+        public bool OnlyUploadAvailable
+        {
+            get { return lnkServerFiles.Visible; }
+            set
+            {
+                leftPanel.Visible = !value;
+                //lnkServerFiles.Visible = !value;
+                //lnkPrivateFiles.Visible = !value;
+                //lnkServerFiles.Enabled = !value;
+                //lnkPrivateFiles.Enabled = !value;
+            }
+        }
+
+
+
+
         protected void options_Click(object sender, EventArgs e)
         {
             var send = sender as LinkButton;
@@ -147,10 +163,10 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 var iconPath = GetIconForFile(guidName);
                 var wrappedName = fileName;
 
-                if (fileName.Length > 7)
-                {
-                    wrappedName = fileName.Substring(0, 7) + "...";
-                }
+                //if (fileName.Length > 7)
+                //{
+                //    wrappedName = fileName;//.Substring(0, 7) + "...";
+                //}
 
                 //for (var i=0;i<fileName.Length;i++)// f in fileName)
                 //{

@@ -521,6 +521,8 @@ namespace Academic.DbHelper
                         var a = Context.AcademicYear.Find(aId);
                         if (a != null)
                         {
+                            #region Academic year
+
                             if (!a.IsActive)
                             {
                                 //var other = Context.AcademicYear.Where(x => x.SchoolId == a.SchoolId && x.IsActive);
@@ -532,7 +534,7 @@ namespace Academic.DbHelper
 
                                 foreach (var r in rc)
                                 {
-                                    if(r.ProgramBatchId!=null)
+                                    if (r.ProgramBatchId != null)
                                     {
 
                                         var earlierNotComplete = r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
@@ -578,45 +580,54 @@ namespace Academic.DbHelper
                                 Context.SaveChanges();
                             }
                             else return "Already active";
+
+                            #endregion
+
                         }
                         var s = Context.Session.Find(sId);
                         if (s != null)
                         {
+                            #region Session
+
                             if (!s.IsActive)
                             {
-                                if (s.AcademicYear.IsActive)
-                                {
-                                    //var other =
-                                    //    Context.Session.Where(x => x.AcademicYearId == s.AcademicYearId && s.IsActive);
-                                    //foreach (var o in other)
-                                    //{
-                                    //    o.IsActive = false;
-                                    //}
-                                    var rc = Context.RunningClass.Where(x => (x.SessionId ?? 0) == s.Id);
+                                //if (s.AcademicYear.IsActive)
+                                //{
+                                //var other =
+                                //    Context.Session.Where(x => x.AcademicYearId == s.AcademicYearId && s.IsActive);
+                                //foreach (var o in other)
+                                //{
+                                //    o.IsActive = false;
+                                //}
+                                var rc = Context.RunningClass.Where(x => (x.SessionId ?? 0) == s.Id);
 
-                                    foreach (var r in rc)
+                                foreach (var r in rc)
+                                {
+                                    var earlierNotComplete = r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
+                                    if (earlierNotComplete)
                                     {
-                                        var earlierNotComplete = r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
-                                        if (earlierNotComplete)
-                                        {
-                                            continue;
-                                        }
-                                        r.Completed = false;
-                                        foreach (var sc in Context.SubjectClass.Where(w => w.RunningClassId == r.Id))
-                                        {
-                                            sc.SessionComplete = false;
-                                            sc.CompleteMarkedByUserId = userId;
-                                            sc.CompletionMarkedDate = date;
-                                            Context.SaveChanges();
-                                        }
+                                        continue;
                                     }
-                                    s.IsActive = true;
-                                    //s.Completed = false;
-                                    Context.SaveChanges();
+                                    r.Completed = false;
+                                    foreach (var sc in Context.SubjectClass.Where(w => w.RunningClassId == r.Id))
+                                    {
+                                        sc.SessionComplete = false;
+                                        sc.CompleteMarkedByUserId = userId;
+                                        sc.CompletionMarkedDate = date;
+                                        Context.SaveChanges();
+                                    }
                                 }
-                                else return "Please, first activate the Academic year.";
+                                s.IsActive = true;
+                                //s.Completed = false;
+                                Context.SaveChanges();
+                                //}
+                                //else return "Please, first activate the Academic year.";
                             }
                             else return "Already active.";
+
+
+                            #endregion
+
                         }
                         scope.Complete();
                         return "success";
@@ -878,7 +889,7 @@ namespace Academic.DbHelper
 
                                 #endregion
 
-                                var savedaca = helper.AddOrUpdateRunningClass(list);
+                                var savedaca = helper.AddOrUpdateRunningClass(list,aca.StartDate,aca.EndDate);
                                 scope.Complete();
                                 return true;
                             }

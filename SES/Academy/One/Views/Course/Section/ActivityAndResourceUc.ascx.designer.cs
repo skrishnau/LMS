@@ -85,13 +85,13 @@ namespace One.Views.Course.Section {
         protected global::System.Web.UI.WebControls.Image Image2;
         
         /// <summary>
-        /// divDescription control.
+        /// pnlDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDescription;
+        protected global::System.Web.UI.WebControls.Panel pnlDescription;
         
         /// <summary>
         /// lblDescription control.

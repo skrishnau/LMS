@@ -559,7 +559,7 @@ namespace Academic.DbHelper
             public List<SubjectCategory> ListAllCategories(int schoolId)
             {
                 return Context.SubjectCategory
-                    .Where(x => x.SchoolId == schoolId && (x.ParentId ?? 0) == 0 && !(x.IsVoid??false))
+                    .Where(x => x.SchoolId == schoolId && (x.ParentId ?? 0) == 0 && !(x.IsVoid ?? false))
                     .OrderBy(x => x.Name).ToList();
             }
 
@@ -580,8 +580,19 @@ namespace Academic.DbHelper
 
             public List<DbEntities.Subjects.Subject> ListCourses(int categoryId)
             {
-                return Context.Subject.Where(x => x.SubjectCategoryId == categoryId && !(x.Void??false))
+                return Context.Subject.Where(x => x.SubjectCategoryId == categoryId && !(x.Void ?? false))
                     .OrderBy(y => y.FullName).ToList();
+            }
+
+            public List<DbEntities.Subjects.Subject> ListCourses(int categoryId, List<int> dontIncludeCourseIds)
+            {
+                var courses = Context.Subject.Where(x => x.SubjectCategoryId == categoryId
+                                                    && !(x.Void ?? false)
+                                                    && !dontIncludeCourseIds.Contains(x.Id))
+                    .OrderBy(y => y.FullName).ToList();
+
+
+                return courses;
             }
 
             public List<ViewModel.Subject.Subject> ListCoursesOfStructure(
@@ -608,10 +619,16 @@ namespace Academic.DbHelper
                                     CategoryName = x.Subject.SubjectCategory.Name
                                     ,
                                     Code = x.Subject.Code
+                                    ,
+                                    IsElective = x.IsElective
+                                    ,
+                                    Credit = x.Credit
                                 });
                             });
-                return list;
+                return list.OrderBy(x=>x.Name).ToList();
             }
+
+
 
 
             //Not Used--
@@ -662,7 +679,7 @@ namespace Academic.DbHelper
                 if (user != null)
                 {
                     var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
-                        .Where(x=>!(x.SubjectClass.Void??false) && !(x.SubjectClass.SessionComplete??false))
+                        .Where(x => !(x.SubjectClass.Void ?? false) && !(x.SubjectClass.SessionComplete ?? false))
                         //.Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && !(x.SessionComplete ?? false))
                         .ToList();
                     return subSession;
@@ -804,7 +821,77 @@ namespace Academic.DbHelper
 
             //==============================End of Listing==========================//
             //=========================================================================//
+            public bool AddOrUpdateStructureCourse(List<Academic.DbEntities.Subjects.SubjectStructure> assignedList,
+                int yearId, int subYearId, int userId)
+            {
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        // remove the deleted subjects
+                        //savedlist must be ViewModel.Subjects.Subject
+                        var earlierAssigned = Context.SubjectStructure.Where(x => x.YearId == yearId
+                                                                                  && x.SubYearId == subYearId
+                                                                                  );
+                        var currentAssignedSubjectIds = assignedList.Select(x => x.SubjectId).ToList();
+                        var earlierAssignedSubjectIds = earlierAssigned.Select(x => x.SubjectId).ToList();
 
+                        for (int i = 0; i < earlierAssignedSubjectIds.Count; i++)
+                        {
+                            var ear = earlierAssignedSubjectIds[i];
+                            var found = earlierAssigned.FirstOrDefault(x => x.SubjectId == ear);
+
+                            if (found != null)
+                            {
+                                if (currentAssignedSubjectIds.Contains(earlierAssignedSubjectIds[i]))
+                                {
+                                    //earlier and now are same.. look for void , if void then make it false
+                                    found.Credit = assignedList[i].Credit;
+                                    found.IsElective = assignedList[i].IsElective;
+                                    if ((found.Void ?? false))
+                                    {
+                                        found.Void = false;
+                                    }
+                                    Context.SaveChanges();
+                                    currentAssignedSubjectIds.Remove(earlierAssignedSubjectIds[i]);
+                                }
+                                else
+                                {
+                                    found.VoidBy = userId;
+                                    found.VoidDate = DateTime.Now;
+                                    found.Void = true;
+                                    Context.SaveChanges();
+                                }
+                            }
+                        }
+
+                        foreach (var remain in currentAssignedSubjectIds)
+                        {
+                            var re = assignedList.FirstOrDefault(x => x.SubjectId == remain);
+                            if (re != null)
+                            {
+                                
+                            re.CreatedBy = userId;
+                            
+                            re.CreatedDate = DateTime.Now;
+                            
+                                Context.SubjectStructure.Add(re);
+                                Context.SaveChanges();
+                            }
+                            //Context.SubjectStructure
+                            //   .Add();
+                            //Context.SaveChanges();
+                        }
+                        scope.Complete();
+                        return true;
+                    }
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                //return false;
+            }
 
             public bool AddOrUpdateStructureCourse(
                 List<Academic.DbEntities.Subjects.SubjectStructure> savedList,
@@ -920,7 +1007,7 @@ namespace Academic.DbHelper
             }
 
             #endregion
-            
+
         }
     }
 }

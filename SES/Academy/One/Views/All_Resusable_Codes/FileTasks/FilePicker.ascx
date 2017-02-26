@@ -6,7 +6,7 @@
     <table style="width: 100%;">
         <tr>
             <%-- ========Left panel --%>
-            <td style="width: 300px; margin-bottom: 20px; text-align: left;">
+            <td style="width: 300px; margin-bottom: 20px; text-align: left;" runat="server" ID="leftPanel">
                 <span style="padding: 5px; display: block;">
                     <asp:LinkButton ID="lnkServerFiles"
                         CausesValidation="False"

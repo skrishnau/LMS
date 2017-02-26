@@ -218,6 +218,14 @@
     <Compile Include="Migrations\201701151657266_message_added.Designer.cs">
       <DependentUpon>201701151657266_message_added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701262342549_isServerFile_column_added.cs" />
+    <Compile Include="Migrations\201701262342549_isServerFile_column_added.Designer.cs">
+      <DependentUpon>201701262342549_isServerFile_column_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702080620598_credit_isElective_added_to_subjectStructure.cs" />
+    <Compile Include="Migrations\201702080620598_credit_isElective_added_to_subjectStructure.Designer.cs">
+      <DependentUpon>201702080620598_credit_isElective_added_to_subjectStructure.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -360,6 +368,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701151657266_message_added.resx">
       <DependentUpon>201701151657266_message_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701262342549_isServerFile_column_added.resx">
+      <DependentUpon>201701262342549_isServerFile_column_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702080620598_credit_isElective_added_to_subjectStructure.resx">
+      <DependentUpon>201702080620598_credit_isElective_added_to_subjectStructure.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -57,6 +57,7 @@ namespace Academic.ViewModel
         public int RefIdInt { get; set; }
         public string RefIdString { get; set; }
 
+        public bool Check { get; set; }
     }
 
     public class GradeValuesDataType

@@ -185,6 +185,9 @@ namespace One.Views.Academy.AcademicYear
                     }
 
                 }
+                else
+                    Response.Redirect("~/Views/Academy/List.aspx");
+
 
             }
 

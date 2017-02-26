@@ -101,5 +101,14 @@ namespace One.Views.All_Resusable_Codes.FileTasks {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidFileAcquireMode;
+        
+        /// <summary>
+        /// hidFolderId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidFolderId;
     }
 }

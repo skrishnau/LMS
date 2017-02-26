@@ -75,7 +75,8 @@
         <asp:HiddenField ID="hidItemClickMode" runat="server" Value="" />
         <asp:HiddenField ID="hidPageKey" runat="server" Value="" />
         <asp:HiddenField ID="hidFileSaveDirectory" runat="server" Value="" />
-            <asp:HiddenField ID="hidFileAcquireMode" runat="server" Value="Multiple" />
+        <asp:HiddenField ID="hidFileAcquireMode" runat="server" Value="Multiple" />
+        <asp:HiddenField ID="hidFolderId" runat="server" Value="0" />
     </div>
     <%--  </ContentTemplate>
     </asp:UpdatePanel>--%>

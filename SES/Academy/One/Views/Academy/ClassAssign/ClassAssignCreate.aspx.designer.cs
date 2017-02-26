@@ -58,6 +58,24 @@ namespace One.Views.Academy.ClassAssign {
         protected global::System.Web.UI.WebControls.HiddenField hidSessionId;
         
         /// <summary>
+        /// hidStartDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidStartDate;
+        
+        /// <summary>
+        /// hidEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidEndDate;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

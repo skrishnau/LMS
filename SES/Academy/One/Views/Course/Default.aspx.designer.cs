@@ -121,15 +121,6 @@ namespace One.Views.Course {
         protected global::System.Web.UI.WebControls.Image Image2;
         
         /// <summary>
-        /// pnlCourses control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCourses;
-        
-        /// <summary>
         /// dlistCourses control.
         /// </summary>
         /// <remarks>

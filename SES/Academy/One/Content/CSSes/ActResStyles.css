@@ -1,29 +1,45 @@
 ﻿div.course-act-res-whole {
     vertical-align: central;
-    padding-bottom: 5px;
-    padding-top: 2px;
+    /*padding: 5px 0px;*/
+    /*padding-bottom: 5px;
+    padding-top: 2px;*/
 }
 
 div.course-act-res-whole-in-edit-mode {
     vertical-align: central;
-    padding-bottom: 5px;
-    padding-top: 2px;
+    /*padding: 5px 0px;*/
+    /*padding-bottom: 5px;
+    padding-top: 2px;*/
 }
 
     div.course-act-res-whole-in-edit-mode:hover {
         background-color: #f3f1fe;
     }
 
+.act-res-course-title {
+    font-family:  Verdana, Geneva,Tahoma, sans-serif,Helvetica;
+    text-align: left;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: 400;
+
+    color: darkslategray;
+}
+
 div.course-act-res-heading {
-    vertical-align: central;
-    padding: 0px 4px 0;
+   
+    /*vertical-align: central;*/
+    /*padding: 5px 0;*/
+    /*padding: 0px 4px 0;*/
 }
 
 
-div.course-act-res-body {
+div.course-act-res-description {
     vertical-align: central;
-    padding: 0px 25px 0px 30px;
+    /*padding: 5px 10px ;*/
     text-decoration: none;
+    /*margin-left: 25px;*/
     /*margin-top: -10px;*/
 }
 
@@ -40,18 +56,44 @@ div.course-act-res-body {
 }
 
 .link_act_res, .link_act_res:visited {
-    color: blue;
+    color: #393939;
+    /*color: blue;*/
     text-decoration: none;
 }
 
     .link_act_res:hover {
-        color: darkorange;
+        color: black;
+        /*color: darkorange;*/
         text-decoration: underline;
     }
 
     .link_act_res:active {
         color: blueviolet;
         text-decoration: underline;
+    }
+
+.link-act-res-title, .link-act-res-title:visited {
+    font-family:  Verdana, Geneva,Tahoma, sans-serif,Helvetica;
+    vertical-align: central;
+    color: #393939;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    /*padding: 0 0 5px;*/
+}
+
+    .link-act-res-title:hover {
+        color: black;
+        font-weight: 500;
+        font-size: 1em;
+        text-decoration: underline;
+        display: inline-block;
+    }
+
+    .link-act-res-title:active {
+        color: blueviolet;
+        text-decoration: underline;
+        display: inline-block;
     }
 
 /*div.course-act-res-heading:hover {

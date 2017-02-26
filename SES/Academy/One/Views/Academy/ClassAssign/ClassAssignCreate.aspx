@@ -22,8 +22,12 @@
 
         <asp:HiddenField ID="hidAcademicYearId" runat="server" Value="0" />
         <asp:HiddenField ID="hidSessionId" runat="server" Value="0" />
+
+        <asp:HiddenField ID="hidStartDate" runat="server" Value="" />
+        <asp:HiddenField ID="hidEndDate" runat="server" Value="" />
+
     </div>
-    <div class="save-div">
+    <div style="margin: 20px;">
         <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" Width="72px" />
         &nbsp; &nbsp;
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" Width="69px" />

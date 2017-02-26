@@ -27,9 +27,14 @@ namespace One.Views.Class
                         var cls = helper.GetSubjectSession(clsId);
                         if (cls != null)
                         {
+                            //lblStartDate.Text =cls.StartDate==null?" - ": cls.StartDate.Value.ToString("D");
+                            //lblEndDate.Text = cls.EndDate==null?" - ":cls.EndDate.Value.ToString("D");
                             var clsname = cls.GetName;
                             var coursefullname = cls.GetCourseFullName;
                             lblTitle.Text = clsname;
+                            lblEnrollmentMethod.Text = cls.EnrollmentMethod == 0
+                                ? "Auto"
+                                : (cls.EnrollmentMethod == 1) ? "Manual" : "Self";
                             if (SiteMap.CurrentNode != null)
                             {
                                 var list = new List<IdAndName>()
@@ -64,8 +69,8 @@ namespace One.Views.Class
                                 //: cls.Subject.FullName;
 
                             
-                            lblEndDate.Text = cls.EndDate==null ? "N/A":cls.EndDate.Value.ToString("D");
-                            lblStartDate.Text = cls.StartDate == null ? "N/A" : cls.StartDate.Value.ToString("D");
+                            lblEndDate.Text = cls.EndDate==null ? " - ":cls.EndDate.Value.ToString("D");
+                            lblStartDate.Text = cls.StartDate == null ? " - " : cls.StartDate.Value.ToString("D");
 
 
                             //lblEnrollmentMethod.Text = cls.

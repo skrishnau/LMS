@@ -116,5 +116,21 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
             }
             return "";
         }
+
+        public string GetElectiveText(object code)
+        {
+            if (code != null)
+            {
+                var c = Convert.ToBoolean(code.ToString());
+                if (c)
+                {
+                    return " - Elective ";
+                }
+                return "";
+                //return (string.IsNullOrEmpty(c) ? "" : "&nbsp; (" + c + ")");
+            }
+            return "";
+        }
+
     }
 }

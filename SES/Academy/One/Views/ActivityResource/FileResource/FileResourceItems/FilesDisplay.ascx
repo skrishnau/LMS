@@ -18,14 +18,14 @@
                             BorderStyle="None" ForeColor="white"
                             runat="server" OnClick="lnkAddFile_Click">
                             <asp:Image ID="Image1" runat="server" Width="22" Height="22"
-                                ImageUrl="~/Content/Icons/File/file_add.png"
+                                ImageUrl="~/Content/Icons/Add/add-new-document.png"
                                 ToolTip="File add" />
                         </asp:LinkButton>
                         &nbsp;
                         <asp:LinkButton ID="lnkAddFolder"
                             CausesValidation="False" Font-Underline="False" ForeColor="white"
                             runat="server" OnClick="lnkAddFolder_Click">
-                            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/File/folder_add.png"
+                            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/folder-black-shape-with-a-plus-sign.png"
                                 Width="22" Height="22"
                                 ToolTip="Folder add" />
                         </asp:LinkButton>

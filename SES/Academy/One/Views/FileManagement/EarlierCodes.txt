@@ -1,0 +1,179 @@
+﻿
+Index: ^^^^ ==> start
+		____ ==> end
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^FileListingUc.ascx.cs^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+        //private void LoadFileResource()
+        //{
+        //    var user = Page.User as CustomPrincipal;
+        //    if (user != null)
+        //        using (var helper = new DbHelper.WorkingWithFiles())
+        //        {
+        //            var fileR = helper.ListPrivateFiles(user.Id, 0);
+        //            if (fileR != null)
+        //            {
+        //                var i = 1;
+
+        //                #region Folders
+
+        //                var folders = fileR.Where(x => x.IsFolder).ToList();
+        //                if (folders.Any())
+        //                {
+        //                    foreach (var f in folders)
+        //                    {
+        //                        var file = new FileResourceEventArgs()
+        //                        {
+        //                            Id = f.Id,
+        //                            Visible = true,
+        //                            FileType = f.FileType,
+        //                            IconPath = f.IconPath,
+        //                            FilePath = f.FileDirectory + "/" + f.FileName,
+        //                            FileDisplayName = f.DisplayName,
+        //                            FileSizeInBytes = f.FileSizeInBytes,
+        //                            LocalId = i.ToString()
+        //                        };
+        //                        PopulateSingleData(file, true);
+        //                        i++;
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    //hide folder panel
+        //                    pnlFoldersPanel.Visible = false;
+        //                }
+
+        //                #endregion
+
+        //                #region Files
+
+        //                var files = fileR.Where(x => !x.IsFolder).ToList();
+        //                if (files.Any())
+        //                {
+        //                    foreach (var f in files)
+        //                    {
+        //                        var file = new FileResourceEventArgs()
+        //                        {
+        //                            Id = f.Id,
+        //                            Visible = true,
+        //                            FileType = f.FileType,
+        //                            IconPath = f.IconPath,
+        //                            FilePath = f.FileDirectory + "/" + f.FileName,
+        //                            FileDisplayName = f.DisplayName,
+        //                            FileSizeInBytes = f.FileSizeInBytes,
+        //                            LocalId = i.ToString()
+        //                        };
+        //                        PopulateSingleData(file, false);
+        //                        i++;
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    //hide folder panel
+        //                    pnlFilesPanel.Visible = false;
+        //                }
+
+        //                #endregion
+
+        //            }
+        //        }
+        //}
+
+        //private void PrintSubFiles(Academic.DbEntities.UserFile folder)
+        //{
+        //    var i = 0;
+        //    foreach (var f in folder.FilesInThisFolder)
+        //    {
+        //        var file = new FileResourceEventArgs()
+        //        {
+        //            Id = f.Id,
+        //            Visible = true,
+        //            FileType = f.FileType,
+        //            IconPath = f.IconPath,
+        //            FilePath = f.FileDirectory + "/" + f.FileName,
+        //            FileDisplayName = f.DisplayName,
+        //            FileSizeInBytes = f.FileSizeInBytes
+        //            ,
+        //            LocalId = i.ToString()
+        //        };
+        //        PopulateSingleData(file);
+        //        i++;
+        //    }
+        //}
+
+        //public void PopulateData(List<FileResourceEventArgs> files)
+        //{
+        //    //for (int i = 0; i < 5; i++)
+        //    foreach (var iname in files)
+        //    {
+        //        var file = (EachFile)
+        //                        Page.LoadControl("~/Views/FileManagement/EachFile.ascx");
+        //        file.Visible = iname.Visible;
+        //        //file.Enabled = 
+        //        file.ID = "file_" + iname.LocalId;
+
+        //        var fileName = iname.FileDisplayName;
+        //        var wrapedName = "";
+        //        if (fileName.Length > 7)
+        //        {
+        //            wrapedName = fileName.Substring(0, 7) + "...";
+        //        }
+        //        else
+        //        { wrapedName = fileName; }
+        //        file.SetData(iname.IconPath, wrapedName, iname.Id, iname.LocalId, iname.FilePath
+        //            , fileName);
+        //        //file.RemoveClicked += file_RemoveClicked;
+
+        //        pnlFilesListing.Controls.Add(file);
+        //        //FilePickerDialog1.LocalId = Convert.ToInt32(iname.LocalId);
+        //    }
+        //}
+
+
+        //public void PopulateData()
+        //{
+        //    var user = Page.User as CustomPrincipal;
+        //    if (user != null)
+        //    {
+        //        if (FilesFrom == DbHelper.StaticValues.FilesFrom.Private.ToString())
+        //        {
+        //            //get private files
+        //            using (var helper = new DbHelper.WorkingWithFiles())
+        //            {
+        //                var files = GetData();
+        //                for (int i = 0; i < 5; i++)
+        //                    foreach (var iname in files)
+        //                    {
+        //                        var file = (EachFile)
+        //                                        Page.LoadControl("~/Views/FileManagement/EachFile.ascx");
+        //                        file.Visible = iname.Visible;
+        //                        //file.Enabled = 
+        //                        file.ID = "file_" + iname.LocalId;
+
+        //                        var fileName = iname.FileDisplayName;
+        //                        var wrapedName = "";
+        //                        if (fileName.Length > 7)
+        //                        {
+        //                            wrapedName = fileName.Substring(0, 7) + "...";
+        //                        }
+        //                        else
+        //                        { wrapedName = fileName; }
+        //                        file.SetData(iname.IconPath, wrapedName, iname.Id, iname.LocalId, iname.FilePath
+        //                            , fileName,false);
+        //                        //file.RemoveClicked += file_RemoveClicked;
+
+        //                        pnlFilesListing.Controls.Add(file);
+        //                        //FilePickerDialog1.LocalId = Convert.ToInt32(iname.LocalId);
+        //                    }
+        //            }
+        //        }
+        //        else
+        //        {
+
+        //        }
+        //    }
+
+        //}
+
+
+___________________________________FileListingUc.ascx.cs_____________________________________________

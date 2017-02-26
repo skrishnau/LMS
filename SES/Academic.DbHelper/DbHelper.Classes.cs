@@ -36,6 +36,7 @@ namespace Academic.DbHelper
             public Academic.DbEntities.Class.SubjectClass GetSubjectClassReport(int subjectClassId,
                 out List<StudentReportViewModel> studentReports, out List<IdAndName> activityNames )
             {
+                using(var actresHelper = new DbHelper.ActAndRes())
                 using (var gradeHelper = new DbHelper.Grade())
                 {
                     
@@ -78,6 +79,9 @@ namespace Academic.DbHelper
                         var activities = new List<ActivityViewModel>();
                         std.ActivityViewModels = activities;
                         var total = (float) 0.0;
+
+                        
+
                         for(var b=0;b<actreses.Count;b++)
                         {
                             var ar = actreses[b];
@@ -91,7 +95,7 @@ namespace Academic.DbHelper
                             var grade = ar.ActivityGradings.FirstOrDefault(x => x.UserClassId == usrcls.Id);
                             if (grade != null)
                             {
-                                if (grade.ObtainedGradeId != null)
+                                if (grade.ObtainedGradeId != null)//value type
                                 {
                                     if (grade.ObtainedGrade.Grade.GradeValueIsInPercentOrPostition ?? false)
                                     {
@@ -112,9 +116,23 @@ namespace Academic.DbHelper
                                     }
 
                                 }
-                                else
+                                else//range type
                                 {
-                                    var obtRelative = (float)((1.0 * (grade.ObtainedGradeMarks ?? 0) / 100.00) * (1.0 * ar.WeightInGradeSheet ?? 0));
+                                    
+                                    if (ar.ActivityResourceType == (byte) Enums.Activities.Assignment)
+                                    {
+                                        var ass = actresHelper.GetAssignment(ar.ActivityResourceId);
+                                        if (ass != null)
+                                        {
+                                            //var minValue = ass.MaximumGrade
+                                            if (!ass.GradeType.RangeOrValue)
+                                            {
+                                                //ass.GradeType.m
+                                            }
+                                        }
+                                    }
+                                    var obtRelative = 
+                                        (float)((1.0 * (grade.ObtainedGradeMarks ?? 0) / 100.00) * (1.0 * ar.WeightInGradeSheet ?? 0));
 
                                     actVm.ObtainedMarks = obtRelative.ToString("F");
                                     total += obtRelative;

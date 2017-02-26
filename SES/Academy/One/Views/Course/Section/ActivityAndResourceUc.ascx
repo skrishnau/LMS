@@ -2,34 +2,53 @@
 
 <%--<div class="course-act-res-whole">--%>
 <asp:Panel ID="pnlHeading" runat="server">
-    <div class="course-act-res-heading">
-        <asp:Image ID="imgIcon" runat="server" ImageUrl="" AlternateText="" Height="22" Width="22" />
+    <%-- class="course-act-res-heading" --%>
+    <div>
 
-        <asp:HyperLink ID="lblTitle" CssClass="course-act-res-title" runat="server" Text="Heading">
-        </asp:HyperLink>
-        
-        &nbsp;
-        <span>
-            <asp:Image ID="imgNew" runat="server" Visible="False" />
-        </span>
+        <table>
+            <tr>
+                <td>
+                    <asp:Image ID="imgIcon" runat="server" ImageUrl="" AlternateText="" Height="25" Width="25" />
 
-        &nbsp;
+                </td>
+                <td>
+                    <asp:HyperLink ID="lblTitle" CssClass="link-act-res-title" runat="server" Text="Heading">
+                        
+                    </asp:HyperLink>
+
+                    &nbsp;
+                    <span>
+                        <asp:Image ID="imgNew" runat="server" Visible="False" />
+                    </span>
+
+                    &nbsp;
             
-            <asp:HyperLink ID="lnkEdit" CssClass="course-act-res-title" runat="server" Visible="False">
-                <asp:Image ID="imgedt" runat="server"
-                    ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-            </asp:HyperLink>
-        <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" OnClick="lnkEdit_Click">
-            <asp:Image ID="Image2" runat="server"
-                ImageUrl="~/Content/Icons/delete/trash.gif" />
-        </asp:HyperLink>
+                    <asp:HyperLink ID="lnkEdit" CssClass="course-act-res-title" runat="server" Visible="False">
+                        <asp:Image ID="imgedt" runat="server"
+                            ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                    </asp:HyperLink>
+                    <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" OnClick="lnkEdit_Click">
+                        <asp:Image ID="Image2" runat="server"
+                            ImageUrl="~/Content/Icons/delete/trash.gif" />
+                    </asp:HyperLink>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <asp:Panel ID="pnlDescription" runat="server" CssClass="course-act-res-description">
+                        <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label>
+                    </asp:Panel>
+                </td>
+            </tr>
+        </table>
+
+        <%-- course-act-res-title --%>
 
 
-
+        <%-- class="course-act-res-body" --%>
     </div>
-    <div class="course-act-res-body" id="divDescription" runat="server">
-        <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label>
-    </div>
+
 
     <%--<div class="item-message">
             <asp:PlaceHolder ID="pnlMessages" runat="server"></asp:PlaceHolder>

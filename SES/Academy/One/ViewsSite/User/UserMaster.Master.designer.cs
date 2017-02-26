@@ -247,6 +247,15 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.PlaceHolder pnlSettings;
         
         /// <summary>
+        /// FileManagementMenuUc1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.ViewsSite.User.ModulesUc.FileManagementMenuUc FileManagementMenuUc1;
+        
+        /// <summary>
         /// middlePanel control.
         /// </summary>
         /// <remarks>

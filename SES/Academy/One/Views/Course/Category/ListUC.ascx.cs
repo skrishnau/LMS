@@ -33,7 +33,12 @@ namespace One.Views.Course.Category
 
         public void Select()
         {
-            pnlName.BackColor = Color.LightBlue;
+
+            //pnlName.BackColor = Color.LightBlue;
+            pnlName.BackColor = Color.FromArgb(204,204,204);
+
+
+
             //lblName.BackColor = Color.DarkBlue;
             //lblName.ForeColor = Color.White;
             //.CssClass = "selected";
@@ -42,6 +47,7 @@ namespace One.Views.Course.Category
         public void Deselect()
         {
             pnlName.BackColor = Color.White;
+            
             //lblName.BackColor = Color.White;
             //lblName.ForeColor = Color.Black;
         }
@@ -59,42 +65,42 @@ namespace One.Views.Course.Category
                 var pos = 0;
                 foreach (var i in treeLinkImages)
                 {
-                     if (pos == 0)
-                     {
-                         if (i == 0)
-                         {
+                    if (pos == 0)
+                    {
+                        if (i == 0)
+                        {
 
-                             PlaceHolder1.Controls.Add(new Label() { Width = 18 });
-                         }
-                         else
-                         {
-                             PlaceHolder1.Controls.Add(new Label() { Width = 4 });
-                             PlaceHolder1.Controls.Add(new Image()
-                             {
-                                 Width = 14,
-                                 ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
-                             });
-                         }
-                         pos = 1;
-                     }
-                     else
-                     {
-                         if (i == 0)
-                         {
+                            PlaceHolder1.Controls.Add(new Label() { Width = 18 });
+                        }
+                        else
+                        {
+                            PlaceHolder1.Controls.Add(new Label() { Width = 4 });
+                            PlaceHolder1.Controls.Add(new Image()
+                            {
+                                Width = 14,
+                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
+                            });
+                        }
+                        pos = 1;
+                    }
+                    else
+                    {
+                        if (i == 0)
+                        {
 
-                             PlaceHolder1.Controls.Add(new Label() { Width = 30 });
-                         }
-                         else
-                         {
-                             PlaceHolder1.Controls.Add(new Label() { Width = 14 });
-                             PlaceHolder1.Controls.Add(new Image()
-                             {
-                                 Width = 16,
-                                 ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
-                             });
-                         }
-                     }
-                     
+                            PlaceHolder1.Controls.Add(new Label() { Width = 30 });
+                        }
+                        else
+                        {
+                            PlaceHolder1.Controls.Add(new Label() { Width = 14 });
+                            PlaceHolder1.Controls.Add(new Image()
+                            {
+                                Width = 16,
+                                ImageUrl = DbHelper.StaticValues.TreeLinkImageFull[i]
+                            });
+                        }
+                    }
+
                     ///not used
                     //if (i == 0)
                     //{
@@ -227,6 +233,20 @@ namespace One.Views.Course.Category
             }
         }
 
+        public void SetNameAndIdOfCategory(int id, string name, int paddingCount)
+        {
+            this.hidCategoryId.Value = id.ToString();
+            if (paddingCount % 2 == 0)
+            {
+                this.lblName.Text = DbHelper.StaticValues.IndentationImageFull[1]+name;
+            }
+            else
+            {
+                this.lblName.Text = DbHelper.StaticValues.IndentationImageFull[2] + name;
+            }
+            this.pnlName.Style.Add("padding-left", (paddingCount * 15) + "px");
+        }
+
         public void AddSubCategories(ListUC uc)
         {
             this.pnlSubCategories.Controls.Add(uc);
@@ -240,7 +260,7 @@ namespace One.Views.Course.Category
                 {
                     Id = Convert.ToInt32(hidCategoryId.Value)
                     ,
-                    Name = lblName.Text
+                    Name = lblName.Text.Replace("♦","").Replace("●","")
                 });
                 Select();
             }

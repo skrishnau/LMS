@@ -38,14 +38,7 @@ namespace One.Views.Course.Section.Master
 
         }
 
-        //void CreateSectionUc1_OnSaveEvent(object sender, MessageEventArgs e)
-        //{
-        //    //pnlCreateSection.Visible = false;
-        //    AddNewButtonVisibility = true;
-        //    //ContentEnabled = true;
-        //    pnlSections.Controls.Clear();
-        //    LoadCourseDetail();
-        //}
+       
 
 
         #region Properties
@@ -63,13 +56,7 @@ namespace One.Views.Course.Section.Master
                 hidId.Value = value.ToString();
             }
         }
-        //public TYPE Type { get; set; }
-
-        //public bool ContentEnabled
-        //{
-        //    get { return pnlContent.Enabled; }
-        //    set { pnlContent.Enabled = value; }
-        //}
+       
 
         public bool AddNewButtonVisibility
         {
@@ -182,55 +169,12 @@ namespace One.Views.Course.Section.Master
 
         #endregion
 
-        //void uc_OnSaveEvent(object sender, Values.MessageEventArgs e)
-        //{
-        //    if (e.TrueFalse)
-        //    {
-        //        //saved
-        //        pnlSections.Controls.Clear();
-        //        LoadCourseDetail();
-        //    }
-        //    else
-        //    {
-        //        //not saved
-        //    }
-
-        //    CreateSectionUc uc = (CreateSectionUc)sender;
-        //    pnlSections.Controls.Remove(uc);
-        //}
-
-
-
-        //protected void lnkAddSection_Click(object sender, EventArgs e)
-        //{
-
-        //    Response.Redirect("~/Views/Course/Section/CreateSection.aspx?SubId="+SubjectId);
-        //    //pnlCreateSection.Visible = true;
-        //    //ContentEnabled = false;
-        //    //AddNewButtonVisibility = false;
-        //    //pnlContent.Enabled = false;
-        //    //var control = pnlSections.Controls[pnlSections.Controls.Count - 1];
-        //    //control.Visible = !control.Visible;
-        //}
-
-
-        //void CreateSectionUc1_OnCloseClick(object sender, MessageEventArgs e)
-        //{
-        //    pnlCreateSection.Visible = false;
-        //    AddNewButtonVisibility = true;
-        //    ContentEnabled = true;
-        //    //pnlContent.Enabled = true;
-        //}
 
         public int UserId
         {
             get { return Convert.ToInt32(hidUserId.Value); }
             set { hidUserId.Value = value.ToString(); }
         }
-        //public int SubjectId
-        //{
-        //    get { return Convert.ToInt32(hidSubjectId.Value); }
-        //    set { hidSubjectId.Value = value.ToString(); }
-        //}
+       
     }
 }

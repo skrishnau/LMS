@@ -3,10 +3,14 @@
 <%--   --%>
 <%--<span class="">--%>
 <%-- CssClass="pnlcls" --%>
+
 <asp:Panel ID="pnlName" runat="server" EnableViewState="True" Width="100%">
     <%--<asp:Label ID="lblName" runat="server" Text="CategoryName"></asp:Label>--%>
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-    <asp:LinkButton ID="lblName" runat="server" OnClick="lblName_Click" CssClass="link-dark">name</asp:LinkButton>
+    <asp:LinkButton ID="lnkName" runat="server" OnClick="lblName_Click" CssClass="list-item-heading-normal">
+        <asp:Label ID="lblName" runat="server" Text="Label"></asp:Label>
+
+    </asp:LinkButton>
     <div style="padding-left: 20px; margin-left: 20px;">
         <asp:PlaceHolder ID="pnlSubCategories" runat="server"></asp:PlaceHolder>
     </div>

@@ -67,6 +67,9 @@ namespace Academic.DbHelper
 
             public static string UserImageDirectory = "~/Content/Images/UserImage/";
             public static string AssignmentDirectory = "~/Content/Images/AssignmentSubmission/";
+            public static string FolderIconDirectory = "~/Content/Icons/ActivityResource/Folder/folder-icon-40x40.png";
+
+
 
             //public static Dictionary<string, string> StructureType = new Dictionary<string, string>()
             //{
@@ -484,6 +487,7 @@ namespace Academic.DbHelper
             public static string CourseFilesLocation = "~/Content/Images/CourseFileResource/";
             public static string SchoolFileLocation = "~/Content/Images/SchoolFileResource/";
 
+            public static string PrivateFiesLocation = "~/Content/Files/";
 
 
 
@@ -558,6 +562,11 @@ namespace Academic.DbHelper
                 };
             }
 
+
+            public enum FilesFrom
+            {
+                Server, Private
+            }
         }
     }
 }

@@ -1207,6 +1207,9 @@
     <Content Include="Content\Icons\Add\Add-icon_border.png" />
     <Content Include="Content\Icons\Add\Add-icon1.png" />
     <Content Include="Content\Icons\Add\Add-icon.png" />
+    <Content Include="Content\Icons\Add\add-new-document.png" />
+    <Content Include="Content\Icons\Add\folder-black-shape-with-a-plus-sign.png" />
+    <Content Include="Content\Icons\Arrow\arrow-down-icon-png-9.png" />
     <Content Include="Content\Icons\Arrow\arrow_down.png" />
     <Content Include="Content\Icons\Arrow\arrow_fat_down.png" />
     <Content Include="Content\Icons\Arrow\arrow_fat_left.png" />
@@ -1230,11 +1233,15 @@
     <Content Include="Content\Icons\Close\cross_8x20_mid_top.png" />
     <Content Include="Content\Icons\Close\dialog_close.png" />
     <Content Include="Content\Icons\Close\white_cross.png" />
+    <Content Include="Content\Icons\Copy\copy-content.png" />
     <Content Include="Content\Icons\delete\trash.gif" />
     <Content Include="Content\Icons\delete\remove_icon_color.png" />
     <Content Include="Content\Icons\delete\trash_earlier.gif" />
     <Content Include="Content\Icons\delete\undo_delete.png" />
     <Content Include="Content\Icons\Done_Save\basic-save.png" />
+    <Content Include="Content\Icons\Download\download_icon_13x13.png" />
+    <Content Include="Content\Icons\Download\download_icon_16x16.png" />
+    <Content Include="Content\Icons\Download\download_icon_20x20.png" />
     <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
     <Content Include="Content\Icons\Edit\edit_orange.png" />
     <Content Include="Content\Icons\Event\calendar-icon-round.png" />
@@ -1255,6 +1262,7 @@
     <Content Include="Content\Icons\File\text_file_icon.png" />
     <Content Include="Content\Icons\File\video_icon.png" />
     <Content Include="Content\Icons\File\word_icon.png" />
+    <Content Include="Content\Icons\Folder\folder-black-shape-with-a-plus-sign.png" />
     <Content Include="Content\Icons\Help\help_blu.png" />
     <Content Include="Content\Icons\Hide\hide-menu-left.png" />
     <Content Include="Content\Icons\Home\home_2.png" />
@@ -1262,6 +1270,8 @@
     <Content Include="Content\Icons\Indent\circle_dot.png" />
     <Content Include="Content\Icons\Indent\square_dot.png" />
     <Content Include="Content\Icons\Message\email.png" />
+    <Content Include="Content\Icons\Move\move1_13x13.png" />
+    <Content Include="Content\Icons\Move\move0_13x13.png" />
     <Content Include="Content\Icons\New\new_icon.png" />
     <Content Include="Content\Icons\New\new_submission_icon.png" />
     <Content Include="Content\Icons\Notice\agt_announcements.png" />
@@ -1276,6 +1286,8 @@
     <Content Include="Content\Icons\Privacy\loudspeaker.png" />
     <Content Include="Content\Icons\Privacy\private.png" />
     <Content Include="Content\Icons\Refresh\refresh.png" />
+    <Content Include="Content\Icons\Rename\rename_icon.png" />
+    <Content Include="Content\Icons\Rename\rename_icon_13x13.png" />
     <Content Include="Content\Icons\req.gif" />
     <Content Include="Content\Icons\req.jpg" />
     <Content Include="Content\Icons\req.png" />
@@ -1545,6 +1557,7 @@
     <Content Include="ViewsSite\User\ModulesUc\EarlierUc_NodesUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\EventDetailUC.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\EventsUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\FileManagementMenuUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\FilesUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\NewsUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\NoticeBoardUc.ascx" />
@@ -1665,6 +1678,7 @@
     <Content Include="Views\Course\EarlierCode.txt" />
     <Content Include="Views\Course\Section\Default.aspx" />
     <Content Include="Views\Course\Section\EarlierCodes.txt" />
+    <Content Include="Views\Course\Section\Master\Earlier Code.txt" />
     <Content Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx" />
     <Content Include="Views\Default.aspx" />
     <Content Include="Views\Events\Default.aspx" />
@@ -1677,7 +1691,13 @@
     <Content Include="Views\Exam\Exam\ExamClass.aspx" />
     <Content Include="Views\Exam\Exam\ExamDetail.aspx" />
     <Content Include="Views\Exam\Exam\ExamsList.aspx" />
-    <Content Include="Views\FileManagement\FilesAndFolders.aspx" />
+    <Content Include="Views\FileManagement\Default.aspx" />
+    <Content Include="Views\FileManagement\EachFile.ascx" />
+    <Content Include="Views\FileManagement\EarlierCodes.txt" />
+    <Content Include="Views\FileManagement\FileDeleteDialogUc.ascx" />
+    <Content Include="Views\FileManagement\FileListingUc.ascx" />
+    <Content Include="Views\FileManagement\FolderAddDialogUc.ascx" />
+    <Content Include="Views\FileManagement\FolderAddUc.ascx" />
     <Content Include="Views\Grade\EarlierCodes.txt" />
     <Content Include="Views\Grade\GradeCreate.aspx" />
     <Content Include="Views\Grade\GradeDetail.aspx" />
@@ -1729,8 +1749,12 @@
     <Content Include="Views\Structure\All\UserControls\StructureView\LabelAndCheckBoxUC.ascx" />
     <Content Include="Views\Structure\All\UserControls\StructureView\LabelOnly.ascx" />
     <Content Include="Views\Structure\AssignCoursesCreate.aspx" />
+    <Content Include="Views\Structure\CategoryDropDownList.ascx" />
+    <Content Include="Views\Structure\CategoryDropDownListItem.ascx" />
     <Content Include="Views\Structure\CourseListing.aspx" />
     <Content Include="Views\Structure\Default.aspx" />
+    <Content Include="Views\Structure\Earlier code\AssignCourseCreate_ASPX.txt" />
+    <Content Include="Views\Structure\Earlier code\AssignCourseCreate_CS.txt" />
     <Content Include="Views\Structure\StructureCreate.aspx" />
     <Content Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx" />
     <Content Include="Views\Student\Batch\Default.aspx" />
@@ -2133,6 +2157,13 @@
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\EventsUc.ascx.designer.cs">
       <DependentUpon>EventsUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\FileManagementMenuUc.ascx.cs">
+      <DependentUpon>FileManagementMenuUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\FileManagementMenuUc.ascx.designer.cs">
+      <DependentUpon>FileManagementMenuUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\FilesUc.ascx.cs">
       <DependentUpon>FilesUc.ascx</DependentUpon>
@@ -3002,12 +3033,47 @@
     <Compile Include="Views\Exam\Exam\ExamsList.aspx.designer.cs">
       <DependentUpon>ExamsList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\FileManagement\FilesAndFolders.aspx.cs">
-      <DependentUpon>FilesAndFolders.aspx</DependentUpon>
+    <Compile Include="Views\FileManagement\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\FileManagement\FilesAndFolders.aspx.designer.cs">
-      <DependentUpon>FilesAndFolders.aspx</DependentUpon>
+    <Compile Include="Views\FileManagement\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileManagement\EachFile.ascx.cs">
+      <DependentUpon>EachFile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FileManagement\EachFile.ascx.designer.cs">
+      <DependentUpon>EachFile.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileManagement\FileDeleteDialogUc.ascx.cs">
+      <DependentUpon>FileDeleteDialogUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FileManagement\FileDeleteDialogUc.ascx.designer.cs">
+      <DependentUpon>FileDeleteDialogUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileManagement\FileListingUc.ascx.cs">
+      <DependentUpon>FileListingUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FileManagement\FileListingUc.ascx.designer.cs">
+      <DependentUpon>FileListingUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileManagement\FolderAddDialogUc.ascx.cs">
+      <DependentUpon>FolderAddDialogUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FileManagement\FolderAddDialogUc.ascx.designer.cs">
+      <DependentUpon>FolderAddDialogUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileManagement\FolderAddUc.ascx.cs">
+      <DependentUpon>FolderAddUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FileManagement\FolderAddUc.ascx.designer.cs">
+      <DependentUpon>FolderAddUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Grade\GradeCreate.aspx.cs">
       <DependentUpon>GradeCreate.aspx</DependentUpon>
@@ -3309,6 +3375,20 @@
     </Compile>
     <Compile Include="Views\Structure\AssignCoursesCreate.aspx.designer.cs">
       <DependentUpon>AssignCoursesCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\CategoryDropDownList.ascx.cs">
+      <DependentUpon>CategoryDropDownList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\CategoryDropDownList.ascx.designer.cs">
+      <DependentUpon>CategoryDropDownList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\CategoryDropDownListItem.ascx.cs">
+      <DependentUpon>CategoryDropDownListItem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\CategoryDropDownListItem.ascx.designer.cs">
+      <DependentUpon>CategoryDropDownListItem.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Structure\CourseListing.aspx.cs">
       <DependentUpon>CourseListing.aspx</DependentUpon>
@@ -3754,6 +3834,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Files\" />
     <Folder Include="Content\Images\CourseFileResource\" />
     <Folder Include="ViewsSite\DashBoard\Student\CourseSection\" />
     <Folder Include="Views\ActivityResource\Availability\" />

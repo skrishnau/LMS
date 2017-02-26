@@ -28,6 +28,7 @@
                         <hr />
                     </div>
                     <div style="padding-left: 10px;">
+                        The grade calculation method needs review... range is not functioning well.
                         <asp:Panel ID="pnlFilter" runat="server" Visible="True">
                             <div>Attributes to include:</div>
 

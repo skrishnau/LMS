@@ -85,11 +85,11 @@
                                                     </div>
                                                     <div style="clear: both;"></div>
                                                 </div>
-                                                <%-- azure --%>
-                                                <div id="courseDiv" style="background-color: white; padding: 0 0 20px 5px;">
+                                                <%-- azure style="background-color: white; padding: 0 0 20px 5px;"--%>
+                                                <div id="courseDiv" >
 
-                                                    <asp:Panel ID="pnlCourses" runat="server">
-                                                    </asp:Panel>
+                                                  <%--  <asp:Panel ID="pnlCourses" runat="server">
+                                                    </asp:Panel>--%>
 
                                                     <%-- DataSourceID="courseListingDS" --%>
                                                     <asp:DataList ID="dlistCourses" runat="server" Width="99%">

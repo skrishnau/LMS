@@ -38,6 +38,15 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             }
         }
 
+        public bool OnlyUploadAvailable
+        {
+            get { return FilePicker1.OnlyUploadAvailable; }
+            set
+            {
+                FilePicker1.OnlyUploadAvailable = value;
+            }
+        }
+
         //public string FileType = "All";
         public string FileType
         {
@@ -378,6 +387,12 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             {
                 FilePicker1.LocalId = value;
             }
+        }
+
+        public int FolderId
+        {
+            get { return Convert.ToInt32(hidFolderId.Value); }
+            set { hidFolderId.Value = value.ToString(); }
         }
     }
 }

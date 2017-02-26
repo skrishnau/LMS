@@ -17,5 +17,8 @@ namespace Academic.ViewModel.Subject
         public int CategoryId { get; set; }
         public bool Checked { get; set; }
         public int SubjectStructureId { get; set; }
+
+        public bool IsElective { get; set; }
+        public int Credit { get; set; }
     }
 }

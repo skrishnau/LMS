@@ -28,6 +28,36 @@ namespace Academic.DbHelper
             }
 
 
+            #region List Files
+
+            public List<UserFile> ListAllFiles()
+            {
+                return Context.File.ToList();
+            }
+
+            public List<UserFile> ListUserFiles(int userId, int folderId, bool isServerFile)
+            {
+                return Context.File.Where(x => x.CreatedBy == userId && !(x.Void ?? false) 
+                                                && (x.FolderId ?? 0) == folderId
+                                                && x.IsServerFile==isServerFile
+                                            )
+                                            .OrderBy(x=>x.DisplayName)
+                                            .ToList();
+            }
+
+            public UserFile GetFolderOfFilesList(int userId, int folderId, bool isServerFile)
+            {
+                return Context.File.FirstOrDefault(x => x.CreatedBy == userId
+                                                          && !(x.Void ?? false)
+                                                          && (x.Id) == folderId
+                                                          && x.IsFolder
+                                                          &&x.IsServerFile==isServerFile
+                                                          );
+            }
+
+            #endregion
+
+
             #region ImageSaveToDatabase
 
 
@@ -97,6 +127,47 @@ namespace Academic.DbHelper
 
             #endregion
 
+            public DbEntities.UserFile AddOrUpdateFolder(DbEntities.UserFile folder)
+            {
+                try
+                {
+                    var ent = Context.File.Find(folder.Id);
+                    if (ent == null)
+                    {
+                        var saved = Context.File.Add(folder);
+                        Context.SaveChanges();
+                        return saved;
+                    }
+                    ent.DisplayName = folder.DisplayName;
+                    ent.ModifiedBy = folder.ModifiedBy;
+                    ent.ModifiedDate = folder.ModifiedDate;
+                    ent.Void = folder.Void;
+                    Context.SaveChanges();
+                    return ent;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            public object DeleteFile(int fileId)
+            {
+                try
+                {
+                    var ent = Context.File.Find(fileId);
+                    if (ent != null)
+                    {
+                        ent.Void = true;
+                        Context.SaveChanges();
+                    }
+                    return ent;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
 
             public DbEntities.UserFile AddOrUpdateFile(DbEntities.UserFile image)
             {
@@ -116,7 +187,7 @@ namespace Academic.DbHelper
                     Context.SaveChanges();
                     return ent;
                 }
-                catch 
+                catch
                 {
                     return null;
                 }
@@ -131,7 +202,7 @@ namespace Academic.DbHelper
                 }
                 else
                 {
-                    
+
                 }
                 return "";
             }
@@ -140,6 +211,8 @@ namespace Academic.DbHelper
             {
                 throw new NotImplementedException();
             }
+
+
         }
     }
 }

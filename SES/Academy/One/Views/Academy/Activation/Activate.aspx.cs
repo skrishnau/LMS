@@ -28,6 +28,7 @@ namespace One.Views.Academy.Activation
                         {
                             if (aId != null)
                             {
+                                #region Academic year
 
                                 var acaId = Convert.ToInt32(aId);
                                 AcademicYearId = acaId;
@@ -104,15 +105,22 @@ namespace One.Views.Academy.Activation
                                         Response.Redirect("~/Views/Academy/List.aspx");
                                 }
                                 else Response.Redirect("~/Views/Academy/List.aspx");
+
+
+                                #endregion
                             }
                             else if (sId != null)
                             {
+                                #region Session
+
                                 var sessId = Convert.ToInt32(sId);
                                 SessionId = sessId;
                                 var sess = helper.GetSession(sessId);
                                 if (task != null && sess != null)
                                 {
                                     #region SiteMap
+
+                                    AcademicYearId = sess.AcademicYearId;
 
                                     if (SiteMap.CurrentNode != null)
                                     {
@@ -179,9 +187,10 @@ namespace One.Views.Academy.Activation
                                 }
                                 else Response.Redirect("~/Views/Academy/List.aspx");
 
+
+                                #endregion
                             }
-
-
+                            else Response.Redirect("~/Views/Academy/List.aspx");
                         }
                 }
                 catch
@@ -247,7 +256,13 @@ namespace One.Views.Academy.Activation
                     }
                     else
                     {
-                        Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId);
+                        var sessionId = SessionId;
+                        if (sessionId > 0)
+                        {
+                            Response.Redirect("~/Views/Academy/Session/SessionDetail.aspx?aId=" + AcademicYearId + "&sId=" + sessionId+"&edit=1");
+                        }
+                        else
+                            Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId+"&edit=1");
                     }
                 }
                 else

@@ -19,11 +19,9 @@
     </h3>
     <%--<hr />--%>
     <div class="data-entry-section-body">
-
         <div>
             Currently in:
-               <strong>
-                   <asp:Label ID="lblCurrentlyIn" runat="server" Text="N/A"></asp:Label></strong>
+                   <asp:Label ID="lblCurrentlyIn" runat="server" Text="N/A"></asp:Label>
         </div>
     </div>
 

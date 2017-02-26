@@ -1,14 +1,16 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UserMaster.master.cs" Inherits="One.ViewsSite.User.UserMaster" %>
 
-<%@ Register Src="~/ViewsSite/User/ModulesUc/CoursesUc.ascx" TagPrefix="uc1" TagName="CoursesUc" %>
+<%--<%@ Register Src="~/ViewsSite/User/ModulesUc/CoursesUc.ascx" TagPrefix="uc1" TagName="CoursesUc" %>--%>
 
 <%--<%@ Register Src="~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx" TagPrefix="uc1" TagName="NoticeBoardUc" %>
 <%@ Register Src="~/ViewsSite/User/ModulesUc/NewsUc.ascx" TagPrefix="uc1" TagName="NewsUc" %>
 <%@ Register Src="~/ViewsSite/User/ModulesUc/EventsUc.ascx" TagPrefix="uc1" TagName="EventsUc" %>
 <%@ Register Src="~/ViewsSite/User/ModulesUc/OnlineUsersUc.ascx" TagPrefix="uc1" TagName="OnlineUsersUc" %>--%>
 
-<%@ Register Src="~/ViewsSite/User/ModulesUc/EarlierUc.ascx" TagPrefix="uc1" TagName="EarlierUc" %>
+<%--<%@ Register Src="~/ViewsSite/User/ModulesUc/EarlierUc.ascx" TagPrefix="uc1" TagName="EarlierUc" %>--%>
 <%@ Register Src="~/ViewsSite/User/ModulesUc/CoursesMenuUc.ascx" TagPrefix="uc1" TagName="CoursesMenuUc" %>
+<%@ Register Src="~/ViewsSite/User/ModulesUc/FileManagementMenuUc.ascx" TagPrefix="uc1" TagName="FileManagementMenuUc" %>
+
 
 
 
@@ -136,12 +138,12 @@
                     </div>
                     &nbsp;
                       <div class="dropdown">
-                        <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn" ImageUrl="~/Content/Icons/Notice/notification-icon.png" />
-                        <div class="dropdown-content">
-                            <asp:Label ID="lblEmptyEvent" runat="server" Text="No new notices"></asp:Label>
-                            <asp:PlaceHolder ID="plHolderEvent" runat="server"></asp:PlaceHolder>
-                        </div>
-                    </div>
+                          <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn" ImageUrl="~/Content/Icons/Notice/notification-icon.png" />
+                          <div class="dropdown-content">
+                              <asp:Label ID="lblEmptyEvent" runat="server" Text="No new notices"></asp:Label>
+                              <asp:PlaceHolder ID="plHolderEvent" runat="server"></asp:PlaceHolder>
+                          </div>
+                      </div>
                     &nbsp;
 
                     <div class="dropdown">
@@ -318,6 +320,8 @@
                                 <%--<uc1:EventsUc runat="server" ID="EventsUc1" />--%>
                                 <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
                                 <%--  --%>
+
+                                <uc1:FileManagementMenuUc runat="server" id="FileManagementMenuUc1" />
                             </div>
                             <%-- -------------------------END------------------------ --%>
                         </td>

@@ -35,7 +35,8 @@ namespace Academic.DbHelper
             #region Running Classes Functions
 
             //Used ::: by latest--> after github
-            public bool AddOrUpdateRunningClass(List<DbEntities.AcacemicPlacements.RunningClass> rcList)
+            public bool AddOrUpdateRunningClass(List<DbEntities.AcacemicPlacements.RunningClass> rcList
+                , DateTime? startDate, DateTime? endDate)
             {
                 try
                 {
@@ -56,7 +57,6 @@ namespace Academic.DbHelper
                             Context.SaveChanges();
                         }
 
-
                         //each running class
                         foreach (var rc in rcList)
                         {
@@ -72,7 +72,8 @@ namespace Academic.DbHelper
                                 var subStrList = Context.SubjectStructure
                                     .Where(x => x.YearId == savedRC.YearId
                                         && x.SubYearId == savedRC.SubYearId
-                                        && !(x.Obsolete ?? false) && !(x.Void ?? false)).ToList();
+                                        && !(x.Obsolete ?? false) && !(x.Void ?? false)
+                                        ).ToList();
                                 subStrList.ForEach(subS =>
                                 {
                                     var subjectClass = new DbEntities.Class.SubjectClass()
@@ -88,6 +89,11 @@ namespace Academic.DbHelper
                                         ,
                                         SubjectStructureId = subS.Id
                                         ,
+                                        EnrollmentMethod = (byte)((subS.IsElective) ? 2 : 0)
+                                        ,
+                                        StartDate = startDate
+                                        ,
+                                        EndDate = endDate
                                         //UseDefaultGrouping = true
                                     };
                                     var savedSubjectClass = Context.SubjectClass.Add(subjectClass);
@@ -152,6 +158,7 @@ namespace Academic.DbHelper
                                 ent.Void = rc.Void;
                                 ent.Completed = rc.Completed;
                                 ent.IsActive = rc.IsActive;
+                                
                                 Context.SaveChanges();
 
                                 //if subjectStructure has been voided then when updating RunningClass
@@ -169,15 +176,19 @@ namespace Academic.DbHelper
                                     if (sc.SubjectStructure.Void ?? false)
                                     {
                                         sc.Void = true;
-                                        Context.SaveChanges();
+                                        //Context.SaveChanges();
                                         voidedSubjectClassList.Add(sc.Id);
                                     }
                                     if (sc.SubjectStructure.Subject.Void ?? false)
                                     {
                                         sc.Void = true;
-                                        Context.SaveChanges();
+                                        //Context.SaveChanges();
                                         voidedSubjectClassList.Add(sc.Id);
                                     }
+
+                                    sc.StartDate = startDate;
+                                    sc.EndDate = endDate;
+                                    Context.SaveChanges();
                                 }
 
 
@@ -199,14 +210,17 @@ namespace Academic.DbHelper
                                         CreatedDate = date.Date
                                     ,
                                         //CreatedTime = date.Hour + ":" + date.Minute + ":" + date.Second
-                                    //,
+                                        //,
                                         IsRegular = true
                                     ,
                                         RunningClassId = ent.Id
                                     ,
                                         SubjectStructureId = subS.Id
-                                    ,
+                                        ,
+                                        EnrollmentMethod = (byte)((subS.IsElective) ? 2 : 0)
                                         //UseDefaultGrouping = true
+                                        ,StartDate = startDate
+                                        ,EndDate =  endDate
                                     };
                                     var savedSubjectClass = Context.SubjectClass.Add(subjectClass);
                                     Context.SaveChanges();
@@ -486,7 +500,7 @@ namespace Academic.DbHelper
             //            facNode.Type = "faculty";
             //            levelNode.ChildNodes.Add(facNode);
 
-                      
+
             //        }
             //    }
             //    return nodeList;
@@ -1003,7 +1017,7 @@ namespace Academic.DbHelper
                     var subyear = Context.SubYear.Find(subyearId);
                     if (subyear != null)
                     {
-                        var min = subyear.Year.SubYears.Where(x =>  !(x.Void ?? false)
+                        var min = subyear.Year.SubYears.Where(x => !(x.Void ?? false)
                                                                 && x.Position < subyear.Position)
                             .OrderByDescending(x => x.Position);
                         var mn = min.First();
@@ -1014,7 +1028,7 @@ namespace Academic.DbHelper
                         else
                         {
 
-                            var prevyear = subyear.Year.Program.Year.Where(x =>  !(x.Void ?? false)
+                            var prevyear = subyear.Year.Program.Year.Where(x => !(x.Void ?? false)
                                                                && x.Position < subyear.Year.Position)
                                                                .OrderByDescending(x => x.Position);
                             var minYear = prevyear.First();
@@ -1162,11 +1176,11 @@ namespace Academic.DbHelper
                     else
                         notcompletelist.Add(r);
                 }
-                for(var i=0;i<notcompletelist.Count;i++)
+                for (var i = 0; i < notcompletelist.Count; i++)
                 //foreach (var r in notcompletelist)
                 {
                     var r = notcompletelist[i];
-                    var incompletelist = r.SubjectClasses.Where(x => (x.SessionComplete ==false || x.SessionComplete==null) && !(x.Void??false))
+                    var incompletelist = r.SubjectClasses.Where(x => (x.SessionComplete == false || x.SessionComplete == null) && !(x.Void ?? false))
                         .ToList();
                     if (!incompletelist.Any())
                     {
@@ -1177,7 +1191,7 @@ namespace Academic.DbHelper
                     // Context.SubjectClass.Where(x => x.RunningClassId == r.Id && !(x.Void??false));
                 }
 
-                return  new List<RunningClass>[]{completelist,notcompletelist};
+                return new List<RunningClass>[] { completelist, notcompletelist };
                 //var rcs = Context.RunningClass.Where(x =>
                 //           (x.AcademicYear.Completed ?? false)
                 //           && x.ProgramBatchId == stdbatch.ProgramBatchId

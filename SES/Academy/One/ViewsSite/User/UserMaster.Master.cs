@@ -198,6 +198,8 @@ namespace One.ViewsSite.User
                         pnlSettings.Controls.Add(settings);
                         lnkEditMode.Visible = true;
                         lnkSettingMenu.Visible = true;
+
+                        FileManagementMenuUc1.ShowServerMenu();
                     }
                     else if (user.IsInRole("teacher"))
                     {

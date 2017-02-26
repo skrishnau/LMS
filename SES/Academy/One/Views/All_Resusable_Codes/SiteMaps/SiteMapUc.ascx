@@ -10,7 +10,8 @@
             <span class="sitemap-items">
                 <asp:HyperLink ID="lnkSite" runat="server" Text='<%# Eval("Name") %>'
                     CssClass='<%# string.IsNullOrEmpty((Eval("Value")??"").ToString())?"link-grey":"link-white" %>'
-                    NavigateUrl='<%# Eval("Value") %>'></asp:HyperLink>
+                    NavigateUrl='<%# Eval("Value") %>'
+                    ></asp:HyperLink>
             </span>
             <%--&nbsp;--%>
             <asp:Label ID="Label1" runat="server" Visible='<%# Eval("Void") %>' Text=">" ForeColor="#393939"></asp:Label>

@@ -12,16 +12,13 @@
             <%-- Section List --%>
             <%--<asp:Panel ID="pnlContent" runat="server">--%>
 
-                <div>
-                    <div>
-                        <div class="item-detail">
-                            <asp:PlaceHolder ID="pnlSections" runat="server"></asp:PlaceHolder>
-                        </div>
-                        <asp:HiddenField ID="hidId" runat="server" Value="0" />
-                    </div>
-                </div>
+            <div class="item-detail">
+                <asp:PlaceHolder ID="pnlSections" runat="server"></asp:PlaceHolder>
+            </div>
+            <asp:HiddenField ID="hidId" runat="server" Value="0" />
+
             <%--</asp:Panel>--%>
-           <%-- <asp:Panel ID="pnlCreateSection" runat="server" Visible="False">
+            <%-- <asp:Panel ID="pnlCreateSection" runat="server" Visible="False">
                 <uc1:CreateSectionUc runat="server" ID="CreateSectionUc1" />
 
             </asp:Panel>--%>
@@ -31,14 +28,14 @@
             <div style="clear: both;"></div>
             <div>
                 <asp:HyperLink ID="lnkAddSection1" ClientIDMode="Static" Visible="False"
-                    CssClass="link_smaller"
-                     runat="server" >
-                    <asp:ImageButton ID="imgAddSection" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png"  ToolTip="Add Section to this Course" />
+                    CssClass="link-white"
+                    runat="server">
+                    <asp:ImageButton ID="imgAddSection" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" ToolTip="Add Section to this Course" />
                     Add Sections
                 </asp:HyperLink>
             </div>
 
-            
+
 
             <div id="activitychoosediv" style="display: none">
                 <uc1:ActResChooseUc runat="server" ID="ActResChooseUc" ClientIDMode="Static" />

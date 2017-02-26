@@ -2,6 +2,8 @@
 
 
 <%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<%@ Register Src="~/Views/Structure/CategoryDropDownList.ascx" TagPrefix="uc1" TagName="CategoryDropDownList" %>
+
 <asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
     <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
 </asp:Content>
@@ -13,130 +15,117 @@
     <h3 class="heading-of-listing">
         <asp:Label ID="lblHeading" runat="server" Text="Course Assign"></asp:Label>
     </h3>
-    <hr />
     <br />
     <div>
-        <%--<asp:View ID="View1" runat="server">--%>
 
         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
             <ContentTemplate>
                 <div style="width: 99%;">
+
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr>
-                            <td style="background-color: #557d96; border: 1px solid #557d96; 
-color: white; text-align: center; font-size: 1.1em;">
-                                Course Selection
+                            <td style="background-color: #557d96; border: 1px solid #557d96; color: white; text-align: center; font-size: 1.1em;">Selected Courses
                             </td>
-                            <td></td>
-                            <td style="background-color: #557d96; border: 1px solid #557d96; 
-color: white; text-align: center; font-size: 1.1em;">
-                                Selected Courses
+                            <td style="width: 70px;"></td>
+                            <td style="background-color: #557d96; border: 1px solid #557d96; color: white; text-align: center; font-size: 1.1em;">Unassigned Courses
                             </td>
                         </tr>
+
                         <tr>
-
-                            <%-- ---------------------Left panel --%>
-                            <td style="width: 74%; vertical-align: top; border: 1px solid #557d96;">
-                                <div>
-
-
-                                    <table style="border-collapse: collapse;">
-
-                                        <tr>
-                                            <td style="text-align: center; font-weight: bold; background-color: lightgray;">Categories                                                
-                                            </td>
-                                            <td style="text-align: center; font-weight: bold; background-color: lightgray;">Courses in category:&nbsp;
-                                                    <strong>
-                                                        <asp:Label ID="lblCoursesTitle" runat="server" Text="Courses"></asp:Label>
-                                                    </strong>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-
-
-                                            <%-- ---------------------------Categories section --%>
-                                            <td style="width: 25%; vertical-align: top;  ">
-                                                <div id="categoryDiv" >
-                                                    <asp:Panel ID="pnlCategories" runat="server">
-                                                    </asp:Panel>
-                                                    <br />
-
-                                                    <asp:HiddenField ID="hidSelectedCategory" Value="0" runat="server" />
-                                                    <asp:HiddenField ID="hidSelectedCategoryName" Value="" runat="server" />
-                                                </div>
-                                            </td>
-                                            
-
-
-                                            <%-- -------------------------------Course section --%>
-                                            <td style="width: 70%; vertical-align: top;  ">
-                                                <div id="courseDiv"  style="border-left: 1px solid #557d96;">
-                                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                                        <ContentTemplate>
-                                                            <div style="">
-                                                                <asp:Panel ID="pnlCourseList" ViewStateMode="Enabled" runat="server"></asp:Panel>
-                                                            </div>
-                                                            <asp:HiddenField ID="hidSchoolId" Value="0" runat="server" />
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                </div>
-                                            </td>
-
-
-                                        </tr>
-
-                                    </table>
-
-
-                                </div>
-                            </td>
-
-
-                            <%-- -------------------------Mid section --%>
-                            <td style="width: 20px; vertical-align: central; "></td>
-
-
-
-
-                            <%-- ----------------------Right panel --%>
-                            <td style="width: 22%; border: 1px solid #557d96; vertical-align: top;">
+                            <%-- --------------border: 1px solid #557d96;--------Left panel --%>
+                            <td style="width: 39%;  vertical-align: top;">
                                 <div style="padding: 2px;">
-                                    <div style="height: 50%; min-height: 100px; margin-bottom: 5px;">
+                                    <%--<div style="height: 50%; min-height: 100px; margin-bottom: 5px;">--%>
                                         <%--<span style="font-weight: 600;">Selected Courses</span>
                                         <hr />--%>
                                         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                             <ContentTemplate>
-                                                <asp:Panel ID="pnlSelectedCourses" runat="server">
-                                                </asp:Panel>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                    <br />
 
-                                   <%-- <div style="border-top: 1px double black; min-height: 100px; position: relative; bottom: 0; padding-top: 20px;">
-                                        <span style="font-weight: 600;">Saved Courses</span>
-                                        <hr />
-                                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                                            <ContentTemplate>
-                                                <asp:Panel ID="pnlSavedCourses" runat="server">
-                                                </asp:Panel>
+                                                <asp:ListBox ID="lstAssignedCourses" runat="server"
+                                                    Width="253px" Height="326px" 
+                                                    DataValueField="Id" DataTextField="FullName"></asp:ListBox>
+
+                                                <%-- <asp:Panel ID="pnlSelectedCourses" runat="server">
+                                                </asp:Panel>--%>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-                                    </div>--%>
+                                    <%--</div>--%>
+
                                 </div>
                             </td>
 
-                        </tr>
+                            <%-- -------------------------Mid section --%>
 
+                            <td style="width: 20px; vertical-align: top; text-align: center;">
+
+                                <br/>
+                                <br/>
+                                <br/>
+
+                                <asp:CheckBox ID="chkElective" runat="server" Text="Elective" />
+                                <br />
+                                <br/>
+                                <br/>
+                                Credit:
+                                <asp:TextBox ID="txtCredit" runat="server" Width="50px"></asp:TextBox>
+                                
+                                <br/>
+                                <br/>
+                                <br/>
+                                <asp:Button ID="btnAssign" runat="server" Text="← Assign" OnClick="btnAssign_OnClick" />
+                                <br/>
+                                <br/>                                
+                                <br/>
+                                <asp:Button ID="btnRemove" runat="server" Text="Remove →" OnClick="btnRemove_OnClick"/>
+
+                            </td>
+
+
+
+                            <%-- ---------------------Left panel --%>
+                            <td style="width: 39%; vertical-align: top; ">
+                                <div>
+
+                                    <div style="border: 1px solid #557d96; margin-bottom: 5px;">
+                                        <table>
+                                            <tr>
+                                                <td><strong>Category: </strong>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <uc1:CategoryDropDownList runat="server" ID="CategoryDropDownList1" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <%--  OnDataBound="ddlCategories_OnDataBound" --%>
+                                        <%--                                        <asp:DropDownList ID="ddlCategories" runat="server">
+                                        </asp:DropDownList>--%>
+                                    </div>
+                                    <%--<hr style="border: none; height: 1px; background-color: darkgray;" />--%>
+
+                                    <div id="courseDiv">
+                                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                            <ContentTemplate>
+                                                <asp:HiddenField ID="hidSelectedCategoryId" Value="0" runat="server" />
+                                                <asp:HiddenField ID="hidSelectedCategoryName" Value="" runat="server" />
+
+                                                <asp:ListBox ID="lstUnAssignedCourses" runat="server" AutoPostBack="True"
+                                                    Width="256px" Height="250px" OnSelectedIndexChanged="lstUnAssignedCourses_OnSelectedIndexChanged"
+                                                    DataValueField="Id" DataTextField="FullName"></asp:ListBox>
+
+
+                                                <asp:HiddenField ID="hidSchoolId" Value="0" runat="server" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
                     </table>
 
-
-                    <%-- ======================== Selected courses ================================== --%>
-                    <%-- ============================================================================ --%>
-
-                    <%-- ============================================================================ --%>
-                    <%-- ============================================================================ --%>
                 </div>
                 <div style="clear: both;"></div>
                 <br />

@@ -284,6 +284,7 @@ div.modules-heading {
 
 .list-item-option {
     margin-left: 10px;
+
     /*padding-left: 10px;*/
     /*background-color: lightgray;*/
 }
@@ -291,10 +292,15 @@ div.modules-heading {
     .list-item-option a {
         padding: 0 5px;
         /*margin: 0 5px;*/
+        display: inline-block;
+        text-decoration: none;
+        color:#393939
     }
 
         .list-item-option a:hover {
             background-color: lightgray;
+            text-decoration: underline;
+            color: black;
         }
 
 .list-item-description {
@@ -313,6 +319,7 @@ div.modules-heading {
     padding: 8px;*/
     /*min-height: 20px;*/
     line-height: 30px;
+    margin-bottom: 3px;
 }
 
 

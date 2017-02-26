@@ -19,7 +19,14 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
         public void SetData(string iconUrl, string name, int fileId, string localId,bool enabled, string fileUrl)
         {
             img.ImageUrl = iconUrl;
-            lblName.Text = name;
+            var wrappedName = (name.Length > 7)?name.Substring(0, 7) + "...": name;
+
+            //if (name.Length > 7)
+            //{
+            //    wrappedName = name.Substring(0, 7) + "...";
+            //}
+
+            lblName.Text = wrappedName;
             hidFileId.Value = fileId.ToString();
             LocalId = localId;
             lnkRemove.Visible = enabled;

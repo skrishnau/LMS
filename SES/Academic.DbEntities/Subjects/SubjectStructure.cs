@@ -32,6 +32,10 @@ namespace Academic.DbEntities.Subjects
 
         public bool? Void { get; set; }
 
+        public bool IsElective { get; set; }
+        public int Credit { get; set; }
+
+
         public int CreatedBy { get; set; }
         public int? VoidBy { get; set; }
         public int? UpdatedBy { get; set; }
@@ -39,6 +43,8 @@ namespace Academic.DbEntities.Subjects
         public DateTime CreatedDate { get; set; }
         public DateTime? VoidDate { get; set; }
         public DateTime? UpdateDate { get; set; }
+
+
 
         //public int? RemovedInAcademicYearId { get; set; }
         //public int? LastActiveInAcademicYearId { get; set; }

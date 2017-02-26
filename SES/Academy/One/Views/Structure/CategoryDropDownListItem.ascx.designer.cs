@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace One.Views.FileManagement {
+namespace One.Views.Structure {
     
     
-    public partial class FilesAndFolders {
+    public partial class CategoryDropDownListItem {
         
         /// <summary>
-        /// SiteMapUc control.
+        /// lnkCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        protected global::System.Web.UI.WebControls.LinkButton lnkCategory;
     }
 }

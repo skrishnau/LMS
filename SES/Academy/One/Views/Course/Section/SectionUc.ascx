@@ -6,7 +6,7 @@
 
 
     <%--class="item-section"--%>
-    <h3  style="font-size: 24px; font-weight: normal; font-family: Helvetica, Verdana, Geneva, sans-serif;">
+    <div  style="font-size: 24px; font-weight: normal; font-family: Helvetica, Verdana, Geneva, sans-serif;">
         <asp:Label ID="lblTitle" runat="server" Text="Heading"></asp:Label>
         &nbsp;&nbsp;&nbsp;
         <asp:LinkButton ID="lnkEdit" Visible="False" runat="server" OnClick="lnkEdit_Click">
@@ -17,18 +17,21 @@
             <asp:Image ID="Image2" runat="server"
                 ImageUrl="~/Content/Icons/delete/trash.gif" />
         </asp:HyperLink>
-    </h3>
+    </div>
     <%-- class="item-summary" --%>
-    <div style="margin-left: 25px;">
-        <div style="padding: 10px; margin-right: 25px;">
+    <div style="margin-left: 15px;">
+        <%--style="padding: 10px ; " margin-right: 25px; --%>
+        <div style="padding: 5px;">
             <asp:Label ID="lblSummary" runat="server" Text="Summary"></asp:Label>
 
         </div>
+        <%--style="padding:10px; " margin-left: 20px; --%>
+        
 
-        <div style="padding: 5px 10px; margin-left: 20px;">
+        <div >
             <asp:PlaceHolder ID="pnlActAndRes" runat="server"></asp:PlaceHolder>
 
-            <div>
+            <div style="margin: 10px 0;">
                 <%-- OnClick="lnkAddActOrRes_Click"  --%>
                 <asp:LinkButton ID="lnkAddActOrRes" ClientIDMode="Static"
                     CssClass="link_act_res"

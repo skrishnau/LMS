@@ -63,27 +63,40 @@ namespace One.Views.Academy.ClassAssign
                         var ses = helper.GetSession(SessionId);
                         if (ses != null)
                         {
+                            hidStartDate.Value = ses.StartDate.ToShortDateString();
+                            hidEndDate.Value = ses.EndDate.ToShortDateString();
+
                             if (SiteMap.CurrentNode != null)
                             {
                                 var list = new List<IdAndName>()
                                 {
-                                   new IdAndName(){
-                                                Name=SiteMap.RootNode.Title
-                                                ,Value =  SiteMap.RootNode.Url
-                                                ,Void=true
-                                            },
-                                    new IdAndName(){
+                                    new IdAndName()
+                                    {
+                                        Name = SiteMap.RootNode.Title
+                                        ,
+                                        Value = SiteMap.RootNode.Url
+                                        ,
+                                        Void = true
+                                    },
+                                    new IdAndName()
+                                    {
                                         Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
-                                        ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url+"?edit=1"
-                                        ,Void=true
+                                        ,
+                                        Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url + "?edit=1"
+                                        ,
+                                        Void = true
                                     }
-                                    ,new IdAndName()
+                                    ,
+                                    new IdAndName()
                                     {
                                         Name = aca.Name
-                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?aId="+aca.Id+"&edit=1"
-                                        ,Void = true
+                                        ,
+                                        Value = SiteMap.CurrentNode.ParentNode.Url + "?aId=" + aca.Id + "&edit=1"
+                                        ,
+                                        Void = true
                                     }
-                                    ,new IdAndName()
+                                    ,
+                                    new IdAndName()
                                     {
                                         Name = "Classes"
                                     }
@@ -97,8 +110,15 @@ namespace One.Views.Academy.ClassAssign
                             }
                             else
                             {
-                                Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId);
+                                Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" +
+                                                  AcademicYearId);
                             }
+                        }
+                        else
+                        {
+                            //ses==null
+                            hidStartDate.Value = aca.StartDate.ToShortDateString();
+                            hidEndDate.Value = aca.EndDate.ToShortDateString();
                         }
                     }
                     else
@@ -165,9 +185,22 @@ namespace One.Views.Academy.ClassAssign
                 lblError.Text = "Wrong input.";
                 return;
             }
+
+            DateTime? startDate=null ;
+            try
+            {
+                startDate = Convert.ToDateTime(hidStartDate.Value);
+            }catch{}
+
+            DateTime? endDate = null;
+            try
+            {
+                endDate = Convert.ToDateTime(hidEndDate.Value);
+            }catch{}
+
             using (var helper = new DbHelper.AcademicPlacement())
             {
-                var saved = helper.AddOrUpdateRunningClass(rcs);
+                var saved = helper.AddOrUpdateRunningClass(rcs,startDate,endDate);
                 if (saved)
                 {
                     Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId

@@ -16,11 +16,11 @@
             <%--<div style="font-size: 1.3em; font-weight: 700; text-align: center; color: lightsalmon;">
                
             </div>--%>
-            <h3 class="heading-of-listing">
+            <%-- heading-of-listing --%>
+            <h3 class="act-res-course-title">
                 <asp:Literal ID="txtSubjectName" runat="server"></asp:Literal>
             </h3>
-            <hr />
-
+            <br />
 
 <%--            <div style="text-align: right; margin-right: 15px;">
                 <asp:HyperLink ID="lnkEdit"
@@ -57,7 +57,8 @@
     <script type="text/javascript" src="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.min.js"></script>
     <script src="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.js" type="text/javascript"></script>
     <link href="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.css" rel="stylesheet" type="text/css" />
-
+    
+    <link href="../../../Content/CSSes/ActResStyles.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">

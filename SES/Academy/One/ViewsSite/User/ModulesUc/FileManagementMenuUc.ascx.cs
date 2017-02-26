@@ -5,13 +5,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace One.Views.FileManagement
+namespace One.ViewsSite.User.ModulesUc
 {
-    public partial class FilesAndFolders : System.Web.UI.Page
+    public partial class FileManagementMenuUc : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void ShowServerMenu()
+        {
+            lnkServer.Visible = true;
         }
     }
 }

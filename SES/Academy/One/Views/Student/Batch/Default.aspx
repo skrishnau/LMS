@@ -15,13 +15,12 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <%--<uc1:DetailUc runat="server" id="DetailUc" />--%>
     <h3 class="heading-of-display">
-        
         <asp:Label runat="server" ID="lblBatchName"></asp:Label>
     </h3>
-    <hr/>
     <div style="font-size: 1em; margin-left: 25px;">
         <asp:Label runat="server" ID="lblSummary"></asp:Label>
     </div>
+    <br />
     <%--<div style="margin: 5px;">--%>
     <%--<div style="margin: 2px 2px 10px 0;">--%>
 

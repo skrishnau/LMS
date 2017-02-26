@@ -121,7 +121,7 @@ namespace One.Views.Course.Section
             }
             if (string.IsNullOrEmpty(description))
             {
-                divDescription.Visible = false;
+                pnlDescription.Visible = false;
             }
         }
 

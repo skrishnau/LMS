@@ -38,7 +38,7 @@ namespace One.Views.Course
                     }
                     if (user.IsInRole("manager") || user.IsInRole("course-editor"))
                     {
-                        var edit = ((Session["editMode"] as string) ?? "0")=="1";
+                        var edit = ((Session["editMode"] as string) ?? "0") == "1";
                         lnkCoursCreate.Visible = edit;
                         lnkCatCreate.Visible = edit;
                         Manager = edit;
@@ -58,7 +58,8 @@ namespace One.Views.Course
                         SelectedCategory = Convert.ToInt32(catId);
                     }
                 }
-                LoadCategoriesAndSubCategories(user.SchoolId);
+                //LoadCategoriesAndSubCategories(user.SchoolId);
+                LoadCategories(user.SchoolId);
             }
         }
 
@@ -81,6 +82,83 @@ namespace One.Views.Course
 
 
         #region Load Categories -- indentation only...i.e. diamond shape or circle shape
+
+        void LoadCategories(int schoolId)
+        {
+            var selectedCat = SelectedCategory;
+            using (var helper = new DbHelper.Subject())
+            {
+                var cats = helper.ListAllCategories(schoolId);
+                var list = new List<int>();
+                if (!cats.Any())
+                {
+                    lnkCoursCreate.Visible = false;
+                }
+                for (var c = 0; c < cats.Count; c++)
+                {
+                    var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
+                    catUc.Deselect();
+
+                    list.Add(1);
+
+                    catUc.SetNameAndIdOfCategory(cats[c].Id, cats[c].Name, 0);//list
+                    catUc.NameClicked += catUc_NameClicked;
+                    catUc.ID = "category_" + cats[c].Id;
+                    pnlCategories.Controls.Add(catUc);
+
+                    if ((selectedCat == cats[c].Id && !IsPostBack) || selectedCat == 0)
+                    {
+                        catUc_NameClicked(catUc, new DataEventArgs()
+                        {
+                            Id = cats[c].Id,
+                            Name = cats[c].Name
+                        });
+                        catUc.Select();
+                        selectedCat = cats[c].Id;
+                    }
+
+                    //GetSubCats(catUc, helper, schoolId, cats[c].Id, list);
+                    GetSubCats(catUc, helper, schoolId, cats[c].Id, 1);
+                    list.RemoveAt(list.Count - 1);
+                }
+            }
+        }
+        void GetSubCats(Category.ListUC parentUc, DbHelper.Subject helper, int schoolId, int categoryId, int paddingCount)
+        {
+
+            #region Function all
+
+            var subcats = helper.ListSubCategories(schoolId, categoryId);
+            var selectedCat = SelectedCategory;
+            for (var s = 0; s < subcats.Count; s++)
+            {
+                var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
+                catUc.Deselect();
+
+                catUc.SetNameAndIdOfCategory(subcats[s].Id, subcats[s].Name, paddingCount);//list
+                paddingCount += 1;
+                catUc.NameClicked += catUc_NameClicked;
+                catUc.ID = "category_" + subcats[s].Id;
+                //parentUc.AddSubCategories(catUc);
+                pnlCategories.Controls.Add(catUc);
+                if ((selectedCat == subcats[s].Id && !IsPostBack) || selectedCat == 0)
+                {
+                    catUc_NameClicked(catUc, new DataEventArgs()
+                    {
+                        Id = subcats[s].Id,
+                        Name = subcats[s].Name
+                    });
+                    catUc.Select();
+                    selectedCat = subcats[s].Id;
+                }
+                GetSubCats(catUc, helper, schoolId, subcats[s].Id, paddingCount);
+            }
+
+            #endregion
+
+        }
+
+
 
         void LoadCategoriesAndSubCategories(int schoolId)
         {
@@ -117,14 +195,19 @@ namespace One.Views.Course
                     }
 
                     GetSubCats(catUc, helper, schoolId, cats[c].Id, list);
+                    //GetSubCats(catUc, helper, schoolId, cats[c].Id, 20);
                     list.RemoveAt(list.Count - 1);
                 }
             }
         }
+        
 
+        //earlier code:::: works
         // Note :: ├ ==>1 ,    └ ==> 2 .   ┌ ==> 3 ,   │ ==> 4 ,  empty ==> 0
         void GetSubCats(Category.ListUC parentUc, DbHelper.Subject helper, int schoolId, int categoryId, List<int> parentPaddingList)
         {
+            #region Function all
+
             var subcats = helper.ListSubCategories(schoolId, categoryId);
             var list = new List<int>();
             if (subcats.Count > 0)
@@ -148,7 +231,7 @@ namespace One.Views.Course
                 catUc.ID = "category_" + subcats[s].Id;
                 //parentUc.AddSubCategories(catUc);
                 pnlCategories.Controls.Add(catUc);
-                
+
 
 
                 if ((selectedCat == subcats[s].Id && !IsPostBack) || selectedCat == 0)
@@ -166,6 +249,9 @@ namespace One.Views.Course
                 GetSubCats(catUc, helper, schoolId, subcats[s].Id, list);
                 list.RemoveAt(list.Count - 1);
             }
+
+            #endregion
+
         }
 
         #endregion

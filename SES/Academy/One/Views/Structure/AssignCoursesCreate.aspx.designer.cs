@@ -40,40 +40,67 @@ namespace One.Views.Structure {
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
-        /// lblCoursesTitle control.
+        /// UpdatePanel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCoursesTitle;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
         
         /// <summary>
-        /// pnlCategories control.
+        /// lstAssignedCourses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCategories;
+        protected global::System.Web.UI.WebControls.ListBox lstAssignedCourses;
         
         /// <summary>
-        /// hidSelectedCategory control.
+        /// chkElective control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSelectedCategory;
+        protected global::System.Web.UI.WebControls.CheckBox chkElective;
         
         /// <summary>
-        /// hidSelectedCategoryName control.
+        /// txtCredit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidSelectedCategoryName;
+        protected global::System.Web.UI.WebControls.TextBox txtCredit;
+        
+        /// <summary>
+        /// btnAssign control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAssign;
+        
+        /// <summary>
+        /// btnRemove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemove;
+        
+        /// <summary>
+        /// CategoryDropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.Structure.CategoryDropDownList CategoryDropDownList1;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -85,13 +112,31 @@ namespace One.Views.Structure {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// pnlCourseList control.
+        /// hidSelectedCategoryId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCourseList;
+        protected global::System.Web.UI.WebControls.HiddenField hidSelectedCategoryId;
+        
+        /// <summary>
+        /// hidSelectedCategoryName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidSelectedCategoryName;
+        
+        /// <summary>
+        /// lstUnAssignedCourses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lstUnAssignedCourses;
         
         /// <summary>
         /// hidSchoolId control.
@@ -101,24 +146,6 @@ namespace One.Views.Structure {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidSchoolId;
-        
-        /// <summary>
-        /// UpdatePanel3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
-        /// <summary>
-        /// pnlSelectedCourses control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSelectedCourses;
         
         /// <summary>
         /// btnSaveAndContinueAdding control.

@@ -7,7 +7,7 @@
        <em>
            <asp:Literal ID="lblProgramDirectory" runat="server"></asp:Literal></em>
     </h3>
-    <div style="margin-left: 5px; margin-top: 10px;">
+    <div style=" margin: 10px; text-align: right;">
         <asp:Button ID="btnManageSubject" runat="server" Text="Manage Subjects" OnClick="btnManageSubject_Click" />
     </div>
     <%--   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -31,10 +31,40 @@
                                             +"&yId="+hidYearId.Value+"&sId="+hidSubYearId.Value
                                             +"&edit="+ hidEdit.Value %>'
                             Text='<%# Eval("Name") %>' />
+                        &nbsp;
                         <asp:Label ID="CodeLabel" runat="server" Text='<%# GetCode(Eval("Code")) %>' />
+                        &nbsp;
+                        &nbsp;
+                        <asp:Label ID="Label2" runat="server" ForeColor="#858575" Text='<%# GetElectiveText(Eval("IsElective")) %>' />
+
                         <br />
-                        Category:
-                        <asp:Label ID="SubjectCategoryIdLabel" runat="server" Text='<%# Eval("CategoryName") %>' />
+                        <table>
+                            <tr>
+                                <td style="width: 40px;">Category:
+                                </td>
+                                <td>
+                                    <asp:Label ID="SubjectCategoryIdLabel" runat="server" Text='<%# Eval("CategoryName") %>' />
+                                </td>
+                            </tr>
+                          <%--  <tr>
+                                <td style="width: 40px;">
+                                    Elective
+                                </td>
+                                <td>
+                                    <asp:CheckBox ID="CheckBox1" runat="server" 
+                                        Enabled="False"
+                                        Checked='<%# Eval("IsElective") %>'/>
+                                </td>
+                            </tr>--%>
+                            <tr>
+                                <td style="width: 40px;">Credit</td>
+                                <td>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Credit") %>' />
+                                    
+                                </td>
+                            </tr>
+                        </table>
+
                     </div>
                 </ItemTemplate>
                 <%--<SelectedItemStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />--%>
