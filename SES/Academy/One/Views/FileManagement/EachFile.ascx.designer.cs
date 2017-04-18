@@ -40,6 +40,33 @@ namespace One.Views.FileManagement {
         protected global::System.Web.UI.WebControls.Label lblDisplayName;
         
         /// <summary>
+        /// lnkFolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkFolder;
+        
+        /// <summary>
+        /// imgFolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgFolder;
+        
+        /// <summary>
+        /// lblDisplayNameFolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDisplayNameFolder;
+        
+        /// <summary>
         /// lnkDownload control.
         /// </summary>
         /// <remarks>
@@ -130,6 +157,33 @@ namespace One.Views.FileManagement {
         protected global::System.Web.UI.WebControls.Image imgCopy;
         
         /// <summary>
+        /// lblFileNotEditableDisplay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFileNotEditableDisplay;
+        
+        /// <summary>
+        /// spanPictureIndication control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanPictureIndication;
+        
+        /// <summary>
+        /// imgPictureIndication control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPictureIndication;
+        
+        /// <summary>
         /// hidFileId control.
         /// </summary>
         /// <remarks>
@@ -164,5 +218,14 @@ namespace One.Views.FileManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidIsFolder;
+        
+        /// <summary>
+        /// hidIsConstantAndNotEditable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidIsConstantAndNotEditable;
     }
 }

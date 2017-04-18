@@ -58,6 +58,7 @@ namespace One.Views.FileManagement
                         FileSizeInBytes = 0
                         ,
                         IsServerFile = IsServerFile
+                        ,SchoolId = user.SchoolId
                     };
                     if (ParentFolderId > 0)
                         folder.FolderId = ParentFolderId;

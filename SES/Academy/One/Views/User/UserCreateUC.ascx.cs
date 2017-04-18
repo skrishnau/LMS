@@ -16,6 +16,8 @@ namespace One.Views.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblSaveStatus.Visible = false;
+            lblSaveStatus.Text = "Couldn't save";
             valiUserName.ErrorMessage = "Required";
             //string editMode = "";
             if (!IsPostBack)
@@ -83,6 +85,7 @@ namespace One.Views.User
             var user = Page.User as CustomPrincipal;
             if (user != null)
             {
+                using (var fileHelper = new DbHelper.WorkingWithFiles())
                 using (var helper = new DbHelper.User())
                 {
                     if (helper.DoesUserNameExist(user.SchoolId, txtUserName.Text))
@@ -139,54 +142,77 @@ namespace One.Views.User
 
 
 
-                        var files = FilesDisplay.GetFiles();
-                        UserFile image = null;
-                        if (files != null)
+
+                        var userPhotoDirectory = fileHelper.GetUserPhotoFolder(user.SchoolId);
+                        if (userPhotoDirectory != null)
                         {
-                            if (files.Count >= 1)
+                            var files = FilesDisplay.GetFiles();
+                            UserFile image = null;
+                            if (files != null)
                             {
-                                var f = files[0];
-                                //foreach (var f in files)
+                                if (files.Count >= 1)
                                 {
-                                    var fileName = Path.GetFileName(f.FilePath);
-                                    image = new Academic.DbEntities.UserFile()
+
+                                    var f = files[0];
+                                    //foreach (var f in files)
                                     {
-                                        Id = f.Id,
-                                        CreatedBy = user.Id
-                                        ,
-                                        CreatedDate = DateTime.Now
-                                        ,
-                                        DisplayName = f.FileDisplayName //Path.GetFileName(imageFile.FileName)
-                                        ,
-                                        FileDirectory = DbHelper.StaticValues.UserImageDirectory //StaticValue.UserImageDirectory
-                                        ,
-                                        FileName = fileName
+                                        var fileName = Path.GetFileName(f.FilePath);
+                                        image = new Academic.DbEntities.UserFile()
+                                        {
+                                            Id = f.Id,
+                                            CreatedBy = user.Id
+                                            ,
+                                            CreatedDate = DateTime.Now
+                                            ,
+                                            DisplayName = f.FileDisplayName //Path.GetFileName(imageFile.FileName)
+                                            ,
+                                            FileDirectory = DbHelper.StaticValues.UserImageDirectory
+                                            //StaticValue.UserImageDirectory
+                                            ,
+                                            FileName = fileName
                                             //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
-                                        ,
-                                        FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
-                                        ,
-                                        FileType = f.FileType //imageFile.ContentType
-                                        ,
-                                        IconPath = f.IconPath
-                                        ,
-                                        //SubjectId = SubjectId
-                                    };
-                                    if (f.Id > 0)
-                                    {
-                                        image.ModifiedBy = user.Id;
-                                        image.ModifiedDate = DateTime.Now;
+                                            ,
+                                            FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
+                                            ,
+                                            FileType = f.FileType //imageFile.ContentType
+                                            ,
+                                            IconPath = f.IconPath
+                                            ,
+                                            SchoolId = user.SchoolId
+                                            ,
+                                            IsServerFile = true
+                                            ,
+                                            IsConstantAndNotEditable = false
+                                            ,
+                                            FolderId = userPhotoDirectory.Id
+                                            //SubjectId = SubjectId
+                                        };
+                                        if (f.Id > 0)
+                                        {
+                                            image.ModifiedBy = user.Id;
+                                            image.ModifiedDate = DateTime.Now;
+                                        }
                                     }
                                 }
+
+                            }
+                            var savedUser = helper.AddOrUpdateUser(createdUser, "0", image);
+
+                            if (savedUser != null)
+                            {
+                                Response.Redirect("List.aspx");
+                                //ResetTextAndCombos();
                             }
                         }
-
-                        var savedUser = helper.AddOrUpdateUser(createdUser, "0", image);
-
-                        if (savedUser != null)
+                        else
                         {
-                            Response.Redirect("List.aspx");
-                            //ResetTextAndCombos();
+                            //show error of "Folder unable to find"
+                            lblSaveStatus.Text = "'User Photos' directory not found.";
+                            lblSaveStatus.Visible = true;
+
                         }
+
+
                     }
                 }
             }

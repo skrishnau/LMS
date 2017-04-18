@@ -133,9 +133,70 @@ div.modules-heading {
             text-decoration: underline;
         }
 
+/*course menu*/
+.course-menu {
+    /*margin: 6px 4px;*/
+    /*padding: 6px;
+    border: 1px solid lightgrey;*/
+    -webkit-border-radius: 5px;
+    border-collapse: collapse;
+}
+
+
+.course-menu-current-earlier {
+    display: block;
+    border: 1px solid lightgrey;
+    margin-top: -1px;
+    color: #393939;
+    text-decoration: none;
+    padding: 6px 6px 6px 20px;
+}
+
+    .course-menu-current-earlier:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .course-menu-current-earlier:active {
+        text-decoration: underline;
+    }
+
+.course-menu-subjct-class {
+    display: block;
+    border: 1px solid lightgrey;
+    margin-top: -1px;
+    color: #393939;
+    text-decoration: none;
+    padding: 6px 6px 6px 20px;
+    font-family: "Helvetica Neue",monospace, Helvetica, Arial, sans-serif;
+    
+}
+
+    .course-menu-subjct-class:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .course-menu-subjct-class:active {
+        text-decoration: underline;
+    }
+
+
+/*course menu end*/
+
 .list-unmargined-selected-item {
     background-color: white;
     color: black;
+}
+
+.course-menu-selected-item {
+    background-color: white;
+    color: black;
+    display: block;
+    border: 1px solid lightgrey;
+    margin-top: -1px;
+    text-decoration: none;
+    padding: 6px 6px 6px 20px;
 }
 
 
@@ -215,6 +276,23 @@ div.modules-heading {
         color: black;
     }
 
+.list-item-file-listing, .list-item-file-listing:visited {
+    display: block;
+    margin: -1px 0 0;
+    /*padding: 6px;*/
+    border: 1px solid lightgrey;
+    /*margin-top: -1px;*/
+    color: #393939;
+    text-decoration: none;
+    /*background-color: lightgray;*/
+    /*-webkit-border-radius: 5px;*/
+}
+
+    .list-item-file-listing:hover {
+        background-color: #f5f5f5;
+        color: black;
+    }
+
 /*fontsize=1em ; font-weight:400;
     used in link*/
 .list-item-heading-normal, .list-item-heading-normal:visited {
@@ -284,7 +362,6 @@ div.modules-heading {
 
 .list-item-option {
     margin-left: 10px;
-
     /*padding-left: 10px;*/
     /*background-color: lightgray;*/
 }
@@ -294,7 +371,7 @@ div.modules-heading {
         /*margin: 0 5px;*/
         display: inline-block;
         text-decoration: none;
-        color:#393939
+        color: #393939;
     }
 
         .list-item-option a:hover {
@@ -369,6 +446,30 @@ div.modules-heading {
     /*#f5f5f5;*/
 
     .link-dark:active {
+        color: darkviolet;
+    }
+
+.link-folder {
+    color: #393939;
+    display: inline-block;
+    font-size: 16px;
+    padding: 0 3px;
+    font-weight: 400;
+    vertical-align: central;
+    text-decoration: none;
+}
+
+    .link-folder:hover {
+        color: black;
+        font-weight: 500;
+        text-decoration: underline;
+        display: inline-block;
+        background-color: #f1f1f1;
+        text-decoration: underline;
+    }
+    /*#f5f5f5;*/
+
+    .link-folder:active {
         color: darkviolet;
     }
 

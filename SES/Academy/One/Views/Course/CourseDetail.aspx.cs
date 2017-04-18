@@ -30,7 +30,8 @@ namespace One.Views.Course
                         {
                             #region Edit Classes initialize
 
-                            var edit = Request.QueryString["edit"];
+                            var edit = Session["editMode"] as string;// Session["edit"];// Request.QueryString["edit"];
+
                             if (edit != null)
                             {
 
@@ -38,18 +39,18 @@ namespace One.Views.Course
                                 if (edit == "1")
                                 {
                                     Edit = true;
-                                    lnkEditClasses.NavigateUrl = "~/Views/Course/CourseDetail.aspx?cId=" +
-                                                                    csId + "&edit=0";
-                                    lblEditClasses.Text = "Exit edit";
+                                    //lnkEditClasses.NavigateUrl = "~/Views/Course/CourseDetail.aspx?cId=" +
+                                    //                                csId + "&edit=0";
+                                    //lblEditClasses.Text = "Exit edit";
                                     lnkNewClass.Visible = true;
                                     //lnkAdd.Visible = true;
                                 }
                                 else
                                 {
                                     Edit = false;
-                                    lnkEditClasses.NavigateUrl = "~/Views/Course/CourseDetail.aspx?cId=" +
-                                                                    csId + "&edit=1";
-                                    lblEditClasses.Text = "Edit Classes";
+                                    //lnkEditClasses.NavigateUrl = "~/Views/Course/CourseDetail.aspx?cId=" +
+                                    //                                csId + "&edit=1";
+                                    //lblEditClasses.Text = "Edit Classes";
                                     lnkNewClass.Visible = false;
                                     //lnkAdd.Visible = false;
                                 }
@@ -57,9 +58,9 @@ namespace One.Views.Course
                             else
                             {
                                 Edit = false;
-                                lnkEditClasses.NavigateUrl = "~/Views/Course/CourseDetail.aspx?cId=" +
-                                                                    csId + "&edit=1";
-                                lblEditClasses.Text = "Edit Classes";
+                                //lnkEditClasses.NavigateUrl = "~/Views/Course/CourseDetail.aspx?cId=" +
+                                //                                    csId + "&edit=1";
+                                //lblEditClasses.Text = "Edit Classes";
                                 lnkNewClass.Visible = false;
                                 //lnkAdd.Visible = false;
                             }
@@ -71,7 +72,7 @@ namespace One.Views.Course
                             pnlClasses.Visible = true;
                             LoadInitialData(courseId);
 
-                            lnkEditClasses.Visible = true;
+                            //lnkEditClasses.Visible = true;
                             //lnkNewClass.Visible = editable;
 
 
@@ -84,7 +85,7 @@ namespace One.Views.Course
                             pnlClasses.Visible = true;
                             LoadInitialData(courseId);
 
-                            lnkEditClasses.Visible = false;
+                            //lnkEditClasses.Visible = false;
                             lnkNewClass.Visible = false;
                             Edit = false;
                         }
@@ -96,7 +97,7 @@ namespace One.Views.Course
                             dlistClasses.Visible = false;
                             pnlClasses.Visible = false;
 
-                            lnkEditClasses.Visible = false;
+                            //lnkEditClasses.Visible = false;
                             lnkNewClass.Visible = false;
                             Edit = false;
                         }

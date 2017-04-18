@@ -22,15 +22,6 @@ namespace One.Views.Class {
         protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
         
         /// <summary>
-        /// lblClassName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblClassName;
-        
-        /// <summary>
         /// lblCourseName control.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Label lblCourseName;
         
         /// <summary>
+        /// lblClassName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClassName;
+        
+        /// <summary>
         /// lnkReport control.
         /// </summary>
         /// <remarks>
@@ -47,6 +47,15 @@ namespace One.Views.Class {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkReport;
+        
+        /// <summary>
+        /// lnkMarkCompletion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkMarkCompletion;
         
         /// <summary>
         /// lblStartDate control.

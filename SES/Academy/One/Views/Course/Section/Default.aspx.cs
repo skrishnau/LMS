@@ -19,8 +19,6 @@ namespace One.Views.Course.Section
             {
                 var id = Request.QueryString["SubId"];
 
-
-
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
@@ -33,7 +31,7 @@ namespace One.Views.Course.Section
                         _path = Request.Url.AbsolutePath + "?SubId=" + id;
                         if (edit != null)
                         {
-                            
+
                             if (edit == "1")
                             {
                                 //edit on all sections
@@ -90,7 +88,11 @@ namespace One.Views.Course.Section
 
         private void LoadCourse(int courseId)
         {
+            var user = Page.User as CustomPrincipal;
+            
             var edit = hidEdit.Value;
+            if(user!=null)
+            using(var cHelper = new DbHelper.Classes())
             using(var strHelper = new DbHelper.Structure())
             using (var helper = new DbHelper.Subject())
             {
@@ -171,6 +173,8 @@ namespace One.Views.Course.Section
                     //uncomment
                     ListOfSectionsInCourseUC1.CourseId = Id;
                     lblPageTitle.Text = sub.FullName;
+
+                    lblClassInformation.Text = cHelper.GetCourseClassesAvailabilityForUser(user.Id, sub.Id);
                 }
                 //CourseDetailUc1.
             }

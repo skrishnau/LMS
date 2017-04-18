@@ -35,6 +35,21 @@ namespace One.Values.MemberShip
             return false;
         }
 
+        /// <summary>
+        /// checks whether the user is course editor or manager or admin or teacher
+        /// </summary>
+        public bool IsElligibleForManagement
+        {
+            get
+            {
+                var roles = GetRoles();
+               return roles.Contains(DbHelper.StaticValues.Roles.CourseEditor.ToString())
+                                                            || roles.Contains(DbHelper.StaticValues.Roles.Manager.ToString())
+                                                            || roles.Contains(DbHelper.StaticValues.Roles.Admin.ToString())
+                                                            || roles.Contains("teacher");
+            }
+        }
+
         private Array Roles { get; set; }
 
         public List<string> GetRoles()

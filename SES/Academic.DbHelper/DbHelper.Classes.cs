@@ -34,124 +34,128 @@ namespace Academic.DbHelper
 
             //used
             public Academic.DbEntities.Class.SubjectClass GetSubjectClassReport(int subjectClassId,
-                out List<StudentReportViewModel> studentReports, out List<IdAndName> activityNames )
+                out List<StudentReportViewModel> studentReports, out List<IdAndName> activityNames)
             {
-                using(var actresHelper = new DbHelper.ActAndRes())
+                using (var actresHelper = new DbHelper.ActAndRes())
                 using (var gradeHelper = new DbHelper.Grade())
                 {
-                    
-                studentReports = new List<StudentReportViewModel>();
-                activityNames = new List<IdAndName>();
-                var cls = Context.SubjectClass.Find(subjectClassId);
-                if (cls != null)
-                {
-                    var actreses = cls.ActivityClasses.Select(x => x.ActivityResource).ToList();
-                    var userClses = cls.ClassUsers.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false)).ToList();
-                    for (var a=0;a<actreses.Count;a++)
-                    {
-                       activityNames.Add(new IdAndName()
-                       {
-                           Id = actreses[a].Id
-                           ,Name = actreses[a].Name
-                           ,IdInString = (actreses[a].ActivityResourceId).ToString()
-                           ,Value=(actreses[a].WeightInGradeSheet??0).ToString("F")
-                       });
-                    }
 
-                    foreach (var usrcls in userClses)
+                    studentReports = new List<StudentReportViewModel>();
+                    activityNames = new List<IdAndName>();
+                    var cls = Context.SubjectClass.Find(subjectClassId);
+                    if (cls != null)
                     {
-                        var std = new StudentReportViewModel()
+                        var actreses = cls.ActivityClasses.Select(x => x.ActivityResource).ToList();
+                        var userClses = cls.ClassUsers.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false)).ToList();
+                        for (var a = 0; a < actreses.Count; a++)
                         {
-                            StudentId = usrcls.User.Id,
-                            StudentName = (string.IsNullOrEmpty(usrcls.User.FirstName) ? "" : usrcls.User.FirstName)
-                                            + (string.IsNullOrEmpty(usrcls.User.MiddleName) ? "" : usrcls.User.MiddleName)
-                                            + (string.IsNullOrEmpty(usrcls.User.LastName) ? "" : usrcls.User.LastName)
-                                            ,
-                        };
-
-                        var image = usrcls.User.UserImage;
-                        if (image!= null)
-                        {
-                            std.ImageUrl = image.FileDirectory + image.FileName;
+                            activityNames.Add(new IdAndName()
+                            {
+                                Id = actreses[a].Id
+                                ,
+                                Name = actreses[a].Name
+                                ,
+                                IdInString = (actreses[a].ActivityResourceId).ToString()
+                                ,
+                                Value = (actreses[a].WeightInGradeSheet ?? 0).ToString("F")
+                            });
                         }
-                        var st =usrcls.User.Student.FirstOrDefault();
-                        std.CRN = st != null ? st.CRN : "";
-                        var activities = new List<ActivityViewModel>();
-                        std.ActivityViewModels = activities;
-                        var total = (float) 0.0;
 
-                        
-
-                        for(var b=0;b<actreses.Count;b++)
+                        foreach (var usrcls in userClses)
                         {
-                            var ar = actreses[b];
-                            var actVm = new ActivityViewModel()
+                            var std = new StudentReportViewModel()
                             {
-                                Id = ar.Id
-                                ,Name=ar.Name
-                                
-                                //,ActivityResourceId = ar.ActivityResourceId
+                                StudentId = usrcls.User.Id,
+                                StudentName = (string.IsNullOrEmpty(usrcls.User.FirstName) ? "" : usrcls.User.FirstName)
+                                                + (string.IsNullOrEmpty(usrcls.User.MiddleName) ? "" : usrcls.User.MiddleName)
+                                                + (string.IsNullOrEmpty(usrcls.User.LastName) ? "" : usrcls.User.LastName)
+                                                ,
                             };
-                            var grade = ar.ActivityGradings.FirstOrDefault(x => x.UserClassId == usrcls.Id);
-                            if (grade != null)
-                            {
-                                if (grade.ObtainedGradeId != null)//value type
-                                {
-                                    if (grade.ObtainedGrade.Grade.GradeValueIsInPercentOrPostition ?? false)
-                                    {
-                                        //percent
-                                        var obtRelative = (float)((1.0 * (grade.ObtainedGrade.EquivalentPercentOrPostition ?? 0) / 100.00)*(1.0 * ar.WeightInGradeSheet ?? 0));
-                                        actVm.ObtainedMarks = obtRelative.ToString("F");
-                                        total += obtRelative;
-                                    }
-                                    else
-                                    {
-                                        //position
-                                        var obt=
-                                            (gradeHelper.ConvertPositionToPercent(grade.ObtainedGrade.Grade,
-                                               (int)(grade.ObtainedGrade.EquivalentPercentOrPostition??0)));
-                                        var obtRelative = (float)((1.0 * (obt) / 100.00) * (1.0 * ar.WeightInGradeSheet ?? 0));
-                                        actVm.ObtainedMarks = obtRelative.ToString("F");
-                                        total += obtRelative;
-                                    }
 
-                                }
-                                else//range type
+                            var image = usrcls.User.UserImage;
+                            if (image != null)
+                            {
+                                std.ImageUrl = image.FileDirectory + image.FileName;
+                            }
+                            var st = usrcls.User.Student.FirstOrDefault();
+                            std.CRN = st != null ? st.CRN : "";
+                            var activities = new List<ActivityViewModel>();
+                            std.ActivityViewModels = activities;
+                            var total = (float)0.0;
+
+
+
+                            for (var b = 0; b < actreses.Count; b++)
+                            {
+                                var ar = actreses[b];
+                                var actVm = new ActivityViewModel()
                                 {
-                                    
-                                    if (ar.ActivityResourceType == (byte) Enums.Activities.Assignment)
+                                    Id = ar.Id
+                                    ,
+                                    Name = ar.Name
+
+                                    //,ActivityResourceId = ar.ActivityResourceId
+                                };
+                                var grade = ar.ActivityGradings.FirstOrDefault(x => x.UserClassId == usrcls.Id);
+                                if (grade != null)
+                                {
+                                    if (grade.ObtainedGradeId != null)//value type
                                     {
-                                        var ass = actresHelper.GetAssignment(ar.ActivityResourceId);
-                                        if (ass != null)
+                                        if (grade.ObtainedGrade.Grade.GradeValueIsInPercentOrPostition ?? false)
                                         {
-                                            //var minValue = ass.MaximumGrade
-                                            if (!ass.GradeType.RangeOrValue)
+                                            //percent
+                                            var obtRelative = (float)((1.0 * (grade.ObtainedGrade.EquivalentPercentOrPostition ?? 0) / 100.00) * (1.0 * ar.WeightInGradeSheet ?? 0));
+                                            actVm.ObtainedMarks = obtRelative.ToString("F");
+                                            total += obtRelative;
+                                        }
+                                        else
+                                        {
+                                            //position
+                                            var obt =
+                                                (gradeHelper.ConvertPositionToPercent(grade.ObtainedGrade.Grade,
+                                                   (int)(grade.ObtainedGrade.EquivalentPercentOrPostition ?? 0)));
+                                            var obtRelative = (float)((1.0 * (obt) / 100.00) * (1.0 * ar.WeightInGradeSheet ?? 0));
+                                            actVm.ObtainedMarks = obtRelative.ToString("F");
+                                            total += obtRelative;
+                                        }
+
+                                    }
+                                    else//range type
+                                    {
+
+                                        if (ar.ActivityResourceType == (byte)Enums.Activities.Assignment)
+                                        {
+                                            var ass = actresHelper.GetAssignment(ar.ActivityResourceId);
+                                            if (ass != null)
                                             {
-                                                //ass.GradeType.m
+                                                //var minValue = ass.MaximumGrade
+                                                if (!ass.GradeType.RangeOrValue)
+                                                {
+                                                    //ass.GradeType.m
+                                                }
                                             }
                                         }
-                                    }
-                                    var obtRelative = 
-                                        (float)((1.0 * (grade.ObtainedGradeMarks ?? 0) / 100.00) * (1.0 * ar.WeightInGradeSheet ?? 0));
+                                        var obtRelative =
+                                            (float)((1.0 * (grade.ObtainedGradeMarks ?? 0) / 100.00) * (1.0 * ar.WeightInGradeSheet ?? 0));
 
-                                    actVm.ObtainedMarks = obtRelative.ToString("F");
-                                    total += obtRelative;
+                                        actVm.ObtainedMarks = obtRelative.ToString("F");
+                                        total += obtRelative;
+                                    }
                                 }
+                                else
+                                {
+                                    actVm.ObtainedMarks = "-";
+                                }
+
+                                activities.Add(actVm);
                             }
-                            else
-                            {
-                                actVm.ObtainedMarks = "-";
-                            }
-                            
-                            activities.Add(actVm);
+                            std.TotalMarks = total.ToString("F");
+                            studentReports.Add(std);
                         }
-                        std.TotalMarks = total.ToString("F");
-                        studentReports.Add(std);
+                        return cls;
                     }
-                    return cls;
-                }
-                studentReports = null;
-                return null;
+                    studentReports = null;
+                    return null;
                 }
             }
 
@@ -848,6 +852,59 @@ namespace Academic.DbHelper
 
             }
 
+
+            public string GetCourseClassesAvailabilityForUser(int userId, int subjectId)
+            {
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                        //.Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) //&& !(x.SessionComplete ?? false)) -- return all
+                        .FirstOrDefault(x => !(x.SubjectClass.Void ?? false)
+                                &&
+                            ((x.SubjectClass.SubjectId == null) ? (x.SubjectClass.SubjectStructure.SubjectId == subjectId) :
+                            (x.SubjectClass.SubjectId == subjectId))
+                        );
+                    if (subSession != null)
+                    {
+                        if (!(subSession.SubjectClass.SessionComplete ?? false) && (subSession.SubjectClass.EndDate!=null &&subSession.SubjectClass.EndDate.Value>=DateTime.Now ))
+                        {
+                            return "You are currently enrolled in this course";
+                        }
+                        return "You have already completed this course.";
+                    }
+                    //get classes of the subject
+                    var subject = Context.Subject.Find(subjectId);
+                    if (subject != null)
+                    {
+                        var classes = subject.SubjectClasses.Where(x => !(x.SessionComplete ?? false) //|| (subSession.SubjectClass.EndDate != null && subSession.SubjectClass.EndDate.Value > DateTime.Now)
+                            && x.EnrollmentMethod == 2);
+                        if (classes.Any())
+                        {
+                            // show the available classes
+                            return "Open class(es) available. <a href='#'>Join here</a>.";
+                        }
+                        else
+                        {
+                            return "No open class(es) available for now";
+                        }
+                    }
+
+
+
+
+
+                    //if(subSession.Where(x=>x.GetName))
+                    //return subSession;
+                }
+                return null;
+                //return new List<DbEntities.Class.SubjectClass>();
+            }
+
+            public void GetClassesOfUser(int userId, int subjectId)
+            {
+                //Context.Subject.Where(x=>x.)
+            }
 
 
             public UserClass GetUserClass(int userClassId)

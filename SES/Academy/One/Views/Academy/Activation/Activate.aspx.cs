@@ -21,9 +21,11 @@ namespace One.Views.Academy.Activation
                 {
                     var aId = Request.QueryString["aId"];
                     var sId = Request.QueryString["sId"];
+                    var clsId = Request.QueryString["clsId"];
                     var task = Request.QueryString["task"];
                     var user = Page.User as CustomPrincipal;
                     if (user != null)
+                        using(var clsHelper = new DbHelper.Classes())
                         using (var helper = new DbHelper.AcademicYear())
                         {
                             if (aId != null)
@@ -190,6 +192,16 @@ namespace One.Views.Academy.Activation
 
                                 #endregion
                             }
+                            else if (clsId != null)
+                            {
+                                var classId = Convert.ToInt32(clsId);
+                                var cls = clsHelper.GetSubjectSession(classId);
+                                if (cls != null && task != null)
+                                {
+                                    
+                                }
+                            }
+
                             else Response.Redirect("~/Views/Academy/List.aspx");
                         }
                 }

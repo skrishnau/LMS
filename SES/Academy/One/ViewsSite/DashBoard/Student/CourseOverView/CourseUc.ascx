@@ -2,8 +2,9 @@
 <%-- class="item" --%>
 
 <div class="auto-st2" style="padding: 10px;">
-    <div class="item-heading">
-        <asp:Hyperlink ID="lblTitle" CssClass="link" runat="server" Text="Heading" ></asp:Hyperlink>
+    <%-- item-heading --%>
+    <div class="list-item-heading">
+        <asp:Hyperlink ID="lblTitle" CssClass="list-item-heading" runat="server" Text="Heading" ></asp:Hyperlink>
        <%--<span style="font-size:1em" >--%>
          <%--  <asp:LinkButton ID="lnkWithdraw" runat="server" OnClick="lnkWithdraw_Click">
             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Participation/out.png" 

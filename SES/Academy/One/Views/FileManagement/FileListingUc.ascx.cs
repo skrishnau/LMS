@@ -60,6 +60,7 @@ namespace One.Views.FileManagement
 
         private void LoadFileResource(int folderId)
         {
+            var type = (IsServerFile ? "server" : "private");
             var user = Page.User as CustomPrincipal;
             if (user != null)
             {
@@ -75,26 +76,26 @@ namespace One.Views.FileManagement
                             new IdAndName()
                             {
                                 Id=0 ,Name= (isServerFile?"Server":"Private") + " files",Void = true
-                                ,Value = "~/Views/FileManagement/?folId=0"
+                                ,Value = "~/Views/FileManagement/?folId=0&type="+type
                             }
                         };
 
                     if (folderId == 0)
                     {
-                        fileR = helper.ListUserFiles(user.Id, folderId, isServerFile);
+                        fileR = helper.ListUserFiles(user.Id, folderId, isServerFile, user.SchoolId);
                     }
                     else
                     {
-                        var parent = helper.GetFolderOfFilesList(user.Id, folderId, isServerFile);
+                        var parent = helper.GetFolderOfFilesList(user.Id, folderId, isServerFile, user.SchoolId);
                         if (parent == null)
                         {
-                            Response.Redirect("~/Views/FileManagement/?folId=0", false);
+                            Response.Redirect("~/Views/FileManagement/?folId=0&type=" + type, false);
                             return;
                         }
                         else
                         {
-                            fileR = parent.FilesInThisFolder.Where(x=>x.IsServerFile==isServerFile)
-                                .OrderBy(x=>x.DisplayName)
+                            fileR = parent.FilesInThisFolder.Where(x => x.IsServerFile == isServerFile)
+                                .OrderBy(x => x.DisplayName)
                                 .ToList();
                             UserFile temp = parent;
 
@@ -108,7 +109,7 @@ namespace One.Views.FileManagement
                                     Name = temp.DisplayName,
                                     Void = true
                                     ,
-                                    Value = "~/Views/FileManagement/?folId=" + (temp.Id)
+                                    Value = "~/Views/FileManagement/?folId=" + (temp.Id) + "&type=" + type
                                 });
                                 temp = temp.Folder;
                             } while (temp != null);
@@ -139,11 +140,12 @@ namespace One.Views.FileManagement
                                     Id = f.Id,
                                     Visible = true,
                                     FileType = f.FileType,
-                                    IconPath = DbHelper.StaticValues.FolderIconDirectory,
+                                    IconPath = (f.IsConstantAndNotEditable ?? false) ? DbHelper.StaticValues.FolderIconLockedDirectory : DbHelper.StaticValues.FolderIconDirectory,
                                     FilePath = f.FileDirectory + "/" + f.FileName,
                                     FileDisplayName = f.DisplayName,
                                     FileSizeInBytes = f.FileSizeInBytes,
-                                    LocalId = i.ToString()
+                                    LocalId = i.ToString(),
+                                    IsConstantAndNotEditable = f.IsConstantAndNotEditable ?? false
                                 };
                                 PopulateSingleData(file, true);
                                 i++;
@@ -169,11 +171,12 @@ namespace One.Views.FileManagement
                                     Id = f.Id,
                                     Visible = true,
                                     FileType = f.FileType,
-                                    IconPath = f.IconPath,
+                                    IconPath = string.IsNullOrEmpty(f.IconPath) ? f.FileDirectory + "/" + f.FileName : f.IconPath,
                                     FilePath = f.FileDirectory + "/" + f.FileName,
                                     FileDisplayName = f.DisplayName,
                                     FileSizeInBytes = f.FileSizeInBytes,
-                                    LocalId = i.ToString()
+                                    LocalId = i.ToString(),
+                                    IsConstantAndNotEditable = f.IsConstantAndNotEditable ?? false
                                 };
                                 PopulateSingleData(file, false);
                                 i++;
@@ -210,14 +213,20 @@ namespace One.Views.FileManagement
             fileUc.ID = "file_" + file.LocalId;
             var fileName = file.FileDisplayName;
             var wrapedName = "";
-            if (fileName.Length > 7)
+            var lengthToCheck = file.FileType.ToLower().Equals("folder") ? 12 : 9;
+
+            if (fileName.Length > lengthToCheck)
             {
-                wrapedName = fileName.Substring(0, 7) + "...";
+                wrapedName = fileName.Substring(0, lengthToCheck) + "...";
             }
             else
-            { wrapedName = fileName; }
+            {
+                wrapedName = fileName;
+            }
+
+
             fileUc.SetData(file.IconPath, wrapedName, file.Id, file.LocalId, file.FilePath
-                , fileName, isFolder, true);
+                , fileName, isFolder, true, file.IsConstantAndNotEditable, file.FileType);
             fileUc.FileClicked += fileUc_FileClicked;
             fileUc.RenameClicked += fileUc_RenameClicked;
             fileUc.DeleteClicked += fileUc_DeleteClicked;
@@ -286,7 +295,7 @@ namespace One.Views.FileManagement
             {
                 //redirect
                 if (e.Check)//check has IsFolder value
-                    Response.Redirect("~/Views/FileManagement/?folId=" + e.Id, true);
+                    Response.Redirect("~/Views/FileManagement/?folId=" + e.Id + "&type=" + (IsServerFile ? "server" : "private"), true);
             }
 
 

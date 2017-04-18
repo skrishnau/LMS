@@ -22,21 +22,60 @@ namespace One.Views.FileManagement
 
 
         public void SetData(string iconImageUrl, string displayName, int fileId, string localId, string fileUrl,
-            string fullFileNameForToolTip, bool isFolder, bool enableFileImageClick)
+            string fullFileNameForToolTip, bool isFolder, bool enableFileImageClick, bool isConstantAndNotEditable, string fileType)
         {
-            imgFile.ImageUrl = iconImageUrl;
-            lblDisplayName.Text = displayName;
-            hidFileId.Value = fileId.ToString();
-            hidLocalId.Value = localId;
-            hidFileUrl.Value = fileUrl;
-            lblDisplayName.ToolTip = fullFileNameForToolTip;
-            lnkFile.Enabled = enableFileImageClick;
             IsFolder = isFolder;
+            IsConstantAndNotEditable = isConstantAndNotEditable;
+
             if (isFolder)
             {
                 lnkDownload.Visible = false;
+                lnkFolder.Visible = true;
 
+                imgFolder.ImageUrl = iconImageUrl;
+                lblDisplayNameFolder.Text = displayName;
+                lblDisplayNameFolder.ToolTip = fullFileNameForToolTip;
+                hidFileId.Value = fileId.ToString();
+                hidLocalId.Value = localId;
+                hidFileUrl.Value = fileUrl;
+                lnkFolder.Enabled = enableFileImageClick;
+
+                lblFileNotEditableDisplay.Visible = isConstantAndNotEditable;
+                if (isConstantAndNotEditable)
+                {
+                    lnkDelete.Visible = false;
+                    lnkRename.Visible = false;
+                    lnkCopy.Visible = false;
+                    lnkMove.Visible = false;
+                }
             }
+            else
+            {
+                if (fileType.ToLower().Contains("image"))
+                {
+                    imgPictureIndication.Visible = true;
+                    spanPictureIndication.Visible = true;
+                }
+                lnkFile.Visible = true;
+                imgFile.ImageUrl = iconImageUrl;
+                lblDisplayName.Text = displayName;
+                hidFileId.Value = fileId.ToString();
+                hidLocalId.Value = localId;
+                hidFileUrl.Value = fileUrl;
+                lblDisplayName.ToolTip = fullFileNameForToolTip;
+                lnkFile.Enabled = enableFileImageClick;
+
+                lblFileNotEditableDisplay.Visible = isConstantAndNotEditable;
+                if (isConstantAndNotEditable)
+                {
+                    lnkDelete.Visible = false;
+                    lnkRename.Visible = false;
+                    lnkCopy.Visible = false;
+                    lnkMove.Visible = false;
+                }
+            }
+
+           
         }
 
         public int FileId
@@ -50,6 +89,11 @@ namespace One.Views.FileManagement
             get { return Convert.ToBoolean(hidIsFolder.Value); }
             set { hidIsFolder.Value = value.ToString(); }
         }
+        public bool IsConstantAndNotEditable
+        {
+            get { return Convert.ToBoolean(hidIsConstantAndNotEditable.Value); }
+            set { hidIsConstantAndNotEditable.Value = value.ToString(); }
+        }
 
         protected void lnkFile_OnClick(object sender, EventArgs e)
         {
@@ -58,7 +102,7 @@ namespace One.Views.FileManagement
                 FileClicked(this, new IdAndNameEventArgs()
                 {
                     Id = FileId,
-                    Name=lblDisplayName.ToolTip,
+                    Name = lblDisplayName.ToolTip,
                     Check = IsFolder
                     //RefIdString = hidIsFolder.Value
                 });
@@ -98,7 +142,7 @@ namespace One.Views.FileManagement
             {
                 DeleteClicked(this, new IdAndNameEventArgs()
                 {
-                    Name = lblDisplayName.ToolTip
+                    Name = lnkFile.Visible?lblDisplayName.ToolTip:lblDisplayNameFolder.ToolTip
                     ,
                     Id = FileId
                     ,

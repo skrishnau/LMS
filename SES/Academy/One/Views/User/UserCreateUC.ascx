@@ -6,7 +6,7 @@
 <div class="data-entry-body">
 
     <div>
-        <asp:Label ID="lblSaveStatus" runat="server" Text="Label" BackColor="#6666FF" Visible="False"></asp:Label>
+        <asp:Label ID="lblSaveStatus" runat="server" Text="Couldn't save" BackColor="#6666FF" Visible="False"></asp:Label>
         <asp:HiddenField ID="hidEditMode" runat="server" Value="New" />
         <%--<asp:DropDownList ID="cmbRole" runat="server" Height="20px" Width="126px" Visible="false"></asp:DropDownList>--%>
         <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />

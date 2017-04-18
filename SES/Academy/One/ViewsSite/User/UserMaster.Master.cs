@@ -26,6 +26,7 @@ namespace One.ViewsSite.User
                     lnkLoginName.Text = user.UserName;
                     if (!IsPostBack)
                     {
+                        CoursesMenuUc1.UserId = user.Id;
                         //using(var fileHelper = new DbHelper.WorkingWithFiles())
                         //CoursesUc.UserId = user.Id;
                         //EarlierUc.UserId = user.Id;

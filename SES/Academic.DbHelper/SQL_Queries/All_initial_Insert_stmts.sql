@@ -61,7 +61,10 @@ GO
 
 
 
---====================== ROLES =================================--
+--====================== Default Folders =================================--
+
+--add user photo folder
+INSERT INTO [dbo].[UserFile] ([DisplayName],[FileName],[FileDirectory],[FileSizeInBytes],[FileType],[CreatedDate],[ModifiedDate],[CreatedBy],[ModifiedBy],[Void],[IconPath],[SubjectId],[Discriminator],[IsServerFile],[IsFolder],[FolderId],[IsConstantAndNotEditable]) VALUES('User Photos',null,null,0,'Folder',GETDATE(),null,null,null,null,null,null,'UserFile',1,1,null,1)
 
 
 

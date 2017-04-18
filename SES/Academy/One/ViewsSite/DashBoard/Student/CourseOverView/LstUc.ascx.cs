@@ -83,13 +83,20 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                         List<Academic.DbEntities.Subjects.Subject> subjectsArray;
                         if (hidLoadType.Value == "earlier")
                         {
-                            subjectsArray = helper.ListEarlierSubjectClasses(user.Id)
-                                .Select(x => (x.IsRegular) ? x.SubjectStructure.Subject : x.Subject).ToList();
+                            var subArray = helper.GetEarlierAndCurrentCourseAndClassesForManagerAndTeacher(user.Id,
+                                false);
+                            subjectsArray = subArray[1].Keys.ToList();
+
+                            //subjectsArray = helper.ListEarlierSubjectClasses(user.Id)
+                            //    .Select(x => (x.IsRegular) ? x.SubjectStructure.Subject : x.Subject).ToList();
                         }
                         else
                         {
-                            subjectsArray = helper.ListCurrentSubjectClasses(user.Id)
-                                .Select(x => (x.IsRegular) ? x.SubjectStructure.Subject : x.Subject).ToList();
+                            var subArray = helper.GetEarlierAndCurrentCourseAndClassesForManagerAndTeacher(user.Id,
+                              true);
+                            subjectsArray = subArray[0].Keys.ToList();
+                            //subjectsArray = helper.ListCurrentSubjectClasses(user.Id)
+                            //    .Select(x => (x.IsRegular) ? x.SubjectStructure.Subject : x.Subject).ToList();
                         }
                         //foreach (var c in subjects[loadType])
                         //foreach (var c in subjectsArray[loadType])
@@ -118,10 +125,12 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
 
                             //if ()
                             {
-                                elligible = roles.Contains(DbHelper.StaticValues.Roles.CourseEditor.ToString())
-                                                            || roles.Contains(DbHelper.StaticValues.Roles.Manager.ToString())
-                                                            || roles.Contains(DbHelper.StaticValues.Roles.Admin.ToString())
-                                                            || roles.Contains("teacher");
+                                elligible = user.IsElligibleForManagement;
+                                
+                                //roles.Contains(DbHelper.StaticValues.Roles.CourseEditor.ToString())
+                                //                        || roles.Contains(DbHelper.StaticValues.Roles.Manager.ToString())
+                                //                        || roles.Contains(DbHelper.StaticValues.Roles.Admin.ToString())
+                                //                        || roles.Contains("teacher");
 
                             }
                             //Messages
@@ -160,7 +169,7 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                                                             if (thisIcon != null)
                                                             {
                                                                 cuc.ImageLink = thisIcon.IconPath;
-                                                                cuc.Text = "You have new " + (thisIcon.Name);
+                                                                cuc.Text = @"You have new  """ + (thisIcon.Name)+@"""";
                                                                 cuc.NavigateUrl = navigationUrl + "#section_" + sec.Id;
                                                                 cuc.ToolTip = act.Name;
                                                                 uc.AddMessages(cuc);
@@ -178,7 +187,7 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                                                         if (thisIcon != null)
                                                         {
                                                             cuc.ImageLink = thisIcon.IconPath;
-                                                            cuc.Text = "You have new " + (thisIcon.Name);
+                                                            cuc.Text = "You have new \"" + (thisIcon.Name)+"\"";
                                                             //cuc.NavigateUrl = thisIcon.ViewUrl
                                                             //                    + "?SubId=" + c.Id +
                                                             //                    "&arId=" + act.ActivityResourceId +

@@ -17,6 +17,7 @@
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <%--<link href="../../Content/CSSes/TableStyles.css" rel="stylesheet" />--%>
+    <link href="../../Content/CSSes/ToolTip.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="title">

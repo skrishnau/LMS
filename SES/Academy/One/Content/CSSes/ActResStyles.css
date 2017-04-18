@@ -17,11 +17,11 @@ div.course-act-res-whole-in-edit-mode {
     }
 
 .act-res-course-title {
-    font-family:  Verdana, Geneva,Tahoma, sans-serif,Helvetica;
+    /*font-family:  Verdana, Geneva,Tahoma, sans-serif,Helvetica;*/
     text-align: left;
     margin-top: 3px;
     margin-bottom: 10px;
-    font-size: 2em;
+    font-size: 2.1em;
     font-weight: 400;
 
     color: darkslategray;

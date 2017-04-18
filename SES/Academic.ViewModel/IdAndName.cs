@@ -47,6 +47,8 @@ namespace Academic.ViewModel
         public string FilePath { get; set; }
 
         public bool Visible { get; set; } 
+
+        public bool IsConstantAndNotEditable { get; set; }
     }
 
     public class IdAndNameEventArgs:EventArgs

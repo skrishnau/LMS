@@ -75,8 +75,6 @@ namespace One.ViewsSite.User.ModulesUc
         {
             using (var helper = new DbHelper.Subject())
             {
-
-
                 var userClasses = helper.ListCurrentUserClasses(UserId);
 
                 #region Manager Classes
@@ -93,7 +91,12 @@ namespace One.ViewsSite.User.ModulesUc
                         Page.LoadControl("~/ViewsSite/User/ModulesUc/Course/ManagerCourseUc.ascx");
                     mngUc.SetData(subjGroup.Key.Id, subjGroup.Key.ShortName, subjGroup.Key.FullName, subjGroup.ToList());
 
-
+                    foreach (var uclass in subjGroup)
+                    {
+                       // var mngUcClass = (Course.ManagerCourseUc)
+                       //Page.LoadControl("~/ViewsSite/User/ModulesUc/Course/ManagerCourseUc.ascx");
+                       // mngUc.SetData(subjGroup.Key.Id, subjGroup.Key.ShortName, subjGroup.Key.FullName, subjGroup.ToList());
+                    }
                     pnlRegularCourses.Controls.Add(mngUc);
                 }
 

@@ -9,6 +9,7 @@ using System.Web.Caching;
 using Academic.Database;
 using Academic.DbEntities.AcacemicPlacements;
 using Academic.DbEntities.Batches;
+using Academic.DbEntities.Class;
 using Academic.DbEntities.Students;
 using Academic.DbEntities.Subjects;
 using Academic.ViewModel;
@@ -625,7 +626,7 @@ namespace Academic.DbHelper
                                     Credit = x.Credit
                                 });
                             });
-                return list.OrderBy(x=>x.Name).ToList();
+                return list.OrderBy(x => x.Name).ToList();
             }
 
 
@@ -658,7 +659,13 @@ namespace Academic.DbHelper
                 return new List<DbEntities.Subjects.Subject>();
             }
 
-            //Used--- Latest version -- 1.0 :):):)
+            //Used--- Latest version -- 1.0 :):):) -- DEPRICATED --
+            /// <summary>
+            /// Use the function ListAllSubjectClassesOfUser(int userId) instead
+            /// </summary>
+            /// <param name="userId"></param>
+            /// <returns></returns>
+            [Obsolete]
             public List<DbEntities.Class.SubjectClass> ListCurrentSubjectClasses(int userId)
             {
                 var user = Context.Users.Find(userId);
@@ -667,12 +674,95 @@ namespace Academic.DbHelper
                     var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
                         .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) && !(x.SessionComplete ?? false))
                         .ToList();
-
-
                     return subSession;
                 }
                 return new List<DbEntities.Class.SubjectClass>();
             }
+
+
+            //Used --Latest version --1.0 :) -- replacemnt of ListCurrentSubjectClasses()
+            /// <summary>
+            /// Latest after redesign into black and white; Use this and calculate complete and running manually in your code
+            /// </summary>
+            /// <param name="userId"></param>
+            /// <returns></returns>
+            public List<DbEntities.Class.SubjectClass> ListAllSubjectClassesOfUser(int userId)
+            {
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) //&& !(x.SessionComplete ?? false)) -- return all
+                        ).ToList();
+                    return subSession;
+                }
+                return new List<DbEntities.Class.SubjectClass>();
+            }
+
+            //used--shree krishna
+            /// <summary>
+            /// For manager and teacher to display in sidebar.
+            /// Returns: Dict[0]=current ... Dict[1]=earlier
+            /// </summary>
+            /// <param name="userId"></param>
+            /// <param name="getOnlyCurrent">True: Current only, False: Earlier only, NULL: both</param>
+            /// <returns>Dict[0]=current ... Dict[1]=earlier</returns>
+            public Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>[]
+                GetEarlierAndCurrentCourseAndClassesForManagerAndTeacher(int userId, bool? getOnlyCurrent = null)
+            {
+                var currentSubjectClassDictionary = new Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>();
+                var earlierSubjectClassDictionary = new Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>();
+
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subClasses = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) //&& !(x.SessionComplete ?? false)) -- return all
+                        ).ToList();
+
+                    var getEarlier = getOnlyCurrent == null || getOnlyCurrent == false;
+                    var getCurrent = getOnlyCurrent == null || getOnlyCurrent == true;
+
+                    //logic. if getonlyCurrent is null then take both, 
+                    // if getonly current is true then take current only.
+                    foreach (var sc in subClasses)
+                    {
+                        var sessionComplete = (sc.SessionComplete ?? false);
+                        var subject = sc.Subject ?? sc.SubjectStructure.Subject;
+                        if (sessionComplete)
+                        {
+                            //complete--means earlier
+                            if ((getEarlier))
+                            {
+                                if (!earlierSubjectClassDictionary.ContainsKey(subject))
+                                {
+                                    earlierSubjectClassDictionary.Add(subject, new List<SubjectClass>());
+                                }
+                                earlierSubjectClassDictionary[subject].Add(sc);
+                            }
+                        }
+                        else
+                        {
+                            //current
+                            if (getCurrent)
+                            {
+                                if (!currentSubjectClassDictionary.ContainsKey(subject))
+                                {
+                                    currentSubjectClassDictionary.Add(subject, new List<SubjectClass>());
+                                }
+                                currentSubjectClassDictionary[subject].Add(sc);
+                            }
+                        }
+                    }
+                    return new[]//Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>[]
+                    {
+                        currentSubjectClassDictionary,earlierSubjectClassDictionary
+                    };
+                }
+                return null;
+            }
+
+
             public List<DbEntities.Class.UserClass> ListCurrentUserClasses(int userId)
             {
                 var user = Context.Users.Find(userId);
@@ -687,6 +777,7 @@ namespace Academic.DbHelper
                 return new List<DbEntities.Class.UserClass>();
             }
 
+            [Obsolete]
             public List<DbEntities.Class.SubjectClass> ListEarlierSubjectClasses(int userId)
             {
                 var user = Context.Users.Find(userId);
@@ -870,11 +961,11 @@ namespace Academic.DbHelper
                             var re = assignedList.FirstOrDefault(x => x.SubjectId == remain);
                             if (re != null)
                             {
-                                
-                            re.CreatedBy = userId;
-                            
-                            re.CreatedDate = DateTime.Now;
-                            
+
+                                re.CreatedBy = userId;
+
+                                re.CreatedDate = DateTime.Now;
+
                                 Context.SubjectStructure.Add(re);
                                 Context.SaveChanges();
                             }

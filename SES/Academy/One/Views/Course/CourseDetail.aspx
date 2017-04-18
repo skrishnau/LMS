@@ -92,12 +92,12 @@
                                         Create New Class
                                     </asp:HyperLink>
                                 </span>
-                                <div style="float: right;">
+                              <%--  <div style="float: right;">
                                     <asp:HyperLink ID="lnkEditClasses" runat="server">
                                         <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
                                         <asp:Label ID="lblEditClasses" runat="server" Text="Edit Classes"></asp:Label>
                                     </asp:HyperLink>
-                                </div>
+                                </div>--%>
                                 <div style="clear: both;"></div>
                             </div>
 

@@ -35,24 +35,43 @@ namespace Academic.DbHelper
                 return Context.File.ToList();
             }
 
-            public List<UserFile> ListUserFiles(int userId, int folderId, bool isServerFile)
+            public List<UserFile> ListUserFiles(int userId, int folderId, bool isServerFile, int schoolId)
             {
-                return Context.File.Where(x => x.CreatedBy == userId && !(x.Void ?? false) 
-                                                && (x.FolderId ?? 0) == folderId
-                                                && x.IsServerFile==isServerFile
+                //if isServerfile == true then x.IsServerFile must be true so we get all server files in that folder--
+                //  --for the given schoolId
+                // if isServerFile== false then we need to get the files for the specific user
+                //here schoolId must be considered , which is neglected
+
+                return Context.File.Where(x => (//x.CreatedBy == userId && 
+                                                (x.FolderId ?? 0) == folderId
+                                                && (x.IsServerFile == isServerFile)
+                                                && ((isServerFile && x.IsServerFile && x.SchoolId == schoolId)//server file magda server file matra line
+                                                        || (!isServerFile && x.CreatedBy == userId))
+                                                )
+                                                && !(x.Void ?? false)
                                             )
-                                            .OrderBy(x=>x.DisplayName)
+                                            .OrderBy(x => x.DisplayName)
                                             .ToList();
             }
 
-            public UserFile GetFolderOfFilesList(int userId, int folderId, bool isServerFile)
+            public UserFile GetFolderOfFilesList(int userId, int folderId, bool isServerFile, int schoolId)
             {
+                //earleir code
                 return Context.File.FirstOrDefault(x => x.CreatedBy == userId
                                                           && !(x.Void ?? false)
                                                           && (x.Id) == folderId
                                                           && x.IsFolder
-                                                          &&x.IsServerFile==isServerFile
+                    //&& x.IsServerFile == isServerFile
                                                           );
+
+                //return Context.File.FirstOrDefault(x => //x.CreatedBy == userId &&
+                //                                        (x.Id) == folderId
+                //                                        && x.IsServerFile == isServerFile
+                //                                        && !(x.Void ?? false)
+                //                                        && ((isServerFile && x.IsServerFile && x.SchoolId == schoolId)//server file magda server file matra line
+                //                                        || (!isServerFile && x.CreatedBy == userId))
+                //                                        && x.IsFolder
+                //                                        );
             }
 
             #endregion
@@ -212,7 +231,66 @@ namespace Academic.DbHelper
                 throw new NotImplementedException();
             }
 
+            //public List<> GetFolderFromName(int schoolId, string folderName, bool isServerFile)
+            //{
+            //    var folders = Context.File.Where(x =>
+            //        x.SchoolId == schoolId &&
+            //        x.IsServerFile == isServerFile &&
+            //        x.DisplayName == folderName
+            //        );
+            //    return folders.ToList();
+            //}
 
+            public UserFile GetUserPhotoFolder(int schoolId)
+            {
+                try
+                {
+                    var folder = Context.File.FirstOrDefault(x =>
+                                x.SchoolId == schoolId &&
+                                x.IsServerFile &&
+                                (x.IsConstantAndNotEditable ?? false) &&
+                                x.DisplayName == StaticValues.UserPhotoFolderName);
+                    if (folder == null)
+                    {
+                        //create the folder
+                        var userFile = new UserFile()
+                        {
+                            CreatedBy = null
+                            ,
+                            CreatedDate = DateTime.Now
+                            ,
+                            DisplayName = StaticValues.UserPhotoFolderName
+                            ,
+                            FileDirectory = null
+                            ,
+                            FileName = null
+                            ,
+                            FileSizeInBytes = 0
+                            ,
+                            FileType = "Folder"
+                            ,
+                            IsServerFile = true
+                            ,
+                            SchoolId = schoolId
+                            ,
+                            IsFolder = true
+                            ,
+                            IsConstantAndNotEditable = true
+                            ,
+                        };
+                        var saved = Context.File.Add(userFile);
+                        Context.SaveChanges();
+                        return saved;
+                    }
+                    return folder;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
         }
+
+
     }
 }

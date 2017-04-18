@@ -67,8 +67,13 @@ namespace Academic.DbHelper
 
             public static string UserImageDirectory = "~/Content/Images/UserImage/";
             public static string AssignmentDirectory = "~/Content/Images/AssignmentSubmission/";
-            public static string FolderIconDirectory = "~/Content/Icons/ActivityResource/Folder/folder-icon-40x40.png";
 
+            public static string FolderIconDirectory = "~/Content/Icons/Folder/folder-icon.png";
+                //"~/Content/Icons/ActivityResource/Folder/folder-icon-40x40.png";
+            public static string FolderIconLockedDirectory = "~/Content/Icons/Folder/folder-locked-icon.png";
+                //"~/Content/Icons/ActivityResource/Folder/folder-icon-40x40-locked.png";
+
+            public static string UserPhotoFolderName = "User Photos";
 
 
             //public static Dictionary<string, string> StructureType = new Dictionary<string, string>()

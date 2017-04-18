@@ -20,8 +20,15 @@
             <h3 class="act-res-course-title">
                 <asp:Literal ID="txtSubjectName" runat="server"></asp:Literal>
             </h3>
+            
+            <div style="margin: 5px 10px 5px; padding: 5px; border: 1px solid lightgray;">
+                
+                <asp:Label ID="lblClassInformation" runat="server" Text="Label" ForeColor="#993366" ></asp:Label>
+
+            </div>
             <br />
 
+            <%--hello--%>
 <%--            <div style="text-align: right; margin-right: 15px;">
                 <asp:HyperLink ID="lnkEdit"
                     runat="server">

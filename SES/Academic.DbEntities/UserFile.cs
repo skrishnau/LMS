@@ -15,7 +15,8 @@ namespace Academic.DbEntities
         public long FileSizeInBytes { get; set; }
         public string FileType { get; set; }//Extension
 
-        public int CreatedBy { get; set; }
+        //for default folders the createdBy will be null
+        public int? CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
@@ -37,9 +38,14 @@ namespace Academic.DbEntities
         public bool IsFolder { get; set; }
 
         public int? FolderId { get; set; }
+        //default folders are not editable
+        public bool? IsConstantAndNotEditable { get; set; }
+
         public virtual UserFile Folder { get; set; }
 
         public virtual ICollection<UserFile> FilesInThisFolder { get; set; }
 
+
+        public int? SchoolId { get; set; }
     }
 }

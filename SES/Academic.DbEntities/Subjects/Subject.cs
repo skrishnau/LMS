@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Academic.DbEntities.Class;
 //using Academic.DbEntities.Activities;
 using Academic.DbEntities.Office;
 using Academic.DbEntities.Structure;
@@ -66,10 +67,12 @@ namespace Academic.DbEntities.Subjects
 
         //public virtual ICollection<Activities.Teach> Teach { get; set; }
         //public virtual ICollection<Exams.Exam> Exams { get; set; }
-
+        
         public virtual ICollection<SubjectSection> SubjectSections { get; set; }
 
+        public virtual ICollection<SubjectClass> SubjectClasses { get; set; }
 
+        public virtual ICollection<SubjectStructure> SubjectStructures { get; set; }
 
     }
 }
