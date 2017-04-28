@@ -1,0 +1,13 @@
+
+Your word for 'Manager'
+Your word for 'Course creator'
+Your word for 'Teacher'
+Your word for 'Non-editing teacher'
+Your word for 'Student'
+Your word for 'Guest'
+Your word for 'Authenticated user'
+Your word for 'Authenticated user on frontpage'
+Your word for 'Naughty student'
+Your word for 'Parent'
+Your word for 'Question creator'
+Your word for 'Calendar editor'

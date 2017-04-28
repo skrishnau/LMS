@@ -1,0 +1,5 @@
+  public int ExamTypeId
+        {
+            get { return Convert.ToInt32(hidExamTypeId.Value); }
+            set { hidExamTypeId.Value = value.ToString(); }
+        }

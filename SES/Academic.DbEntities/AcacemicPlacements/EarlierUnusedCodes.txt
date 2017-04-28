@@ -1,0 +1,98 @@
+﻿ /// <summary>
+    /// This will not be used. and is obsolete..
+    /// Further use should not be done.
+    /// </summary>
+    [Obsolete]
+    [Serializable]
+    public class StudentClass
+    {
+        public int Id { get; set; }
+        public int StudentId { get; set; }
+        public int? StudentGroupId { get; set; }
+
+        public int RunningClassId { get; set; }
+
+        public virtual Students.Student Student { get; set; }
+        public virtual Students.StudentGroup StudentGroup { get; set; }
+
+        public virtual RunningClass RunningClass { get; set; }
+
+        //next version
+        //create next table to store student information about suspension from date, to date, reason, by, rank of punishment etc.
+        public bool? Suspended { get; set; }
+        public bool? Void { get; set; }
+
+        public virtual ICollection<Exams.ExamStudent> ExamStudents { get; set; }
+
+    }
+	  /// <summary>
+    /// Obsolete. It will be used in another way, in the module Subject (not in this module)
+    /// </summary>
+    [Obsolete]
+    public class StudentsOpinionAboutSubject
+    {
+        public int Id { get; set; }
+        public int SubjectSubscriptionId { get; set; }
+
+        public virtual SubjectSubscription SubjectSubscription { get; set; }
+        public byte? Rating { get; set; }
+        public string Opinion { get; set; }
+    }
+	/// <summary>
+    /// It is Obslete since both StudentClass and SubjectClass are obsolete and this class 
+    /// is used to link those two.
+    /// </summary>
+    [Obsolete]
+    public class SubjectSubscription
+    {
+        public int Id { get; set; }
+
+        public int StudentClassId { get; set; }
+        public int SubjectClassId { get; set; }
+
+
+        public virtual StudentClass StudentClass { get; set; }
+
+        //uncomment this
+        //public virtual SubjectClass SubjectClass { get; set; }
+
+        //is student permitted to access  the course contents.
+
+        public bool? Permitted { get; set; }
+        public bool? Suspended { get; set; } // access by student to this subject
+
+        public bool? Active { get; set; }
+
+    }
+	 /// <summary>
+    /// Obsolete. since link between class and subject is done by
+    ///  SubjectSession(or SubjectClass). 
+    /// Earlier Note: 
+    /// RegularSubjectClass and UserClass are closely related...
+    /// </summary>
+    [Obsolete]
+    public class RegularSubjectClass
+    {
+        public int Id { get; set; }
+
+        public int RunningClassId { get; set; }
+        public virtual RunningClass RunningClass { get; set; }
+
+        public int RegularSubjId { get; set; }
+        public virtual RegularSubject RegularSubj { get; set; }
+
+        public bool? Void { get; set; }
+
+
+        //public virtual Teachers.Teacher Teacher { get; set; }
+        //public virtual Subject Subject { get; set; }
+
+        //public bool? Void { get; set; }
+
+
+        
+    }
+}
+
+
+
