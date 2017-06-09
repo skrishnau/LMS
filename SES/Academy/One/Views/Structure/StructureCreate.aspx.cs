@@ -23,6 +23,7 @@ namespace One.Views.Structure
                 if (user != null)
                     try
                     {
+                        
                         var type = Request.QueryString["strTyp"];
                         if (type == null)
                         {
@@ -34,6 +35,11 @@ namespace One.Views.Structure
                             LoadStructureType();
                             var strId = Request.QueryString["strId"];
                             var pId = Request.QueryString["pId"];
+                            var progId = Request.QueryString["progId"];
+                            if (progId != null)
+                            {
+                                hidProgramId.Value = progId;
+                            }
                             if (strId != null)
                             {
                                 StructureId = Convert.ToInt32(strId);
@@ -61,16 +67,16 @@ namespace One.Views.Structure
                                                 var thisone = programs.Find(x => x.Id == parentId);
                                                 if (thisone != null) programs.Remove(thisone);
                                                 //there has to be another program to choose so check for it
-                                                if (programs.Count > 1)
+                                                if (programs.Count>0)
                                                 {
                                                     //show dialog // and list all the programs to choose
                                                     var items = programs.Select(x => new IdAndName()
                                                     {
-                                                        Name = x.Name,
+                                                        Name = "● " + x.Name,
                                                         Id = x.Id
                                                     }).ToList();
-                                                    items.Add(new IdAndName() { Id = 0, Name = "I would like to add manually" });
-                                                    CustomDialog1.SetValues("Choose program to copy from", items, "", "cancel");
+                                                    items.Add(new IdAndName() { Id = 0, Name = "□ I would like to add manually" });
+                                                    CustomDialog1.SetValues("Copy all years and semesters from...", items, "", "cancel");
                                                     CustomDialog1.OpenDialog();
                                                 }
                                             }
@@ -414,7 +420,14 @@ namespace One.Views.Structure
 
                     if (saved)
                     {
-                        Response.Redirect("~/Views/Structure/All/Master/List.aspx?edit=1");
+                        //var pId = Request.QueryString["pId"] == null ? "" :"&pId="+ Request.QueryString["pId"];
+
+                        int pId = 0;
+                        var success = Int32.TryParse(hidProgramId.Value, out pId);
+                        var progId = "";
+                        if (pId > 0 && success)
+                            progId = "&pId=" + pId;
+                        Response.Redirect("~/Views/Structure/?edit=1"+progId);
                     }
                     else
                     {
@@ -426,7 +439,7 @@ namespace One.Views.Structure
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Structure/All/Master/List.aspx?edit=1");
+            Response.Redirect("~/Views/Structure/");
         }
 
         #endregion

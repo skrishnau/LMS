@@ -1779,7 +1779,6 @@
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentListUc.ascx" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentList\PrevoisCode.txt" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentList\StudentListUC.ascx" />
-    <Content Include="Views\Academy\AcademicYear\Create.aspx" />
     <Content Include="Views\Academy\List.aspx" />
     <Content Include="Views\Academy\Session\Create.aspx" />
     <Content Include="Views\Academy\Session\CreateUC.ascx" />
@@ -1801,7 +1800,6 @@
     <Content Include="Views\Resource\ResourceCreate.ascx" />
     <Content Include="Views\Role\Assign.ascx" />
     <Content Include="Views\Role\Assign.aspx" />
-    <Content Include="Views\Structure\All\Master\List.aspx" />
     <Content Include="Views\Student\Batch\Create\BatchCreate.aspx" />
     <Content Include="Views\Student\Batch\List\ItemUc.ascx" />
     <Content Include="Views\Student\Batch\List\listUc.ascx" />
@@ -3505,13 +3503,6 @@
     <Compile Include="Views\Student\Batch\StudentDisplay\Students\StudentList\StudentListUC.ascx.designer.cs">
       <DependentUpon>StudentListUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Academy\AcademicYear\Create.aspx.cs">
-      <DependentUpon>Create.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Academy\AcademicYear\Create.aspx.designer.cs">
-      <DependentUpon>Create.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Academy\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3658,13 +3649,6 @@
     </Compile>
     <Compile Include="Views\Role\Assign.aspx.designer.cs">
       <DependentUpon>Assign.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Structure\All\Master\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Structure\All\Master\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\Create\BatchCreate.aspx.cs">
       <DependentUpon>BatchCreate.aspx</DependentUpon>

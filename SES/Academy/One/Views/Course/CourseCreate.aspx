@@ -21,13 +21,13 @@
         </h3>
         <hr />
         <br />
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
             <ContentTemplate>
 
                 <div class="data-entry-section">
                     <div class="data-entry-section-heading">General</div>
                     <hr />
-                    <div class="data-entry-section-body">
+                    <div class="data-entry-section-body" >
                         <table>
                             <tr>
                                 <td class="data-type">Name*</td>

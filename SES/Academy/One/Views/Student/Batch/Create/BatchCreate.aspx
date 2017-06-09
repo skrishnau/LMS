@@ -29,22 +29,34 @@
             <%--<div style="clear: both;"></div>--%>
             <table>
                 <tr>
-                    <td class="data-type">Display Name</td>
+                    <td class="data-type">Display Name *</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" ValidationGroup="create" ID="validatorName" 
+                        <asp:TextBox ID="txtName" runat="server" Width="160"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ValidationGroup="create" ID="validatorName"
                             ControlToValidate="txtName" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
-                    <td class="data-type">Class Commence From</td>
+                    <td class="data-type">Academic year *</td>
+                    <td class="data-value">
+                        <asp:DropDownList ID="ddlAcademicYear"  runat="server" ClientIDMode="Static" Width="162"></asp:DropDownList>
+                       <%-- <asp:TextBox ID="txtCommenceDate" runat="server" TextMode="DateTimeLocal"
+                            ClientIDMode="Static"></asp:TextBox>--%>
+                        <asp:RequiredFieldValidator runat="server" ValidationGroup="create" ID="validatorAcademicYear"
+                            ControlToValidate="ddlAcademicYear" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                  
+                        <%--<asp:Label runat="server" ID="lblAcademicYearError"
+                            Text="Required and should be in date format" ForeColor="#FF3300" Visible="False"></asp:Label>--%>
+
+                    </td>
+                    <%-- <td class="data-type">Class Commence From</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtCommenceDate" runat="server" TextMode="DateTimeLocal"
                             ClientIDMode="Static"></asp:TextBox>
                          <asp:Label runat="server"  ID="lblCommenceDateError" 
                              Text="Required and should be in date format" ForeColor="#FF3300" Visible="False"></asp:Label>
                   
-                    </td>
+                    </td>--%>
                 </tr>
                 <tr>
                     <td class="data-type">Description</td>
@@ -73,7 +85,7 @@
         </div>
         <br />
         <div class="save-div">
-            <asp:Button ID="btnSaveAndReturnToList" runat="server"
+            <asp:Button ID="btnSaveAndReturnToList" runat="server" ValidationGroup="create"
                 Text="Save " OnClick="btnSaveAndReturnToList_Click" Width="87px" />
             &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnCancel" runat="server"
@@ -98,11 +110,11 @@
 
         <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />
 
-        <script type="text/javascript">
+        <%--<script type="text/javascript">
             $('#txtCommenceDate').unbind();
             $("#txtCommenceDate").datepicker();
 
-        </script>
+        </script>--%>
     </div>
 
 

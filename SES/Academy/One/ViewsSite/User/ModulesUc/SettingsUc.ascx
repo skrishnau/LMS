@@ -11,8 +11,8 @@
     <div style="font-weight: 500;" class="list-unmargined">
         
         <%--<div class="auto-st2">--%>
-        <asp:HyperLink ID="lnkBatch" runat="server"
-            NavigateUrl="~/Views/Student/">Batches</asp:HyperLink>
+       <%-- <asp:HyperLink ID="lnkBatch" runat="server"
+            NavigateUrl="~/Views/Student/">Batches</asp:HyperLink>--%>
         <%--</div>--%>
         <%--<br />--%>
         <%--<div class="auto-st2">--%>
@@ -20,25 +20,25 @@
             NavigateUrl="~/Views/Course/">Courses</asp:HyperLink>
         <%--</div>--%>
         <%--<br />--%>
-
+        <asp:HyperLink ID="lnkPrograms" runat="server"
+            NavigateUrl="~/Views/Structure/">Programs</asp:HyperLink>
         <%--<div class="auto-st2">--%>
-        <asp:HyperLink ID="lnkUsers" runat="server"
-            NavigateUrl="~/Views/User/List.aspx">Users</asp:HyperLink>
+        
         <%--</div>--%>
 
         <%--<div class="auto-st2">--%>
         <asp:HyperLink ID="lnkAcademicSession" runat="server"
-            NavigateUrl="~/Views/Academy/List.aspx">Manage Academic year and Sessions</asp:HyperLink>
+            NavigateUrl="~/Views/Academy/List.aspx">Academic year</asp:HyperLink>
         <%--</div>--%>
-
-        <hr />
+        <asp:HyperLink ID="lnkUsers" runat="server"
+            NavigateUrl="~/Views/User/List.aspx">Users</asp:HyperLink>
+        <%--<hr />--%>
         <%--<strong>Settings</strong>--%>
 
 
 
         <%--<div class="auto-st2">--%>
-        <asp:HyperLink ID="lnkPrograms" runat="server"
-            NavigateUrl="~/Views/Structure/All/Master/List.aspx">Programs</asp:HyperLink>
+        
         <%--</div>--%>
 
         <%--<span style="margin-left: 10px;">--%>

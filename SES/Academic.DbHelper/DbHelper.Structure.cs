@@ -198,7 +198,7 @@ namespace Academic.DbHelper
             public List<ViewModel.IdAndName> GetPrograms(int schoolId)
             {
                 return
-                    Context.Program.Where(x => x.SchoolId == schoolId)
+                    Context.Program.Where(x => x.SchoolId == schoolId && !(x.Void??false))
                         .Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
                         .ToList();
 

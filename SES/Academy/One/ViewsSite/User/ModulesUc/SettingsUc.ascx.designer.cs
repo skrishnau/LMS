@@ -22,15 +22,6 @@ namespace One.ViewsSite.User.ModulesUc {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
-        /// lnkBatch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkBatch;
-        
-        /// <summary>
         /// lnkCourse control.
         /// </summary>
         /// <remarks>
@@ -40,13 +31,13 @@ namespace One.ViewsSite.User.ModulesUc {
         protected global::System.Web.UI.WebControls.HyperLink lnkCourse;
         
         /// <summary>
-        /// lnkUsers control.
+        /// lnkPrograms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkUsers;
+        protected global::System.Web.UI.WebControls.HyperLink lnkPrograms;
         
         /// <summary>
         /// lnkAcademicSession control.
@@ -58,13 +49,13 @@ namespace One.ViewsSite.User.ModulesUc {
         protected global::System.Web.UI.WebControls.HyperLink lnkAcademicSession;
         
         /// <summary>
-        /// lnkPrograms control.
+        /// lnkUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkPrograms;
+        protected global::System.Web.UI.WebControls.HyperLink lnkUsers;
         
         /// <summary>
         /// hidUserId control.

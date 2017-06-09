@@ -53,6 +53,11 @@ div.data-entry-section-body {
     margin-left: 20px;
     /*margin: 0 20px 0;*/
 }
+div.data-entry-section-no-margin {
+    margin-left: 1px;
+    
+    /*margin: 0 20px 0;*/
+}
 
 div.data-entry-body div.data-entry-section hr {
     border: none;

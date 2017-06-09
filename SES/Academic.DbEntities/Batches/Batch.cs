@@ -19,7 +19,9 @@ namespace Academic.DbEntities.Batches
 
         public DateTime CreatedDate { get; set; }   
 
-        public DateTime? ClassCommenceDate { get; set; }
+        //public DateTime? ClassCommenceDate { get; set; }
+        public int AcademicYearId { get; set; }
+        public AcademicYear AcademicYear { get; set; }
 
         public int SchoolId { get; set; }
         public School School { get; set; }

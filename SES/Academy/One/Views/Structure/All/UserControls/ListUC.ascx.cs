@@ -27,7 +27,7 @@ namespace One.Views.Structure.All.UserControls
 
 
 
-        public void SetName(int id, string name, string editUrl, bool edit=false, string addUrl="",string addText="")
+        public void SetName(int id, string name, string editUrl, bool edit=false, string addUrl="",string addText="", bool expand = false)
         {
             this.hidStructureId.Value = id.ToString();
             this.lblName.Text = "♦" + name;
@@ -49,6 +49,7 @@ namespace One.Views.Structure.All.UserControls
                                                   + name + "?")
                                                   ;
                 lnkDelete.NavigateUrl = redUrl;
+                pnlSubControls.Visible = expand;
             }
         }
 

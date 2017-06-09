@@ -5,13 +5,13 @@ namespace Academic.Database.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class act_view : IMigrationMetadata
+    public sealed partial class coulumn_added_batch_academicYearId : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(act_view));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(coulumn_added_batch_academicYearId));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612200352403_act_view"; }
+            get { return "201706090806376_coulumn_added_batch_academicYearId"; }
         }
         
         string IMigrationMetadata.Source

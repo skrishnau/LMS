@@ -23,24 +23,7 @@ namespace One.Views.Structure
                 if (edit != null)
                 {
                     Edit = edit;
-                //    if (edit == "1")
-                //    {
-                //        lnkEdit.NavigateUrl =
-                //            "~/Views/Structure/All/Master/List.aspx?edit=0";
-                //        lblEdit.Text = "Exit Edit";
-                //    }
-                //    else
-                //    {
-                //        lnkEdit.NavigateUrl =
-                //            "~/Views/Structure/All/Master/List.aspx?edit=1";
-                //        lblEdit.Text = "Edit";
-                //    }
                 }
-                //else
-                //{
-                //    lnkEdit.NavigateUrl = "~/Views/Structure/All/Master/List.aspx?edit=1";
-                //    lblEdit.Text = "Edit";
-                //}
             }
 
             if (user != null)
@@ -88,21 +71,30 @@ namespace One.Views.Structure
 
         private void LoadStructure(int schoolId)
         {
+            var pId = Request.QueryString["pId"];
+
             var edit = Edit == "1";
             using (var helper = new DbHelper.Structure())
             {
                 helper.ListPrograms(schoolId).ForEach(p =>
                 {
+                    #region Program data populate code 
+
+                    var expand = p.Id.ToString() == pId;
                     var puc = (ListUC)Page
                         .LoadControl("~/Views/Structure/All/UserControls/ListUC.ascx")
                           ;
                     puc.SetName(p.Id, p.Name
-                        , "~/Views/Structure/StructureCreate.aspx?strId=" + p.Id + "&strTyp=pro"
+                        , "~/Views/Structure/StructureCreate.aspx?strId=" + p.Id + "&progId=" + p.Id + "&strTyp=pro"
                         , edit
-                         , "~/Views/Structure/StructureCreate.aspx?pId=" + p.Id + "&strTyp=yr", "Add Year"
+                         , "~/Views/Structure/StructureCreate.aspx?pId=" + p.Id + "&progId=" + p.Id + "&strTyp=yr", "Add Year"
+                         , expand
                         );
                     pnlListing.Controls.Add(puc);
 
+
+                    #endregion
+                    
                     p.Year.Where(x => !(x.Void ?? false))
                         .OrderBy(x => x.Position)
                         .ToList()
@@ -112,6 +104,8 @@ namespace One.Views.Structure
                             var subyears = y.SubYears.Where(x => !(x.Void ?? false) && (x.ParentId??0)==0)
                                 .OrderBy(or => or.Position)
                                 .ToList();
+                            #region Unused code
+
                             //helper.GetSubYears(y.Id, true);
 
                             //if (!subyears.Any())
@@ -145,18 +139,28 @@ namespace One.Views.Structure
                             //    puc.AddControl(yuc);
                             //}
                             //else
-                            {
-                                var yuc = (ListYearUC)Page
+
+                            #endregion
+
+                            #region Year code
+
+                            var yuc = (ListYearUC)Page
                                            .LoadControl("~/Views/Structure/All/UserControls/ListYearUC.ascx");
-                                yuc.SetName(y.Id, y.Name
-                                    , "~/Views/Structure/StructureCreate.aspx?strId=" + y.Id + "&strTyp=yr"
-                                    , edit
-                                     , "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&strTyp=syr", "Add Sub-Year"
-                                    );
-                                puc.AddControl(yuc);
+                            yuc.SetName(y.Id, y.Name
+                                , "~/Views/Structure/StructureCreate.aspx?strId=" + y.Id + "&progId=" + p.Id + "&strTyp=yr"
+                                , edit
+                                 , "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&progId=" + p.Id + "&strTyp=syr", "Add Sub-Year"
+                                );
+                            puc.AddControl(yuc);
+
+                            #endregion
+                                
                                 //get subyears
                                 subyears.ForEach(s =>
                                 {
+
+                                    #region SubYears populate code
+
                                     var pbname = "";
                                     int pbId = 0;
                                     var pb =
@@ -176,20 +180,21 @@ namespace One.Views.Structure
                                         .LoadControl("~/Views/Structure/All/UserControls/ListSubYearUC.ascx");
                                     //suc.CourseClicked += subYear_CourseClicked;
                                     suc.SetName(y.Id, s.Id, s.Name
-                                        , "~/Views/Structure/StructureCreate.aspx?strId=" + s.Id + "&strTyp=syr"
+                                        , "~/Views/Structure/StructureCreate.aspx?strId=" + s.Id + "&progId=" + p.Id + "&strTyp=syr"
                                         , s.SubjectStructures.Count(x => !(x.Void ?? false))
                                         , pbname, pbId
                                         , edit);
                                     yuc.AddControl(suc);
+
+                                    #endregion
+                                    
                                 });
-                                //add subyear
-                                //var hyper = new HyperLink() { NavigateUrl = "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&strTyp=syr" };
-                                //hyper.Controls.Add(new Label(){Text = "Add Sub-year"});
-                                //hyper.Controls.Add(new Image() { ImageUrl = "~/Content/Icons/Add/Add-icon.png" });
-                                //yuc.AddControl(hyper);
-                            }
+                              
                         });
                 });
+
+
+                #region unused code (Level code previous)
 
                 //levels.ForEach(l =>
                 //{
@@ -227,6 +232,9 @@ namespace One.Views.Structure
                 //    }
 
                 //});
+
+                #endregion
+                
             }
         }
 

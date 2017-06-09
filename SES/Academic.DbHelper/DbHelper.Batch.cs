@@ -127,15 +127,21 @@ namespace Academic.DbHelper
             public List<Academic.DbEntities.Batches.Batch> GetBatchList(int schoolId)
             {
                 return Context.Batch.Include(i => i.ProgramBatches).Where(x => x.SchoolId == schoolId && !(x.Void ?? false))
-                    .OrderByDescending(y => y.ClassCommenceDate ?? y.CreatedDate).ToList();
+                    .OrderByDescending(y => y.AcademicYear.EndDate )
+                    .ThenByDescending(y => y.AcademicYear.StartDate)
+                    .ThenByDescending(y=>y.CreatedDate).ToList();
             }
 
             public List<Academic.DbEntities.Batches.Batch> GetBatchList(int schoolId, int numberOfItems, int pageNo)
             {
-                return Context.Batch.Include(i => i.ProgramBatches).Where(x =>
+                return Context.Batch.Include(i => i.ProgramBatches).Include(i=>i.AcademicYear).Where(x =>
                                                                             x.SchoolId == schoolId
                                                                             && !(x.Void ?? false))
-                    .OrderByDescending(y => y.ClassCommenceDate ?? y.CreatedDate).Skip(pageNo * numberOfItems)
+                    //.OrderByDescending(y => y.ClassCommenceDate ?? y.CreatedDate)
+                    .OrderByDescending(y => y.AcademicYear.EndDate)
+                    .ThenByDescending(y => y.AcademicYear.StartDate)
+                    .ThenByDescending(y => y.CreatedDate)
+                    .Skip(pageNo * numberOfItems)
                     .Take(numberOfItems).ToList();
             }
 
@@ -281,7 +287,8 @@ namespace Academic.DbHelper
                         {
                             ent.Name = batch.Name;
                             ent.Description = batch.Description;
-                            ent.ClassCommenceDate = batch.ClassCommenceDate;
+                            
+                            //ent.ClassCommenceDate = batch.ClassCommenceDate;
                             //ent.Void = batch.Void
 
                             Context.SaveChanges();
@@ -387,7 +394,10 @@ namespace Academic.DbHelper
                 var list = new List<IdAndName>();
                 var lst = Context.ProgramBatch.Where(x => x.ProgramId == programId && !(x.PassOut ?? false)
                     && !(x.Batch.Void ?? false))
-                    .OrderByDescending(y => y.Batch.ClassCommenceDate ?? y.Batch.CreatedDate)
+                    .OrderByDescending(y => y.Batch.AcademicYear.EndDate)
+                    .ThenByDescending(y => y.Batch.AcademicYear.StartDate)
+                    .ThenByDescending(y => y.Batch.CreatedDate)
+                    //.OrderByDescending(y => y.Batch.ClassCommenceDate ?? y.Batch.CreatedDate)
                     .ToList();
                 foreach (var l in lst)
                 {
@@ -443,6 +453,22 @@ namespace Academic.DbHelper
                     return false;
                 }
                 return false;
+            }
+
+            public DbEntities.Batches.Batch GetBatchByAcademicYearId(int aId)
+            {
+                var batch = Context.Batch.Include(i=>i.AcademicYear).FirstOrDefault(x=>x.AcademicYearId==aId);
+                return batch;
+                //if (batch == null)
+                //{
+                //    batch = new DbEntities.Batches.Batch()
+                //    {
+                //        Id = 0
+                //        ,
+                //        Name = ""
+                //    };
+                //}
+                //return batch;
             }
         }
     }

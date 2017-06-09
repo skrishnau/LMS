@@ -119,7 +119,111 @@ namespace Academic.DbHelper
                 return ay;
             }
 
-            public DbEntities.AcademicYear AddOrUpdateAcademicYear(int schoolId, DbEntities.AcademicYear entity)
+            public DbEntities.Batches.Batch AddOrUpdateAcademicYearAndBatch(int schoolId, DbEntities.AcademicYear academicY,
+                DbEntities.Batches.Batch batch, List<DbEntities.Batches.ProgramBatch> progBatchList)
+            {
+                var acaEntity = Context.AcademicYear.Find(academicY.Id);
+                var batchEnt = Context.Batch.Find(batch.Id);
+                try
+                {
+                    using (TransactionScope scope = new TransactionScope())
+                    {
+                        if (acaEntity == null)
+                        {
+                            //add
+                            #region Academic year
+
+                            var max = 0;
+                            try
+                            {
+                                max = Context.AcademicYear.Where(x => x.SchoolId == schoolId).Max(m => m.Position);
+                            }
+                            catch { }
+                            academicY.Position = max + 1;
+                            acaEntity = Context.AcademicYear.Add(academicY);
+                            Context.SaveChanges();
+
+                            #endregion
+
+                            #region Batch
+
+                            batch.AcademicYearId = acaEntity.Id;
+                            batchEnt = Context.Batch.Add(batch);
+                            Context.SaveChanges();
+                            foreach (var pb in progBatchList)
+                            {
+                                pb.BatchId = batchEnt.Id;
+                                Context.ProgramBatch.Add(pb);
+                                Context.SaveChanges();
+                            }
+
+                            #endregion
+                            //saveSuccess = true;
+                        }
+                        else
+                        {
+                            //update
+                            #region Academic year
+
+                            acaEntity.IsActive = academicY.IsActive;
+                            acaEntity.Name = academicY.Name;
+                            acaEntity.EndDate = academicY.EndDate;
+                            acaEntity.SchoolId = academicY.SchoolId;
+                            acaEntity.StartDate = academicY.StartDate;
+                            Context.SaveChanges();
+
+                            #endregion
+
+
+                            #region Batch
+
+                            if (batchEnt != null)
+                            {
+                                batchEnt.Name = batch.Name;
+                                batchEnt.Description = batch.Description;
+
+                                Context.SaveChanges();
+                                foreach (var pb in progBatchList)
+                                {
+                                    var found = Context.ProgramBatch.Find(pb.Id);
+                                    if (found == null)
+                                    {
+                                        Context.ProgramBatch.Add(pb);
+                                        Context.SaveChanges();
+                                    }
+                                    else
+                                    {
+                                        found.Void = pb.Void;
+                                        Context.SaveChanges();
+                                    }
+                                }
+                                batchEnt.AcademicYear = acaEntity;
+                            }
+
+
+                            #endregion
+                            //saveSuccess = true;
+                        }
+                        //var prev = Context.AcademicYear.Where(x => x.SchoolId == acaEntity.SchoolId && x.Id != acaEntity.Id);
+                        //foreach (var academicYear in prev)
+                        //{
+                        //    academicYear.IsActive = false;
+                        //}
+                        //Context.SaveChanges();
+
+
+
+                        scope.Complete();
+                        return batchEnt;
+                    }
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+
+            private DbEntities.AcademicYear AddOrUpdateAcademicYear(int schoolId, DbEntities.AcademicYear entity)
             {
                 //bool saveSuccess = false;
                 var ent = Context.AcademicYear.Find(entity.Id);
@@ -167,6 +271,62 @@ namespace Academic.DbHelper
                     return null;
                 }
             }
+
+            private Academic.DbEntities.Batches.Batch AddOrUpdateBatch(DbEntities.Batches.Batch batch
+              , List<DbEntities.Batches.ProgramBatch> progBatchList)
+            {
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        var ent = Context.Batch.Find(batch.Id);
+                        if (ent == null)
+                        {
+                            ent = Context.Batch.Add(batch);
+                            Context.SaveChanges();
+                            foreach (var pb in progBatchList)
+                            {
+                                pb.BatchId = ent.Id;
+                                Context.ProgramBatch.Add(pb);
+                                Context.SaveChanges();
+                            }
+
+                        }
+                        else
+                        {
+                            ent.Name = batch.Name;
+                            ent.Description = batch.Description;
+
+                            //ent.ClassCommenceDate = batch.ClassCommenceDate;
+                            //ent.Void = batch.Void
+
+                            Context.SaveChanges();
+                            foreach (var pb in progBatchList)
+                            {
+                                var found = Context.ProgramBatch.Find(pb.Id);
+                                if (found == null)
+                                {
+                                    Context.ProgramBatch.Add(pb);
+                                    Context.SaveChanges();
+                                }
+                                else
+                                {
+                                    found.Void = pb.Void;
+                                    Context.SaveChanges();
+                                }
+                            }
+                        }
+                        scope.Complete();
+                        return ent;
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+
 
             public List<DbEntities.AcademicYear> GetAcademicYearListForSchool(int schoolId)
             {
@@ -738,7 +898,7 @@ namespace Academic.DbHelper
 
 
             //Used
-            public List<Academic.DbEntities.AcademicYear> ListEarlierActiveAcademicYearsForChoose(int schoolId)
+            public List<Academic.DbEntities.AcademicYear> ListNotCompleteAcademicYear(int schoolId)
             {
                 return Context.AcademicYear.Where(x => x.SchoolId == schoolId && (x.IsActive || !(x.Completed ?? false)))
                     .OrderByDescending(x => !x.IsActive)
@@ -889,7 +1049,7 @@ namespace Academic.DbHelper
 
                                 #endregion
 
-                                var savedaca = helper.AddOrUpdateRunningClass(list,aca.StartDate,aca.EndDate);
+                                var savedaca = helper.AddOrUpdateRunningClass(list, aca.StartDate, aca.EndDate);
                                 scope.Complete();
                                 return true;
                             }
@@ -1032,6 +1192,8 @@ namespace Academic.DbHelper
                     return false;
                 }
             }
+
+
         }
     }
 }

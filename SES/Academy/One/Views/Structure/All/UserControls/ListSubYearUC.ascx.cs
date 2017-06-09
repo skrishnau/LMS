@@ -37,19 +37,31 @@ namespace One.Views.Structure.All.UserControls
         public void SetName(int yearId, int subyearId, string name, string editUrl, int noOfCourses
             , string currentBatch, int programBatchId
             , bool edit = false)
-            //, string addUrl = "", string addText = "")
+        //, string addUrl = "", string addText = "")
         {
             //this.hidStructureId.Value = id.ToString();
+            var firstPart = "~/Views/Structure/";
+            string courseListUrl = "CourseListing.aspx" + "?yId=" + yearId + "&sId=" +
+                subyearId + "&edit=" + (edit ? "1" : "0");
+
             YearId = yearId;
             SubYearId = subyearId;
-            lnkName.Text = ((subyearId==0)?"●":"♦") + name;
+            lnkName.Text = ((subyearId == 0) ? "●" : "♦") + name;
             if (subyearId == 0)
             {
                 lblNoOfCourses.Visible = false;
             }
             else
             {
-                lblNoOfCourses.Text = "No. of courses : " + noOfCourses.ToString();                
+                if (noOfCourses > 0)
+                    lblNoOfCourses.Text = "No. of courses : " + noOfCourses.ToString();
+                else
+                {
+                    var link = "<a href='"+courseListUrl+"'>"+"There are no courses. Please add courses"+
+                        "</a>";
+                    lblNoOfCourses.Text = link;
+                    lblNoOfCourses.ForeColor = Color.Red;
+                }
             }
             lnkEdit.Visible = edit;
             lnkDelete.Visible = edit;
@@ -79,9 +91,9 @@ namespace One.Views.Structure.All.UserControls
 
                 var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
                                                 DbHelper.StaticValues.Encode("structure") +
-                                                "&progId=0"  
-                                                +"&yeaId="+yearId
-                                                +"&syeaId="+subyearId
+                                                "&progId=0"
+                                                + "&yeaId=" + yearId
+                                                + "&syeaId=" + subyearId
                                                 + "&showText="
                                                 + DbHelper.StaticValues.Encode("Are you sure to delete the sub-year, "
                                                 + name + "?")
@@ -90,8 +102,7 @@ namespace One.Views.Structure.All.UserControls
                 //lblAddText.Text = addText;
                 //lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", ""); ;
             }
-            lnkName.NavigateUrl = "~/Views/Structure/CourseListing.aspx" + "?yId=" + YearId + "&sId=" +
-                SubYearId+"&edit="+(edit?"1":"0");
+            lnkName.NavigateUrl = firstPart + courseListUrl;
         }
 
         protected void lnkCoursesList_Click(object sender, EventArgs e)

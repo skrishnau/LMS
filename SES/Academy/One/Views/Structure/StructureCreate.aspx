@@ -16,6 +16,7 @@
     <asp:HiddenField ID="hidStructureId" runat="server" Value="0" />
     <asp:HiddenField ID="hidParentId" runat="server" Value="0" />
     <asp:HiddenField ID="hidStructureType" runat="server" Value="" />
+    <asp:HiddenField ID="hidProgramId" runat="server" Value="0" />
     <div class="data-entry-section-body">
         <div>
             <asp:Label ID="lblCopyError" runat="server" Visible="False" ForeColor="red"

@@ -22,6 +22,7 @@ namespace One.Views.Course
             {
                 try
                 {
+                    this.txtName.Focus();
                     InitialSetup();
                 }
                 catch

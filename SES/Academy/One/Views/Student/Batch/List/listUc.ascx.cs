@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using One.Values.MemberShip;
 
 namespace One.Views.Student.Batch.List
 {
@@ -13,10 +14,10 @@ namespace One.Views.Student.Batch.List
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+            //if (!IsPostBack)
+            //{
 
-            }
+            //}
             LoadBatches();
         }
 
@@ -34,24 +35,37 @@ namespace One.Views.Student.Batch.List
 
         private void LoadBatches()
         {
+            var user = Page.User as CustomPrincipal;
+            if(user!=null)
+            using(var aHelper = new DbHelper.AcademicYear())
             using (var helper = new DbHelper.Batch())
             {
-                var edit = Edit == "1";
-                var lst = helper.GetBatchList(SchoolId, 10
-                    , 0);//Convert.ToInt32(String.IsNullOrEmpty(txtPageNo.Text) ? "0" : txtPageNo.Text));
-                foreach (var batch in lst)
+                var academic = aHelper.GetAcademicYearListForSchool(user.SchoolId);
+                if (academic.Any())
                 {
-                    ItemUc itemUc = (ItemUc)Page.LoadControl("~/Views/Student/Batch/List/ItemUc.ascx");
-                    itemUc.LoadData(batch.Id, batch.Name, batch.Description, batch.ProgramBatches.Count
-                        , batch.ClassCommenceDate, edit);
-                    pnlItems.Controls.Add(itemUc);
+                    var edit = Edit == "1";
+                    var lst = helper.GetBatchList(SchoolId, 10
+                        , 0); //Convert.ToInt32(String.IsNullOrEmpty(txtPageNo.Text) ? "0" : txtPageNo.Text));
+
+                    foreach (var batch in lst)
+                    {
+                        ItemUc itemUc = (ItemUc) Page.LoadControl("~/Views/Student/Batch/List/ItemUc.ascx");
+                        itemUc.LoadData(batch.Id, batch.Name, batch.Description, batch.ProgramBatches.Count
+                            , batch.AcademicYear.StartDate, edit);
+                        pnlItems.Controls.Add(itemUc);
+                    }
+                }
+                else
+                {
+                    //display academic year creation prompt form
+
                 }
             }
         }
 
         public string Edit
         {
-            get{return hidEdit.Value;}
+            get { return hidEdit.Value; }
             set { hidEdit.Value = value; }
         }
     }

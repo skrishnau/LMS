@@ -15,8 +15,8 @@ namespace One.Views.Student.Batch.Create
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblCommenceDateError.Visible = false;
-
+            //lblAcademicYearError.Visible = false;
+            txtName.Focus();
             lblError.Visible = false;
             if (!IsPostBack)
             {
@@ -64,26 +64,52 @@ namespace One.Views.Student.Batch.Create
         public void LoadStructure(int schoolId)
         {
             var batchId = BatchId;
-            using (var helper = new DbHelper.Structure())
-            {
-                var programs = helper.ListPrograms(schoolId);
-                programs.ForEach(p =>
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
+                using (var aHelper = new DbHelper.AcademicYear())
+                using (var helper = new DbHelper.Structure())
                 {
-                    var litem = new ListItem() { Text = " " + p.Name, Value = p.Id.ToString() };
-                    var pbs = p.ProgramBatches.FirstOrDefault(x => x.BatchId == BatchId);
-                    if (pbs != null)
+                    var academicYears = aHelper.ListNotCompleteAcademicYear(user.SchoolId);
+
+                    if (academicYears.Any())
                     {
-                        litem.Value += "_" + pbs.Id;
-                        litem.Selected = !(pbs.Void ?? false);
+                        ddlAcademicYear.DataValueField = "Id";
+                        ddlAcademicYear.DataTextField = "Name";
+                        ddlAcademicYear.DataSource = academicYears;
+                        ddlAcademicYear.DataBind();
                     }
-                    else
+                    //else
+                    //{
+                    //    //var dtsrc = new IdAndName()
+                    //    //{
+                    //    //    Id = 0,
+                    //    //    Name = "Please, first add academic year"
+                    //    //};
+                    //    //ddlAcademicYear.Items.Add(new ListItem()
+                    //    //{
+                    //    //    Value = "0",
+                    //    //    Text = " ---------------- "
+                    //    //}); 
+                    //}
+
+                    var programs = helper.ListPrograms(schoolId);
+                    programs.ForEach(p =>
                     {
-                        litem.Value += "_0";
-                        litem.Selected = false;
-                    }
-                    CheckBoxList1.Items.Add(litem);
-                });
-            }
+                        var litem = new ListItem() { Text = " " + p.Name, Value = p.Id.ToString() };
+                        var pbs = p.ProgramBatches.FirstOrDefault(x => x.BatchId == BatchId);
+                        if (pbs != null)
+                        {
+                            litem.Value += "_" + pbs.Id;
+                            litem.Selected = !(pbs.Void ?? false);
+                        }
+                        else
+                        {
+                            litem.Value += "_0";
+                            litem.Selected = false;
+                        }
+                        CheckBoxList1.Items.Add(litem);
+                    });
+                }
         }
 
         #region Properties
@@ -93,10 +119,7 @@ namespace One.Views.Student.Batch.Create
         public int BatchId
         {
             get { return Convert.ToInt32(hidBatchId.Value); }
-            set
-            {
-                hidBatchId.Value = value.ToString();
-            }
+            set { hidBatchId.Value = value.ToString(); }
         }
 
         #endregion
@@ -123,23 +146,27 @@ namespace One.Views.Student.Batch.Create
 
         private void SaveBatch()
         {
+
             var batchId = BatchId;
             var user = Page.User as CustomPrincipal;
             if (user != null && Page.IsValid)
             {
-                var date = DateTime.Now;
-                if (txtCommenceDate.Text != "")
-                {
-                    try
-                    {
-                        date = Convert.ToDateTime(txtCommenceDate.Text);
-                    }
-                    catch
-                    {
-                        lblCommenceDateError.Visible = true;
-                        return;
-                    }
-                }
+                //var date = DateTime.Now;
+                //commence date
+                //if (txtCommenceDate.Text != "")
+                //{
+                //    try
+                //    {
+                //        date = Convert.ToDateTime(txtCommenceDate.Text);
+                //    }
+                //    catch
+                //    {
+                //        lblCommenceDateError.Visible = true;
+                //        return;
+                //    }
+                //}
+
+
 
                 var lst = new List<Academic.DbEntities.Batches.ProgramBatch>();
                 foreach (ListItem item in CheckBoxList1.Items)
@@ -171,22 +198,27 @@ namespace One.Views.Student.Batch.Create
                         Description = txtDescription.Text
                         ,
                         SchoolId = user.SchoolId
-                        
-                        
                     };
                     if (batchId <= 0)
                     {
                         batch.CreatedDate = DateTime.Now;
                     }
-                    if (!string.IsNullOrEmpty(txtCommenceDate.Text))
+
+                    if (string.IsNullOrEmpty(ddlAcademicYear.SelectedValue))
                     {
-                        batch.ClassCommenceDate = date;
+                        //lblAcademicYearError.Visible = true;
+                        return;
                     }
-                    else
-                    {
-                        batch.ClassCommenceDate = null;
-                    }
-                    
+                    batch.AcademicYearId = Convert.ToInt32(ddlAcademicYear.SelectedValue);
+                    //if (!string.IsNullOrEmpty(txtCommenceDate.Text))
+                    //{
+                    //    batch.ClassCommenceDate = date;
+                    //}
+                    //else
+                    //{
+                    //    batch.ClassCommenceDate = null;
+                    //}
+
                     var saved = helper.AddOrUpdateBatch(batch, lst);
                     if (saved != null)
                     {
@@ -218,7 +250,8 @@ namespace One.Views.Student.Batch.Create
                     BatchId = batch.Id;
                     txtName.Text = batch.Name;
                     txtDescription.Text = batch.Description;
-                    txtCommenceDate.Text = batch.ClassCommenceDate == null ? "" : batch.ClassCommenceDate.Value.ToShortDateString();
+                    ddlAcademicYear.SelectedValue = batch.AcademicYearId.ToString();
+                    //txtCommenceDate.Text = batch.ClassCommenceDate == null ? "" : batch.ClassCommenceDate.Value.ToShortDateString();
                 }
                 // program batches
             }

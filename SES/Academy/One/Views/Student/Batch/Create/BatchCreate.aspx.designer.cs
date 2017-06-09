@@ -40,22 +40,22 @@ namespace One.Views.Student.Batch.Create {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorName;
         
         /// <summary>
-        /// txtCommenceDate control.
+        /// ddlAcademicYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCommenceDate;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAcademicYear;
         
         /// <summary>
-        /// lblCommenceDateError control.
+        /// validatorAcademicYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCommenceDateError;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorAcademicYear;
         
         /// <summary>
         /// txtDescription control.

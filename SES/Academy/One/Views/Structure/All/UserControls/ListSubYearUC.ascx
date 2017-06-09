@@ -35,8 +35,8 @@
         </div>
 
         <asp:HiddenField ID="hidStructureType" Value="0" runat="server" />
-        <asp:HiddenField ID="hidYearId" runat="server" />
-        <asp:HiddenField ID="hidSubYearId" runat="server" />
+        <asp:HiddenField ID="hidYearId" runat="server"  Value="0"/>
+        <asp:HiddenField ID="hidSubYearId" runat="server"  Value="0"/>
 
     </asp:Panel>
 </div>

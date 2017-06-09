@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Academic.Database.Migrations;
+//using Academic.Database.Migrations;
 using Academic.ViewModel;
 
 namespace One.Views.Grade
