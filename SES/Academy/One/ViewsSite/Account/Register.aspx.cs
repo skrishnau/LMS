@@ -44,7 +44,7 @@ namespace One.ViewsSite.Account
                 {
                     FirstName = txtFirstName.Text
                     ,
-                    MiddleName =  txtMiddleName.Text
+                    MiddleName = txtMiddleName.Text
                     ,
                     LastName = txtLastName.Text
                     ,
@@ -125,19 +125,12 @@ namespace One.ViewsSite.Account
                         serializeModel.LastName = user.LastName;
 
                         serializeModel.SchoolId = user.SchoolId ?? 0;
-                        var acaId = acaHelper.GetCurrentAcademicYear(user.SchoolId ?? 0);
-                        if (acaId != null)
+
+                        var sess = acaHelper.GetCurrentSession();
+                        if (sess != null)
                         {
-                            serializeModel.AcademicYearId = acaId.Id;
-                            var sess = acaHelper.GetCurrentSession(acaId.Id);
-                            if (sess != null)
-                            {
-                                serializeModel.SessionId = sess.Id;
-                            }
-                            //else
-                            //{
-                            //    serializeModel.SessionId = 0;
-                            //}
+                            serializeModel.AcademicYearId = sess.AcademicYearId;
+                            serializeModel.SessionId = sess.Id;
                         }
 
                         JavaScriptSerializer serializer = new JavaScriptSerializer();

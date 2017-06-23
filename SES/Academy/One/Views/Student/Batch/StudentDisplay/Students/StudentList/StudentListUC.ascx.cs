@@ -12,18 +12,18 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentList
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                //UpdateList();
-                using (var helper = new DbHelper.Batch())
-                {
-                    //helper.GetStudentsOfProgramBatch(ProgramBatchId);
-                    //GridView2.DataSource = null;
-                    GridView2.DataSource = helper.GetStudentsOfProgramBatch_AsUser(ProgramBatchId);
-                    GridView2.DataBind();
+            ////if (!IsPostBack)
+            //{
+            //    //UpdateList();
+            //    using (var helper = new DbHelper.Batch())
+            //    {
+            //        //helper.GetStudentsOfProgramBatch(ProgramBatchId);
+            //        //GridView2.DataSource = null;
+            //        GridView2.DataSource = helper.GetStudentsOfProgramBatch_AsUser(ProgramBatchId);
+            //        GridView2.DataBind();
 
-                }
-            }
+            //    }
+            //}
         }
 
         public int ProgramBatchId
@@ -118,5 +118,10 @@ namespace One.Views.Student.Batch.StudentDisplay.Students.StudentList
             return "Never";
         }
 
+        protected void GridView2_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            e.Cancel = false;
+           
+        }
     }
 }

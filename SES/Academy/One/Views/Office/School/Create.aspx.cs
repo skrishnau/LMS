@@ -73,7 +73,7 @@ namespace One.Views.Office.School
         {
             using (var helper = new DbHelper.Office())
             {
-               
+
                 var sch = helper.GetSchoolOfUser(user.Id);
 
                 if (sch != null)
@@ -164,12 +164,12 @@ namespace One.Views.Office.School
             var i = 0;
             try
             {
-                i = countries.IndexOf("Nepal");                
+                i = countries.IndexOf("Nepal");
             }
             catch
             {
             }
-            if(i!=0)
+            if (i != 0)
                 countries.Insert(0, "Select");
             ddlCountry.DataSource = countries;
             ddlCountry.DataBind();
@@ -222,7 +222,8 @@ namespace One.Views.Office.School
                     Website = txtWeb.Text
                     ,
                     CreatedDate = DateTime.Now
-                    ,ImageId = Convert.ToInt32(hidImageId.Value)
+                    ,
+                    ImageId = Convert.ToInt32(hidImageId.Value)
                 };
                 if (user.SchoolId <= 0)
                     school.UserId = user.Id;
@@ -276,7 +277,7 @@ namespace One.Views.Office.School
                     //Page.User.Identity.Name;
                     if (saved != null)
                     {
-                        if (user.SchoolId <= 0 )
+                        if (user.SchoolId <= 0)
                         {
                             var ok = UpdateSchoolInfoInCookie(user, saved.Id);
                             if (ok)
@@ -331,21 +332,28 @@ namespace One.Views.Office.School
                         serializeModel.LastName = user.LastName;
                         serializeModel.SchoolId = schoolId;
 
-                        //serializeModel.SchoolId = user.SchoolId??0;
-                        var acaId = acaHelper.GetCurrentAcademicYear(user.SchoolId);
-                        if (acaId != null)
+                        var sess = acaHelper.GetCurrentSession();
+                        if (sess != null)
                         {
-                            serializeModel.AcademicYearId = acaId.Id;
-                            var sess = acaHelper.GetCurrentSession(acaId.Id);
-                            if (sess != null)
-                            {
-                                serializeModel.SessionId = sess.Id;
-                            }
-                            //else
-                            //{
-                            //    serializeModel.SessionId = 0;
-                            //}
+                            serializeModel.AcademicYearId = sess.AcademicYearId;
+                            serializeModel.SessionId = sess.Id;
                         }
+
+
+                        //var acaId = acaHelper.GetCurrentAcademicYear(user.SchoolId);
+                        //if (acaId != null)
+                        //{
+                        //    serializeModel.AcademicYearId = acaId.Id;
+                        //    var sess = acaHelper.GetCurrentSession(acaId.Id);
+                        //    if (sess != null)
+                        //    {
+                        //        serializeModel.SessionId = sess.Id;
+                        //    }
+                        //    //else
+                        //    //{
+                        //    //    serializeModel.SessionId = 0;
+                        //    //}
+                        //}
 
                         JavaScriptSerializer serializer = new JavaScriptSerializer();
 

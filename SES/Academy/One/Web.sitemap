@@ -2,14 +2,14 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode url="~/Default.aspx" title="Home"  description="This is home">
 
-    <!--Current or earlier courses--> 
+    <!--Current or earlier courses-->
     <siteMapNode url="~/Views/Courses/Default.aspx" title="Current or earlier courses" description="current and earlier courses">
-      
+
     </siteMapNode>
-    
+
     <!--Search-->
     <siteMapNode url="~/Views/Search/Default.aspx" title="Search" description="search"/>
-    
+
     <!--Notice-->
     <siteMapNode url="~/Views/NoticeBoard/NoticeListing.aspx"  title="Notices"  description="notice list">
       <siteMapNode url="~/Views/NoticeBoard/NoticeDetail.aspx" title="Notice Name" description="notice deatil" />
@@ -40,11 +40,7 @@
 
     <!--Batch-->
     <siteMapNode url="~/Views/Student/Default.aspx" title="Batches" description="batches">
-      <siteMapNode url="~/Views/Student/Batch/Default.aspx" title="Batch name" description="batch name">
-        <siteMapNode url="~/Views/Student/Batch/Student/Default.aspx" title="Program name" description="program name">
-          <siteMapNode url="~/Views/Student/Batch/Student/StudentCreate.aspx" title="Student edit" description="student edit"/>
-        </siteMapNode>
-      </siteMapNode>
+
       <siteMapNode url="~/Views/Student/Batch/Create/BatchCreate.aspx" title="Batch edit" description="batch edit"/>
     </siteMapNode>
 
@@ -67,15 +63,27 @@
     </siteMapNode>
 
     <!--Academic session-->
-    <siteMapNode url="~/Views/Academy/List.aspx" title="Manage academic year" description="manage academic year">
-      <siteMapNode url="~/Views/Academy/AcademicYear/AcademyCreate.aspx" title="Academic year edit" description="academic year edit"></siteMapNode>
-      <siteMapNode url="~/Views/Academy/AcademicYear/AcademicYearDetail.aspx" title="Academic year name" description="academic year name">
-        <siteMapNode url="~/Views/Academy/ClassAssign/ClassAssignCreate.aspx" title="class assign" description="class assign"/>
-        <siteMapNode url="~/Views/Academy/Session/Create.aspx" title="Session edit" description="session edit"/>
-        <siteMapNode url="~/Views/Academy/Session/SessionDetail.aspx" title="Session Name" description="session">
-          <siteMapNode url="~/Views/Academy/Activation/Activate.aspx" title="Activate" description="activate"/>
-        </siteMapNode>
+    <siteMapNode url="~/Views/Academy/Default.aspx" title="Academic" description="manage academic year">
+
+      <siteMapNode url="~/Views/Academy/Create.aspx" title="Academic year edit" description="academic year edit"></siteMapNode>
+      <siteMapNode url="~/Views/Academy/StartSession.aspx" title="Session start" description="session start"></siteMapNode>
+      <siteMapNode url="~/Views/Academy/DefaultSession.aspx" title="Default session" description="default session"></siteMapNode>
+        
+      <siteMapNode url="~/Views/Academy/Detail.aspx" title="Academic year detail" description="academic year detail">
+          <siteMapNode url="~/Views/Student/Batch/Default.aspx" title="Batch name" description="batch name">
+            <siteMapNode url="~/Views/Student/Batch/Student/Default.aspx" title="Program name" description="program name">
+              <siteMapNode url="~/Views/Student/Batch/Student/StudentCreate.aspx" title="Student edit" description="student edit"/>
+            </siteMapNode>
+          </siteMapNode>
+
+          <siteMapNode url="~/Views/Academy/ClassAssign/ClassAssignCreate.aspx" title="class assign" description="class assign"/>
+          <siteMapNode url="~/Views/Academy/Session/Create.aspx" title="Session edit" description="session edit"/>
+          <siteMapNode url="~/Views/Academy/Session/SessionDetail.aspx" title="Session Name" description="session">
+            <siteMapNode url="~/Views/Academy/Activation/Activate.aspx" title="Activate" description="activate"/>
+          </siteMapNode>
       </siteMapNode>
+
+      
     </siteMapNode>
 
     <!--Events-->

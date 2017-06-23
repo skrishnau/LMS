@@ -54,6 +54,10 @@
     <Compile Include="Migrations\201706090806376_coulumn_added_batch_academicYearId.Designer.cs">
       <DependentUpon>201706090806376_coulumn_added_batch_academicYearId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706171158033_sessionDefault_added.cs" />
+    <Compile Include="Migrations\201706171158033_sessionDefault_added.Designer.cs">
+      <DependentUpon>201706171158033_sessionDefault_added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706090806376_coulumn_added_batch_academicYearId.resx">
       <DependentUpon>201706090806376_coulumn_added_batch_academicYearId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706171158033_sessionDefault_added.resx">
+      <DependentUpon>201706171158033_sessionDefault_added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

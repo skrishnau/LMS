@@ -130,6 +130,51 @@ namespace One.Views.Structure {
         protected global::System.Web.UI.WebControls.TextBox txtPosition;
         
         /// <summary>
+        /// tblSubyear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable tblSubyear;
+        
+        /// <summary>
+        /// txtSem1Name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSem1Name;
+        
+        /// <summary>
+        /// reqValiSubYear1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqValiSubYear1;
+        
+        /// <summary>
+        /// txtSem2Name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSem2Name;
+        
+        /// <summary>
+        /// reqValiSubYear2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqValiSubYear2;
+        
+        /// <summary>
         /// CustomDialog1 control.
         /// </summary>
         /// <remarks>

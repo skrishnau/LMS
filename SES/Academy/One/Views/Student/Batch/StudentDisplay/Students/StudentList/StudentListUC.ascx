@@ -3,8 +3,10 @@
 
 <div>
     <%-- DataSourceID="ObjectDataSource1"  --%>
-    <asp:GridView ID="GridView2" runat="server" AllowPaging="True" Width="100%" 
-        AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView2" runat="server" AllowPaging="True" Width="100%"  
+        OnPageIndexChanging="GridView2_OnPageIndexChanging" 
+        PageSize="30"
+        AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1">
 
         <AlternatingRowStyle BackColor="#F7F6F3" ForeColor="#393939" />
 
@@ -113,5 +115,10 @@
     <asp:HiddenField ID="hidPageNo" runat="server" Value="1" />
     <asp:HiddenField ID="hidPerPage" runat="server" Value="100" />
     <asp:HiddenField ID="hidProgramBatchId" runat="server" Value="0" />
+    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetStudentsOfProgramBatch_AsUser" TypeName="Academic.DbHelper.DbHelper+Batch">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="hidProgramBatchId" DefaultValue="0" Name="programBatchId" PropertyName="Value" Type="Int32" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
 
 </div>

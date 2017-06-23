@@ -90,27 +90,13 @@ namespace One.Views.Academy.AcademicYear
         {
             if (edit)
             {
-                //Editable = true;
-                //btnMarkComplete.Visible = true;
-                //btnActivate.Visible = true;
-                //lnkAddClasses.Visible = true;
                 lnknewSession.Visible = true;
             }
             else
             {
-                //Editable = false;
-                //btnMarkComplete.Visible = false;
-                //btnActivate.Visible = false;
-                //lnkAddClasses.Visible = false;
                 lnknewSession.Visible = false;
             }
         }
-
-        //public bool Editable
-        //{
-        //    get { return Convert.ToBoolean(hidEditable.Value); }
-        //    set { hidEditable.Value = value.ToString(); }
-        //}
 
         public int AcademicYearId
         {
@@ -122,72 +108,86 @@ namespace One.Views.Academy.AcademicYear
         public void LoadData()
         {
             var edit = Edit;
-            using (var helper = new DbHelper.AcademicYear())
+
+            using (var shelper = new DbHelper.Batch())
+            //using (var helper = new DbHelper.AcademicYear())
             {
-                var academic = helper.GetAcademicYear(AcademicYearId);
-                if (academic != null)
+                var batch = shelper.GetBatchByAcademicYearId(AcademicYearId);
+                if (batch != null)
                 {
-
-                    if (SiteMap.CurrentNode != null)
+                    lnkBatch.Text = batch.Name+" (click to view programs)";
+                    lnkBatch.NavigateUrl = "~/Views/Student/Batch/?Id="+batch.Id;
+                    var academic = batch.AcademicYear;
+                    //var academic = helper.GetAcademicYear(AcademicYearId);
+                    if (academic != null)
                     {
-                        var list = new List<IdAndName>()
+
+                        if (SiteMap.CurrentNode != null)
                         {
-                           new IdAndName(){
-                                        Name=SiteMap.RootNode.Title
-                                        ,Value =  SiteMap.RootNode.Url
-                                        ,Void=true
-                                    },
-                            new IdAndName(){
-                                Name = SiteMap.CurrentNode.ParentNode.Title
-                                ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit="+(Edit?"1":"0")
-                                ,Void=true
-                            },
-                            new IdAndName()
+                            var list = new List<IdAndName>()
                             {
-                                Name = academic.Name
-                            }
-                        };
-                        SiteMapUc.SetData(list);
-                    }
-                    lblPageTitle.Text = academic.Name;
-                    lblEndDate.Text = academic.EndDate.ToString("D");
-                    lblStartDate.Text = academic.StartDate.ToString("D");
-                    string name = "";
+                                new IdAndName()
+                                {
+                                    Name = SiteMap.RootNode.Title
+                                    ,
+                                    Value = SiteMap.RootNode.Url
+                                    ,
+                                    Void = true
+                                },
+                                new IdAndName()
+                                {
+                                    Name = SiteMap.CurrentNode.ParentNode.Title
+                                    ,
+                                    Value = SiteMap.CurrentNode.ParentNode.Url + "?edit=" + (Edit ? "1" : "0")
+                                    ,
+                                    Void = true
+                                },
+                                new IdAndName()
+                                {
+                                    Name = academic.Name
+                                }
+                            };
+                            SiteMapUc.SetData(list);
+                        }
+                        lblPageTitle.Text = academic.Name;
+                        lblEndDate.Text = academic.EndDate.ToString("D");
+                        lblStartDate.Text = academic.StartDate.ToString("D");
+                        string name = "";
 
-                    if (academic.Completed ?? false)
-                    {
-                        name = " (Complete)";
-                        //btnMarkComplete.Visible = false;
-                        //btnActivate.Visible = false;
-                        //lnkAddClasses.Visible = false;
-                        lnknewSession.Visible = false;
-                    }
-                    else if (academic.IsActive)
-                    {
-                        name = " (Active)";
-                        //btnActivate.Visible = false;
+                        if (academic.Completed ?? false)
+                        {
+                            name = " (Complete)";
+                            //btnMarkComplete.Visible = false;
+                            //btnActivate.Visible = false;
+                            //lnkAddClasses.Visible = false;
+                            lnknewSession.Visible = false;
+                        }
+                        else if (academic.IsActive)
+                        {
+                            name = " (Active)";
+                            //btnActivate.Visible = false;
+                        }
+                        else
+                        {
+                            //btnMarkComplete.Visible = false;
+                        }
+
+                        lblAcademicYearName.Text = academic.Name + name;
+
+                        foreach (var sess in academic.Sessions.Where(x => !(x.Void ?? false)).ToList())
+                        {
+                            var sessUc = (Academy.UserControls.SessionsListingInAYDetailUC)
+                                Page.LoadControl("~/Views/Academy/UserControls/SessionsListingInAYDetailUC.ascx");
+                            sessUc.LoadSessionData(academic.Id, sess.Id, sess.Name
+                                , sess.StartDate, sess.EndDate
+                                , sess.IsActive, sess.Completed ?? false, Edit, false);
+                            pnlSessions.Controls.Add(sessUc);
+                        }
+
                     }
                     else
-                    {
-                        //btnMarkComplete.Visible = false;
-                    }
-
-                    lblAcademicYearName.Text = academic.Name + name;
-
-                    foreach (var sess in academic.Sessions.Where(x=>!(x.Void??false)).ToList())
-                    {
-                        var sessUc = (Academy.UserControls.SessionsListingInAYDetailUC)
-                            Page.LoadControl("~/Views/Academy/UserControls/SessionsListingInAYDetailUC.ascx");
-                        sessUc.LoadSessionData(academic.Id, sess.Id, sess.Name
-                            , sess.StartDate, sess.EndDate
-                            , sess.IsActive, sess.Completed ?? false, Edit,false);
-                        pnlSessions.Controls.Add(sessUc);
-                    }
-
+                        Response.Redirect("~/Views/Academy/List.aspx");
                 }
-                else
-                    Response.Redirect("~/Views/Academy/List.aspx");
-
 
             }
 

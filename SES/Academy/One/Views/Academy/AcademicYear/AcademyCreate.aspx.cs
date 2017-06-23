@@ -131,7 +131,7 @@ namespace One.Views.Academy.AcademicYear
                                 }
                             }
 
-                           
+
                             BatchId = batch.Id;
                             var acad = batch.AcademicYear;
                             if (acad != null)
@@ -216,23 +216,23 @@ namespace One.Views.Academy.AcademicYear
                 using (var helper = new DbHelper.AcademicYear())
                 {
 
-                    var saved = helper.AddOrUpdateAcademicYearAndBatch(user.SchoolId, academicYear, batch, list);
-                    if (saved != null)
-                    {
-                        var btn = sender as Button;
-                        if (btn != null)
-                        {
-                            if (btn.ID == "btnSaveAndAddSessions")
-                            {
-                                Response.Redirect("~/Views/Academy/Session/Create.aspx?aId=" + saved.Id);
-                            }
-                            else
-                            {
-                                Response.Redirect("~/Views/Academy/List.aspx?edit=1");
-                            }
-                        }
-                    }
-                    else lblError.Visible = true;
+                    //var saved = helper.AddOrUpdateAcademicYearAndBatch(user.SchoolId, academicYear, batch, list);
+                    //if (saved != null)
+                    //{
+                    //    var btn = sender as Button;
+                    //    if (btn != null)
+                    //    {
+                    //        if (btn.ID == "btnSaveAndAddSessions")
+                    //        {
+                    //            Response.Redirect("~/Views/Academy/Session/Create.aspx?aId=" + saved.Id);
+                    //        }
+                    //        else
+                    //        {
+                    //            Response.Redirect("~/Views/Academy/");
+                    //        }
+                    //    }
+                    //}
+                    //else lblError.Visible = true;
                 }
             }
         }
@@ -274,6 +274,8 @@ namespace One.Views.Academy.AcademicYear
                     StartDate = start
                     ,
                     SchoolId = user.SchoolId
+                    ,
+                    Position = start.Year + start.Month + start.Day,
                 };
                 return entity;
             }
@@ -309,7 +311,7 @@ namespace One.Views.Academy.AcademicYear
                 {
                     Id = batchId,
 
-                    Name = txtName.Text
+                    Name = txtBatchName.Text
                     ,
                     SchoolId = user.SchoolId
                     ,

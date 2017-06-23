@@ -9,12 +9,12 @@
     </asp:HyperLink>
     
     <span class="list-item-option">
-        <asp:HyperLink ID="lnkEdit" runat="server">
+        <%--<asp:HyperLink ID="lnkEdit" runat="server">
             <asp:Image ID="imgEditBtn" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
         </asp:HyperLink>
         <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" OnClick="lnkEdit_Click">
             <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/trash.gif" />
-        </asp:HyperLink>
+        </asp:HyperLink>--%>
     </span>
     <div class="list-item-description">
         <span>Class commence from : </span>&nbsp; &nbsp; 

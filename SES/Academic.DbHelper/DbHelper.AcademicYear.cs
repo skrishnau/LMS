@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Web.UI;
 using Academic.DbEntities;
 using Academic.DbEntities.AcacemicPlacements;
+using Academic.DbEntities.Structure;
 using Academic.ViewModel;
 
 namespace Academic.DbHelper
@@ -18,586 +20,55 @@ namespace Academic.DbHelper
         public class AcademicYear : IDisposable
         {
             AcademicContext Context;
+
             public AcademicYear()
             {
                 Context = new AcademicContext();
             }
-
-            //only add for now
-            public bool Add(ViewModel.AcademicViewModel model)
-            {
-                var AYentity = new DbEntities.AcademicYear()
-                {
-
-                    Name = model.AcademicYearName,
-                    StartDate = model.StartDateAY,
-                    EndDate = model.EndDateAV,
-                    IsActive = true,
-                    SchoolId = model.SchoolId
-                };
-                var ay = Context.AcademicYear.Add(AYentity);
-
-                Context.SaveChanges();
-                var list = new List<ViewModel.SessionViewModel>();
-                if (model.Sessions != null)
-                    if (model.Sessions.Count > 0)
-                        foreach (var m in model.Sessions)
-                        {
-                            var Sentity = new DbEntities.Session()
-                            {
-                                Name = m.Name,
-                                StartDate = m.StartDate,
-                                EndDate = m.EndDate,
-                                IsActive = true,
-                                //SessionType = m.SessionType,
-                                AcademicYearId = ay.Id
-                            };
-                            var sess = Context.Session.Add(Sentity);
-                            Context.SaveChanges();
-                        }
-
-                return true;
-            }
-
 
             public void Dispose()
             {
                 Context.Dispose();
             }
 
-            public bool AddAcademicAndSession(ViewModel.AcademicAndSessionViewModel model)
-            {
-                try
-                {
-                    DbEntities.AcademicYear entity = new DbEntities.AcademicYear()
-                    {
 
-                        Name = model.AcademicYearName,
-                        SchoolId = model.SchoolId,
-                        StartDate = new DateTime(model.YearAs, (int)model.MonthAs, model.DateAs),
-                        EndDate = new DateTime(model.YearAe, (int)model.MonthAe, model.DateAe),
+            #region Earlier -- Get Previous and current academic and session,;; completion mark
 
-                        IsActive = true
-                    };
-                    var saved = Context.AcademicYear.Add(entity);
-                    Context.SaveChanges();
-                    DbEntities.Session session = new DbEntities.Session()
-                    {
-                        Name = model.SessionName,
-                        StartDate = new DateTime(model.YearSs, (model.MonthSs + 1), model.DateSs),
-                        EndDate = new DateTime(model.YearSe, model.MonthSe + 1, model.DateSe),
-                        IsActive = true,
-                        AcademicYearId = saved.Id,
-                        //SessionType = model.SessionType,
-
-                    };
-                    Context.Session.Add(session);
-                    Context.SaveChanges();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-
-            public DbEntities.AcademicYear GetCurrentAcademicYear(int schoolId)
+            //(Version-2) -- Used in SchoolCreate, Account-Login, Account-Register
+            /// <summary>
+            /// Returns currnt active session (Version-2)
+            /// </summary>
+            /// <returns></returns>
+            public DbEntities.Session GetCurrentSession()
             {
                 var date = DateTime.Now;
-                var ay = Context.AcademicYear.FirstOrDefault(x => (x.SchoolId == schoolId && x.StartDate < date && x.EndDate > date) || x.IsActive);
-                if (ay == null)
-                    return null;
-                return ay;
+                var sess =
+                    Context.Session.FirstOrDefault(
+                        x =>
+                            (x.StartDate <= date && x.EndDate >= date) || x.IsActive);
+
+                return sess;
             }
 
-            public DbEntities.Session GetCurrentSession(int academicYearId)
-            {
-                var date = DateTime.Now;
-                var ay = Context.Session.FirstOrDefault(x => (x.AcademicYearId == academicYearId && x.StartDate < date && x.EndDate > date) || x.IsActive);
-                if (ay == null)
-                    return null;
-                return ay;
-            }
-
-            public DbEntities.Batches.Batch AddOrUpdateAcademicYearAndBatch(int schoolId, DbEntities.AcademicYear academicY,
-                DbEntities.Batches.Batch batch, List<DbEntities.Batches.ProgramBatch> progBatchList)
-            {
-                var acaEntity = Context.AcademicYear.Find(academicY.Id);
-                var batchEnt = Context.Batch.Find(batch.Id);
-                try
-                {
-                    using (TransactionScope scope = new TransactionScope())
-                    {
-                        if (acaEntity == null)
-                        {
-                            //add
-                            #region Academic year
-
-                            var max = 0;
-                            try
-                            {
-                                max = Context.AcademicYear.Where(x => x.SchoolId == schoolId).Max(m => m.Position);
-                            }
-                            catch { }
-                            academicY.Position = max + 1;
-                            acaEntity = Context.AcademicYear.Add(academicY);
-                            Context.SaveChanges();
-
-                            #endregion
-
-                            #region Batch
-
-                            batch.AcademicYearId = acaEntity.Id;
-                            batchEnt = Context.Batch.Add(batch);
-                            Context.SaveChanges();
-                            foreach (var pb in progBatchList)
-                            {
-                                pb.BatchId = batchEnt.Id;
-                                Context.ProgramBatch.Add(pb);
-                                Context.SaveChanges();
-                            }
-
-                            #endregion
-                            //saveSuccess = true;
-                        }
-                        else
-                        {
-                            //update
-                            #region Academic year
-
-                            acaEntity.IsActive = academicY.IsActive;
-                            acaEntity.Name = academicY.Name;
-                            acaEntity.EndDate = academicY.EndDate;
-                            acaEntity.SchoolId = academicY.SchoolId;
-                            acaEntity.StartDate = academicY.StartDate;
-                            Context.SaveChanges();
-
-                            #endregion
-
-
-                            #region Batch
-
-                            if (batchEnt != null)
-                            {
-                                batchEnt.Name = batch.Name;
-                                batchEnt.Description = batch.Description;
-
-                                Context.SaveChanges();
-                                foreach (var pb in progBatchList)
-                                {
-                                    var found = Context.ProgramBatch.Find(pb.Id);
-                                    if (found == null)
-                                    {
-                                        Context.ProgramBatch.Add(pb);
-                                        Context.SaveChanges();
-                                    }
-                                    else
-                                    {
-                                        found.Void = pb.Void;
-                                        Context.SaveChanges();
-                                    }
-                                }
-                                batchEnt.AcademicYear = acaEntity;
-                            }
-
-
-                            #endregion
-                            //saveSuccess = true;
-                        }
-                        //var prev = Context.AcademicYear.Where(x => x.SchoolId == acaEntity.SchoolId && x.Id != acaEntity.Id);
-                        //foreach (var academicYear in prev)
-                        //{
-                        //    academicYear.IsActive = false;
-                        //}
-                        //Context.SaveChanges();
-
-
-
-                        scope.Complete();
-                        return batchEnt;
-                    }
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-
-            private DbEntities.AcademicYear AddOrUpdateAcademicYear(int schoolId, DbEntities.AcademicYear entity)
-            {
-                //bool saveSuccess = false;
-                var ent = Context.AcademicYear.Find(entity.Id);
-                try
-                {
-                    using (TransactionScope scope = new TransactionScope())
-                    {
-                        if (ent == null)
-                        {
-                            //add
-                            var max = 0;
-                            try
-                            {
-                                max = Context.AcademicYear.Where(x => x.SchoolId == schoolId).Max(m => m.Position);
-                            }
-                            catch { }
-                            entity.Position = max + 1;
-                            ent = Context.AcademicYear.Add(entity);
-                            Context.SaveChanges();
-                            //saveSuccess = true;
-                        }
-                        else
-                        {
-                            //update
-                            ent.IsActive = entity.IsActive;
-                            ent.Name = entity.Name;
-                            ent.EndDate = entity.EndDate;
-                            ent.SchoolId = entity.SchoolId;
-                            ent.StartDate = entity.StartDate;
-                            Context.SaveChanges();
-                            //saveSuccess = true;
-                        }
-                        var prev = Context.AcademicYear.Where(x => x.SchoolId == ent.SchoolId && x.Id != ent.Id);
-                        foreach (var academicYear in prev)
-                        {
-                            academicYear.IsActive = false;
-                        }
-                        Context.SaveChanges();
-                        scope.Complete();
-                        return ent;
-                    }
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-
-            private Academic.DbEntities.Batches.Batch AddOrUpdateBatch(DbEntities.Batches.Batch batch
-              , List<DbEntities.Batches.ProgramBatch> progBatchList)
-            {
-                try
-                {
-                    using (var scope = new TransactionScope())
-                    {
-                        var ent = Context.Batch.Find(batch.Id);
-                        if (ent == null)
-                        {
-                            ent = Context.Batch.Add(batch);
-                            Context.SaveChanges();
-                            foreach (var pb in progBatchList)
-                            {
-                                pb.BatchId = ent.Id;
-                                Context.ProgramBatch.Add(pb);
-                                Context.SaveChanges();
-                            }
-
-                        }
-                        else
-                        {
-                            ent.Name = batch.Name;
-                            ent.Description = batch.Description;
-
-                            //ent.ClassCommenceDate = batch.ClassCommenceDate;
-                            //ent.Void = batch.Void
-
-                            Context.SaveChanges();
-                            foreach (var pb in progBatchList)
-                            {
-                                var found = Context.ProgramBatch.Find(pb.Id);
-                                if (found == null)
-                                {
-                                    Context.ProgramBatch.Add(pb);
-                                    Context.SaveChanges();
-                                }
-                                else
-                                {
-                                    found.Void = pb.Void;
-                                    Context.SaveChanges();
-                                }
-                            }
-                        }
-                        scope.Complete();
-                        return ent;
-                    }
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-
-
-
-            public List<DbEntities.AcademicYear> GetAcademicYearListForSchool(int schoolId)
-            {
-                var date = DateTime.Now;
-                var aca = Context.AcademicYear
-                    .Where(x => x.SchoolId == schoolId && !(x.Void ?? false))
-                    .Include(x => x.Sessions)
-                    .OrderByDescending(y => y.StartDate)
-                    .Take(10);
-
-                return aca.ToList();
-            }
-
-            public bool AddOrUpdateSession(int academicYearId, DbEntities.Session session)
-            {
-                try
-                {
-                    var a = Context.AcademicYear.Find(academicYearId);
-                    if (a != null)
-                    {
-                        var max = 0;
-                        try
-                        {
-                            max = a.Sessions.Max(x => x.Position);
-                        }
-                        catch { }
-
-                        var sess = Context.Session.Find(session.Id);
-                        if (sess == null)
-                        {
-                            session.Position = max + 1;
-                            Context.Session.Add(session);
-                            Context.SaveChanges();
-                        }
-                        else
-                        {
-                            sess.EndDate = session.EndDate;
-                            //sess.SessionType = session.SessionType;
-                            sess.IsActive = session.IsActive;
-                            sess.Name = session.Name;
-                            sess.StartDate = session.StartDate;
-
-                            Context.SaveChanges();
-                        }
-                        return true;
-                    }
-                    return false;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-
-            public List<DbEntities.Session> GetSessionListForAcademicYear(int academicYearId)
-            {
-                return Context.Session.Where(x => x.AcademicYearId == academicYearId && (x.ParentId == null || x.ParentId == 0)
-                    && x.IsActive == true
-                    && x.EndDate >= DateTime.Now).ToList();
-            }
-
-            public List<DbEntities.Session> GetTopSessionListForAcademicYear(int academicYearId)
-            {
-                return Context.Session.Where(x => x.AcademicYearId == academicYearId && x.ParentId == null
-                     && x.EndDate >= DateTime.Now).OrderBy(x => x.EndDate).ToList();//&& x.IsActive == true
-            }
-
+            // not used in V-2 but is useful
             public DbEntities.AcademicYear GetPreviousAcademicYear(int acadeicYearId)
             {
                 try
                 {
-                    return CalculatePreviousAcademicYear(acadeicYearId);
+                    var aca1 = Context.AcademicYear.Where(x => !(x.Void ?? false))
+                    .OrderByDescending(x => x.Position).ToList();
+                    if (aca1.Count >= 2)
+                    {
+                        //second one is the previous academic year
+                        return aca1[1];
+                    }
+                    return null;
                 }
                 catch (Exception exe)
                 {
                     return null;
                 }
             }
-
-            private DbEntities.AcademicYear CalculatePreviousAcademicYear(int acadeicYearId)
-            {
-                try
-                {
-
-                    var thisAcaYear = Context.AcademicYear.Find(acadeicYearId);
-                    var prev = Context.AcademicYear.Where(x => x.EndDate < thisAcaYear.EndDate && !(x.Void ?? false)).OrderByDescending(y => y.EndDate);
-
-                    foreach (var aca in prev)
-                    {
-                        if (Context.RunningClass.Any(x => x.AcademicYearId == aca.Id))
-                        {
-                            return aca;
-                        }
-                    }
-                    return null;
-
-                }
-                catch (Exception exe)
-                {
-                    return null;
-                }
-            }
-
-            public DbEntities.Session GetPreviousSession(int acadeicYearId, int sessionId)
-            {
-                try
-                {
-                    return CalculatePreviousSession(acadeicYearId, sessionId);
-                }
-                catch (Exception exe)
-                {
-                    return null;
-                }
-            }
-
-            private DbEntities.Session CalculatePreviousSession(int acadeicYearId, int sessionId = 0)
-            {
-                try
-                {
-
-                    var thisSession = Context.Session.Find(sessionId);
-                    var prevSession = thisSession.AcademicYear.Sessions.Where(x => x.EndDate < thisSession.EndDate
-                                                                            && (x.Void ?? false))
-                        .OrderByDescending(x => x.EndDate).First();
-
-
-                    if (prevSession == null)
-                    {
-                        var prevAcaYear = GetPreviousAcademicYear(thisSession.AcademicYearId);
-                        if (prevAcaYear != null)
-                        {
-                            var newPrevSession = prevAcaYear.Sessions.Where(x => !(x.Void ?? false)).OrderByDescending(x => x.EndDate).First();
-                            if (Context.RunningClass.Any(x => x.SessionId == newPrevSession.Id))
-                            {
-                                return newPrevSession;
-                            }
-                            else
-                            {
-                                return CalculatePreviousSession(prevAcaYear.Id, newPrevSession.Id);
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        if (Context.RunningClass.Any(x => x.SessionId == prevSession.Id))
-                        {
-                            return prevSession;
-                        }
-                        else
-                        {
-                            return CalculatePreviousSession(prevSession.AcademicYearId, prevSession.Id);
-                        }
-
-                    }
-                    return null;
-
-                }
-                catch (Exception exe)
-                {
-                    return null;
-                }
-            }
-
-            public bool IsThisActiveAcademicYearSession(int academicYearId, int? sessionId)
-            {
-                try
-                {
-                    if ((sessionId ?? 0) > 0)
-                    {
-                        return Context.Session.Any(x => x.IsActive && x.Id == sessionId);
-                    }
-                    else
-                    {
-                        return Context.AcademicYear.Any(x => x.IsActive && x.Id == academicYearId);
-                    }
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-
-            //used
-            public DbEntities.AcademicYear GetAcademicYear(int academicYearId)
-            {
-                return Context.AcademicYear.Find(academicYearId);
-            }
-            //used
-            public DbEntities.Session GetSession(int sessionId)
-            {
-                return Context.Session.Find(sessionId);
-            }
-
-            //used--> after github
-            public Academic.DbEntities.Session GetNextSessionToActivate(int schoolId)
-            {
-                try
-                {
-                    var a = Context.AcademicYear.Where(x => x.IsActive && x.SchoolId == schoolId).ToList();
-                    if (a.Any())
-                    {
-                        var maxStartDate = a.Max(x => x.StartDate);
-
-                        var latestStart = a.Where(x => x.StartDate == maxStartDate).ToList();
-                        var maxEndDate = latestStart.Max(x => x.EndDate);
-                        var latestEnd = latestStart.FirstOrDefault(x => x.EndDate == maxEndDate);
-                        if (latestEnd != null)
-                        {
-                            var sess = latestEnd.Sessions.FirstOrDefault(x => x.IsActive);
-                            if (sess != null)
-                            {
-                                var nextSess = Context.Session
-                                    .Where(
-                                        x =>
-                                            x.AcademicYearId == latestEnd.Id && x.Position > sess.Position &&
-                                            !(x.Void ?? false))
-                                    .OrderBy(x => x.Position).FirstOrDefault();
-                                return nextSess
-                                    ??
-                                    new Session()
-                                    {
-                                        Id = 0
-                                        ,
-                                        AcademicYearId = latestEnd.Id
-                                        ,
-                                        AcademicYear = latestEnd
-                                    ,
-                                    };
-
-                            }
-                        }
-                    }
-                    else
-                    {
-                        var notactive = Context.AcademicYear.Where(x => x.SchoolId == schoolId &&
-                                                                        !(x.Void ?? false)).ToList();
-                        var latest = notactive.FirstOrDefault(x => x.Position == (notactive.Max(m => m.Position)));
-                        if (latest != null)
-                            return latest.Sessions.FirstOrDefault(x => x.Position == (latest.Sessions.Min(m => m.Position)));
-                    }
-                    return null;
-                }
-                catch
-                {
-                    return null;
-                    throw;
-                }
-            }
-
-            //used ==> after github
-            public Academic.DbEntities.AcademicYear GetNextAcademicYearToActivate(int schoolId)
-            {
-                try
-                {
-                    var a = Context.AcademicYear.Where(x => x.SchoolId == schoolId && x.IsActive).ToList();
-                    if (a.Any())
-                    {
-                        //var lateset = a.Where(x => x.Position == (a.Max(y => y.Position)));
-                        return Context.AcademicYear.Where(x => x.SchoolId == schoolId && x.Position > a.Max(m => m.Position))
-                            .OrderBy(o => o.Position).FirstOrDefault();
-                    }
-                    var max = Context.AcademicYear.Where(x => !(x.Void ?? false) && x.SchoolId == schoolId).Max(x => x.Position);
-                    return Context.AcademicYear.FirstOrDefault(x => x.SchoolId == schoolId && x.Position == max);
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-
 
             //used
             public string MarkCompleteAcademicYearSession(int userId, int aId, int sId)
@@ -690,14 +161,16 @@ namespace Academic.DbHelper
                                 //{
                                 //    o.IsActive = false;
                                 //}
-                                var rc = Context.RunningClass.Where(x => x.AcademicYearId == a.Id && (x.SessionId ?? 0) == 0);
+                                var rc =
+                                    Context.RunningClass.Where(x => x.AcademicYearId == a.Id && (x.SessionId ?? 0) == 0);
 
                                 foreach (var r in rc)
                                 {
                                     if (r.ProgramBatchId != null)
                                     {
 
-                                        var earlierNotComplete = r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
+                                        var earlierNotComplete =
+                                            r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
                                         if (earlierNotComplete)
                                         {
                                             continue;
@@ -763,7 +236,8 @@ namespace Academic.DbHelper
 
                                 foreach (var r in rc)
                                 {
-                                    var earlierNotComplete = r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
+                                    var earlierNotComplete =
+                                        r.ProgramBatch.RunningClasses.Any(x => !(x.Completed ?? false));
                                     if (earlierNotComplete)
                                     {
                                         continue;
@@ -800,6 +274,12 @@ namespace Academic.DbHelper
 
             }
 
+            #endregion
+
+
+
+            #region To be Delete later
+
             //used in Exam listing.. to create selectable academic and session list
             //so we need to pass both these classes as same class i.e.
             //The view model is 
@@ -816,19 +296,19 @@ namespace Academic.DbHelper
                             #region if manager or exam-head
 
                             list.Add(new AcademicAndSessionCombinedViewModel()
-                                {
-                                    Id = a.Id
-                                    ,
-                                    AcademicYearId = a.Id
-                                    ,
-                                    SessionId = 0
-                                    ,
-                                    Completed = a.Completed ?? false
-                                    ,
-                                    Name = a.Name
-                                    ,
-                                    BothNameCombined = a.Name
-                                });
+                            {
+                                Id = a.Id
+                                ,
+                                AcademicYearId = a.Id
+                                ,
+                                SessionId = 0
+                                ,
+                                Completed = a.Completed ?? false
+                                ,
+                                Name = a.Name
+                                ,
+                                BothNameCombined = a.Name
+                            });
                             foreach (var s in a.Sessions.OrderByDescending(o => o.Position))
                             {
                                 list.Add(new AcademicAndSessionCombinedViewModel()
@@ -847,6 +327,7 @@ namespace Academic.DbHelper
 
                                 });
                             }
+
                             #endregion
                         }
                         else if (teacher)
@@ -890,271 +371,232 @@ namespace Academic.DbHelper
                                     });
                                 }
                             }
+
                             #endregion
                         }
                     });
                 return list;
             }
 
-
-            //Used
-            public List<Academic.DbEntities.AcademicYear> ListNotCompleteAcademicYear(int schoolId)
+            //will be deleted soon
+            public List<DbEntities.Session> GetTopSessionListForAcademicYear(int academicYearId)
             {
-                return Context.AcademicYear.Where(x => x.SchoolId == schoolId && (x.IsActive || !(x.Completed ?? false)))
-                    .OrderByDescending(x => !x.IsActive)
-                     .ThenBy(x => x.StartDate).ThenBy(x => x.EndDate).ThenBy(x => x.Position).ToList();
+                return Context.Session.Where(x => x.AcademicYearId == academicYearId && x.ParentId == null
+                                                  && x.EndDate >= DateTime.Now).OrderBy(x => x.EndDate).ToList();
+                //&& x.IsActive == true
             }
 
-            //public void AutoUpdateAcademicYear(int userId,int schoolId, int academicYearId)
-            //{
-            //    ActivateAcademicYearSession(userId, academicYearId, 0);
+            #endregion
 
-            //}
 
-            public DbEntities.AcademicYear GetLatestCompletedAcademicYear(int schoolId)
+
+            #region Get functions... academicYear and session get
+
+            //used v-2
+            public DbEntities.AcademicYear GetAcademicYear(int academicYearId)
             {
-                DateTime? date = null;
+                return Context.AcademicYear.Find(academicYearId);
+            }
+
+            //used v-2
+            public DbEntities.Session GetSession(int sessionId)
+            {
+                return Context.Session.Find(sessionId);
+            }
+
+            //used v-2
+            public List<DbEntities.AcademicYear> ListAcademicYears(int schoolId)
+            {
+                var aca = Context.AcademicYear
+                    .Where(x => x.SchoolId == schoolId && !(x.Void ?? false))
+                    .Include(x => x.Sessions)
+                    .OrderByDescending(y => y.StartDate)
+                    .Take(10);
+
+                return aca.ToList();
+            }
+
+            //Used v-2
+            public List<DbEntities.SessionDefault> ListDefaultSessions(int schoolId)
+            {
+                return Context.SessionDefault.OrderBy(x => x.Position).ToList();
+            }
+
+
+
+            #endregion
+
+
+
+            #region Add or update functions
+
+            //Used v-2
+            public DbEntities.Batches.Batch AddOrUpdateAcademicYearAndBatch(int schoolId,
+                DbEntities.AcademicYear academicY,List<Session> sessions,
+                DbEntities.Batches.Batch batch, List<DbEntities.Batches.ProgramBatch> progBatchList)
+            {
+                var acaEntity = Context.AcademicYear.Find(academicY.Id);
+                var batchEnt = Context.Batch.Find(batch.Id);
                 try
                 {
-                    var recentComplete =
-                         Context.AcademicYear.Where(x => ((x.Completed ?? false) || x.IsActive) && x.SchoolId == schoolId)
-                        .OrderBy(x => x.IsActive).ThenByDescending(x => x.CompleteMarkedDate).FirstOrDefault();
-                    return recentComplete;
+                    using (TransactionScope scope = new TransactionScope())
+                    {
+                        if (acaEntity == null)
+                        {
+                            //add
+
+                            #region Academic year
+
+                            //var max = academicY.StartDate.Year+academicY.StartDate.Month+academicY.StartDate.Day;
+                            //try
+                            //{
+                            //    max = Context.AcademicYear.Where(x => x.SchoolId == schoolId).Max(m => m.Position);
+                            //}
+                            //catch { }
+                            //academicY.Position = max ;
+                            acaEntity = Context.AcademicYear.Add(academicY);
+                            Context.SaveChanges();
+
+                            foreach (var session in sessions)
+                            {
+                                session.AcademicYearId = acaEntity.Id;
+                                Context.Session.Add(session);
+                                Context.SaveChanges();
+                            }
+
+                            #endregion
+
+                            #region Batch
+
+                            batch.AcademicYearId = acaEntity.Id;
+                            batchEnt = Context.Batch.Add(batch);
+                            Context.SaveChanges();
+                            foreach (var pb in progBatchList)
+                            {
+                                pb.BatchId = batchEnt.Id;
+                                Context.ProgramBatch.Add(pb);
+                                Context.SaveChanges();
+                            }
+
+                            #endregion
+
+                            //saveSuccess = true;
+                        }
+                        else
+                        {
+                            //update
+
+                            #region Academic year
+
+                            acaEntity.IsActive = academicY.IsActive;
+                            acaEntity.Name = academicY.Name;
+                            acaEntity.EndDate = academicY.EndDate;
+                            acaEntity.SchoolId = academicY.SchoolId;
+                            acaEntity.StartDate = academicY.StartDate;
+                            acaEntity.Position = academicY.Position;
+                            Context.SaveChanges();
+
+                            foreach (var session in sessions)
+                            {
+                                var foundSession = Context.Session.Find(session.Id);
+                                if (foundSession == null)
+                                {
+                                    Context.Session.Add(session);
+                                }
+                                else
+                                {
+                                    foundSession.Name = session.Name;
+                                    foundSession.StartDate = session.StartDate;
+                                    foundSession.EndDate = session.EndDate;
+                                }
+                                Context.SaveChanges();
+                            }
+
+
+                            #endregion
+
+
+                            #region Batch
+
+                            if (batchEnt != null)
+                            {
+                                batchEnt.Name = batch.Name;
+                                batchEnt.Description = batch.Description;
+
+                                Context.SaveChanges();
+                                foreach (var pb in progBatchList)
+                                {
+                                    var found = Context.ProgramBatch.Find(pb.Id);
+                                    if (found == null)
+                                    {
+                                        Context.ProgramBatch.Add(pb);
+                                        Context.SaveChanges();
+                                    }
+                                    else
+                                    {
+                                        found.Void = pb.Void;
+                                        Context.SaveChanges();
+                                    }
+                                }
+                                batchEnt.AcademicYear = acaEntity;
+                            }
+
+
+                            #endregion
+
+                            //saveSuccess = true;
+                        }
+                        //var prev = Context.AcademicYear.Where(x => x.SchoolId == acaEntity.SchoolId && x.Id != acaEntity.Id);
+                        //foreach (var academicYear in prev)
+                        //{
+                        //    academicYear.IsActive = false;
+                        //}
+                        //Context.SaveChanges();
+
+
+
+                        scope.Complete();
+                        return batchEnt;
+                    }
                 }
-                catch
+                catch (Exception)
                 {
                     return null;
                 }
             }
 
-            public bool AutoUpdateAcademicYear(int aId, int userId)
+            //Used v-2
+            public bool AddOrUpdateSessionDefault(List<SessionDefault> list)
             {
                 using (var scope = new TransactionScope())
-                using (var helper = new DbHelper.AcademicPlacement())
                 {
-                    var aca = Context.AcademicYear.Find(aId);
-                    if (aca != null)
+                    foreach (var sessionDefault in list)
                     {
-                        aca.IsActive = true;
-                        if (!aca.IsActive)
+                        var found = Context.SessionDefault.Find(sessionDefault.Id);
+                        if (found == null)
                         {
-                            #region Save Sessions
-
-                            var j = 0;
-                            var savedSessionId = 0;
-                            foreach (var s in aca.Sessions.Where(x => !(x.Void ?? false)).OrderBy(x => x.Position))
-                            {
-                                var ses = new Session()
-                                {
-                                    AcademicYearId = aca.Id,
-                                    EndDate = new DateTime(aca.EndDate.Year, s.EndDate.Month, s.EndDate.Day)
-                                    ,
-                                    StartDate = new DateTime(aca.StartDate.Year, s.StartDate.Month, s.StartDate.Day)
-                                    ,
-                                    Name = s.Name
-                                    ,
-                                    Position = s.Position
-                                    ,
-                                    RemindWhenEndDate = true
-                                };
-                                if (j == 0)
-                                {
-                                    ses.IsActive = true;
-                                }
-                                var savedSes = Context.Session.Add(ses);
-                                Context.SaveChanges();
-                                savedSessionId = savedSes.Id;
-                                j++;
-                            }
-
-                            #endregion
-
-                            var latestAca = GetLatestCompletedAcademicYear(aca.SchoolId);
-                            if (latestAca != null)
-                            {
-                                var list = new List<RunningClass>();
-
-                                #region Academic year
-
-                                //var rcOfAca = Context.RunningClass.Where(x => x.AcademicYearId == latestAca.Id
-                                //                                              && (x.SessionId ?? 0) == 0);
-
-                                foreach (var rc in latestAca.RunningClasses.Where(x => (x.SessionId ?? 0) == 0))
-                                {
-                                    var curPos = rc.Year.Position;
-                                    var nextYear = rc.Year.Program.Year.OrderBy(x => x.Position)
-                                        .FirstOrDefault(x => x.Position > curPos);
-                                    if (nextYear != null)
-                                    {
-                                        var newRc = new RunningClass()
-                                        {
-                                            AcademicYearId = aca.Id
-                                            ,
-                                            YearId = nextYear.Id
-                                            ,
-                                            ProgramBatchId = rc.ProgramBatchId
-                                        };
-                                        list.Add(newRc);
-                                    }
-                                }
-
-                                #endregion
-
-                                #region Session
-
-                                var latestSession = latestAca.Sessions.Where(x => ((x.Completed ?? false) || x.IsActive))
-                                    .OrderBy(x => x.IsActive).ThenByDescending(x => x.CompleteMarkedDate).FirstOrDefault();
-
-                                var i = 0;
-                                if (latestSession != null)
-
-                                    foreach (var s in aca.Sessions.OrderBy(x => x.Position))
-                                    {
-                                        var rcSess = Context.RunningClass.Where(x => x.AcademicYearId == latestAca.Id
-                                                                                     && x.SessionId == latestSession.Id);
-                                        foreach (var sesRC in rcSess)
-                                        {
-                                            var nextYear = sesRC.Year.Program.Year.OrderBy(x => x.Position)
-                                                .FirstOrDefault(x => x.Position > sesRC.Year.Position);
-
-                                            if (nextYear != null)
-                                            {
-                                                var nextSubyear =
-                                                    nextYear.SubYears.Where(x => !(x.Void ?? false))
-                                                        .OrderBy(x => x.Position)
-                                                        .FirstOrDefault();
-                                                if (nextSubyear != null)
-                                                {
-                                                    var newRc = new RunningClass()
-                                                    {
-                                                        AcademicYearId = aca.Id
-                                                        ,
-                                                        SessionId = savedSessionId
-                                                        ,
-                                                        ProgramBatchId = sesRC.ProgramBatchId
-                                                        ,
-                                                        IsActive = true
-                                                        ,
-                                                        YearId = nextYear.Id
-                                                        ,
-                                                        SubYearId = nextSubyear.Id
-                                                    };
-                                                    list.Add(newRc);
-                                                }
-
-                                            }
-                                        }
-
-                                    }
-
-                                #endregion
-
-                                var savedaca = helper.AddOrUpdateRunningClass(list, aca.StartDate, aca.EndDate);
-                                scope.Complete();
-                                return true;
-                            }
-                            else
-                            {
-                                ActivateAcademicYearSession(userId, aca.Id, 0);
-                                return true;
-                            }
+                            Context.SessionDefault.Add(sessionDefault);
+                            Context.SaveChanges();
+                        }
+                        else
+                        {
+                            found.Name = sessionDefault.Name;
+                            Context.SaveChanges();
                         }
                     }
+                    scope.Complete();
+                    return true;
                 }
                 return false;
             }
 
-            //public void AutoUpdateAcademicYear(int userId, int academicYearId, int sessionId)
-            //{
-            //    using (var scope = new TransactionScope())
-            //    using (var helper = new DbHelper.AcademicPlacement())
-            //    {
-            //        var aca = Context.AcademicYear.Find(academicYearId);
-            //        if (aca != null)
-            //        {
-            //            var latest = GetLatestCompletedAcademicYear(aca.SchoolId);
-            //            if (latest != null)
-            //            {
-            //                var rca = Context.RunningClass.Where(x => x.AcademicYearId == latest.Id);
-            //                var list = new List<RunningClass>();
-
-            //                //only academic year 
-            //                foreach (var aonly in rca.Where(x => (x.SessionId ?? 0) == 0))
-            //                {
-            //                    var curPos = aonly.Year.Position;
-            //                    var ney = aonly.Year.Program.Year.OrderBy(x => x.Position)
-            //                            .FirstOrDefault(x => x.Position > aonly.Year.Position);
-            //                    if (ney != null)
-            //                    {
-            //                        var newRc = new RunningClass()
-            //                        {
-            //                            AcademicYearId = aca.Id
-            //                            ,
-            //                            YearId = ney.Id
-            //                            ,
-            //                            ProgramBatchId = aonly.ProgramBatchId
-            //                        };
-            //                        list.Add(newRc);
-            //                        //var savedRc = Context.RunningClass.Add(newRc);
-            //                        //Context.SaveChanges();
-            //                    }
-            //                }
-            //                var savedaca = helper.AddRunningClass(list);
+            #endregion
 
 
-            //                //only session
-            //                var session = Context.Session.Find(sessionId);
-            //                if (session != null)
-            //                {
-            //                    //var latestSubYear = 
-            //                    foreach (var sonly in rca.Where(x => (x.SessionId ?? 0) > 0))
-            //                    {
-            //                        var curPos = sonly.SubYear.Position;
-            //                        var ney =
-            //                            sonly.SubYear.Year.SubYears.OrderBy(x => x.Position)
-            //                                .FirstOrDefault(x => x.Position > curPos);
 
-            //                        if (ney != null)
-            //                        {
-            //                            //then next subyear in same year
-            //                            var newRc = new RunningClass()
-            //                            {
-            //                                AcademicYearId = aca.Id
-            //                                ,
-            //                                YearId = ney.YearId ?? 0
-            //                                ,
-            //                                SubYearId = ney.Id
-            //                                ,
+            #region Delete functions
 
-            //                                ProgramBatchId = sonly.ProgramBatchId
-            //                                ,
-            //                                SessionId = session.Id
-            //                            };
-            //                            list.Add(newRc);
-            //                            //var savedRc = Context.RunningClass.Add(newRc);
-            //                            //Context.SaveChanges();
-            //                        }
-            //                        else
-            //                        {
-            //                            //then subyear is finished so next year
-            //                        }
-            //                    }
-            //                    var savedses = helper.AddRunningClass(list);
-            //                }
-            //            }
-            //            else
-            //            {
-            //                ActivateAcademicYearSession(userId, academicYearId, 0);
-            //            }
-            //            var ses = Context.Session.Find(sessionId);
-            //            if (ses != null)
-            //            {
-
-            //            }
-            //        }
-            //    }
-            //}
-
+            //Used v-2
             public bool DeleteAcademicYear(int acaId)
             {
                 try
@@ -1174,24 +616,360 @@ namespace Academic.DbHelper
                 }
             }
 
-            public bool DeleteSession(int sessionId)
+
+            #endregion
+
+
+
+            #region Activating Sessions all functions
+
+            //Used v-2
+            /// <summary>
+            /// Direct call from asp-form "Academy/StartSession.aspx";
+            /// </summary>
+            /// <param name="schoolId"></param>
+            /// <param name="currentlyActiveSession">It will give the id of the session that is currently active and needs to be marked as complete</param>
+            /// <param name="nextToActivateSession">The session that will be activated next</param>
+            /// <returns></returns>
+            public DbEntities.AcademicYear GetNextSessionToActivate(int schoolId, ref Session currentlyActiveSession,
+                ref Session nextToActivateSession)
             {
                 try
                 {
-                    var session = Context.Session.Find(sessionId);
-                    if (session != null)
+                    DbEntities.AcademicYear aca;
+                    var latestActiveInactive = GetLatestActiveAndInactiveSession(schoolId);
+
+                    // if activesession is not-null then we have to mark it as commplete
+                    // if inActiveSession is not null then we have to mark it as active
+                    // if inAcativeSession is null then we need to create new academic year and sessions then 
+                    //      mark the first session as active
+
+                    if (latestActiveInactive != null)
                     {
-                        session.Void = true;
-                        Context.SaveChanges();
+                        var active = latestActiveInactive[0];
+                        var inactive = latestActiveInactive[1];
+
+                        currentlyActiveSession = active;
+                        nextToActivateSession = inactive;
+                        aca = inactive == null ? null : inactive.AcademicYear;
+                        //if (inactive != null)
+                        //{
+                        //    nextToActivateSession = inactive;
+                        //    aca = inactive.AcademicYear;
+                        //}
+                        //else
+                        //{
+                        //    aca = GetNewAcademicYear();
+                        //    nextToActivateSession = aca.Sessions.ToList()[0];
+                        //}
+                        return aca;
+                    }
+                    return null;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            //Used v-2
+            /// <summary>
+            /// Returns active session in 0-index and inactive session in 1-index
+            /// </summary>
+            /// <param name="schoolId"></param>
+            /// <returns></returns>
+            private Session[] GetLatestActiveAndInactiveSession(int schoolId)
+            {
+                var aYears = Context.AcademicYear.Where(x => !(x.Void ?? false) && x.SchoolId == schoolId)
+                    .OrderByDescending(x => x.Position).ToList();
+
+                var latestAca = aYears.FirstOrDefault();
+
+                //check for active
+                if (latestAca != null)
+                {
+                    var sessions = latestAca.Sessions.Where(x => !(x.Void ?? false))
+                        .OrderBy(x => x.Position).ToList();
+
+                    var activeSession = sessions.FirstOrDefault(x => x.IsActive && !(x.Completed ?? false));
+                    var inActiveSession = sessions.FirstOrDefault(x => !x.IsActive && !(x.Completed ?? false));
+
+                    if (activeSession == null)
+                    {
+                        if (aYears.Count >= 2)
+                        {
+                            var eAca = aYears[1];
+
+                            var eSes = eAca.Sessions.Where(x => !(x.Void ?? false))
+                                .OrderBy(x => x.Position).ToList();
+
+                            activeSession = eSes.FirstOrDefault(x => x.IsActive && !(x.Completed ?? false));
+                        }
+                    }
+
+
+                    return new Session[] { activeSession, inActiveSession };
+                    // if activesession is not-null then we have to mark it as commplete
+                    // if inActiveSession is not null then we have to mark it as active
+                    // if inAcativeSession is null then we need to create new academic year and sessions then 
+                    //      mark the first session as active
+                }
+                return null;
+
+            }
+
+            //Used v-2
+            /// <summary>
+            /// Returns List<runningClass/> for the upcoming Session.
+            /// </summary>
+            /// <param name="schoolId"></param>
+            /// <param name="nextSessionRelativePosition">Position of  either sub-year or session wrt. their year or academic year respectively.
+            ///  i.e. within the year the sub-year position is either 1 or 2 (if two subyears). don't provide its actual position,
+            /// but the relative positions within the sub-years.
+            /// </param>
+            /// <param name="academicYearId"> pass id of next academic year.. only pass for getting rcls while saveing</param>
+            /// <param name="sessionId"></param>
+            public Dictionary<Program, List<RunningClass>> ListClassesForNextSession(int schoolId
+                , int nextSessionRelativePosition, int academicYearId = 0, int sessionId = 0)
+            {
+                try
+                {
+                    Dictionary<Program, List<RunningClass>> dict = new Dictionary<Program, List<RunningClass>>();
+                    // nextSessionRelativePosition is not 0-indexed so we make it 0-indexed by subtracting 1
+                    var sessAndSubYearPosition = nextSessionRelativePosition - 1;
+
+                    var aYears = Context.AcademicYear.Where(x => !(x.Void ?? false))
+                        .OrderByDescending(x => x.Position).ToList();
+
+
+                    //academic years loop
+                    for (int a = 0; a < aYears.Count; a++)
+                    {
+                        var aca = aYears[a];
+
+
+                        var progBatches = aca.Batches.First().ProgramBatches.Where(x => !(x.Void ?? false)).ToList();
+                        //program batches loop
+                        for (int pb = 0; pb < progBatches.Count; pb++)
+                        {
+                            var progBatch = progBatches[pb];
+                            var years = progBatch.Program.Year.Where(x => !(x.Void ?? false))
+                                .OrderBy(x => x.Position).ToList();
+
+
+                            if (a < years.Count)
+                            {
+                                var runningClasses = new List<RunningClass>();
+                                if (dict.ContainsKey(progBatch.Program))
+                                    runningClasses = dict[progBatch.Program];
+                                else
+                                    dict.Add(progBatch.Program, runningClasses);
+
+
+                                var year = years[a];
+
+                                var subYears = year.SubYears.Where(x => !(x.Void ?? false))
+                                    .OrderBy(x => x.Position).ToList(); //[sessAndSubYearPosition];
+
+                                // if there's no sub-year then don't create running class
+                                if (sessAndSubYearPosition < subYears.Count)
+                                {
+                                    //get sub-year at specified position
+                                    var subYear = subYears[sessAndSubYearPosition];
+                                    var runningClass = new RunningClass()
+                                    {
+                                        AcademicYearId = academicYearId,
+                                        //AcademicYear = latestAca,
+                                        Completed = false,
+                                        IsActive = true,
+                                        SessionId = sessionId,
+                                        //Session = latestSession,
+                                        ProgramBatchId = progBatch.Id,
+                                        ProgramBatch = progBatch,
+                                        YearId = year.Id,
+                                        Year = year,
+                                        Void = false,
+                                        SubYearId = subYear.Id,
+                                        SubYear = subYear,
+                                    };
+                                    runningClasses.Add(runningClass);
+                                }
+                            }
+                        } //end of program batch loop
+
+                    } //end of academic years loop
+                    return dict;
+                    //}
+                }
+                catch
+                {
+                    return null;
+                }
+                return null;
+            }
+
+
+            //Used v-2
+            public DbEntities.AcademicYear GetLatestAcademicYear(int schoolId)
+            {
+                var ayears = Context.AcademicYear.Where(x => !(x.Void ?? false) && x.SchoolId == schoolId);
+                if (ayears.Any())
+                {
+                    //var maxPosition = ayears.Max(x => x.Position);
+                    var latestAca = ayears.FirstOrDefault(x => x.Position == (ayears.Max(m => m.Position)));
+                    return latestAca;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+
+            //Used v-2
+            /// <summary>
+            /// Activates upcoming(next) session and saves its running-classes
+            /// </summary>
+            /// <param name="schoolId"></param>
+            /// <param name="aId"></param>
+            /// <param name="currActiveSessionId"></param>
+            /// <param name="nextActivatingSessionId"></param>
+            /// <returns></returns>
+            public bool CreateNextActiveSession(int schoolId, int aId, int currActiveSessionId,
+                int nextActivatingSessionId, int userId)
+            {
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        var date = DateTime.Now;
+                        var currActiveSession = Context.Session.Find(currActiveSessionId);
+
+                        // mark complete the current active session
+                        if (currActiveSession != null)
+                        {
+                            currActiveSession.IsActive = false;
+                            currActiveSession.Completed = true;
+                            Context.SaveChanges();
+                        }
+
+                        int sessionPosition = 1;
+                        var nextActive = Context.Session.Find(nextActivatingSessionId);
+                        if (nextActive != null)
+                        {
+                            nextActive.IsActive = true;
+                            var sessions = nextActive.AcademicYear.Sessions.OrderBy(x => x.Position).ToList();
+                            //check for position of session
+                            if (nextActivatingSessionId == sessions[0].Id)
+                            {
+                                sessionPosition = 1;
+                            }
+                            else if (nextActivatingSessionId == sessions[1].Id)
+                            {
+                                sessionPosition = 2;
+                            }
+
+                            // get roleId of student
+                            var stdRole = Context.Role.FirstOrDefault(x => x.RoleName == StaticValues.Roles.Student);
+                            if (stdRole == null)
+                            {
+                                stdRole = Context.Role.Add(new DbEntities.User.Role()
+                                {
+                                    DisplayName = StaticValues.Roles.Student,
+                                    RoleName = StaticValues.Roles.Student,
+                                    SchoolId = schoolId,
+
+                                });
+                                Context.SaveChanges();
+                            }
+
+                            var earlierRunningClasses = Context.RunningClass.Where(x => (x.IsActive ?? false) && !(x.Completed??false));
+                            foreach (var rc in earlierRunningClasses)
+                            {
+                                rc.Completed = true;
+                                rc.IsActive = false;
+                            }
+                            Context.SaveChanges();
+
+                            //get running-classes for the upcoming session
+                            var runClses = ListClassesForNextSession(schoolId, sessionPosition,
+                                nextActive.AcademicYear.Id,
+                                nextActive.Id);
+
+                            foreach (var runCls in runClses.Values)
+                            {
+                                foreach (var rc in runCls)
+                                {
+                                    // for each runningClass add the runningClass
+                                    var addedRc = Context.RunningClass.Add(rc);
+                                    Context.SaveChanges();
+
+                                    //get subjects of structure and create & save subjectClass
+                                    var subjects =
+                                        Context.SubjectStructure.Where(x => !(x.Obsolete ?? false)
+                                                                            && !(x.Void ?? false) &&
+                                                                            x.SubYearId == rc.SubYearId
+                                                                            && x.YearId == rc.YearId
+                                            );
+                                    // each subjectClass save for each subject
+                                    foreach (var sstr in subjects.Where(x => !x.IsElective))
+                                    {
+                                        //save subject class
+                                        var sc = new DbEntities.Class.SubjectClass()
+                                        {
+                                            CreatedBy = userId,
+                                            CreatedDate = date,
+                                            EndDate = nextActive.EndDate,
+                                            EnrollmentMethod = 0,
+                                            IsRegular = true,
+                                            RunningClassId = addedRc.Id,
+                                            SessionComplete = false,
+                                            StartDate = nextActive.StartDate,
+                                            SubjectStructureId = sstr.Id,
+                                            HasGrouping = true,
+                                        };
+                                        sc = Context.SubjectClass.Add(sc);
+                                        Context.SaveChanges();
+
+                                        //get students of the programBatch
+                                        var stdBatches =
+                                            rc.ProgramBatch.StudentBatches.Where(x => !(x.Void ?? false)).ToList();
+                                        foreach (var stdBatch in stdBatches)
+                                        {
+                                            //add userclass for each student 
+                                            var uc = new DbEntities.Class.UserClass()
+                                            {
+                                                CreatedDate = date,
+                                                EndDate = nextActive.EndDate,
+                                                EnrollmentDuration = 0,
+                                                RoleId = stdRole.Id,
+                                                StartDate = nextActive.StartDate,
+                                                SubjectClassId = sc.Id,
+                                                Suspended = false,
+                                                UserId = stdBatch.Student.UserId,
+                                                Void = false,
+
+                                            };
+                                            Context.UserClass.Add(uc);
+                                            Context.SaveChanges();
+                                        }
+
+                                    }
+                                }
+                            }
+
+                        }
+                        scope.Complete();
                         return true;
                     }
-                    return false;
                 }
                 catch
                 {
                     return false;
                 }
             }
+
+            #endregion
 
 
         }

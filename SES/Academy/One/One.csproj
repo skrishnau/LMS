@@ -47,7 +47,19 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="LinqToExcel">
+      <HintPath>..\..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Remotion">
+      <HintPath>..\..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq">
+      <HintPath>..\..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces">
+      <HintPath>..\..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -1275,6 +1287,7 @@
     <Content Include="Content\Icons\Home\home_icon.png" />
     <Content Include="Content\Icons\Indent\circle_dot.png" />
     <Content Include="Content\Icons\Indent\square_dot.png" />
+    <Content Include="Content\Icons\List\List_16px.png" />
     <Content Include="Content\Icons\Message\email.png" />
     <Content Include="Content\Icons\Move\move1_13x13.png" />
     <Content Include="Content\Icons\Move\move0_13x13.png" />
@@ -1284,6 +1297,7 @@
     <Content Include="Content\Icons\Notice\agt_announcements_excla.png" />
     <Content Include="Content\Icons\Notice\bell_notice.png" />
     <Content Include="Content\Icons\Notice\notification-icon.png" />
+    <Content Include="Content\Icons\Notice\Warning_Shield_16px.png" />
     <Content Include="Content\Icons\Participation\degree_icon.jpg" />
     <Content Include="Content\Icons\Participation\in.png" />
     <Content Include="Content\Icons\Participation\out.png" />
@@ -1304,7 +1318,15 @@
     <Content Include="Content\Icons\Settings\setting_glow.png" />
     <Content Include="Content\Icons\Settings\settings-icon.png" />
     <Content Include="Content\Icons\setting_1.png" />
+    <Content Include="Content\Icons\Start\active_icon_10px.png" />
+    <Content Include="Content\Icons\Start\New_Moon_16px.png" />
+    <Content Include="Content\Icons\Start\Play_16px.png" />
+    <Content Include="Content\Icons\Start\Start_16px.png" />
+    <Content Include="Content\Icons\Start\Start_24px.png" />
     <Content Include="Content\Icons\Star\star_red.png" />
+    <Content Include="Content\Icons\Stop\Stop_10px.png" />
+    <Content Include="Content\Icons\Tick\Double Tick_16px.png" />
+    <Content Include="Content\Icons\Tick\tick_mark_icon.png" />
     <Content Include="Content\Icons\TreeView\left_down.png" />
     <Content Include="Content\Icons\TreeView\left_down_black.png" />
     <Content Include="Content\Icons\TreeView\left_down_full.png" />
@@ -1580,8 +1602,6 @@
     <Content Include="ViewsSite\User\SiteMapUc.ascx" />
     <Content Include="ViewsSite\User\UserStyles.css" />
     <Content Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx" />
-    <Content Include="Views\Academy\AcademicYear\AcademicYearDetail.aspx" />
-    <Content Include="Views\Academy\AcademicYear\AcademyCreate.aspx" />
     <Content Include="Views\Academy\Activation\Activate.aspx" />
     <Content Include="Views\Academy\Activation\ActivateAcademicYearAndSession.aspx" />
     <Content Include="Views\Academy\Activation\ActivateUC.ascx" />
@@ -1590,6 +1610,10 @@
     <Content Include="Views\Academy\ClassAssign\UserControls\FacultyItemUc.ascx" />
     <Content Include="Views\Academy\ClassAssign\UserControls\ProgramItemUc.ascx" />
     <Content Include="Views\Academy\ClassAssign\UserControls\YearItemUc.ascx" />
+    <Content Include="Views\Academy\Create.aspx" />
+    <Content Include="Views\Academy\Default.aspx" />
+    <Content Include="Views\Academy\DefaultSessions.aspx" />
+    <Content Include="Views\Academy\Detail.aspx" />
     <Content Include="Views\Academy\EarlierCode.txt" />
     <Content Include="Views\Academy\ProgramSelection\BatchSelect.ascx" />
     <Content Include="Views\Academy\ProgramSelection\OnlyListing\ProgramSelection.ascx" />
@@ -1603,6 +1627,7 @@
     <Content Include="Views\Academy\ProgramSelection\YearCheckBoxAndLabel.ascx" />
     <Content Include="Views\Academy\Session\EarlierCodes.txt" />
     <Content Include="Views\Academy\Session\SessionDetail.aspx" />
+    <Content Include="Views\Academy\StartSession.aspx" />
     <Content Include="Views\Academy\UserControls\AcademicYearListUC.ascx" />
     <Content Include="Views\Academy\UserControls\SessionsListingInAYDetailUC.ascx" />
     <Content Include="Views\Academy\UserControls\SingleProgramInListingUC.ascx" />
@@ -1779,7 +1804,6 @@
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentListUc.ascx" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentList\PrevoisCode.txt" />
     <Content Include="Views\Student\Batch\StudentDisplay\Students\StudentList\StudentListUC.ascx" />
-    <Content Include="Views\Academy\List.aspx" />
     <Content Include="Views\Academy\Session\Create.aspx" />
     <Content Include="Views\Academy\Session\CreateUC.ascx" />
     <Content Include="Views\Account\Login.aspx" />
@@ -1804,6 +1828,7 @@
     <Content Include="Views\Student\Batch\List\ItemUc.ascx" />
     <Content Include="Views\Student\Batch\List\listUc.ascx" />
     <Content Include="Views\Student\Batch\Student\Default.aspx" />
+    <Content Include="Views\Student\Batch\Student\ImportStudentFromFile.aspx" />
     <Content Include="Views\Student\Batch\Student\StudentCreate.aspx" />
     <Content Include="Views\Student\Default.aspx" />
     <Content Include="Views\Student\StudentGroup\EachGroupDetail\DetailUc.ascx" />
@@ -2264,20 +2289,6 @@
     <Compile Include="Views\AcademicPlacement\StudentClass\BatchSelectUc.ascx.designer.cs">
       <DependentUpon>BatchSelectUc.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Academy\AcademicYear\AcademicYearDetail.aspx.cs">
-      <DependentUpon>AcademicYearDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Academy\AcademicYear\AcademicYearDetail.aspx.designer.cs">
-      <DependentUpon>AcademicYearDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Academy\AcademicYear\AcademyCreate.aspx.cs">
-      <DependentUpon>AcademyCreate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Academy\AcademicYear\AcademyCreate.aspx.designer.cs">
-      <DependentUpon>AcademyCreate.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Academy\Activation\Activate.aspx.cs">
       <DependentUpon>Activate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2326,6 +2337,34 @@
     </Compile>
     <Compile Include="Views\Academy\ClassAssign\UserControls\YearItemUc.ascx.designer.cs">
       <DependentUpon>YearItemUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\DefaultSessions.aspx.cs">
+      <DependentUpon>DefaultSessions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\DefaultSessions.aspx.designer.cs">
+      <DependentUpon>DefaultSessions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\Detail.aspx.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Detail.aspx.designer.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Academy\ProgramSelection\BatchSelect.ascx.cs">
       <DependentUpon>BatchSelect.ascx</DependentUpon>
@@ -2403,6 +2442,13 @@
     </Compile>
     <Compile Include="Views\Academy\Session\SessionDetail.aspx.designer.cs">
       <DependentUpon>SessionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\StartSession.aspx.cs">
+      <DependentUpon>StartSession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\StartSession.aspx.designer.cs">
+      <DependentUpon>StartSession.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Academy\UserControls\AcademicYearListUC.ascx.cs">
       <DependentUpon>AcademicYearListUC.ascx</DependentUpon>
@@ -3503,13 +3549,6 @@
     <Compile Include="Views\Student\Batch\StudentDisplay\Students\StudentList\StudentListUC.ascx.designer.cs">
       <DependentUpon>StudentListUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Academy\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Academy\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Academy\Session\Create.aspx.cs">
       <DependentUpon>Create.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3677,6 +3716,13 @@
     </Compile>
     <Compile Include="Views\Student\Batch\Student\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Student\ImportStudentFromFile.aspx.cs">
+      <DependentUpon>ImportStudentFromFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Student\Batch\Student\ImportStudentFromFile.aspx.designer.cs">
+      <DependentUpon>ImportStudentFromFile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\Student\StudentCreate.aspx.cs">
       <DependentUpon>StudentCreate.aspx</DependentUpon>

@@ -30,7 +30,7 @@ namespace Academic.DbHelper
 
             public DbEntities.Batches.Batch GetBatch(int batchId)
             {
-                var batch = Context.Batch.Find(batchId);
+                var batch = Context.Batch.Include(i=>i.AcademicYear).FirstOrDefault(x=>x.Id==batchId);
                 if (batch == null)
                 {
                     batch = new DbEntities.Batches.Batch()
@@ -43,9 +43,11 @@ namespace Academic.DbHelper
                 return batch;
             }
 
+
+
             public ProgramBatch GetProgramBatch(int programBatchId)
             {
-                return Context.ProgramBatch.Find(programBatchId);
+                return Context.ProgramBatch.Include(x=>x.Batch.AcademicYear).FirstOrDefault(x=>x.Id == programBatchId);
             }
 
             public string GetImageUrl(int imageId)

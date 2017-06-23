@@ -52,15 +52,16 @@
                     </asp:LinkButton>
                     <uc1:CustomDialog runat="server" ID="CustomDialog1" />
 
+                    <div style="clear: both;"></div>
+                    <%--<hr />--%>
+                    <br />
+                    <uc2:StudentListUC runat="server" ID="StudentListUC11" />
+
 
                 </ContentTemplate>
             </asp:UpdatePanel>
 
         </div>
-        <div style="clear: both;"></div>
-        <%--<hr />--%>
-        <br />
-        <uc2:StudentListUC runat="server" ID="StudentListUC11" />
 
 
         <%--

@@ -129,13 +129,35 @@ namespace One.Views.All_Resusable_Codes.FileTasks
             //added later
             if (FileExtension != "All")
             {
-                if (Path.GetExtension(file_upload.FileName.ToLower()) != (FileExtension.ToLower()))
+                var exts = FileExtension.ToLower().Split(new char[] {','});
+                var fileExt = Path.GetExtension(file_upload.FileName.ToLower());
+                if (exts.Length >= 1)
                 {
-                    lblMessage.Visible = true;
-                    lblMessage.Text = "Only " + FileExtension.TrimStart('.') + " files allowed";
-                    _unwantedfileType = true;
-                    return;
+                    var foundMatch = false;
+                    foreach (var ext in exts)
+                    {
+                        var trimmed = ext.Trim();
+                        if (fileExt == trimmed)
+                        {
+                            foundMatch = true;
+                            break;
+                        }
+                    }
+                    if (!foundMatch)
+                    {
+                        lblMessage.Visible = true;
+                        lblMessage.Text = "Only " + FileExtension + " files allowed";
+                        _unwantedfileType = true;
+                        return;
+                    }
                 }
+                //if (Path.GetExtension(file_upload.FileName.ToLower()) != (FileExtension.ToLower()))
+                //{
+                //    lblMessage.Visible = true;
+                //    lblMessage.Text = "Only " + FileExtension.TrimStart('.') + " files allowed";
+                //    _unwantedfileType = true;
+                //    return;
+                //}
             }
 
             //var extension = Path.GetExtension(fileName);
@@ -226,7 +248,6 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                         //here delete the previous uploaded file                    
                         DeletePreviousUploadedFile();
                         Session["JustUploaded" + PageKey] = latest;
-
                     }
 
                     UploadClicked(this, latest);
@@ -251,7 +272,7 @@ namespace One.Views.All_Resusable_Codes.FileTasks
                 if (FileExtension != "All")
                 {
                     lblMessage.Visible = true;
-                    lblMessage.Text = "Only " + FileExtension.TrimStart('.') + " files allowed";
+                    lblMessage.Text = "Only " + FileExtension+ " files allowed";
                     //if (Path.GetExtension(latest.FilePath.ToLower()) != (FileExtension.ToLower()))
                     //{
                     //    //return;

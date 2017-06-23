@@ -22,11 +22,11 @@ namespace One.Views.Academy.UserControls
             , bool complete, bool edit)
         {
             lnkAcademicYearName.Text = " " + name + " ";
-            lnkAcademicYearName.NavigateUrl = "~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + academicYearId
+            lnkAcademicYearName.NavigateUrl = "~/Views/Academy/Detail.aspx?aId=" + academicYearId
                 + "&edit=" + (edit ? "1" : "0");
             if (edit)
             {
-                lnkEdit.NavigateUrl = "~/Views/Academy/AcademicYear/AcademyCreate.aspx?aId=" + academicYearId;
+                lnkEdit.NavigateUrl = "~/Views/Academy/Create.aspx?aId=" + academicYearId;
                 if ((active || complete))
                     lnkDelete.Visible = false;
                 else
@@ -40,25 +40,17 @@ namespace One.Views.Academy.UserControls
             lblStartDate.Text = startDate.ToString("D");
             if (complete)
             {
-                //lblActiveIndicator.Text = " (Complete)";
-                //lblActiveIndicator.ForeColor = Color.DarkGray;
-                divBody.Style.Add("border-left", "10px solid lightgrey");
-
-                //pnlBody.BackColor = //Color.LightGray;
-                //        Color.FromArgb(225, 225, 225);
+                //divBody.Style.Add("border-left", "10px solid lightgrey");
+                imgActive.ImageUrl = "~/Content/Icons/Stop/Stop_10px.png";
+                imgActive.Visible = true;
             }
-            else if (active)
+            else if (sessionList.Any(x => !(x.Void ?? false) && !(x.Completed ?? false) && x.IsActive))//active ||
             {
 
-                //pnlBody.BackColor = Color.LightGreen;
-                //lblActiveIndicator.Text = " (Active)";
-                //lblActiveIndicator.ForeColor = Color.Green;
-                divBody.Style.Add("border-left", "10px solid green");
-                //pnlBody.BackColor = //Color.LightGreen;
-                //                        Color.FromArgb(193, 252, 193);
-                //Color.FromArgb(208, 255, 208);
-                //lblActiveIndicator.ForeColor = Color.Green;
-                //lnkAcademicYearName.BackColor = Color.LightGreen;
+                //divBody.Style.Add("border-left", "10px solid green");
+                imgActive.ImageUrl = "~/Content/Icons/Start/active_icon_10px.png";
+                imgActive.Visible = true;
+
             }
 
             if (!sessionList.Any())

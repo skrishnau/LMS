@@ -212,21 +212,21 @@ namespace One.Views.Academy.Session
                         ,
                         AcademicYearId = AcademicYearId
                     };
-                    var sav = helper.AddOrUpdateSession(AcademicYearId, session);
-                    if (sav)
-                    {
-                        //if (!task)
-                        //{
-                        Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId
-                            + "&edit=1");
-                        //Response.Redirect("~/Views/Academy/List.aspx");
-                        //}
-                        //else
-                        //{
-                        //    ResetTextBoxes();
-                        //}
-                    }
-                    else lblError.Visible = true;
+                    //var sav = helper.AddOrUpdateSession(AcademicYearId, session);
+                    //if (sav)
+                    //{
+                    //    //if (!task)
+                    //    //{
+                    //    Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId
+                    //        + "&edit=1");
+                    //    //Response.Redirect("~/Views/Academy/List.aspx");
+                    //    //}
+                    //    //else
+                    //    //{
+                    //    //    ResetTextBoxes();
+                    //    //}
+                    //}
+                    //else lblError.Visible = true;
                 }
             }
         }

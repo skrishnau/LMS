@@ -47,8 +47,29 @@
                     <asp:TextBox ID="txtPosition" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
             </tr>
+            
 
         </table>
+        
+        <table runat="server" ID="tblSubyear" Visible="False">
+            <tr>
+                <td class="data-type">Semester-1 Name* &nbsp;</td>
+                <td class="data-value">
+                    <asp:TextBox ID="txtSem1Name" runat="server" Width="139px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="reqValiSubYear1"  runat="server" ControlToValidate="txtSem1Name"
+                        Text="Required" ForeColor="red"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-type">Semester-2 Name * &nbsp;</td>
+                <td class="data-value">
+                    <asp:TextBox ID="txtSem2Name" runat="server" Width="139px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="reqValiSubYear2"  runat="server" ControlToValidate="txtSem2Name"
+                        Text="Required" ForeColor="red"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+        </table>
+
         <uc1:CustomDialog runat="server" ID="CustomDialog1" />
         <div class="save-div">
             <asp:Button ID="Save" runat="server" Text="Save" ValidationGroup="save" Width="94px" OnClick="btnSave_Click" />

@@ -95,6 +95,7 @@
     <Compile Include="Group\StudentGrouping.cs" />
     <Compile Include="Messages\Message.cs" />
     <Compile Include="Newss\News.cs" />
+    <Compile Include="SessionDefault.cs" />
     <Compile Include="Subjects\EnrolmentMethods.cs" />
     <Compile Include="Class\SubjectClass.cs" />
     <Compile Include="Subjects\SubjectFile.cs" />

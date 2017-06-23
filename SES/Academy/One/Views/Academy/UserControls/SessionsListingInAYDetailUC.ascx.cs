@@ -48,19 +48,23 @@ namespace One.Views.Academy.UserControls
             lblActiveIndicator.Text = ((sesComplete) ? " (Complete)" : (active ? " (Active)" : ""));
 
             lnkEdit.Visible = edit;
-            lnkDelete.Visible = edit;
+
+            //earlier
+            //lnkDelete.Visible = edit;
 
             if (edit)
             {
                 lnkEditClasses.NavigateUrl = "~/Views/Academy/ClassAssign/ClassAssignCreate.aspx?aId="
                     + academicYearId + "&sId=" + sessionId;
                 lnkEdit.NavigateUrl = "~/Views/Academy/Session/Create.aspx?aId=" + academicYearId + "&sId=" + sessionId;
-                if ((active || sesComplete))
-                    lnkDelete.Visible = false;
-                else
-                    lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
-                                            DbHelper.StaticValues.Encode("session") + "&acaId=" + academicYearId +
-                                            "&sessId=" + sessionId;
+                
+                //earlier
+                //if ((active || sesComplete))
+                //    lnkDelete.Visible = false;
+                //else
+                //    lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                //                            DbHelper.StaticValues.Encode("session") + "&acaId=" + academicYearId +
+                //                            "&sessId=" + sessionId;
             }
             lnkSessionName.NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?aId="
                 + academicYearId + "&sId=" + sessionId + "&edit=" + (edit ? "1" : "0");
@@ -78,11 +82,15 @@ namespace One.Views.Academy.UserControls
 
             if (sesComplete)
             {
-                divBody.Style.Add("border-left", "10px solid lightgrey");
+                //divBody.Style.Add("border-left", "10px solid lightgrey");
+                imgActive.ImageUrl = "~/Content/Icons/Stop/Stop_10px.png";
+                imgActive.Visible = true;
             }
             else if (active)
             {
-                divBody.Style.Add("border-left", "10px solid green");
+                //divBody.Style.Add("border-left", "10px solid green");
+                imgActive.ImageUrl = "~/Content/Icons/Start/active_icon_10px.png";
+                imgActive.Visible = true;
             }
         }
 

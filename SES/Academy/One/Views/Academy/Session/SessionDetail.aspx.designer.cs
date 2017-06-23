@@ -31,22 +31,40 @@ namespace One.Views.Academy.Session {
         protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
-        /// btnActivate control.
+        /// imgActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnActivate;
+        protected global::System.Web.UI.WebControls.Image imgActive;
         
         /// <summary>
-        /// SessionsListingInAYDetailUC control.
+        /// lblStart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::One.Views.Academy.UserControls.SessionsListingInAYDetailUC SessionsListingInAYDetailUC;
+        protected global::System.Web.UI.WebControls.Label lblStart;
+        
+        /// <summary>
+        /// lblEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEnd;
+        
+        /// <summary>
+        /// pnlListing control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlListing;
         
         /// <summary>
         /// hidAcademicYearId control.

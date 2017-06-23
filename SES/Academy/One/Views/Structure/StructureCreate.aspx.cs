@@ -54,6 +54,9 @@ namespace One.Views.Structure
                                 //if no year then give to choose the program from which year and subyear can be imported
                                 if (type == "yr")
                                 {
+                                    //tblSubyear.Visible = true;
+                                    //reqValiSubYear1.ValidationGroup = "save";
+                                    //reqValiSubYear2.ValidationGroup = "save";
                                     using (var helper = new DbHelper.Structure())
                                     {
                                         var prog = helper.GetProgram(parentId);
@@ -353,6 +356,8 @@ namespace One.Views.Structure
                     ,
                     Position = Convert.ToInt32(string.IsNullOrEmpty(txtPosition.Text) ? "0" : txtPosition.Text)
                 };
+
+                
 
                 if (StructureId == 0)
                     year.CreatedDate = DateTime.Now;

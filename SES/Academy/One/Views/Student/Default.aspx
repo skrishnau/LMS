@@ -11,13 +11,13 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <div>
         <h3 class="heading-of-listing">Batches
-        <span class="list-heading-option">
+        <%--<span class="list-heading-option">
             <asp:HyperLink ID="lnkAdd" runat="server"
                 NavigateUrl="~/Views/Student/Batch/Create/BatchCreate.aspx" Visible="False">
                 <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                 New Batch
             </asp:HyperLink>
-        </span>
+        </span>--%>
         </h3>
     </div>
 

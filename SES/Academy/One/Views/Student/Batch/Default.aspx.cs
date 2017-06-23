@@ -25,7 +25,7 @@ namespace One.Views.Student.Batch
                 {
                     //here id is BatchId
                     var id = Request.QueryString["Id"];
-                    
+
                     if (id != null)
                     {
                         int idInt = 0;
@@ -73,21 +73,24 @@ namespace One.Views.Student.Batch
 
                     if (SiteMap.CurrentNode != null)
                     {
-                        var list = new List<IdAndName>()
-                        {
-                           new IdAndName(){
-                                        Name=SiteMap.RootNode.Title
-                                        ,Value =  SiteMap.RootNode.Url
-                                        ,Void=true
-                                    },
-                            new IdAndName(){
-                                Name = SiteMap.CurrentNode.ParentNode.Title
-                                ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit="+edit
-                                ,Void=true
-                            }
-                            , new IdAndName(){Name = batch.Name}
-                        };
-                        SiteMapUc.SetData(list);
+                        LoadSiteMap(edit=="1",batch);
+                        //var list = new List<IdAndName>()
+                        //{
+                        //   new IdAndName(){
+                        //                Name=SiteMap.RootNode.Title
+                        //                ,Value =  SiteMap.RootNode.Url
+                        //                ,Void=true
+                        //            },
+                        //    new IdAndName(){
+                        //        Name = SiteMap.CurrentNode.ParentNode.Title
+                        //        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit="+edit
+                        //        ,Void=true
+                        //    }
+                        //    , new IdAndName(){Name = batch.Name}
+                        //};
+                        //SiteMapUc.SetData(list);
+
+
                         //SiteMap.CurrentNode.ReadOnly = false;
                         //SiteMap.CurrentNode.Title = batch.Name;
                     }
@@ -105,7 +108,7 @@ namespace One.Views.Student.Batch
                         Page.LoadControl("~/Views/Student/Batch/BatchDetail/DetailItemUc.ascx");
 
                     item.LoadData(prog.Id, prog.BatchId, prog.NameFromBatch, prog.ProgramId
-                        , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void, no,edit);
+                        , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void, no, edit);
                     //if (prog.CurrentYear != null)
                     //{
                     //    item.CurrentYear = prog.CurrentYear.Name;
@@ -118,6 +121,51 @@ namespace One.Views.Student.Batch
                     item.Enabled = !(prog.Void ?? false);
                     pnlProgramsInTheBatch.Controls.Add(item);
                 }
+            }
+        }
+
+        void LoadSiteMap(bool edit, Academic.DbEntities.Batches.Batch batch)
+        {
+            if (SiteMap.CurrentNode != null)
+            {
+                var list = new List<IdAndName>()
+                            {
+                                new IdAndName()
+                                {
+                                    Name = SiteMap.RootNode.Title
+                                    ,
+                                    Value = SiteMap.RootNode.Url
+                                    ,
+                                    Void = true
+                                },
+                                //new IdAndName()
+                                //{
+                                //    Name = SiteMap.CurrentNode.ParentNode.Title
+                                //    ,
+                                //    Value = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Url 
+                                //    ,
+                                //    Void = true
+                                //},
+                                new IdAndName()
+                                {
+                                    Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
+                                    ,
+                                    Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url 
+                                    ,
+                                    Void = true
+                                },
+                                new IdAndName()
+                                {
+                                    Name = batch.AcademicYear.Name,
+                                    Value = SiteMap.CurrentNode.ParentNode.Url+"?aId="+batch.AcademicYear.Id,
+                                    Void= true
+                                },
+                                new IdAndName()
+                                {
+                                    Name = batch.Name,
+                                }
+                            };
+                SiteMapUc.SetData(list);
             }
         }
 

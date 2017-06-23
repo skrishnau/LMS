@@ -4,13 +4,19 @@
 <div class="list-item" runat="server" id="divBody">
     <%--<asp:Panel ID="pnlbody" runat="server" CssClass="auto-st1">--%>
     <asp:HyperLink ID="lnkSessionName" runat="server" Text="Label" CssClass="link-dark-bold"></asp:HyperLink>
+    <asp:Image ID="imgActive" runat="server"
+            Width="10" Height="10"
+            ImageUrl="~/Content/Icons/Stop/Stop_10px.png"
+            Visible="False" />
+
+
     <span class="list-item-option">
         <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
             <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
         </asp:HyperLink>
-        <asp:HyperLink ID="lnkDelete" runat="server" CssClass="link">
+       <%-- <asp:HyperLink ID="lnkDelete" runat="server" CssClass="link">
             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/delete/remove_icon_color.png" />
-        </asp:HyperLink>
+        </asp:HyperLink>--%>
     </span>
 
     <asp:Label ID="lblActiveIndicator" runat="server" Text=""></asp:Label>

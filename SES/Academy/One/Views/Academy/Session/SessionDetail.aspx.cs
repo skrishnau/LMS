@@ -16,7 +16,7 @@ namespace One.Views.Academy.Session
         {
             if (!IsPostBack)
             {
-                SessionsListingInAYDetailUC.SessionNameVisible = false;
+                //SessionsListingInAYDetailUC.SessionNameVisible = false;
                 var aId = Request.QueryString["aId"];
                 var sId = Request.QueryString["sId"];
                 if (aId != null && sId != null)
@@ -29,12 +29,12 @@ namespace One.Views.Academy.Session
                     }
                     catch
                     {
-                        Response.Redirect("~/Views/Academy/List.aspx");
+                        Response.Redirect("~/Views/Academy/");
                     }
                 }
                 else
                 {
-                    Response.Redirect("~/Views/Academy/List.aspx");
+                    Response.Redirect("~/Views/Academy/");
                 }
             }
         }
@@ -44,14 +44,14 @@ namespace One.Views.Academy.Session
             var user = Page.User as CustomPrincipal;
             if (user != null)
             {
-                if (user.IsInRole("manager"))
-                {
-                    btnActivate.Visible = true;
-                }
-                else
-                {
-                    btnActivate.Visible = false;
-                }
+                //if (user.IsInRole("manager"))
+                //{
+                //    btnActivate.Visible = true;
+                //}
+                //else
+                //{
+                //    btnActivate.Visible = false;
+                //}
                 using (var helper = new DbHelper.AcademicYear())
                 {
                     var sId = SessionId;
@@ -61,7 +61,7 @@ namespace One.Views.Academy.Session
                     {
                         var session = academic.Sessions.FirstOrDefault(x => x.Id == sId);
                         var editQuery = Session["editMode"] as string;//Request.QueryString["edit"];
-                        var edit = (editQuery ?? "0").ToString();
+                        var edit = (editQuery ?? "0");
                         if (session != null)
                         {
                             if (SiteMap.CurrentNode != null)
@@ -91,40 +91,53 @@ namespace One.Views.Academy.Session
                                 };
                                 SiteMapUc.SetData(list);
                             }
-                            //lblEnd.Text = session.EndDate.ToShortDateString();
-                            //lblStart.Text = session.StartDate.ToShortDateString();
-                            string name = "";
+
+                            //start and end dates
+                            lblStart.Text = session.StartDate.ToString("D");
+                            lblEnd.Text = session.EndDate.ToString("D");
+
+                            //string name = "";
                             if (session.Completed ?? false)
                             {
-                                btnActivate.Visible = false;
-                                name = " (Complete)";
-                                //lnkAddClasses.Visible = false;
-                                //lnknewSession.Visible = false;
+                                imgActive.ImageUrl = "~/Content/Icons/Stop/Stop_10px.png";
+                                imgActive.Visible = true;
+
+                                //btnActivate.Visible = false;
+                                //name = " (Complete)";
                             }
                             else if (session.IsActive)
                             {
-                                name = " (Active)";
-                                btnActivate.Text = "Mark this as 'Complete'";
+                                imgActive.ImageUrl = "~/Content/Icons/Start/active_icon_10px.png";
+                                imgActive.Visible = true;
+                                //name = " (Active)";
+                                //btnActivate.Text = "Mark this as 'Complete'";
                             }
-                            else
-                            {
+                            //else
+                            //{
 
-                                btnActivate.Text = "Activate this session";
-                                //btnMarkComplete.Visible = false;
-                            }
+                            //    btnActivate.Text = "Activate this session";
+                            //    //btnMarkComplete.Visible = false;
+                            //}
 
-                            lblHeading.Text = academic.Name + " > " + session.Name + name;
+                            lblHeading.Text = academic.Name + " - " + session.Name;// + name;
 
 
-                            //var sessUc = (Academy.UserControls.SessionsListingInAYDetailUC)
-                            //    Page.LoadControl("~/Views/Academy/UserControls/SessionsListingInAYDetailUC.ascx");
-                            SessionsListingInAYDetailUC.LoadSessionData(academic.Id, session.Id, session.Name, session.StartDate
-                                , session.EndDate, session.IsActive, session.Completed ?? false, edit=="1");
-                            //pnl.Controls.Add(sessUc);
+                            //classes
+                            LoadClasses(session);
+
+
+
+
+
+
+                            //SessionsListingInAYDetailUC.LoadSessionData(academic.Id, session.Id, session.Name, session.StartDate
+                            //    , session.EndDate, session.IsActive, session.Completed ?? false, edit == "1");
+                            
                         }
                     }
 
-                }}
+                }
+            }
 
             //using (var helper = new DbHelper.AcademicPlacement())
             //{
@@ -136,6 +149,35 @@ namespace One.Views.Academy.Session
             //    ListView1.DataSource = classes;
             //    ListView1.DataBind();
             //}
+        }
+
+        private void LoadClasses(Academic.DbEntities.Session session)
+        {
+            //classes
+            //var dict = helper.ListClassesForNextSession(user.SchoolId, sessionPosition);
+
+            var rcs = session.RunningClasses.Where(x => !(x.Void ?? false));
+            var dict = rcs.GroupBy(x => x.ProgramBatch.Program);
+            foreach (var program in dict)
+            {
+                var pLabel = new Label()
+                {
+                    Font = { Bold = true },
+                    Text = program.Key.Name + "<br/>"
+                };
+                pnlListing.Controls.Add(pLabel);
+                foreach (var rc in program)
+                {
+                    var rcLabel = new Label()
+                    {
+                        //Font = { Size = 14, Bold = false },
+                        Text = "&nbsp;&nbsp;" + rc.ProgramBatch.Batch.Name + " -- " +
+                               rc.Year.Name + " " + (rc.SubYear == null ? "" : rc.SubYear.Name) +
+                               "<br/>"
+                    };
+                    pnlListing.Controls.Add(rcLabel);
+                }
+            }
         }
 
 
@@ -159,14 +201,14 @@ namespace One.Views.Academy.Session
 
         protected void btnActivate_Click(object sender, EventArgs e)
         {
-            if (btnActivate.Text == "Mark this as 'Complete'")
-            {
-                Response.Redirect("~/Views/Academy/Activation/Activate.aspx?sId=" + SessionId + "&task=completed");
-            }
-            else if (btnActivate.Text == "Activate this session")
-            {
-                Response.Redirect("~/Views/Academy/Activation/Activate.aspx?sId=" + SessionId + "&task=activate");
-            }
+            //if (btnActivate.Text == "Mark this as 'Complete'")
+            //{
+            //    Response.Redirect("~/Views/Academy/Activation/Activate.aspx?sId=" + SessionId + "&task=completed");
+            //}
+            //else if (btnActivate.Text == "Activate this session")
+            //{
+            //    Response.Redirect("~/Views/Academy/Activation/Activate.aspx?sId=" + SessionId + "&task=activate");
+            //}
         }
 
     }

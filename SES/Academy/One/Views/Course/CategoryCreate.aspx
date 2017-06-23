@@ -15,6 +15,10 @@
 </asp:Content>
 
 
+<asp:Content runat="server" ID="content2" ContentPlaceHolderID="head">
+    <link href="../../Content/CSSes/TableStyles.css" rel="stylesheet" />
+</asp:Content>
+
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="title">
     Category edit
 </asp:Content>

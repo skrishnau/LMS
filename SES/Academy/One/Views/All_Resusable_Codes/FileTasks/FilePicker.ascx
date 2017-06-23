@@ -39,6 +39,7 @@
                         CausesValidation="False" ValidationGroup="filepicker"
                         Width="93px" />
                     &nbsp; &nbsp;
+                    <br />
                     <asp:Label ID="lblMessage" runat="server" Text="Error! Please reload the page." ForeColor="red" Visible="False"></asp:Label>
                     <asp:HiddenField ID="hdnFileFolder" runat="server" Value="" />
                 </div>

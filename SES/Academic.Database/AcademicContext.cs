@@ -37,7 +37,8 @@ namespace Academic.Database
 
         public DbSet<AcademicYear> AcademicYear { get; set; }
         public DbSet<Session> Session { get; set; }
-
+        public DbSet<SessionDefault> SessionDefault { get; set; }
+        
         //public DbSet<Admins> Admins { get; set; }
         //public DbSet<AdminTitle> AdminTitle { get; set; }
         //public DbSet<OtherAdmins> OtherAdmins { get; set; }

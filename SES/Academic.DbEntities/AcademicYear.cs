@@ -43,7 +43,10 @@ namespace Academic.DbEntities
 
         public bool? Void { get; set; }
         //public virtual School  School { get; set; }
-
+        /// <summary>
+        /// Since academic year and batch have 1 to 1 relationship, so 'Batches' has only one 'batch'.
+        /// </summary>
+        public virtual ICollection<Batches.Batch> Batches { get; set; }
         public virtual ICollection<Session> Sessions { get; set; } 
         public virtual ICollection<Exams.Exam> Exams { get; set; }
         public virtual ICollection<RunningClass> RunningClasses { get; set; }

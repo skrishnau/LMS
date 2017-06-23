@@ -116,6 +116,97 @@ namespace Academic.DbHelper
             //    return model;
             //}
 
+            public bool AddOrUpdateStudents(List<DbEntities.User.Users> users,
+                List<DbEntities.Students.Student> students, int programBatchId = 0)
+            {
+                using (var scope = new TransactionScope())
+                {
+                    for (int i = 0; i < users.Count; i++)
+                    {
+                        var user = users[i];
+                        var student = students[i];
+
+                        var prev = Context.Users.Find(user.Id);
+                        if (prev == null)
+                        {
+                            //user.FirstName = user.FirstName;
+                            //user.LastName = user.LastName.Trim();
+                            prev = Context.Users.Add(user);
+                            Context.SaveChanges();
+                            if (prev != null)
+                            {
+                                student.UserId = prev.Id;
+                                student.Name = prev.FullName;
+                                var std = Context.Student.Add(student);
+                                Context.SaveChanges();
+                                if (std != null)
+                                {
+                                    var role = Context.Role.FirstOrDefault(x => x.RoleName == "student");
+                                    if (role != null)
+                                    {
+                                        var userRole = new UserRole()
+                                        {
+                                            AssignedDate = DateTime.Now
+                                            ,
+                                            RoleId = role.Id
+                                            ,
+                                            UserId = prev.Id
+                                        };
+                                        Context.UserRole.Add(userRole);
+                                        Context.SaveChanges();
+                                    }
+                                    if (programBatchId > 0)
+                                    {
+                                        var stdBatch = new DbEntities.Batches.StudentBatch()
+                                        {
+                                            ProgramBatchId = programBatchId
+                                            ,
+                                            StudentId = std.Id
+                                            ,
+                                            AddedDate = DateTime.Now
+                                        };
+                                        Context.StudentBatch.Add(stdBatch);
+                                        Context.SaveChanges();
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            prev.CreatedDate = user.CreatedDate;
+                            prev.DOB = user.DOB;
+                            prev.FirstName = user.FirstName;
+
+                            prev.SchoolId = user.SchoolId;
+                            prev.City = user.City;
+                            prev.Country = user.Country;
+                            prev.Email = user.Email;
+                            prev.UserName = user.UserName;
+                           
+                            prev.Password = user.Password;
+                            prev.LastName = user.LastName;
+                            prev.IsActive = user.IsActive;
+                            prev.IsDeleted = user.IsDeleted;
+
+                            var std = Context.Student.Find(student.Id);
+                            if (std == null)
+                            {
+                                student.UserId = prev.Id;
+                                Context.Student.Add(student);
+                            }
+
+                            Context.SaveChanges();
+                        }
+
+                       
+                    
+                    }
+                    scope.Complete();
+                    return true;
+                }
+                return false;
+            }
+            
 
             //used 
             public DbEntities.User.Users AddOrUpdateStudent(DbEntities.User.Users user,

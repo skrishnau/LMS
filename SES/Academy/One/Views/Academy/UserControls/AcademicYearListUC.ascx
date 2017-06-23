@@ -5,6 +5,12 @@
     <%--<asp:Panel ID="pnlBody" runat="server" CssClass="auto-st1">--%>
     <div>
         <asp:HyperLink ID="lnkAcademicYearName" runat="server" CssClass="list-item-heading"></asp:HyperLink>
+        <asp:Image ID="imgActive" runat="server"
+            Width="10" Height="10"
+            ImageUrl="~/Content/Icons/Stop/Stop_10px.png"
+            Visible="False" />
+
+
         <span class="list-item-option">
             <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
                 <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />

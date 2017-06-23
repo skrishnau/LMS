@@ -28,7 +28,7 @@
 
         <%--<div class="auto-st2">--%>
         <asp:HyperLink ID="lnkAcademicSession" runat="server"
-            NavigateUrl="~/Views/Academy/List.aspx">Academic year</asp:HyperLink>
+            NavigateUrl="~/Views/Academy/">Academic</asp:HyperLink>
         <%--</div>--%>
         <asp:HyperLink ID="lnkUsers" runat="server"
             NavigateUrl="~/Views/User/List.aspx">Users</asp:HyperLink>

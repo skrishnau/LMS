@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="DbHelper.AcademicYear_EarlierCodes" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

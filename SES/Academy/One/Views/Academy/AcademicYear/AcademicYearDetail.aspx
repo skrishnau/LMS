@@ -28,22 +28,35 @@
                 Visible="False"
                 OnClick="btnMarkComplete_Click" />--%>
     <%--</div>--%>
-  <%--  <div>
+    <%--  <div>
         <asp:Label ID="lblError" runat="server" Text="Error while saving" ForeColor="red" Visible="False"></asp:Label>
     </div>--%>
-    <div class="">
+    <div class="data-entry-section-body">
         <table>
             <tr>
-                <td class="auto-style1">Start Date  :</td>
-                <td>
+                <%--class="auto-style1"--%>
+                <td class="data-type">Start Date</td>
+                <td class="data-value">
                     <asp:Label ID="lblStartDate" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="auto-style1">End Date  :</td>
-                <td>
+                <td class="data-type">End Date</td>
+                <td class="data-value">
                     <asp:Label ID="lblEndDate" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
+            <tr>
+                <td class="data-type">Batch admitted in this year</td>
+                <td class="data-value">
+                    <asp:HyperLink ID="lnkBatch" runat="server"></asp:HyperLink>
+                </td>
+            </tr>
+           <%--  <tr>
+                <td class="data-type">Programs</td>
+                <td class="data-value">
+                    <asp:Label ID="lblPrograms" runat="server" Text=""></asp:Label>
+                </td>
+            </tr>--%>
         </table>
     </div>
 
@@ -148,6 +161,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
     <style type="text/css">
         .auto-style1 {
             width: 94px;

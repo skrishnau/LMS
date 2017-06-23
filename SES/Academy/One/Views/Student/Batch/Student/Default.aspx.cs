@@ -28,9 +28,9 @@ namespace One.Views.Student.Batch.Student
                 {
                     if (user.IsInRole("manager") || user.IsInRole("admitter"))
                     {
-                        var edit = (Session["editMode"] as string)??"0";
-                        
-                        lnkAddStudent.Visible = edit=="1";
+                        var edit = (Session["editMode"] as string) ?? "0";
+
+                        lnkAddStudent.Visible = edit == "1";
                         //lblAddMethod.Visible = true;
                         // <asp:ListItem Text="Choose..." Value="-1"></asp:ListItem>
                         //<asp:ListItem Text="Create Student" Value="0"></asp:ListItem>
@@ -67,6 +67,7 @@ namespace One.Views.Student.Batch.Student
                             //if (success)
                             //{
                             //ProgramBatchId = pbatchId;
+
                             hidProgramBatchId.Value = programBatchId;
                             using (var helper = new DbHelper.Batch())
                             {
@@ -78,17 +79,21 @@ namespace One.Views.Student.Batch.Student
                                         var list = new List<IdAndName>()
                                             {
                                                new IdAndName(){
-                                                            Name=SiteMap.RootNode.Title
-                                                            ,Value =  SiteMap.RootNode.Url
-                                                            ,Void=true
-                                                        },
+                                                    Name=SiteMap.RootNode.Title
+                                                    ,Value =  SiteMap.RootNode.Url
+                                                    ,Void=true
+                                                },
                                                 new IdAndName(){
-                                                    Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
-                                                    ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url+"?edit="+edit
+                                                    Name = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Title
+                                                    ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Url
+                                                    ,Void=true
+                                                },
+                                                new IdAndName(){
+                                                    Name = pbatch.Batch.AcademicYear.Name
+                                                    ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url+"?aId="+pbatch.Batch.AcademicYear.Id
                                                     ,Void=true
                                                 }
-                                                , new IdAndName()
-                                                {
+                                                , new IdAndName(){
                                                     Name = pbatch.Batch.Name
                                                     ,Value=SiteMap.CurrentNode.ParentNode.Url+"?Id="+pbatch.BatchId+"&edit="+edit
                                                     ,Void=true
@@ -165,13 +170,16 @@ namespace One.Views.Student.Batch.Student
                     break;
                 case 0:
                     //create student
-                    Response.Redirect("~/Views/Student/Batch/Student/StudentCreate.aspx?pbId="+ProgramBatchId);
+                    Response.Redirect("~/Views/Student/Batch/Student/StudentCreate.aspx?pbId=" + ProgramBatchId);
                     //MultiView1.ActiveViewIndex = 1;
                     break;
                 case 1:
+
                     //MultiView1.ActiveViewIndex = 2;
                     break;
                 case 2:
+                    //import from file
+                    Response.Redirect("~/Views/Student/Batch/Student/ImportStudentFromFile.aspx?pbId=" + ProgramBatchId);
                     //MultiView1.ActiveViewIndex = 3;
                     break;
             }
@@ -216,7 +224,7 @@ namespace One.Views.Student.Batch.Student
         //    }
         //}
 
-       
+
 
         //protected void ddlAddStudent_SelectedIndexChanged(object sender, EventArgs e)
         //{
@@ -240,6 +248,6 @@ namespace One.Views.Student.Batch.Student
         //    //}
         //}
 
-       
+
     }
 }

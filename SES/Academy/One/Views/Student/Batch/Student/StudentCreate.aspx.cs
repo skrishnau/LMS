@@ -50,9 +50,14 @@ namespace One.Views.Student.Batch.Student
                                                             ,Value =  SiteMap.RootNode.Url
                                                             ,Void=true
                                                         },
+                                                          new IdAndName(){
+                                                    Name = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.ParentNode.Title
+                                                    ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.ParentNode.Url
+                                                    ,Void=true
+                                                },
                                                 new IdAndName(){
-                                                    Name = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Title
-                                                    ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Url+"?edit="+edit
+                                                    Name = pbatch.Batch.AcademicYear.Name
+                                                    ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Url+"?aId="+pbatch.Batch.AcademicYear.Id+"&edit="+edit
                                                     ,Void=true
                                                 }
                                                 , new IdAndName()

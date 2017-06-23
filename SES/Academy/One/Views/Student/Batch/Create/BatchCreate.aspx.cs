@@ -69,28 +69,16 @@ namespace One.Views.Student.Batch.Create
                 using (var aHelper = new DbHelper.AcademicYear())
                 using (var helper = new DbHelper.Structure())
                 {
-                    var academicYears = aHelper.ListNotCompleteAcademicYear(user.SchoolId);
+                    //var academicYears = aHelper.ListNotCompleteAcademicYear(user.SchoolId);
 
-                    if (academicYears.Any())
-                    {
-                        ddlAcademicYear.DataValueField = "Id";
-                        ddlAcademicYear.DataTextField = "Name";
-                        ddlAcademicYear.DataSource = academicYears;
-                        ddlAcademicYear.DataBind();
-                    }
-                    //else
+                    //if (academicYears.Any())
                     //{
-                    //    //var dtsrc = new IdAndName()
-                    //    //{
-                    //    //    Id = 0,
-                    //    //    Name = "Please, first add academic year"
-                    //    //};
-                    //    //ddlAcademicYear.Items.Add(new ListItem()
-                    //    //{
-                    //    //    Value = "0",
-                    //    //    Text = " ---------------- "
-                    //    //}); 
+                    //    ddlAcademicYear.DataValueField = "Id";
+                    //    ddlAcademicYear.DataTextField = "Name";
+                    //    ddlAcademicYear.DataSource = academicYears;
+                    //    ddlAcademicYear.DataBind();
                     //}
+                   
 
                     var programs = helper.ListPrograms(schoolId);
                     programs.ForEach(p =>

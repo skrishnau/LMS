@@ -18,6 +18,7 @@ namespace One.Views.Academy.Activation
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
+                    /*
                     using (var helper = new DbHelper.AcademicYear())
                     {
                         var nextSession = helper.GetNextSessionToActivate(user.SchoolId);
@@ -76,7 +77,7 @@ namespace One.Views.Academy.Activation
                         //{
                         //    //option to activate this academic year
                         //}
-                    }
+                    }*/
                 }
 
             }

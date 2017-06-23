@@ -73,7 +73,7 @@ namespace Academic.DbHelper
         //during uploading of files.. if multiple files are to be saved in file picker dialog  or only single file 
         public enum FileAcquireMode
         {
-            Single, Multiple
+            Single, Multiple, Basic,
         }
 
         public enum UserCapabilities

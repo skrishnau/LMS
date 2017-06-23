@@ -13,7 +13,7 @@
         <tr>
             <td class="data-type">Parent</td>
             <td class="data-value">
-                <asp:DropDownList ID="cmbCategory" runat="server" Height="21px" Width="125px"></asp:DropDownList>
+                <asp:DropDownList ID="cmbCategory" runat="server" Height="21px" Width="125px" Enabled="False"></asp:DropDownList>
             </td>
         </tr>
         <tr>

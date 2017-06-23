@@ -434,7 +434,7 @@ namespace Academic.DbHelper
                 cmbAcademicYear.DataValueField = "Id";
                 using (var helper = new DbHelper.AcademicYear())
                 {
-                    var acaYear = helper.GetAcademicYearListForSchool(schoolId);
+                    var acaYear = helper.ListAcademicYears(schoolId);
                     if (acaYear.Count > 0)
                         acaYear.Insert(0, new DbEntities.AcademicYear() { Id = 0, Name = "  Select  " });
                     cmbAcademicYear.DataSource = acaYear;

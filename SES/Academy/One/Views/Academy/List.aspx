@@ -9,7 +9,7 @@
 
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
-    <h3 class="heading-of-listing">Academic year List
+    <h3 class="heading-of-listing">Academic years
     </h3>
     <hr />
 

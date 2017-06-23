@@ -40,7 +40,7 @@ namespace One.Views.Student.Batch.List
             using(var aHelper = new DbHelper.AcademicYear())
             using (var helper = new DbHelper.Batch())
             {
-                var academic = aHelper.GetAcademicYearListForSchool(user.SchoolId);
+                var academic = aHelper.ListAcademicYears(user.SchoolId);
                 if (academic.Any())
                 {
                     var edit = Edit == "1";

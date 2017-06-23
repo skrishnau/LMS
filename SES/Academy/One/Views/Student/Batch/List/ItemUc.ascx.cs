@@ -26,32 +26,34 @@ namespace One.Views.Student.Batch.List
             BatchId = id;
             //currently new
             lblName.Text = name;//"● " +
-            lnkBody.NavigateUrl = ("~/Views/Student/Batch/" + "?Id=" + BatchId+"&edit="+(edit?"1":"0"));
+            lnkBody.NavigateUrl = ("~/Views/Student/Batch/" + "?Id=" + BatchId + "&edit=" + (edit ? "1" : "0"));
 
-            lnkEdit.Visible = edit;
-            lnkDelete.Visible = edit;
+            //earlier
+            //lnkEdit.Visible = edit;
+            //lnkDelete.Visible = edit;
 
             if (classCommenceDate != null)
             {
                 lblClassCommenceFrom.Text = classCommenceDate.Value.ToString("D");
             }
-            if (edit)
-            {
-                lnkEdit.NavigateUrl = ("~/Views/Student/Batch/Create/BatchCreate.aspx" + "?bId=" + BatchId);
+            //earlier
+            //if (edit)
+            //{
+            //    lnkEdit.NavigateUrl = ("~/Views/Student/Batch/Create/BatchCreate.aspx" + "?bId=" + BatchId);
 
-                var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
-                                                   DbHelper.StaticValues.Encode("batch") +
-                                                   "&batchId=" + id 
-                                                   + "&showText="
-                                                   + DbHelper.StaticValues.Encode("Are you sure to delete the batch, "
-                                                   + name + "?")
-                                                   ;
-                lnkDelete.NavigateUrl = redUrl;
-            }
+            //    var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+            //                                       DbHelper.StaticValues.Encode("batch") +
+            //                                       "&batchId=" + id
+            //                                       + "&showText="
+            //                                       + DbHelper.StaticValues.Encode("Are you sure to delete the batch, "
+            //                                       + name + "?")
+            //                                       ;
+            //    lnkDelete.NavigateUrl = redUrl;
+            //}
 
-            //lblCurrentlyIn.Text = batch.
-            //lblStartYear.Text = classCommenceDate==null?"":classCommenceDate.Value.ToShortDateString();
-            //lblNumberOfPrograms.Text = noOfPrograms.ToString();
+            ////lblCurrentlyIn.Text = batch.
+            ////lblStartYear.Text = classCommenceDate==null?"":classCommenceDate.Value.ToShortDateString();
+            ////lblNumberOfPrograms.Text = noOfPrograms.ToString();
         }
 
         //protected void lblName_Click(object sender, EventArgs e)

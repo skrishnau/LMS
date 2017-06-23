@@ -37,36 +37,37 @@ namespace One.Views.Student
                     listUc.SchoolId = user.SchoolId; //Values.Session.GetSchool(Session);
                     var edit = Session["editMode"] as string;//Request.QueryString["edit"];
 
-                    if ((user.IsInRole("manager") || user.IsInRole("admitter")))
-                    {
-                        if (edit != null)
-                        {
-                            listUc.Edit = edit;
-                            if (edit == "1")
-                            {
-                                //lnkEdit.NavigateUrl = "~/Views/Student/?edit=0";
-                                //lblEdit.Text = "Exit edit";
-                                lnkAdd.Visible = true;
-                            }
-                            else
-                            {
-                                //lnkEdit.NavigateUrl = "~/Views/Student/?edit=1";
-                                //lblEdit.Text = "Edit";
-                                lnkAdd.Visible = false;
-                            }
-                        }
-                        else
-                        {
-                            //lnkEdit.NavigateUrl = "~/Views/Student/?edit=1";
-                            //lblEdit.Text = "Edit";
-                            lnkAdd.Visible = false;
-                        }
-                    }
-                    else
-                    {
-                        //lnkEdit.Visible = false;
-                        lnkAdd.Visible = false;
-                    }
+                    //earlier
+                    //if ((user.IsInRole("manager") || user.IsInRole("admitter")))
+                    //{
+                    //    if (edit != null)
+                    //    {
+                    //        listUc.Edit = edit;
+                    //        if (edit == "1")
+                    //        {
+                    //            //lnkEdit.NavigateUrl = "~/Views/Student/?edit=0";
+                    //            //lblEdit.Text = "Exit edit";
+                    //            lnkAdd.Visible = true;
+                    //        }
+                    //        else
+                    //        {
+                    //            //lnkEdit.NavigateUrl = "~/Views/Student/?edit=1";
+                    //            //lblEdit.Text = "Edit";
+                    //            lnkAdd.Visible = false;
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        //lnkEdit.NavigateUrl = "~/Views/Student/?edit=1";
+                    //        //lblEdit.Text = "Edit";
+                    //        lnkAdd.Visible = false;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    //lnkEdit.Visible = false;
+                    //    lnkAdd.Visible = false;
+                    //}
                 }
             }
 

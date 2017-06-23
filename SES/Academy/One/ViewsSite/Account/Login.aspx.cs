@@ -138,7 +138,7 @@ namespace One.ViewsSite.Account
             {
                 //if (Membership.ValidateUser(viewModel.UserName, viewModel.Password))
                 var user = acchelper.GetUser(viewModel.UserName, viewModel.Password);
-                if (user !=null)
+                if (user != null)
                 {
                     using (var acaHelper = new DbHelper.AcademicYear())
                     using (var helper = new DbHelper.User())
@@ -152,20 +152,14 @@ namespace One.ViewsSite.Account
                         serializeModel.LastName = user.LastName;
                         serializeModel.SchoolId = user.SchoolId ?? 0;
 
-                        var acaId = acaHelper.GetCurrentAcademicYear(user.SchoolId ?? 0);
-                        if (acaId != null)
+
+                        var sess = acaHelper.GetCurrentSession();
+                        if (sess != null)
                         {
-                            serializeModel.AcademicYearId = acaId.Id;
-                            var sess = acaHelper.GetCurrentSession(acaId.Id);
-                            if (sess != null)
-                            {
-                                serializeModel.SessionId = sess.Id;
-                            }
-                            //else
-                            //{
-                            //    serializeModel.SessionId = 0;
-                            //}
+                            serializeModel.AcademicYearId = sess.AcademicYearId;
+                            serializeModel.SessionId = sess.Id;
                         }
+
 
                         JavaScriptSerializer serializer = new JavaScriptSerializer();
 
@@ -197,7 +191,7 @@ namespace One.ViewsSite.Account
                             //FormsAuthentication.set
                             //return RedirectToAction("Index", "Home");
                             string returnUrl = Request.QueryString["ReturnUrl"] as string;
-                          
+
 
 
                             if (returnUrl != null)
@@ -217,7 +211,7 @@ namespace One.ViewsSite.Account
                                         returnUrl += "&" + q;
                                     i++;
                                 }
-                                
+
                                 Response.Redirect(returnUrl);
                             }
                             else

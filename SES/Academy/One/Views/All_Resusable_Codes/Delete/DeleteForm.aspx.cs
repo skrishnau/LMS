@@ -474,23 +474,23 @@ namespace One.Views.All_Resusable_Codes.Delete
             {
                 var deleted = helper.DeleteAcademicYear(Convert.ToInt32(acaId));
                 if (deleted)
-                    Response.Redirect("~/Views/Academy/List.aspx?edit=1", false);
+                    Response.Redirect("~/Views/Academy/", false);
                 else lblError.Visible = true;
             }
         }
-        private void SessionDelete()
-        {
-            var sessId = Request.QueryString["sessId"];
-            var acaId = Request.QueryString["acaId"];
-            using (var helper = new DbHelper.AcademicYear())
-            {
-                var deleted = helper.DeleteSession(Convert.ToInt32(sessId));
-                if (deleted)
-                    Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" +
-                                      acaId + "&edit=1", false);
-                else lblError.Visible = true;
-            }
-        }
+        //private void SessionDelete()
+        //{
+        //    var sessId = Request.QueryString["sessId"];
+        //    var acaId = Request.QueryString["acaId"];
+        //    using (var helper = new DbHelper.AcademicYear())
+        //    {
+        //        var deleted = helper.DeleteSession(Convert.ToInt32(sessId));
+        //        if (deleted)
+        //            Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" +
+        //                              acaId + "&edit=1", false);
+        //        else lblError.Visible = true;
+        //    }
+        //}
         #endregion
 
         protected void btnOk_OnClick(object sender, EventArgs e)
@@ -536,7 +536,9 @@ namespace One.Views.All_Resusable_Codes.Delete
                         return;
                         break;
                     case "session":
-                        SessionDelete();
+                        lblError.Text = "Session can't be deleted. ";
+                        lblError.Visible = true;
+                        //SessionDelete();
                         return;
                         break;
                 }
