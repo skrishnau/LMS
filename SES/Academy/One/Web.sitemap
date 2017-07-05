@@ -79,6 +79,7 @@
           <siteMapNode url="~/Views/Academy/ClassAssign/ClassAssignCreate.aspx" title="class assign" description="class assign"/>
           <siteMapNode url="~/Views/Academy/Session/Create.aspx" title="Session edit" description="session edit"/>
           <siteMapNode url="~/Views/Academy/Session/SessionDetail.aspx" title="Session Name" description="session">
+            <siteMapNode url="/Views/Academy/RunningClassForm.aspx" title="Programbatch and Year" description="progbatchAndYear"/>
             <siteMapNode url="~/Views/Academy/Activation/Activate.aspx" title="Activate" description="activate"/>
           </siteMapNode>
       </siteMapNode>

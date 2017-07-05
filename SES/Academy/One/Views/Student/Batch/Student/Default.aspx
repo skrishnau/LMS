@@ -17,12 +17,23 @@
     <h3 class="heading-of-listing">
         <asp:Label ID="lblProgramBatchName" runat="server" Text=""></asp:Label>
     </h3>
-    <%--<hr />--%>
+    <hr />
     <div class="data-entry-section-body">
-        <div>
+
+        <div runat="server" ID="divYearsSubYears">
+            <div>
+                <strong>Sessions</strong>
+            </div>
+            <div class="data-entry-section-link-listing">
+                <asp:Panel ID="pnlYearsSubYears" runat="server"></asp:Panel>
+            </div>
+        </div>
+
+
+       <%-- <div>
             Currently in:
                    <asp:Label ID="lblCurrentlyIn" runat="server" Text="N/A"></asp:Label>
-        </div>
+        </div>--%>
     </div>
 
     <div class="data-entry-section-body">

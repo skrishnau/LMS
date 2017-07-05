@@ -23,15 +23,16 @@ namespace One.Views.Structure
                 if (user != null)
                     try
                     {
-                        
+
                         var type = Request.QueryString["strTyp"];
                         if (type == null)
                         {
-                            Response.Redirect("~/Views/Structure/All/Master/List.aspx", true);
+                            Response.Redirect("~/Views/Structure/", true);
                         }
                         else
                         {
                             StructureType = type;
+                            
                             LoadStructureType();
                             var strId = Request.QueryString["strId"];
                             var pId = Request.QueryString["pId"];
@@ -54,6 +55,7 @@ namespace One.Views.Structure
                                 //if no year then give to choose the program from which year and subyear can be imported
                                 if (type == "yr")
                                 {
+                                    //EnableSemesterValidation();
                                     //tblSubyear.Visible = true;
                                     //reqValiSubYear1.ValidationGroup = "save";
                                     //reqValiSubYear2.ValidationGroup = "save";
@@ -62,7 +64,7 @@ namespace One.Views.Structure
                                         var prog = helper.GetProgram(parentId);
                                         if (prog != null)
                                         {
-                                            var cnt = prog.Year.Count;
+                                            //var cnt = prog.Year.Count;
                                             if (!(prog.Year.Any(x => !(x.Void ?? false))))
                                             {
                                                 //show dialog to choose another program and 
@@ -70,7 +72,7 @@ namespace One.Views.Structure
                                                 var thisone = programs.Find(x => x.Id == parentId);
                                                 if (thisone != null) programs.Remove(thisone);
                                                 //there has to be another program to choose so check for it
-                                                if (programs.Count>0)
+                                                if (programs.Count > 0)
                                                 {
                                                     //show dialog // and list all the programs to choose
                                                     var items = programs.Select(x => new IdAndName()
@@ -92,9 +94,17 @@ namespace One.Views.Structure
                     }
                     catch
                     {
-                        Response.Redirect("~/Views/Structure/?edit=1");
+                        Response.Redirect("~/Views/Structure/");
                     }
             }
+        }
+
+        private void EnableYearMode()
+        {
+            tblSubyear.Visible = true;
+            reqValiSubYear1.ValidationGroup = "save";
+            reqValiSubYear2.ValidationGroup = "save";
+            reqValiPosition.ValidationGroup = "save";
         }
 
         void CustomDialog1_ItemClick(object sender, IdAndNameEventArgs e)
@@ -124,7 +134,7 @@ namespace One.Views.Structure
         {
             var newNode = new IdAndName()
             {
-                Name="Structure edit"
+                Name = "Structure edit"
             };
             switch (StructureType)
             {
@@ -143,11 +153,12 @@ namespace One.Views.Structure
                     newNode.Name = "Program edit";
                     break;
                 case "yr":
+                    EnableYearMode();
                     lblHeading.Text = "Year edit";
                     lblTabHead.Text = "Year edit";
                     position_row.Visible = true;
                     newNode.Name = "Year edit";
-
+                    rowDescription.Style.Add("visibility", "collapse");
                     break;
                 case "syr":
                     lblHeading.Text = "Sub-year edit";
@@ -211,6 +222,7 @@ namespace One.Views.Structure
                         break;
                     case "yr":
                         var year = helper.GetYear(StructureId);
+                        tblSubyear.Visible = true;
                         if (year != null)
                         {
                             txtName.Text = year.Name;
@@ -218,6 +230,14 @@ namespace One.Views.Structure
                             ParentId = year.ProgramId;
                             position_row.Visible = true;
                             txtPosition.Text = year.Position.ToString();
+                            var sems = year.SubYears.Where(x => !(x.Void ?? false)).ToList();
+                            if (sems.Count >= 2)
+                            {
+                                txtSem1Name.Text = sems[0].Name;
+                                txtSem2Name.Text = sems[1].Name;
+                                hidSem1Id.Value = sems[0].Id.ToString();
+                                hidSem2Id.Value = sems[1].Id.ToString();
+                            }
                         }
                         break;
                     case "syr":
@@ -267,6 +287,18 @@ namespace One.Views.Structure
             get { return btnCancel.Visible; }
             set { btnCancel.Visible = value; }
         }
+
+        public int Sem1Id
+        {
+            get { return Convert.ToInt32(hidSem1Id.Value); }
+            set { hidSem1Id.Value = value.ToString(); }
+        }
+        public int Sem2Id
+        {
+            get { return Convert.ToInt32(hidSem2Id.Value); }
+            set { hidSem2Id.Value = value.ToString(); }
+        }
+
 
         #endregion
 
@@ -357,12 +389,34 @@ namespace One.Views.Structure
                     Position = Convert.ToInt32(string.IsNullOrEmpty(txtPosition.Text) ? "0" : txtPosition.Text)
                 };
 
-                
+                var sems = new List<Academic.DbEntities.Structure.SubYear>();
+                sems.Add(new Academic.DbEntities.Structure.SubYear()
+                {
+                    Id = Sem1Id,
+                    Name = txtSem1Name.Text,
+                    Position = 1,
+                    Void = false,
+                    YearId = StructureId,
+                });
+                sems.Add(new Academic.DbEntities.Structure.SubYear()
+                {
+                    Id = Sem2Id,
+                    Name = txtSem2Name.Text,
+                    Position = 2,
+                    Void = false,
+                    YearId = StructureId,
+                });
+
 
                 if (StructureId == 0)
-                    year.CreatedDate = DateTime.Now;
+                {
+                    var date = DateTime.Now;
+                    year.CreatedDate = date;
+                    sems[0].CreatedDate = date;
+                    sems[1].CreatedDate = date;
+                }
 
-                var saved = helper.AddOrUpdateYear(year);
+                var saved = helper.AddOrUpdateYear(year, sems);
                 return saved != null;
             }
         }
@@ -431,8 +485,8 @@ namespace One.Views.Structure
                         var success = Int32.TryParse(hidProgramId.Value, out pId);
                         var progId = "";
                         if (pId > 0 && success)
-                            progId = "&pId=" + pId;
-                        Response.Redirect("~/Views/Structure/?edit=1"+progId);
+                            progId = "?pId=" + pId;
+                        Response.Redirect("~/Views/Structure/" + progId);
                     }
                     else
                     {
@@ -444,7 +498,7 @@ namespace One.Views.Structure
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Structure/");
+            Response.Redirect("~/Views/Structure/?pId="+hidProgramId.Value);
         }
 
         #endregion

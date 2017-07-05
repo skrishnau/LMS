@@ -92,7 +92,7 @@
                                         Create New Class
                                     </asp:HyperLink>
                                 </span>
-                              <%--  <div style="float: right;">
+                                <%--  <div style="float: right;">
                                     <asp:HyperLink ID="lnkEditClasses" runat="server">
                                         <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
                                         <asp:Label ID="lblEditClasses" runat="server" Text="Edit Classes"></asp:Label>
@@ -120,37 +120,44 @@
                                             <tr>
                                                 <td class="table-row-padding">
                                                     <asp:LinkButton ID="btnAll" runat="server" OnClick="btnFilterCrieteria_Click">
-                                                <span style="background-color: #ffffff;" class="class-filter-table-cell"></span>
+                                                    <span style="background-color: #ffffff;" class="class-filter-table-cell"></span>
                                                     All
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>
                                                 <td class="table-row-padding">
                                                     <asp:LinkButton ID="btnCurrentlyRunning" runat="server" OnClick="btnFilterCrieteria_Click">
-                                                <span style="background-color: #00ea00;" class="class-filter-table-cell"></span>
-                                                    Currently Running
+                                                        <%--<span style="background-color: #00ea00;" class="class-filter-table-cell"></span>--%>
+                                                        <asp:Image ID="Image5" runat="server" ImageUrl="~/Content/Icons/Start/active_icon_10px.png" />
+                                                        Currently Running
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>
                                                 <td class="table-row-padding">
                                                     <asp:LinkButton ID="btnDue" runat="server" OnClick="btnFilterCrieteria_Click">
-                                                <span style="background-color: #ff9aaa;" class="class-filter-table-cell"></span>
-                                                Due
+                                                        <%--<span style="background-color: #ff9aaa;" class="class-filter-table-cell"></span>--%>
+                                                        <asp:Image ID="Image4" runat="server"
+                                                            Height="10" Width="10"
+                                                            ImageUrl="~/Content/Icons/Watch/Watch_10px.png" />
+
+                                                        Due
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>
                                                 <td class="table-row-padding">
                                                     <asp:LinkButton ID="btnNotStartedYet" runat="server" OnClick="btnFilterCrieteria_Click">
-                                                <span style="background-color: #fbfb3f;" class="class-filter-table-cell"></span>
-                                                Not yet Started
+                                                        <%--<span style="background-color: #fbfb3f;" class="class-filter-table-cell"></span>--%>
+                                                        <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Hourglass/hourglass_black_10px.png" />
+                                                        Not yet Started
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>
 
                                                 <td class="table-row-padding">
                                                     <asp:LinkButton ID="btnCompleted" runat="server" OnClick="btnFilterCrieteria_Click">
-                                                <span style="background-color: #bfbfbf;" class="class-filter-table-cell"></span>
-                                                Completed
+                                                        <%--<span style="background-color: #bfbfbf;" class="class-filter-table-cell"></span>--%>
+                                                        <asp:Image ID="Image6" runat="server" ImageUrl="~/Content/Icons/Stop/Stop_10px.png" />
+                                                        Completed
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>
@@ -174,27 +181,21 @@
                                 <%-- BackColor="#FFFBD6" --%>
 
                                 <ItemTemplate>
+                                    <%--  --%>
                                     <div class="auto-st2-border-no-margin">
-                                        <table>
-                                            <tr>
-                                                <td style="width: 15px;">
-                                                    <asp:Panel runat="server" ID="panel1" Width="15" Height="70"
-                                                        BackColor='<%# GetCompletedColor(DataBinder.Eval(
-                                                        Container.DataItem,"SessionComplete")
-                                                        ,Eval("StartDate") ,Eval("EndDate")
-                                                        ) %>'>
-                                                    </asp:Panel>
-                                                </td>
-                                                <td>
-                                                    <div style="font-size: 1.2em; padding-left: 10px; padding-top: 3px;">
-                                                        <asp:HyperLink ID="lblName" runat="server" CssClass="link"
-                                                            NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("Id") %>'
-                                                            Text='<%# Eval("GetName") %>'></asp:HyperLink>
-                                                        <asp:Literal ID="lblRegularOrNot" runat="server" Text=""></asp:Literal>
 
-                                                        <%--&nbsp;
+                                        <div style="font-size: 1.2em; padding-left: 10px; padding-top: 3px;">
+                                            <asp:HyperLink ID="lblName" runat="server" CssClass="link"
+                                                NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("Id") %>'
+                                                Text='<%# Eval("GetName") %>'></asp:HyperLink>
+                                            <asp:Literal ID="lblRegularOrNot" runat="server" Text=""></asp:Literal>
+
+                                            <asp:Image ID="Image2" runat="server" Height="10" Width="10"
+                                                ImageUrl='<%# GetImageUrl(Eval("SessionComplete"),Eval("StartDate"),Eval("EndDate")) %>' />
+                                        </div>
+
+                                        <%--&nbsp;
                                                         <asp:HyperLink ID="lnkEdit" runat="server" Visible='<%# Edit %>'
-
                                                             >
                                                             <asp:Image ID="imgEditBtn" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
                                                         </asp:HyperLink>
@@ -206,17 +207,12 @@
                                                         </asp:HyperLink>--%>
 
 
-                                                    </div>
-                                                    <div style="padding: 0 25px 10px;">
-                                                        No. of Sections:
-                                                        <br />
-                                                        Total Students:
-                                                        <br />
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-
+                                       <%-- <asp:Panel runat="server" ID="panel1" Width="15" Height="70"
+                                            BackColor='<%# GetCompletedColor(DataBinder.Eval(
+                                                        Container.DataItem,"SessionComplete")
+                                                        ,Eval("StartDate") ,Eval("EndDate")
+                                                        ) %>'>
+                                        </asp:Panel>--%>
 
                                     </div>
                                 </ItemTemplate>

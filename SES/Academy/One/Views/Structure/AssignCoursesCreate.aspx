@@ -148,6 +148,7 @@
 
                 <asp:HiddenField ID="hidYearId" Value="0" runat="server" />
                 <asp:HiddenField ID="hidSubYearId" Value="0" runat="server" />
+                <asp:HiddenField ID="hidProgramId" Value="0" runat="server" />
 
             </ContentTemplate>
         </asp:UpdatePanel>

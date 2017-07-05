@@ -209,7 +209,7 @@ namespace One.Views.Academy
                         , nextActivatingSessionId, user.Id);
                     if (saved)
                     {
-                        Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + aId);
+                        Response.Redirect("~/Views/Academy/Detail.aspx?aId=" + hidAcademicYearId.Value);
                     }
                     else
                     {
@@ -223,8 +223,8 @@ namespace One.Views.Academy
 
         protected void btnCancel_OnClick(object sender, EventArgs e)
         {
-            var aId = Convert.ToInt32(hidAcademicYearId.Value);
-            Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + aId);
+            //var aId = Convert.ToInt32(hidAcademicYearId.Value);
+            Response.Redirect("~/Views/Academy/Detail.aspx?aId=" + hidAcademicYearId.Value);
         }
     }
 }

@@ -8,39 +8,52 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
-    <%--http://localhost:1240/Views/Class/CourseSessionCreate.aspx?cId=6--%>
-    <h3 class="heading-of-listing">
-        Users enroll
+
+    <h3 class="heading-of-display">
+        <asp:Label ID="lblCourseName" runat="server" Text="" ></asp:Label>
     </h3>
-    <hr/>
-    
 
-     <div>
-         <asp:Label ID="lblTitle" runat="server" Text="Label"></asp:Label>
-         <%--<div style="text-align: right;">
-             <asp:Button ID="btnEnroll" runat="server" Text="Enroll" />
+    <div class="data-entry-section">
+        <h3 class="heading-of-display">
+            <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
+        </h3>
+        <br />
 
-         </div>--%>
-         <div>
+        <br />
+        <div class="data-entry-section-heading">
+            Users enroll
+            <hr />
+        </div>
+        
+        <div>
 
-             <%--<uc1:UserEnrollUC runat="server" ID="UserEnrollUC" />--%>
-             <uc1:UserEnrollUC_ListDisplay runat="server" ID="UserEnrollUC_ListDisplay1" />
-             <asp:TextBox ID="TextBox1" runat="server" Visible="False"></asp:TextBox>
-              <ajaxToolkit:AutoCompleteExtender ID="AutoCompleteExtender1"
-                                                ServiceMethod=""
-                                                MinimumPrefixLength="1"
-                                                CompletionInterval="10"
-                                                EnableCaching="false"
-                                                CompletionSetCount="1"
-                                               TargetControlID="TextBox1"
-                                                runat="server">
-                                            </ajaxToolkit:AutoCompleteExtender>
-             <%--  TargetControlID="txtSearchNotEnroll" --%>
-         </div>
-         <%-- List of users to add; with filter  --%>
-     </div>
+            <%--<uc1:UserEnrollUC runat="server" ID="UserEnrollUC" />--%>
+            <uc1:UserEnrollUC_ListDisplay runat="server" ID="UserEnrollUC_ListDisplay1" />
+            <asp:TextBox ID="TextBox1" runat="server" Visible="False"></asp:TextBox>
+            <ajaxToolkit:AutoCompleteExtender ID="AutoCompleteExtender1"
+                ServiceMethod=""
+                MinimumPrefixLength="1"
+                CompletionInterval="10"
+                EnableCaching="false"
+                CompletionSetCount="1"
+                TargetControlID="TextBox1"
+                runat="server">
+            </ajaxToolkit:AutoCompleteExtender>
+            <%--  TargetControlID="txtSearchNotEnroll" --%>
+        </div>
+
+
+
+    </div>
+
     <asp:HiddenField ID="hidCourseClassId" Value="0" runat="server" />
 </asp:Content>
+
 <asp:Content runat="server" ID="content2" ContentPlaceHolderID="title">
     Users enroll
+</asp:Content>
+
+<asp:Content runat="server" ID="content4" ContentPlaceHolderID="head">
+    
+    <link href="../../../Content/CSSes/PanelStyles.css" rel="stylesheet" />
 </asp:Content>

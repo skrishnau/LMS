@@ -31,13 +31,22 @@ namespace One.Views.Student.Batch.Student {
         protected global::System.Web.UI.WebControls.Label lblProgramBatchName;
         
         /// <summary>
-        /// lblCurrentlyIn control.
+        /// divYearsSubYears control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCurrentlyIn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divYearsSubYears;
+        
+        /// <summary>
+        /// pnlYearsSubYears control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlYearsSubYears;
         
         /// <summary>
         /// UpdatePanel1 control.

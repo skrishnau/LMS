@@ -382,7 +382,7 @@ namespace Academic.DbHelper
                 }
             }
 
-            public static void LoadRoleForUserEnroll(ref DropDownList cmbRole, int schoolId, string defaultSelectedName)
+            public static void LoadRoleForUserEnroll(ref DropDownList cmbRole, int schoolId, string defaultSelectedName, bool showNone=true)
             {
                 cmbRole.DataTextField = "DisplayName";
                 cmbRole.DataValueField = "Id";
@@ -390,7 +390,7 @@ namespace Academic.DbHelper
                 using (var helper = new DbHelper.User())
                 {
                     var type = helper.GetRolesForUserEnrollOption(schoolId);
-                    if (type.Count > 0)
+                    if (type.Count > 0 && showNone)
                         type.Insert(0, new Role() { Id = 0, DisplayName = "None" });
                     cmbRole.DataSource = type;
                     cmbRole.DataBind();

@@ -208,6 +208,49 @@ namespace One.Views.Course
             set { hidCourseId.Value = value.ToString(); }
         }
 
+        public string GetImageUrl(object complete, object startDate, object endDate)
+        {
+            var url = "";
+            try
+            {
+                var completed = (complete == null) ? "False" : complete.ToString();
+
+                if (completed == "True")
+                {
+                    //completed
+                    url = "~/Content/Icons/Stop/Stop_10px.png";
+                }
+                else
+                {
+                    var startD = (startDate == null) ? DateTime.MinValue : Convert.ToDateTime(startDate);
+                    var endD = (endDate == null) ? DateTime.MaxValue : Convert.ToDateTime(endDate.ToString());
+
+                    if (startD.Date > DateTime.Now.Date)
+                    {
+                        //not started yet
+                        url = "~/Content/Icons/Hourglass/hourglass_black_10px.png";
+                    }
+                    else if (endD < DateTime.Now)
+                    {
+                        //due
+                        url = "~/Content/Icons/Watch/Watch_10px.png";
+                    }
+                    else
+                    {
+                        url = "~/Content/Icons/Start/active_icon_10px.png";
+                    }
+                }
+            }
+            catch
+            {
+                //active
+                //url = "~/Content/Icons/DueDate/pay-policy-duedate.png";
+            }
+            return url;
+        }
+
+
+
         public Color GetCompletedColor(object complete, object startDate, object endDate)
         {
             try

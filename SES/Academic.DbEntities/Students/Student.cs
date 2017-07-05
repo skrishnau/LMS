@@ -30,6 +30,10 @@ namespace Academic.DbEntities.Students
         public string Name{get; set; }
         public bool? BatchAssigned { get; set; }
 
+        /// <summary>
+        /// Contains only one StudentBatch --i.e. corresponding Batch
+        /// </summary>
+        public virtual ICollection<Batches.StudentBatch> StudentBatch { get; set; }
 
         //[Required]
         //public string FirstName { get; set; }

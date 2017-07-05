@@ -35,15 +35,18 @@ namespace One.Views.Structure.All.UserControls
             hidStructureId.Value = id.ToString();
             lblName.Text = "●" + name;
             lnkEdit.Visible = edit;
-            lnkAdd.Visible = edit;
             lnkDelete.Visible = edit;
+
+            //lnkAdd.Visible = edit;
+
 
             if (edit)
             {
+                //lnkAdd.NavigateUrl = addUrl;
+                //lblAddText.Text = addText;
+                //lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", "");
+                
                 lnkEdit.NavigateUrl = editUrl;
-                lnkAdd.NavigateUrl = addUrl;
-                lblAddText.Text = addText;
-                lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", "");
 
                 var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
                                                DbHelper.StaticValues.Encode("structure") +

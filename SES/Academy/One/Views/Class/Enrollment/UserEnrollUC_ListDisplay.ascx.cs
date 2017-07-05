@@ -27,7 +27,6 @@ namespace One.Views.Class.Enrollment
                 {
                     UserId = user.Id;
                     //============================ populate data in dropdownlist ===========//
-                    DbHelper.ComboLoader.LoadRoleForUserEnroll(ref ddlAssignRole, user.SchoolId, "student");
 
 
                     var enrollmentDuration = new List<IdAndName>();
@@ -42,16 +41,13 @@ namespace One.Views.Class.Enrollment
                     ddlEnrollmentDuration.DataSource = enrollmentDuration;
                     ddlEnrollmentDuration.DataBind();
 
-
-
-
-
-                    //=================== End of Data population =======================//
+                     //=================== End of Data population =======================//
 
 
 
                     using (var helper = new DbHelper.Classes())
                     {
+                        ddlEnrollmentDuration.Enabled = false;
                         //var subsession = helper.GetSubjectSession()
                         var session = helper.GetSubjectSession(SubjectSessionId);
 
@@ -62,6 +58,16 @@ namespace One.Views.Class.Enrollment
                         }
                         else
                         {
+                            var defaultRole = "student";
+                            //if enrollment method =0 (automatic) thne we can't add students
+                            if (session.EnrollmentMethod == 0)
+                            {
+                               TeacherOnly = true;
+                                defaultRole = "teacher";
+                                ddlAssignRole.Enabled = false;
+                            }
+                            DbHelper.ComboLoader.LoadRoleForUserEnroll(ref ddlAssignRole, user.SchoolId, defaultRole);
+
                             hidSessionStartDate.Value = ((session.StartDate == null)
                                 ? DateTime.Now.ToShortDateString()
                                 : session.StartDate.Value.ToShortDateString());
@@ -82,7 +88,8 @@ namespace One.Views.Class.Enrollment
                         var notasgList = helper.ListUsersNotInSubjectSession(
                             SubjectSessionId
                             , asglist.Select(x => x.Id).ToList()
-                            , user.SchoolId);
+                            , user.SchoolId
+                            , TeacherOnly);
                         lstUnAsg.DataSource = notasgList;
                         lstUnAsg.DataSource = notasgList;
                         lstUnAsg.DataBind();
@@ -119,8 +126,8 @@ namespace One.Views.Class.Enrollment
         {
             get { return Convert.ToInt32(hidUserId.Value); }
             set { hidUserId.Value = value.ToString(); }
-        
-    }
+
+        }
 
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
@@ -134,7 +141,7 @@ namespace One.Views.Class.Enrollment
             return cnt.Where(x => x.StartsWith(prefixText)).ToArray();
         }
 
-        public  string[] GetUnassignedUsersList(string prefixText, int count)
+        public string[] GetUnassignedUsersList(string prefixText, int count)
         {
             using (var helper = new DbHelper.Classes())
             {
@@ -150,15 +157,17 @@ namespace One.Views.Class.Enrollment
                     return helper.ListUsersNotInSubjectSession(
                         SubjectSessionId
                         , asglist.Select(x => x.Id).ToList()
-                        , user.SchoolId).Select(x => x.FirstName
+                        , user.SchoolId
+                        ,TeacherOnly
+                        ).Select(x => x.FirstName
                                                      + (string.IsNullOrEmpty(x.MiddleName) ? "" : " " + x.MiddleName)
                                                      + (string.IsNullOrEmpty(x.LastName) ? "" : " " + x.LastName))
-                                                     .Where(x=>x.StartsWith(prefixText))
+                                                     .Where(x => x.StartsWith(prefixText))
                                                      .ToArray();
                     //+ x.LastName);
 
                 }
-                return new string[]{};//List<string>();
+                return new string[] { };//List<string>();
             }
         }
 
@@ -466,5 +475,11 @@ namespace One.Views.Class.Enrollment
         //{
 
         //}
+
+        public bool TeacherOnly
+        {
+            get { return Convert.ToBoolean(hidTeacherOnly.Value); }
+            set { hidTeacherOnly.Value = value.ToString(); }
+        }
     }
 }

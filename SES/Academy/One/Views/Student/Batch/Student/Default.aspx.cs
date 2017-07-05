@@ -104,23 +104,77 @@ namespace One.Views.Student.Batch.Student
                                         //SiteMap.CurrentNode.ReadOnly = false;
                                         //SiteMap.CurrentNode.Title = batch.Name;
                                     }
-                                    var stname = "N/A";
+                                    //var stname = "N/A";
 
-                                    //int pbId = 0;
-                                    var rc =
-                                        pbatch.RunningClasses.FirstOrDefault(x => (x.IsActive ?? true)// && x.Session.IsActive
-                                                                                    && !(x.Completed ?? false))
-                                        ;
-                                    if (rc != null)
+                                    var elementFound = false;
+                                    //new addition
+                                    foreach (var rcls in pbatch.RunningClasses)
                                     {
-                                        stname = rc.Year.Name;
-                                        if (rc.SubYearId != null)
+
+                                        if (rcls != null && rcls.SubYear != null)
                                         {
-                                            stname += " &nbsp; " + rc.SubYear.Name;//.NameFromBatch;
-                                            // pbId = pb.ProgramBatchId ?? 0;
+                                            elementFound = true;
+                                            var subyear = rcls.SubYear;
+                                            //if there are any running classes
+                                            var link = new HyperLink()
+                                           {
+
+                                               NavigateUrl = "~/Views/Academy/RunningClassForm.aspx?rcId=" + rcls.Id
+                                           };
+
+                                            var lbl = new Label()
+                                            {
+                                                Text = subyear.Year.Name + " - " + subyear.Name + " &nbsp;",
+                                            };
+
+                                            link.Controls.Add(lbl);
+
+
+                                            var url = "";
+
+                                            if (rcls.Completed ?? false)
+                                                url = "~/Content/Icons/Stop/Stop_10px.png";
+                                            else if (rcls.IsActive ?? false)
+                                                url = "~/Content/Icons/Start/active_icon_10px.png";
+
+                                            var img = new Image()
+                                            {
+                                                ImageUrl = url,
+                                            };
+                                            if (url != "")
+                                                link.Controls.Add(img);
+
+                                            pnlYearsSubYears.Controls.Add(link);
+
+
+                                            //var literal = new Literal()
+                                            //{
+                                            //    Text = "<br />"
+                                            //};
+                                            //pnlYearsSubYears.Controls.Add(literal);
                                         }
+
                                     }
-                                    lblCurrentlyIn.Text = stname;
+
+                                    divYearsSubYears.Visible = elementFound;
+                                    
+
+                                    //var rc =
+                                    //    pbatch.RunningClasses.FirstOrDefault(x => (x.IsActive ?? true)// && x.Session.IsActive
+                                    //                                                && !(x.Completed ?? false))
+                                    //    ;
+                                    //if (rc != null)
+                                    //{
+                                    //    stname = rc.Year.Name;
+                                    //    if (rc.SubYearId != null)
+                                    //    {
+                                    //        stname += " &nbsp; " + rc.SubYear.Name;//.NameFromBatch;
+                                    //        // pbId = pb.ProgramBatchId ?? 0;
+                                    //    }
+                                    //}
+                                    //lblCurrentlyIn.Text = stname;
+
+
                                     hidBatchId.Value = pbatch.BatchId.ToString();
                                     var pbName = pbatch.NameFromBatch;
                                     lblProgramBatchName.Text = pbName;

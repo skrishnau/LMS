@@ -36,17 +36,23 @@ namespace One.Views.Structure
                             SubYearId = s;
                             using (var helper = new DbHelper.Structure())
                             {
-                                var dir = helper.GetSructureDirectory(y, s);
+                                //var dir = helper.GetSructureDirectory(y, s);
+                                var sub = helper.GetSubYear(s);
+                                var dir = sub.Year.Program.Name + " / "
+                                         + sub.Year.Name + " / "
+                                         + sub.Name;
+                                ProgramId = sub.Year.ProgramId;
+
                                 lblHeading.Text = "Assgin Courses to : " + (dir);
 
                                 LoadSiteMap(dir, year, subyear);
                             }
                         }
-                        catch { Response.Redirect("~/Views/Structure/All/Master/List.aspx"); }
+                        catch { Response.Redirect("~/Views/Structure/"); }
                     }
                     else
                     {
-                        Response.Redirect("~/Views/Structure/All/Master/List.aspx");
+                        Response.Redirect("~/Views/Structure/");
                     }
 
                     hidSchoolId.Value = user.SchoolId.ToString();
@@ -70,7 +76,7 @@ namespace One.Views.Structure
                 {
                     lstAssignedCourses.Items.Add(new ListItem()
                     {
-                        Value =  subject.Id + "_" + subject.CategoryId + "_" + subject.Credit + "_" + subject.IsElective.ToString(),
+                        Value = subject.Id + "_" + subject.CategoryId + "_" + subject.Credit + "_" + subject.IsElective.ToString(),
                         Text = subject.Name
                     });
                 }
@@ -143,7 +149,7 @@ namespace One.Views.Structure
             }
             using (var helper = new DbHelper.Subject())
             {
-                var unAssignedCourses = helper.ListCourses(categoryId, selected);
+                var unAssignedCourses = helper.ListCourses(ProgramId, categoryId, selected);
 
                 foreach (var subject in unAssignedCourses)
                 {
@@ -941,13 +947,16 @@ namespace One.Views.Structure
 
                     foreach (ListItem itm in lstAssignedCourses.Items)
                     {
-                        var split = itm.Value.Split(new char[] {'_'});
+                        var split = itm.Value.Split(new char[] { '_' });
                         var item = new SubjectStructure()
                         {
                             SubjectId = Convert.ToInt32(split[0])
-                            ,YearId = yearId
-                            ,IsElective = Convert.ToBoolean(split[3])
-                            , Credit = Convert.ToInt32(split[2])
+                            ,
+                            YearId = yearId
+                            ,
+                            IsElective = Convert.ToBoolean(split[3])
+                            ,
+                            Credit = Convert.ToInt32(split[2])
                         };
                         if (hidSubYearId.Value != "" && hidSubYearId.Value != "0")
                         {
@@ -958,7 +967,7 @@ namespace One.Views.Structure
                     //YearId subyearid
                     using (var helper = new DbHelper.Subject())
                     {
-                        bool saved = helper.AddOrUpdateStructureCourse(subStructureList, yearId, subYearId,user.Id);
+                        bool saved = helper.AddOrUpdateStructureCourse(subStructureList, yearId, subYearId, user.Id);
                         return saved;
                     }
 
@@ -1011,5 +1020,11 @@ namespace One.Views.Structure
 
 
 
+
+        public int ProgramId
+        {
+            get { return Convert.ToInt32(hidProgramId.Value); }
+            set { hidProgramId.Value = value.ToString(); }
+        }
     }
 }

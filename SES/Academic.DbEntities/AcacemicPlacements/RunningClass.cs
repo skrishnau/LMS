@@ -33,6 +33,16 @@ namespace Academic.DbEntities.AcacemicPlacements
 
         public virtual ICollection<Class.SubjectClass> SubjectClasses { get; set; }
 
+        public virtual string GetAcademicYearAndSessionName
+        {
+            get { return this.AcademicYear.Name + "-" + (this.SessionId == null ?"": this.Session.Name); }
+        }
+
+        public virtual string GetYearAndSubYearName
+        {
+            get { return this.Year.Name + "-" + (this.SubYearId == null ? "" : this.SubYear.Name); }
+        }
+
         //obsolete
         //[Obsolete]
 

@@ -169,7 +169,6 @@ div.modules-heading {
     text-decoration: none;
     padding: 6px 6px 6px 20px;
     font-family: "Helvetica Neue",monospace, Helvetica, Arial, sans-serif;
-    
 }
 
     .course-menu-subjct-class:hover {
@@ -385,18 +384,37 @@ div.modules-heading {
     color: #393939;
 }
 
+.gridview {
+    margin: 0 auto;
+    border: 1px solid lightgrey;
+}
+
 /*<HeaderStyle BackColor="#557d96" Font-Bold="True" ForeColor="White"#f5f5f5; />*/
 .data-list-header {
     background-color: #f1f1f1;
     font-weight: bold;
     color: #393939;
-    border-bottom: 1px Solid darkgray;
+    border: 1px solid lightgrey;
+    border-bottom: 2px Solid darkgray;
     text-align: left;
-    /*margin: 3px;
-    padding: 8px;*/
-    /*min-height: 20px;*/
-    line-height: 30px;
+   
+    line-height: 25px;
     margin-bottom: 3px;
+}
+
+.data-list-footer {
+    background-color: #f1f1f1;
+    color: #393939;
+    font-weight: bold;
+    border: 1px solid lightgrey;
+    border-top: 2px solid darkgray;
+}
+
+.background-overall {
+    background-color: #f1f1f1;
+    color: #393939;
+    border: 1px solid lightgrey;
+    
 }
 
 

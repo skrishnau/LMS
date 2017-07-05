@@ -31,7 +31,8 @@ namespace One.Views.Class.Enrollment
                             {
                                 var clsname = cls.GetName;
                                 //var coursefullname = cls.GetCourseFullName;
-                                lblTitle.Text = clsname;
+                                lblClassName.Text = clsname;
+                                lblCourseName.Text = cls.GetCourseFullName;
                                 if (SiteMap.CurrentNode != null)
                                 {
                                     var list = new List<IdAndName>()

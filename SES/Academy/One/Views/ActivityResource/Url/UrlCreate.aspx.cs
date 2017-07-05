@@ -116,7 +116,8 @@ namespace One.Views.ActivityResource.Url
                 var saved = helper.AddOrUpdateUrlResource(url,SectionId,restriction);
                 if (saved != null)
                 {
-                    Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
+                    Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+                    //Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
                 }
             }
         }

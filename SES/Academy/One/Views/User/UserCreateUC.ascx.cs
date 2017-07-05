@@ -16,18 +16,25 @@ namespace One.Views.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblSaveStatus.Visible = false;
-            lblSaveStatus.Text = "Couldn't save";
-            valiUserName.ErrorMessage = "Required";
-            //string editMode = "";
-            if (!IsPostBack)
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
             {
-                DbHelper.ComboLoader.LoadGender(ref cmbGender);
-                FilesDisplay.FileAcquireMode = Enums.FileAcquireMode.Single;
-                var key = Guid.NewGuid().ToString();
-                FilesDisplay.PageKey = key;
-                PageKey = key;
-                FilesDisplay.FileSaveDirectory = DbHelper.StaticValues.UserImageDirectory;
+                lblSaveStatus.Visible = false;
+                lblSaveStatus.Text = "Couldn't save";
+                valiUserName.ErrorMessage = "Required";
+                //string editMode = "";
+                if (!IsPostBack)
+                {
+                    DbHelper.ComboLoader.LoadGender(ref cmbGender);
+                    FilesDisplay.FileAcquireMode = Enums.FileAcquireMode.Single;
+                    var key = Guid.NewGuid().ToString();
+                    FilesDisplay.PageKey = key;
+                    PageKey = key;
+                    FilesDisplay.FileSaveDirectory = DbHelper.StaticValues.UserImageDirectory;
+
+                    DbHelper.ComboLoader.LoadRoleForUserEnroll(ref ddlRole, user.SchoolId, DbHelper.StaticValues.Roles.Teacher,false);
+                   
+                }
             }
         }
 
@@ -49,6 +56,12 @@ namespace One.Views.User
         {
             get { return this.hidPageKey.Value; }
             set { this.hidPageKey.Value = value; }
+        }
+
+        public int UserId
+        {
+            get { return Convert.ToInt32(hidUserId.Value); }
+            set { hidUserId.Value = value.ToString(); }
         }
 
         #endregion
@@ -128,7 +141,7 @@ namespace One.Views.User
                             UserName = txtUserName.Text
                             ,
                             Password = txtPassword.Text
-                            ,
+                            ,Id = UserId
                             //Description = txtDescription.Text
                             //,
                         };
@@ -196,7 +209,14 @@ namespace One.Views.User
                                 }
 
                             }
-                            var savedUser = helper.AddOrUpdateUser(createdUser, "0", image);
+
+                            //var userRole = new Academic.DbEntities.User.UserRole()
+                            //{
+                            //    RoleId = Convert.ToInt32(ddlRole.SelectedValue),
+                            //    UserId = UserId
+                            //};
+
+                            var savedUser = helper.AddOrUpdateUser(createdUser, ddlRole.SelectedValue, image);
 
                             if (savedUser != null)
                             {

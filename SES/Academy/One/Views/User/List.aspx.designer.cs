@@ -94,6 +94,24 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.TextBox txtEmailFilter;
         
         /// <summary>
+        /// chkStudents control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkStudents;
+        
+        /// <summary>
+        /// chkTeachers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkTeachers;
+        
+        /// <summary>
         /// btnFilter control.
         /// </summary>
         /// <remarks>
@@ -121,15 +139,6 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
         
         /// <summary>
-        /// hidPageNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidPageNo;
-        
-        /// <summary>
         /// hidPerPage control.
         /// </summary>
         /// <remarks>
@@ -137,6 +146,15 @@ namespace One.Views.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidPerPage;
+        
+        /// <summary>
+        /// hidPageNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidPageNo;
         
         /// <summary>
         /// hidSchoolId control.

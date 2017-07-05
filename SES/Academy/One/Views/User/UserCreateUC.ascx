@@ -10,6 +10,7 @@
         <asp:HiddenField ID="hidEditMode" runat="server" Value="New" />
         <%--<asp:DropDownList ID="cmbRole" runat="server" Height="20px" Width="126px" Visible="false"></asp:DropDownList>--%>
         <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+        <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
         <asp:HiddenField ID="hidPageKey" runat="server" Value="" />
     </div>
 
@@ -25,9 +26,7 @@
 
                     <table>
                         <tr>
-                            <td class="data-type">First Name*<uc1:ReqImageUC ID="ReqImageUC1" runat="server" />
-                                <img src="~/Content/Icons/req.gif" alt="" />
-                            </td>
+                            <td class="data-type">First Name *</td>
                             <td class="data-value">
                                 <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
@@ -49,7 +48,7 @@
                         </tr>
 
                         <tr>
-                            <td class="data-type">Username*<uc1:ReqImageUC ID="ReqImageUC5" runat="server" />
+                            <td class="data-type">Username *
                             </td>
                             <td class="data-value">
                                 <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
@@ -59,7 +58,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="data-type">Password*<uc1:ReqImageUC ID="ReqImageUC3" runat="server" />
+                            <td class="data-type">Password *
                             </td>
                             <td class="data-value">
                                 <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
@@ -69,7 +68,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="data-type">Email*<uc1:ReqImageUC ID="ReqImageUC2" runat="server" />
+                            <td class="data-type">Email *
                             </td>
                             <td class="data-value">
                                 <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
@@ -82,7 +81,19 @@
                                     ControlToValidate="txtEmail" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
 
                             </td>
+
+
+
                         </tr>
+
+                        <tr>
+                            <td class="data-type">Role *</td>
+                            <td>
+                                <asp:DropDownList ID="ddlRole" runat="server" Width="150"></asp:DropDownList>
+                            </td>
+                        </tr>
+
+
                         <%--   <tr>
                             <td class="data-type">Email Display</td>
                             <td class="data-value">

@@ -46,17 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcademicContext.cs" />
-    <Compile Include="Migrations\201706040911150_init.cs" />
-    <Compile Include="Migrations\201706040911150_init.Designer.cs">
-      <DependentUpon>201706040911150_init.cs</DependentUpon>
+    <Compile Include="Migrations\201706251803044_InitialCreate.cs" />
+    <Compile Include="Migrations\201706251803044_InitialCreate.Designer.cs">
+      <DependentUpon>201706251803044_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706090806376_coulumn_added_batch_academicYearId.cs" />
-    <Compile Include="Migrations\201706090806376_coulumn_added_batch_academicYearId.Designer.cs">
-      <DependentUpon>201706090806376_coulumn_added_batch_academicYearId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706171158033_sessionDefault_added.cs" />
-    <Compile Include="Migrations\201706171158033_sessionDefault_added.Designer.cs">
-      <DependentUpon>201706171158033_sessionDefault_added.cs</DependentUpon>
+    <Compile Include="Migrations\201706251812147_init.cs" />
+    <Compile Include="Migrations\201706251812147_init.Designer.cs">
+      <DependentUpon>201706251812147_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,14 +68,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706040911150_init.resx">
-      <DependentUpon>201706040911150_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706251803044_InitialCreate.resx">
+      <DependentUpon>201706251803044_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706090806376_coulumn_added_batch_academicYearId.resx">
-      <DependentUpon>201706090806376_coulumn_added_batch_academicYearId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706171158033_sessionDefault_added.resx">
-      <DependentUpon>201706171158033_sessionDefault_added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706251812147_init.resx">
+      <DependentUpon>201706251812147_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

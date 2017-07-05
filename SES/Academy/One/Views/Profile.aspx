@@ -35,7 +35,9 @@
                                     <tr>
                                         <td class="data-type">Password</td>
                                         <td class="data-value">
-                                            <asp:LinkButton ID="lnkPassword" runat="server" OnClick="lnkPassword_OnClick">Change password</asp:LinkButton>
+                                            <asp:HyperLink ID="HyperLink2" runat="server" Text="Change password"
+                                                NavigateUrl="~/Views/Profile.aspx?type=psw"></asp:HyperLink>
+                                            <%--<asp:LinkButton ID="lnkPassword" runat="server" OnClick="lnkPassword_OnClick">Change password</asp:LinkButton>--%>
                                         </td>
                                     </tr>
                                     <tr>
@@ -47,7 +49,10 @@
                                     <tr>
                                         <td class="data-type">Security question</td>
                                         <td class="data-value">
-                                            <asp:LinkButton ID="lnkSecurityQuestion" runat="server" OnClick="lnkSecurityQuestion_OnClick">Change security question</asp:LinkButton>
+                                            <asp:HyperLink ID="HyperLink1" runat="server" Text="Change security question"
+                                                NavigateUrl="~/Views/Profile.aspx?type=secQue"></asp:HyperLink>
+                                            <%--<asp:LinkButton ID="lnkSecurityQuestion" runat="server"
+                                                 OnClick="lnkSecurityQuestion_OnClick">Change security question</asp:LinkButton>--%>
                                         </td>
                                     </tr>
                                 </table>
@@ -72,27 +77,27 @@
                         <tr>
                             <td class="data-type">Earlier password</td>
                             <td class="data-value">
-                                <asp:TextBox ID="txtearlierPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="txtearlierPswrd" runat="server" TextMode="Password" ></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                                    ControlToValidate="txtearlierPassword" ValidationGroup="password"
+                                    ControlToValidate="txtearlierPswrd" ValidationGroup="password"
                                     ErrorMessage="Required" ForeColor="red"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">New password</td>
                             <td class="data-value">
-                                <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="txtNewPswrd" runat="server" TextMode="Password"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                                    ControlToValidate="txtNewPassword" ValidationGroup="password"
+                                    ControlToValidate="txtNewPswrd" ValidationGroup="password"
                                     ErrorMessage="Required" ForeColor="red"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Confirm new password</td>
                             <td class="data-value">
-                                <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="txtConfirmPswrd" runat="server" TextMode="Password"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                                    ControlToValidate="txtConfirmPassword" ValidationGroup="password"
+                                    ControlToValidate="txtConfirmPswrd" ValidationGroup="password"
                                     ErrorMessage="Required" ForeColor="red"></asp:RequiredFieldValidator>
                                 <asp:Label ID="lblConfirmCheck" runat="server"
                                     Visible="False" ForeColor="red"
@@ -124,9 +129,9 @@
                         <tr>
                             <td class="data-type">Your password</td>
                             <td class="data-value">
-                                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="txtPswrd" runat="server" TextMode="Password"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="question"
-                                    ControlToValidate="txtPassword"
+                                    ControlToValidate="txtPswrd"
                                     ErrorMessage="Required" ForeColor="red"></asp:RequiredFieldValidator>
                             </td>
                         </tr>

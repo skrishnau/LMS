@@ -17,12 +17,12 @@
     <asp:HiddenField ID="hidStructureType" Value="0" runat="server" />
     <div style="margin-left: 20px;  border-left: solid lightgray 1px; ">
         <asp:PlaceHolder ID="pnlSubControls" runat="server"></asp:PlaceHolder>
-        <div>
+        <%--<div>
             <asp:HyperLink ID="lnkAdd" runat="server" Visible="False" CssClass="link-dark">
                 <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                 <asp:Literal ID="lblAddText" runat="server" Text=""></asp:Literal>
             </asp:HyperLink>
-        </div>
+        </div>--%>
     </div>
     <div style="clear: both;"></div>
 

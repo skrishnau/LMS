@@ -86,10 +86,19 @@
                      ForeColor="lightgoldenrodyellow"
                      Font-Underline="False">
                      <asp:Label ID="lblSchoolName" runat="server" Text="" Font-Size="1.2em" Font-Bold="True"></asp:Label>
+
+
                  </asp:HyperLink>
+
+                &nbsp;&nbsp;&nbsp;
+                     
+                     <asp:Label ID="lblUserInfo" runat="server" Text="">
+                     </asp:Label>
+                
 
                 <div style="float: left;">
                     <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Icons/School/school-logo.png" Width="30" Height="30" />
+
                 </div>
 
                 <%-- position: fixed; right: 0; top: 0; margin-right: 10px; margin-top: 5px; --%>
@@ -321,7 +330,7 @@
                                 <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
                                 <%--  --%>
 
-                                <uc1:FileManagementMenuUc runat="server" id="FileManagementMenuUc1" />
+                                <uc1:FileManagementMenuUc runat="server" ID="FileManagementMenuUc1" />
                             </div>
                             <%-- -------------------------END------------------------ --%>
                         </td>
@@ -399,6 +408,7 @@
         <%-- Right --%>
 
         <%--  Here waas right sidebar --%>
+
 
 
 

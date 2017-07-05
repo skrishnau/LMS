@@ -3,6 +3,9 @@
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }*/
 
+body {
+    color: #393939;
+}
 
 
 .inline {
@@ -15,13 +18,16 @@ hr {
     height: 5px;
 }
 
+img {
+    border: none;
+}
+
 h3.heading-of-listing {
     text-align: left;
     margin-top: 3px;
     margin-bottom: 10px;
     font-size: 2em;
     font-weight: 400;
-
     color: darkslategray;
 }
 
@@ -38,6 +44,30 @@ div.data-entry-section {
     margin-left: 15px;
 }
 
+.data-entry-section-link-listing a {
+    margin-left: 10px;
+    display: block;
+    color: darkslategrey;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    /*margin-bottom: 10px;*/
+    line-height: 20px;
+    text-decoration: none;
+}
+
+    .data-entry-section-link-listing a:hover {
+        background-color: #f1f1f1;
+        color: darkslategrey;
+        /*#ededc9;*/
+    }
+
+    .data-entry-section-link-listing a:active {
+        background-color: #191970;
+        color: white;
+        /*#ededc9;*/
+    }
+
+
 div.data-entry-section-heading {
     font-size: 1.1em;
     font-weight: 700;
@@ -49,13 +79,15 @@ div.data-entry-section-heading {
         height: 1px;
     }
 
+
+
 div.data-entry-section-body {
     margin-left: 20px;
     /*margin: 0 20px 0;*/
 }
+
 div.data-entry-section-no-margin {
     margin-left: 1px;
-    
     /*margin: 0 20px 0;*/
 }
 
@@ -153,5 +185,3 @@ h3 {
         text-decoration: underline;
         display: inline-block;
     }
-
-

@@ -617,18 +617,21 @@ namespace Academic.DbHelper
                 if (subsession != null)
                 {
                     return subsession.ClassUsers.Where(x => !(x.Void ?? false))
-                        .Select(x => x.User).ToList();
+                        .Select(x => x.User).OrderBy(x => x.FirstName).ToList();
                 }
                 return new List<Users>();
             }
 
-            public List<Academic.DbEntities.User.Users> ListUsersNotInSubjectSession(int subjectSessionId, List<int> asignedList, int schoolId)
+            public List<Academic.DbEntities.User.Users> ListUsersNotInSubjectSession(int subjectSessionId, List<int> asignedList, int schoolId, bool teachersOnly)
             {
                 var subsession = Context.SubjectClass.Find(subjectSessionId);
                 if (subsession != null)
                 {
                     var users = Context.Users.Where(x => !asignedList.Contains(x.Id)
-                        && x.SchoolId == schoolId)
+                        && x.SchoolId == schoolId && (x.IsActive ?? true) 
+                        && !(x.IsDeleted ?? false)
+                        && ((teachersOnly && !x.Student.Any()) || (!teachersOnly)))
+
                         .OrderBy(y => y.FirstName)
                         .ThenBy(t => t.MiddleName)
                         .ThenBy(y => y.LastName);
@@ -682,12 +685,67 @@ namespace Academic.DbHelper
 
             public List<DbEntities.User.Users> ListSubjectSessionEnrolledUsers(int subjectSessionId)
             {
+
                 var subsession = Context.SubjectClass.Find(subjectSessionId);
                 if (subsession != null)
                 {
                     return subsession.ClassUsers.Where(x => !(x.Void ?? false)).Select(x => x.User).ToList();
                 }
                 return new List<DbEntities.User.Users>();
+            }
+
+            //used. v 2.0 final
+            public List<EnrolledUser> ListEnrolledUsers(int subjectClassId, string orderBy)
+            {
+                var subsession = Context.SubjectClass.Find(subjectClassId);
+                if (subsession != null)
+                {
+                    var cnt = 1;
+                    var ss = (from clsur in subsession.ClassUsers
+                              join role in Context.Role on clsur.RoleId equals role.Id
+                              join st in Context.Student on clsur.UserId equals st.UserId into student
+                              from std in student.DefaultIfEmpty()
+                              where !(clsur.Void ?? false)
+                              //orderby (orderBy=="crn"? (std==null?clsur.User.FirstName:std.CRN)
+                              //              :(orderBy=="name"?clsur.User.FirstName
+                              //                  :clsur.User.UserName)) ascending 
+                              select new Academic.ViewModel.EnrolledUser()
+                              {
+                                  //SN = "1",//(cnt++) + ".",
+                                  Id = clsur.User.Id,
+                                  CRN = std == null ? "" : std.CRN,
+                                  Name = clsur.User.FullName,
+                                  UserName = clsur.User.UserName,
+                                  Role = role==null?"":role.DisplayName,
+                                  Email = clsur.User.Email,
+                                  LastOnline = (clsur.User.LastOnline == null ? "" : clsur.User.LastOnline.Value.ToShortDateString()),
+                                  //Group = "",
+                                  ImageUrl = clsur.User.UserImageId == null ? "" : clsur.User.UserImage.FileDirectory + clsur.User.UserImage.FileName
+                              }).ToList();
+                    if (orderBy == "crn")
+                    {
+                        ss= ss.OrderBy(x => x.CRN).ToList();
+
+                    }
+                    else if (orderBy == "name")
+                    {
+                        ss= ss.OrderBy(x => x.Name).ToList();
+                    }
+                    else if (orderBy == "username")
+                    {
+                        ss= ss.OrderBy(x => x.UserName).ToList();
+                    }
+
+                    foreach (var s in ss)
+                    {
+                        s.SN = (cnt++) + ".";
+                    }
+
+                    return ss;
+                    //return subsession.ClassUsers.Where(x => !(x.Void ?? false)).Select(x => x.User).ToList();
+                }
+                //return new List<DbEntities.User.Users>();
+                return new List<EnrolledUser>();
             }
 
             //used after github
@@ -853,6 +911,13 @@ namespace Academic.DbHelper
             }
 
 
+            /// <summary>
+            /// Returns status of course w.r.t. the user.
+            /// 'current'=studying, 'complete'=completed, 'open'=available For join, 'close'=not available to join
+            /// </summary>
+            /// <param name="userId"></param>
+            /// <param name="subjectId"></param>
+            /// <returns></returns>
             public string GetCourseClassesAvailabilityForUser(int userId, int subjectId)
             {
                 var user = Context.Users.Find(userId);
@@ -867,11 +932,11 @@ namespace Academic.DbHelper
                         );
                     if (subSession != null)
                     {
-                        if (!(subSession.SubjectClass.SessionComplete ?? false) && (subSession.SubjectClass.EndDate!=null &&subSession.SubjectClass.EndDate.Value>=DateTime.Now ))
+                        if (!(subSession.SubjectClass.SessionComplete ?? false) && (subSession.SubjectClass.EndDate != null && subSession.SubjectClass.EndDate.Value >= DateTime.Now))
                         {
-                            return "You are currently enrolled in this course";
+                            return "current";//"You are currently enrolled in this course";
                         }
-                        return "You have already completed this course.";
+                        return "complete"; //"You have already completed this course.";
                     }
                     //get classes of the subject
                     var subject = Context.Subject.Find(subjectId);
@@ -882,11 +947,11 @@ namespace Academic.DbHelper
                         if (classes.Any())
                         {
                             // show the available classes
-                            return "Open class(es) available. <a href='#'>Join here</a>.";
+                            return "open";//"Open class(es) available. <a href='#'>Join here</a>.";
                         }
                         else
                         {
-                            return "No open class(es) available for now";
+                            return "close";// "No open class(es) available for now";
                         }
                     }
 
@@ -911,6 +976,27 @@ namespace Academic.DbHelper
             {
                 return Context.UserClass.Find(userClassId);
             }
+
+            public Academic.DbEntities.AcacemicPlacements.RunningClass GetRunningClass(int rcId)
+            {
+                return Context.RunningClass.Find(rcId);
+            }
+
+            public bool IsAnyTeacherAssignedInClass(int subjectClassId)
+            {
+                var sc = Context.SubjectClass.Find(subjectClassId);
+
+                if (sc != null)
+                {
+                    using (var helper = new DbHelper.User())
+                    {
+                        var teacherRoleId = helper.GetRole(StaticValues.Roles.Teacher).Id;
+                        return sc.ClassUsers.Any(x => x.RoleId == teacherRoleId && !(x.Void ?? false));
+                    }
+                }
+                return false;
+            }
+
         }
     }
 }

@@ -5,7 +5,7 @@
 		<ExpandedPath>ModelRepository,PwaDthqGAqDIAgOY</ExpandedPath>
 		<SelectedPath>ModelRepository,205qzhqGAqDIAghB</SelectedPath>
 	</TreeState>
-	<TreeState name="DiagramNavigator" viewX="0" viewY="215">
+	<TreeState name="DiagramNavigator" viewX="0" viewY="161">
 		<ExpandedPath>DiagramNavigator</ExpandedPath>
 		<ExpandedPath>DiagramNavigator,UML Diagrams</ExpandedPath>
 		<ExpandedPath>UseCaseDiagram</ExpandedPath>
@@ -20,7 +20,7 @@
 		<ExpandedPath>BlockDefinitionDiagram</ExpandedPath>
 		<ExpandedPath>DiagramNavigator,Others</ExpandedPath>
 		<ExpandedPath>OverviewDiagram</ExpandedPath>
-		<SelectedPath>BlockDefinitionDiagram,5vzethqGAqDIAgNW</SelectedPath>
+		<SelectedPath>ObjectDiagram,eBDszhqGAqDIAgRp</SelectedPath>
 	</TreeState>
 	<TreeState name="ClassBrowser" viewX="0" viewY="0">
 		<ExpandedPath>ClassBrowser</ExpandedPath>

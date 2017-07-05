@@ -73,6 +73,7 @@ namespace One.Values.MemberShip
             this.Roles = roles;
         }
 
+        public string TestString { get; set; }
 
         public int Id { get; set; }
         public string UserName { get; set; }
@@ -97,6 +98,8 @@ namespace One.Values.MemberShip
         public int SchoolId { get; set; }
         public int AcademicYearId { get; set; }
         public int SessionId { get; set; }
+
+        public string TestString { get; set; }
 
         public List<string> UserRoles { get; set; }
     }

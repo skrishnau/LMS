@@ -63,10 +63,9 @@ namespace One.Views.Structure.All.UserControls
                     lblNoOfCourses.ForeColor = Color.Red;
                 }
             }
-            lnkEdit.Visible = edit;
-            lnkDelete.Visible = edit;
+            //lnkEdit.Visible = edit;
+            //lnkDelete.Visible = edit;
 
-            //lnkAdd.Visible = edit && addUrl != "";
 
             pnlBody.Style.Add("padding", "5px");
             if (currentBatch == "")
@@ -84,24 +83,22 @@ namespace One.Views.Structure.All.UserControls
                     "~/Views/Student/Batch/StudentDisplay/Students/StudentListInProgramBatch.aspx?pbId=" + programBatchId;
             }
 
-            if (edit)
-            {
-                lnkEdit.NavigateUrl = editUrl;
-                //lnkAdd.NavigateUrl = addUrl;
+            //earlier before edit and delete were present
+            //if (edit)
+            //{
+            //    lnkEdit.NavigateUrl = editUrl;
 
-                var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
-                                                DbHelper.StaticValues.Encode("structure") +
-                                                "&progId=0"
-                                                + "&yeaId=" + yearId
-                                                + "&syeaId=" + subyearId
-                                                + "&showText="
-                                                + DbHelper.StaticValues.Encode("Are you sure to delete the sub-year, "
-                                                + name + "?")
-                                                ;
-                lnkDelete.NavigateUrl = redUrl;
-                //lblAddText.Text = addText;
-                //lnkAdd.ToolTip = addText + " in " + name.Replace("♦", "").Replace("●", ""); ;
-            }
+            //    var redUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+            //                                    DbHelper.StaticValues.Encode("structure") +
+            //                                    "&progId=0"
+            //                                    + "&yeaId=" + yearId
+            //                                    + "&syeaId=" + subyearId
+            //                                    + "&showText="
+            //                                    + DbHelper.StaticValues.Encode("Are you sure to delete the sub-year, "
+            //                                    + name + "?")
+            //                                    ;
+            //    lnkDelete.NavigateUrl = redUrl;
+            //}
             lnkName.NavigateUrl = firstPart + courseListUrl;
         }
 

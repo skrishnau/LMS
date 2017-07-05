@@ -151,7 +151,7 @@ namespace One.ViewsSite.Account
                         serializeModel.FirstName = user.FirstName;
                         serializeModel.LastName = user.LastName;
                         serializeModel.SchoolId = user.SchoolId ?? 0;
-
+                        serializeModel.TestString = "kkkkk";
 
                         var sess = acaHelper.GetCurrentSession();
                         if (sess != null)

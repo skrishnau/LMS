@@ -166,6 +166,15 @@ namespace One.Views.Course {
         protected global::System.Web.UI.WebControls.LinkButton btnCurrentlyRunning;
         
         /// <summary>
+        /// Image5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image5;
+        
+        /// <summary>
         /// btnDue control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,15 @@ namespace One.Views.Course {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnDue;
+        
+        /// <summary>
+        /// Image4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image4;
         
         /// <summary>
         /// btnNotStartedYet control.
@@ -184,6 +202,15 @@ namespace One.Views.Course {
         protected global::System.Web.UI.WebControls.LinkButton btnNotStartedYet;
         
         /// <summary>
+        /// Image3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image3;
+        
+        /// <summary>
         /// btnCompleted control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,15 @@ namespace One.Views.Course {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCompleted;
+        
+        /// <summary>
+        /// Image6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image6;
         
         /// <summary>
         /// dlistClasses control.

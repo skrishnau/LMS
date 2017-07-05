@@ -152,7 +152,7 @@
                         <div class="data-entry-section-body data-entry-section-no-margin"><strong>Programs to include in this batch</strong></div>
                     </td>
                 </tr>--%>
-                <tr></tr>
+                <tr><td></td></tr>
 
 
                 <tr>
@@ -162,7 +162,7 @@
                             style="margin-bottom: 10px; margin-left: -10px;">
                             <strong>Programs to include in this batch</strong>
                         </div>
-                        <div class="data-entry-section-body">
+                        <%--<div class="data-entry-section-body">--%>
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
                                     <div style="margin-left: -10px;">
@@ -172,7 +172,7 @@
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                             <%--<uc1:TreeViewWithCheckBoxInLeft runat="server" ID="TreeViewWithCheckBoxInLeft" />--%>
-                        </div>
+                        <%--</div>--%>
                     </td>
                 </tr>
 
@@ -191,11 +191,11 @@
         <div>
             <div class="save-div">
                 <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click"
-                    Text="Save and return" Width="163px" />
+                    Text="Save" Width="163px" />
                 &nbsp;&nbsp;
-               <%-- <asp:Button ID="btnSaveAndAddSessions" runat="server"
-                    Text="Save and Add Sessions" OnClick="btnSave_Click" Width="168px" />
-                &nbsp;--%>
+                <asp:Button ID="btnCancel" runat="server" ValidationGroup="none"
+                    Text="Cancel" OnClick="btnCancel_OnClick" Width="168px" />
+                &nbsp;
                 <asp:Label ID="lblError" runat="server" Text="Error while saving." ForeColor="red"></asp:Label>
             </div>
 

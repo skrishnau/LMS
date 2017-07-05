@@ -76,9 +76,8 @@
 
                             <asp:TemplateField HeaderText="Name">
                                 <ItemTemplate>
-                                    <div style="width: 100px; overflow: hidden; white-space: nowrap;">
+                                    <div style="width: 200px; overflow: hidden; white-space: nowrap;">
                                         <asp:Label ID="Label1" runat="server" Text='<%# Eval("Name") %>' Font-Strikeout='<%# Eval("Void") %>' ForeColor='<%# GetColor(Eval("Void")) %>'></asp:Label>
-
                                     </div>
                                 </ItemTemplate>
                                 <HeaderTemplate>
@@ -127,4 +126,8 @@
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <link href="../../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
     <link href="../../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
+</asp:Content>
+
+<asp:Content runat="server" ID="Content2" ContentPlaceHolderID="title">
+   Import Students
 </asp:Content>

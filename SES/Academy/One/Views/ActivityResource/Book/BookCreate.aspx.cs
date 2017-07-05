@@ -122,15 +122,15 @@ namespace One.Views.ActivityResource.Book
 
                 var saved = helper.AddOrUpdateBook(book, SectionId, restriction);
                 if (saved != null)
-                    Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId="
-                        + SubjectId + "&edit=1" + "#section_" + SectionId);//
+                    Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+                //Response.Redirect("~/Views/Course/Section/?SubId="
+                //        + SubjectId + "#section_" + SectionId);//
             }
         }
 
         protected void btnCancel_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId="
-                              + SubjectId + "&edit=1" + "#section_" + SectionId);
+            Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId,SectionId));
         }
     }
 }

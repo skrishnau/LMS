@@ -30,9 +30,8 @@ namespace Academic.DbHelper
 
             #region Add or Update Functions
 
-            public DbEntities.Structure.Year AddOrUpdateYear(DbEntities.Structure.Year year)
+            public DbEntities.Structure.Year AddOrUpdateYear(DbEntities.Structure.Year year, List<SubYear> subYears)
             {
-
                 try
                 {
                     var ent = Context.Year.Find(year.Id);
@@ -40,6 +39,14 @@ namespace Academic.DbHelper
                     {
                         var saved = Context.Year.Add(year);
                         Context.SaveChanges();
+
+                        foreach (var sem in subYears)
+                        {
+                            sem.YearId = saved.Id;
+                            Context.SubYear.Add(sem);
+                            Context.SaveChanges();
+                        }
+
                         return saved;
                     }
                     else
@@ -50,6 +57,23 @@ namespace Academic.DbHelper
                         ent.Position = year.Position;
 
                         Context.SaveChanges();
+
+
+                        foreach (var subYear in subYears)
+                        {
+                            var semFound = Context.SubYear.Find(subYear.Id);
+                            if (semFound == null)
+                            {
+                                subYear.YearId = ent.Id;
+                                Context.SubYear.Add(subYear);
+                            }
+                            else
+                            {
+                                semFound.Name = subYear.Name;
+                            }
+                            Context.SaveChanges();
+                        }
+
                         return ent;
                     }
                 }
@@ -198,7 +222,7 @@ namespace Academic.DbHelper
             public List<ViewModel.IdAndName> GetPrograms(int schoolId)
             {
                 return
-                    Context.Program.Where(x => x.SchoolId == schoolId && !(x.Void??false))
+                    Context.Program.Where(x => x.SchoolId == schoolId && !(x.Void ?? false))
                         .Select(x => new IdAndName() { Id = x.Id, Name = x.Name })
                         .ToList();
 

@@ -229,7 +229,8 @@ namespace One.Views.ActivityResource.Assignments
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
+            Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+            //Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -447,8 +448,9 @@ namespace One.Views.ActivityResource.Assignments
                                 var saved = helper.AddOrUpdateAssignmentActivity(assg, SectionId, restriction, cls, weight);
                                 if (saved != null)
                                 {
-                                    Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" +
-                                                      SubjectId + "&edit=1#section_" + SectionId);
+                                    Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+                                    //Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" +
+                                    //                  SubjectId + "&edit=1#section_" + SectionId);
                                 }
                                 else
                                 {

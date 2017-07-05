@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.ViewModel;
+using One.Values.MemberShip;
 
 namespace One.Views.Student.Batch
 {
@@ -65,61 +66,53 @@ namespace One.Views.Student.Batch
             //BatchId = Convert.ToInt32(id);
             var editQuery = Request.QueryString["edit"];
             var edit = (editQuery ?? "0").ToString();
-            using (var helper = new DbHelper.Batch())
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
             {
-                var batch = helper.GetBatch(BatchId);
-                if (batch != null)
+                var fromSession = Request.QueryString["from"];
+                if (fromSession == "startSession")
                 {
-
-                    if (SiteMap.CurrentNode != null)
-                    {
-                        LoadSiteMap(edit=="1",batch);
-                        //var list = new List<IdAndName>()
-                        //{
-                        //   new IdAndName(){
-                        //                Name=SiteMap.RootNode.Title
-                        //                ,Value =  SiteMap.RootNode.Url
-                        //                ,Void=true
-                        //            },
-                        //    new IdAndName(){
-                        //        Name = SiteMap.CurrentNode.ParentNode.Title
-                        //        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit="+edit
-                        //        ,Void=true
-                        //    }
-                        //    , new IdAndName(){Name = batch.Name}
-                        //};
-                        //SiteMapUc.SetData(list);
-
-
-                        //SiteMap.CurrentNode.ReadOnly = false;
-                        //SiteMap.CurrentNode.Title = batch.Name;
-                    }
-                    lblBatchName.Text = batch.Name;
-                    lblSummary.Text = batch.Description;
-                    lblTitle.Text = batch.Name;
-
+                    lblFromSessionNotice.Visible = true;
                 }
-                var programs = helper.GetProgramBatchList(BatchId);
-                foreach (var prog in programs)
+
+                using (var helper = new DbHelper.Batch())
                 {
-                    var no = prog.StudentBatches.Count(x => !(x.Void ?? false));
+                    var batch = helper.GetBatch(BatchId);
+                    if (batch != null)
+                    {
 
-                    var item = (Batch.BatchDetail.DetailItemUc)
-                        Page.LoadControl("~/Views/Student/Batch/BatchDetail/DetailItemUc.ascx");
+                        if (SiteMap.CurrentNode != null)
+                        {
+                            LoadSiteMap(edit == "1", batch);
+                            
+                        }
+                        lblBatchName.Text = batch.Name;
+                        lblSummary.Text = batch.Description;
+                        lblTitle.Text = batch.Name;
 
-                    item.LoadData(prog.Id, prog.BatchId, prog.NameFromBatch, prog.ProgramId
-                        , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void, no, edit);
-                    //if (prog.CurrentYear != null)
-                    //{
-                    //    item.CurrentYear = prog.CurrentYear.Name;
-                    //}
-                    //if (prog.CurrentSubYear != null)
-                    //{
-                    //    item.CurrentSubYear = prog.CurrentSubYear.Name;
-                    //}
+                    }
+                    var programs = helper.GetProgramBatchList(BatchId);
+                    foreach (var prog in programs)
+                    {
+                        var no = prog.StudentBatches.Count(x => !(x.Void ?? false));
 
-                    item.Enabled = !(prog.Void ?? false);
-                    pnlProgramsInTheBatch.Controls.Add(item);
+                        var item = (Batch.BatchDetail.DetailItemUc)
+                            Page.LoadControl("~/Views/Student/Batch/BatchDetail/DetailItemUc.ascx");
+
+                        item.LoadData(prog.Id, prog.BatchId, prog.NameFromBatch, prog.ProgramId
+                            , prog.Program.Name, prog.StartedStudying, prog.StudyCompleted, prog.Void, no, edit);
+                        //if (prog.CurrentYear != null)
+                        //{
+                        //    item.CurrentYear = prog.CurrentYear.Name;
+                        //}
+                        //if (prog.CurrentSubYear != null)
+                        //{
+                        //    item.CurrentSubYear = prog.CurrentSubYear.Name;
+                        //}
+
+                        item.Enabled = !(prog.Void ?? false);
+                        pnlProgramsInTheBatch.Controls.Add(item);
+                    }
                 }
             }
         }

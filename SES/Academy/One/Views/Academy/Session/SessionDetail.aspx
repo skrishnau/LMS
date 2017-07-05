@@ -12,7 +12,7 @@
     <div>
         <h3 class="heading-of-listing">
             <asp:Label ID="lblHeading" runat="server" Text="Label"></asp:Label>
-            
+
             <span style="vertical-align: top; top: 0; line-height: 10px;">
                 <asp:Image ID="imgActive" runat="server"
                     Width="10" Height="10"
@@ -50,14 +50,19 @@
             <div class="data-entry-section">
 
                 <div>
-                    <strong style="font-size: 18px;">Classes</strong>
+                    <div>
+                        <strong style="font-size: 18px;">Classes</strong>
+                    </div>
+                    
+                    <div class="data-entry-section data-entry-section-link-listing">
+                        <asp:Panel ID="pnlListing" runat="server"></asp:Panel>
+                    </div>
                 </div>
 
-                <br />
 
-                <div class="data-entry-section">
-                    <asp:Panel ID="pnlListing" runat="server"></asp:Panel>
-                </div>
+
+
+
 
             </div>
 
@@ -80,3 +85,6 @@
     <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>
 
+<asp:Content runat="server" ID="content4" ContentPlaceHolderID="title">
+    <asp:Literal ID="lblPageTitle" runat="server"></asp:Literal>
+</asp:Content>

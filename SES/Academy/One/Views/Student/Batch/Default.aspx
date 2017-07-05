@@ -20,6 +20,16 @@
     <div style="font-size: 1em; margin-left: 25px;">
         <asp:Label runat="server" ID="lblSummary"></asp:Label>
     </div>
+    
+     <div style="color: darkslategrey">
+            <asp:Label ID="lblFromSessionNotice" runat="server" 
+                Visible="False">
+                <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
+
+                 Add students to the respective program of this new batch.
+            </asp:Label>
+        </div>
+
     <br />
     <%--<div style="margin: 5px;">--%>
     <%--<div style="margin: 2px 2px 10px 0;">--%>

@@ -58,13 +58,13 @@ namespace One.Views {
         protected global::System.Web.UI.WebControls.Label lblUsername;
         
         /// <summary>
-        /// lnkPassword control.
+        /// HyperLink2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPassword;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
         
         /// <summary>
         /// lblEmail control.
@@ -76,13 +76,13 @@ namespace One.Views {
         protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// lnkSecurityQuestion control.
+        /// HyperLink1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkSecurityQuestion;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
         /// img control.
@@ -103,13 +103,13 @@ namespace One.Views {
         protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
-        /// txtearlierPassword control.
+        /// txtearlierPswrd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtearlierPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtearlierPswrd;
         
         /// <summary>
         /// RequiredFieldValidator3 control.
@@ -121,13 +121,13 @@ namespace One.Views {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
-        /// txtNewPassword control.
+        /// txtNewPswrd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtNewPswrd;
         
         /// <summary>
         /// RequiredFieldValidator1 control.
@@ -139,13 +139,13 @@ namespace One.Views {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// txtConfirmPassword control.
+        /// txtConfirmPswrd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtConfirmPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtConfirmPswrd;
         
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -202,13 +202,13 @@ namespace One.Views {
         protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
-        /// txtPassword control.
+        /// txtPswrd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtPswrd;
         
         /// <summary>
         /// RequiredFieldValidator4 control.

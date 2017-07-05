@@ -25,7 +25,7 @@ namespace One.Views
                 if (!IsPostBack)
                 {
                     using (var helper = new DbHelper.User())
-                    using(var file = new DbHelper.WorkingWithFiles())
+                    using (var file = new DbHelper.WorkingWithFiles())
                     {
                         var usr = helper.GetUser(user.Id);
                         if (usr != null)
@@ -50,42 +50,60 @@ namespace One.Views
                             lblName.Text = usr.FullName;
                             lblEmail.Text = usr.Email;
                             lblUsername.Text = usr.UserName;
-                            //img.ImageUrl = usr.UserImage == null
-                            //    ? ""
-                            //    : usr.UserImage.FileDirectory + usr.UserImage.FileName;
+
                             img.ImageUrl = file.GetImageUrl(usr.UserImageId ?? 0);
                             ddlQuestion.DataSource = DbHelper.StaticValues.SecurityQuestion();
                             ddlQuestion.DataBind();
                         }
                     }
+                    SetView();
                 }
             }
 
         }
 
-        protected void lnkPassword_OnClick(object sender, EventArgs e)
+        private void SetView()
         {
-            MultiView1.ActiveViewIndex = 1;
+            var type = Request.QueryString["type"];
+            if (type == "secQue")
+            {
+                //security question
+                MultiView1.ActiveViewIndex = 2;
+            }
+            else if (type == "psw")
+            {
+                MultiView1.ActiveViewIndex = 1;
+            }
+            else
+            {
+                MultiView1.ActiveViewIndex = 0;
+            }
         }
 
-        protected void lnkSecurityQuestion_OnClick(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 2;
-        }
+        //protected void lnkPassword_OnClick(object sender, EventArgs e)
+        //{
+        //    MultiView1.ActiveViewIndex = 1;
+        //}
+
+        //protected void lnkSecurityQuestion_OnClick(object sender, EventArgs e)
+        //{
+        //    MultiView1.ActiveViewIndex = 2;
+        //}
 
         protected void btnSavePassword_OnClick(object sender, EventArgs e)
         {
             var user = Page.User as CustomPrincipal;
             if (user != null)
-                if (txtConfirmPassword.Text.Equals(txtNewPassword.Text))
+                if (txtConfirmPswrd.Text.Equals(txtNewPswrd.Text))
                 {
                     using (var helper = new Academic.DbHelper.DbHelper.User())
                     {
-                        var changed = helper.ChangePassword(user.Id, txtearlierPassword.Text, txtConfirmPassword.Text);
+                        var changed = helper.ChangePassword(user.Id, txtearlierPswrd.Text, txtConfirmPswrd.Text);
                         if (changed)
                         {
-                            MultiView1.ActiveViewIndex = 0;
-                            ResetPasswordControls();
+                            Response.Redirect("~/Views/Profile.aspx");
+                            //MultiView1.ActiveViewIndex = 0;
+                            //ResetPasswordControls();
                         }
                         else
                         {
@@ -109,39 +127,42 @@ namespace One.Views
                 }
                 using (var helper = new Academic.DbHelper.DbHelper.User())
                 {
-                    var changed = helper.ChangeSecurityQuestion(user.Id, txtPassword.Text, ddlQuestion.Text, txtAnswer.Text);
+                    var changed = helper.ChangeSecurityQuestion(user.Id, txtPswrd.Text, ddlQuestion.Text, txtAnswer.Text);
                     if (changed)
                     {
-                        MultiView1.ActiveViewIndex = 0;
-                        ResetQuestionControls();
+                        Response.Redirect("~/Views/Profile.aspx");
+
+                        //MultiView1.ActiveViewIndex = 0;
+                        //ResetQuestionControls();
                     }
                     else
                     {
                         lblQuestionSaveError.Visible = true;
                     }
                 }
-}
-
+            }
         }
+
         protected void btnCancel_OnClick(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 0;
-            ResetQuestionControls();
-            ResetPasswordControls();
+            Response.Redirect("~/Views/Profile.aspx");
+            //MultiView1.ActiveViewIndex = 0;
+            //ResetQuestionControls();
+            //ResetPasswordControls();
         }
 
-        private void ResetPasswordControls()
-        {
-            txtearlierPassword.Text = "";
-            txtNewPassword.Text = "";
-            txtConfirmPassword.Text = "";
-        }
+        //private void ResetPasswordControls()
+        //{
+        //    txtearlierPassword.Text = "";
+        //    txtNewPassword.Text = "";
+        //    txtConfirmPassword.Text = "";
+        //}
 
-        private void ResetQuestionControls()
-        {
-            ddlQuestion.ClearSelection();
-            txtPassword.Text = "";
-            txtAnswer.Text = "";
-        }
+        //private void ResetQuestionControls()
+        //{
+        //    ddlQuestion.ClearSelection();
+        //    txtPassword.Text = "";
+        //    txtAnswer.Text = "";
+        //}
     }
 }

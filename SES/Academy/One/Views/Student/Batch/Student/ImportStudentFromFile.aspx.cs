@@ -114,7 +114,7 @@ namespace One.Views.Student.Batch.Student
 
 
                 excel.AddMapping<Academic.DbEntities.Students.Student>(x => x.CRN, "CRN");
-                excel.AddMapping<Academic.DbEntities.Students.Student>(x => x.Name, "Name");
+                excel.AddMapping<Academic.DbEntities.Students.Student>(x => x.Name, "Name",y=>y.Trim());
 
 
 

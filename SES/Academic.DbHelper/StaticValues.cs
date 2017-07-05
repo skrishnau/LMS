@@ -69,9 +69,9 @@ namespace Academic.DbHelper
             public static string AssignmentDirectory = "~/Content/Images/AssignmentSubmission/";
 
             public static string FolderIconDirectory = "~/Content/Icons/Folder/folder-icon.png";
-                //"~/Content/Icons/ActivityResource/Folder/folder-icon-40x40.png";
+            //"~/Content/Icons/ActivityResource/Folder/folder-icon-40x40.png";
             public static string FolderIconLockedDirectory = "~/Content/Icons/Folder/folder-locked-icon.png";
-                //"~/Content/Icons/ActivityResource/Folder/folder-icon-40x40-locked.png";
+            //"~/Content/Icons/ActivityResource/Folder/folder-icon-40x40-locked.png";
 
             public static string UserPhotoFolderName = "User Photos";
 
@@ -324,8 +324,8 @@ namespace Academic.DbHelper
 
                 public static string Admin { get { return "admin"; } }
 
-                public static string Admitter{get { return "admitter"; }}
-                public static string Grader{ get { return "grader"; } }
+                public static string Admitter { get { return "admitter"; } }
+                public static string Grader { get { return "grader"; } }
             }
 
             #endregion
@@ -572,6 +572,16 @@ namespace Academic.DbHelper
             {
                 Server, Private
             }
+
+            public static class WebPagePath
+            {
+                public static string CourseDetailPage(int subjectId, int sectionId = 0)
+                {
+                    return "~/Views/Course/Section/?SubId="
+                        + subjectId + (sectionId == 0 ? "" : "#section_" + sectionId);
+                }
+            }
+
         }
     }
 }

@@ -13,10 +13,9 @@
         <asp:Label ID="lblHeading" runat="server" Text=""></asp:Label>
     </h3>
     <hr />
-    <asp:HiddenField ID="hidStructureId" runat="server" Value="0" />
-    <asp:HiddenField ID="hidParentId" runat="server" Value="0" />
-    <asp:HiddenField ID="hidStructureType" runat="server" Value="" />
-    <asp:HiddenField ID="hidProgramId" runat="server" Value="0" />
+   
+    
+
     <div class="data-entry-section-body">
         <div>
             <asp:Label ID="lblCopyError" runat="server" Visible="False" ForeColor="red"
@@ -32,7 +31,7 @@
                 </td>
             </tr>
 
-            <tr>
+            <tr runat="server" ID="rowDescription">
                 <td class="data-type">Description&nbsp;</td>
                 <td class="data-value">
                     <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="89px" Width="205px"></asp:TextBox>
@@ -45,6 +44,8 @@
                 </td>
                 <td class="data-value">
                     <asp:TextBox ID="txtPosition" runat="server" TextMode="Number"></asp:TextBox>
+                     <asp:RequiredFieldValidator ID="reqValiPosition"  runat="server" ControlToValidate="txtPosition"
+                        Text="Required" ForeColor="red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             
@@ -53,7 +54,10 @@
         
         <table runat="server" ID="tblSubyear" Visible="False">
             <tr>
-                <td class="data-type">Semester-1 Name* &nbsp;</td>
+                <td class="data-type"><strong>Semesters</strong></td>
+            </tr>
+            <tr>
+                <td class="data-type">&nbsp;&nbsp;&nbsp;&nbsp;Semester-1 Name* &nbsp;</td>
                 <td class="data-value">
                     <asp:TextBox ID="txtSem1Name" runat="server" Width="139px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="reqValiSubYear1"  runat="server" ControlToValidate="txtSem1Name"
@@ -61,7 +65,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="data-type">Semester-2 Name * &nbsp;</td>
+                <td class="data-type">&nbsp;&nbsp;&nbsp;&nbsp;Semester-2 Name * &nbsp;</td>
                 <td class="data-value">
                     <asp:TextBox ID="txtSem2Name" runat="server" Width="139px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="reqValiSubYear2"  runat="server" ControlToValidate="txtSem2Name"
@@ -81,7 +85,14 @@
     </div>
 
 
-    <br />
+    <asp:HiddenField ID="hidStructureId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidParentId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidStructureType" runat="server" Value="" />
+    <asp:HiddenField ID="hidProgramId" runat="server" Value="0" />
+    
+    <asp:HiddenField ID="hidSem1Id" runat="server" Value="0" />
+    <asp:HiddenField ID="hidSem2Id" runat="server" Value="0" />
+
 
 </asp:Content>
 

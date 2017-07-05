@@ -11,7 +11,7 @@ namespace Academic.Database.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706040911150_init"; }
+            get { return "201706251812147_init"; }
         }
         
         string IMigrationMetadata.Source

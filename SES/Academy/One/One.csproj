@@ -1251,10 +1251,12 @@
     <Content Include="Content\Icons\delete\remove_icon_color.png" />
     <Content Include="Content\Icons\delete\trash_earlier.gif" />
     <Content Include="Content\Icons\delete\undo_delete.png" />
+    <Content Include="Content\Icons\Diploma\diploma_16px.png" />
     <Content Include="Content\Icons\Done_Save\basic-save.png" />
     <Content Include="Content\Icons\Download\download_icon_13x13.png" />
     <Content Include="Content\Icons\Download\download_icon_16x16.png" />
     <Content Include="Content\Icons\Download\download_icon_20x20.png" />
+    <Content Include="Content\Icons\DueDate\pay-policy-duedate.png" />
     <Content Include="Content\Icons\Edit\edit_black_and_white.png" />
     <Content Include="Content\Icons\Edit\edit_orange.png" />
     <Content Include="Content\Icons\Event\calendar-icon-round.png" />
@@ -1285,6 +1287,9 @@
     <Content Include="Content\Icons\Hide\hide-menu-left.png" />
     <Content Include="Content\Icons\Home\home_2.png" />
     <Content Include="Content\Icons\Home\home_icon.png" />
+    <Content Include="Content\Icons\Hourglass\hourglass_black_10px.png" />
+    <Content Include="Content\Icons\Hourglass\hourglass_yellow_16px_3.png" />
+    <Content Include="Content\Icons\Hourglass\Hourglass_16px.png" />
     <Content Include="Content\Icons\Indent\circle_dot.png" />
     <Content Include="Content\Icons\Indent\square_dot.png" />
     <Content Include="Content\Icons\List\List_16px.png" />
@@ -1325,6 +1330,7 @@
     <Content Include="Content\Icons\Start\Start_24px.png" />
     <Content Include="Content\Icons\Star\star_red.png" />
     <Content Include="Content\Icons\Stop\Stop_10px.png" />
+    <Content Include="Content\Icons\Teach\Training_16px.png" />
     <Content Include="Content\Icons\Tick\Double Tick_16px.png" />
     <Content Include="Content\Icons\Tick\tick_mark_icon.png" />
     <Content Include="Content\Icons\TreeView\left_down.png" />
@@ -1352,6 +1358,7 @@
     <Content Include="Content\Icons\Visibility\eye_16x20_visible_top.png" />
     <Content Include="Content\Icons\Visibility\eye_hidden.png" />
     <Content Include="Content\Icons\Visibility\eye_Visible.png" />
+    <Content Include="Content\Icons\Watch\Watch_10px.png" />
     <Content Include="Content\Images\background-repeater.png" />
     <Content Include="Content\Images\background-repeater1.png" />
     <Content Include="Content\Images\company-logo.jpg" />
@@ -1625,6 +1632,7 @@
     <Content Include="Views\Academy\ProgramSelection\ProgramSelect.aspx" />
     <Content Include="Views\Academy\ProgramSelection\RadioButtonAndLabel.ascx" />
     <Content Include="Views\Academy\ProgramSelection\YearCheckBoxAndLabel.ascx" />
+    <Content Include="Views\Academy\RunningClassForm.aspx" />
     <Content Include="Views\Academy\Session\EarlierCodes.txt" />
     <Content Include="Views\Academy\Session\SessionDetail.aspx" />
     <Content Include="Views\Academy\StartSession.aspx" />
@@ -1791,6 +1799,7 @@
     <Content Include="Views\Structure\Earlier code\AssignCourseCreate_ASPX.txt" />
     <Content Include="Views\Structure\Earlier code\AssignCourseCreate_CS.txt" />
     <Content Include="Views\Structure\StructureCreate.aspx" />
+    <Content Include="Views\Structure\YearInfoUc.ascx" />
     <Content Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx" />
     <Content Include="Views\Student\Batch\Default.aspx" />
     <Content Include="Views\Student\Batch\ListBatchCode.txt" />
@@ -2435,6 +2444,13 @@
     </Compile>
     <Compile Include="Views\Academy\ProgramSelection\YearCheckBoxAndLabel.ascx.designer.cs">
       <DependentUpon>YearCheckBoxAndLabel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\RunningClassForm.aspx.cs">
+      <DependentUpon>RunningClassForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\RunningClassForm.aspx.designer.cs">
+      <DependentUpon>RunningClassForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Academy\Session\SessionDetail.aspx.cs">
       <DependentUpon>SessionDetail.aspx</DependentUpon>
@@ -3471,6 +3487,13 @@
     </Compile>
     <Compile Include="Views\Structure\StructureCreate.aspx.designer.cs">
       <DependentUpon>StructureCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\YearInfoUc.ascx.cs">
+      <DependentUpon>YearInfoUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Structure\YearInfoUc.ascx.designer.cs">
+      <DependentUpon>YearInfoUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\Batch\BatchDetail\DetailItemUc.ascx.cs">
       <DependentUpon>DetailItemUc.ascx</DependentUpon>

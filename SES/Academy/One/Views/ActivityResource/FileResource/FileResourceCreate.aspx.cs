@@ -43,7 +43,7 @@ namespace One.Views.ActivityResource.FileResource
                     Response.Redirect("~/ViewsSite/User/Dashboard/Dashboard.aspx");
                 }
 
-                
+
                 FilesDisplay1.FileSaveDirectory = DbHelper.StaticValues.CourseFilesLocation;
                 FilesDisplay1.FileAcquireMode = Enums.FileAcquireMode.Multiple;
             }
@@ -56,7 +56,7 @@ namespace One.Views.ActivityResource.FileResource
             {
                 var files = new List<FileResourceEventArgs>();
                 var fileR = helper.GetFileResource(FileResourceId);
-                if (fileR!=null)
+                if (fileR != null)
                 {
                     txtName.Text = fileR.Name;
                     CKEditor1.Text = fileR.Description;
@@ -74,10 +74,11 @@ namespace One.Views.ActivityResource.FileResource
                             Visible = true,
                             FileType = f.SubFile.FileType,
                             IconPath = f.SubFile.IconPath,
-                            FilePath = f.SubFile.FileDirectory+"/"+f.SubFile.FileName,
+                            FilePath = f.SubFile.FileDirectory + "/" + f.SubFile.FileName,
                             FileDisplayName = f.SubFile.DisplayName,
                             FileSizeInBytes = f.SubFile.FileSizeInBytes
-                            ,LocalId = i.ToString()
+                            ,
+                            LocalId = i.ToString()
                         });
                         i++;
                     }
@@ -120,9 +121,9 @@ namespace One.Views.ActivityResource.FileResource
 
 
         #endregion
-       
 
-       
+
+
 
         //keep it for now
         protected void file_upload_UploadedComplete(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
@@ -137,7 +138,7 @@ namespace One.Views.ActivityResource.FileResource
             {
                 var file = new Academic.DbEntities.ActivityAndResource.FileResource()
                 {
-                    Id= FileResourceId,
+                    Id = FileResourceId,
                     Name = txtName.Text
                     ,
                     Description = CKEditor1.Text
@@ -164,7 +165,7 @@ namespace One.Views.ActivityResource.FileResource
                         var fileName = Path.GetFileName(f.FilePath);
                         var fi = new Academic.DbEntities.Subjects.SubjectFile()
                         {
-                            Id=f.Id,
+                            Id = f.Id,
                             CreatedBy = user.Id
                             ,
                             CreatedDate = DateTime.Now
@@ -183,7 +184,8 @@ namespace One.Views.ActivityResource.FileResource
                             IconPath = f.IconPath
                             ,
                             SubjectId = SubjectId
-                            ,Void = !f.Visible
+                            ,
+                            Void = !f.Visible
                         };
                         list.Add(fi);
                     }
@@ -198,7 +200,8 @@ namespace One.Views.ActivityResource.FileResource
                     var saved = helper.AddOrUpdateFileResource(file, list, SectionId, restriction);
                     if (saved != null)
                     {
-                        Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
+                        Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+                        //Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
                     }
                 }
             }
@@ -207,7 +210,8 @@ namespace One.Views.ActivityResource.FileResource
 
         protected void btnCancel_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
+            Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+            //Response.Redirect("~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + SubjectId + "&edit=1#section_" + SectionId);
         }
     }
 }

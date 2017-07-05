@@ -5,13 +5,13 @@ namespace Academic.Database.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class sessionDefault_added : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(sessionDefault_added));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706171158033_sessionDefault_added"; }
+            get { return "201706251803044_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

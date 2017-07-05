@@ -27,8 +27,15 @@ namespace One.Views.Structure
                         var s = Convert.ToInt32(subyear.ToString());
                         using (var helper = new DbHelper.Structure())
                         {
+                            var sub = helper.GetSubYear(s);
 
-                            var dir = helper.GetSructureDirectory(y, s);
+                            //var dir = helper.GetSructureDirectory(y, s);
+                           var  dir = sub.Year.Program.Name + " / "
+                                        + sub.Year.Name + " / "
+                                        + sub.Name;
+
+
+
                             CourseListUC.SetProgramDirectory(dir);
                             var editQuery = Request.QueryString["edit"];
                             var edit = (editQuery ?? "0").ToString();
@@ -43,7 +50,7 @@ namespace One.Views.Structure
                                             },
                                     new IdAndName(){
                                         Name = SiteMap.CurrentNode.ParentNode.Title
-                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?edit="+edit
+                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?pId="+sub.Year.ProgramId
                                         ,Void=true
                                     },
                                     new IdAndName(){Name = dir}

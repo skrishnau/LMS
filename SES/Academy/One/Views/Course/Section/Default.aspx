@@ -17,19 +17,32 @@
                
             </div>--%>
             <%-- heading-of-listing --%>
-            <h3 class="act-res-course-title">
-                <asp:Literal ID="txtSubjectName" runat="server"></asp:Literal>
-            </h3>
-            
-            <div style="margin: 5px 10px 5px; padding: 5px; border: 1px solid lightgray;">
-                
-                <asp:Label ID="lblClassInformation" runat="server" Text="Label" ForeColor="#993366" ></asp:Label>
+            <div>
+                <div style="float: left;">
+                    <h3 class="act-res-course-title">
+                        <asp:Literal ID="txtSubjectName" runat="server"></asp:Literal>
+                    </h3>
+                </div>
+                <div style="float: left; padding-left: 8px;">
+                    <asp:Image ID="imgJoinInfo" runat="server" Width="10" Height="10" Visible="False" />
+                </div>
 
+                <div style="float: right; line-height: 18px;">
+                    <asp:Button ID="btnEnroll" runat="server" Text="Enroll Now" Visible="False" />
+                </div>
+                <div style="clear: both;"></div>
             </div>
+            <div style="clear: both;"></div>
+           
+
+            <%--<div style="margin: 5px 10px 5px; padding: 5px; border: 1px solid lightgray;">
+
+                <asp:Label ID="lblClassInformation" runat="server" Text="Label" ForeColor="#993366" ></asp:Label>
+            </div>--%>
             <br />
 
             <%--hello--%>
-<%--            <div style="text-align: right; margin-right: 15px;">
+            <%--            <div style="text-align: right; margin-right: 15px;">
                 <asp:HyperLink ID="lnkEdit"
                     runat="server">
                     <asp:Image ID="ImageButton1" runat="server"
@@ -64,7 +77,7 @@
     <script type="text/javascript" src="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.min.js"></script>
     <script src="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.js" type="text/javascript"></script>
     <link href="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.css" rel="stylesheet" type="text/css" />
-    
+
     <link href="../../../Content/CSSes/ActResStyles.css" rel="stylesheet" />
 </asp:Content>
 

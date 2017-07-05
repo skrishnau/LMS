@@ -7,10 +7,9 @@
 
 
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="Body">
-    <h3 class="heading-of-listing">
-        Users
+    <h3 class="heading-of-listing">Users
     </h3>
-        <hr />
+    <hr />
 
     <div>
         <div style="float: right;">
@@ -22,46 +21,73 @@
                 Assign Role
             </asp:HyperLink>
         </div>
-        
-        <div style="float: left; border: 1px solid lightgray;">
-            
-            <asp:LinkButton ID="lnkFilterPanel" runat="server" OnClick="lnkFilterPanel_OnClick" CssClass="link-dark">Filter
-                <asp:Image ID="imgFilter" runat="server" ImageUrl="~/Content/Icons/Arrow/right-arrow.png"/>
-            </asp:LinkButton>
-            <br />
-            <asp:Panel ID="pnlFilter" runat="server" Visible="False">
-                <table>
-                    <tr>
-                        <td>Name</td>
-                        <td>
-                            <asp:TextBox ID="txtNameFilter" runat="server"></asp:TextBox>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td>Username</td>
-                        <td>
-                            <asp:TextBox ID="txtUsernameFilter" runat="server"></asp:TextBox>                            
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td>Email</td>
-                        <td>
-                            <asp:TextBox ID="txtEmailFilter" runat="server"></asp:TextBox>                            
-                        </td>
-                    </tr>
-                    
-                </table>
-                <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_OnClick"/>
-            </asp:Panel>
+
+        <%-- float: left; --%>
+        <div style="border: 1px solid lightgray;">
+
+            <div style="background-color: #f1f1f1; padding: 5px;">
+
+                <asp:LinkButton ID="lnkFilterPanel" runat="server" OnClick="lnkFilterPanel_OnClick" CssClass="link-dark">
+                    Filter
+                <asp:Image ID="imgFilter" runat="server" ImageUrl="~/Content/Icons/Arrow/down-arrow.png" />
+                </asp:LinkButton>
+            </div>
+
+            <div class="data-entry-section" style="padding: 7px;">
+                <asp:Panel ID="pnlFilter" runat="server" Visible="True">
+                    <div style="float: left;">
+                        <table>
+                            <tr>
+                                <td>Name</td>
+                                <td>
+                                    <asp:TextBox ID="txtNameFilter" runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Username</td>
+                                <td>
+                                    <asp:TextBox ID="txtUsernameFilter" runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Email</td>
+                                <td>
+                                    <asp:TextBox ID="txtEmailFilter" runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <div style="float: left; padding-left: 15px;">
+                        Roles:
+                        &nbsp;
+                            <asp:CheckBox ID="chkStudents" runat="server" Text="Students" Checked="True" />
+                        &nbsp;&nbsp;&nbsp;
+                            <asp:CheckBox ID="chkTeachers" runat="server" Text="Teachers" Checked="True"/>
+                       
+                    </div>
+
+                    <div style="clear: both;"></div>
+
+                    <div>
+                        <div style="float: right;">
+                            <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_OnClick" />
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </asp:Panel>
+            </div>
+            <div style="clear: both;"></div>
         </div>
-       <div style="clear: both;"></div>
+        <div style="clear: both;"></div>
     </div>
     <br />
-    
+
     <div style="width: 99%; margin-top: 20px">
-        <asp:GridView ID="GridView1" Width="100%" runat="server" AllowPaging="True"
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" PageSize="25" CssClass="gridview"
             AutoGenerateColumns="False" DataSourceID="ObjectDataSource1"
             CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No users">
 
@@ -140,7 +166,8 @@
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <%--  BackColor="#557d96" Font-Bold="True" ForeColor="White" --%>
             <HeaderStyle CssClass="data-list-header" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <PagerStyle HorizontalAlign="Center" CssClass="data-list-footer" />
+            <%--<PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />--%>
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
             <SortedAscendingCellStyle BackColor="#E9E7E2" />
@@ -159,13 +186,16 @@
                 <asp:ControlParameter ControlID="txtNameFilter" DefaultValue="" Name="filterName" PropertyName="Text" Type="String" />
                 <asp:ControlParameter ControlID="txtUsernameFilter" DefaultValue="" Name="filterUsername" PropertyName="Text" Type="String" />
                 <asp:ControlParameter ControlID="txtEmailFilter" DefaultValue="" Name="filteremail" PropertyName="Text" Type="String" />
+                <asp:ControlParameter ControlID="chkStudents" DefaultValue="False" Name="selectStudents" PropertyName="Checked" Type="Boolean" />
+                <asp:ControlParameter ControlID="chkTeachers" DefaultValue="True" Name="selectTeachers" PropertyName="Checked" Type="Boolean" />
             </SelectParameters>
         </asp:ObjectDataSource>
 
     </div>
 
-    <asp:HiddenField ID="hidPageNo" runat="server" Value="1" />
-    <asp:HiddenField ID="hidPerPage" runat="server" Value="100" />
+    <asp:HiddenField ID="hidPerPage" runat="server" Value="0" />
+    <asp:HiddenField ID="hidPageNo" runat="server" Value="0" />
+
     <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
 
     <br />

@@ -585,11 +585,15 @@ namespace Academic.DbHelper
                     .OrderBy(y => y.FullName).ToList();
             }
 
-            public List<DbEntities.Subjects.Subject> ListCourses(int categoryId, List<int> dontIncludeCourseIds)
+            public List<DbEntities.Subjects.Subject> ListCourses(int programId,int categoryId, List<int> dontIncludeCourseIds)
             {
+                var already = Context.SubjectStructure.Where(x => !(x.Void??false) 
+                                                                && x.Year.ProgramId == programId)
+                                                      .Select(x=>x.SubjectId).ToList();
                 var courses = Context.Subject.Where(x => x.SubjectCategoryId == categoryId
                                                     && !(x.Void ?? false)
-                                                    && !dontIncludeCourseIds.Contains(x.Id))
+                                                    && !dontIncludeCourseIds.Contains(x.Id)
+                                                    && !already.Contains(x.Id))
                     .OrderBy(y => y.FullName).ToList();
 
 
@@ -718,7 +722,9 @@ namespace Academic.DbHelper
                 {
                     var subClasses = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
                         .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) //&& !(x.SessionComplete ?? false)) -- return all
-                        ).ToList();
+                        )
+                        .OrderBy(x=>(x.IsRegular)?x.SubjectStructure.Subject.FullName:x.Subject.FullName)
+                        .ToList();
 
                     var getEarlier = getOnlyCurrent == null || getOnlyCurrent == false;
                     var getCurrent = getOnlyCurrent == null || getOnlyCurrent == true;
@@ -754,6 +760,8 @@ namespace Academic.DbHelper
                             }
                         }
                     }
+
+
                     return new[]//Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>[]
                     {
                         currentSubjectClassDictionary,earlierSubjectClassDictionary

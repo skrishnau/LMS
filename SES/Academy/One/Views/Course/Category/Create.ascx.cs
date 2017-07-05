@@ -21,6 +21,7 @@ namespace One.Views.Course.Category
         {
             if (!IsPostBack)
             {
+                txtName.Focus();
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {

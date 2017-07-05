@@ -42,10 +42,7 @@ namespace Academic.DbHelper
             public DbEntities.Session GetCurrentSession()
             {
                 var date = DateTime.Now;
-                var sess =
-                    Context.Session.FirstOrDefault(
-                        x =>
-                            (x.StartDate <= date && x.EndDate >= date) || x.IsActive);
+                var sess = Context.Session.FirstOrDefault(x => (x.StartDate <= date && x.EndDate >= date) || x.IsActive);
 
                 return sess;
             }
@@ -432,7 +429,7 @@ namespace Academic.DbHelper
 
             //Used v-2
             public DbEntities.Batches.Batch AddOrUpdateAcademicYearAndBatch(int schoolId,
-                DbEntities.AcademicYear academicY,List<Session> sessions,
+                DbEntities.AcademicYear academicY, List<Session> sessions,
                 DbEntities.Batches.Batch batch, List<DbEntities.Batches.ProgramBatch> progBatchList)
             {
                 var acaEntity = Context.AcademicYear.Find(academicY.Id);
@@ -883,7 +880,7 @@ namespace Academic.DbHelper
                                 Context.SaveChanges();
                             }
 
-                            var earlierRunningClasses = Context.RunningClass.Where(x => (x.IsActive ?? false) && !(x.Completed??false));
+                            var earlierRunningClasses = Context.RunningClass.Where(x => (x.IsActive ?? false) && !(x.Completed ?? false));
                             foreach (var rc in earlierRunningClasses)
                             {
                                 rc.Completed = true;

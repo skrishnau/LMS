@@ -22,7 +22,7 @@ namespace Academic.DbEntities.Class
         //public int? StudentBatchId { get; set; }
         //public virtual Batches.StudentBatch StudentBatch { get; set; }
 
-        //Note: if IsRegular = true then this class is from irregular subjects
+        //Note: if IsRegular = false then this class is from irregular subjects
         //so we have to get users from Users table
         public int? UserId { get; set; }
         public virtual User.Users User { get; set; }

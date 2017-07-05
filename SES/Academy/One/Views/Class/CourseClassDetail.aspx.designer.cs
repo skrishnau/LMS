@@ -85,13 +85,22 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Literal lblEnrollmentMethod;
         
         /// <summary>
-        /// lblGrouping control.
+        /// lbldNotice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblGrouping;
+        protected global::System.Web.UI.WebControls.Label lbldNotice;
+        
+        /// <summary>
+        /// imgNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgNotice;
         
         /// <summary>
         /// btnEnroll control.
@@ -103,13 +112,22 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Button btnEnroll;
         
         /// <summary>
-        /// ListView1 control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+        
+        /// <summary>
+        /// ObjectDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
         
         /// <summary>
         /// hidSubjectSessionId control.
@@ -119,6 +137,15 @@ namespace One.Views.Class {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidSubjectSessionId;
+        
+        /// <summary>
+        /// hidOrderby control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidOrderby;
         
         /// <summary>
         /// lblTitle control.

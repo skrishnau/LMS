@@ -40,6 +40,24 @@ namespace One.Views.Student.Batch {
         protected global::System.Web.UI.WebControls.Label lblSummary;
         
         /// <summary>
+        /// lblFromSessionNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFromSessionNotice;
+        
+        /// <summary>
+        /// imgNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgNotice;
+        
+        /// <summary>
         /// pnlProgramsInTheBatch control.
         /// </summary>
         /// <remarks>

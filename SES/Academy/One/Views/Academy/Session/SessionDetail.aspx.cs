@@ -120,7 +120,7 @@ namespace One.Views.Academy.Session
                             //}
 
                             lblHeading.Text = academic.Name + " - " + session.Name;// + name;
-
+                            lblPageTitle.Text = lblHeading.Text;
 
                             //classes
                             LoadClasses(session);
@@ -132,7 +132,7 @@ namespace One.Views.Academy.Session
 
                             //SessionsListingInAYDetailUC.LoadSessionData(academic.Id, session.Id, session.Name, session.StartDate
                             //    , session.EndDate, session.IsActive, session.Completed ?? false, edit == "1");
-                            
+
                         }
                     }
 
@@ -156,26 +156,52 @@ namespace One.Views.Academy.Session
             //classes
             //var dict = helper.ListClassesForNextSession(user.SchoolId, sessionPosition);
 
-            var rcs = session.RunningClasses.Where(x => !(x.Void ?? false));
-            var dict = rcs.GroupBy(x => x.ProgramBatch.Program);
-            foreach (var program in dict)
+            using (var usrHelper = new DbHelper.User())
             {
-                var pLabel = new Label()
+                var teacherRoleId = usrHelper.GetRole(Academic.DbHelper.DbHelper.StaticValues.Roles.Teacher)
+                                                                       .Id;
+                var noticeText =
+                                  "&nbsp;&nbsp;&nbsp;&nbsp;<img src = '/Content/Icons/Notice/Warning_Shield_16px.png'/> " +
+                                  "<span style='backgroundcolor=darkslategrey;'>Teacher not assigned yet.</span>";
+
+                var rcs = session.RunningClasses.Where(x => !(x.Void ?? false));
+                var dict = rcs.GroupBy(x => x.ProgramBatch.Program);
+                foreach (var program in dict)
                 {
-                    Font = { Bold = true },
-                    Text = program.Key.Name + "<br/>"
-                };
-                pnlListing.Controls.Add(pLabel);
-                foreach (var rc in program)
-                {
-                    var rcLabel = new Label()
+                    var pLabel = new Literal()
                     {
-                        //Font = { Size = 14, Bold = false },
-                        Text = "&nbsp;&nbsp;" + rc.ProgramBatch.Batch.Name + " -- " +
-                               rc.Year.Name + " " + (rc.SubYear == null ? "" : rc.SubYear.Name) +
-                               "<br/>"
+                        //Font = { Bold = true },
+                        Text = "<div style='margin-top:8px;'>" +
+                        "<strong>● " + program.Key.Name + "</strong></div>",
                     };
-                    pnlListing.Controls.Add(rcLabel);
+                    //pLabel.Style.Add("margin-top","5px");
+                    pnlListing.Controls.Add(pLabel);
+
+
+                    foreach (var rc in program)
+                    {
+                        var teacherPresent = true;
+                        foreach (var sub in rc.SubjectClasses)
+                        {
+                            teacherPresent = sub.ClassUsers.Any(x => x.RoleId == teacherRoleId && !(x.Void ?? false));
+                            if (teacherPresent == false)
+                                break;
+                        }
+                        if (!teacherPresent)
+                        {
+
+                        }
+
+                        var rcLabel = new HyperLink()
+                        {
+                            Text = " &nbsp;&nbsp;▪ " + rc.ProgramBatch.Batch.Name + " -- " +
+                                   rc.Year.Name + " " + (rc.SubYear == null ? "" : rc.SubYear.Name) +
+                                   (teacherPresent ? "" : noticeText) +
+                                   "<br/>",
+                            NavigateUrl = "~/Views/Academy/RunningClassForm.aspx?rcId=" + rc.Id,
+                        };
+                        pnlListing.Controls.Add(rcLabel);
+                    }
                 }
             }
         }

@@ -2,7 +2,7 @@
 
 
 <div>
-    <%@ Register Src="~/Views/UserControls/DateChooser.ascx" TagName="DateChooser" TagPrefix="uc1" %>
+    <%--<%@ Register Src="~/Views/UserControls/DateChooser.ascx" TagName="DateChooser" TagPrefix="uc1" %>--%>
     <%-- <script type='text/javascript'>
         var scrollLeft = 0;
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
@@ -25,7 +25,7 @@
     <div style="margin: 5px;">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <div class="main-div" id="maindiv">
+                <div class="background-overall" id="maindiv">
                     <%--<asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_Click" Width="82px" />--%>
                     <table style="margin: auto;">
                         <tbody style="vertical-align: top;">
@@ -137,87 +137,9 @@
     <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSubjectSessionId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSessionStartDate" runat="server" Value="" />
+    <asp:HiddenField ID="hidTeacherOnly" runat="server" Value="False" />
 
-    <%--<hr />
-    <hr />
-    <hr />
-    <asp:Panel ID="Panel3" runat="server" Width="100%">
-        <asp:Panel ID="Panel1" runat="server" Width="100%">
-            <asp:Panel ID="Panel4" runat="server">
-
-                <div style="float: left;">
-                    <table>
-                        <tr>
-                            <td>Name</td>
-                            <td>Class Roll</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:TextBox ID="txtNameSearch" runat="server"></asp:TextBox>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txtRollSearch" runat="server"></asp:TextBox>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div style="float: left;">
-                    <table>
-                        <tr>
-                            <td>Created Date (from)</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <uc1:DateChooser ID="DateChooser1" runat="server" />
-                            </td>
-
-                        </tr>
-                    </table>
-                </div>
-                <asp:TextBox ID="txtGroupId" runat="server" Visible="False" Width="16px"></asp:TextBox>
-
-            </asp:Panel>
-        </asp:Panel>
-
-        <asp:Panel ID="pnlGrpAsg" runat="server">
-            <strong>Assign Student to Group
-            </strong>
-            <div style="text-align: center;">
-                Student Group<asp:DropDownList ID="cmbGroup" runat="server" Height="21px" Width="129px"></asp:DropDownList>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                    ControlToValidate="cmbGroup"
-                    ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
-            </div>
-            <div id="unassignedDiv" style="float: left; width: 38%">
-                Unassigned List
-            </div>
-            <div style="float: left; width: 23%; text-align: center; height: 100%; padding-top: 5px;">
-                <br />
-                <br />
-                <asp:Button ID="btnAsg" runat="server" Text="Assign to group →" Width="139px" OnClick="btnAsg_Click" />
-                <br />
-                <br />
-                <asp:Button ID="btnRemove" runat="server" Text="← Remove from Group" Width="150px" OnClick="btnRemove_Click" />
-                <br />
-                <br />
-                <br />
-            </div>
-            <div id="assignedDiv" style="float: left; width: 37%">
-                Assigned List&nbsp;
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="cmbGroup" ErrorMessage="No Students to save." ForeColor="#FF3300"></asp:RequiredFieldValidator>
-                &nbsp;
-            </div>
-
-        </asp:Panel>
-        <asp:Panel ID="Panel2" runat="server" Width="100%"></asp:Panel>
-    </asp:Panel>--%>
+   
     <style type="text/css">
         .hover1:hover {
             /*background-color: azure;*/
@@ -238,14 +160,15 @@
             margin: 2px 10px 5px;
         }
 
-        #maindiv:hover {
-            /**/
+        /*#maindiv:hover {
             background-color: #e2e2ec;
             margin: auto;
         }
 
         .main-div {
             background-color: #ebecf9;
-        }
+        }*/
+
+
     </style>
 </div>

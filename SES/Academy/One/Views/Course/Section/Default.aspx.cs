@@ -89,23 +89,23 @@ namespace One.Views.Course.Section
         private void LoadCourse(int courseId)
         {
             var user = Page.User as CustomPrincipal;
-            
-            var edit = hidEdit.Value;
-            if(user!=null)
-            using(var cHelper = new DbHelper.Classes())
-            using(var strHelper = new DbHelper.Structure())
-            using (var helper = new DbHelper.Subject())
-            {
 
-                var sub = helper.Find(courseId);
-                if (sub != null)
+            var edit = hidEdit.Value;
+            if (user != null)
+                using (var cHelper = new DbHelper.Classes())
+                using (var strHelper = new DbHelper.Structure())
+                using (var helper = new DbHelper.Subject())
                 {
-                    var fromCls = Request.QueryString["frmDetailView"];
-                    var yId = Request.QueryString["yId"];
-                    var sId = Request.QueryString["sId"];
-                    if (SiteMap.CurrentNode != null)
+
+                    var sub = helper.Find(courseId);
+                    if (sub != null)
                     {
-                        var list = new List<IdAndName>()
+                        var fromCls = Request.QueryString["frmDetailView"];
+                        var yId = Request.QueryString["yId"];
+                        var sId = Request.QueryString["sId"];
+                        if (SiteMap.CurrentNode != null)
+                        {
+                            var list = new List<IdAndName>()
                         {
                            new IdAndName(){
                                         Name=SiteMap.RootNode.Title
@@ -113,71 +113,94 @@ namespace One.Views.Course.Section
                                         ,Void=true
                                     },
                         };
-                        if (sId != null && yId != null)
-                        {
-                            //lnkEdit.NavigateUrl += "&yId=" + yId + "&sId=" + sId;
-                            list.Add(new IdAndName()
+                            if (sId != null && yId != null)
                             {
-                                Name = "Manage Programs"
-                                ,
-                                Value = "~/Views/Structure/?edit="+edit
-                                ,Void = true
-                            });
-                            list.Add(new IdAndName()
+                                //lnkEdit.NavigateUrl += "&yId=" + yId + "&sId=" + sId;
+                                list.Add(new IdAndName()
+                                {
+                                    Name = "Manage Programs"
+                                    ,
+                                    Value = "~/Views/Structure/?edit=" + edit
+                                    ,
+                                    Void = true
+                                });
+                                list.Add(new IdAndName()
+                                {
+                                    Name = strHelper.GetSructureDirectory(Convert.ToInt32(yId), Convert.ToInt32(sId))
+                                    ,
+                                    Value = "~/Views/Structure/CourseListing.aspx?yId=" + yId + "&sId=" + sId + "&edit=" + edit
+                                    ,
+                                    Void = true
+                                });
+                                list.Add(new IdAndName()
+                                {
+                                    Name = sub.FullName
+                                });
+                            }
+                            else if (fromCls != null)
                             {
-                                Name=strHelper.GetSructureDirectory(Convert.ToInt32(yId),Convert.ToInt32(sId))
-                                ,
-                                Value = "~/Views/Structure/CourseListing.aspx?yId="+yId+"&sId="+sId+"&edit="+edit
-                                ,Void = true
-                            });
-                            list.Add(new IdAndName()
+                                //lnkEdit.NavigateUrl += "&frmDetailView=" + fromCls;
+                                list.Add(new IdAndName()
+                                {
+                                    Name = SiteMap.CurrentNode.ParentNode.Title
+                                    ,
+                                    Value = SiteMap.CurrentNode.ParentNode.Url
+                                    ,
+                                    Void = true
+                                });
+                                list.Add(new IdAndName()
+                                {
+                                    Name = sub.FullName
+                                    ,
+                                    Value = "~/Views/Course/CourseDetail.aspx?cId=" + sub.Id
+                                    ,
+                                    Void = true
+                                });
+                                list.Add(new IdAndName() { Name = "View" });
+                            }
+                            else
                             {
-                                Name = sub.FullName
-                            });
+                                list.Add(new IdAndName()
+                                {
+                                    Name = sub.FullName
+                                    ,
+                                    //Value = "~/Views/Course/CourseDetail.aspx?cId=" + sub.Id
+                                    //,
+                                    //Void = true
+                                });
+                            }
+                            SiteMapUc.SetData(list);
                         }
-                        else if (fromCls != null)
-                        {
-                            //lnkEdit.NavigateUrl += "&frmDetailView=" + fromCls;
-                            list.Add(new IdAndName()
-                            {
-                                Name = SiteMap.CurrentNode.ParentNode.Title
-                                ,
-                                Value = SiteMap.CurrentNode.ParentNode.Url
-                                ,
-                                Void = true
-                            });
-                            list.Add(new IdAndName()
-                            {
-                                Name = sub.FullName
-                                ,
-                                Value = "~/Views/Course/CourseDetail.aspx?cId=" + sub.Id
-                                ,
-                                Void = true
-                            });
-                            list.Add(new IdAndName() { Name = "View" });
-                        }
-                        else
-                        {
-                            list.Add(new IdAndName()
-                            {
-                                Name = sub.FullName
-                                ,
-                                //Value = "~/Views/Course/CourseDetail.aspx?cId=" + sub.Id
-                                //,
-                                //Void = true
-                            });
-                        }
-                        SiteMapUc.SetData(list);
-                    }
-                    txtSubjectName.Text = sub.FullName;
-                    //uncomment
-                    ListOfSectionsInCourseUC1.CourseId = Id;
-                    lblPageTitle.Text = sub.FullName;
+                        txtSubjectName.Text = sub.FullName;
+                        //uncomment
+                        ListOfSectionsInCourseUC1.CourseId = Id;
+                        lblPageTitle.Text = sub.FullName;
 
-                    lblClassInformation.Text = cHelper.GetCourseClassesAvailabilityForUser(user.Id, sub.Id);
+                        var courseStatus = cHelper.GetCourseClassesAvailabilityForUser(user.Id, sub.Id);
+                        switch (courseStatus)
+                        {
+                            case "current":
+                                imgJoinInfo.Visible = true;
+                                imgJoinInfo.ImageUrl = "~/Content/Icons/Start/active_icon_10px.png";
+                                break;
+                            case "complete":
+                                imgJoinInfo.Visible = true;
+                                imgJoinInfo.ImageUrl = "~/Content/Icons/Diploma/diploma_16px.png";
+                                break;
+                            case "open":
+                                btnEnroll.Visible = true;
+                                break;
+                            case "close":
+                               
+                                break;
+                            default:
+                                break;
+
+                        }
+                        //lblClassInformation.Text = cHelper.GetCourseClassesAvailabilityForUser(user.Id, sub.Id);
+                    }
+                    //CourseDetailUc1.
                 }
-                //CourseDetailUc1.
-            }
 
         }
     }

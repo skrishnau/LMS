@@ -294,26 +294,13 @@ namespace One.Views.Academy
                         lblFromSessionNotice.Visible = true;
                         if (lblFromSessionNotice.Visible)
                         {
-                            Response.Redirect("~/Views/Academy/StartSession.aspx");
+                            Response.Redirect("~/Views/Student/Batch/?Id=" + saved.Id + "&from=startSession");
+                            //Response.Redirect("~/Views/Academy/StartSession.aspx");
                         }
                         else
                         {
                             Response.Redirect("~/Views/Academy/");
                         }
-
-                        //earlier when there was "Save and Add Sessions" button
-                        //var btn = sender as Button;
-                        //if (btn != null)
-                        //{
-                        //    if (btn.ID == "btnSaveAndAddSessions")
-                        //    {
-                        //        Response.Redirect("~/Views/Academy/Session/Create.aspx?aId=" + saved.Id);
-                        //    }
-                        //    else
-                        //    {
-                        //        Response.Redirect("~/Views/Academy/");
-                        //    }
-                        //}
                     }
                     else lblError.Visible = true;
                 }
@@ -486,6 +473,9 @@ namespace One.Views.Academy
 
         #endregion
 
-
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Academy/");
+        }
     }
 }

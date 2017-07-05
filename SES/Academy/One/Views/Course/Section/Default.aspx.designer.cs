@@ -40,13 +40,22 @@ namespace One.Views.Course.Section {
         protected global::System.Web.UI.WebControls.Literal txtSubjectName;
         
         /// <summary>
-        /// lblClassInformation control.
+        /// imgJoinInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblClassInformation;
+        protected global::System.Web.UI.WebControls.Image imgJoinInfo;
+        
+        /// <summary>
+        /// btnEnroll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEnroll;
         
         /// <summary>
         /// ListOfSectionsInCourseUC1 control.

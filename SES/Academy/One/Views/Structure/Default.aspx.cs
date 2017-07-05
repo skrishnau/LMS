@@ -51,6 +51,8 @@ namespace One.Views.Structure
                     Edit = "0";
                     //lnkEdit.Visible = false;
                     lnkAdd.Visible = false;
+
+                    LoadListMode(user.SchoolId);
                 }
                 else if (Edit == "1")
                 {
@@ -58,8 +60,14 @@ namespace One.Views.Structure
                     lnkAdd.Visible = true;
                     lnkAdd.NavigateUrl = "~/Views/Structure/StructureCreate.aspx?pId=" + user.SchoolId + "&strTyp=pro";
                     lblAddText.Text = "Add Program";
+
+                    LoadCompressMode(user.SchoolId);
                 }
-                LoadStructure(user.SchoolId);
+                else
+                {
+                    LoadListMode(user.SchoolId);                    
+                }
+
             }
         }
 
@@ -69,7 +77,8 @@ namespace One.Views.Structure
             set { hidEdit.Value = value; }
         }
 
-        private void LoadStructure(int schoolId)
+        //compress mode
+        private void LoadCompressMode(int schoolId)
         {
             var pId = Request.QueryString["pId"];
 
@@ -149,7 +158,7 @@ namespace One.Views.Structure
                             yuc.SetName(y.Id, y.Name
                                 , "~/Views/Structure/StructureCreate.aspx?strId=" + y.Id + "&progId=" + p.Id + "&strTyp=yr"
                                 , edit
-                                 , "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&progId=" + p.Id + "&strTyp=syr", "Add Sub-Year"
+                                 //, "~/Views/Structure/StructureCreate.aspx?pId=" + y.Id + "&progId=" + p.Id + "&strTyp=syr", "Add Sub-Year"
                                 );
                             puc.AddControl(yuc);
 
@@ -238,15 +247,29 @@ namespace One.Views.Structure
             }
         }
 
-        //private void subYear_CourseClicked(object sender, StructureEventArgs e)
-        //{
-        //    using (var helper = new DbHelper.Structure())
-        //    {
-        //        string dir = helper.GetSructureDirectory(e.YearId, e.SubYearId);
-        //        CourseListUC.SetProgramDirectory(dir);
-        //    }
-        //    CourseListUC.LoadCourseList(e.YearId, e.SubYearId);
-        //    MultiView1.ActiveViewIndex = 1;
-        //}
+        //list mode
+        private void LoadListMode(int schoolId)
+        {
+             //var pId = Request.QueryString["pId"];
+            //var edit = Edit == "1";
+            using (var helper = new DbHelper.Structure())
+            {
+                helper.ListPrograms(schoolId).ForEach(p => 
+                {
+                    #region Program data populate code
+
+                    var puc = (YearInfoUc)Page
+                        .LoadControl("~/Views/Structure/YearInfoUc.ascx");
+                    puc.LoadProgram(p);
+                    pnlListing.Controls.Add(puc);
+
+                    pnlListing.Controls.Add(new Literal(){Text = "<br />"});
+
+                    #endregion
+                });
+            }
+        }
+
+
     }
 }

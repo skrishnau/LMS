@@ -49,8 +49,8 @@ namespace One.Views.Structure.All.UserControls
                                                   + name + "?")
                                                   ;
                 lnkDelete.NavigateUrl = redUrl;
-                pnlSubControls.Visible = expand;
             }
+            pnlSubControls.Visible = expand;
         }
 
         protected void lnkName_OnClick(object sender, EventArgs e)

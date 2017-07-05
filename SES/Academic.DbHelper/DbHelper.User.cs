@@ -45,9 +45,26 @@ namespace Academic.DbHelper
             }
 
             //used
+            /// <summary>
+            /// Creates a role if it doesn't exits.. then returns the role
+            /// </summary>
+            /// <param name="roleName"></param>
+            /// <returns></returns>
             public Role GetRole(string roleName)
             {
-                return Context.Role.FirstOrDefault(x => x.RoleName.ToLower().Equals(roleName.ToLower()));
+                var role = Context.Role.FirstOrDefault(x => x.RoleName.ToLower().Equals(roleName.ToLower()));
+                if (role == null)
+                {
+                    role = Context.Role.Add(new Role()
+                    {
+                        Description = "---add your description for '" + roleName + "' later---",
+                        DisplayName = char.ToUpper(roleName[0]) + roleName.Substring(1, roleName.Length - 1),
+                        RoleName = roleName,
+                        Void = false,
+                    });
+                    Context.SaveChanges();
+                }
+                return role;
             }
 
             //maybe used
@@ -200,6 +217,8 @@ namespace Academic.DbHelper
                             ent = Context.Users.Add(user);
                             Context.SaveChanges();
 
+                            
+
                             if (roleId != "")
                             {
                                 int rolei = Convert.ToInt32(roleId);
@@ -238,7 +257,7 @@ namespace Academic.DbHelper
                             else
                             {
                                 var img = Context.File.Find(ent.UserImageId);
-                                if (img != null && userFile!=null)
+                                if (img != null && userFile != null)
                                 {
                                     img.DisplayName = userFile.DisplayName;
                                     img.FileName = userFile.FileName;
@@ -342,44 +361,107 @@ namespace Academic.DbHelper
             //}
 
 
+            //int perPage, int pageNo
             //listing of users
             public List<Users> ListAllUsers(int schoolId, int perPage, int pageNo
-                ,string filterName="", string filterUsername="",
-                string filteremail = "")
+                , string filterName = "", string filterUsername = "",
+                string filteremail = "", bool selectStudents = false, bool selectTeachers = true)
             {
-                var list = Context.Users.Where(x => x.SchoolId == schoolId)
-                    .OrderBy(y => y.FirstName).ThenBy(t => t.LastName)
-                    .Skip(perPage * (pageNo - 1)).Take(perPage);
+                //var list = Context.Users.Where(x => x.SchoolId == schoolId
+                //                        )
+                //    .OrderBy(y => y.FirstName).ThenBy(t => t.LastName).Skip(0);
+                //.Skip(perPage * (pageNo - 1)).Take(perPage);
+                //var stdRoleId = Context.Role.FirstOrDefault(x => x.SchoolId == schoolId && x.RoleName == "student");
+                //var tchrRoleId = Context.Role.FirstOrDefault(x => x.SchoolId == schoolId && x.RoleName == "teacher");
 
-                if (!string.IsNullOrEmpty(filterUsername))
+                //var uname = filterUsername.ToLower();
+                //var email = filteremail.ToLower();
+
+                var tchrRole = GetRole(StaticValues.Roles.Teacher);
+                var stdRole = GetRole(StaticValues.Roles.Student);
+
+
+                if (stdRole != null && tchrRole != null)
                 {
-                    var uname = filterUsername.ToLower();
-                    list=list.Where(x => x.UserName.ToLower().Equals(uname));
-                }
-                if (!string.IsNullOrEmpty(filteremail))
-                {
-                    var email = filteremail.ToLower();
-                    list = list.Where(x => x.Email.ToLower().Equals(email));
-                }
-                var newList = new List<Users>();
-                if (!string.IsNullOrEmpty(filterName))
-                {
-                    var split = filterName.ToLower().Split(new char[] {' '});
-                    var newSplit =split.Where(x => !string.IsNullOrEmpty(x)).ToList();
-                    foreach (var u in list)
+                    //var list = from user in Context.Users
+                    //           join ur in Context.UserRole on user.Id equals ur.UserId into uroles
+                    //           from userrole in uroles.DefaultIfEmpty()
+                    //           join rl in Context.Role on userrole.RoleId equals rl.Id into rol
+                    //           from role in rol.DefaultIfEmpty()
+                    //           where user.SchoolId == schoolId
+                    //                 && ((selectStudents)//&& role.Id == 0  stdRole.Id)
+                    //                          || (selectTeachers && role.Id == tchrRole.Id))
+                    //                 && (string.IsNullOrEmpty( filterUsername ) || user.UserName.ToLower() == filterUsername)
+                    //                 && (string.IsNullOrEmpty( filteremail) || user.Email.Equals(filteremail, StringComparison.CurrentCultureIgnoreCase))
+
+                    //           orderby user.FirstName, user.LastName
+                    //           select user;
+
+                    var users = (from user in Context.Users
+                                join userrole in Context.UserRole on user.Id equals userrole.UserId
+                                join role in Context.Role on userrole.RoleId equals role.Id
+                                where user.SchoolId == schoolId
+                                        && !(user.IsDeleted ?? false)
+                                        && ((selectStudents && role.Id == stdRole.Id)
+                                               || (selectTeachers && role.Id == tchrRole.Id))
+                                        && (string.IsNullOrEmpty(filterUsername) || user.UserName.ToLower() == filterUsername)
+                                        && (string.IsNullOrEmpty(filteremail) || user.Email.Equals(filteremail, StringComparison.CurrentCultureIgnoreCase))
+
+                                orderby user.FirstName, user.LastName
+                                select user).ToList();
+
+                    if (selectStudents)
                     {
-                        foreach (var s in newSplit)
+                        var stds = Context.Student.Where(x => !(x.Void ?? false) && !(x.User.IsDeleted??false)
+                            && x.User.SchoolId== schoolId
+                            && (string.IsNullOrEmpty(filterUsername) || x.User.UserName.ToLower() == filterUsername)
+                            && (string.IsNullOrEmpty(filteremail) || x.User.Email.Equals(filteremail, StringComparison.CurrentCultureIgnoreCase))
+
+                            ).Select(x => x.User);
+                        users.AddRange(stds);
+                    }
+                    users = users.OrderBy(x => x.FirstName).ThenBy(x => x.LastName).ToList();
+
+
+                    if (!string.IsNullOrEmpty(filterName))
+                    {
+                        var newList = new List<Users>();
+                        var split = filterName.ToLower().Split(new char[] { ' ' });
+                        var newSplit = split.Where(x => !string.IsNullOrEmpty(x)).ToList();
+                        foreach (var u in users)
                         {
-                            if (u.FullName.ToLower().Contains(s))
+                            foreach (var s in newSplit)
                             {
-                                newList.Add(u);
-                                break;
+                                if (u.FullName.ToLower().Contains(s))
+                                {
+                                    newList.Add(u);
+                                    break;
+                                }
                             }
                         }
+
+                        if (perPage != 0 && pageNo != 0)
+                        {
+                            return newList.Skip(perPage * (pageNo - 1)).Take(perPage).ToList();
+                        }
+                        return newList;
                     }
-                    return newList;
+                    return users;
                 }
-                return list.ToList();
+
+
+
+
+                //if (!string.IsNullOrEmpty(filterUsername))
+                //{
+                //    list = list.Where(x => x.UserName.ToLower().Equals(uname));
+                //}
+                //if (!string.IsNullOrEmpty(filteremail))
+                //{
+                //    list = list.Where(x => x.Email.ToLower().Equals(email));
+                //}
+
+                return new List<Users>();
             }
 
             public List<Users> ListAllUsers()

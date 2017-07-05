@@ -3,7 +3,7 @@ namespace Academic.Database.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -376,16 +376,16 @@ namespace Academic.Database.Migrations
                         Completed = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Session", t => t.SessionId)
-                .ForeignKey("dbo.AcademicYear", t => t.AcademicYearId)
-                .ForeignKey("dbo.ProgramBatch", t => t.ProgramBatchId)
                 .ForeignKey("dbo.SubYear", t => t.SubYearId)
                 .ForeignKey("dbo.Year", t => t.YearId)
-                .Index(t => t.SessionId)
-                .Index(t => t.AcademicYearId)
-                .Index(t => t.ProgramBatchId)
+                .ForeignKey("dbo.ProgramBatch", t => t.ProgramBatchId)
+                .ForeignKey("dbo.Session", t => t.SessionId)
+                .ForeignKey("dbo.AcademicYear", t => t.AcademicYearId)
                 .Index(t => t.SubYearId)
-                .Index(t => t.YearId);
+                .Index(t => t.YearId)
+                .Index(t => t.ProgramBatchId)
+                .Index(t => t.SessionId)
+                .Index(t => t.AcademicYearId);
             
             CreateTable(
                 "dbo.AcademicYear",
@@ -407,6 +407,197 @@ namespace Academic.Database.Migrations
                         Void = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Batch",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                        CreatedDate = c.DateTime(nullable: false),
+                        AcademicYearId = c.Int(nullable: false),
+                        SchoolId = c.Int(nullable: false),
+                        Void = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AcademicYear", t => t.AcademicYearId)
+                .ForeignKey("dbo.School", t => t.SchoolId)
+                .Index(t => t.AcademicYearId)
+                .Index(t => t.SchoolId);
+            
+            CreateTable(
+                "dbo.ProgramBatch",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        BatchId = c.Int(nullable: false),
+                        ProgramId = c.Int(nullable: false),
+                        Void = c.Boolean(),
+                        PassOut = c.Boolean(),
+                        StartedStudying = c.Boolean(),
+                        StudyCompleted = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Batch", t => t.BatchId)
+                .ForeignKey("dbo.Program", t => t.ProgramId)
+                .Index(t => t.BatchId)
+                .Index(t => t.ProgramId);
+            
+            CreateTable(
+                "dbo.Program",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                        SchoolId = c.Int(nullable: false),
+                        Void = c.Boolean(),
+                        CreatedDate = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.School", t => t.SchoolId)
+                .Index(t => t.SchoolId);
+            
+            CreateTable(
+                "dbo.Year",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Position = c.Int(nullable: false),
+                        Description = c.String(),
+                        ProgramId = c.Int(nullable: false),
+                        Void = c.Boolean(),
+                        CreatedDate = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Program", t => t.ProgramId)
+                .Index(t => t.ProgramId);
+            
+            CreateTable(
+                "dbo.SubYear",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                        Position = c.Int(nullable: false),
+                        ParentId = c.Int(),
+                        YearId = c.Int(),
+                        Void = c.Boolean(),
+                        CreatedDate = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.SubYear", t => t.ParentId)
+                .ForeignKey("dbo.Year", t => t.YearId)
+                .Index(t => t.ParentId)
+                .Index(t => t.YearId);
+            
+            CreateTable(
+                "dbo.SubjectStructure",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        YearId = c.Int(nullable: false),
+                        SubYearId = c.Int(),
+                        SubjectId = c.Int(nullable: false),
+                        Obsolete = c.Boolean(),
+                        Void = c.Boolean(),
+                        IsElective = c.Boolean(nullable: false),
+                        Credit = c.Int(nullable: false),
+                        CreatedBy = c.Int(nullable: false),
+                        VoidBy = c.Int(),
+                        UpdatedBy = c.Int(),
+                        CreatedDate = c.DateTime(nullable: false),
+                        VoidDate = c.DateTime(),
+                        UpdateDate = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Year", t => t.YearId)
+                .ForeignKey("dbo.SubYear", t => t.SubYearId)
+                .ForeignKey("dbo.Subject", t => t.SubjectId)
+                .Index(t => t.YearId)
+                .Index(t => t.SubYearId)
+                .Index(t => t.SubjectId);
+            
+            CreateTable(
+                "dbo.StudentBatch",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ProgramBatchId = c.Int(nullable: false),
+                        StudentId = c.Int(nullable: false),
+                        InActive = c.Boolean(),
+                        Void = c.Boolean(),
+                        AddedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ProgramBatch", t => t.ProgramBatchId)
+                .ForeignKey("dbo.Student", t => t.StudentId)
+                .Index(t => t.ProgramBatchId)
+                .Index(t => t.StudentId);
+            
+            CreateTable(
+                "dbo.Student",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CRN = c.String(),
+                        ExamRollNoGlobal = c.String(),
+                        UserId = c.Int(nullable: false),
+                        GuardianName = c.String(),
+                        GuardianEmail = c.String(),
+                        GuardianContactNo = c.String(),
+                        Void = c.Boolean(),
+                        AssignedDate = c.DateTime(),
+                        Name = c.String(),
+                        BatchAssigned = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.StudentGroupStudent",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        AssignedDate = c.DateTime(nullable: false),
+                        StudentId = c.Int(nullable: false),
+                        StudentGroupId = c.Int(nullable: false),
+                        Void = c.Boolean(),
+                        AssignedBy = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Student", t => t.StudentId)
+                .ForeignKey("dbo.StudentGroup", t => t.StudentGroupId)
+                .Index(t => t.StudentId)
+                .Index(t => t.StudentGroupId);
+            
+            CreateTable(
+                "dbo.StudentGroup",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                        SchoolId = c.Int(),
+                        ParentId = c.Int(),
+                        IsActive = c.Boolean(),
+                        Void = c.Boolean(),
+                        StartedStudying = c.Boolean(),
+                        CreatedDate = c.DateTime(nullable: false),
+                        IsFromBatch = c.Boolean(),
+                        ProgramBatchId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.StudentGroup", t => t.ParentId)
+                .ForeignKey("dbo.School", t => t.SchoolId)
+                .ForeignKey("dbo.ProgramBatch", t => t.ProgramBatchId)
+                .Index(t => t.ParentId)
+                .Index(t => t.SchoolId)
+                .Index(t => t.ProgramBatchId);
             
             CreateTable(
                 "dbo.Session",
@@ -525,195 +716,6 @@ namespace Academic.Database.Migrations
                         SchoolId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Year",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Position = c.Int(nullable: false),
-                        Description = c.String(),
-                        ProgramId = c.Int(nullable: false),
-                        Void = c.Boolean(),
-                        CreatedDate = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Program", t => t.ProgramId)
-                .Index(t => t.ProgramId);
-            
-            CreateTable(
-                "dbo.Program",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Description = c.String(),
-                        SchoolId = c.Int(nullable: false),
-                        Void = c.Boolean(),
-                        CreatedDate = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.School", t => t.SchoolId)
-                .Index(t => t.SchoolId);
-            
-            CreateTable(
-                "dbo.ProgramBatch",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        BatchId = c.Int(nullable: false),
-                        ProgramId = c.Int(nullable: false),
-                        Void = c.Boolean(),
-                        PassOut = c.Boolean(),
-                        StartedStudying = c.Boolean(),
-                        StudyCompleted = c.Boolean(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Batch", t => t.BatchId)
-                .ForeignKey("dbo.Program", t => t.ProgramId)
-                .Index(t => t.BatchId)
-                .Index(t => t.ProgramId);
-            
-            CreateTable(
-                "dbo.Batch",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Description = c.String(),
-                        CreatedDate = c.DateTime(nullable: false),
-                        ClassCommenceDate = c.DateTime(),
-                        SchoolId = c.Int(nullable: false),
-                        Void = c.Boolean(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.School", t => t.SchoolId)
-                .Index(t => t.SchoolId);
-            
-            CreateTable(
-                "dbo.StudentBatch",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ProgramBatchId = c.Int(nullable: false),
-                        StudentId = c.Int(nullable: false),
-                        InActive = c.Boolean(),
-                        Void = c.Boolean(),
-                        AddedDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ProgramBatch", t => t.ProgramBatchId)
-                .ForeignKey("dbo.Student", t => t.StudentId)
-                .Index(t => t.ProgramBatchId)
-                .Index(t => t.StudentId);
-            
-            CreateTable(
-                "dbo.Student",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        CRN = c.String(),
-                        ExamRollNoGlobal = c.String(),
-                        UserId = c.Int(nullable: false),
-                        GuardianName = c.String(),
-                        GuardianEmail = c.String(),
-                        GuardianContactNo = c.String(),
-                        Void = c.Boolean(),
-                        AssignedDate = c.DateTime(),
-                        Name = c.String(),
-                        BatchAssigned = c.Boolean(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.UserId)
-                .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.StudentGroupStudent",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        AssignedDate = c.DateTime(nullable: false),
-                        StudentId = c.Int(nullable: false),
-                        StudentGroupId = c.Int(nullable: false),
-                        Void = c.Boolean(),
-                        AssignedBy = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Student", t => t.StudentId)
-                .ForeignKey("dbo.StudentGroup", t => t.StudentGroupId)
-                .Index(t => t.StudentId)
-                .Index(t => t.StudentGroupId);
-            
-            CreateTable(
-                "dbo.StudentGroup",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Description = c.String(),
-                        SchoolId = c.Int(),
-                        ParentId = c.Int(),
-                        IsActive = c.Boolean(),
-                        Void = c.Boolean(),
-                        StartedStudying = c.Boolean(),
-                        CreatedDate = c.DateTime(nullable: false),
-                        IsFromBatch = c.Boolean(),
-                        ProgramBatchId = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.StudentGroup", t => t.ParentId)
-                .ForeignKey("dbo.School", t => t.SchoolId)
-                .ForeignKey("dbo.ProgramBatch", t => t.ProgramBatchId)
-                .Index(t => t.ParentId)
-                .Index(t => t.SchoolId)
-                .Index(t => t.ProgramBatchId);
-            
-            CreateTable(
-                "dbo.SubYear",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Description = c.String(),
-                        Position = c.Int(nullable: false),
-                        ParentId = c.Int(),
-                        YearId = c.Int(),
-                        Void = c.Boolean(),
-                        CreatedDate = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.SubYear", t => t.ParentId)
-                .ForeignKey("dbo.Year", t => t.YearId)
-                .Index(t => t.ParentId)
-                .Index(t => t.YearId);
-            
-            CreateTable(
-                "dbo.SubjectStructure",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        YearId = c.Int(nullable: false),
-                        SubYearId = c.Int(),
-                        SubjectId = c.Int(nullable: false),
-                        Obsolete = c.Boolean(),
-                        Void = c.Boolean(),
-                        IsElective = c.Boolean(nullable: false),
-                        Credit = c.Int(nullable: false),
-                        CreatedBy = c.Int(nullable: false),
-                        VoidBy = c.Int(),
-                        UpdatedBy = c.Int(),
-                        CreatedDate = c.DateTime(nullable: false),
-                        VoidDate = c.DateTime(),
-                        UpdateDate = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Year", t => t.YearId)
-                .ForeignKey("dbo.SubYear", t => t.SubYearId)
-                .ForeignKey("dbo.Subject", t => t.SubjectId)
-                .Index(t => t.YearId)
-                .Index(t => t.SubYearId)
-                .Index(t => t.SubjectId);
             
             CreateTable(
                 "dbo.ActivityClass",
@@ -923,6 +925,16 @@ namespace Academic.Database.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Restriction", t => t.RestrictionId)
                 .Index(t => t.RestrictionId);
+            
+            CreateTable(
+                "dbo.SessionDefault",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Position = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.FileCategory",
@@ -1449,24 +1461,6 @@ namespace Academic.Database.Migrations
             DropIndex("dbo.ActivityResourceView", new[] { "UserClassId" });
             DropIndex("dbo.ActivityClass", new[] { "SubjectClassId" });
             DropIndex("dbo.ActivityClass", new[] { "ActivityResourceId" });
-            DropIndex("dbo.SubjectStructure", new[] { "SubjectId" });
-            DropIndex("dbo.SubjectStructure", new[] { "SubYearId" });
-            DropIndex("dbo.SubjectStructure", new[] { "YearId" });
-            DropIndex("dbo.SubYear", new[] { "YearId" });
-            DropIndex("dbo.SubYear", new[] { "ParentId" });
-            DropIndex("dbo.StudentGroup", new[] { "ProgramBatchId" });
-            DropIndex("dbo.StudentGroup", new[] { "SchoolId" });
-            DropIndex("dbo.StudentGroup", new[] { "ParentId" });
-            DropIndex("dbo.StudentGroupStudent", new[] { "StudentGroupId" });
-            DropIndex("dbo.StudentGroupStudent", new[] { "StudentId" });
-            DropIndex("dbo.Student", new[] { "UserId" });
-            DropIndex("dbo.StudentBatch", new[] { "StudentId" });
-            DropIndex("dbo.StudentBatch", new[] { "ProgramBatchId" });
-            DropIndex("dbo.Batch", new[] { "SchoolId" });
-            DropIndex("dbo.ProgramBatch", new[] { "ProgramId" });
-            DropIndex("dbo.ProgramBatch", new[] { "BatchId" });
-            DropIndex("dbo.Program", new[] { "SchoolId" });
-            DropIndex("dbo.Year", new[] { "ProgramId" });
             DropIndex("dbo.ExamOfClass", new[] { "RunningClassId" });
             DropIndex("dbo.ExamOfClass", new[] { "ExamId" });
             DropIndex("dbo.ExamType", new[] { "SchoolId" });
@@ -1478,11 +1472,30 @@ namespace Academic.Database.Migrations
             DropIndex("dbo.Exam", new[] { "ExamTypeId" });
             DropIndex("dbo.Session", new[] { "AcademicYearId" });
             DropIndex("dbo.Session", new[] { "ParentId" });
-            DropIndex("dbo.RunningClass", new[] { "YearId" });
-            DropIndex("dbo.RunningClass", new[] { "SubYearId" });
-            DropIndex("dbo.RunningClass", new[] { "ProgramBatchId" });
+            DropIndex("dbo.StudentGroup", new[] { "ProgramBatchId" });
+            DropIndex("dbo.StudentGroup", new[] { "SchoolId" });
+            DropIndex("dbo.StudentGroup", new[] { "ParentId" });
+            DropIndex("dbo.StudentGroupStudent", new[] { "StudentGroupId" });
+            DropIndex("dbo.StudentGroupStudent", new[] { "StudentId" });
+            DropIndex("dbo.Student", new[] { "UserId" });
+            DropIndex("dbo.StudentBatch", new[] { "StudentId" });
+            DropIndex("dbo.StudentBatch", new[] { "ProgramBatchId" });
+            DropIndex("dbo.SubjectStructure", new[] { "SubjectId" });
+            DropIndex("dbo.SubjectStructure", new[] { "SubYearId" });
+            DropIndex("dbo.SubjectStructure", new[] { "YearId" });
+            DropIndex("dbo.SubYear", new[] { "YearId" });
+            DropIndex("dbo.SubYear", new[] { "ParentId" });
+            DropIndex("dbo.Year", new[] { "ProgramId" });
+            DropIndex("dbo.Program", new[] { "SchoolId" });
+            DropIndex("dbo.ProgramBatch", new[] { "ProgramId" });
+            DropIndex("dbo.ProgramBatch", new[] { "BatchId" });
+            DropIndex("dbo.Batch", new[] { "SchoolId" });
+            DropIndex("dbo.Batch", new[] { "AcademicYearId" });
             DropIndex("dbo.RunningClass", new[] { "AcademicYearId" });
             DropIndex("dbo.RunningClass", new[] { "SessionId" });
+            DropIndex("dbo.RunningClass", new[] { "ProgramBatchId" });
+            DropIndex("dbo.RunningClass", new[] { "YearId" });
+            DropIndex("dbo.RunningClass", new[] { "SubYearId" });
             DropIndex("dbo.SubjectClass", new[] { "SubjectId" });
             DropIndex("dbo.SubjectClass", new[] { "SubjectStructureId" });
             DropIndex("dbo.SubjectClass", new[] { "RunningClassId" });
@@ -1571,24 +1584,6 @@ namespace Academic.Database.Migrations
             DropForeignKey("dbo.ActivityResourceView", "UserClassId", "dbo.UserClass");
             DropForeignKey("dbo.ActivityClass", "SubjectClassId", "dbo.SubjectClass");
             DropForeignKey("dbo.ActivityClass", "ActivityResourceId", "dbo.ActivityResource");
-            DropForeignKey("dbo.SubjectStructure", "SubjectId", "dbo.Subject");
-            DropForeignKey("dbo.SubjectStructure", "SubYearId", "dbo.SubYear");
-            DropForeignKey("dbo.SubjectStructure", "YearId", "dbo.Year");
-            DropForeignKey("dbo.SubYear", "YearId", "dbo.Year");
-            DropForeignKey("dbo.SubYear", "ParentId", "dbo.SubYear");
-            DropForeignKey("dbo.StudentGroup", "ProgramBatchId", "dbo.ProgramBatch");
-            DropForeignKey("dbo.StudentGroup", "SchoolId", "dbo.School");
-            DropForeignKey("dbo.StudentGroup", "ParentId", "dbo.StudentGroup");
-            DropForeignKey("dbo.StudentGroupStudent", "StudentGroupId", "dbo.StudentGroup");
-            DropForeignKey("dbo.StudentGroupStudent", "StudentId", "dbo.Student");
-            DropForeignKey("dbo.Student", "UserId", "dbo.Users");
-            DropForeignKey("dbo.StudentBatch", "StudentId", "dbo.Student");
-            DropForeignKey("dbo.StudentBatch", "ProgramBatchId", "dbo.ProgramBatch");
-            DropForeignKey("dbo.Batch", "SchoolId", "dbo.School");
-            DropForeignKey("dbo.ProgramBatch", "ProgramId", "dbo.Program");
-            DropForeignKey("dbo.ProgramBatch", "BatchId", "dbo.Batch");
-            DropForeignKey("dbo.Program", "SchoolId", "dbo.School");
-            DropForeignKey("dbo.Year", "ProgramId", "dbo.Program");
             DropForeignKey("dbo.ExamOfClass", "RunningClassId", "dbo.RunningClass");
             DropForeignKey("dbo.ExamOfClass", "ExamId", "dbo.Exam");
             DropForeignKey("dbo.ExamType", "SchoolId", "dbo.School");
@@ -1600,11 +1595,30 @@ namespace Academic.Database.Migrations
             DropForeignKey("dbo.Exam", "ExamTypeId", "dbo.ExamType");
             DropForeignKey("dbo.Session", "AcademicYearId", "dbo.AcademicYear");
             DropForeignKey("dbo.Session", "ParentId", "dbo.Session");
-            DropForeignKey("dbo.RunningClass", "YearId", "dbo.Year");
-            DropForeignKey("dbo.RunningClass", "SubYearId", "dbo.SubYear");
-            DropForeignKey("dbo.RunningClass", "ProgramBatchId", "dbo.ProgramBatch");
+            DropForeignKey("dbo.StudentGroup", "ProgramBatchId", "dbo.ProgramBatch");
+            DropForeignKey("dbo.StudentGroup", "SchoolId", "dbo.School");
+            DropForeignKey("dbo.StudentGroup", "ParentId", "dbo.StudentGroup");
+            DropForeignKey("dbo.StudentGroupStudent", "StudentGroupId", "dbo.StudentGroup");
+            DropForeignKey("dbo.StudentGroupStudent", "StudentId", "dbo.Student");
+            DropForeignKey("dbo.Student", "UserId", "dbo.Users");
+            DropForeignKey("dbo.StudentBatch", "StudentId", "dbo.Student");
+            DropForeignKey("dbo.StudentBatch", "ProgramBatchId", "dbo.ProgramBatch");
+            DropForeignKey("dbo.SubjectStructure", "SubjectId", "dbo.Subject");
+            DropForeignKey("dbo.SubjectStructure", "SubYearId", "dbo.SubYear");
+            DropForeignKey("dbo.SubjectStructure", "YearId", "dbo.Year");
+            DropForeignKey("dbo.SubYear", "YearId", "dbo.Year");
+            DropForeignKey("dbo.SubYear", "ParentId", "dbo.SubYear");
+            DropForeignKey("dbo.Year", "ProgramId", "dbo.Program");
+            DropForeignKey("dbo.Program", "SchoolId", "dbo.School");
+            DropForeignKey("dbo.ProgramBatch", "ProgramId", "dbo.Program");
+            DropForeignKey("dbo.ProgramBatch", "BatchId", "dbo.Batch");
+            DropForeignKey("dbo.Batch", "SchoolId", "dbo.School");
+            DropForeignKey("dbo.Batch", "AcademicYearId", "dbo.AcademicYear");
             DropForeignKey("dbo.RunningClass", "AcademicYearId", "dbo.AcademicYear");
             DropForeignKey("dbo.RunningClass", "SessionId", "dbo.Session");
+            DropForeignKey("dbo.RunningClass", "ProgramBatchId", "dbo.ProgramBatch");
+            DropForeignKey("dbo.RunningClass", "YearId", "dbo.Year");
+            DropForeignKey("dbo.RunningClass", "SubYearId", "dbo.SubYear");
             DropForeignKey("dbo.SubjectClass", "SubjectId", "dbo.Subject");
             DropForeignKey("dbo.SubjectClass", "SubjectStructureId", "dbo.SubjectStructure");
             DropForeignKey("dbo.SubjectClass", "RunningClassId", "dbo.RunningClass");
@@ -1667,6 +1681,7 @@ namespace Academic.Database.Migrations
             DropTable("dbo.ActivityCompletionRestriction");
             DropTable("dbo.Event");
             DropTable("dbo.FileCategory");
+            DropTable("dbo.SessionDefault");
             DropTable("dbo.UserProfileRestriction");
             DropTable("dbo.GroupRestriction");
             DropTable("dbo.AssignmentSubmissionFiles");
@@ -1680,21 +1695,21 @@ namespace Academic.Database.Migrations
             DropTable("dbo.SubjectClassGrouping");
             DropTable("dbo.ActivityResourceView");
             DropTable("dbo.ActivityClass");
-            DropTable("dbo.SubjectStructure");
-            DropTable("dbo.SubYear");
-            DropTable("dbo.StudentGroup");
-            DropTable("dbo.StudentGroupStudent");
-            DropTable("dbo.Student");
-            DropTable("dbo.StudentBatch");
-            DropTable("dbo.Batch");
-            DropTable("dbo.ProgramBatch");
-            DropTable("dbo.Program");
-            DropTable("dbo.Year");
             DropTable("dbo.Notice");
             DropTable("dbo.ExamOfClass");
             DropTable("dbo.ExamType");
             DropTable("dbo.Exam");
             DropTable("dbo.Session");
+            DropTable("dbo.StudentGroup");
+            DropTable("dbo.StudentGroupStudent");
+            DropTable("dbo.Student");
+            DropTable("dbo.StudentBatch");
+            DropTable("dbo.SubjectStructure");
+            DropTable("dbo.SubYear");
+            DropTable("dbo.Year");
+            DropTable("dbo.Program");
+            DropTable("dbo.ProgramBatch");
+            DropTable("dbo.Batch");
             DropTable("dbo.AcademicYear");
             DropTable("dbo.RunningClass");
             DropTable("dbo.SubjectClass");

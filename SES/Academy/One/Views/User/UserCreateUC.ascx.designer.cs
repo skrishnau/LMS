@@ -40,6 +40,15 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.HiddenField hidSchoolId;
         
         /// <summary>
+        /// hidUserId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidUserId;
+        
+        /// <summary>
         /// hidPageKey control.
         /// </summary>
         /// <remarks>
@@ -56,15 +65,6 @@ namespace One.Views.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
-        /// <summary>
-        /// ReqImageUC1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.UserControls.ReqImageUC ReqImageUC1;
         
         /// <summary>
         /// txtFirstName control.
@@ -103,15 +103,6 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.TextBox txtLastName;
         
         /// <summary>
-        /// ReqImageUC5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.UserControls.ReqImageUC ReqImageUC5;
-        
-        /// <summary>
         /// txtUserName control.
         /// </summary>
         /// <remarks>
@@ -130,15 +121,6 @@ namespace One.Views.User {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valiUserName;
         
         /// <summary>
-        /// ReqImageUC3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.UserControls.ReqImageUC ReqImageUC3;
-        
-        /// <summary>
         /// txtPassword control.
         /// </summary>
         /// <remarks>
@@ -155,15 +137,6 @@ namespace One.Views.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
-        
-        /// <summary>
-        /// ReqImageUC2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::One.Views.UserControls.ReqImageUC ReqImageUC2;
         
         /// <summary>
         /// txtEmail control.
@@ -191,6 +164,15 @@ namespace One.Views.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator regexEmailValid;
+        
+        /// <summary>
+        /// ddlRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRole;
         
         /// <summary>
         /// txtPhone1 control.
