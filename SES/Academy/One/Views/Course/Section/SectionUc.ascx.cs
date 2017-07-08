@@ -75,7 +75,12 @@ namespace One.Views.Course.Section
                     var section = helper.Find(SectionId);
                     if (section != null)
                     {
-                        
+                        if (EditEnabled)
+                        {
+                            pnlMain.CssClass = "hover-background-change-slight";
+                        }
+                    
+
                         lnkAddActOrRes.ID = "lnkAddActOrRes_" + SubjectId + "_" + SectionId;
                         lnkAddActOrRes.Attributes.Add("name", SectionName);
                         lblTitle.Text = section.Name;
@@ -90,6 +95,13 @@ namespace One.Views.Course.Section
                                                    + section.Name + "?")
                                                    ;
                         lnkDelete.NavigateUrl = redUrl;
+
+
+                        var editUrl = "~/Views/Course/Section/CreateSection.aspx" + "?SecId=" + SectionId+
+                                         "&ReturnUrl=" + Request.Url.AbsolutePath+
+                                         "&SubId=" + this.SubjectId;
+                        lnkEdit.NavigateUrl = editUrl;
+
 
 
                         var ars = ahelper.ListActivitiesAndResourcesOfSection(UserId, SectionId, elligible);

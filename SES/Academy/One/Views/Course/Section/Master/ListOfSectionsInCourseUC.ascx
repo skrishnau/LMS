@@ -27,11 +27,12 @@
             <br />
             <div style="clear: both;"></div>
             <div>
-                <asp:HyperLink ID="lnkAddSection1" ClientIDMode="Static" Visible="False"
-                    CssClass="link-white"
+                <%-- CssClass="link-white" --%>
+                <asp:HyperLink ID="lnkAddSection1" ClientIDMode="Static" Visible="False" ToolTip="Add Section to this Course"
+                    CssClass="auto-st2 link"
                     runat="server">
-                    <asp:ImageButton ID="imgAddSection" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" ToolTip="Add Section to this Course" />
-                    Add Sections
+                    <asp:ImageButton ID="imgAddSection" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon-14px.png" />
+                    Add Section
                 </asp:HyperLink>
             </div>
 

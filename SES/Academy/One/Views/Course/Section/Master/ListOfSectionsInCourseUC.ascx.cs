@@ -57,7 +57,6 @@ namespace One.Views.Course.Section.Master
             }
         }
        
-
         public bool AddNewButtonVisibility
         {
             get { return lnkAddSection1.Visible; }
@@ -74,6 +73,11 @@ namespace One.Views.Course.Section.Master
             }
         }
 
+        public int UserId
+        {
+            get { return Convert.ToInt32(hidUserId.Value); }
+            set { hidUserId.Value = value.ToString(); }
+        }
 
 
         #endregion
@@ -170,11 +174,6 @@ namespace One.Views.Course.Section.Master
         #endregion
 
 
-        public int UserId
-        {
-            get { return Convert.ToInt32(hidUserId.Value); }
-            set { hidUserId.Value = value.ToString(); }
-        }
        
     }
 }

@@ -13,7 +13,8 @@ div.course-act-res-whole-in-edit-mode {
 }
 
     div.course-act-res-whole-in-edit-mode:hover {
-        background-color: #f3f1fe;
+        background-color: #fefefe;
+            /*#f3f1fe;*/
     }
 
 .act-res-course-title {
@@ -23,12 +24,10 @@ div.course-act-res-whole-in-edit-mode {
     margin-bottom: 10px;
     font-size: 2.1em;
     font-weight: 400;
-
     color: darkslategray;
 }
 
 div.course-act-res-heading {
-   
     /*vertical-align: central;*/
     /*padding: 5px 0;*/
     /*padding: 0px 4px 0;*/
@@ -55,25 +54,27 @@ div.course-act-res-description {
     text-decoration: none;
 }
 
-.link_act_res, .link_act_res:visited {
+.link_act_res {
+    
+}
+
+/*.link_act_res, .link_act_res:visited {
     color: #393939;
-    /*color: blue;*/
     text-decoration: none;
 }
 
     .link_act_res:hover {
         color: black;
-        /*color: darkorange;*/
         text-decoration: underline;
     }
 
     .link_act_res:active {
         color: blueviolet;
         text-decoration: underline;
-    }
+    }*/
 
 .link-act-res-title, .link-act-res-title:visited {
-    font-family:  Verdana, Geneva,Tahoma, sans-serif,Helvetica;
+    font-family: Verdana, Geneva,Tahoma, sans-serif,Helvetica;
     vertical-align: central;
     color: #393939;
     text-decoration: none;
@@ -94,6 +95,23 @@ div.course-act-res-description {
         color: blueviolet;
         text-decoration: underline;
         display: inline-block;
+    }
+
+
+.span-edit-delete a {
+    padding: 0 3px;
+    background-color: transparent;
+}
+
+    .span-edit-delete a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .span-edit-delete a img {
+        border: 0px;
+        border-width: 0;
+        width: 14px;
+        height: 14px;
     }
 
 /*div.course-act-res-heading:hover {

@@ -13,6 +13,15 @@ namespace One.Views.Course.Section {
     public partial class SectionUc {
         
         /// <summary>
+        /// pnlMain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlMain;
+        
+        /// <summary>
         /// lblTitle control.
         /// </summary>
         /// <remarks>
@@ -28,7 +37,7 @@ namespace One.Views.Course.Section {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEdit;
+        protected global::System.Web.UI.WebControls.HyperLink lnkEdit;
         
         /// <summary>
         /// imgEditBtn control.

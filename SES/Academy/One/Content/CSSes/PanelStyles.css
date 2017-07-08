@@ -321,11 +321,11 @@ div.modules-heading {
 
 
 .list-item-heading, .list-item-heading:visited {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: #393939;
     text-decoration: none;
     display: inline-block;
-    font-weight: bold;
+    font-weight: 500;
     /*background-color: #f0fff0;*/
     /*//font-size: 2em;*/
 }
@@ -333,7 +333,7 @@ div.modules-heading {
     .list-item-heading:hover {
         color: black;
         text-decoration: underline;
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .list-item-heading:active {
@@ -359,15 +359,44 @@ div.modules-heading {
         }
 
 
+.span-edit-delete a {
+    padding: 0 3px;
+    background-color: transparent;
+}
+
+    .span-edit-delete a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .span-edit-delete a img {
+        border: 0px;
+        border-width: 0;
+        width: 14px;
+        height: 14px;
+    }
+
+.span-file-folder-add-icons a {
+    padding: 0 3px;
+    background-color: transparent;
+}
+
+    .span-file-folder-add-icons a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .span-file-folder-add-icons a img {
+        border: 0px;
+        border-width: 0;
+        width: 20px;
+        height: 20px;
+    }
+
 .list-item-option {
     margin-left: 10px;
-    /*padding-left: 10px;*/
-    /*background-color: lightgray;*/
 }
 
     .list-item-option a {
         padding: 0 5px;
-        /*margin: 0 5px;*/
         display: inline-block;
         text-decoration: none;
         color: #393939;
@@ -397,7 +426,6 @@ div.modules-heading {
     border: 1px solid lightgrey;
     border-bottom: 2px Solid darkgray;
     text-align: left;
-   
     line-height: 25px;
     margin-bottom: 3px;
 }
@@ -414,7 +442,6 @@ div.modules-heading {
     background-color: #f1f1f1;
     color: #393939;
     border: 1px solid lightgrey;
-    
 }
 
 

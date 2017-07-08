@@ -40,24 +40,6 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Label lblClassName;
         
         /// <summary>
-        /// lnkReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkReport;
-        
-        /// <summary>
-        /// lnkMarkCompletion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkMarkCompletion;
-        
-        /// <summary>
         /// lblStartDate control.
         /// </summary>
         /// <remarks>
@@ -85,6 +67,42 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Literal lblEnrollmentMethod;
         
         /// <summary>
+        /// lnkReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkReport;
+        
+        /// <summary>
+        /// lnkMarkCompletion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkMarkCompletion;
+        
+        /// <summary>
+        /// lnkEnrollTeachers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkEnrollTeachers;
+        
+        /// <summary>
+        /// lnkEnrollStudents control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkEnrollStudents;
+        
+        /// <summary>
         /// lbldNotice control.
         /// </summary>
         /// <remarks>
@@ -101,15 +119,6 @@ namespace One.Views.Class {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgNotice;
-        
-        /// <summary>
-        /// btnEnroll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEnroll;
         
         /// <summary>
         /// GridView1 control.

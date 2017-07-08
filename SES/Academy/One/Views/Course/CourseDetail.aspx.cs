@@ -228,12 +228,12 @@ namespace One.Views.Course
                     if (startD.Date > DateTime.Now.Date)
                     {
                         //not started yet
-                        url = "~/Content/Icons/Hourglass/hourglass_black_10px.png";
+                        url = "~/Content/Icons/Hourglass/schedule_14px.png";
                     }
                     else if (endD < DateTime.Now)
                     {
                         //due
-                        url = "~/Content/Icons/Watch/Watch_10px.png";
+                        url = "~/Content/Icons/Watch/alarm_clock_14px.png";
                     }
                     else
                     {

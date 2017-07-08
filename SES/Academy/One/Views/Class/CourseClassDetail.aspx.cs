@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
 using Academic.ViewModel;
+using One.Values.MemberShip;
 
 namespace One.Views.Class
 {
@@ -13,84 +14,113 @@ namespace One.Views.Class
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                var classId = Request.QueryString["ccId"];
-                if (classId != null)
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
+                if (!IsPostBack)
                 {
-                    var clsId = Convert.ToInt32(classId);
-                    SubjectClassId = clsId;
+                    var isManager = user.IsInRole(DbHelper.StaticValues.Roles.Manager);
+                    var isTeacher = user.IsInRole(DbHelper.StaticValues.Roles.Teacher);
 
-                    using (var helper = new DbHelper.Classes())
-                    using (var usrHelper = new DbHelper.User())
+                    if (!isTeacher && !isManager)
                     {
-                        var cls = helper.GetSubjectSession(clsId);
-                        if (cls != null)
+                        Response.Redirect("~/");
+                        return;
+                    }
+
+                    var edit = (Session["editMode"] as string) == "1";
+
+
+                    var classId = Request.QueryString["ccId"];
+                    if (classId != null)
+                    {
+                        var clsId = Convert.ToInt32(classId);
+                        SubjectClassId = clsId;
+
+                        using (var helper = new DbHelper.Classes())
+                        using (var usrHelper = new DbHelper.User())
                         {
-
-
-                            var teacherRoleId = usrHelper.GetRole(Academic.DbHelper.DbHelper.StaticValues.Roles.Teacher)
-                                                                        .Id;
-                            lbldNotice.Visible = !cls.ClassUsers.Any(x => x.RoleId == teacherRoleId
-                                                                                && !(x.Void ?? false));
-
-
-                            //lblStartDate.Text =cls.StartDate==null?" - ": cls.StartDate.Value.ToString("D");
-                            //lblEndDate.Text = cls.EndDate==null?" - ":cls.EndDate.Value.ToString("D");
-                            var clsname = cls.GetName;
-                            var coursefullname = cls.GetCourseFullName;
-                            lblTitle.Text = clsname;
-                            lblEnrollmentMethod.Text = cls.EnrollmentMethod == 0
-                                ? "Auto"
-                                : (cls.EnrollmentMethod == 1) ? "Manual" : "Self";
-
-                            if (cls.EnrollmentMethod == 0)
+                            var cls = helper.GetSubjectSession(clsId);
+                            if (cls != null)
                             {
-                                btnEnroll.Text = "Enroll Teachers";
-                                hidOrderby.Value = "crn";
+
+
+                                var teacherRoleId = usrHelper.GetRole(Academic.DbHelper.DbHelper.StaticValues.Roles.Teacher)
+                                                                            .Id;
+                                lbldNotice.Visible = !cls.ClassUsers.Any(x => x.RoleId == teacherRoleId
+                                                                                    && !(x.Void ?? false));
+
+
+                                //lblStartDate.Text =cls.StartDate==null?" - ": cls.StartDate.Value.ToString("D");
+                                //lblEndDate.Text = cls.EndDate==null?" - ":cls.EndDate.Value.ToString("D");
+                                var clsname = cls.GetName;
+                                var coursefullname = cls.GetCourseFullName;
+                                lblTitle.Text = clsname;
+                                lblEnrollmentMethod.Text = cls.EnrollmentMethod == 0
+                                    ? "Auto"
+                                    : (cls.EnrollmentMethod == 1) ? "Manual" : "Self";
+
+                                lnkEnrollStudents.Visible = edit ;//&& (isTeacher || isManager);
+                                lnkEnrollTeachers.Visible = edit && isManager;
+
+                                //lnkEnroll.Visible = edit;
+                                lnkMarkCompletion.Visible = edit;
+                                var autoEnrollment = cls.EnrollmentMethod == 0;
+
+                                if (isTeacher && autoEnrollment && edit)
+                                {
+                                    lnkEnrollStudents.Visible = false;
+                                }
+
+
+
+
+
+
+                                hidOrderby.Value = autoEnrollment ? "crn" : "name";
+
+                                LoadSitemap(cls);
+
+                                lnkReport.NavigateUrl = "~/Views/Report/?ccId=" + cls.Id;
+                                lnkEnrollStudents.NavigateUrl = "~/Views/Class/Enrollment/Enrollment.aspx?ccId=" +
+                                                        hidSubjectSessionId.Value + "&type=student";
+                                lnkEnrollTeachers.NavigateUrl = "~/Views/Class/Enrollment/Enrollment.aspx?ccId=" +
+                                                        hidSubjectSessionId.Value + "&type=teacher";
+
+
+                                lblClassName.Text = clsname;//cls.IsRegular ? cls.GetName : cls.Name;
+                                lblCourseName.Text = coursefullname;//cls.IsRegular
+                                //? cls.SubjectStructure.Subject.FullName
+                                //: cls.Subject.FullName;
+
+
+                                lblEndDate.Text = cls.EndDate == null ? " - " : cls.EndDate.Value.ToString("D");
+                                lblStartDate.Text = cls.StartDate == null ? " - " : cls.StartDate.Value.ToString("D");
+
+
+
+                                //grouping
+                                //var grp = "No grouping";
+                                //if (cls.HasGrouping)
+                                //{
+                                //    grp = "";
+                                //    cls.SubjectClassGrouping.ToList().ForEach(c =>
+                                //    {
+                                //        grp += cls.Name + ", ";
+                                //    });
+                                //    grp = grp.TrimEnd(new char[] { ',' });
+                                //}
+                                //lblGrouping.Text = grp;
+
+
+
+                                //ListView1.DataSource = helper.ListSubjectSessionEnrolledUsers(clsId);
+                                //ListView1.DataSource = helper.ListEnrolledUsers(clsId);
+                                // ListView1.DataBind();
                             }
-                            else
-                            {
-                                hidOrderby.Value = "name";
-                            }
 
-                            LoadSitemap(cls);
-
-                            lnkReport.NavigateUrl = "~/Views/Report/?ccId=" + cls.Id;
-                            lblClassName.Text = clsname;//cls.IsRegular ? cls.GetName : cls.Name;
-                            lblCourseName.Text = coursefullname;//cls.IsRegular
-                            //? cls.SubjectStructure.Subject.FullName
-                            //: cls.Subject.FullName;
-
-
-                            lblEndDate.Text = cls.EndDate == null ? " - " : cls.EndDate.Value.ToString("D");
-                            lblStartDate.Text = cls.StartDate == null ? " - " : cls.StartDate.Value.ToString("D");
-
-
-
-                            //grouping
-                            //var grp = "No grouping";
-                            //if (cls.HasGrouping)
-                            //{
-                            //    grp = "";
-                            //    cls.SubjectClassGrouping.ToList().ForEach(c =>
-                            //    {
-                            //        grp += cls.Name + ", ";
-                            //    });
-                            //    grp = grp.TrimEnd(new char[] { ',' });
-                            //}
-                            //lblGrouping.Text = grp;
-
-
-
-                            //ListView1.DataSource = helper.ListSubjectSessionEnrolledUsers(clsId);
-                            //ListView1.DataSource = helper.ListEnrolledUsers(clsId);
-                            // ListView1.DataBind();
                         }
-
                     }
                 }
-            }
         }
 
         void LoadSitemap(Academic.DbEntities.Class.SubjectClass cls)

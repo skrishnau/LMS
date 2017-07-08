@@ -20,21 +20,27 @@
 }
 
 .restriction-main {
-    border: 2px solid darkgray;
+    border: 1px solid lightgrey;
     margin: 10px 0;
     padding: 5px;
 }
+
+    .restriction-main:hover {
+        background-color: #fcfbfb;
+        border: 1px solid darkgray;
+    }
 
 .restriction-uc-whole {
     border: 1px solid lightgrey;
     padding: 2px 2px 2px 5px;
     margin: 5px 0;
     vertical-align: central;
-    background-color: lightgoldenrodyellow;
+    background-color: transparent;
 }
-.restriction-uc-whole:hover {
-    background-color: #d3eef7;
-}
+
+    .restriction-uc-whole:hover {
+        background-color: #f1f1f1;
+    }
 
 .restriction-body {
     vertical-align: central;

@@ -9,6 +9,8 @@
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
     <%--<link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />--%>
     <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
+
 </asp:Content>
 
 

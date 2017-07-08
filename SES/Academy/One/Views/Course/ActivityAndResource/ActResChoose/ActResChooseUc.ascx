@@ -5,13 +5,18 @@
 <div style="margin: 0 25px 0;" id="outer-mid-div">
     <asp:DataList ID="dlistActivities" ClientIDMode="Static" runat="server" OnItemCommand="dlistActivities_ItemCommand">
         <ItemTemplate>
+            <%-- block --%>
             <%--  NavigateUrl='<%# GetUrl(Eval("Url")) %>' --%>
-            <asp:LinkButton ID="activityLink" CssClass="block" runat="server" 
+            <asp:LinkButton ID="activityLink" CssClass=" block link" runat="server" 
                 CommandName="Click" CommandArgument='<%# Eval("CreateUrl") %>'>
-                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("IconPath") %>' Width="22px" Height="22px" />
+                
+                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("IconPath") %>' Width="18px" Height="18px" />
                 &nbsp;
-                <%# Eval("Name") %>
+                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                
             </asp:LinkButton>
+       
+            
         </ItemTemplate>
     </asp:DataList>
 
@@ -37,11 +42,11 @@
            <%-- <asp:Label runat="server" ID="NameL" Text='<%# Eval("Name") %>' />
             <asp:Label ID="ImagePathLabel" runat="server" Text='<%# Eval("ImagePath") %>' />
             <br />--%>
-            <asp:LinkButton ID="activityLink" CssClass="block" runat="server" 
+            <asp:LinkButton ID="activityLink" CssClass="block link" runat="server" 
                 CommandName="Click" CommandArgument='<%# Eval("CreateUrl") %>'>
-                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("IconPath") %>' Width="22px" Height="22px" />
+                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("IconPath") %>' Width="18px" Height="18px" />
                 &nbsp;
-                <%# Eval("Name") %>
+                <asp:Label ID="Label11" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
             </asp:LinkButton>
         </ItemTemplate>
     </asp:DataList>

@@ -10,6 +10,7 @@
         <h3 class="heading-of-create-edit">
             <asp:Label ID="lblHeading" runat="server" Text="Add New Page"></asp:Label>
         </h3>
+        <br />
         <div class="data-entry-body">
             <div class="data-entry-section">
                 <div class="data-entry-section-heading">
@@ -20,20 +21,20 @@
                     <table>
                         <tr>
                             <td class="data-type">Name</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:TextBox ID="txtName" runat="server" Width="170"></asp:TextBox>
                             </td>
                         </tr>
                        
                         <tr>
                             <td class="data-type">Description</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <CKEditor:CKEditorControl ID="txtDescription" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Display discription on course page</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:CheckBox ID="chkDisplayDescription" runat="server" />
                             </td>
                         </tr>
@@ -52,7 +53,7 @@
                     <table>
                         <tr>
                             <td class="data-type">Page Content</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <CKEditor:CKEditorControl ID="txtContent" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
@@ -72,13 +73,13 @@
                             <table>
                                <tr>
                                     <td class="data-type">Display page name</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:CheckBox ID="chkDisplayPageName" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="data-type">Display page description</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:CheckBox ID="chkDisplayPageDescription" runat="server" />
                                         
                                     </td>
@@ -121,4 +122,10 @@
 
             });
     </script>
+</asp:Content>
+
+<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
+    <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
+    <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>

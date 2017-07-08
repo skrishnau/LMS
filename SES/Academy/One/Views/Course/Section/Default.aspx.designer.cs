@@ -49,13 +49,22 @@ namespace One.Views.Course.Section {
         protected global::System.Web.UI.WebControls.Image imgJoinInfo;
         
         /// <summary>
-        /// btnEnroll control.
+        /// lnkEnroll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEnroll;
+        protected global::System.Web.UI.WebControls.LinkButton lnkEnroll;
+        
+        /// <summary>
+        /// lnkMyClasses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkMyClasses;
         
         /// <summary>
         /// ListOfSectionsInCourseUC1 control.

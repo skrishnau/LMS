@@ -291,7 +291,8 @@
                     </asp:ContentPlaceHolder>
                 </div>
                 <div style="float: right;">
-                    <asp:LinkButton ID="lnkEditMode" runat="server" OnClick="lnkEditMode_OnClick" CssClass="link-white" Visible="False">
+                    <%-- CssClass="link-white" --%>
+                    <asp:LinkButton ID="lnkEditMode" runat="server" OnClick="lnkEditMode_OnClick" CssClass="auto-st2 link" Visible="False">
                         <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
                         <asp:Label ID="lblEditMode" runat="server" Text="Turn on edit mode"></asp:Label>
                     </asp:LinkButton>

@@ -7,7 +7,7 @@
             <table style="margin: 0 20px 0;">
                 <tr>
                     <td class="data-type">Grade Type</td>
-                    <td>
+                    <td class="data-value">
                         <asp:DropDownList ID="ddlGradeType" runat="server" Height="21px" Width="210px"
                             AutoPostBack="True" DataTextField="Name" DataValueField="Id"
                             OnSelectedIndexChanged="ddlGradeType_SelectedIndexChanged">
@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td class="data-type">Maximum Grade</td>
-                    <td>
+                    <td class="data-value">
                         <asp:TextBox ID="txtMaxGradde" runat="server" Width="210px"></asp:TextBox>
                         <asp:DropDownList ID="ddlMaximumGrade" runat="server" Width="210px" Visible="False"
                             DataTextField="Value" DataValueField="Id">
@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td class="data-type">Grade to Pass</td>
-                    <td>
+                    <td class="data-value">
                         <asp:TextBox ID="txtGradeToPass" runat="server" Width="210px"></asp:TextBox>
                         <asp:DropDownList ID="ddlGradeToPass" runat="server" Width="210px" Visible="False" DataTextField="Value" DataValueField="Id"></asp:DropDownList>
                     </td>
@@ -45,7 +45,7 @@
                 
                 <tr>
                     <td class="datat-type">Show grade to students</td>
-                    <td >
+                    <td  class="data-value">
                         <asp:DropDownList ID="ddlShowGradeToStudents" runat="server">
                             <Items>
                                 <asp:ListItem Value="0" Text="No"></asp:ListItem>

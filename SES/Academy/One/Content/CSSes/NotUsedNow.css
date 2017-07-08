@@ -36,11 +36,9 @@ div.detail-view td {
     /*display: inline-block;*/
 /*}*/
 
-div.data-entry-body td.data-field {
-    /*width: 170px;*/
+/*div.data-entry-body td.data-field {
     padding: 10px 0;
-    /*display: inline-block;*/
-}
+}*/
 
 .link_button {
     background-color: lightpink;

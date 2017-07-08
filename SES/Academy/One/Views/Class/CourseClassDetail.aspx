@@ -20,11 +20,7 @@
                 </h3>
             </div>
 
-            <div style="text-align: center; vertical-align: bottom; float: left; padding-top: 8px; padding-left: 20px;">
-                <asp:HyperLink ID="lnkReport" runat="server" CssClass="auto-st2 link">View Report</asp:HyperLink>
-                &nbsp;
-                <asp:HyperLink ID="lnkMarkCompletion" runat="server" CssClass="auto-st2 link">Mark Complete</asp:HyperLink>
-            </div>
+
 
 
             <div style="clear: both;"></div>
@@ -69,6 +65,23 @@
             </table>
         </div>
         <br />
+        <%-- style="text-align: center; vertical-align: bottom; float: left; padding-top: 8px; padding-left: 20px;" --%>
+        <div style="">
+            <div style="text-align: center;">
+                <asp:HyperLink ID="lnkReport" runat="server" CssClass="auto-st2 link">View Report</asp:HyperLink>
+                &nbsp;
+                <asp:HyperLink ID="lnkMarkCompletion" runat="server" CssClass="auto-st2 link">Mark Complete</asp:HyperLink>
+                &nbsp;
+                <asp:HyperLink ID="lnkEnrollTeachers" runat="server" CssClass="auto-st2 link">Enroll Teachers</asp:HyperLink>
+                 &nbsp;
+                <asp:HyperLink ID="lnkEnrollStudents" runat="server" CssClass="auto-st2 link">Enroll Students</asp:HyperLink>
+
+                <%--<asp:Button ID="btnEnroll" runat="server" Text="Enroll Users" OnClick="btnEnroll_Click" CssClass="auto-st2 link"/>--%>
+
+            </div>
+        </div>
+        <br />
+
 
         <%--  class="data-entry-section-body" --%>
         <div>
@@ -81,24 +94,15 @@
                     Teacher is not assigned to this class yet. Please assign teacher(s).
                 </asp:Label>
             </div>
-            
-            <br/>
+
+            <br />
 
             <div class="data-entry-section-heading">
+                Enrolled users
 
-
-
-                <div style="float: left;">
-                    Enrolled users                     
-                </div>
-                <%-- &nbsp; &nbsp; --%>
-                <div style="float: right;">
-                    <asp:Button ID="btnEnroll" runat="server" Text="Enroll Users" OnClick="btnEnroll_Click" />
-                </div>
-                <div style="clear: both;"></div>
+              
                 <hr />
             </div>
-            <div style="clear: both;"></div>
             <%--  ===================Listing of Enrolled Users ========================= --%>
             <%--<asp:ListView ID="ListView1" runat="server">
                 <LayoutTemplate>
@@ -232,7 +236,7 @@
                     </ItemTemplate>
                     <ItemStyle Width="150"></ItemStyle>
                 </asp:TemplateField>
-                 <asp:TemplateField HeaderText="Role" SortExpression="Role">
+                <asp:TemplateField HeaderText="Role" SortExpression="Role">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Role") %>'></asp:TextBox>
                     </EditItemTemplate>

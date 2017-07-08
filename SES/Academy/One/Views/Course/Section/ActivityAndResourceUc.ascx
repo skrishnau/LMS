@@ -8,7 +8,7 @@
         <table>
             <tr>
                 <td>
-                    <asp:Image ID="imgIcon" runat="server" ImageUrl="" AlternateText="" Height="25" Width="25" />
+                    <asp:Image ID="imgIcon" runat="server" ImageUrl="" AlternateText="" Height="16" Width="16" />
 
                 </td>
                 <td>
@@ -23,14 +23,16 @@
 
                     &nbsp;
             
-                    <asp:HyperLink ID="lnkEdit" CssClass="course-act-res-title" runat="server" Visible="False">
-                        <asp:Image ID="imgedt" runat="server"
-                            ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-                    </asp:HyperLink>
-                    <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" OnClick="lnkEdit_Click">
-                        <asp:Image ID="Image2" runat="server"
-                            ImageUrl="~/Content/Icons/delete/trash.gif" />
-                    </asp:HyperLink>
+                    <span class="span-edit-delete">
+                        <asp:HyperLink ID="lnkEdit" runat="server" Visible="False">
+                            <asp:Image ID="imgedt" runat="server" ToolTip="Edit"
+                                ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                        </asp:HyperLink>
+                        <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" >
+                            <asp:Image ID="Image2" runat="server" ToolTip="Delete"
+                                ImageUrl="~/Content/Icons/delete/trash.png" />
+                        </asp:HyperLink>
+                    </span>
                 </td>
             </tr>
             <tr>

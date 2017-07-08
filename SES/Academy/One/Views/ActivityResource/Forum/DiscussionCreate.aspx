@@ -17,7 +17,7 @@
                     <table>
                         <tr>
                             <td class="data-type">Subject *</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <a id="section_m"></a>
                                 <asp:TextBox ID="txtSubject" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
@@ -29,7 +29,7 @@
                             <td class="data-type">
                                 Message *
                             </td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <CKEditor:CKEditorControl ID="txtMessage" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                                     ControlToValidate="txtMessage" ForeColor="red"
@@ -38,14 +38,14 @@
                         </tr>
                         <tr>
                             <td class="data-type">Subscribe to this discussion *</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:CheckBox ID="chkSubscribeToDiscussion" runat="server" />
                             </td>
                         </tr>
                         <tr>
                             <%--Pinned discussions will appear at the top of a forum.--%>
                             <td class="data-type">Pinned *</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:CheckBox ID="chkPinned" runat="server" />
                             </td>
                         </tr>
@@ -68,3 +68,13 @@
         </div>
     </div>
 </asp:Content>
+
+<asp:Content runat="server" ID="contentHead" ContentPlaceHolderID="head">
+
+    <%--<link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />--%>
+    <%--<link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />--%>
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
+
+
+</asp:Content>
+

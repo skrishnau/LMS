@@ -26,10 +26,24 @@
                 <div style="float: left; padding-left: 8px;">
                     <asp:Image ID="imgJoinInfo" runat="server" Width="10" Height="10" Visible="False" />
                 </div>
-
-                <div style="float: right; line-height: 18px;">
-                    <asp:Button ID="btnEnroll" runat="server" Text="Enroll Now" Visible="False" />
+                <%-- line-height: 18px; --%>
+                <div style="float: left;margin-top: 10px;">
+                    &nbsp;&nbsp;
+                    <asp:LinkButton ID="lnkEnroll" runat="server" CssClass="auto-st2 link"
+                        ToolTip="New class has been opened in this course. Click for detail."
+                         Visible="False">
+                        Enroll now
+                    </asp:LinkButton>
                 </div>
+                
+                <div style="float: right;margin-top: 10px">
+                    <asp:LinkButton ID="lnkMyClasses" runat="server" CssClass="auto-st2 link"
+                        ToolTip="Classes of this course in which you have participated"
+                         Visible="False">
+                        My Classes
+                    </asp:LinkButton>
+                </div>
+
                 <div style="clear: both;"></div>
             </div>
             <div style="clear: both;"></div>

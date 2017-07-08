@@ -5,7 +5,7 @@
 <%--<%@ Register Src="~/Views/ActivityResource/FileResource/FileResourceItems/FilePickerDialog.ascx" TagPrefix="uc1" TagName="FilePickerDialog" %>--%>
 
 
-<div runat="server" ID="divMain">
+<div runat="server" id="divMain">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -21,23 +21,23 @@
                     <asp:Label ID="lblFileNumberError" runat="server" Text="" Visible="False" ForeColor="red"></asp:Label>
                     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                         <asp:View ID="View1" runat="server">
-                            <div class="file-display">
-                                <asp:LinkButton ID="lnkAddFile"
-                                    CausesValidation="False" Font-Underline="False"
-                                    BorderStyle="None" ForeColor="white"
-                                    runat="server" OnClick="lnkAddFile_Click">
-                                    <asp:Image ID="Image1" runat="server" Width="22" Height="22"
-                                        ImageUrl="~/Content/Icons/Add/add-new-document.png"
-                                        ToolTip="File add" />
-                                </asp:LinkButton>
-                                &nbsp;
-                        <asp:LinkButton ID="lnkAddFolder"
-                            CausesValidation="False" Font-Underline="False" ForeColor="white"
-                            runat="server" OnClick="lnkAddFolder_Click">
-                            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/folder-black-shape-with-a-plus-sign.png"
-                                Width="22" Height="22"
-                                ToolTip="Folder add" />
-                        </asp:LinkButton>
+                            <div style="padding: 5px 5px 2px; background-color: #fdfdfd;">
+                                <span class="span-file-folder-add-icons">
+                                    <asp:LinkButton ID="lnkAddFile"
+                                        CausesValidation="False" Font-Underline="False"
+                                        BorderStyle="None" ForeColor="white"
+                                        runat="server" OnClick="lnkAddFile_Click">
+                                        <asp:Image ID="Image1" runat="server"
+                                            ImageUrl="~/Content/Icons/Add/add-file-20px.png"
+                                            ToolTip="File add" />
+                                    </asp:LinkButton>
+                                    <asp:LinkButton ID="lnkAddFolder"
+                                        CausesValidation="False" Font-Underline="False" ForeColor="white"
+                                        runat="server" OnClick="lnkAddFolder_Click">
+                                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/add-folder-20px.png"
+                                            ToolTip="Folder add" />
+                                    </asp:LinkButton>
+                                </span>
                                 <div style="float: right; color: white;">
                                     <asp:Literal ID="lblNoOfFiles" runat="server"></asp:Literal>
                                 </div>
@@ -71,15 +71,15 @@
                 <asp:View ID="View4" runat="server">
                     <div>
                         <asp:Button ID="LinkButton1"
-                                CssClass="link"
-                                CausesValidation="False" Font-Underline="False"
-                                BorderStyle="None"
-                                runat="server" OnClick="lnkAddFile_Click" Text="Choose file ...">
-                              <%--  <asp:Image ID="Image4" runat="server" Width="22" Height="22"
+                            CssClass="link"
+                            CausesValidation="False" Font-Underline="False"
+                            BorderStyle="None"
+                            runat="server" OnClick="lnkAddFile_Click" Text="Choose file ...">
+                            <%--  <asp:Image ID="Image4" runat="server" Width="22" Height="22"
                                     ImageUrl="~/Content/Icons/File/file_replace.png"
                                     ToolTip="File add" />--%>
                                 
-                            </asp:Button>
+                        </asp:Button>
                         <asp:Label ID="lblFileName" runat="server" Text=""></asp:Label>
                     </div>
                 </asp:View>

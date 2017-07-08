@@ -15,6 +15,7 @@
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
     <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
     <link href="../../../Content/CSSes/ToolTip.css" rel="stylesheet" />
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 
 </asp:Content>
 
@@ -24,6 +25,7 @@
         <h3 class="heading-of-create-edit">
             <asp:Label ID="lblHeading" runat="server" Text="File Edit"></asp:Label>
         </h3>
+        <br />
         <div class="data-entry-body">
             <div class="data-entry-section">
                 <div class="data-entry-section-heading">
@@ -34,7 +36,7 @@
                     <table>
                         <tr>
                             <td class="data-type">Name *</td>
-                            <td class="data-entry">
+                            <td class="data-value">
                                 <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator11"
                                     ForeColor="red"
@@ -45,13 +47,13 @@
                         </tr>
                         <tr>
                             <td class="data-type">Description</td>
-                            <td class="data-entry">
+                            <td class="data-value">
                                 <CKEditor:CKEditorControl ID="CKEditor1" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Display discription on course page</td>
-                            <td class="data-entry">
+                            <td class="data-value">
                                 <asp:CheckBox ID="chkDisplayDescription" runat="server" />
                             </td>
                         </tr>
@@ -147,6 +149,6 @@
     </script>
 </asp:Content>
 
-<%--<asp:Content runat="server" ID="headcontent" ContentPlaceHolderID="head">
-
-</asp:Content>--%>
+<asp:Content runat="server" ID="headcontent" ContentPlaceHolderID="title">
+    File resource edit
+</asp:Content>

@@ -628,7 +628,7 @@ namespace Academic.DbHelper
                 if (subsession != null)
                 {
                     var users = Context.Users.Where(x => !asignedList.Contains(x.Id)
-                        && x.SchoolId == schoolId && (x.IsActive ?? true) 
+                        && x.SchoolId == schoolId && (x.IsActive ?? true)
                         && !(x.IsDeleted ?? false)
                         && ((teachersOnly && !x.Student.Any()) || (!teachersOnly)))
 
@@ -716,7 +716,7 @@ namespace Academic.DbHelper
                                   CRN = std == null ? "" : std.CRN,
                                   Name = clsur.User.FullName,
                                   UserName = clsur.User.UserName,
-                                  Role = role==null?"":role.DisplayName,
+                                  Role = role == null ? "" : role.DisplayName,
                                   Email = clsur.User.Email,
                                   LastOnline = (clsur.User.LastOnline == null ? "" : clsur.User.LastOnline.Value.ToShortDateString()),
                                   //Group = "",
@@ -724,16 +724,16 @@ namespace Academic.DbHelper
                               }).ToList();
                     if (orderBy == "crn")
                     {
-                        ss= ss.OrderBy(x => x.CRN).ToList();
+                        ss = ss.OrderBy(x => x.CRN).ToList();
 
                     }
                     else if (orderBy == "name")
                     {
-                        ss= ss.OrderBy(x => x.Name).ToList();
+                        ss = ss.OrderBy(x => x.Name).ToList();
                     }
                     else if (orderBy == "username")
                     {
-                        ss= ss.OrderBy(x => x.UserName).ToList();
+                        ss = ss.OrderBy(x => x.UserName).ToList();
                     }
 
                     foreach (var s in ss)
@@ -920,30 +920,57 @@ namespace Academic.DbHelper
             /// <returns></returns>
             public string GetCourseClassesAvailabilityForUser(int userId, int subjectId)
             {
+                var date = DateTime.Now;
                 var user = Context.Users.Find(userId);
                 if (user != null)
                 {
-                    var subSession = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                    var subjClasses = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
                         //.Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) //&& !(x.SessionComplete ?? false)) -- return all
-                        .FirstOrDefault(x => !(x.SubjectClass.Void ?? false)
+                        .Where(x => !(x.SubjectClass.Void ?? false)
                                 &&
                             ((x.SubjectClass.SubjectId == null) ? (x.SubjectClass.SubjectStructure.SubjectId == subjectId) :
                             (x.SubjectClass.SubjectId == subjectId))
-                        );
+                        ).ToList();
+
+
+                    //var curr = subjClasses.Where(
+                    //            x => !(x.SubjectClass.SessionComplete ?? false) &&
+                    //            x.SubjectClass.EndDate != null &&
+                    //            x.SubjectClass.EndDate.Value >= date);
+
+                   
+
+
+                    var subSession = subjClasses.FirstOrDefault();
+
+
+
+
                     if (subSession != null)
                     {
-                        if (!(subSession.SubjectClass.SessionComplete ?? false) && (subSession.SubjectClass.EndDate != null && subSession.SubjectClass.EndDate.Value >= DateTime.Now))
+                        var role = StaticValues.Roles.Student;
+                        if (subjClasses.Any(x => x.Role.RoleName == StaticValues.Roles.Teacher))
                         {
-                            return "current";//"You are currently enrolled in this course";
+                            role = StaticValues.Roles.Teacher;
                         }
-                        return "complete"; //"You have already completed this course.";
+
+                        if (!(subSession.SubjectClass.SessionComplete ?? false) &&
+                            (subSession.SubjectClass.EndDate != null &&
+                            subSession.SubjectClass.EndDate.Value >= DateTime.Now))
+                        {
+                            
+                            return "current,"+role;//"You are currently enrolled in this course";
+                        }
+                        return "complete,"+role; //"You have already completed this course.";
+
+
                     }
                     //get classes of the subject
                     var subject = Context.Subject.Find(subjectId);
                     if (subject != null)
                     {
                         var classes = subject.SubjectClasses.Where(x => !(x.SessionComplete ?? false) //|| (subSession.SubjectClass.EndDate != null && subSession.SubjectClass.EndDate.Value > DateTime.Now)
-                            && x.EnrollmentMethod == 2);
+                            && x.EnrollmentMethod == 2 && x.EndDate>=DateTime.Now);
                         if (classes.Any())
                         {
                             // show the available classes
@@ -962,7 +989,7 @@ namespace Academic.DbHelper
                     //if(subSession.Where(x=>x.GetName))
                     //return subSession;
                 }
-                return null;
+                return "nothing";
                 //return new List<DbEntities.Class.SubjectClass>();
             }
 

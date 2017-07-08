@@ -4,6 +4,9 @@
     padding: 5px;
     border: 1px solid lightgrey;
     -webkit-border-radius: 5px;
+    height: auto;
+    /*font-size: 1.1em;*/
+    font-family: Arial Tahoma;
 }
 
     .auto-st2:hover {
@@ -44,6 +47,9 @@
     .auto-st2-white:hover {
         background-color: white;
     }
+.hover-background-change-slight:hover {
+    background-color: #f8f8f8;
+}
 
 .auto-st2-hover-display-dark {
 }

@@ -21,20 +21,20 @@
                     <table>
                         <tr>
                             <td class="data-type">Name</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:TextBox ID="txtName" runat="server" Width="170"></asp:TextBox>
                             </td>
                         </tr>
                        
                         <tr>
                             <td class="data-type">Description</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <CKEditor:CKEditorControl ID="txtDescription" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Display discription on course page</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:CheckBox ID="chkDisplayDescription" runat="server" />
                             </td>
                         </tr>
@@ -67,19 +67,19 @@
                     <table>
                         <tr>
                             <td class="data-type">Maximum attachment size</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:DropDownList ID="ddlMaximumAttachmentSize" runat="server" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Maximum Number of attachments </td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:DropDownList ID="ddlMaximumNoOfAttachments" runat="server" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Display word count </td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:DropDownList ID="ddlDisplayWordCount" runat="server">
                                     <Items>
                                         <asp:ListItem Value="0" Text="No"></asp:ListItem>
@@ -104,7 +104,7 @@
                             <table>
                                <tr>
                                     <td class="data-type">Subscription mode</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlSubscriptionMode" runat="server">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="Optional subscription"></asp:ListItem>
@@ -117,7 +117,7 @@
                                 </tr>
                                 <tr>
                                     <td class="data-type">Read tracking</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlReadTracking" runat="server">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="Optional"></asp:ListItem>
@@ -142,19 +142,19 @@
                     <table>
                         <tr>
                             <td class="data-type">Time for blocking</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:DropDownList ID="ddlTimeForBlocking" runat="server" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
                             </td>
                         </tr>
                         <tr>
                              <td class="data-type">Post threshold for blocking</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:TextBox ID="txtPostThresholdForBlocking" runat="server" Text="0" Enabled="False"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                              <td class="data-type">Post threshold for warning</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:TextBox ID="txtPostThresholdForWarning" runat="server" Text="0" Enabled="False"></asp:TextBox>
                             </td>
                         </tr>
@@ -201,6 +201,7 @@
 
     <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 
 
 </asp:Content>

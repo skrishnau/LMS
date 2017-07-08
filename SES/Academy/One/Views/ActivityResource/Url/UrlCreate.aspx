@@ -19,25 +19,25 @@
                     <table>
                         <tr>
                             <td class="data-type">Name</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:TextBox ID="txtName" runat="server" Width="170"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">External Url</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:TextBox ID="txtExternalUrl" runat="server" TextMode="MultiLine" Height="70" ></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Description</td>
-                            <td class="data-field" >
+                            <td class="data-value" >
                                 <CKEditor:CKEditorControl ID="CKEditor1" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Display discription on course page</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:CheckBox ID="chkDisplayDescription" runat="server" />
                             </td>
                         </tr>
@@ -58,7 +58,7 @@
                             <table>
                                 <tr>
                                     <td class="data-type">Display</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlDisplay" runat="server" Width="150" AutoPostBack="True" OnSelectedIndexChanged="ddlDisplay_SelectedIndexChanged">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="Automatic" Selected="True"></asp:ListItem>
@@ -71,13 +71,13 @@
                                 </tr>
                                 <tr>
                                     <td class="data-type">Pop-up width in pixel</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:TextBox ID="txtPopupWidthInPixel" runat="server" Enabled="False" Width="70px"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="data-type">Pop-up height in pixel</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:TextBox ID="txtPopupHeightInPixel" runat="server" Enabled="False" Width="70px"></asp:TextBox>
                                     </td>
                                 </tr>
@@ -123,4 +123,5 @@
 
 <asp:Content runat="server" ID="headcontent" ContentPlaceHolderID="head">
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>

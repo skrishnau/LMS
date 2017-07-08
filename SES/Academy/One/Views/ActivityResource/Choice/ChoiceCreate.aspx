@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../../DatePickerJquery/timepicker/jquery.timepicker.css" />
     <script src="../../../DatePickerJquery/timepicker/jquery.timepicker.min.js"></script>
     <%--<script src="../../../DatePickerJquery/timepicker/GruntFile.js"></script>--%>
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 
     <script type="text/javascript">
         function pageLoad() {
@@ -52,26 +53,26 @@
                     <table>
                         <tr>
                             <td class="data-type">Name</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:TextBox ID="txtName" runat="server" Width="170"></asp:TextBox>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="data-type">Description</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <CKEditor:CKEditorControl ID="txtDescription" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Display discription on course page</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:CheckBox ID="chkDisplayDescription" runat="server" />
                             </td>
                         </tr>
                         <tr>
                             <td class="data-type">Options display mode</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <asp:DropDownList ID="ddlDisplayModeForOptions" runat="server">
                                     <Items>
                                         <asp:ListItem Value="0" Text="Horizontal"></asp:ListItem>
@@ -96,7 +97,7 @@
                             <table>
                                 <tr>
                                     <td class="data-type">Aloow choice to be updated</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlAllowChoiceToBeUpdated" runat="server">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="No"></asp:ListItem>
@@ -107,7 +108,7 @@
                                 </tr>
                                 <tr>
                                     <td class="data-type">Allow more than one choice to be selected</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlAllowMoreChoiceToBeSelected" runat="server">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="No"></asp:ListItem>
@@ -118,7 +119,7 @@
                                 </tr>
                                 <tr>
                                     <td class="data-type">Limit the number of responses</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlLimitTheNumberOfResponses" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLimitTheNumberOfResponses_SelectedIndexChanged">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="No"></asp:ListItem>
@@ -169,7 +170,7 @@
                             <table>
                                 <tr>
                                     <td class="data-type">Restrict answering time</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:CheckBox ID="chkRestrictAnsweringTime" runat="server" AutoPostBack="True"
                                             OnCheckedChanged="chkRestrictAnsweringTime_CheckedChanged" />
                                     </td>
@@ -177,7 +178,7 @@
 
                                 <tr>
                                     <td class="data-type">Open date</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:TextBox ID="txtOpenDate" ClientIDMode="Static" runat="server" Enabled="False"></asp:TextBox>
                                         &nbsp;&nbsp;
                                         <asp:TextBox ID="txtOpenTime" ClientIDMode="Static" runat="server" Width="30" Enabled="False"></asp:TextBox>
@@ -185,7 +186,7 @@
                                 </tr>
                                 <tr>
                                     <td class="data-type">Until</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:TextBox ID="txtUntilDate" ClientIDMode="Static" runat="server" Enabled="False"></asp:TextBox>
                                         &nbsp;&nbsp;
                                         <asp:TextBox ID="txtUntilTime" ClientIDMode="Static" runat="server" Width="30" Enabled="False"></asp:TextBox>
@@ -193,7 +194,7 @@
                                 </tr>
                                 <tr>
                                     <td class="data-type">Show preview</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:CheckBox ID="chkShowPreview" runat="server" />
                                     </td>
                                 </tr>
@@ -216,7 +217,7 @@
                             <table>
                                 <tr>
                                     <td class="data-type">Publish results</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlPublishResults" runat="server"
                                             AutoPostBack="True" OnSelectedIndexChanged="ddlPublishResults_SelectedIndexChanged">
                                             <Items>
@@ -231,7 +232,7 @@
 
                                 <tr>
                                     <td class="data-type">Privacy of results</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlPrivacyOfResults"  runat="server" Enabled="False">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="Publish anonymous results, do not show student names "></asp:ListItem>
@@ -242,7 +243,7 @@
                                 </tr>
                                 <tr>
                                     <td class="data-type">Show columns for unanswered</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlShowColumnsForUnanswered" runat="server" Enabled="False">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="No"></asp:ListItem>
@@ -253,7 +254,7 @@
                                 </tr>
                                 <tr>
                                     <td class="data-type">Include responses fron inactive users</td>
-                                    <td class="data-field">
+                                    <td class="data-value">
                                         <asp:DropDownList ID="ddlIncludeResponsesFromInactiveUsers" runat="server" Enabled="False">
                                             <Items>
                                                 <asp:ListItem Value="0" Text="No"></asp:ListItem>

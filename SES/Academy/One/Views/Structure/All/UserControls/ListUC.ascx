@@ -7,13 +7,13 @@
                 <asp:Label ID="lblName" runat="server" Text="Label"></asp:Label>
                 <asp:Image ID="imgShowHide" runat="server" ImageUrl="~/Content/Icons/Arrow/right-arrow.png" />
             </asp:LinkButton>
-            <span class="list-item-option">
+            <%--  class="list-item-option" --%>
+            <span class="span-edit-delete">
                 <asp:HyperLink ID="lnkEdit" runat="server" CssClass="edit-button">
                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
                 </asp:HyperLink>
-
                 <asp:HyperLink ID="lnkDelete" Visible="False" CssClass="delete-button" runat="server" OnClick="lnkEdit_Click">
-                    <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/trash.gif" />
+                    <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/trash.png" />
                 </asp:HyperLink>
             </span>
 

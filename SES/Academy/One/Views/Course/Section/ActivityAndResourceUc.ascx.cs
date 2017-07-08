@@ -112,6 +112,12 @@ namespace One.Views.Course.Section
             
             lblTitle.NavigateUrl = navigateUrl + "?SubId=" + subjectId + "&arId=" + actOrResId + "&secId=" + sectionId + "&edit=" + (edit ? 1 : 0);
             imgIcon.ImageUrl = imageUrl;
+            imgIcon.ToolTip = typeName;
+
+            if (typeName == Academic.DbHelper.Enums.Resources.Url.ToString())
+            {
+                lblTitle.Font.Underline = true;
+            }
 
             lblTitle.Enabled = enable;
             imgIcon.Visible = enable;

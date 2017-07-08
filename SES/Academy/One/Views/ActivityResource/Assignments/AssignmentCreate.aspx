@@ -39,14 +39,14 @@
                 <table>
                     <tr>
                         <td class="data-type">Name</td>
-                        <td>
+                        <td class="data-value">
                             <asp:TextBox ID="txtName" runat="server" Width="210px" ValidationGroup="grpAss"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtName" ValidationGroup="grpAss" runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
                         <td class="data-type">Description</td>
-                        <td>
+                        <td class="data-value">
 
                             <%--  BasePath="/ckeditor/" --%>
                             <CKEditor:CKEditorControl ID="CKEditor1" runat="server"></CKEditor:CKEditorControl>
@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <td class="data-type">Display Description</td>
-                        <td>
+                        <td class="data-value">
                             <asp:CheckBox ID="chkDisplayDesc" runat="server" />
                         </td>
                     </tr>
@@ -81,7 +81,7 @@
                         <table style="margin: 0 20px 0;">
                             <tr>
                                 <td class="data-type">Submission From</td>
-                                <td>
+                                <td class="data-value">
                                     <asp:TextBox ID="txtFrom" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
                                     <asp:CheckBox ID="chkFrom" ClientIDMode="Static" runat="server"
                                         AutoPostBack="True" Checked="True"
@@ -93,7 +93,7 @@
                             </tr>
                             <tr>
                                 <td class="data-type">Due Date</td>
-                                <td>
+                                <td class="data-value">
                                     <asp:TextBox ID="txtDue" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
                                     <asp:CheckBox ID="chkDue" ClientIDMode="Static" runat="server"
                                         AutoPostBack="True" Checked="True"
@@ -105,7 +105,7 @@
                             </tr>
                             <tr>
                                 <td class="data-type">Cut off Date</td>
-                                <td>
+                                <td class="data-value">
                                     <asp:TextBox ID="txtCutOff" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
                                     <asp:CheckBox ID="chkCutOff" ClientIDMode="Static" runat="server"
                                         AutoPostBack="True" Checked="True"
@@ -133,7 +133,7 @@
                         <table style="margin: 0 20px 0;">
                             <tr>
                                 <td class="data-type">Submission Type</td>
-                                <td>
+                                <td class="data-value">
                                     <asp:CheckBox ID="chkOnlineSubmission" runat="server"
                                         OnCheckedChanged="chk_CheckedChanged" Text="Online"
                                         AutoPostBack="True" CausesValidation="False" />
@@ -151,7 +151,7 @@
                             </tr>
                             <tr>
                                 <td class="data-type">Word Limit</td>
-                                <td>
+                                <td class="data-value" >
                                     <asp:TextBox ID="txtWordLimit" Enabled="False" runat="server"
                                         TextMode="Number"
                                         Width="210px"></asp:TextBox>
@@ -162,7 +162,7 @@
                             </tr>
                             <tr>
                                 <td class="data-type">Maximum Number of Submitted Files</td>
-                                <td>
+                                <td class="data-value">
                                     <asp:TextBox ID="txtMaxFiles" runat="server" Width="210px"
                                         TextMode="Number"></asp:TextBox>
                                     <asp:Label ID="lblValiMaxFile" runat="server" Text="Required"
@@ -172,7 +172,7 @@
                             </tr>
                             <tr>
                                 <td class="data-type">Maximum Submission Size (in KB)</td>
-                                <td>
+                                <td class="data-value">
                                     <asp:TextBox ID="txtMaxSize" runat="server" Width="210px"
                                         TextMode="Number"></asp:TextBox>
                                     <asp:Label ID="lblValiSubmissionSize" runat="server" Text="Required"
@@ -271,5 +271,6 @@
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
     <link href="../../../ViewsSite/User/UserStyles.css" rel="stylesheet" />
 
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 
 </asp:Content>

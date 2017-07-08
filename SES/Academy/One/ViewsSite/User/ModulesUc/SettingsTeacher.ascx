@@ -8,22 +8,23 @@
             <asp:HyperLink ID="HyperLink1" runat="server" CssClass="modules-title">Settings</asp:HyperLink>
         </strong>
     </div>
-    <div class="modules-body" style="font-size: 0.9em; font-weight: 500;">
-       
-        <asp:HyperLink ID="HyperLink3" runat="server" CssClass="link"
-            NavigateUrl="~/Views/Structure/All/Master/List.aspx">Programs</asp:HyperLink>
-        <br />
-        <asp:HyperLink ID="HyperLink7" runat="server" CssClass="link"
+    <%--class="modules-body" style="font-size: 0.9em; font-weight: 500;">--%>
+    <div style="font-weight: 500;" class="list-unmargined">
+       <%-- CssClass="link" --%>
+        <asp:HyperLink ID="HyperLink3" runat="server" 
+            NavigateUrl="~/Views/Structure/">Programs</asp:HyperLink>
+        
+        <asp:HyperLink ID="HyperLink7" runat="server" 
             NavigateUrl="~/Views/Student/">Batches</asp:HyperLink>
-        <br />
-        <asp:HyperLink ID="HyperLink4" runat="server" CssClass="link"
+        
+        <asp:HyperLink ID="HyperLink4" runat="server" 
             NavigateUrl="~/Views/Course/">Courses</asp:HyperLink>
-        <br />
-        <span style="margin-left: 10px;">
-            <asp:HyperLink ID="HyperLink10" runat="server" CssClass="link"
+        
+        <%--<span style="margin-left: 10px;">--%>
+            <asp:HyperLink ID="HyperLink10" runat="server" 
                 NavigateUrl="/Views/Grade/GradeListing.aspx">Grade</asp:HyperLink>
-        </span>
-        <br />
+        <%--</span>--%>
+        
         <%--<asp:HyperLink ID="HyperLink5" runat="server" CssClass="link"
             NavigateUrl="~/Views/User/List.aspx">Users</asp:HyperLink>
         <br />

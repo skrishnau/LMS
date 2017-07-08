@@ -21,7 +21,7 @@
                     <table>
                         <tr>
                             <td class="data-type">Label text</td>
-                            <td class="data-field">
+                            <td class="data-value">
                                 <CKEditor:CKEditorControl ID="txtLabelText" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
@@ -68,6 +68,7 @@
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
     <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>
 
 
