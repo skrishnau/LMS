@@ -23,7 +23,10 @@ namespace Academic.DbEntities.Class
                 if (RunningClass != null)
                     if (RunningClass.ProgramBatchId != null)
                     {
-                        return RunningClass.ProgramBatch.NameFromBatch;
+                        return RunningClass.ProgramBatch.NameFromBatch + ":" + RunningClass.Year.Name  +
+                               (RunningClass.SubYear == null
+                                   ? ""
+                                   : "-"+RunningClass.SubYear.Name);
                     }
                     else
                     {
@@ -127,6 +130,8 @@ namespace Academic.DbEntities.Class
         /// 0: Automatic , 1: Manual only , 2: Self Enrollment
         /// </summary>
         public byte EnrollmentMethod { get; set; }
+
+        public DateTime? JoinLastDate { get; set; }
 
         //gives all the users for this session of the course.
         public virtual ICollection<ActivityAndResource.ActivityClass> ActivityClasses { get; set; }

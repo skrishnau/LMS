@@ -46,7 +46,7 @@ namespace One.Views.Structure
                 foreach (var subj in subjects)
                 {
                     var row = new TableRow();
-
+                   
                     //year 
                     var yearCell = new TableCell()
                     {
@@ -58,7 +58,8 @@ namespace One.Views.Structure
                     //subyear
                     var subyearCell = new TableCell()
                     {
-                        Text = thisSubyear == 0 ? sub.Name : ""
+                        Text = thisSubyear == 0 ? sub.Name : "",
+                        
                     };
                     row.Cells.Add(subyearCell);
 

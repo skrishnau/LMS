@@ -28,11 +28,39 @@ namespace One
                         };
                       SiteMapUc.SetData(list);
                   }
+
+                //NoticeBoardUc.UserId = user.Id;
+                //NoticeBoardUc.SchoolId = user.SchoolId;
+
+                OpenClassesUc.UserId = user.Id;
+                OpenClassesUc.SchoolId = user.SchoolId;
+
+
+                //var eventsUc = (ModulesUc.EventsUc)
+                //    Page.LoadControl("~/ViewsSite/User/ModulesUc/EventsUc.ascx");
+                //eventsUc.UserId = user.Id;
+                //eventsUc.SchoolId = school.Id;
+                //pnlRight.Controls.Add(eventsUc);
+
                 var noticeBoardUc = (ViewsSite.User.ModulesUc.NoticeBoardUc)
-                                          Page.LoadControl("~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx");
+                   Page.LoadControl("~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx");
                 noticeBoardUc.UserId = user.Id;
                 noticeBoardUc.SchoolId = user.SchoolId;
-                pnlBody.Controls.Add(noticeBoardUc);
+                pnlRight.Controls.Add(noticeBoardUc);
+
+                pnlRight.Controls.Add(new Literal(){Text = "<br/>"});
+
+                var onlineUsersUc = (ViewsSite.User.ModulesUc.OnlineUsersUc)
+                    Page.LoadControl("~/ViewsSite/User/ModulesUc/OnlineUsersUc.ascx");
+                onlineUsersUc.UserId = user.Id;
+                onlineUsersUc.SchoolId = user.SchoolId;
+                pnlRight.Controls.Add(onlineUsersUc);
+
+                //var noticeBoardUc = (ViewsSite.User.ModulesUc.NoticeBoardUc)
+                //                          Page.LoadControl("~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx");
+                //noticeBoardUc.UserId = user.Id;
+                //noticeBoardUc.SchoolId = user.SchoolId;
+                //pnlBody.Controls.Add(noticeBoardUc);
             }
 
 

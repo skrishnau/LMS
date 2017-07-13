@@ -13,6 +13,27 @@ namespace One.Views.Class
         protected void Page_Load(object sender, EventArgs e)
         {
             lblErrorMsg.Visible = false;
+            if (!IsPostBack)
+            {
+                LoadSubjectClass();
+            }
+        }
+
+        private void LoadSubjectClass()
+        {
+            using (var helper = new DbHelper.Classes())
+            {
+                var cls = helper.GetSubjectSession(SubjectSessionId);
+                if (cls != null)
+                {
+                    txtName.Text = cls.Name;
+                    txtEnd.Text = cls.EndDate != null ? cls.EndDate.Value.ToString("MM/dd/yyyy") : "";
+                    txtStart.Text = cls.StartDate != null ? cls.StartDate.Value.ToString("MM/dd/yyyy") : "";
+                    txtLastEnrollDate.Text = cls.JoinLastDate != null ? cls.JoinLastDate.Value.ToString("MM/dd/yyyy") : "";
+                    ddlEnrollmentMethod.SelectedIndex = (cls.EnrollmentMethod - 1);
+                    //ddlGroupingOfStudents.SelectedValue = cls.gro
+                }
+            }
         }
 
         public int SubjectSessionId
@@ -33,10 +54,10 @@ namespace One.Views.Class
             set { lblCourseName.Text = value; }
         }
 
-        public void SetCourseId(string courseId)
-        {
-            hidCourseId.Value = courseId;
-        }
+        //public void SetCourseId(string courseId)
+        //{
+        //    hidCourseId.Value = courseId;
+        //}
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -57,7 +78,7 @@ namespace One.Views.Class
                         ,
                         SubjectId = CourseId
                         ,
-                        EnrollmentMethod = (byte)ddlEnrollmentMethod.SelectedIndex
+                        EnrollmentMethod = (byte)(ddlEnrollmentMethod.SelectedIndex + 1)
                     };
 
                     try
@@ -76,6 +97,15 @@ namespace One.Views.Class
                     {
                         valiEndDate.IsValid = false;
                     }
+                    try
+                    {
+                        subjectClass.JoinLastDate = Convert.ToDateTime(txtLastEnrollDate.Text);
+                    }
+                    catch
+                    {
+                        valiLastEnrollDate.IsValid = false;
+                    }
+
 
                     if (ddlGroupingOfStudents.SelectedIndex == 0)
                         subjectClass.HasGrouping = false;
@@ -96,6 +126,11 @@ namespace One.Views.Class
 
 
             }
+        }
+
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + CourseId);
         }
     }
 }

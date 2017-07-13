@@ -56,11 +56,11 @@ namespace One.ViewsSite.User.ModulesUc
 
                             var hyperLink = new HyperLink()
                             {
-                                Text = "▪" + subject.FullName
+                                Text = subject.FullName// "▪" +
                                 ,
                                 NavigateUrl = "~/Views/Course/Section/?SubId=" + subject.Id
                                 ,
-                                CssClass = "course-menu-subjct-class padding-left-30px"
+                                CssClass = "course-menu-subjct-class padding-left-20px"
                                 ,
                                 ToolTip = "course"
                             };

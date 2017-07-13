@@ -1,0 +1,225 @@
+﻿
+
+/*v2.0 used BELOW */
+/*option-div is the div which contains "edit", "delete","view" ,"Enrol" etc. buttons */
+.option-div {
+    text-align: center;
+}
+
+    .option-div a {
+        margin: 6px 4px;
+        padding: 5px;
+        height: auto;
+        color: #393939;
+        font-family: Arial Tahoma;
+        font-size: 1.0em;
+        text-decoration: none;
+        background-color: transparent;
+        border: 1px solid lightgrey;
+        -webkit-border-radius: 5px;
+        min-width: 80px;
+        border-bottom: 2px solid lightgrey;
+        /*border-right: 2px solid lightgrey;*/
+    }
+
+        .option-div a:hover {
+            color: black;
+            text-decoration: underline;
+            background-color: #f5f5f5;
+        }
+
+        .option-div a:active {
+            color: blueviolet;
+            text-decoration: underline;
+        }
+/*link-button*/
+.link-button {
+    margin: 6px 4px;
+    padding: 5px;
+    height: auto;
+    color: #393939;
+    font-family: Arial Tahoma;
+    font-size: 1.0em;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid lightgrey;
+    -webkit-border-radius: 5px;
+    min-width: 80px;
+    border-bottom: 2px solid lightgrey;
+    /*border-right: 2px solid lightgrey;*/
+}
+
+    .link-button:hover {
+        color: black;
+        text-decoration: underline;
+        background-color: #f5f5f5;
+    }
+
+    .link-button:active {
+        color: blueviolet;
+        text-decoration: underline;
+    }
+
+/*v.2.0 used ABOVE*/
+
+.list {
+    /*-webkit-border-radius: 5px;*/
+    border-collapse: collapse;
+}
+
+    .list a, .list a:visited {
+        display: block;
+        margin: -1px 4px 0;
+        padding: 6px;
+        border: 1px solid lightgrey;
+        /*-webkit-border-radius: 5px;*/
+        /*margin-top: -1px;*/
+        color: #393939;
+        text-decoration: none;
+        /*background-color: lightgray;*/
+        /*-webkit-border-radius: 5px;*/
+    }
+
+        .list a:hover {
+            background-color: #f5f5f5;
+            color: black;
+        }
+
+.list-datalist {
+    /*-webkit-border-radius: 5px;*/
+    border-collapse: collapse;
+}
+
+    .list-datalist a, .list-datalist a:visited {
+        display: block;
+        margin: -3px 4px 0;
+        padding: 6px;
+        border: 1px solid lightgrey;
+        /*-webkit-border-radius: 5px;*/
+        color: #393939;
+        text-decoration: none;
+        /*background-color: lightgray;*/
+        /*-webkit-border-radius: 5px;*/
+    }
+
+        .list-datalist a:hover {
+            background-color: #f5f5f5;
+            color: black;
+        }
+
+
+
+
+/*for only dashboard*/
+
+.list-dark {
+    /*-webkit-border-radius: 5px;*/
+    border-collapse: collapse;
+}
+
+    .list-dark a, .list-dark a:visited {
+        display: block;
+        margin: -1px 4px 0;
+        padding: 6px;
+        border: 1px solid lightgrey;
+        /*-webkit-border-radius: 5px;*/
+        /*margin-top: -1px;*/
+        color: #393939;
+        text-decoration: none;
+        /*background-color: lightgray;*/
+        /*-webkit-border-radius: 5px;*/
+    }
+
+        .list-dark a:hover {
+            background-color: white;/*#f5f5f5;*/
+            color: black;
+        }
+
+.list-dark-datalist {
+    /*-webkit-border-radius: 5px;*/
+    border-collapse: collapse;
+}
+
+    .list-dark-datalist a, .list-dark-datalist a:visited {
+        display: block;
+        margin: -3px 4px 0;
+        padding: 6px;
+        border: 1px solid lightgrey;
+        /*-webkit-border-radius: 5px;*/
+        color: #393939;
+        text-decoration: none;
+        /*background-color: lightgray;*/
+        /*-webkit-border-radius: 5px;*/
+    }
+
+        .list-dark-datalist a:hover {
+            background-color: white;/*#f5f5f5;*/
+            color: black;
+        }
+/* ENd of "for only dashboard" */
+
+
+
+
+
+
+/*Used below --applied to the items of all list in the entire website*/
+
+.list-item, .list-item:visited {
+    display: block;
+    margin: -1px 4px 0;
+    padding: 6px;
+    border: 1px solid lightgrey;
+    /*margin-top: -1px;*/
+    color: #393939;
+    text-decoration: none;
+    /*background-color: lightgray;*/
+    /*-webkit-border-radius: 5px;*/
+}
+
+    .list-item:hover {
+        background-color: #f5f5f5;
+        color: black;
+    }
+
+
+.list-item-datalist, .list-item-datalist:visited {
+    display: block;
+    margin: -3px 4px 0;
+    padding: 6px;
+    border: 1px solid lightgrey;
+    /*margin-top: -1px;*/
+    color: #393939;
+    text-decoration: none;
+    /*background-color: lightgray;*/
+    /*-webkit-border-radius: 5px;*/
+}
+
+    .list-item-datalist:hover {
+        background-color: #f5f5f5;
+        color: black;
+    }
+
+/*Used above*/
+
+/*Used below*/
+
+.list-item-body {
+    display: block;
+    /*margin: -1px 4px 0;*/
+    padding: 6px;
+    border: 1px solid lightgrey;
+    /*margin-top: -1px;*/
+    color: #5f5f5f;
+    font-weight: 400;
+    text-decoration: none;
+    /*background-color: lightgray;*/
+    /*-webkit-border-radius: 5px;*/
+}
+
+    .list-item-body:hover {
+        background-color: #f5f5f5;
+    }
+
+
+/*Used above*/

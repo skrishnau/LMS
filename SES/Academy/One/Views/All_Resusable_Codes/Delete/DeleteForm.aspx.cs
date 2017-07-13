@@ -124,7 +124,7 @@ namespace One.Views.All_Resusable_Codes.Delete
                         }
 
                     }
-
+                    return;
                 }
 
 
@@ -142,6 +142,7 @@ namespace One.Views.All_Resusable_Codes.Delete
                             lblInfoText.Text = "Are you sure to delete the grade, " + grade.Name + "?";
 
                         }
+                        return;
                     }
 
                 #endregion
@@ -159,6 +160,7 @@ namespace One.Views.All_Resusable_Codes.Delete
                             lblInfoText.Text = "Are you sure to delete the notice, " + notice.Title + "?";
                         }
                     }
+                    return;
                 }
 
                 #endregion
@@ -174,6 +176,7 @@ namespace One.Views.All_Resusable_Codes.Delete
                         {
                             lblInfoText.Text = "Are you sure to delete the academic year, " + academic.Name + "?";
                         }
+                        return;
                     }
                 var sessId = Request.QueryString["sessId"];
                 if (sessId != null)
@@ -184,9 +187,43 @@ namespace One.Views.All_Resusable_Codes.Delete
                         {
                             lblInfoText.Text = "Are you sure to delete the session, " + session.Name + "?";
                         }
+                        return;
                     }
                 #endregion
 
+                #region SubjectClass
+
+                var subclsId = Request.QueryString["subclsId"];
+                if (subclsId != null)
+                {
+                    using (var helper = new DbHelper.Classes())
+                    {
+                        var cls = helper.GetSubjectSession(Convert.ToInt32(subclsId));
+                        if (cls != null)
+                            lblInfoText.Text = "Are you sure to delete the class, " + (cls.IsRegular ? cls.GetName : cls.Name) + "?";
+                    }
+                    return;
+                }
+
+                #endregion
+
+                #region Course and Category
+
+                var catId = Request.QueryString["catId"];
+                var crsId = Request.QueryString["crsId"];
+                //crsId should be null so it means that its category only
+                if (catId != null && crsId == null)
+                {
+                    using (var helper = new DbHelper.Subject())
+                    {
+                        var category = helper.GetCategory(Convert.ToInt32(catId));
+                        if (category != null)
+                            lblInfoText.Text = "Are you sure to delete the category, " + category.Name + "?";
+                    }
+                    return;
+                }
+
+                #endregion
             }
             catch { }
         }
@@ -287,6 +324,39 @@ namespace One.Views.All_Resusable_Codes.Delete
                             {
                                 Response.Redirect("~/Views/Course/Section/default.aspx?SubId=" + courseId
                                                     + "&edit=1", false);
+                            }
+                            else
+                            {
+                                lblError.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx?error=" +
+                        DbHelper.StaticValues.GetEncodedError(1)
+                        );
+                }
+        }
+
+        private void CourseCategoryDelete()
+        {
+            var user = Page.User as CustomPrincipal;
+            if (user != null)
+                if (user.IsInRole("manager") || user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor))
+                {
+                    //var courseId = Request.QueryString["crsId"];
+                    var categoryId = Request.QueryString["catId"];
+                    if (categoryId != null)
+                    {
+                        var catId = Convert.ToInt32(categoryId);
+                        using (var courseHelper = new DbHelper.Subject())
+                        {
+                            var deleted = courseHelper.DeleteCategory(catId);
+                            if (deleted)
+                            {
+                                Response.Redirect("~/Views/Course/", false);
                             }
                             else
                             {
@@ -493,6 +563,24 @@ namespace One.Views.All_Resusable_Codes.Delete
         //}
         #endregion
 
+
+        #region SubjectClass
+
+        private void SubjectClassDelete()
+        {
+            var subclsId = Request.QueryString["subclsId"];
+            using (var helper = new DbHelper.Classes())
+            {
+                int subjectId = 0;
+                var deleted = helper.DeleteSubjectClass(Convert.ToInt32(subclsId), ref subjectId);
+                if (deleted)
+                    Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + subjectId, false);
+                else lblError.Visible = true;
+            }
+        }
+
+        #endregion
+
         protected void btnOk_OnClick(object sender, EventArgs e)
         {
             try
@@ -500,6 +588,7 @@ namespace One.Views.All_Resusable_Codes.Delete
                 switch (hidTask.Value)
                 {
                     case "courseCategory": //category delete
+                        CourseCategoryDelete();
                         return;
                         break;
 
@@ -541,6 +630,10 @@ namespace One.Views.All_Resusable_Codes.Delete
                         //SessionDelete();
                         return;
                         break;
+                    case "subjectClass":
+                        SubjectClassDelete();
+                        return;
+                        break;
                 }
             }
             catch
@@ -549,14 +642,6 @@ namespace One.Views.All_Resusable_Codes.Delete
             }
         }
 
-
-
-
-
-
-
-
-
         protected void btnCancel_OnClick(object sender, EventArgs e)
         {
             try
@@ -564,12 +649,14 @@ namespace One.Views.All_Resusable_Codes.Delete
                 switch (hidTask.Value)
                 {
                     case "courseCategory": //category delete
+                        var categoryId = Request.QueryString["catId"];
+                        Response.Redirect("~/Views/Course/?catId=" + categoryId, false);
                         return;
                         break;
 
                     case "course": //course delete
-                        var categoryId = Request.QueryString["catId"];
-                        Response.Redirect("~/Views/Course/?catId=" + categoryId, false);
+                        var crsId = Request.QueryString["crsId"];
+                        Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + crsId, false);
                         return;
                         break;
                     case "courseSection": //section delete
@@ -604,13 +691,26 @@ namespace One.Views.All_Resusable_Codes.Delete
                         return;
                         break;
                     case "academicYear":
-                        Response.Redirect("~/Views/Academy/List.aspx?edit=1", false);
+                        Response.Redirect("~/Views/Academy/?edit=1", false);
                         return;
                         break;
                     case "session":
                         var acaId = Request.QueryString["acaId"];
                         Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" +
                                      acaId + "&edit=1", false);
+                        return;
+                        break;
+                    case "subjectClass":
+                        var subclsId = Request.QueryString["subclsId"];
+                        if (subclsId != null)
+                        {
+                            using (var helper = new DbHelper.Classes())
+                            {
+                                var cls = helper.GetSubjectSession(Convert.ToInt32(subclsId));
+                                if (cls != null)
+                                    Response.Redirect("~/Views/Course/CourseDetail.aspx?cId=" + (cls.IsRegular ? cls.SubjectStructure.SubjectId : cls.SubjectId), false);
+                            }
+                        }
                         return;
                         break;
                 }

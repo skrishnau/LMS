@@ -63,6 +63,7 @@
     <Compile Include="DbHelper.ComboLoader.cs" />
     <Compile Include="DbHelper.CustomAccount.cs" />
     <Compile Include="DbHelper.News.cs" />
+    <Compile Include="DbHelper.Notifications.cs" />
     <Compile Include="DbHelper.Search.cs" />
     <Compile Include="DbHelper.SystemDate.cs" />
     <Compile Include="DbHelper.Event.cs" />

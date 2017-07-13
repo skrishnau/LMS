@@ -8,8 +8,8 @@
             <asp:HyperLink ID="HyperLink1" runat="server" CssClass="modules-title">Courses</asp:HyperLink>
         </strong>
     </div>
-    <%-- class="list-unmargined" --%>
-    <div style="font-weight: 500;" class="course-menu">
+    <%-- class="list-unmargined" class="course-menu"--%>
+    <div style="font-weight: 500;" >
 
         <%--<div class="auto-st2">--%>
         <asp:HyperLink ID="lnkCurrent" runat="server" CssClass="course-menu-current-earlier"

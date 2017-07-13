@@ -11,35 +11,16 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <h3 class="heading-of-listing">
         <asp:Label ID="lblAcademicYearName" runat="server" Text=""></asp:Label>
-        
-         <span style="vertical-align: top; top: 0; line-height: 10px;">
-                <asp:Image ID="imgActive" runat="server"
-                    Width="10" Height="10"
-                    ImageUrl="~/Content/Icons/Stop/Stop_10px.png"
-                    Visible="False" />
-            </span>
+
+        <span style="vertical-align: top; top: 0; line-height: 10px;">
+            <asp:Image ID="imgActive" runat="server"
+                Width="10" Height="10"
+                ImageUrl="~/Content/Icons/Stop/Stop_10px.png"
+                Visible="False" />
+        </span>
 
     </h3>
-    <%--    <div style="text-align: right;">
-        <asp:HyperLink ID="lnkEdit" runat="server" CssClass="link">
-            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-            <asp:Label ID="lblEdit" runat="server" Text="Edit"></asp:Label>
-        </asp:HyperLink>
-    </div>--%>
-    <%--<div style="text-align: center;">--%>
 
-
-    <%--<asp:Button ID="Button2" runat="server" Text="Update Academic year/ Session " />--%>
-    <%-- <asp:Button ID="btnActivate" runat="server" Text="Activate this Academic Year"
-            OnClick="btnActivate_Click" Visible="False" />
-        &nbsp;--%>
-    <%--   <asp:Button ID="btnMarkComplete" runat="server" Text="Mark this as completed"
-                Visible="False"
-                OnClick="btnMarkComplete_Click" />--%>
-    <%--</div>--%>
-    <%--  <div>
-        <asp:Label ID="lblError" runat="server" Text="Error while saving" ForeColor="red" Visible="False"></asp:Label>
-    </div>--%>
     <div class="data-entry-section-body">
         <table>
             <tr>
@@ -68,23 +49,10 @@
             </tr>--%>
         </table>
 
-        <br />
 
         <div class="data-entry-section">
             <div class="data-entry-section-heading">
-                <div style="clear: both;">
-                    <div style="float: left;">
-                        <strong>Sessions</strong>
-                    </div>
-                    <%-- <div style="float: right;">
-                        <asp:HyperLink ID="lnknewSession" runat="server" CssClass="link-dark"
-                            Visible="False">
-                            <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-                            Add Session
-                        </asp:HyperLink>
-                    </div>--%>
-                </div>
-                <div style="clear: both"></div>
+                Sessions
                 <hr />
             </div>
 
@@ -92,7 +60,6 @@
                 <asp:Panel ID="pnlSessions" runat="server"></asp:Panel>
             </div>
         </div>
-
     </div>
 
 

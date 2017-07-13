@@ -26,106 +26,71 @@
                             <tr>
 
                                 <%-- %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%  --%>
-                                <%-- ================================================================================ --%>
-                                <%-- %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%  --%>
                                 <%-- Category side width: 28%; fdcab6--%>
                                 <td style="width: 200px; vertical-align: top;">
-                                    <div id="categoryDiv"
-                                        class="text-wrap-div" style="overflow-y: scroll; width: 300px; height: 100%;">
+                                    <%-- id="categoryDiv"  class="text-wrap-div" --%>
+                                    <div class="category-list-header">
+                                        Categories
+                                    </div>
+                                    <div class="category-body-outer" style="width: 250px; height: 350px;">
 
-                                        <%-- <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                                    <ContentTemplate>--%>
-                                        <%-- list of categories --%>
-                                        <%-- style="text-align: center; padding: 5px 0; margin: 0 0 3px; font-weight: bold; background-color: #f1f1f1;" --%>
-                                        <div class="data-list-header">
-                                            Categories
-                                        </div>
-                                        <div style="padding-left: 5px;">
+                                        <div style="padding-top: 5px;">
                                             <asp:PlaceHolder ID="pnlCategories" runat="server"></asp:PlaceHolder>
                                         </div>
                                         <asp:HiddenField ID="hidSelectedCategory" Value="0" runat="server" />
                                         <asp:HiddenField ID="hidSelectedCategoryName" Value="" runat="server" />
-                                        <%--  </ContentTemplate>
-                                                </asp:UpdatePanel>--%>
-
-                                        <%-- end --%>
-                                        <div style="text-align: left; padding: 5px 0; margin: 10px 0; background-color: white;">
-                                            &nbsp;
-                                                <asp:LinkButton ID="lnkCatCreate" runat="server" OnClick="lnkCatCreate_Click"
-                                                    CssClass="link-dark">
-                                                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-                                                    New Category
-                                                </asp:LinkButton>
-                                        </div>
-
+                                    </div>
+                                    <div style="text-align: left;" class="option-div">
+                                        <asp:LinkButton ID="lnkCatCreate" runat="server" OnClick="lnkCatCreate_Click"
+                                            CssClass="link-dark">
+                                            <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
+                                            New Category
+                                        </asp:LinkButton>
                                     </div>
                                 </td>
 
-                                <%-- %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%  --%>
                                 <%-- ============================================================================================= --%>
-                                <%-- %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%  --%>
                                 <%-- Course side --%>
-                                <td style="vertical-align: top; width: 100%; border-left: 2px solid #cacfd2;">
-                                    <div style="min-height: 100%;">
-                                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                            <%-- list of courses in this category --%>
-                                            <ContentTemplate>
-                                                <div class="data-list-header">
-                                                    Courses in category :&nbsp;
-                                                <strong>
+                                <%-- border-left: 2px solid #cacfd2; --%>
+                                <td style="vertical-align: top; width: 100%;">
+                                    <%-- style="min-height: 100%;" --%>
+                                    <div class="category-list-header">
+                                        Courses in category :&nbsp;
                                                     <asp:Label ID="lblCoursesTitle" runat="server" Text=""></asp:Label>
-                                                </strong>
-                                                    <div style="float: right;">
-                                                        <asp:LinkButton ID="lnkCoursCreate" runat="server" Visible="False"
-                                                            CssClass="link-dark-for-dark-backcolor"
-                                                            OnClick="lnkCoursCreate_Click">
-                                                            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-                                                            Add Course
-                                                        </asp:LinkButton>
-                                                    </div>
-                                                    <div style="clear: both;"></div>
-                                                </div>
-                                                <%-- azure style="background-color: white; padding: 0 0 20px 5px;"--%>
-                                                <div id="courseDiv" >
+                                    </div>
+                                    <div class="category-body-outer" style="height: 350px;">
+                                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                            <ContentTemplate>
 
-                                                  <%--  <asp:Panel ID="pnlCourses" runat="server">
-                                                    </asp:Panel>--%>
 
-                                                    <%-- DataSourceID="courseListingDS" --%>
+                                                <div style="padding-top: 5px; height: 340px;">
                                                     <asp:DataList ID="dlistCourses" runat="server" Width="99%">
                                                         <ItemTemplate>
+                                                            <asp:HyperLink ID="HyperLink1" runat="server" CssClass="course-list-item-datalist"
+                                                                NavigateUrl='<%# "~/Views/Course/CourseDetail.aspx?cId="+Eval("Id") %>'>
+                                                                <%# Eval("FullName") %>
+                                                                <asp:Label ID="CodeLabel" runat="server"
+                                                                    Text='<%# GetCode(Eval("Code")) %>' />
+                                                            </asp:HyperLink>
+                                                            <%--&nbsp;(--%>
 
-                                                            <%--<asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />--%>
-                                                            <%--<asp:HiddenField ID="HiddenField2" runat="server" Value='<%# Eval("Id") %>' />--%>
-
-                                                            <%--<asp:Label ID="NameLabel" runat="server" Text='<%# Eval("Name") %>' />--%>
-                                                            <%--<div class="list-item">--%>
-
-                                                                <%--●&nbsp;--%>
-                                                                <asp:HyperLink ID="HyperLink1" runat="server" CssClass="list-item-heading-normal"
-                                                                    NavigateUrl='<%# "~/Views/Course/CourseDetail.aspx?cId="+Eval("Id") %>'>
-                                                                    <%# Eval("FullName") %>
-                                                                    <asp:Label ID="CodeLabel" runat="server"
-                                                                        Text='<%# GetCode(Eval("Code")) %>' />
-                                                                </asp:HyperLink>
-                                                                <%--&nbsp;(--%>
-
-                                                                <%--)--%>
+                                                            <%--)--%>
                                                             <%--</div>--%>
-
                                                         </ItemTemplate>
                                                     </asp:DataList>
-
-                                                    <asp:HiddenField ID="HiddenField1" runat="server" />
-
-
                                                 </div>
 
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-
                                     </div>
-
+                                    <div style="text-align: right;" class="option-div">
+                                        <asp:LinkButton ID="lnkCoursCreate" runat="server" Visible="False"
+                                            CssClass="link-dark-for-dark-backcolor"
+                                            OnClick="lnkCoursCreate_Click">
+                                            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
+                                            Add Course
+                                        </asp:LinkButton>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -181,6 +146,8 @@
             text-overflow: ellipsis;
         }
     </style>
+    <link href="../../Content/CSSes/CourseListingStyles.css" rel="stylesheet" />
+
 </asp:Content>
 
 <asp:Content runat="server" ID="contenttitle" ContentPlaceHolderID="title">

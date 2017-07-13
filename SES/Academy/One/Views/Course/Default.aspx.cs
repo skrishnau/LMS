@@ -42,6 +42,7 @@ namespace One.Views.Course
                         lnkCoursCreate.Visible = edit;
                         lnkCatCreate.Visible = edit;
                         Manager = edit;
+
                     }
                     else
                     {
@@ -94,6 +95,7 @@ namespace One.Views.Course
                 {
                     lnkCoursCreate.Visible = false;
                 }
+                var edit = Manager;
                 for (var c = 0; c < cats.Count; c++)
                 {
                     var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
@@ -101,7 +103,7 @@ namespace One.Views.Course
 
                     list.Add(1);
 
-                    catUc.SetNameAndIdOfCategory(cats[c].Id, cats[c].Name, 0);//list
+                    catUc.SetNameAndIdOfCategory(cats[c].Id, cats[c].Name, 0, edit);//list
                     catUc.NameClicked += catUc_NameClicked;
                     catUc.ID = "category_" + cats[c].Id;
                     pnlCategories.Controls.Add(catUc);
@@ -128,6 +130,7 @@ namespace One.Views.Course
 
             #region Function all
 
+            var edit = Manager;
             var subcats = helper.ListSubCategories(schoolId, categoryId);
             var selectedCat = SelectedCategory;
             for (var s = 0; s < subcats.Count; s++)
@@ -135,7 +138,7 @@ namespace One.Views.Course
                 var catUc = (Category.ListUC)Page.LoadControl("~/Views/Course/Category/ListUC.ascx");
                 catUc.Deselect();
 
-                catUc.SetNameAndIdOfCategory(subcats[s].Id, subcats[s].Name, paddingCount);//list
+                catUc.SetNameAndIdOfCategory(subcats[s].Id, subcats[s].Name, paddingCount,edit);//list
                 paddingCount += 1;
                 catUc.NameClicked += catUc_NameClicked;
                 catUc.ID = "category_" + subcats[s].Id;
@@ -200,7 +203,7 @@ namespace One.Views.Course
                 }
             }
         }
-        
+
 
         //earlier code:::: works
         // Note :: ├ ==>1 ,    └ ==> 2 .   ┌ ==> 3 ,   │ ==> 4 ,  empty ==> 0
@@ -300,7 +303,7 @@ namespace One.Views.Course
 
         protected void lnkCatCreate_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Course/CategoryCreate.aspx?catId=" + hidSelectedCategory.Value);
+            Response.Redirect("~/Views/Course/CategoryCreate.aspx?selectedCatId=" + hidSelectedCategory.Value);
             //MultiView1.ActiveViewIndex = 1;
             //lblHeading.Text = "Category Create";
         }

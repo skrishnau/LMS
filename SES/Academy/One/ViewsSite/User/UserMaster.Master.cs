@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -124,17 +125,8 @@ namespace One.ViewsSite.User
                                     middlePanel.Style.Add("border-right", "1px solid darkgrey");
                                     middlePanel.Style.Add("border-left", "1px solid darkgrey");
 
-                                    //var eventsUc = (ModulesUc.EventsUc)
-                                    //    Page.LoadControl("~/ViewsSite/User/ModulesUc/EventsUc.ascx");
-                                    //eventsUc.UserId = user.Id;
-                                    //eventsUc.SchoolId = school.Id;
-                                    //pnlRight.Controls.Add(eventsUc);
-
-                                    var onlineUsersUc = (ModulesUc.OnlineUsersUc)
-                                        Page.LoadControl("~/ViewsSite/User/ModulesUc/OnlineUsersUc.ascx");
-                                    onlineUsersUc.UserId = user.Id;
-                                    onlineUsersUc.SchoolId = school.Id;
-                                    pnlRight.Controls.Add(onlineUsersUc);
+                                   
+                                    
 
                                     right_panel.Visible = true;
                                 }
@@ -184,6 +176,77 @@ namespace One.ViewsSite.User
                     }
 
                     #region NOtice earlier , now commented
+
+                    using (var helper = new DbHelper.Notifications())
+                    {
+                        var due = helper.GetDueClassesNotification(user.SchoolId);
+
+                        if (due.Any())
+                        {
+                            lblEmptyNotice.Visible = false;
+                            imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
+                            var hlink = new HyperLink()
+                            {
+                                Text = "Due classes, Mark completion ("+due.Count+")",
+                                NavigateUrl = "#"
+                            };
+                            plHolderNotice.Controls.Add(hlink);
+
+                            //var image = new Label()
+                            //{
+                            //    Text = due.Count.ToString(),
+                            //    BackColor = Color.Red,
+                            //    ForeColor = Color.White,
+                            //};
+                            //var text = new Label()
+                            //{
+                            //    Text = "Teacher not assigned to class",
+                            //};
+                            //hlink.Controls.Add(text);
+                            //hlink.Controls.Add(image);
+                        }
+
+                        var noTeacher = helper.GetNoTeacherInClassNotification(user.SchoolId);
+                        if (noTeacher.Any())
+                        {
+                            lblEmptyNotice.Visible = false;
+                            imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
+
+                            var hlink = new HyperLink()
+                            {
+                                //<span style='background-color:red;color:white;padding:-2px;'></span>"
+                                Text = "Teacher not assigned to class ("+noTeacher.Count+")",
+                                NavigateUrl = "#"
+                            };
+                            plHolderNotice.Controls.Add(hlink);
+
+
+                            //var image = new Label()
+                            //{
+                            //    Text = "<sup style='line-height:12px; height:12px;'>" + noTeacher.Count.ToString()+"</sup>",
+                            //    BackColor = Color.Red,
+                            //    ForeColor = Color.White,
+                            //    Style = { }
+                            //};
+                            //var text = new Label()
+                            //{
+                            //    Text = "Teacher not assigned to class",
+                            //    Font = { Size = 10}
+                            //};
+                            //hlink.Controls.Add(text);
+                            //hlink.Controls.Add(image);
+                        }
+
+                        //foreach (var sc in due)
+                        //{
+                        //    var hlink  = new HyperLink()
+                        //    {
+                        //        Text = sc.GetCourseFullName,
+                        //        NavigateUrl = "#"
+                        //    };
+                        //    plHolderNotice.Controls.Add(hlink);
+                        //}
+                    }
 
                     //using (var nhelper = new DbHelper.Notice())
                     //{

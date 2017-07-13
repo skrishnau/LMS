@@ -61,11 +61,13 @@
                                             <asp:Button ID="btnAdd" runat="server" Text="◄ Add" Width="100px" OnClick="btnAsg_Click" />
                                             <br />
                                             <div id="enroll-option">
-                                                <p>
-                                                    <asp:Label ID="lblAssignRole" runat="server" Text="Assign Role"></asp:Label>
+                                                <%--<p>--%>
+                                                    <asp:Label ID="lblAssignRole" runat="server" Text="Assign Role" Visible="False"></asp:Label>
                                                     <br />
-                                                    <asp:DropDownList ID="ddlAssignRole" runat="server" Height="22px" Width="120px"></asp:DropDownList>
-                                                </p>
+                                                    <asp:DropDownList ID="ddlAssignRole" runat="server" Height="22px" Width="120px"
+                                                        Visible="False"
+                                                        ></asp:DropDownList>
+                                                <%--</p>--%>
                                                 <p>
                                                     <asp:Label ID="lblEnrollmentDuration" runat="server" Text="Enrollment Duration"></asp:Label>
                                                     <br />
@@ -138,6 +140,7 @@
     <asp:HiddenField ID="hidSubjectSessionId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSessionStartDate" runat="server" Value="" />
     <asp:HiddenField ID="hidTeacherOnly" runat="server" Value="False" />
+    <asp:HiddenField ID="hidEnrollType" runat="server" Value="student" />
 
    
     <style type="text/css">

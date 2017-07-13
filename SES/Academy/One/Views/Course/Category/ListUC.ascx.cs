@@ -35,7 +35,7 @@ namespace One.Views.Course.Category
         {
 
             //pnlName.BackColor = Color.LightBlue;
-            pnlName.BackColor = Color.FromArgb(204,204,204);
+            pnlName.BackColor = Color.FromArgb(216,216,216);
 
 
 
@@ -56,7 +56,63 @@ namespace One.Views.Course.Category
         {
 
         }
-        public void SetNameAndIdOfCategoryWithImage(int id, string name, List<int> treeLinkImages = null)
+
+        public void SetNameAndIdOfCategory(int categoryId, string name, int paddingCount, bool edit)
+        {
+            CategoryId = categoryId;
+            if (paddingCount % 2 == 0)
+            {
+                //this.lblName.Text = DbHelper.StaticValues.IndentationImageFull[1]+name;
+                this.lblName.Text = name;
+            }
+            else
+            {
+                //this.lblName.Text = DbHelper.StaticValues.IndentationImageFull[2] + name;
+                this.lblName.Text =  name;
+            }
+            this.pnlName.Style.Add("padding-left", (paddingCount * 15) + "px");
+
+            if (!edit)
+            {
+                //lnkName.CssClass = "category-list-item";
+                pnlName.CssClass = "category-list-editModeOff";
+            }
+            else
+            {
+                //lnkName.CssClass
+                pnlName.CssClass = "category-list-editModeOn";
+                lnkEdit.NavigateUrl = "~/Views/Course/CategoryCreate.aspx?catId="+categoryId;
+                lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task="+
+                     DbHelper.StaticValues.Encode("courseCategory") +
+                    "&catId="+categoryId;
+            }
+            lnkEdit.Visible = edit;
+            lnkDelete.Visible = edit;
+        }
+
+        public void AddSubCategories(ListUC uc)
+        {
+            this.pnlSubCategories.Controls.Add(uc);
+        }
+
+        protected void lblName_Click(object sender, EventArgs e)
+        {
+            if (NameClicked != null)
+            {
+                NameClicked(this, new DataEventArgs()
+                {
+                    Id = Convert.ToInt32(hidCategoryId.Value)
+                    ,
+                    Name = lblName.Text.Replace("♦","").Replace("●","")
+                });
+                Select();
+            }
+        }
+
+
+        #region Unused for now.. but some unused call to the below functiions.. check later Commented codes (view later)
+
+        public void SetNameAndIdOfCategoryWithImage(int id, string name, bool edit, List<int> treeLinkImages = null)
         {
             this.hidCategoryId.Value = id.ToString();
             this.lblName.Text = name;
@@ -101,7 +157,12 @@ namespace One.Views.Course.Category
                         }
                     }
 
-                    ///not used
+                    if (edit)
+                    {
+                        lnkName.CssClass = "list-item";
+                        pnlName.CssClass = "";
+                    }
+                    //not used
                     //if (i == 0)
                     //{
 
@@ -233,37 +294,8 @@ namespace One.Views.Course.Category
             }
         }
 
-        public void SetNameAndIdOfCategory(int id, string name, int paddingCount)
-        {
-            this.hidCategoryId.Value = id.ToString();
-            if (paddingCount % 2 == 0)
-            {
-                this.lblName.Text = DbHelper.StaticValues.IndentationImageFull[1]+name;
-            }
-            else
-            {
-                this.lblName.Text = DbHelper.StaticValues.IndentationImageFull[2] + name;
-            }
-            this.pnlName.Style.Add("padding-left", (paddingCount * 15) + "px");
-        }
 
-        public void AddSubCategories(ListUC uc)
-        {
-            this.pnlSubCategories.Controls.Add(uc);
-        }
+        #endregion
 
-        protected void lblName_Click(object sender, EventArgs e)
-        {
-            if (NameClicked != null)
-            {
-                NameClicked(this, new DataEventArgs()
-                {
-                    Id = Convert.ToInt32(hidCategoryId.Value)
-                    ,
-                    Name = lblName.Text.Replace("♦","").Replace("●","")
-                });
-                Select();
-            }
-        }
     }
 }

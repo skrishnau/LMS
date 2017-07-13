@@ -16,6 +16,13 @@ namespace One.Views.Class.Enrollment
             if (!IsPostBack)
             {
                 var classId = Request.QueryString["ccId"];
+                var enrolType = Request.QueryString["type"];
+
+                lblEnrollHeading.Text = (enrolType == DbHelper.StaticValues.Roles.Teacher
+                    ? "Teacher"
+                    : "Student") + " enroll";
+                UserEnrollUC_ListDisplay1.EnrollRole = enrolType;
+
                 if (classId != null)
                 {
                     try

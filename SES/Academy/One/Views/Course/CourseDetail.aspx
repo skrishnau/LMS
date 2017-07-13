@@ -16,10 +16,10 @@
             </h3>
             <hr />
 
-            <div style="text-align: center;">
+            <div class="option-div">
                 <asp:HyperLink ID="lnkView" runat="server">View</asp:HyperLink>
-                <asp:HyperLink ID="lnkEdit" runat="server"> | Edit</asp:HyperLink>
-                <asp:HyperLink ID="lnkDelete" runat="server"> | Delete</asp:HyperLink>
+                <asp:HyperLink ID="lnkEdit" runat="server">Edit</asp:HyperLink>
+                <asp:HyperLink ID="lnkDelete" runat="server">Delete</asp:HyperLink>
                 <%-- | 
                 <asp:HyperLink ID="HyperLink4" runat="server">Hide</asp:HyperLink>
                 | 
@@ -28,11 +28,13 @@
                 <asp:HyperLink ID="HyperLink6" runat="server">Restore</asp:HyperLink>--%>
             </div>
         </div>
-        <br />
+        <br/>
         <div class="data-entry-section">
-            <div class="data-entry-section-heading">Detail</div>
+            <%--<div class="data-entry-section-heading">
+                Detail
             <hr />
-            <div style="margin-left: 10px;">
+            </div>   style="margin-left: 10px;"--%>
+            <div>
                 <%-- <div class="border-bottom1">
                     <span class="width10">Short Name
                     </span>
@@ -74,46 +76,43 @@
             </div>
 
             <br />
-
-            <br />
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <%-- ---update panel here --%>
                     <div>
                         <div runat="server" id="pnlClasses" visible="False">
-                            <div>
-                                <strong>Classes</strong>
+                            <div class="data-entry-section-heading">
+                                <div style="float: left;">
+                                    Classes
+                                </div>
                                 <%--<span>Use filter to filter the completed, Due and Not-started yet coureses</span>--%>
 
-                                <span style="margin-left: 10px;">
-                                    <asp:HyperLink ID="lnkNewClass" runat="server" CssClass="link_smaller"
-                                        ToolTip="For different group studying the Course at the same time, there can be different Subject Sessions,so as to differentiate the course content for each group.">
-                                        <asp:Image ID="Image1" ImageUrl="~/Content/Icons/Add/Add-icon.png" runat="server" />
-                                        Create New Class
-                                    </asp:HyperLink>
-                                </span>
-                                <%--  <div style="float: right;">
-                                    <asp:HyperLink ID="lnkEditClasses" runat="server">
-                                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-                                        <asp:Label ID="lblEditClasses" runat="server" Text="Edit Classes"></asp:Label>
-                                    </asp:HyperLink>
-                                </div>--%>
+                                <div style="float: right;" class="option-div">
+                                    <span style="margin-left: 10px;">
+                                        <%-- CssClass="link_smaller" --%>
+                                        <asp:HyperLink ID="lnkNewClass" runat="server"
+                                            ToolTip="For different group studying the Course at the same time, there can be different Subject Sessions,so as to differentiate the course content for each group.">
+                                            <asp:Image ID="Image1" ImageUrl="~/Content/Icons/Add/Add-icon.png" runat="server" />
+                                            Create New Class
+                                        </asp:HyperLink>
+                                    </span>
+                                </div>
                                 <div style="clear: both;"></div>
+                                <hr />
                             </div>
 
-                            <hr />
                             <%-- List of currently studying students --%>
                             <%-- Give to choose the year --%>
+                            <div style="margin-left: 10px;">
+                                <%-- #557d96 --%>
+                                <div style="padding: 3px; border: 1px solid lightgrey; margin-left: 3px; margin-right: 3px;">
+                                    <asp:LinkButton ID="lnkClassFilter" runat="server" CssClass="link"
+                                        Font-Underline="False" OnClick="lnkClassFilter_Click">
+                                        <%--<asp:Image runat="server" ID="imgFilter" ImageUrl="~/Content/Icons/Arrow/arrow_right.png" Visible="False" />--%>
+                                        <asp:Literal ID="lblFilterArrow" runat="server" Text="►"></asp:Literal>
+                                        Filter
+                                    </asp:LinkButton>
 
-                            <div style="padding: 3px; border: 1px solid #557d96; margin-left: 15px;">
-                                <asp:LinkButton ID="lnkClassFilter" runat="server" CssClass="link"
-                                    Font-Underline="False" OnClick="lnkClassFilter_Click">
-                                    <%--<asp:Image runat="server" ID="imgFilter" ImageUrl="~/Content/Icons/Arrow/arrow_right.png" Visible="False" />--%>
-                                    <asp:Literal ID="lblFilterArrow" runat="server" Text="►"></asp:Literal>
-                                    Filter
-                                </asp:LinkButton>
-
-                                <div style="margin-left: 10px;">
                                     <asp:Panel ID="pnlClassFilter" runat="server" Visible="False">
                                         <%--<hr />--%>
                                         <table>
@@ -147,7 +146,7 @@
                                                 <td class="table-row-padding">
                                                     <asp:LinkButton ID="btnNotStartedYet" runat="server" OnClick="btnFilterCrieteria_Click">
                                                         <%--<span style="background-color: #fbfb3f;" class="class-filter-table-cell"></span>--%>
-                                                        <asp:Image ID="Image3" runat="server" 
+                                                        <asp:Image ID="Image3" runat="server"
                                                             Height="11" Width="11"
                                                             ImageUrl="~/Content/Icons/Hourglass/schedule_14px.png" />
                                                         Not yet Started
@@ -168,58 +167,50 @@
 
 
                                     </asp:Panel>
+
                                 </div>
+                                <br />
+
+
+                                <asp:DataList ID="dlistClasses" runat="server" Width="100%" ForeColor="#333333">
+                                    <%--<AlternatingItemStyle BackColor="White" />--%>
+                                    <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                                    <ItemStyle ForeColor="#333333" />
+                                    <%-- BackColor="#FFFBD6" --%>
+
+                                    <ItemTemplate>
+                                        <%-- class="auto-st2-border-no-margin" --%>
+                                        <div class="list-item-datalist">
+                                            <%--  style=" padding-left: 10px; padding-top: 3px;" --%>
+                                            <asp:HyperLink ID="lblName" runat="server" CssClass="link"
+                                                NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("ClassId") %>'
+                                                Text='<%# Eval("ClassName") %>'></asp:HyperLink>
+                                            <asp:Literal ID="lblRegularOrNot" runat="server" Text=""></asp:Literal>
+
+                                            <asp:Image ID="Image2" runat="server" Height="10" Width="10"
+                                                ImageUrl='<%# Eval("IconUrl") %>' />
+                                            <%-- ImageUrl='<%# GetImageUrl(Eval("SessionComplete"),Eval("StartDate"),Eval("EndDate")) %>' --%>
+                                            &nbsp;&nbsp;
+                                                <span class="span-edit-delete">
+                                                    <asp:HyperLink ID="lnkEdit" runat="server" Visible='<%# Edit && !Convert.ToBoolean(Eval("IsRegular")) %>'
+                                                        NavigateUrl='<%# "~/Views/Class/CourseSessionCreate.aspx?cId="+Eval("SubjectId")+"&subclsId="+Eval("ClassId") %>'>
+                                                        <asp:Image ID="imgEditBtn" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                                                    </asp:HyperLink>
+                                                    <asp:HyperLink ID="lnkDelete" runat="server" Visible='<%# Edit && !Convert.ToBoolean(Eval("IsRegular")) %>'
+                                                        NavigateUrl='<%# "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=c3ViamVjdENsYXNz&subclsId="+Eval("ClassId") %>'>
+                                                        <asp:Image ID="Image22" runat="server" ImageUrl="~/Content/Icons/delete/trash.png" />
+                                                    </asp:HyperLink>
+                                                </span>
+                                        </div>
+                                    </ItemTemplate>
+                                    <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                                </asp:DataList>
                             </div>
 
                         </div>
                         <%-- background-color: lightgoldenrodyellow; --%>
-                        <div style="padding: 10px;">
-
-                            <asp:DataList ID="dlistClasses" runat="server" Width="100%" ForeColor="#333333">
-                                <%--<AlternatingItemStyle BackColor="White" />--%>
-                                <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                                <ItemStyle ForeColor="#333333" />
-                                <%-- BackColor="#FFFBD6" --%>
-
-                                <ItemTemplate>
-                                    <%--  --%>
-                                    <div class="auto-st2-border-no-margin">
-
-                                        <div style="font-size: 1.2em; padding-left: 10px; padding-top: 3px;">
-                                            <asp:HyperLink ID="lblName" runat="server" CssClass="link"
-                                                NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("Id") %>'
-                                                Text='<%# Eval("GetName") %>'></asp:HyperLink>
-                                            <asp:Literal ID="lblRegularOrNot" runat="server" Text=""></asp:Literal>
-
-                                            <asp:Image ID="Image2" runat="server" Height="10" Width="10"
-                                                ImageUrl='<%# GetImageUrl(Eval("SessionComplete"),Eval("StartDate"),Eval("EndDate")) %>' />
-                                        </div>
-
-                                        <%--&nbsp;
-                                                        <asp:HyperLink ID="lnkEdit" runat="server" Visible='<%# Edit %>'
-                                                            >
-                                                            <asp:Image ID="imgEditBtn" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-                                                        </asp:HyperLink>
-                                                        &nbsp;
-                                                        <asp:HyperLink ID="lnkDelete" runat="server" Visible='<%# Edit %>'
-
-                                                             >
-                                                            <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/delete/trash.gif" />
-                                                        </asp:HyperLink>--%>
-
-
-                                       <%-- <asp:Panel runat="server" ID="panel1" Width="15" Height="70"
-                                            BackColor='<%# GetCompletedColor(DataBinder.Eval(
-                                                        Container.DataItem,"SessionComplete")
-                                                        ,Eval("StartDate") ,Eval("EndDate")
-                                                        ) %>'>
-                                        </asp:Panel>--%>
-
-                                    </div>
-                                </ItemTemplate>
-                                <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                            </asp:DataList>
+                        <div style="padding-top: 10px;">
                         </div>
 
                     </div>

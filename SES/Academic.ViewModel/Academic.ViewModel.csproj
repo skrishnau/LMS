@@ -55,7 +55,7 @@
     <Compile Include="ActivityResource\UserSubmissions.cs" />
     <Compile Include="Batch\BatchViewModel.cs" />
     <Compile Include="ChoiceViewModel.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="ClassViewModel.cs" />
     <Compile Include="EnrolledUser.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Files\ImageListingViewModel.cs" />

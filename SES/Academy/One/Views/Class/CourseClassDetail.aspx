@@ -66,20 +66,20 @@
         </div>
         <br />
         <%-- style="text-align: center; vertical-align: bottom; float: left; padding-top: 8px; padding-left: 20px;" --%>
-        <div style="">
-            <div style="text-align: center;">
-                <asp:HyperLink ID="lnkReport" runat="server" CssClass="auto-st2 link">View Report</asp:HyperLink>
-                &nbsp;
-                <asp:HyperLink ID="lnkMarkCompletion" runat="server" CssClass="auto-st2 link">Mark Complete</asp:HyperLink>
-                &nbsp;
-                <asp:HyperLink ID="lnkEnrollTeachers" runat="server" CssClass="auto-st2 link">Enroll Teachers</asp:HyperLink>
-                 &nbsp;
-                <asp:HyperLink ID="lnkEnrollStudents" runat="server" CssClass="auto-st2 link">Enroll Students</asp:HyperLink>
+        <%-- style="text-align: center;"  CssClass="auto-st2 link"  --%>
 
-                <%--<asp:Button ID="btnEnroll" runat="server" Text="Enroll Users" OnClick="btnEnroll_Click" CssClass="auto-st2 link"/>--%>
+        <div class="option-div">
+            <asp:HyperLink ID="lnkReport" runat="server" >View Report</asp:HyperLink>
+            &nbsp;
+                <asp:HyperLink ID="lnkMarkCompletion" runat="server"  Visible="False">Mark Complete</asp:HyperLink>
+            &nbsp;
+                <asp:HyperLink ID="lnkEnrollTeachers" runat="server" Visible="False">Enroll Teachers</asp:HyperLink>
+            &nbsp;
+                <asp:HyperLink ID="lnkEnrollStudents" runat="server" Visible="False">Enroll Students</asp:HyperLink>
 
-            </div>
+            <%--<asp:Button ID="btnEnroll" runat="server" Text="Enroll Users" OnClick="btnEnroll_Click" CssClass="auto-st2 link"/>--%>
         </div>
+
         <br />
 
 
@@ -91,11 +91,11 @@
                     Visible="False">
                     <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
 
-                    Teacher is not assigned to this class yet. Please assign teacher(s).
+                    Teacher is not assigned to this class yet. Please assign teacher(s). <br />
                 </asp:Label>
             </div>
 
-            <br />
+           
 
             <div class="data-entry-section-heading">
                 Enrolled users

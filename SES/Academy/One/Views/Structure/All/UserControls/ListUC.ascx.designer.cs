@@ -40,15 +40,6 @@ namespace One.Views.Structure.All.UserControls {
         protected global::System.Web.UI.WebControls.LinkButton lnkName;
         
         /// <summary>
-        /// lblName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
-        
-        /// <summary>
         /// imgShowHide control.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace One.Views.Structure.All.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgShowHide;
+        
+        /// <summary>
+        /// lblName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
         /// lnkEdit control.
@@ -110,6 +110,15 @@ namespace One.Views.Structure.All.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidStructureType;
+        
+        /// <summary>
+        /// pnlHiddenLayer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlHiddenLayer;
         
         /// <summary>
         /// pnlSubControls control.

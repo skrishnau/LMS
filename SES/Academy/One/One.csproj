@@ -1167,6 +1167,8 @@
     <Content Include="Content\CSSes\BasicStyles.css" />
     <Content Include="Content\CSSes\CourseListingStyles.css" />
     <Content Include="Content\CSSes\CreateEditStyles.css" />
+    <Content Include="Content\CSSes\DropdownCss.css" />
+    <Content Include="Content\CSSes\FinalCss.css" />
     <Content Include="Content\CSSes\ListingStyles.css" />
     <Content Include="Content\CSSes\MasterStyles.css" />
     <Content Include="Content\CSSes\NotUsedNow.css" />
@@ -1187,30 +1189,40 @@
     <Content Include="Content\Icons\ActivityResource\Assignment\assignment_with_yellow_pencil.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\document-icon1.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\document_submit_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Assignment\document-icon2.png" />
     <Content Include="Content\Icons\ActivityResource\Assignment\document-icon.png" />
     <Content Include="Content\Icons\ActivityResource\Book\Add.png" />
     <Content Include="Content\Icons\ActivityResource\Book\book1.png" />
+    <Content Include="Content\Icons\ActivityResource\Book\Book2.png" />
     <Content Include="Content\Icons\ActivityResource\Book\Book.png" />
     <Content Include="Content\Icons\ActivityResource\Book\book_chapter_add.png" />
     <Content Include="Content\Icons\ActivityResource\Choice\choice_icon1.png" />
+    <Content Include="Content\Icons\ActivityResource\Choice\choice_icon2.png" />
     <Content Include="Content\Icons\ActivityResource\Choice\choice_icon.png" />
     <Content Include="Content\Icons\ActivityResource\File\any_file_icon1.png" />
     <Content Include="Content\Icons\ActivityResource\File\any_file_icon2.png" />
+    <Content Include="Content\Icons\ActivityResource\File\any_file_icon3.png" />
+    <Content Include="Content\Icons\ActivityResource\File\any_file_icon4.png" />
     <Content Include="Content\Icons\ActivityResource\File\any_file_icon.png" />
     <Content Include="Content\Icons\ActivityResource\Folder\folder-icon-40x40-locked.png" />
     <Content Include="Content\Icons\ActivityResource\Folder\folder-icon-40x40.png" />
     <Content Include="Content\Icons\ActivityResource\Folder\folder_icon_plain.png" />
+    <Content Include="Content\Icons\ActivityResource\Folder\folder_icon_plain2.png" />
     <Content Include="Content\Icons\ActivityResource\Folder\folder_icon_plain1.png" />
     <Content Include="Content\Icons\ActivityResource\Forum\forum_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Forum\forum_icon2.png" />
     <Content Include="Content\Icons\ActivityResource\Forum\forum_icon1.png" />
     <Content Include="Content\Icons\ActivityResource\Label\label_icon2.png" />
     <Content Include="Content\Icons\ActivityResource\Label\label_icon1.png" />
+    <Content Include="Content\Icons\ActivityResource\Label\label_icon3.png" />
     <Content Include="Content\Icons\ActivityResource\Label\label_icon.png" />
     <Content Include="Content\Icons\ActivityResource\Page\page_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Page\page_icon2.png" />
     <Content Include="Content\Icons\ActivityResource\Page\page_icon1.png" />
     <Content Include="Content\Icons\ActivityResource\Url\url_earth.png" />
     <Content Include="Content\Icons\ActivityResource\Url\url_icon.png" />
     <Content Include="Content\Icons\ActivityResource\Url\url_with_text1.png" />
+    <Content Include="Content\Icons\ActivityResource\Url\url_with_text2.png" />
     <Content Include="Content\Icons\ActivityResource\Url\url_with_text.png" />
     <Content Include="Content\Icons\AddEditDelete\add.ico" />
     <Content Include="Content\Icons\AddEditDelete\add_small.png" />
@@ -1309,7 +1321,12 @@
     <Content Include="Content\Icons\Indent\circle_dot.png" />
     <Content Include="Content\Icons\Indent\square_dot.png" />
     <Content Include="Content\Icons\List\List_16px.png" />
+    <Content Include="Content\Icons\List\transaction-list-16px.png" />
     <Content Include="Content\Icons\Message\email.png" />
+    <Content Include="Content\Icons\Message\message-filled-26px.png" />
+    <Content Include="Content\Icons\Message\message-filled-light-26px.png" />
+    <Content Include="Content\Icons\Message\urgent-message-26px.png" />
+    <Content Include="Content\Icons\Message\urgent-message-light-26px.png" />
     <Content Include="Content\Icons\Move\move1_13x13.png" />
     <Content Include="Content\Icons\Move\move0_13x13.png" />
     <Content Include="Content\Icons\New\new_icon.png" />
@@ -1317,6 +1334,8 @@
     <Content Include="Content\Icons\Notice\agt_announcements.png" />
     <Content Include="Content\Icons\Notice\agt_announcements_excla.png" />
     <Content Include="Content\Icons\Notice\bell_notice.png" />
+    <Content Include="Content\Icons\Notice\Info-light-26px.png" />
+    <Content Include="Content\Icons\Notice\Info-urgent-light-26px.png" />
     <Content Include="Content\Icons\Notice\notification-icon.png" />
     <Content Include="Content\Icons\Notice\Warning_Shield_16px.png" />
     <Content Include="Content\Icons\Participation\degree_icon.jpg" />
@@ -1336,9 +1355,14 @@
     <Content Include="Content\Icons\Search\search-icon-small.png" />
     <Content Include="Content\Icons\Search\search-icon.png" />
     <Content Include="Content\Icons\Search\search2.png" />
+    <Content Include="Content\Icons\Settings\setting-light-26px.png" />
     <Content Include="Content\Icons\Settings\setting_glow.png" />
     <Content Include="Content\Icons\Settings\settings-icon.png" />
     <Content Include="Content\Icons\setting_1.png" />
+    <Content Include="Content\Icons\Sort\sort-down-14px.png" />
+    <Content Include="Content\Icons\Sort\sort-down-20px.png" />
+    <Content Include="Content\Icons\Sort\sort-right-14px.png" />
+    <Content Include="Content\Icons\Sort\sort-right-20px.png" />
     <Content Include="Content\Icons\Start\active_icon_10px.png" />
     <Content Include="Content\Icons\Start\New_Moon_16px.png" />
     <Content Include="Content\Icons\Start\Play_16px.png" />
@@ -1619,6 +1643,7 @@
     <Content Include="ViewsSite\User\ModulesUc\NoticeBoardUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\NoticeItemUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx" />
+    <Content Include="ViewsSite\User\ModulesUc\OpenClassesUc.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\SettingsTeacher.ascx" />
     <Content Include="ViewsSite\User\ModulesUc\SettingsUc.ascx" />
     <Content Include="ViewsSite\User\Settings\Setting.aspx" />
@@ -1716,6 +1741,7 @@
     <Content Include="Views\Class\Enrollment\testOfSelectInListView.aspx" />
     <Content Include="Views\Class\Enrollment\UserEnrollUC.ascx" />
     <Content Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx" />
+    <Content Include="Views\Class\SelfEnrolment.aspx" />
     <Content Include="Views\Courses\Default.aspx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChooseUc.ascx" />
@@ -2265,6 +2291,13 @@
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\OnlineUsersUc.ascx.designer.cs">
       <DependentUpon>OnlineUsersUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\OpenClassesUc.ascx.cs">
+      <DependentUpon>OpenClassesUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsSite\User\ModulesUc\OpenClassesUc.ascx.designer.cs">
+      <DependentUpon>OpenClassesUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewsSite\User\ModulesUc\SettingsTeacher.ascx.cs">
       <DependentUpon>SettingsTeacher.ascx</DependentUpon>
@@ -2909,6 +2942,13 @@
     </Compile>
     <Compile Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx.designer.cs">
       <DependentUpon>UserEnrollUC_ListDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Class\SelfEnrolment.aspx.cs">
+      <DependentUpon>SelfEnrolment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\SelfEnrolment.aspx.designer.cs">
+      <DependentUpon>SelfEnrolment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Courses\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -3926,8 +3966,6 @@
     <Folder Include="ViewsSite\DashBoard\Student\CourseSection\" />
     <Folder Include="Views\ActivityResource\Availability\" />
     <Folder Include="Views\All_Resusable_Codes\Paging\" />
-    <Folder Include="Views\Course\Display\CourseList\" />
-    <Folder Include="Views\Course\Display\EachCourse\" />
     <Folder Include="Views\Exam\Exam\Create\" />
     <Folder Include="Views\Message\" />
     <Folder Include="Views\Settings\" />

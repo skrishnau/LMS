@@ -4,8 +4,10 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:LinkButton ID="lnkName" runat="server" OnClick="lnkName_OnClick" CssClass="link-dark-bold">
+                <%--<span style="line-height: 30px; padding-top: 5px; vertical-align: central; margin-top: 5px;">--%>
+                <asp:Image ID="imgShowHide" runat="server" ImageUrl="~/Content/Icons/Sort/sort-right-14px.png" />
                 <asp:Label ID="lblName" runat="server" Text="Label"></asp:Label>
-                <asp:Image ID="imgShowHide" runat="server" ImageUrl="~/Content/Icons/Arrow/right-arrow.png" />
+                <%--</span>--%>
             </asp:LinkButton>
             <%--  class="list-item-option" --%>
             <span class="span-edit-delete">
@@ -23,13 +25,15 @@
             <%-- aliceblue --%>
             <%--background-color: #e6e6ff;--%>
             <div style="margin-left: 25px; border-left: solid lightgray 1px;">
-                <asp:PlaceHolder ID="pnlSubControls" runat="server" Visible="False"></asp:PlaceHolder>
-                <div>
-                    <asp:HyperLink ID="lnkAdd" runat="server" Visible="False" CssClass="link-dark">
-                        <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-                        <asp:Literal ID="lblAddText" runat="server" Text=""></asp:Literal>
-                    </asp:HyperLink>
-                </div>
+                <asp:Panel runat="server" ID="pnlHiddenLayer" Visible="False">
+                    <asp:PlaceHolder ID="pnlSubControls" runat="server" Visible="True"></asp:PlaceHolder>
+                    <div>
+                        <asp:HyperLink ID="lnkAdd" runat="server" Visible="False" CssClass="link-button">
+                            <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
+                            <asp:Literal ID="lblAddText" runat="server" Text=""></asp:Literal>
+                        </asp:HyperLink>
+                    </div>
+                </asp:Panel>
             </div>
 
         </ContentTemplate>

@@ -4,9 +4,8 @@
 
 
     <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
-    
-    <asp:HiddenField ID="hidRetUrl" runat="server" />
-    <asp:HiddenField ID="hidId" runat="server" Value="0" />
+
+    <asp:HiddenField ID="hidCategoryId" runat="server" Value="0" />
     <asp:HiddenField ID="hidParentCategoryId" runat="server" Value="0" />
 
     <table>
@@ -39,6 +38,8 @@
         <asp:Button ID="btnSave" runat="server" Text="Save" Width="73px" OnClick="btnSave_Click"
             ValidationGroup="categoryCreateGroup" />
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" Visible="False" Width="69px" />
+        <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" Width="69px" />
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label runat="server" ID="lblError" Text="Save Error!"></asp:Label>
     </div>
 </div>

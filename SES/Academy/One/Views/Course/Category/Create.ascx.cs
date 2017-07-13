@@ -14,11 +14,12 @@ namespace One.Views.Course.Category
     public partial class Create : System.Web.UI.UserControl
     {
 
-        public event EventHandler<MessageEventArgs> SaveClicked;
-        public event EventHandler<MessageEventArgs> CancelClicked;
+        //public event EventHandler<MessageEventArgs> SaveClicked;
+        //public event EventHandler<MessageEventArgs> CancelClicked;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             if (!IsPostBack)
             {
                 txtName.Focus();
@@ -26,13 +27,32 @@ namespace One.Views.Course.Category
                 if (user != null)
                 {
                     //DbHelper.ComboLoader.LoadSubjectCategory(ref cmbCategory,user.SchoolId, true, false);                    
-                    DbHelper.ComboLoader.LoadSubjectCategory(ref cmbCategory, SchoolId, true, false);                    
+                    DbHelper.ComboLoader.LoadSubjectCategory(ref cmbCategory, SchoolId, true, false);
+                }
+                
+                LoadData();
+            }
+        }
 
-                }
-                if (!String.IsNullOrEmpty(hidRetUrl.Value) || CancelClicked != null)
+        private void LoadData()
+        {
+            var catId = Request.QueryString["catId"];
+            if (catId != null)
+            {
+                var categoryId= Convert.ToInt32(catId);
+                using (var helper = new DbHelper.Subject())
                 {
-                    btnCancel.Visible = true;
+                    var category = helper.GetCategory(categoryId);
+                    if (category != null)
+                    {
+                        CategoryId = categoryId;
+                        txtName.Text = category.Name;
+                        txtDescription.Text = category.Description;
+                        ParentCategoryId = category.ParentId ?? 0;
+                        
+                    }
                 }
+
             }
         }
 
@@ -47,14 +67,22 @@ namespace One.Views.Course.Category
             set { hidParentCategoryId.Value = value.ToString(); }
         }
 
-        public String ReturnUrl
+        public int CategoryId
         {
-            set
-            {
-                btnCancel.Visible = true;
-                hidRetUrl.Value = value;
-            }
+            get { return Convert.ToInt32(hidCategoryId.Value); }
+            set { hidCategoryId.Value = value.ToString(); }
         }
+
+        //public String ReturnUrl
+        //{
+        //    set
+        //    {
+        //        btnCancel.Visible = true;
+        //        hidRetUrl.Value = value;
+        //    }
+        //}
+
+
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -62,7 +90,7 @@ namespace One.Views.Course.Category
             {
                 var cat = new Academic.DbEntities.Subjects.SubjectCategory()
             {
-                Id = Convert.ToInt32(hidId.Value)
+                Id = CategoryId
                 ,
                 SchoolId = SchoolId
                 ,
@@ -84,26 +112,11 @@ namespace One.Views.Course.Category
                     var save = helper.AddOrUpdateSubjectCategory(cat);
                     if (save != null)
                     {
-                        ResetControls();
-                        if (SaveClicked != null)
-                        {
-                            var args = DbHelper.StaticValues.SuccessSaveMessageEventArgs;
-                            args.SavedId = save.Id;
-                            args.SavedName = save.Name;
-                            SaveClicked(this, args);
-                        }
-                        else if (!String.IsNullOrEmpty(hidRetUrl.Value))
-                        {
-                            Response.Redirect(hidRetUrl.Value);
-                        }
-
+                        Response.Redirect("~/Views/Course/?catId="+save.Id);
                     }
                     else
                     {
-                        if (SaveClicked != null)
-                        {
-                            SaveClicked(this, DbHelper.StaticValues.ErrorSaveMessageEventArgs);
-                        }
+                        lblError.Visible = true;
                     }
                 }
             }
@@ -112,23 +125,8 @@ namespace One.Views.Course.Category
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            if (CancelClicked != null)
-            {
-                ResetControls();
-                CancelClicked(this, DbHelper.StaticValues.CancelClickedMessageEventArgs);
-            }
-            else if (!String.IsNullOrEmpty(hidRetUrl.Value))
-            {
-                ResetControls();
-                Response.Redirect(hidRetUrl.Value);
-            }
+            Response.Redirect("~/Views/Course/?catId=" +CategoryId);
         }
 
-        public void ResetControls()
-        {
-            txtName.Text = "";
-            txtDescription.Text = "";
-            cmbCategory.ClearSelection();
-        }
     }
 }

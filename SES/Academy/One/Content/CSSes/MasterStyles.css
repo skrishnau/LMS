@@ -5,6 +5,7 @@
 
 body {
     color: #393939;
+    /*font-size: 0.9em;*/
 }
 
 
@@ -41,7 +42,7 @@ h3.heading-of-display {
 
 /*body of sections*/
 div.data-entry-section {
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
 .data-entry-section-link-listing a {
@@ -70,24 +71,26 @@ div.data-entry-section {
 
 div.data-entry-section-heading {
     font-size: 1.1em;
-    font-weight: 700;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: left;
+    margin-top: 20px;
 }
 
     div.data-entry-section-heading hr {
         border: none;
-        background-color: darkgray;
+        background-color: #e6e6e6;
         height: 1px;
     }
 
 
 
 div.data-entry-section-body {
-    margin-left: 20px;
-    /*margin: 0 20px 0;*/
+    /*margin-left: 10px;*/
 }
 
 div.data-entry-section-no-margin {
-    margin-left: 1px;
+    margin-left:1px;
     /*margin: 0 20px 0;*/
 }
 
@@ -129,6 +132,7 @@ h3 {
     font-size: 1.2em;
 }
 /*-------------------------check end*/
+
 
 
 /*LInks*/
@@ -173,6 +177,7 @@ h3 {
         text-decoration: underline;
         display: inline-block;
     }
+
 /*link grey*/
 .link-grey, .link-grey:visited {
     color: #858575;

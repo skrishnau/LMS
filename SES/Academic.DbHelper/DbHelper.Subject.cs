@@ -1107,6 +1107,18 @@ namespace Academic.DbHelper
 
             #endregion
 
+
+            public bool DeleteCategory(int catId)
+            {
+                var category = Context.SubjectCategory.Find(catId);
+                if (category != null)
+                {
+                    category.IsVoid = true;
+                    Context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
         }
     }
 }

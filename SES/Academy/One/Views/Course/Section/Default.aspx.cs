@@ -25,7 +25,7 @@ namespace One.Views.Course.Section
                     ListOfSectionsInCourseUC1.UserId = user.Id;
                     if ((user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor)
                          || user.IsInRole(DbHelper.StaticValues.Roles.Manager)
-                         || user.IsInRole(DbHelper.StaticValues.Roles.Teacher)))
+                         ))
                     {
                         var edit = Session["editMode"] as string;//Request.QueryString["edit"];
                         _path = Request.Url.AbsolutePath + "?SubId=" + id;
@@ -34,34 +34,30 @@ namespace One.Views.Course.Section
 
                             if (edit == "1")
                             {
-                                //edit on all sections
-                                //link on edit 
+                                //edit on all sections;;;link on edit 
                                 Edit = "1";
-                                //lnkEdit.NavigateUrl = _path + "&edit=0";
-                                //lblEdit.Text = "Exit Edit mode";
-                                //ListOfSectionsInCourseUC1.AddNewButtonVisibility = true;
                                 ListOfSectionsInCourseUC1.EditEnabled = true;
 
                             }
                             else
                             {
                                 Edit = "0";
-                                //lnkEdit.NavigateUrl = _path + "&edit=1";
-                                //lblEdit.Text = "Edit";
                             }
                         }
-                        else
+                    }
+                    else if (user.IsInRole(DbHelper.StaticValues.Roles.Teacher))
+                    {
+                        //if this teacher teaches the subject or has taught the subject then give to edit
+                        using (var helper = new DbHelper.Classes())
                         {
-                            //Request.Url.PathAndQuery
-                            //lnkEdit.NavigateUrl = _path + "&edit=1";
-                            //lblEdit.Text = "Edit";
+                            var teacher = helper.IsTheUserTeacher(user.Id,Convert.ToInt32(id));
+                            if (teacher)
+                            {
+                                Edit = "1";
+                                ListOfSectionsInCourseUC1.EditEnabled = true;
+                            }
                         }
 
-                    }
-                    else
-                    {
-                        //lnkEdit.Visible = false;
-                        //lnkEdit.Enabled = false;
                     }
                 }
 

@@ -30,7 +30,7 @@ namespace One.Views.Structure.All.UserControls
         public void SetName(int id, string name, string editUrl, bool edit=false, string addUrl="",string addText="", bool expand = false)
         {
             this.hidStructureId.Value = id.ToString();
-            this.lblName.Text = "♦" + name;
+            this.lblName.Text = name;//"♦" +
             lnkEdit.Visible = edit;
             lnkDelete.Visible = edit;
             lnkAdd.Visible = edit;
@@ -50,19 +50,19 @@ namespace One.Views.Structure.All.UserControls
                                                   ;
                 lnkDelete.NavigateUrl = redUrl;
             }
-            pnlSubControls.Visible = expand;
+            pnlHiddenLayer.Visible = expand;
         }
 
         protected void lnkName_OnClick(object sender, EventArgs e)
         {
-            pnlSubControls.Visible = !pnlSubControls.Visible;
-            if (pnlSubControls.Visible)
+            pnlHiddenLayer.Visible = !pnlHiddenLayer.Visible;
+            if (pnlHiddenLayer.Visible)
             {
-                imgShowHide.ImageUrl = "~/Content/Icons/Arrow/down-arrow.png";
+                imgShowHide.ImageUrl = "~/Content/Icons/Sort/sort-down-14px.png";
             }
             else
             {
-                imgShowHide.ImageUrl = "~/Content/Icons/Arrow/right-arrow.png";
+                imgShowHide.ImageUrl = "~/Content/Icons/Sort/sort-right-14px.png";
             }
         }
     }

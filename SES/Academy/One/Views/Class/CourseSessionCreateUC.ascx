@@ -20,6 +20,7 @@
     $(function () {
         $("#txtStart").datepicker();
         $("#txtEnd").datepicker();
+        $("#txtLastEnrollDate").datepicker();
     });
 </script>
 
@@ -28,18 +29,9 @@
         <ContentTemplate>
 
             <h3 class="heading-of-create-edit">Class edit
-            <hr />
             </h3>
             <br />
             <div class="data-entry-section-body">
-                <%--<div>
-                    <table style="vertical-align: top; border-collapse: collapse;">
-                        
-
-                    </table>
-                </div>--%>
-                <%--<br />--%>
-                <%--<div style="margin-left: 20px;">--%>
                 <table>
                     <tr>
                         <td class="data-type">Course                    
@@ -75,11 +67,11 @@
                     <tr>
                         <td class="data-type" style="display: inline-block;">Enrollment Method</td>
                         <td class="data-value">
-                            <asp:DropDownList ID="ddlEnrollmentMethod" runat="server" Height="22px">
+                            <asp:DropDownList ID="ddlEnrollmentMethod" runat="server" Height="22px" Width="155">
                                 <Items>
-                                    <asp:ListItem Value="0" Text="Automatic"></asp:ListItem>
+                                    <%--<asp:ListItem Value="0" Text="Automatic"></asp:ListItem>--%>
                                     <asp:ListItem Value="1" Text="Manual Only"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="Self Enrollment"></asp:ListItem>
+                                    <asp:ListItem Value="2" Text="Self Enrollment" Selected="True"></asp:ListItem>
                                     <%--<asp:ListItem Value="0" Text="Create "></asp:ListItem>--%>
                                 </Items>
                             </asp:DropDownList>
@@ -108,11 +100,22 @@
                                 ErrorMessage="Error" ForeColor="red"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
+                     <tr>
+                        <td class="data-type">Last Enroll Date *</td>
+                        <td class="data-value">
+                            <asp:TextBox ID="txtLastEnrollDate" ClientIDMode="Static" runat="server" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="valiLastEnrollDate" runat="server"
+                                ControlToValidate="txtLastEnrollDate"
+                                ErrorMessage="Error" ForeColor="red"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
                 </table>
                 <br />
                 <div class="save-div">
                     <asp:Button ID="btnSaveAndReturn" runat="server" Width="80px" Text="Save" OnClick="btnSave_Click" />
-                    &nbsp;
+                    &nbsp;&nbsp;
+                    <asp:Button ID="btnCancel" runat="server" Width="80px" Text="Cancel" OnClick="btnCancel_OnClick" />
+
                     <asp:Label ID="lblErrorMsg" Visible="False" runat="server" 
                         ForeColor="red"
                         Text=" Error while saving "></asp:Label>

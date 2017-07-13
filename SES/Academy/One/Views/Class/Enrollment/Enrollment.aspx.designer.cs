@@ -40,6 +40,15 @@ namespace One.Views.Class.Enrollment {
         protected global::System.Web.UI.WebControls.Label lblClassName;
         
         /// <summary>
+        /// lblEnrollHeading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEnrollHeading;
+        
+        /// <summary>
         /// UserEnrollUC_ListDisplay1 control.
         /// </summary>
         /// <remarks>

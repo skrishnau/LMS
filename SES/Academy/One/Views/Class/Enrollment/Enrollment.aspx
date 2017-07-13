@@ -21,7 +21,7 @@
 
         <br />
         <div class="data-entry-section-heading">
-            Users enroll
+            <asp:Label ID="lblEnrollHeading" runat="server" Text=""></asp:Label>
             <hr />
         </div>
         

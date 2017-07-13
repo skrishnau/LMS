@@ -22,6 +22,15 @@ namespace One {
         protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
         
         /// <summary>
+        /// OpenClassesUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.ViewsSite.User.ModulesUc.OpenClassesUc OpenClassesUc;
+        
+        /// <summary>
         /// pnlBody control.
         /// </summary>
         /// <remarks>
@@ -29,5 +38,14 @@ namespace One {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlBody;
+        
+        /// <summary>
+        /// pnlRight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlRight;
     }
 }

@@ -13,7 +13,7 @@
         /*background-color: #e4f5fa;*/
         background-color: #f5f5f5;
     }
-    
+
 
 .auto-st2-backcolor-white {
     margin: 6px;
@@ -27,6 +27,8 @@
     .auto-st2-backcolor-white:hover {
         background-color: #e4f5fa;
     }
+
+
 
 
 
@@ -47,6 +49,7 @@
     .auto-st2-white:hover {
         background-color: white;
     }
+
 .hover-background-change-slight:hover {
     background-color: #f8f8f8;
 }
@@ -73,15 +76,7 @@
         background-color: #e4f5fa;
     }
 
-.auto-st2-border-no-margin {
-    margin: 2px;
-    border: 1px solid lightgrey;
-    -webkit-border-radius: 5px;
-}
 
-    .auto-st2-border-no-margin:hover {
-        background-color: #e4f5fa;
-    }
 
 .auto-st2-border-zero-margin {
     margin: 1px;

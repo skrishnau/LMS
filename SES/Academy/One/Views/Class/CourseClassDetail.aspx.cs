@@ -59,16 +59,17 @@ namespace One.Views.Class
                                     ? "Auto"
                                     : (cls.EnrollmentMethod == 1) ? "Manual" : "Self";
 
-                                lnkEnrollStudents.Visible = edit ;//&& (isTeacher || isManager);
-                                lnkEnrollTeachers.Visible = edit && isManager;
-
-                                //lnkEnroll.Visible = edit;
-                                lnkMarkCompletion.Visible = edit;
                                 var autoEnrollment = cls.EnrollmentMethod == 0;
 
-                                if (isTeacher && autoEnrollment && edit)
+                                var curTeach = helper.IsTheUserCurrentlyTeacher(user.Id,
+                                    cls.IsRegular ? cls.SubjectStructure.SubjectId : cls.SubjectId??0);
+
+
+                                if (edit && (isManager || curTeach) && !(cls.SessionComplete??false))
                                 {
-                                    lnkEnrollStudents.Visible = false;
+                                    lnkMarkCompletion.Visible = true;
+                                    lnkEnrollStudents.Visible = (!autoEnrollment || isManager);//&& (isTeacher || isManager);
+                                    lnkEnrollTeachers.Visible = isManager;
                                 }
 
 

@@ -41,7 +41,7 @@ namespace One.Views.Class.Enrollment
                     ddlEnrollmentDuration.DataSource = enrollmentDuration;
                     ddlEnrollmentDuration.DataBind();
 
-                     //=================== End of Data population =======================//
+                    //=================== End of Data population =======================//
 
 
 
@@ -56,29 +56,30 @@ namespace One.Views.Class.Enrollment
                             Response.Redirect("~/Views/Course/");
                             return;
                         }
-                        else
-                        {
-                            var defaultRole = "student";
-                            //if enrollment method =0 (automatic) thne we can't add students
-                            if (session.EnrollmentMethod == 0)
-                            {
-                               TeacherOnly = true;
-                                defaultRole = "teacher";
-                                ddlAssignRole.Enabled = false;
-                            }
-                            DbHelper.ComboLoader.LoadRoleForUserEnroll(ref ddlAssignRole, user.SchoolId, defaultRole);
 
-                            hidSessionStartDate.Value = ((session.StartDate == null)
-                                ? DateTime.Now.ToShortDateString()
-                                : session.StartDate.Value.ToShortDateString());
-                            var startingFrom = new List<IdAndName>()
+                        var role = GetRole(session, user);
+
+                        if (role == "")
+                        {
+                            Response.Redirect("~/Views/Class/CourseClassDetail.aspx?ccId=" + session.Id);
+                            return;
+                        }
+
+
+                        DbHelper.ComboLoader.LoadRoleForUserEnroll(ref ddlAssignRole, user.SchoolId, role);
+
+                        hidSessionStartDate.Value = ((session.StartDate == null)
+                            ? DateTime.Now.ToShortDateString()
+                            : session.StartDate.Value.ToShortDateString());
+                        var startingFrom = new List<IdAndName>()
                             {
                                 new IdAndName(){Id=0,Name="Class Start Day ("+((session.StartDate==null)?"not set":session.StartDate.Value.ToShortDateString())+")"}
                                 ,new IdAndName(){Id=1,Name="Today "+DateTime.Now.ToShortDateString()}
                             };
-                            ddlStartingFrom.DataSource = startingFrom;
-                            ddlStartingFrom.DataBind();
-                        }
+                        ddlStartingFrom.DataSource = startingFrom;
+                        ddlStartingFrom.DataBind();
+
+
                         var asglist = helper.ListUsersOfSubjectSession(SubjectSessionId);
                         lstAsg.DataSource = asglist;
                         lstAsg.DataBind();
@@ -89,7 +90,7 @@ namespace One.Views.Class.Enrollment
                             SubjectSessionId
                             , asglist.Select(x => x.Id).ToList()
                             , user.SchoolId
-                            , TeacherOnly);
+                            , EnrollType);
                         lstUnAsg.DataSource = notasgList;
                         lstUnAsg.DataSource = notasgList;
                         lstUnAsg.DataBind();
@@ -120,6 +121,31 @@ namespace One.Views.Class.Enrollment
 
             }
             //DateChooser1.Validate = false;
+        }
+
+        private string GetRole(Academic.DbEntities.Class.SubjectClass subjCls, CustomPrincipal user)
+        {
+            //if enrollment method =0 (automatic) thne we can't add students
+            switch (EnrollRole)
+            {
+                case "teacher":
+                    if (user.IsInRole("manager"))
+                    {
+                        EnrollType = true;
+                        return "teacher";
+                    }
+                    break;
+                case "student":
+                    if (user.IsInRole("manager") || user.IsInRole("teacher"))
+                    {
+                        EnrollType = false;
+                        if (subjCls.EnrollmentMethod != 0)
+                            return "student";
+                    }
+                    break;
+
+            }
+            return "";
         }
 
         public int UserId
@@ -158,7 +184,7 @@ namespace One.Views.Class.Enrollment
                         SubjectSessionId
                         , asglist.Select(x => x.Id).ToList()
                         , user.SchoolId
-                        ,TeacherOnly
+                        , EnrollType
                         ).Select(x => x.FirstName
                                                      + (string.IsNullOrEmpty(x.MiddleName) ? "" : " " + x.MiddleName)
                                                      + (string.IsNullOrEmpty(x.LastName) ? "" : " " + x.LastName))
@@ -476,10 +502,19 @@ namespace One.Views.Class.Enrollment
 
         //}
 
-        public bool TeacherOnly
+        /// <summary>
+        /// True: teacher , False : Student
+        /// </summary>
+        public bool EnrollType
         {
             get { return Convert.ToBoolean(hidTeacherOnly.Value); }
             set { hidTeacherOnly.Value = value.ToString(); }
+        }
+
+        public string EnrollRole
+        {
+            get { return (hidEnrollType.Value); }
+            set { hidEnrollType.Value = value; }
         }
     }
 }

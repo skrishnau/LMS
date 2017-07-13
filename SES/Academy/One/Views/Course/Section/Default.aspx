@@ -29,7 +29,7 @@
                 <%-- line-height: 18px; --%>
                 <div style="float: left;margin-top: 10px;">
                     &nbsp;&nbsp;
-                    <asp:LinkButton ID="lnkEnroll" runat="server" CssClass="auto-st2 link"
+                    <asp:LinkButton ID="lnkEnroll" runat="server" CssClass="link-button"
                         ToolTip="New class has been opened in this course. Click for detail."
                          Visible="False">
                         Enroll now
@@ -37,7 +37,7 @@
                 </div>
                 
                 <div style="float: right;margin-top: 10px">
-                    <asp:LinkButton ID="lnkMyClasses" runat="server" CssClass="auto-st2 link"
+                    <asp:LinkButton ID="lnkMyClasses" runat="server" CssClass="link-button"
                         ToolTip="Classes of this course in which you have participated"
                          Visible="False">
                         My Classes

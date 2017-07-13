@@ -45,6 +45,7 @@
     color: darkslategray;
     text-decoration: none;
     font-weight: 600;
+    margin-bottom: 5px;
 }
 
     .modules-title:hover {
@@ -64,7 +65,7 @@ div.modules-heading {
 
 .modules-body {
     overflow: auto;
-    background-color: lightgoldenrodyellow;
+    background-color: #f1f1f1;
     padding: 5px;
     /*font-family: arial, verdena;*/
     font-size: 1em;
@@ -111,7 +112,7 @@ div.modules-heading {
     /*margin: 6px 4px;*/
     /*padding: 6px;
     border: 1px solid lightgrey;*/
-    -webkit-border-radius: 5px;
+    -webkit-border-radius: 0px;
     border-collapse: collapse;
 }
 
@@ -121,7 +122,7 @@ div.modules-heading {
         margin-top: -1px;
         color: #393939;
         text-decoration: none;
-        padding: 6px 6px 6px 20px;
+        padding: 6px;
     }
 
         .list-unmargined a:hover {
@@ -149,7 +150,7 @@ div.modules-heading {
     margin-top: -1px;
     color: #393939;
     text-decoration: none;
-    padding: 6px 6px 6px 20px;
+    padding: 6px;
 }
 
     .course-menu-current-earlier:hover {
@@ -257,23 +258,7 @@ div.modules-heading {
 /*border-collapse: collapse;*/
 /*}*/
 
-/*used in div*/
-.list-item, .list-item:visited {
-    display: block;
-    margin: -1px 4px 0;
-    padding: 6px;
-    border: 1px solid lightgrey;
-    /*margin-top: -1px;*/
-    color: #393939;
-    text-decoration: none;
-    /*background-color: lightgray;*/
-    /*-webkit-border-radius: 5px;*/
-}
 
-    .list-item:hover {
-        background-color: #f5f5f5;
-        color: black;
-    }
 
 .list-item-file-listing, .list-item-file-listing:visited {
     display: block;
@@ -410,7 +395,7 @@ div.modules-heading {
 
 .list-item-description {
     margin: 2px 5px;
-    color: #393939;
+    color: #5f5f5f;
 }
 
 .gridview {
@@ -421,13 +406,15 @@ div.modules-heading {
 /*<HeaderStyle BackColor="#557d96" Font-Bold="True" ForeColor="White"#f5f5f5; />*/
 .data-list-header {
     background-color: #f1f1f1;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 1.1em;
     color: #393939;
     border: 1px solid lightgrey;
     border-bottom: 2px Solid darkgray;
     text-align: left;
     line-height: 25px;
     margin-bottom: 3px;
+    
 }
 
 .data-list-footer {
@@ -472,7 +459,7 @@ div.modules-heading {
         }
 
 
-.link-dark {
+/*.link-dark {
     color: #393939;
     text-decoration: underline;
     display: inline-block;
@@ -488,11 +475,11 @@ div.modules-heading {
         display: inline-block;
         background-color: #f1f1f1;
     }
-    /*#f5f5f5;*/
+    
 
     .link-dark:active {
         color: darkviolet;
-    }
+    }*/
 
 .link-folder {
     color: #393939;

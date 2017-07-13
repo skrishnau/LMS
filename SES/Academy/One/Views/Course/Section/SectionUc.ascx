@@ -43,7 +43,7 @@
                     CssClass="link_act_res"
                         --%>
                         <asp:LinkButton ID="lnkAddActOrRes" ClientIDMode="Static" ToolTip="Add activity or resource in this section"
-                            CssClass="auto-st2 link link_act_res"
+                            CssClass="link-button"
                             Visible="False" runat="server">
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon-14px.png" />
                             Add an Activity or Resource
@@ -53,7 +53,10 @@
             </div>
         </div>
     </asp:Panel>
-    <hr style="border: none; background-color: lightgray; height: 1px;" />
+    <div style="border-bottom: 1px solid #e6e6e6; width: 95%; margin: 5px auto;">
+        
+    </div>
+    <%--<hr style="border: none; background-color: lightgray; height: 1px;" />--%>
 
 
     <asp:HiddenField ID="hid" runat="server" Value="0" />

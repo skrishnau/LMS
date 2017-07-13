@@ -16,13 +16,16 @@ namespace One.Views.Class
             if (!IsPostBack)
             {
                 var courseId = Request.QueryString["cId"];
-                var classId = Request.QueryString["ccId"];
+                var classId = Request.QueryString["subclsId"];
                 if (courseId != null)
                 {
+
                     //hidCourseId.Value = courseId;
                     try
                     {
-                        CourseSessionCreateUC1.SetCourseId(courseId);
+                        CourseSessionCreateUC1.CourseId = Convert.ToInt32(courseId);
+                        CourseSessionCreateUC1.SubjectSessionId = Convert.ToInt32(classId);
+
                         using (var helper = new DbHelper.Subject())
                         {
                             var course = helper.GetCourse(CourseSessionCreateUC1.CourseId);

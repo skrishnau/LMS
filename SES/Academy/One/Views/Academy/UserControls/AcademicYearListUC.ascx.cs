@@ -53,40 +53,45 @@ namespace One.Views.Academy.UserControls
 
             }
 
-            if (!sessionList.Any())
-            {
-                //lblTitleInSessionsList.Text = "Sessions:";
-                lblTitleInSessionsList.Text = "None";
-                //pnlSessionsList.Controls.Add(new Label() { Text = "None" , ForeColor = Color.DarkSlateGray});
+            #region Sessions
 
-            }
-            else
-            {
-                var count = sessionList.Count;
-                var i = 0;
-                foreach (var sess in sessionList)
-                {
-                    i++;
-                    var hypSes = new HyperLink()
-                    {
-                        Text = sess.Name
-                        ,
-                        //NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?sId=" + sess.Id
-                        //,
-                    };
-                    pnlSessionsList.Controls.Add(hypSes);
-                    if (active && sess.IsActive)
-                    {
-                        //hypSes.BackColor = Color.LightGreen;
-                        var activeIndicator = new Label() { Text = " (Active)", ForeColor = Color.DarkGreen };
-                        pnlSessionsList.Controls.Add(activeIndicator);
-                    }
-                    //hypSes.Attributes.Add("margin","2px 0");
-                    if (count > i)
-                        pnlSessionsList.Controls.Add(new Literal() { Text = ", " });
-                    //pnlSessionsList.Controls.Add(new HtmlGenericControl("br"));
-                }
-            }
+            //if (!sessionList.Any())
+            //{
+            //    //lblTitleInSessionsList.Text = "Sessions:";
+            //    lblTitleInSessionsList.Text = "None";
+            //    //pnlSessionsList.Controls.Add(new Label() { Text = "None" , ForeColor = Color.DarkSlateGray});
+
+            //}
+            //else
+            //{
+            //    var count = sessionList.Count;
+            //    var i = 0;
+            //    foreach (var sess in sessionList)
+            //    {
+            //        i++;
+            //        var hypSes = new HyperLink()
+            //        {
+            //            Text = sess.Name
+            //            ,
+            //            //NavigateUrl = "~/Views/Academy/Session/SessionDetail.aspx?sId=" + sess.Id
+            //            //,
+            //        };
+            //        pnlSessionsList.Controls.Add(hypSes);
+            //        if (active && sess.IsActive)
+            //        {
+            //            //hypSes.BackColor = Color.LightGreen;
+            //            var activeIndicator = new Label() { Text = " (Active)", ForeColor = Color.DarkGreen };
+            //            pnlSessionsList.Controls.Add(activeIndicator);
+            //        }
+            //        //hypSes.Attributes.Add("margin","2px 0");
+            //        if (count > i)
+            //            pnlSessionsList.Controls.Add(new Literal() { Text = ", " });
+            //        //pnlSessionsList.Controls.Add(new HtmlGenericControl("br"));
+            //    }
+            //}
+
+            #endregion
+
         }
     }
 }

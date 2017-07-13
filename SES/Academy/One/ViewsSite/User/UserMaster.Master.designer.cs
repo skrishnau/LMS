@@ -148,22 +148,22 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.Image imgNotificationIcon;
         
         /// <summary>
-        /// lblEmptyEvent control.
+        /// lblEmptyNotice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmptyEvent;
+        protected global::System.Web.UI.WebControls.Label lblEmptyNotice;
         
         /// <summary>
-        /// plHolderEvent control.
+        /// plHolderNotice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder plHolderEvent;
+        protected global::System.Web.UI.WebControls.PlaceHolder plHolderNotice;
         
         /// <summary>
         /// Image1 control.
@@ -353,6 +353,15 @@ namespace One.ViewsSite.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell right_panel;
+        
+        /// <summary>
+        /// right control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder right;
         
         /// <summary>
         /// pnlRight control.

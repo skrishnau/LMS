@@ -1,33 +1,89 @@
 ﻿
 
-/*.category-text {
-    display: block;
-    overflow: auto;
-    font-size: 1.2em;
-    word-wrap: normal;
-    background-color: white;
-}*/
-
-    /*.category-text:hover {
-        background-color: #dcecf1;
-        color: darkorange;
-    }*/
-
 .pnlcls {
     display: block;
     padding: 2px;
 }
 
-/*.linkbutton, .linkbutton:visited {
+.category-list-header {
+    /*background-color: #f2f2f2;*/
+    font-weight: 500;
+    font-size: 1.1em;
+    /*color: #393939;*/
+    border: 1px solid lightgrey;
+    border-bottom: 2px Solid lightgrey;
+    text-align: left;
+    padding: 6px;
+}
+
+/*  OFF  */
+.category-list-editModeOff a, .category-list-editModeOff a:visited {
+    display: block;
+    margin: -1px 0px 0;
+    padding: 6px;
+    border: 1px solid lightgrey;
+    border-left: none;
+    border-right: none;
+    /*margin-top: -1px;*/
+    color: #393939;
+    text-decoration: none;
+    /*background-color: lightgray;*/
+    /*-webkit-border-radius: 5px;*/
+}
+
+    .category-list-editModeOff a:hover {
+        background-color: #f5f5f5;
+        color: black;
+    }
+
+/*  ON  */
+.category-list-editModeOn {
+    /*display: block;*/
+    margin: -1px 0px 0;
+    padding: 5px 0;
+    border: 1px solid lightgrey;
+    border-left: none;
+    border-right: none;
+    color: #393939;
     text-decoration: none;
 }
 
-    .linkbutton:hover {
-        color: darkorange;
-        text-decoration: underline;
+    .category-list-editModeOn:hover {
+        background-color: #f5f5f5;
+        color: black;
     }
 
-    .linkbutton:active {
-        color: blueviolet;
-        text-decoration: underline;
-    }*/
+    .category-list-editModeOn a {
+        padding: 6px;
+        line-height: 21px;
+        text-decoration: none;
+        color: #393939;
+    }
+
+        .category-list-editModeOn a:hover {
+            text-decoration: underline;
+            color: black;
+        }
+
+.category-body-outer {
+    overflow-y: auto;
+    
+    border: 1px solid lightgrey;
+}
+
+.course-list-item-datalist, .course-list-item-datalist:visited {
+    display: block;
+    margin: -3px -3px 0;
+    padding: 6px;
+    border: 1px solid lightgrey;
+    /*margin-top: -1px;*/
+    color: #393939;
+    text-decoration: none;
+    /*background-color: lightgray;*/
+    /*-webkit-border-radius: 5px;*/
+}
+
+    .course-list-item-datalist:hover {
+        background-color: #f5f5f5;
+        color: black;
+    }

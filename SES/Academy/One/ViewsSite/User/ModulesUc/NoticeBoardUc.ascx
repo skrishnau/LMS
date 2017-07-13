@@ -4,7 +4,7 @@
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <div class="module-whole">
-            <div class="modules-heading">
+            <div class="modules-title">
                 <asp:HyperLink ID="HyperLink1" CssClass="modules-title" runat="server"
                     NavigateUrl="~/Views/NoticeBoard/NoticeListing.aspx">Notice</asp:HyperLink>
                 <asp:Label ID="lblNoticeIndication" runat="server" Text="" ForeColor="white" BackColor="red"></asp:Label>
@@ -15,7 +15,9 @@
             <%-- class="modules-body" --%>
             <div style="overflow: auto" class="list-unmargined">
                 <%-- DataSourceID="NotificationListDS" --%>
-                <asp:Label ID="lblEmptyNotice" runat="server" Text="No notices"></asp:Label>
+                <div>
+                    <asp:Label ID="lblEmptyNotice" runat="server" Text=" &nbsp; No notices" ForeColor="darkgray" Font-Size="0.9em"></asp:Label>
+                </div>
                 <asp:DataList ID="DataList1" Height="100%" runat="server" Width="100%" OnItemCommand="DataList1_ItemCommand">
                     <ItemTemplate>
                         <%-- style="border-bottom: 1px solid lightgray; vertical-align: top;" --%>
@@ -23,7 +25,7 @@
                         <asp:HyperLink ID="HyperLink2" runat="server"
                             NavigateUrl='<%# "~/Views/NoticeBoard/NoticeDetail.aspx?nId="+Eval("Id") %>'>
                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("Title")  %>'></asp:Label>
-                          <%--  <asp:ImageButton ID="ImageButton1" runat="server"
+                            <%--  <asp:ImageButton ID="ImageButton1" runat="server"
                                 ImageUrl="~/Content/Icons/Exclamation/exclamation.png" AlternateText="*"
                                 CommandArgument='<%# Eval("Id") %>' CommandName="Click" Visible='<%# Eval("Void")%>' />--%>
 

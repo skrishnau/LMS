@@ -29,7 +29,7 @@
             <div>
                 <%-- CssClass="link-white" --%>
                 <asp:HyperLink ID="lnkAddSection1" ClientIDMode="Static" Visible="False" ToolTip="Add Section to this Course"
-                    CssClass="auto-st2 link"
+                    CssClass="link-button"
                     runat="server">
                     <asp:ImageButton ID="imgAddSection" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon-14px.png" />
                     Add Section

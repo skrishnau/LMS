@@ -13,8 +13,8 @@ namespace One.Views.Course
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Create1.SaveClicked += CreateUC_SaveClicked;
-            Create1.CancelClicked += CreateUC_SaveClicked;
+            //Create1.SaveClicked += CreateUC_SaveClicked;
+            //Create1.CancelClicked += CreateUC_SaveClicked;
             if (!IsPostBack)
             {
                 var user = Page.User as CustomPrincipal;
@@ -52,9 +52,9 @@ namespace One.Views.Course
             }
         }
 
-        void CreateUC_SaveClicked(object sender, Academic.DbHelper.MessageEventArgs e)
-        {
-            Response.Redirect("~/Views/Course/?catId=" + ((e.SaveSuccess) ? e.SavedId : Create1.ParentCategoryId));
-        }
+        //void CreateUC_SaveClicked(object sender, Academic.DbHelper.MessageEventArgs e)
+        //{
+        //    Response.Redirect("~/Views/Course/?catId=" + ((e.SaveSuccess) ? e.SavedId : Create1.ParentCategoryId));
+        //}
     }
 }

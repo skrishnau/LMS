@@ -38,7 +38,7 @@
                 <tr>
                     <td class="data-type">Academic year Name *</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtName" runat="server" Width="145px" ToolTip="Usually its year. e.g. 2016"></asp:TextBox>
+                        <asp:TextBox ID="txtName" runat="server" Width="145px" ToolTip="Usually its year. e.g. 2017"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                             ControlToValidate="txtName" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
@@ -72,7 +72,7 @@
                 <tr>
                     <td class="data-type">Session-1 Name *</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtSession1Name" runat="server" Width="145px" ToolTip="Usually its year. e.g. 2016"></asp:TextBox>
+                        <asp:TextBox ID="txtSession1Name" runat="server" Width="145px" ToolTip="e.g. FALL, SPRING"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                             ControlToValidate="txtSession1Name" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
@@ -104,7 +104,7 @@
                 <tr>
                     <td class="data-type">Session-2 Name *</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtSession2Name" runat="server" Width="145px" ToolTip="Usually its year. e.g. 2016"></asp:TextBox>
+                        <asp:TextBox ID="txtSession2Name" runat="server" Width="145px" ToolTip="e.g. FALL, SPRING"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
                             ControlToValidate="txtSession2Name" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>

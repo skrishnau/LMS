@@ -17,95 +17,44 @@ namespace One.Views.Course
         {
             var user = Page.User as CustomPrincipal;
             if (user != null)
+            {
                 if (!IsPostBack)
                 {
                     var csId = Request.QueryString["cId"];
                     if (csId != null)
                     {
+                        var edt = Session["editMode"] as string;// Session["edit"];// Request.QueryString["edit"];
+                        var edit = edt == "1";
+
                         var courseId = Convert.ToInt32(csId);
 
+                        var manager = user.IsInRole("manager") || user.IsInRole("course-editor") ||
+                                      user.IsInRole("admitter");
+                        var teacher = user.IsInRole("teacher");
 
+                        var managerEdit = manager && edit;
 
-                        if (user.IsInRole("manager") || user.IsInRole("course-editor") || user.IsInRole("admitter"))
+                        lnkEdit.Visible = managerEdit ;
+                        lnkDelete.Visible = managerEdit;
+                        lnkNewClass.Visible = managerEdit;
+
+                        Edit = edit;
+
+                        pnlClasses.Visible = manager || teacher;
+                        dlistClasses.Visible = manager || teacher;
+
+                        if (manager || teacher)
                         {
-                            #region Edit Classes initialize
-
-                            var edit = Session["editMode"] as string;// Session["edit"];// Request.QueryString["edit"];
-
-                            if (edit != null)
-                            {
-
-                                //listUc.Edit = edit;
-                                if (edit == "1")
-                                {
-                                    Edit = true;
-                                    //lnkEditClasses.NavigateUrl = "~/Views/Course/CourseDetail.aspx?cId=" +
-                                    //                                csId + "&edit=0";
-                                    //lblEditClasses.Text = "Exit edit";
-                                    lnkNewClass.Visible = true;
-                                    //lnkAdd.Visible = true;
-                                }
-                                else
-                                {
-                                    Edit = false;
-                                    //lnkEditClasses.NavigateUrl = "~/Views/Course/CourseDetail.aspx?cId=" +
-                                    //                                csId + "&edit=1";
-                                    //lblEditClasses.Text = "Edit Classes";
-                                    lnkNewClass.Visible = false;
-                                    //lnkAdd.Visible = false;
-                                }
-                            }
-                            else
-                            {
-                                Edit = false;
-                                //lnkEditClasses.NavigateUrl = "~/Views/Course/CourseDetail.aspx?cId=" +
-                                //                                    csId + "&edit=1";
-                                //lblEditClasses.Text = "Edit Classes";
-                                lnkNewClass.Visible = false;
-                                //lnkAdd.Visible = false;
-                            }
-
-                            #endregion
-
-                            lnkEdit.Visible = true;
-                            lnkDelete.Visible = true;
-                            pnlClasses.Visible = true;
                             LoadInitialData(courseId);
-
-                            //lnkEditClasses.Visible = true;
-                            //lnkNewClass.Visible = editable;
-
-
-
-                        }
-                        else if (user.IsInRole("teacher"))
-                        {
-                            lnkEdit.Visible = false;
-                            lnkDelete.Visible = false;
-                            pnlClasses.Visible = true;
-                            LoadInitialData(courseId);
-
-                            //lnkEditClasses.Visible = false;
-                            lnkNewClass.Visible = false;
-                            Edit = false;
                         }
                         else
                         {
-                            lnkEdit.Visible = false;
-                            lnkDelete.Visible = false;
                             pnlClassFilter.Visible = false;
-                            dlistClasses.Visible = false;
-                            pnlClasses.Visible = false;
-
-                            //lnkEditClasses.Visible = false;
-                            lnkNewClass.Visible = false;
-                            Edit = false;
                         }
                     }
                     else { Response.Redirect("~/Views/Course/"); }
-
-
                 }
+            }
         }
 
         public bool Edit
@@ -175,7 +124,7 @@ namespace One.Views.Course
 
                             //other componenets
                             lnkNewClass.NavigateUrl = "~/Views/Class/CourseSessionCreate.aspx?cId=" + courseId;
-                            
+
                             //lnkView.NavigateUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + courseId
                             lnkView.NavigateUrl = "~/Views/Course/Section/?SubId=" + courseId
                                 + "&frmDetailView=1";

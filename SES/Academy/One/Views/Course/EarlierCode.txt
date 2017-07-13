@@ -283,3 +283,57 @@
 
 
 
+if (manager)
+                        {
+                            #region Edit Classes initialize
+
+
+                            if (edit != null)
+                            {
+                                if (edit == "1")
+                                {
+                                    Edit = true;
+                                    lnkNewClass.Visible = true;
+                                }
+                                else
+                                {
+                                    Edit = false;
+                                    lnkNewClass.Visible = false;
+                                }
+                            }
+                            else
+                            {
+                                Edit = false;
+                                lnkNewClass.Visible = false;
+                            }
+
+                            #endregion
+
+                            lnkEdit.Visible = true;
+                            lnkDelete.Visible = true;
+                            pnlClasses.Visible = true;
+                            LoadInitialData(courseId);
+
+                        }
+                        else if (teacher)
+                        {
+                            lnkEdit.Visible = false;
+                            lnkDelete.Visible = false;
+                            pnlClasses.Visible = true;
+
+                            //lnkEditClasses.Visible = false;
+                            lnkNewClass.Visible = false;
+                            Edit = false;
+                        }
+                        else
+                        {
+                            lnkEdit.Visible = false;
+                            lnkDelete.Visible = false;
+                            pnlClassFilter.Visible = false;
+                            dlistClasses.Visible = false;
+                            pnlClasses.Visible = false;
+
+                            //lnkEditClasses.Visible = false;
+                            lnkNewClass.Visible = false;
+                            Edit = false;
+                        }

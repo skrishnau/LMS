@@ -1,10 +1,14 @@
-﻿<%@ Page Title="Home Page"  Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="One._Default" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="One._Default" %>
 
 <%-- MasterPageFile="~/Site.Master" --%>
 
 <%@ Register Src="~/ViewsSite/DashBoard/Student/CourseOverView/LstUc.ascx" TagPrefix="uc1" TagName="LstUc" %>
 
 <%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<%@ Register Src="~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx" TagPrefix="uc1" TagName="NoticeBoardUc" %>
+<%@ Register Src="~/ViewsSite/User/ModulesUc/OpenClassesUc.ascx" TagPrefix="uc1" TagName="OpenClassesUc" %>
+
+
 <asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
     <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
 </asp:Content>
@@ -14,9 +18,24 @@
 </asp:Content>--%>
 
 <asp:Content runat="server" ID="contentBody" ContentPlaceHolderID="Body">
+   <%-- <div style="height: 250px;">
+        <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
+    </div>--%>
+    <%--<div class="data-entry-section-heading">
+        <hr />
+    </div>--%>
+    <div>
+        <uc1:OpenClassesUc runat="server" ID="OpenClassesUc" />
+    </div>
     <asp:Panel ID="pnlBody" runat="server"></asp:Panel>
     <%--<uc1:LstUc runat="server" ID="LstUc1" />--%>
 </asp:Content>
+
+<asp:Content runat="server" ID="content2" ContentPlaceHolderID="right">
+    <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
+
+</asp:Content>
+
 
 <%--<asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
     <section class="featured">
