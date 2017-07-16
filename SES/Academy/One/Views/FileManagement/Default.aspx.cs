@@ -23,7 +23,6 @@ namespace One.Views.FileManagement
                 var user = Page.User as CustomPrincipal;
                 if (user != null)
                 {
-                    FileListingUc1.FolderSelectionType = false;
                     FileDeleteDialogUc1.SetValues("Delete");
                     var folderId = Convert.ToInt32(Request.QueryString["folId"] ?? "0");
                     FolderId = folderId;
@@ -47,6 +46,7 @@ namespace One.Views.FileManagement
 
         private void Initialize()
         {
+            FileListingUc1.FolderSelectionType = false;
             Page.Title = "File management";
             FileListingUc1.RenameClicked += FileListingUc1_RenameClicked;
             FileListingUc1.DeleteClicked += FileListingUc1_DeleteClicked;
@@ -101,7 +101,8 @@ namespace One.Views.FileManagement
                         IsFolder = false
                         ,
                         IsServerFile = IsServerFile
-                        ,SchoolId = user.SchoolId
+                        ,
+                        SchoolId = user.SchoolId
                         //SubjectId = SubjectId
                         //,
                         //Void = !f.Visible
@@ -122,10 +123,6 @@ namespace One.Views.FileManagement
             }
         }
 
-
-
-
-
         void FileDeleteDialogUc1_OkClick(object sender, Academic.ViewModel.IdAndNameEventArgs e)
         {
             FileDeleteDialogUc1.CloseDialog();
@@ -140,10 +137,6 @@ namespace One.Views.FileManagement
             FileDeleteDialogUc1.SetValues("Delete " + e.RefIdString);
             FileDeleteDialogUc1.OpenDialog();
         }
-
-
-
-
 
         void SetFolderAddDialog()
         {
@@ -164,8 +157,6 @@ namespace One.Views.FileManagement
             }
         }
 
-
-
         protected void lnkAddFolder_OnClick(object sender, EventArgs e)
         {
             FolderAddDialogUc1.OpenDialog();
@@ -181,7 +172,10 @@ namespace One.Views.FileManagement
         {
             FolderAddDialogUc1.FolderId = e.Id;
             FolderAddDialogUc1.FolderName = e.Name;
-            FolderAddDialogUc1.SetValues("Folder rename");
+            if (e.Check)
+                FolderAddDialogUc1.SetValues("Folder rename");
+            else
+                FolderAddDialogUc1.SetValues("File rename");
             FolderAddDialogUc1.OpenDialog();
         }
 

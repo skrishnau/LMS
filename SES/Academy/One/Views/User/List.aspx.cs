@@ -37,7 +37,7 @@ namespace One.Views.User
                         };
                         SiteMapUc.SetData(list);
                     }
-                    var edit = (Session["editMode"] as string)??"0";
+                    var edit = (Session["editMode"] as string) ?? "0";
                     if (user.IsInRole("manager"))
                     {
                         var editable = edit == "1";
@@ -49,7 +49,7 @@ namespace One.Views.User
                         lnkAddNewUser.Visible = false;
                         lnkAssignRole.Visible = false;
                     }
-                    
+
 
 
 
@@ -68,11 +68,11 @@ namespace One.Views.User
             }
             if (mid != null)
             {
-                s += " "+mid;
+                s += " " + mid;
             }
             if (last != null)
             {
-                s += " "+last;
+                s += " " + last;
             }
             return s;
         }
@@ -99,27 +99,27 @@ namespace One.Views.User
                     var date = Convert.ToDateTime(onlineDate.ToString());
                     var difference = DateTime.Now.Subtract(date);// - date;
 
-                    var days = (difference.Days > 0) ? 
-                        (difference.Days == 1) ?  "a Day " : difference.Days + " Days " : "";
-                    if (days!="")
+                    var days = (difference.Days > 0) ?
+                        (difference.Days == 1) ? "a Day " : difference.Days + " Days " : "";
+                    if (days != "")
                     {
                         return days + "ago";
                     }
 
                     var hours = (difference.Hours != 0) ? (difference
-                        .Hours==1)?"an Hour ":difference.Hours + " Hours " : "";
-                    if (hours!="")
+                        .Hours == 1) ? "an Hour " : difference.Hours + " Hours " : "";
+                    if (hours != "")
                     {
-                        return hours +"ago";
+                        return hours + "ago";
                     }
                     var minutes = (difference.Minutes > 0) ?
-                        (difference.Minutes==1)?"a Minute ":difference.Minutes + " Minutes " : "";
+                        (difference.Minutes == 1) ? "a Minute " : difference.Minutes + " Minutes " : "";
                     if (minutes != "")
                         return minutes;
 
-                    var seconds = (difference.Seconds <=5) ?
-                        "5 Seconds " : difference.Seconds + " Seconds " ;
-                    return seconds+"ago";
+                    var seconds = (difference.Seconds <= 5) ?
+                        "5 Seconds " : difference.Seconds + " Seconds ";
+                    return seconds + "ago";
                 }
                 catch
                 {
@@ -162,11 +162,29 @@ namespace One.Views.User
             pnlFilter.Visible = !pnlFilter.Visible;
             if (pnlFilter.Visible)
             {
-                imgFilter.ImageUrl = "~/Content/Icons/Arrow/down-arrow.png";
+                imgFilter.ImageUrl = "~/Content/Icons/Sort/sort-down-20px.png";
             }
             else
             {
-                imgFilter.ImageUrl = "~/Content/Icons/Arrow/right-arrow.png";                
+                imgFilter.ImageUrl = "~/Content/Icons/Sort/sort-right-20px.png";
+            }
+        }
+
+        protected void GridView1_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridView1_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.RowIndex % 2 == 0)
+                {
+                    e.Row.CssClass = "highlight-row-even";
+                }
+                else
+                    e.Row.CssClass = "highlight-row-odd";
             }
         }
     }

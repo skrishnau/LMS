@@ -330,6 +330,10 @@ namespace Academic.DbHelper
                 using (var helper = new DbHelper.User())
                 {
                     var yea = helper.GetGender();
+                    if (!yea.Any())
+                    {
+                        helper.SaveGenderAuto();
+                    }
                     //if (yea.Count > 0)
                     yea.Insert(0, new Gender() { Id = 0, Name = "" });
                     cmbGender.DataSource = yea;

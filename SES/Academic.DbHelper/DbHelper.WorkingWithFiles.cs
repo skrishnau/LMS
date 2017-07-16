@@ -289,6 +289,11 @@ namespace Academic.DbHelper
                     return null;
                 }
             }
+
+            public Academic.DbEntities.UserFile GetFile(int fileId)
+            {
+                return Context.File.Find(fileId);
+            }
         }
 
 

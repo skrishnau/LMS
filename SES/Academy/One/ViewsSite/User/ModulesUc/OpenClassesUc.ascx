@@ -14,11 +14,12 @@
             <ItemTemplate>
                 <div>
                     <%--class="auto-st2" CssClass="link" --%>
+                    <%-- style="color: #808080; font-size: 0.9em;" --%>
                     <asp:HyperLink ID="HyperLink1" runat="server"
                         NavigateUrl='<%# "~/Views/Class/SelfEnrolment.aspx?ccId="+Eval("ClassId") %>'>
                         <asp:Label ID="ClassNameLabel" runat="server"  Text='<%# Eval("ClassName") %>' />
                         <br />
-                        <span style="color: #808080; font-size: 0.9em;">Starts on:
+                        <span class="list-item-description">Starts on:
                             <asp:Label ID="StartDateLabel" runat="server" Text='<%# Eval("StartDate") %>' />
                         </span>
                     </asp:HyperLink>

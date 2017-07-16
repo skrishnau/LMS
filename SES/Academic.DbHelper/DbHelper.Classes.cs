@@ -210,7 +210,7 @@ namespace Academic.DbHelper
                                 && (s.StartDate ?? min) <= now
                                 && (s.EndDate ?? max) >= now
                                 && !(s.SessionComplete ?? false)
-                                && ((s.IsRegular && !(s.SubjectStructure.Void??false) && s.SubjectStructure.SubjectId == subjectId)
+                                && ((s.IsRegular && !(s.SubjectStructure.Void ?? false) && s.SubjectStructure.SubjectId == subjectId)
                                      || (!s.IsRegular && s.SubjectId == subjectId))
                                 )
                                 .OrderByDescending(o => o.CreatedDate)
@@ -893,8 +893,8 @@ namespace Academic.DbHelper
                                   join role in Context.Role on clsur.RoleId equals role.Id
                                   //join st in Context.Student on clsur.UserId equals st.UserId into student
                                   //from std in student.DefaultIfEmpty()
-                                  where !(clsur.Void ?? false) && role.Id==teachRole.Id
-                                 orderby clsur.User.FirstName , clsur.User.MiddleName, clsur.User.LastName
+                                  where !(clsur.Void ?? false) && role.Id == teachRole.Id
+                                  orderby clsur.User.FirstName, clsur.User.MiddleName, clsur.User.LastName
                                   //orderby (orderBy=="crn"? (std==null?clsur.User.FirstName:std.CRN)
                                   //              :(orderBy=="name"?clsur.User.FirstName
                                   //                  :clsur.User.UserName)) ascending 
@@ -1206,6 +1206,47 @@ namespace Academic.DbHelper
                 return ss;
             }
 
+
+
+            public List<ClassViewModel> ListAllClassesOfUserOfSubject(int userId, int subjectId)
+            {
+                //Context.Subject.Where(x=>x.)
+                var ss =
+                    Context.UserClass.Where(
+                        x => ((x.SubjectClass.IsRegular
+                            ? x.SubjectClass.SubjectStructure.SubjectId == subjectId
+                            : x.SubjectClass.Subject.Id == subjectId) &&
+                              x.UserId == userId
+                              && !(x.Suspended ?? false)
+                              && !(x.Void ?? false)
+                              && !(x.SubjectClass.Void ?? false)
+                            ))
+                        .OrderByDescending(x => x.StartDate).ThenByDescending(x => x.EndDate)
+                        .ToList();
+                var list = new List<ClassViewModel>();
+                foreach (var x in ss)
+                {
+                    list.Add(new ClassViewModel()
+                    {
+                        IsRegular = x.SubjectClass.IsRegular,
+                        StartDate =
+                            x.SubjectClass.StartDate == null ? "" : x.SubjectClass.StartDate.Value.ToString("D"),
+                        ClassName = x.SubjectClass.GetName,
+                        EndDate = x.SubjectClass.EndDate == null ? "" : x.SubjectClass.EndDate.Value.ToString("D"),
+                        SubjectId = x.SubjectClass.GetCourseId,
+                        SubjectName = x.SubjectClass.GetCourseFullName,
+                        ClassId = x.SubjectClassId,
+                        OpenTillDate =
+                            x.SubjectClass.JoinLastDate == null
+                                ? ""
+                                : x.SubjectClass.JoinLastDate.Value.ToString("D"),
+                        IconUrl = "",
+                        RunningClassId = x.SubjectClass.RunningClassId ?? 0,
+                    });
+                }
+                return list;
+            }
+
             public List<UserClass> GetActiveClassesOfUser(int userId, int subjectId)
             {
                 var ss =
@@ -1321,6 +1362,11 @@ namespace Academic.DbHelper
             public bool HasTheUserAlreadyJoinedThisClass(int userId, int subclsId)
             {
                 return Context.UserClass.Any(x => x.UserId == userId && x.SubjectClassId == subclsId && !(x.Void ?? false));
+            }
+
+            public Academic.DbEntities.Subjects.Subject GetSubject(int subjectId)
+            {
+                return Context.Subject.Find(subjectId);
             }
         }
     }

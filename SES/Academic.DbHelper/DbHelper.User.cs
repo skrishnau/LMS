@@ -278,6 +278,7 @@ namespace Academic.DbHelper
                             ent.Description = user.Description;
                             ent.Email = user.Email;
                             ent.FirstName = user.FirstName;
+                            ent.MiddleName = user.MiddleName;
                             ent.EmailDisplay = user.EmailDisplay;
                             ent.Email = user.Email;
                             ent.UserName = user.UserName;
@@ -286,6 +287,7 @@ namespace Academic.DbHelper
                             ent.IsActive = user.IsActive;
                             ent.Password = user.Password;
                             ent.LastName = user.LastName;
+                            ent.GenderId = user.GenderId;
                             Context.SaveChanges();
                         }
                         scope.Complete();
@@ -672,9 +674,9 @@ namespace Academic.DbHelper
             }
 
             //used
-            public bool DoesUserNameExist(int schoolId, string userName)
+            public bool DoesUserNameExist(int schoolId,int userId, string userName)
             {
-                return Context.Users.Any(x => x.UserName == userName);
+                return Context.Users.Any(x => x.UserName == userName && x.Id!=userId);
             }
 
 
@@ -715,6 +717,30 @@ namespace Academic.DbHelper
             }
 
 
+
+            internal void SaveGenderAuto()
+            {
+                var male = new Gender()
+                {
+                    Name = "Male"
+                };
+                var female = new Gender()
+                {
+                    Name = "Female"
+                };
+                var other = new Gender()
+                {
+                    Name = "Other"
+                };
+                Context.Gender.Add(male);
+                Context.SaveChanges();
+
+                Context.Gender.Add(female);
+                Context.SaveChanges();
+
+                Context.Gender.Add(other);
+                Context.SaveChanges();
+            }
         }
     }
 }

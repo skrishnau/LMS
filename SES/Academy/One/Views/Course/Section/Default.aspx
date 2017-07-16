@@ -37,11 +37,12 @@
                 </div>
                 
                 <div style="float: right;margin-top: 10px">
-                    <asp:LinkButton ID="lnkMyClasses" runat="server" CssClass="link-button"
+                    <asp:HyperLink ID="lnkMyClasses" runat="server" CssClass="link-button"
+                        
                         ToolTip="Classes of this course in which you have participated"
                          Visible="False">
                         My Classes
-                    </asp:LinkButton>
+                    </asp:HyperLink>
                 </div>
 
                 <div style="clear: both;"></div>

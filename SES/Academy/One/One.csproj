@@ -65,6 +65,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.ServiceModel.Activities" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -1272,6 +1273,7 @@
     <Content Include="Content\Icons\Close\dialog_close.png" />
     <Content Include="Content\Icons\Close\white_cross.png" />
     <Content Include="Content\Icons\Copy\copy-content.png" />
+    <Content Include="Content\Icons\Copy\Copy_14px.png" />
     <Content Include="Content\Icons\delete\trash1.gif" />
     <Content Include="Content\Icons\delete\remove_icon_color.png" />
     <Content Include="Content\Icons\delete\trash_earlier.gif" />
@@ -1279,6 +1281,8 @@
     <Content Include="Content\Icons\delete\trash.png" />
     <Content Include="Content\Icons\Diploma\diploma_16px.png" />
     <Content Include="Content\Icons\Done_Save\basic-save.png" />
+    <Content Include="Content\Icons\Download\Download_14px.png" />
+    <Content Include="Content\Icons\Download\Download_14px_2.png" />
     <Content Include="Content\Icons\Download\download_icon_13x13.png" />
     <Content Include="Content\Icons\Download\download_icon_16x16.png" />
     <Content Include="Content\Icons\Download\download_icon_20x20.png" />
@@ -1329,6 +1333,7 @@
     <Content Include="Content\Icons\Message\urgent-message-light-26px.png" />
     <Content Include="Content\Icons\Move\move1_13x13.png" />
     <Content Include="Content\Icons\Move\move0_13x13.png" />
+    <Content Include="Content\Icons\Move\Move_14px_1.png" />
     <Content Include="Content\Icons\New\new_icon.png" />
     <Content Include="Content\Icons\New\new_submission_icon.png" />
     <Content Include="Content\Icons\Notice\agt_announcements.png" />
@@ -1390,6 +1395,7 @@
     <Content Include="Content\Icons\Users\group.png" />
     <Content Include="Content\Icons\Users\group_10x10.png" />
     <Content Include="Content\Icons\Users\single.png" />
+    <Content Include="Content\Icons\Users\user-male-52px.png" />
     <Content Include="Content\Icons\Users\users-icon.png" />
     <Content Include="Content\Icons\Users\user_group-icon.png" />
     <Content Include="Content\Icons\Visibility\eye_16x20_hidden.png" />
@@ -1741,6 +1747,7 @@
     <Content Include="Views\Class\Enrollment\testOfSelectInListView.aspx" />
     <Content Include="Views\Class\Enrollment\UserEnrollUC.ascx" />
     <Content Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx" />
+    <Content Include="Views\Class\MyClasses.aspx" />
     <Content Include="Views\Class\SelfEnrolment.aspx" />
     <Content Include="Views\Courses\Default.aspx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx" />
@@ -1781,6 +1788,7 @@
     <Content Include="Views\FileManagement\EachFile.ascx" />
     <Content Include="Views\FileManagement\EarlierCodes.txt" />
     <Content Include="Views\FileManagement\FileDeleteDialogUc.ascx" />
+    <Content Include="Views\FileManagement\FileDownload.aspx" />
     <Content Include="Views\FileManagement\FileListingUc.ascx" />
     <Content Include="Views\FileManagement\FolderAddDialogUc.ascx" />
     <Content Include="Views\FileManagement\FolderAddUc.ascx" />
@@ -1898,6 +1906,7 @@
     <Content Include="Views\UserControls\TreeTest\ThreButtonColorful\NodeUc.ascx" />
     <Content Include="Views\UserControls\TreeTest\ThreButtonColorful\ThreeButtonTest.aspx" />
     <Content Include="Views\User\Create.aspx" />
+    <Content Include="Views\User\Detail.aspx" />
     <Content Include="Views\User\EarlierCode.txt" />
     <Content Include="Views\User\Enroll\UserEnrollUC.ascx" />
     <Content Include="Views\User\List.aspx" />
@@ -2943,6 +2952,13 @@
     <Compile Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx.designer.cs">
       <DependentUpon>UserEnrollUC_ListDisplay.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Class\MyClasses.aspx.cs">
+      <DependentUpon>MyClasses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\MyClasses.aspx.designer.cs">
+      <DependentUpon>MyClasses.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Class\SelfEnrolment.aspx.cs">
       <DependentUpon>SelfEnrolment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3187,6 +3203,13 @@
     </Compile>
     <Compile Include="Views\FileManagement\FileDeleteDialogUc.ascx.designer.cs">
       <DependentUpon>FileDeleteDialogUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileManagement\FileDownload.aspx.cs">
+      <DependentUpon>FileDownload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FileManagement\FileDownload.aspx.designer.cs">
+      <DependentUpon>FileDownload.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\FileManagement\FileListingUc.ascx.cs">
       <DependentUpon>FileListingUc.ascx</DependentUpon>
@@ -3922,6 +3945,13 @@
     </Compile>
     <Compile Include="Views\User\Create.aspx.designer.cs">
       <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\Detail.aspx.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\Detail.aspx.designer.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\User\Enroll\UserEnrollUC.ascx.cs">
       <DependentUpon>UserEnrollUC.ascx</DependentUpon>

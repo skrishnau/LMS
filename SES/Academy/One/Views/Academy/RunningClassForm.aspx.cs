@@ -95,7 +95,8 @@ namespace One.Views.Academy
                         var lbl = new HyperLink()
                         {
                             Text = sub.GetCourseFullName + "<br />",
-                            NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + sub.Id
+                            NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + sub.Id,
+                            CssClass = "list-item"
                         };
 
                         if (!teacherPresent)
@@ -120,10 +121,10 @@ namespace One.Views.Academy
 
                         pnlSubjects.Controls.Add(lbl);
                         //pnlSubjects.Controls.Add(notice);
-                        pnlSubjects.Controls.Add(new Literal()
-                        {
-                            Text = "<br/>"
-                        });
+                        //pnlSubjects.Controls.Add(new Literal()
+                        //{
+                        //    Text = "<br/>"
+                        //});
                     }
                 }
             }

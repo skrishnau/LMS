@@ -50,11 +50,12 @@
             <div class="data-entry-section">
 
                 <div>
-                    <div>
-                        <strong style="font-size: 18px;">Classes</strong>
+                    <div class="data-entry-section-heading">
+                        Classes
+                        <hr />
                     </div>
-                    
-                    <div class="data-entry-section data-entry-section-link-listing">
+
+                    <div class="data-entry-section list">
                         <asp:Panel ID="pnlListing" runat="server"></asp:Panel>
                     </div>
                 </div>

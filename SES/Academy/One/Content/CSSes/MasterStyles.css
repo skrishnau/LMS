@@ -45,13 +45,13 @@ div.data-entry-section {
     margin-left: 5px;
 }
 
-.data-entry-section-link-listing a {
+/*.data-entry-section-link-listing a {
     margin-left: 10px;
     display: block;
     color: darkslategrey;
     padding-top: 4px;
     padding-bottom: 4px;
-    /*margin-bottom: 10px;*/
+    
     line-height: 20px;
     text-decoration: none;
 }
@@ -59,14 +59,14 @@ div.data-entry-section {
     .data-entry-section-link-listing a:hover {
         background-color: #f1f1f1;
         color: darkslategrey;
-        /*#ededc9;*/
+        
     }
 
     .data-entry-section-link-listing a:active {
         background-color: #191970;
         color: white;
-        /*#ededc9;*/
-    }
+       
+    }*/
 
 
 div.data-entry-section-heading {

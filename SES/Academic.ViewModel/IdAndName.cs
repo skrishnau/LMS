@@ -26,6 +26,8 @@ namespace Academic.ViewModel
         public int Id { get; set; }
         public string LocalId { get; set; }
 
+
+
         public long FileSizeInBytes { get; set; }
         /// <summary>
         /// eg. image/jpg . i.e. in the form of slash in middle
@@ -36,6 +38,11 @@ namespace Academic.ViewModel
         /// only name. not in the form of path. only name
         /// </summary>
         public string FileDisplayName { get; set; }
+
+        /// <summary>
+        /// name of file used while storing in hard disk. i.e. OS name.. i.e. actual name, not of database
+        /// </summary>
+        public string FileNameActualName { get; set; }
 
         /// <summary>
         /// Full icon path. Extract icon name later.

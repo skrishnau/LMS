@@ -9,27 +9,27 @@
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="Body">
     <h3 class="heading-of-listing">Users
     </h3>
-    <hr />
+
+    <div class="option-div" style="margin-bottom: 15px;">
+        <asp:HyperLink runat="server" ID="lnkAddNewUser" NavigateUrl="~/Views/User/Create.aspx" CssClass="link-dark">
+                Add New User
+        </asp:HyperLink>
+        <asp:HyperLink runat="server" ID="lnkAssignRole" NavigateUrl="~/Views/Role/Assign.aspx" CssClass="link-dark">
+                Assign Role
+        </asp:HyperLink>
+    </div>
+
 
     <div>
-        <div style="float: right;">
-            <asp:HyperLink runat="server" ID="lnkAddNewUser" NavigateUrl="~/Views/User/Create.aspx" CssClass="link-dark">
-                Add New User
-            </asp:HyperLink>
-            &nbsp;&nbsp;&nbsp;
-            <asp:HyperLink runat="server" ID="lnkAssignRole" NavigateUrl="~/Views/Role/Assign.aspx" CssClass="link-dark">
-                Assign Role
-            </asp:HyperLink>
-        </div>
 
-        <%-- float: left; --%>
         <div style="border: 1px solid lightgray;">
 
             <div style="background-color: #f1f1f1; padding: 5px;">
 
-                <asp:LinkButton ID="lnkFilterPanel" runat="server" OnClick="lnkFilterPanel_OnClick" CssClass="link-dark">
+                <asp:LinkButton ID="lnkFilterPanel" runat="server" OnClick="lnkFilterPanel_OnClick"
+                    CssClass="link">
+                    <asp:Image ID="imgFilter" runat="server" ImageUrl="~/Content/Icons/Sort/sort-down-20px.png" />
                     Filter
-                <asp:Image ID="imgFilter" runat="server" ImageUrl="~/Content/Icons/Arrow/down-arrow.png" />
                 </asp:LinkButton>
             </div>
 
@@ -43,21 +43,28 @@
                                     <asp:TextBox ID="txtNameFilter" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td>Username</td>
                                 <td>
                                     <asp:TextBox ID="txtUsernameFilter" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td>Email</td>
                                 <td>
                                     <asp:TextBox ID="txtEmailFilter" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
-
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div style="margin-top: 5px;">
+                                        <asp:LinkButton ID="btnFilter"
+                                            CssClass="link-button"
+                                            runat="server" Text="Filter" OnClick="btnFilter_OnClick" />
+                                    </div>
+                                </td>
+                            </tr>
                         </table>
                     </div>
 
@@ -66,16 +73,14 @@
                         &nbsp;
                             <asp:CheckBox ID="chkStudents" runat="server" Text="Students" Checked="True" />
                         &nbsp;&nbsp;&nbsp;
-                            <asp:CheckBox ID="chkTeachers" runat="server" Text="Teachers" Checked="True"/>
-                       
+                            <asp:CheckBox ID="chkTeachers" runat="server" Text="Teachers" Checked="True" />
+
                     </div>
 
                     <div style="clear: both;"></div>
 
                     <div>
-                        <div style="float: right;">
-                            <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_OnClick" />
-                        </div>
+
                         <div style="clear: both;"></div>
                     </div>
                 </asp:Panel>
@@ -86,12 +91,14 @@
     </div>
     <br />
 
-    <div style="width: 99%; margin-top: 20px">
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" PageSize="25" CssClass="gridview"
+    <div style="margin-top: 10px">
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" PageSize="25" Width="100%" CssClass="gridview"
             AutoGenerateColumns="False" DataSourceID="ObjectDataSource1"
+            OnRowDataBound="GridView1_OnRowDataBound"
+            OnSelectedIndexChanged="GridView1_OnSelectedIndexChanged"
             CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No users">
 
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <%--<AlternatingRowStyle BackColor="White" ForeColor="#284775" />--%>
 
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
@@ -114,7 +121,10 @@
                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("FirstName") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# GetName(Eval("FirstName"),Eval("MiddleName"),Eval("LastName"))  %>'></asp:Label>
+                        <asp:HyperLink ID="Label1" runat="server"
+                            CssClass="link"
+                            NavigateUrl='<%# "~/Views/User/Detail.aspx?uId="+Eval("Id") %>'
+                            Text='<%# GetName(Eval("FirstName"),Eval("MiddleName"),Eval("LastName"))  %>'></asp:HyperLink>
                     </ItemTemplate>
                     <ItemStyle Width="150"></ItemStyle>
                 </asp:TemplateField>
@@ -162,13 +172,14 @@
 
             </Columns>
 
+            <%--<RowStyle BackColor="#F7F6F3" ForeColor="#333333" />--%>
+
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <%--  BackColor="#557d96" Font-Bold="True" ForeColor="White" --%>
             <HeaderStyle CssClass="data-list-header" />
             <PagerStyle HorizontalAlign="Center" CssClass="data-list-footer" />
             <%--<PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />--%>
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
             <SortedAscendingCellStyle BackColor="#E9E7E2" />
             <SortedAscendingHeaderStyle BackColor="#506C8C" />

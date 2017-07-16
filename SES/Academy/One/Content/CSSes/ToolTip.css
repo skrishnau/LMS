@@ -50,7 +50,7 @@
 .tooltip-filelisting {
     position: relative;
     display: inline-block;
-    /*border-bottom: 1px dotted black;*/ 
+    /*border-bottom: 1px dotted black;*/
     /* If you want dots under the hoverable text */
 }
 
@@ -58,7 +58,7 @@
 .tooltiptext-filelisting {
     visibility: hidden;
     width: 120px;
-    background-color: black;
+    /*background-color: black;*/
     color: #fff;
     text-align: center;
     /*padding: 5px 0;*/
@@ -66,13 +66,15 @@
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
+    border: 1px solid grey;
+    background-color: #f1f1f1;
 }
 
 .tooltip-filelisting .tooltiptext-filelisting {
-    width: 120px;
-    bottom: 100%;
+    width: 80px;
+    bottom: 80%;
     left: 50%;
-    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    margin-left: -40px; /* Use half of the width (120/2 = 60), to center the tooltip */
 }
 
 .tooltip-filelisting:hover .tooltiptext-filelisting {
@@ -82,10 +84,60 @@
 .tooltip-filelisting .tooltiptext-filelisting::after {
     content: " ";
     position: absolute;
-    top: 100%; /* At the bottom of the tooltip */
+    top: 99%; /* At the bottom of the tooltip */
     left: 50%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: black transparent transparent transparent;
+    border-color: darkgray transparent transparent transparent;
+}
+
+
+
+/*folder listing tooltip*/
+/*Whole div which contains both text to assign and div of class = tooltiptext*/
+.tooltip-folderlisting {
+    position: relative;
+    display: inline-block;
+    /*border-bottom: 1px dotted black;*/
+    /* If you want dots under the hoverable text */
+    /*background-color: #f1f1f1;*/
+}
+
+/*tooltiptext is the tooltip to show and  its span*/
+.tooltiptext-folderlisting {
+    visibility: hidden;
+    width: 120px;
+    /*background-color: black;*/
+    color: #fff;
+    text-align: center;
+    /*padding: 5px 0;*/
+    border-radius: 6px;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    border: 1px solid grey;
+    background-color: #f1f1f1;
+}
+
+.tooltip-folderlisting .tooltiptext-folderlisting {
+    width: 140px;
+    bottom: 80%;
+    left: 50%;
+    margin-left: -70px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+.tooltip-folderlisting:hover .tooltiptext-folderlisting {
+    visibility: visible;
+}
+
+.tooltip-folderlisting .tooltiptext-folderlisting::after {
+    content: " ";
+    position: absolute;
+    top: 99%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: darkgray transparent transparent transparent;
 }

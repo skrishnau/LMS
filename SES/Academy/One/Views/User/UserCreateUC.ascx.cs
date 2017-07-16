@@ -9,6 +9,7 @@ using Academic.DbHelper;
 using One.Values.MemberShip;
 using System.IO;
 using Academic.DbEntities;
+using Academic.ViewModel;
 
 namespace One.Views.User
 {
@@ -19,12 +20,19 @@ namespace One.Views.User
             var user = Page.User as CustomPrincipal;
             if (user != null)
             {
+                
                 lblSaveStatus.Visible = false;
                 lblSaveStatus.Text = "Couldn't save";
                 valiUserName.ErrorMessage = "Required";
                 //string editMode = "";
                 if (!IsPostBack)
                 {
+                    if (!user.IsInRole(DbHelper.StaticValues.Roles.Manager))
+                    {
+                        Response.Redirect("~/");
+                        return;
+                    }
+
                     DbHelper.ComboLoader.LoadGender(ref cmbGender);
                     FilesDisplay.FileAcquireMode = Enums.FileAcquireMode.Single;
                     var key = Guid.NewGuid().ToString();
@@ -32,8 +40,9 @@ namespace One.Views.User
                     PageKey = key;
                     FilesDisplay.FileSaveDirectory = DbHelper.StaticValues.UserImageDirectory;
 
-                    DbHelper.ComboLoader.LoadRoleForUserEnroll(ref ddlRole, user.SchoolId, DbHelper.StaticValues.Roles.Teacher,false);
-                   
+                    DbHelper.ComboLoader.LoadRoleForUserEnroll(ref ddlRole, user.SchoolId, DbHelper.StaticValues.Roles.Teacher, false);
+
+                    LoadData();
                 }
             }
         }
@@ -76,7 +85,6 @@ namespace One.Views.User
             txtLastName.Text = "";
             txtCity.Text = "";
             txtCountry.Text = "";
-            txtStreet.Text = "";
             txtEmail.Text = "";
             txtPassword.Text = "";
             txtUserName.Text = "";
@@ -84,8 +92,70 @@ namespace One.Views.User
             txtDOB.Text = "";
             txtCountry.Text = "";
             txtCity.Text = "";
-            txtStreet.Text = "";
+        }
 
+        private void LoadData()
+        {
+            if (UserId > 0)
+                using (var helper = new DbHelper.User())
+                {
+                    var userId = UserId;
+                    var us = helper.GetUser(userId);
+                    if (us != null)
+                    {
+                        //tx.Text = us.FullName;
+                        //txtPageTitle.Text = "User Detail";
+                        txtCity.Text = us.City;
+                        txtCountry.Text = us.Country;
+                        txtDOB.Text = us.DOB.HasValue ? us.DOB.Value.ToShortDateString() : "";
+                        txtEmail.Text = us.Email;
+                        txtFirstName.Text = us.FirstName;
+
+                        if (us.GenderId != null)
+                            cmbGender.SelectedValue = us.GenderId.ToString();// != null ? us.Gender.Name : "";
+
+                        txtLastName.Text = us.LastName;
+                        txtMidName.Text = us.MiddleName;
+
+                        txtPhone1.Text = us.Phone;
+                        txtUserName.Text = us.UserName;
+                        //txtStreet.Text = us.;
+                        txtPassword.Text = us.Password;
+
+
+                        var role = us.UserRoles.FirstOrDefault();
+                        if (role != null)
+                        {
+                            ddlRole.SelectedValue = role.RoleId.ToString();
+                        }
+                        if (us.UserImage != null)
+                        {
+                            var images = new List<FileResourceEventArgs>()
+                            {
+                                new FileResourceEventArgs()
+                                {
+                                    Id = us.UserImageId??0,
+                                    Visible = true,
+                                    FileDisplayName = us.UserImage.DisplayName,
+                                    FilePath = us.UserImage.FileDirectory+us.UserImage.FileName,
+                                    FileType = us.UserImage.FileType,
+                                    FileSizeInBytes = us.UserImage.FileSizeInBytes,
+                                    IconPath = us.UserImage.FileDirectory+us.UserImage.FileName,
+                                    IsConstantAndNotEditable = false,
+                                    LocalId = "1"
+                                }
+                            };
+                            FilesDisplay.SetInitialValues(images);
+                        }
+
+                        //lnkImage.NavigateUrl = us.UserImage != null
+                        //    ? us.UserImage.FileDirectory + us.UserImage.FileName
+                        //    : "";
+                        //imgPhoto.ImageUrl = lnkImage.NavigateUrl != "" ? lnkImage.NavigateUrl :
+                        //    "~/Content/Icons/Users/user-male-52px.png";
+                        //imgPhoto.AlternateText = "Image not found";
+                    }
+                }
         }
 
         #endregion
@@ -101,7 +171,7 @@ namespace One.Views.User
                 using (var fileHelper = new DbHelper.WorkingWithFiles())
                 using (var helper = new DbHelper.User())
                 {
-                    if (helper.DoesUserNameExist(user.SchoolId, txtUserName.Text))
+                    if (helper.DoesUserNameExist(user.SchoolId,UserId, txtUserName.Text))
                     {
                         valiUserName.ErrorMessage = "Username already exists";
                         valiUserName.IsValid = false;
@@ -119,42 +189,28 @@ namespace One.Views.User
                         var date = DateTime.Now.Date;
                         var createdUser = new Academic.DbEntities.User.Users()
                         {
-                            SchoolId = user.SchoolId
-                            ,
-                            City = txtCity.Text
-                            ,
-                            Country = txtCountry.Text
-                            ,
-                            CreatedDate = date
-                            ,
-                            Email = txtEmail.Text
-                            ,
-                            FirstName = txtFirstName.Text
-                            ,
+                            SchoolId = user.SchoolId,
+                            City = txtCity.Text,
+                            Country = txtCountry.Text,
+                            CreatedDate = date,
+                            Email = txtEmail.Text,
+                            FirstName = txtFirstName.Text,
                             MiddleName = txtMidName.Text,
-                            LastName = txtLastName.Text
-                            ,
-                            IsActive = true
-                            ,
-                            IsDeleted = false
-                            ,
-                            UserName = txtUserName.Text
-                            ,
-                            Password = txtPassword.Text
-                            ,Id = UserId
-                            //Description = txtDescription.Text
-                            //,
+                            LastName = txtLastName.Text,
+                            IsActive = true,
+                            IsDeleted = false,
+                            UserName = txtUserName.Text,
+                            Password = txtPassword.Text,
+                            Id = UserId,
+                            Phone = txtPhone1.Text,
+                            //Description = txtDescription.Text,
                         };
-                        if (!(cmbGender.SelectedValue == "0" || cmbGender.SelectedValue != ""))
+                        if (cmbGender.SelectedValue!=""&& cmbGender.SelectedValue!="0")
                         {
                             createdUser.GenderId = Convert.ToInt32(cmbGender.SelectedValue);
                         }
                         if (dob != DateTime.MinValue)
                             createdUser.DOB = dob;
-
-
-
-
 
                         var userPhotoDirectory = fileHelper.GetUserPhotoFolder(user.SchoolId);
                         if (userPhotoDirectory != null)
@@ -173,32 +229,21 @@ namespace One.Views.User
                                         image = new Academic.DbEntities.UserFile()
                                         {
                                             Id = f.Id,
-                                            CreatedBy = user.Id
-                                            ,
-                                            CreatedDate = DateTime.Now
-                                            ,
-                                            DisplayName = f.FileDisplayName //Path.GetFileName(imageFile.FileName)
-                                            ,
-                                            FileDirectory = DbHelper.StaticValues.UserImageDirectory
-                                            //StaticValue.UserImageDirectory
-                                            ,
-                                            FileName = fileName
-                                            //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
-                                            ,
-                                            FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
-                                            ,
-                                            FileType = f.FileType //imageFile.ContentType
-                                            ,
-                                            IconPath = f.IconPath
-                                            ,
-                                            SchoolId = user.SchoolId
-                                            ,
-                                            IsServerFile = true
-                                            ,
-                                            IsConstantAndNotEditable = false
-                                            ,
-                                            FolderId = userPhotoDirectory.Id
-                                            //SubjectId = SubjectId
+                                            CreatedBy = user.Id,
+                                            CreatedDate = DateTime.Now,
+                                            DisplayName = f.FileDisplayName, //Path.GetFileName(imageFile.FileName)
+                                            FileDirectory = DbHelper.StaticValues.UserImageDirectory,
+                                                //StaticValue.UserImageDirectory
+                                            FileName = fileName,
+                                                //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
+                                            FileSizeInBytes = f.FileSizeInBytes, //imageFile.ContentLength
+                                            FileType = f.FileType, //imageFile.ContentType
+                                            IconPath = f.IconPath,
+                                            SchoolId = user.SchoolId,
+                                            IsServerFile = true,
+                                            IsConstantAndNotEditable = false,
+                                            FolderId = userPhotoDirectory.Id,
+                                            //SubjectId = SubjectId,
                                         };
                                         if (f.Id > 0)
                                         {
@@ -220,8 +265,14 @@ namespace One.Views.User
 
                             if (savedUser != null)
                             {
-                                Response.Redirect("List.aspx");
-                                //ResetTextAndCombos();
+                                if (UserId > 0)
+                                {
+                                    Response.Redirect("~/Views/User/Detail.aspx?uId=" + UserId);
+                                }
+                                else
+                                {
+                                    Response.Redirect("List.aspx");
+                                }
                             }
                         }
                         else
@@ -245,5 +296,14 @@ namespace One.Views.User
 
         #endregion
 
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            if (UserId > 0)
+            {
+                Response.Redirect("~/Views/User/Detail.aspx?uId=" + UserId);
+            }
+            else
+            { Response.Redirect("~/Views/User/List.aspx"); }
+        }
     }
 }

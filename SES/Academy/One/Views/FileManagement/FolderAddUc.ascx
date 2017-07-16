@@ -5,7 +5,7 @@
 </div>--%>
 <div class="list-item-description">
     <strong>Name:</strong>&nbsp; &nbsp;
-    <asp:TextBox ID="txtNewFolder" runat="server" placeholder="Folder name" TabIndex="1"></asp:TextBox>
+    <asp:TextBox ID="txtNewFolder" runat="server" placeholder="Folder name" Width="80%" TabIndex="1"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
         ForeColor="red" ControlToValidate="txtNewFolder"
         ValidationGroup="folder_add"

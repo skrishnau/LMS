@@ -11,14 +11,20 @@
     <br />
     <%-- Folders --%>
     <asp:Panel runat="server" ID="pnlFoldersPanel">
-        <div>Folders</div>
+        <div class="data-entry-section-heading">
+            Folders
+            <hr />
+        </div>
         <asp:Panel ID="pnlFolderListing" runat="server"></asp:Panel>
         <div style="clear: both;"></div>
     </asp:Panel>
     <br />
     <%-- Files --%>
     <asp:Panel runat="server" ID="pnlFilesPanel">
-        <div>Files</div>
+        <div class="data-entry-section-heading">
+            Files
+            <hr />
+        </div>
         <asp:Panel ID="pnlFilesListing" runat="server"></asp:Panel>
         <div style="clear: both;"></div>
     </asp:Panel>

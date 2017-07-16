@@ -149,7 +149,9 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <div class="data-entry-section-heading">
-                            <asp:LinkButton ID="lnkShowOptional" runat="server" OnClick="lnkShowOptional_Click"
+                            <asp:LinkButton ID="lnkShowOptional" runat="server"
+                                CssClass="link"
+                                 OnClick="lnkShowOptional_Click"
                                 CausesValidation="False" Font-Underline="False">►</asp:LinkButton>
                             Optional
                     <hr />
@@ -190,12 +192,12 @@
                                         <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
                                     </td>
                                 </tr>
-                                <tr>
+                                <%--<tr>
                                     <td>Street</td>
                                     <td>
                                         <asp:TextBox ID="txtStreet" runat="server"></asp:TextBox>
                                     </td>
-                                </tr>
+                                </tr>--%>
                             </table>
 
                         </div>
@@ -211,5 +213,7 @@
     </asp:UpdatePanel>
     <div class="save-div">
         <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="required" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_OnClick" ValidationGroup="none" />
+        
     </div>
 </div>

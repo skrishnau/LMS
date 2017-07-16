@@ -13,6 +13,15 @@ namespace One.Views.FileManagement {
     public partial class EachFile {
         
         /// <summary>
+        /// pnlTooltipBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTooltipBody;
+        
+        /// <summary>
         /// lnkFile control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace One.Views.FileManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDisplayNameFolder;
+        
+        /// <summary>
+        /// pnlToolTipText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlToolTipText;
         
         /// <summary>
         /// lnkDownload control.
@@ -227,5 +245,23 @@ namespace One.Views.FileManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidIsConstantAndNotEditable;
+        
+        /// <summary>
+        /// hidFileType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidFileType;
+        
+        /// <summary>
+        /// hidFileName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidFileName;
     }
 }

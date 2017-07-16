@@ -264,7 +264,7 @@ div.modules-heading {
     display: block;
     margin: -1px 0 0;
     /*padding: 6px;*/
-    border: 1px solid lightgrey;
+    /*border: 1px solid lightgrey;*/
     /*margin-top: -1px;*/
     color: #393939;
     text-decoration: none;
@@ -393,15 +393,36 @@ div.modules-heading {
             color: black;
         }
 
-.list-item-description {
-    margin: 2px 5px;
-    color: #5f5f5f;
-}
+
 
 .gridview {
     margin: 0 auto;
     border: 1px solid lightgrey;
 }
+
+/*Used v2.0*/
+.highlight-row-even {
+    background-color: white;
+    border-bottom: 1px solid #C0C0FF;
+    margin-top: 1px;
+}
+
+    .highlight-row-even:hover {
+        background-color: #f1f1f1;
+        border: 1px solid blue;
+    }
+
+.highlight-row-odd {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #C0C0FF;
+    margin-top: 1px;
+}
+
+    .highlight-row-odd:hover {
+        background-color: #f0f0f0;
+        border: 1px solid blue;
+    }
+
 
 /*<HeaderStyle BackColor="#557d96" Font-Bold="True" ForeColor="White"#f5f5f5; />*/
 .data-list-header {
@@ -414,7 +435,6 @@ div.modules-heading {
     text-align: left;
     line-height: 25px;
     margin-bottom: 3px;
-    
 }
 
 .data-list-footer {
@@ -485,7 +505,7 @@ div.modules-heading {
     color: #393939;
     display: inline-block;
     font-size: 16px;
-    padding: 0 3px;
+    padding: 3px 3px 0;
     font-weight: 400;
     vertical-align: central;
     text-decoration: none;
@@ -498,6 +518,7 @@ div.modules-heading {
         display: inline-block;
         background-color: #f1f1f1;
         text-decoration: underline;
+        /*border: 1px solid lightgrey;*/
     }
     /*#f5f5f5;*/
 
@@ -578,4 +599,11 @@ div.modules-heading {
 
 .link-black {
     color: black;
+}
+
+.link-dark {
+    color: black;
+}
+.link-dark:hover {
+    background-color: lightgray;
 }

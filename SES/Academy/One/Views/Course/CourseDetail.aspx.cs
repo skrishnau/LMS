@@ -127,7 +127,7 @@ namespace One.Views.Course
 
                             //lnkView.NavigateUrl = "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + courseId
                             lnkView.NavigateUrl = "~/Views/Course/Section/?SubId=" + courseId
-                                + "&frmDetailView=1";
+                                + "&from=detail";
                             lnkEdit.NavigateUrl = "~/Views/Course/CourseCreate.aspx?crsId=" + courseId;
                             lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
                                                     DbHelper.StaticValues.Encode("course") +

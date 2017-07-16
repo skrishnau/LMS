@@ -20,37 +20,40 @@ namespace One.Views.Course.Section
                 var id = Request.QueryString["SubId"];
 
                 var user = Page.User as CustomPrincipal;
-                if (user != null)
+                if (user != null && id != null)
                 {
+                    var isManager = user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor)
+                                    || user.IsInRole(DbHelper.StaticValues.Roles.Manager);
+                    var isTeacher = user.IsInRole(DbHelper.StaticValues.Roles.Teacher);
+
                     ListOfSectionsInCourseUC1.UserId = user.Id;
-                    if ((user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor)
-                         || user.IsInRole(DbHelper.StaticValues.Roles.Manager)
-                         ))
+
+                    if (isManager)
                     {
                         var edit = Session["editMode"] as string;//Request.QueryString["edit"];
                         _path = Request.Url.AbsolutePath + "?SubId=" + id;
-                        if (edit != null)
+                        //if (edit != null)
+                        //{
+
+                        if (edit == "1")
                         {
+                            //edit on all sections;;;link on edit 
+                            Edit = "1";
+                            ListOfSectionsInCourseUC1.EditEnabled = true;
 
-                            if (edit == "1")
-                            {
-                                //edit on all sections;;;link on edit 
-                                Edit = "1";
-                                ListOfSectionsInCourseUC1.EditEnabled = true;
-
-                            }
-                            else
-                            {
-                                Edit = "0";
-                            }
                         }
+                        else
+                        {
+                            Edit = "0";
+                        }
+                        //}
                     }
-                    else if (user.IsInRole(DbHelper.StaticValues.Roles.Teacher))
+                    else if (isTeacher)
                     {
                         //if this teacher teaches the subject or has taught the subject then give to edit
                         using (var helper = new DbHelper.Classes())
                         {
-                            var teacher = helper.IsTheUserTeacher(user.Id,Convert.ToInt32(id));
+                            var teacher = helper.IsTheUserTeacher(user.Id, Convert.ToInt32(id));
                             if (teacher)
                             {
                                 Edit = "1";
@@ -93,14 +96,14 @@ namespace One.Views.Course.Section
                 using (var strHelper = new DbHelper.Structure())
                 using (var helper = new DbHelper.Subject())
                 {
-                    
+
                     var sub = helper.Find(courseId);
                     if (sub != null)
                     {
 
-                        LoadSitemap(strHelper,sub);
+                        LoadSitemap(strHelper, sub);
 
-                        
+
                         txtSubjectName.Text = sub.FullName;
                         //uncomment
                         ListOfSectionsInCourseUC1.CourseId = Id;
@@ -108,11 +111,24 @@ namespace One.Views.Course.Section
 
                         var courseStatus = cHelper.GetCourseClassesAvailabilityForUser(user.Id, sub.Id);
 
-                        var stat = courseStatus.Split(new []{','});
+                        var stat = courseStatus.Split(new[] { ',' });
 
                         if (stat.Length == 2)
                         {
+                            var fromCls = Request.QueryString["from"];
+                            var from = "";
+                            if (fromCls == "detail")
+                            {
+                                from = "&from=detail";
+                            }
+                            else
+                            {
+                                from = "&from=view";
+                            }
+
                             lnkMyClasses.Visible = stat[1].Equals(DbHelper.StaticValues.Roles.Teacher);
+                            lnkMyClasses.NavigateUrl = "~/Views/Class/MyClasses.aspx?subId=" + courseId + from;
+
                         }
 
                         switch (stat[0])
@@ -129,7 +145,7 @@ namespace One.Views.Course.Section
                                 lnkEnroll.Visible = true;
                                 break;
                             case "close":
-                               
+
                                 break;
                             default:
                                 break;
@@ -138,14 +154,15 @@ namespace One.Views.Course.Section
                         //lblClassInformation.Text = cHelper.GetCourseClassesAvailabilityForUser(user.Id, sub.Id);
                     }
                     //CourseDetailUc1.
-                }}
+                }
+            }
 
         }
 
 
-        void LoadSitemap(DbHelper.Structure strHelper,Academic.DbEntities.Subjects.Subject sub)
+        void LoadSitemap(DbHelper.Structure strHelper, Academic.DbEntities.Subjects.Subject sub)
         {
-            var fromCls = Request.QueryString["frmDetailView"];
+            var fromCls = Request.QueryString["from"];
             var yId = Request.QueryString["yId"];
             var sId = Request.QueryString["sId"];
             if (SiteMap.CurrentNode != null)
@@ -173,7 +190,7 @@ namespace One.Views.Course.Section
                     {
                         Name = strHelper.GetSructureDirectory(Convert.ToInt32(yId), Convert.ToInt32(sId))
                         ,
-                        Value = "~/Views/Structure/CourseListing.aspx?yId=" + yId + "&sId=" + sId 
+                        Value = "~/Views/Structure/CourseListing.aspx?yId=" + yId + "&sId=" + sId
                         ,
                         Void = true
                     });

@@ -141,8 +141,10 @@ namespace One.Views.FileManagement
                                     Visible = true,
                                     FileType = f.FileType,
                                     IconPath = (f.IsConstantAndNotEditable ?? false) ? DbHelper.StaticValues.FolderIconLockedDirectory : DbHelper.StaticValues.FolderIconDirectory,
-                                    FilePath = f.FileDirectory + "/" + f.FileName,
+                                    //changed here ---- + "/"
+                                    FilePath = f.FileDirectory + f.FileName,
                                     FileDisplayName = f.DisplayName,
+                                    FileNameActualName = f.FileName,
                                     FileSizeInBytes = f.FileSizeInBytes,
                                     LocalId = i.ToString(),
                                     IsConstantAndNotEditable = f.IsConstantAndNotEditable ?? false
@@ -172,8 +174,10 @@ namespace One.Views.FileManagement
                                     Visible = true,
                                     FileType = f.FileType,
                                     IconPath = string.IsNullOrEmpty(f.IconPath) ? f.FileDirectory + "/" + f.FileName : f.IconPath,
-                                    FilePath = f.FileDirectory + "/" + f.FileName,
+                                    //changed here
+                                    FilePath = f.FileDirectory + f.FileName,
                                     FileDisplayName = f.DisplayName,
+                                    FileNameActualName = f.FileName,
                                     FileSizeInBytes = f.FileSizeInBytes,
                                     LocalId = i.ToString(),
                                     IsConstantAndNotEditable = f.IsConstantAndNotEditable ?? false
@@ -225,7 +229,7 @@ namespace One.Views.FileManagement
             }
 
 
-            fileUc.SetData(file.IconPath, wrapedName, file.Id, file.LocalId, file.FilePath
+            fileUc.SetData(file.IconPath, wrapedName, file.FileNameActualName, file.Id, file.LocalId, file.FilePath
                 , fileName, isFolder, true, file.IsConstantAndNotEditable, file.FileType);
             fileUc.FileClicked += fileUc_FileClicked;
             fileUc.RenameClicked += fileUc_RenameClicked;
@@ -293,9 +297,17 @@ namespace One.Views.FileManagement
             }
             else
             {
+
                 //redirect
-                if (e.Check)//check has IsFolder value
-                    Response.Redirect("~/Views/FileManagement/?folId=" + e.Id + "&type=" + (IsServerFile ? "server" : "private"), true);
+                if (e.Check) //check has IsFolder value
+                {
+                    Response.Redirect(
+                        "~/Views/FileManagement/?folId=" + e.Id + "&type=" + (IsServerFile ? "server" : "private"), true);
+                }
+                else
+                {
+                    Response.Redirect("FileDownload.aspx?fId=" + e.Id);
+                }
             }
 
 

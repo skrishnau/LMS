@@ -13,8 +13,100 @@ CKEDITOR.editorConfig = function (config) {
     //config.extraPlugins = 'wordcount';
     //config.extraPlugins = 'wordcount,notification'; 
     //config.plugins = 'wordcount';
-   
+    //alert(CKEDITOR.version);
+
+
+    config.toolbar = 'MyToolbarRecommended';
+    config.toolbar_MyToolbarRecommended =
+	[
+		{ name: 'document', items: ['Source', 'NewPage', 'Preview'] },
+		{ name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+		{ name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
+		{
+		    name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'
+                   , 'Iframe']
+		},
+        { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+		{ name: 'tools', items: ['Maximize', '-', 'About'] },
+
+                '/',
+		{ name: 'styles', items: ['Styles', 'Format'] },
+		{ name: 'basicstyles', items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] },
+		{ name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+
+	];
+
+    config.toolbar_MyToolbar =
+   [
+       { name: 'document', items: ['NewPage', 'Preview'] },
+       { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+       { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
+       {
+           name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'
+                  , 'Iframe']
+       },
+               '/',
+       { name: 'styles', items: ['Styles', 'Format'] },
+       { name: 'basicstyles', items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] },
+       { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+       { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+       { name: 'tools', items: ['Maximize', '-', 'About'] }
+   ];
+
+    config.toolbar_Basicc =
+    [
+	    ['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', '-', 'About']
+    ];
+
 };
+
+//config.toolbar = [
+// { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+// { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+// '/',
+// { name: 'basicstyles', items: ['Bold', 'Italic'] }
+//];
+
+// Toolbar configuration.
+//config.toolbar = [
+// { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+// { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Scayt'] },
+// { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+// { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
+// { name: 'tools', items: ['Maximize'] },
+// { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source'] },
+// { name: 'others', items: ['-'] },
+// '/',
+// { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] },
+// { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+// { name: 'styles', items: ['Styles', 'Format'] },
+// { name: 'about', items: ['About'] }
+//];
+
+
+//CKEDITOR.replace('editor1',
+//{
+//    toolbar: 'Basic'
+//});
+
+//config.toolbarGroups = [
+//   { name: 'clipboard', groups: ['clipboard', 'undo'] },
+//   { name: 'editing', groups: ['find', 'selection', 'spellchecker'] },
+//   { name: 'links' },
+//   { name: 'insert' },
+//   { name: 'forms' },
+//   { name: 'tools' },
+//   { name: 'document', groups: ['mode', 'document', 'doctools'] },
+//   { name: 'others' },
+//   '/',
+//   { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+//   { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
+//   { name: 'styles' },
+//   { name: 'colors' },
+//   { name: 'about' }
+//];
+
+
 //CKEDITOR.editorConfig = function (config) {
 //    config.extraPlugins = 'wordcount,notification';
 //    //    config.toolbar [

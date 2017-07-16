@@ -64,7 +64,7 @@ namespace One.Views.Course.Section {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkMyClasses;
+        protected global::System.Web.UI.WebControls.HyperLink lnkMyClasses;
         
         /// <summary>
         /// ListOfSectionsInCourseUC1 control.

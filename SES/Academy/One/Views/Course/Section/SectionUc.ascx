@@ -40,10 +40,10 @@
 
                     <div style="margin: 5px 0 5px;">
                         <%-- OnClick="lnkAddActOrRes_Click" 
-                    CssClass="link_act_res"
+                    CssClass="
                         --%>
                         <asp:LinkButton ID="lnkAddActOrRes" ClientIDMode="Static" ToolTip="Add activity or resource in this section"
-                            CssClass="link-button"
+                            CssClass="link_act_res link-button"
                             Visible="False" runat="server">
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon-14px.png" />
                             Add an Activity or Resource

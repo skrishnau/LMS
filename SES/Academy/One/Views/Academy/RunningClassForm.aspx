@@ -21,9 +21,12 @@
 
     <br />
     <div class="data-entry-section">
-
-        <strong>Subjects</strong>
-        <div class="data-entry-section-link-listing">
+        <div class="data-entry-section-heading">
+            Subjects
+            <hr />
+        </div>
+        <%-- data-entry-section-link-listing --%>
+        <div class="list">
             <asp:Panel ID="pnlSubjects" runat="server"></asp:Panel>
         </div>
     </div>

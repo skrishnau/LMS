@@ -24,15 +24,16 @@
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <div class="list-item-option">
+                <%-- class="list-item-option" --%>
+                <div class="option-div">
                     <asp:LinkButton ID="lnkAddFile" runat="server"
                         OnClick="lnkAddFile_OnClick">
-                        <asp:Image ID="Image1" runat="server" Height="25" Width="25" ImageUrl="~/Content/Icons/File/file-add-icon.png" />
+                        <asp:Image ID="Image1" runat="server" Height="14" Width="14" ImageUrl="~/Content/Icons/Add/add-file-20px.png" />
                         Add File
                     </asp:LinkButton>
                     <asp:LinkButton ID="lnkAddFolder" runat="server"
                         OnClick="lnkAddFolder_OnClick">
-                        <asp:Image ID="Image2" runat="server" Height="25" Width="25" ImageUrl="~/Content/Icons/Folder/folder-add-icon.png" />
+                        <asp:Image ID="Image2" runat="server" Height="14" Width=14 ImageUrl="~/Content/Icons/Add/add-folder-20px.png" />
                         Add Folder
                     </asp:LinkButton>
                 </div>

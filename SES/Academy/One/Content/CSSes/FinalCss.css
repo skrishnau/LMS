@@ -131,7 +131,7 @@
     }
 
         .list-dark a:hover {
-            background-color: white;/*#f5f5f5;*/
+            background-color: white; /*#f5f5f5;*/
             color: black;
         }
 
@@ -153,7 +153,7 @@
     }
 
         .list-dark-datalist a:hover {
-            background-color: white;/*#f5f5f5;*/
+            background-color: white; /*#f5f5f5;*/
             color: black;
         }
 /* ENd of "for only dashboard" */
@@ -221,5 +221,10 @@
         background-color: #f5f5f5;
     }
 
-
+.list-item-description {
+    /*margin: 2px 5px;
+    color: #5f5f5f;*/
+    color: #808080;
+    font-size: 0.9em;
+}
 /*Used above*/

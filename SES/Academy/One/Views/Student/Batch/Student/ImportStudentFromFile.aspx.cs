@@ -150,7 +150,7 @@ namespace One.Views.Student.Batch.Student
                 {
                     foreach (var student in dts)
                     {
-                        student.Void = helper.DoesUserNameExist(user.SchoolId, student.CRN);
+                        student.Void = helper.DoesUserNameExist(user.SchoolId,0, student.CRN);
                     }
                 }
         }

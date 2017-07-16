@@ -21,23 +21,31 @@ namespace One.Views.FileManagement
         }
 
 
-        public void SetData(string iconImageUrl, string displayName, int fileId, string localId, string fileUrl,
+        public void SetData(string iconImageUrl, string displayName,string fileName, int fileId, string localId, string fileUrl,
             string fullFileNameForToolTip, bool isFolder, bool enableFileImageClick, bool isConstantAndNotEditable, string fileType)
         {
             IsFolder = isFolder;
             IsConstantAndNotEditable = isConstantAndNotEditable;
 
+            hidFileId.Value = fileId.ToString();
+            hidLocalId.Value = localId;
+            hidFileUrl.Value = fileUrl;
+
             if (isFolder)
             {
+                //css
+                pnlTooltipBody.CssClass = "tooltip-folderlisting";
+                pnlToolTipText.CssClass = "tooltiptext-folderlisting";
+
                 lnkDownload.Visible = false;
                 lnkFolder.Visible = true;
 
                 imgFolder.ImageUrl = iconImageUrl;
+
+                //here
                 lblDisplayNameFolder.Text = displayName;
                 lblDisplayNameFolder.ToolTip = fullFileNameForToolTip;
-                hidFileId.Value = fileId.ToString();
-                hidLocalId.Value = localId;
-                hidFileUrl.Value = fileUrl;
+
                 lnkFolder.Enabled = enableFileImageClick;
 
                 lblFileNotEditableDisplay.Visible = isConstantAndNotEditable;
@@ -51,17 +59,24 @@ namespace One.Views.FileManagement
             }
             else
             {
+                //css
+                pnlTooltipBody.CssClass = "tooltip-filelisting";
+                pnlToolTipText.CssClass = "tooltiptext-filelisting";
+
+                hidFileType.Value = fileType;
+                hidFileName.Value = fileName;
+
                 if (fileType.ToLower().Contains("image"))
                 {
                     imgPictureIndication.Visible = true;
                     spanPictureIndication.Visible = true;
+
                 }
+                //here
                 lnkFile.Visible = true;
                 imgFile.ImageUrl = iconImageUrl;
                 lblDisplayName.Text = displayName;
-                hidFileId.Value = fileId.ToString();
-                hidLocalId.Value = localId;
-                hidFileUrl.Value = fileUrl;
+
                 lblDisplayName.ToolTip = fullFileNameForToolTip;
                 lnkFile.Enabled = enableFileImageClick;
 
@@ -75,7 +90,7 @@ namespace One.Views.FileManagement
                 }
             }
 
-           
+
         }
 
         public int FileId
@@ -119,18 +134,18 @@ namespace One.Views.FileManagement
                 {
                     RenameClicked(this, new IdAndNameEventArgs()
                     {
-                        Id = FileId
-                        ,
-                        Name = lblDisplayName.ToolTip.Split(new char[] { '.' })[0]
+                        Id = FileId,
+                        Name = lblDisplayName.ToolTip.Split(new char[] { '.' })[0],
+                        Check = IsFolder
                     });
                 }
                 catch
                 {
                     RenameClicked(this, new IdAndNameEventArgs()
                     {
-                        Id = FileId
-                        ,
-                        Name = lblDisplayName.ToolTip
+                        Id = FileId,
+                        Name = lblDisplayName.ToolTip,
+                        Check = IsFolder,
                     });
                 }
             }
@@ -142,13 +157,26 @@ namespace One.Views.FileManagement
             {
                 DeleteClicked(this, new IdAndNameEventArgs()
                 {
-                    Name = lnkFile.Visible?lblDisplayName.ToolTip:lblDisplayNameFolder.ToolTip
-                    ,
-                    Id = FileId
-                    ,
-                    RefIdString = (IsFolder ? "folder" : "file")
+                    Name = lnkFile.Visible ? lblDisplayName.ToolTip : lblDisplayNameFolder.ToolTip,
+                    Id = FileId,
+                    RefIdString = (IsFolder ? "folder" : "file"),
+
                 });
             }
+        }
+
+        protected void lnkDownload_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("FileDownload.aspx?fId="+hidFileId.Value);
+
+            //if (hidFileType.Value != "")
+            //{
+            //    Response.ContentType = hidFileType.Value; //"application/octet-stream";
+            //    Response.AppendHeader("Content-Disposition", "attachment; filename=" + hidFileName.Value);
+            //    //, "attachment; filename=logfile.txt");
+            //    Response.TransmitFile(Server.MapPath(hidFileUrl.Value)); //"~/logfile.txt"));
+            //    Response.End();
+            //}
         }
     }
 }
