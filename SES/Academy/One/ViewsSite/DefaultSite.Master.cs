@@ -13,5 +13,15 @@ namespace One.ViewsSite
         {
 
         }
+
+        protected void lnkLoginName_OnClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void lnkEditMode_OnClick(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

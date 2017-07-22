@@ -65,6 +65,7 @@
     </asp:UpdatePanel>
     <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidIsManager" runat="server" Value="False" />
 </div>
 
 <%-- </div> --%>

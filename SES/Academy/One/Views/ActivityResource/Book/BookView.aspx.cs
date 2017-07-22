@@ -34,7 +34,6 @@ namespace One.Views.ActivityResource.Book
         private void ParseQueryString()
         {
             var subjectId = Request.QueryString["SubId"];
-
             var sectionId = Request.QueryString["secId"];
             var arId = Request.QueryString["arId"];
             //var edit = Request.QueryString["edit"];
@@ -47,11 +46,16 @@ namespace One.Views.ActivityResource.Book
                     var book = helper.GetBook(BookId);
                     lblBookName.Text = book.Name;
                     lblBookDescription.Text = book.Description;
+                    lblPageTitle.Text = book.Name;
                 }
             }
-            if (sectionId != null)
+            if (sectionId != null && subjectId!=null)
             {
                 SectionId = Convert.ToInt32(sectionId);
+                SubjectId = Convert.ToInt32(subjectId);
+
+
+
             }
 
             var user = Page.User as CustomPrincipal;
@@ -61,46 +65,28 @@ namespace One.Views.ActivityResource.Book
                      || user.IsInRole(DbHelper.StaticValues.Roles.Manager)
                      || user.IsInRole(DbHelper.StaticValues.Roles.Teacher)))
                 {
-                    var edit = Request.QueryString["edit"];
-                    if (edit != null)
+                    var edit = Session["editMode"] as string;
+
+                    //var edit = Request.QueryString["edit"];
+                    if (edit == "1")
                     {
-                        var path = Request.Url.AbsolutePath + "?arId=" + BookId;
-                        if (edit == "1")
-                        {
-                            //edit on all sections
-                            //link on edit 
-                            Edit = edit;
-                            lnkEdit.NavigateUrl = path + "&secId=" + SectionId + "&edit=0";
-                            lblEdit.Text = "Exit Edit mode";
-                            edit_panel.Visible = true;
-                            //ListOfSectionsInCourseUC1.AddNewButtonVisibility = true;
-                            //ListOfSectionsInCourseUC1.EditEnabled = true;
-                        }
-                        else
-                        {
-                            Edit = "0";
-                            lnkEdit.NavigateUrl = path + "&secId=" + SectionId + "&edit=1";
-                            lblEdit.Text = "Edit";
-                            edit_panel.Visible = false;
-                        }
-                        if (subjectId != null && sectionId!=null)
-                            lnkBackToCourse.NavigateUrl =
-                                "~/Views/Course/Section/Master/CourseSectionListing.aspx?SubId=" + subjectId + "&edit=" + Edit
-                                +"#section_"+sectionId;
+                        edit_panel.Visible = true;
+                        Edit = "1";
                     }
                     else
                     {
-                        lnkEdit.NavigateUrl = Request.Url.PathAndQuery + "&edit=1";
-                        lblEdit.Text = "Edit";
+                        Edit = "0";
                         edit_panel.Visible = false;
                     }
 
+                    if (subjectId != null && sectionId != null)
+                        lnkBackToCourse.NavigateUrl =
+                            "~/Views/Course/Section/?SubId=" + subjectId 
+                            + "#section_" + sectionId;
                 }
                 else
                 {
                     Edit = "0";
-                    lnkEdit.Visible = false;
-                    lnkEdit.Enabled = false;
                 }
             }
         }
@@ -113,6 +99,12 @@ namespace One.Views.ActivityResource.Book
         {
             get { return Convert.ToInt32(hidSectionId.Value); }
             set { hidSectionId.Value = value.ToString(); }
+        }
+
+        public int SubjectId
+        {
+            get { return Convert.ToInt32(hidSubjectId.Value); }
+            set { hidSubjectId.Value = value.ToString(); }
         }
 
         public string Edit
@@ -151,6 +143,7 @@ namespace One.Views.ActivityResource.Book
                         {
                             Response.Redirect("~/Views/ActivityResource/Book/ChapterCreate.aspx?bId=" + BookId +
                                               "&pcId=0");
+
                         }
                     }
                 }
@@ -164,7 +157,8 @@ namespace One.Views.ActivityResource.Book
 
         void LoadParentChapters(List<Academic.DbEntities.ActivityAndResource.BookItems.BookChapter> list)
         {
-
+            var subjectId = SubjectId;
+            var sectionId = SectionId;
 
             marginleft += 15;
             var early = Session["EarlierSelectedChapter_" + hidPageKey.Value];
@@ -192,7 +186,8 @@ namespace One.Views.ActivityResource.Book
                     , bc.Position != 1
                     , bc.Position != parents.Max(x => x.Position)
                     , bc.Position != 1
-                    , bc.ParentChapterId != null);
+                    , bc.ParentChapterId != null,
+                    subjectId,sectionId);
                 itemuc.ID = "chapters_" + bc.Id;
                 itemuc.ChapterUpdated += itemuc_ChapterUpdated;
                 itemuc.ChapterClicked += itemuc_ChapterClicked;
@@ -205,7 +200,7 @@ namespace One.Views.ActivityResource.Book
                 pnlToc.Controls.Add(itemuc);
 
                 //var children = list.Where(x => x.ParentChapterId == bc.Id).ToList();
-                LoadChapters(list, bc.Id, bc.Position + ". ");
+                LoadChapters(list, bc.Id, bc.Position + ". ",subjectId, sectionId);
                 i++;
             }
             marginleft -= 15;
@@ -216,26 +211,27 @@ namespace One.Views.ActivityResource.Book
 
 
         private int marginleft = 0;
-        void LoadChapters(List<Academic.DbEntities.ActivityAndResource.BookItems.BookChapter> list, int parentId, string number)
+        void LoadChapters(List<Academic.DbEntities.ActivityAndResource.BookItems.BookChapter> list, 
+            int parentId, string number, int subjectId, int sectionId)
         {
             marginleft += 15;
             var thisone = list.Where(x => x.ParentChapterId == parentId).ToList();
             foreach (var bc in thisone)
             {
-                var itemuc =
-                            (BookItems.TocItemsUc)
+                var itemuc =(BookItems.TocItemsUc)
                             Page.LoadControl("~/Views/ActivityResource/Book/BookItems/TocItemsUc.ascx");
                 itemuc.SetData(marginleft, bc.Id, number + bc.Position + ". " + bc.Title, bc.BookId, Edit
                     , bc.Position != 1,
                     bc.Position != thisone.Max(x => x.Position),
                     bc.Position != 1,
-                    bc.ParentChapterId != null);
+                    bc.ParentChapterId != null,
+                    subjectId, sectionId);
                 itemuc.ID = "chapters_" + bc.Id;
                 itemuc.ChapterClicked += itemuc_ChapterClicked;
                 itemuc.ChapterUpdated += itemuc_ChapterUpdated;
                 pnlToc.Controls.Add(itemuc);
                 //var children = list.Where(x => x.ParentChapterId == bc.Id).ToList();
-                LoadChapters(list, bc.Id, number + bc.Position + ". ");
+                LoadChapters(list, bc.Id, number + bc.Position + ". ",subjectId, sectionId);
             }
             marginleft -= 15;
         }
@@ -294,7 +290,9 @@ namespace One.Views.ActivityResource.Book
                 if (content != null)
                 {
                     lblContent.Text = content.Content;
-                    lnkChapterEdit.NavigateUrl = "~/Views/ActivityResource/Book/ChapterCreate.aspx?bId=" + content.BookId + "&pcId=" + content.Id + "&edit=1";
+                    lnkChapterEdit.NavigateUrl = "~/Views/ActivityResource/Book/ChapterCreate.aspx?SubId="+SubjectId +
+                                                "&secId="+SectionId+
+                                                 "&bId=" + content.BookId + "&pcId=" + content.Id+"&edit=1" ;
                 }
 
             }

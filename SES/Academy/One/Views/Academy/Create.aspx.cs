@@ -59,7 +59,6 @@ namespace One.Views.Academy
             valiSession1End.ErrorMessage = "Required";
             valiSession2Start.ErrorMessage = "Required";
             valiSession2End.ErrorMessage = "Required";
-
         }
 
 
@@ -268,25 +267,25 @@ namespace One.Views.Academy
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
-            var user = Page.User as CustomPrincipal;
-            if (user != null)
+            using (var helper = new DbHelper.AcademicYear())
             {
-                //academic year
-                var academicYear = GetAcademicYear(user);
-                if (academicYear == null)
-                    return;
-                //batch
-                List<Academic.DbEntities.Batches.ProgramBatch> list = new List<ProgramBatch>();
-                var batch = GetBatch(user, ref list);
-                if (batch == null)
-                    return;
-                var sessions = GetSessions(academicYear);
-                if (sessions == null)
-                    return;
-
-                using (var helper = new DbHelper.AcademicYear())
+                var user = Page.User as CustomPrincipal;
+                if (user != null)
                 {
+                    //academic year
+                    var academicYear = GetAcademicYear(helper, user);
+                    if (academicYear == null)
+                        return;
+                    //batch
+                    List<Academic.DbEntities.Batches.ProgramBatch> list = new List<ProgramBatch>();
+                    var batch = GetBatch(user, ref list);
+                    if (batch == null)
+                        return;
+                    var sessions = GetSessions(academicYear);
+                    if (sessions == null)
+                        return;
+
+
 
                     var saved = helper.AddOrUpdateAcademicYearAndBatch(user.SchoolId, academicYear, sessions, batch, list);
                     if (saved != null)
@@ -309,12 +308,19 @@ namespace One.Views.Academy
 
 
 
-        private Academic.DbEntities.AcademicYear GetAcademicYear(CustomPrincipal user)
+        private Academic.DbEntities.AcademicYear GetAcademicYear(DbHelper.AcademicYear helper, CustomPrincipal user)
         {
             DateTime start = DateTime.MinValue, end = DateTime.MaxValue;
             try
             {
                 start = Convert.ToDateTime(txtAcademicStart.Text);
+                var earlierAca = helper.GetEarlierAcademicYear(user.SchoolId);
+
+                if (end.Date <= earlierAca.EndDate.Date)
+                {
+                    valiAcademicStart.ErrorMessage = "Must be greater tha end-date of earlier academic year (" + earlierAca.EndDate.ToShortDateString() + ")";
+                    valiAcademicStart.IsValid = false;
+                }
             }
             catch
             {
@@ -324,6 +330,12 @@ namespace One.Views.Academy
             try
             {
                 end = Convert.ToDateTime(txtAcademicEnd.Text);
+                if (end <= start)
+                {
+                    valiAcademicEnd.ErrorMessage = "End date must be greater than start date";
+                    valiAcademicEnd.IsValid = false;
+                }
+
             }
             catch
             {
@@ -425,39 +437,74 @@ namespace One.Views.Academy
 
             if (Page.IsValid)
             {
-                var session1 = new Academic.DbEntities.Session()
+                if (ses1Start < academicYear.StartDate)
                 {
-                    Id = Session1Id,
-                    Name = txtSession1Name.Text,
-                    StartDate = ses1Start,
-                    EndDate = ses1End,
-                    Position = 1,
-                    AcademicYearId = AcademicYearId,
-                    IsActive = false,
-                    Void = false,
-                    Completed = false,
-
-                };
-
-                var session2 = new Academic.DbEntities.Session()
+                    valiSession1Start.IsValid = false;
+                    valiSession1Start.ErrorMessage = "Session start-date can't be less than start-date of academic year";
+                }
+                if (ses1End > academicYear.EndDate)
                 {
-                    Id = Session2Id,
-                    Name = txtSession2Name.Text,
-                    StartDate = ses2Start,
-                    EndDate = ses2End,
-                    Position = 2,
-                    AcademicYearId = AcademicYearId,
-                    IsActive = false,
-                    Void = false,
-                    Completed = false,
-
-                };
-                return new List<Academic.DbEntities.Session>()
+                    valiSession1End.IsValid = false;
+                    valiSession1End.ErrorMessage = "Session end-date can't be greater than end-date of academic year";
+                }
+                else if (ses1End <= ses1Start)
                 {
-                    session1,session2
-                };
+                    valiSession1End.IsValid = false;
+                    valiSession1End.ErrorMessage = "Session end-date can't be less than start-date";
+                }
+
+                if (ses2Start <= ses1End)
+                {
+                    valiSession2Start.IsValid = false;
+                    valiSession2Start.ErrorMessage = "Session-2 start-date can't be less than end-date of Session-1";
+                }
+                if (ses2End > academicYear.EndDate)
+                {
+                    valiSession2End.IsValid = false;
+                    valiSession2End.ErrorMessage = "Session end-date can't be greater than end-date of academic year";
+                }
+                else if (ses2End <= ses2Start)
+                {
+                    valiSession2End.IsValid = false;
+                    valiSession2End.ErrorMessage = "Session end-date can't be less than start-date";
+                }
+
+                if (Page.IsValid)
+                {
+                    var session1 = new Academic.DbEntities.Session()
+                    {
+                        Id = Session1Id,
+                        Name = txtSession1Name.Text,
+                        StartDate = ses1Start,
+                        EndDate = ses1End,
+                        Position = 1,
+                        AcademicYearId = AcademicYearId,
+                        IsActive = false,
+                        Void = false,
+                        Completed = false,
+
+                    };
+
+                    var session2 = new Academic.DbEntities.Session()
+                    {
+                        Id = Session2Id,
+                        Name = txtSession2Name.Text,
+                        StartDate = ses2Start,
+                        EndDate = ses2End,
+                        Position = 2,
+                        AcademicYearId = AcademicYearId,
+                        IsActive = false,
+                        Void = false,
+                        Completed = false,
+
+                    };
+                    return new List<Academic.DbEntities.Session>()
+                    {
+                        session1,
+                        session2
+                    };
+                }
             }
-
             return null;
         }
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Academic.Database;
 using Academic.DbEntities.Class;
+using Academic.ViewModel;
 
 namespace Academic.DbHelper
 {
@@ -25,43 +26,86 @@ namespace Academic.DbHelper
             }
 
 
-            public List<Academic.DbEntities.Class.SubjectClass> GetDueClassesNotification(int schoolId)
+            public List<ClassViewModel> GetDueClassesNotification(int schoolId)
             {
                 var now = DateTime.Now.Date;
                 var min = DateTime.MinValue.Date;
                 var max = DateTime.MaxValue.Date;
 
                 var regular = Context.SubjectClass
-                            .Where(s => !(s.Void ?? false)
-                                //&& (s.StartDate ?? min) <= now
-                               && (s.EndDate ?? max) < now
+                    .Where(s => !(s.Void ?? false)
+                                && (s.EndDate ?? max) < now
                                 && !(s.SessionComplete ?? false)
-                                && ((s.IsRegular && !(s.SubjectStructure.Void ?? false)
-                                            && !(s.SubjectStructure.Subject.Void ?? false) && s.SubjectStructure.Subject.SubjectCategory.SchoolId == schoolId)
-                                     || (!s.IsRegular && !(s.Subject.Void ?? false) && s.Subject.SubjectCategory.SchoolId == schoolId))
-                                )
-                                .OrderByDescending(o => o.CreatedDate)
-                                .ThenBy(t => (t.IsRegular ? t.RunningClass.ProgramBatch.Batch.Name : t.Name))
-                                .ThenBy(t => (t.IsRegular ? t.RunningClass.ProgramBatch.Program.Name : ""))
-                            .ToList();
-                return regular;
+                                && ((s.IsRegular
+                                     && !(s.SubjectStructure.Void ?? false)
+                                     && !(s.SubjectStructure.Subject.Void ?? false)
+                                     && s.SubjectStructure.Subject.SubjectCategory.SchoolId == schoolId)
+                                    ||
+                                    (!s.IsRegular && !(s.Subject.Void ?? false) &&
+                                     s.Subject.SubjectCategory.SchoolId == schoolId)))
+                    .OrderBy(x => x.IsRegular
+                        ? x.SubjectStructure.Subject.FullName
+                        : x.Subject.FullName)
+                    .ToList();
+                var list = new List<ClassViewModel>();
+                foreach (var sc in regular)
+                {
+                    list.Add(new ClassViewModel()
+                    {
+                        IsRegular = sc.IsRegular,
+                        StartDate = sc.StartDate.HasValue ? sc.StartDate.Value.ToString("D") : "",
+                        EndDate = sc.EndDate.HasValue ? sc.EndDate.Value.ToString("D") : "",
+                        SubjectId = sc.GetCourseId,
+                        ClassId = sc.Id,
+                        ClassName = sc.GetName,
+                        OpenTillDate = sc.JoinLastDate.HasValue ? sc.JoinLastDate.Value.ToString("D") : "",
+                        SubjectName = sc.GetCourseFullName,
+                    });
+                }
+
+                return list;
             }
 
 
-            public List<Academic.DbEntities.Class.SubjectClass> GetNoTeacherInClassNotification(int schoolId)
+            public List<ClassViewModel> GetNoTeacherInClassNotification(int schoolId)
             {
                 var teachRole = Context.Role.FirstOrDefault(x => x.RoleName == StaticValues.Roles.Teacher);
                 if (teachRole != null)
                 {
                     var now = DateTime.Now.Date;
-                    var sss = Context.SubjectClass.Where(x => !x.ClassUsers.Any(y => y.RoleId == teachRole.Id)
-                                                            && x.StartDate >= now
-                                                            && x.IsRegular
-                                                    ? x.SubjectStructure.Subject.SubjectCategory.SchoolId == schoolId
-                                                    : x.Subject.SubjectCategory.SchoolId == schoolId).ToList();
-                    return sss;
+                    var sss = Context.SubjectClass
+                        .Where(x => !x.ClassUsers.Any(y => y.RoleId == teachRole.Id)
+                                    && !(x.Void ?? false)
+                                    && x.StartDate <= now
+                                    && x.EndDate >= now
+                                    && (x.SessionComplete == false)
+                                    && (x.IsRegular
+                                        ? x.SubjectStructure.Subject.SubjectCategory.SchoolId ==
+                                          schoolId
+                                        : x.Subject.SubjectCategory.SchoolId == schoolId))
+                        .OrderBy(x => x.IsRegular
+                            ? x.SubjectStructure.Subject.FullName
+                            : x.Subject.FullName)
+                        .ToList();
+                    var list = new List<ClassViewModel>();
+                    foreach (var sc in sss)
+                    {
+                        list.Add(new ClassViewModel()
+                        {
+                            IsRegular = sc.IsRegular,
+                            StartDate = sc.StartDate.HasValue ? sc.StartDate.Value.ToString("D") : "",
+                            EndDate = sc.EndDate.HasValue ? sc.EndDate.Value.ToString("D") : "",
+                            SubjectId = sc.GetCourseId,
+                            ClassId = sc.Id,
+                            ClassName = sc.GetName,
+                            OpenTillDate = sc.JoinLastDate.HasValue ? sc.JoinLastDate.Value.ToString("D") : "",
+                            SubjectName = sc.GetCourseFullName,
+                        });
+                    }
+
+                    return list;
                 }
-                return new List<SubjectClass>();
+                return new List<ClassViewModel>();
             }
 
             //public void GetElectivesNotChoosenNotification(int schoolId, int academicYearId, int sessionId)

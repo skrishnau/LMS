@@ -732,3 +732,16 @@ tr.pager td {
         }
 }
 /* END: Mobile Styles */
+
+
+
+
+
+ul.bottom-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul.bottom-links li {
+    display: inline-block;
+}

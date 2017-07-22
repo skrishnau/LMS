@@ -22,6 +22,15 @@ namespace One.ViewsSite.User.ModulesUc {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
+        /// lnkAcademicSession control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkAcademicSession;
+        
+        /// <summary>
         /// lnkCourse control.
         /// </summary>
         /// <remarks>
@@ -38,15 +47,6 @@ namespace One.ViewsSite.User.ModulesUc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkPrograms;
-        
-        /// <summary>
-        /// lnkAcademicSession control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkAcademicSession;
         
         /// <summary>
         /// lnkUsers control.

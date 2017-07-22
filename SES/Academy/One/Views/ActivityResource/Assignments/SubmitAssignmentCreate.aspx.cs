@@ -301,59 +301,59 @@ namespace One.Views.ActivityResource.Assignments
                                 FileType = f.FileType //imageFile.ContentType
                                 ,
                                 IconPath = f.IconPath
-                                //,
-                                //SubjectId = SubjectId
+                                    //,
+                                    //SubjectId = SubjectId
                                 ,
                                 Void = !f.Visible
-                                
+
                             };
                             list.Add(fi);
                         }
 
                     }
-                //    var files = FilesDisplay1.GetFiles();
+                    //    var files = FilesDisplay1.GetFiles();
 
-                //    var filelist = new List<Academic.DbEntities.UserFile>();
-                //    //var files = FilesDisplay1.GetFiles();
-                //    if (files != null)
-                //    {
-                //        var sublist = new
-                //           List<Academic.DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissionFiles>();
+                    //    var filelist = new List<Academic.DbEntities.UserFile>();
+                    //    //var files = FilesDisplay1.GetFiles();
+                    //    if (files != null)
+                    //    {
+                    //        var sublist = new
+                    //           List<Academic.DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissionFiles>();
 
-                //        foreach (var f in files)
-                //        {
-                //            var subFile = new Academic.DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissionFiles()
-                //            {
-                //                AssignmentSubmissionsId = SubmissionId
-                //               ,FileSubmittedDate = date
-                //            };
-                //            var fileName = Path.GetFileName(f.FilePath);
-                //            var fi = new Academic.DbEntities.UserFile()
-                //            {
-                //                CreatedBy = user.Id
-                //                ,
-                //                CreatedDate = date
-                //                ,
-                //                DisplayName = f.FileDisplayName //Path.GetFileName(imageFile.FileName)
-                //                ,
-                //                FileDirectory = DbHelper.StaticValues.CourseFilesLocation //StaticValue.UserImageDirectory
-                //                ,
-                //                FileName = fileName
-                //                    //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
-                //                ,
-                //                FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
-                //                ,
-                //                FileType = f.FileType //imageFile.ContentType
-                //                ,
-                //                IconPath = f.IconPath
-                //                ,
-                //                Id = f.Id
-                //                ,
-                //                //SubjectId = SubjectId
-                //            };
-                //            filelist.Add(fi);
-                //        }
-                //    }
+                    //        foreach (var f in files)
+                    //        {
+                    //            var subFile = new Academic.DbEntities.ActivityAndResource.AssignmentItems.AssignmentSubmissionFiles()
+                    //            {
+                    //                AssignmentSubmissionsId = SubmissionId
+                    //               ,FileSubmittedDate = date
+                    //            };
+                    //            var fileName = Path.GetFileName(f.FilePath);
+                    //            var fi = new Academic.DbEntities.UserFile()
+                    //            {
+                    //                CreatedBy = user.Id
+                    //                ,
+                    //                CreatedDate = date
+                    //                ,
+                    //                DisplayName = f.FileDisplayName //Path.GetFileName(imageFile.FileName)
+                    //                ,
+                    //                FileDirectory = DbHelper.StaticValues.CourseFilesLocation //StaticValue.UserImageDirectory
+                    //                ,
+                    //                FileName = fileName
+                    //                    //Guid.NewGuid().ToString() + GetExtension(imageFile.FileName, imageFile.ContentType)
+                    //                ,
+                    //                FileSizeInBytes = f.FileSizeInBytes //imageFile.ContentLength
+                    //                ,
+                    //                FileType = f.FileType //imageFile.ContentType
+                    //                ,
+                    //                IconPath = f.IconPath
+                    //                ,
+                    //                Id = f.Id
+                    //                ,
+                    //                //SubjectId = SubjectId
+                    //            };
+                    //            filelist.Add(fi);
+                    //        }
+                    //    }
 
 
                 }
@@ -363,7 +363,7 @@ namespace One.Views.ActivityResource.Assignments
 
                 using (var helper = new DbHelper.Assignments())
                 {
-                    var saved = helper.AddOrUpdateAssignmentSubmission(submission,list);
+                    var saved = helper.AddOrUpdateAssignmentSubmission(submission, list);
                     if (saved != null)
                     {
                         Response.Redirect("~/Views/ActivityResource/Assignments/AssignmentView.aspx?SubId=" + SubjectId +
@@ -395,6 +395,14 @@ namespace One.Views.ActivityResource.Assignments
             HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(html);
             return WebUtility.HtmlDecode(doc.DocumentNode.InnerText);
+        }
+
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/ActivityResource/Assignments/AssignmentView.aspx?SubId=" + SubjectId +
+                                         "&arId=" + AssignmentId +
+                                         "&secId=" + SectionId
+                           );
         }
     }
 }

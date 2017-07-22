@@ -59,7 +59,7 @@
                         </asp:View>
                     </asp:MultiView>
 
-                    <div style="clear: both; margin: 2px; border: 2px dashed lightgray; min-height: 65px; font-weight: 400;">
+                    <div style="clear: both; margin: 2px; border: 1px dashed lightgray; min-height: 65px; font-weight: 400;">
                         <%--<uc1:FilePicker runat="server" id="FilePicker" />--%>
                         <asp:Panel ID="pnlFiles" runat="server"></asp:Panel>
                         <div style="clear: both;"></div>

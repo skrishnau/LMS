@@ -10,39 +10,24 @@
                 <asp:Label ID="lblNoticeIndication" runat="server" Text="" ForeColor="white" BackColor="red"></asp:Label>
 
             </div>
-
             <%-- 180px; style="font-size: 0.9em;"--%>
-            <%-- class="modules-body" --%>
-            <div style="overflow: auto" class="list-unmargined">
+            <%-- class="modules-body" list-unmargined"class="list-datalist"--%>
+            <div  class="list-dark-datalist">
                 <%-- DataSourceID="NotificationListDS" --%>
                 <div>
                     <asp:Label ID="lblEmptyNotice" runat="server" Text=" &nbsp; No notices" ForeColor="darkgray" Font-Size="0.9em"></asp:Label>
                 </div>
-                <asp:DataList ID="DataList1" Height="100%" runat="server" Width="100%" OnItemCommand="DataList1_ItemCommand">
+                <asp:DataList ID="DataList1"  runat="server" Width="100%" OnItemCommand="DataList1_ItemCommand">
                     <ItemTemplate>
                         <%-- style="border-bottom: 1px solid lightgray; vertical-align: top;" --%>
                         <%-- Here Void is already assigned to indicate Viewed or not-Viewed Notices. --%>
-                        <asp:HyperLink ID="HyperLink2" runat="server"
+                        <asp:HyperLink ID="HyperLink2" runat="server" 
                             NavigateUrl='<%# "~/Views/NoticeBoard/NoticeDetail.aspx?nId="+Eval("Id") %>'>
                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("Title")  %>'></asp:Label>
-                            <%--  <asp:ImageButton ID="ImageButton1" runat="server"
-                                ImageUrl="~/Content/Icons/Exclamation/exclamation.png" AlternateText="*"
-                                CommandArgument='<%# Eval("Id") %>' CommandName="Click" Visible='<%# Eval("Void")%>' />--%>
-
-                            <div style="margin-left: 5px;">
-                                <em style="font-size: 0.7em; color: grey;">&nbsp;&nbsp;posted on:
+                            <div class="list-item-description">
                                 <asp:Label ID="UpdatedDateLabel" runat="server" Text='<%# GetPublishDate(Eval("PublishedDate")) %>' />
-                                </em>
                             </div>
                         </asp:HyperLink>
-                        <%-- <div class="auto-st2-border-zero-margin" style="overflow: no-display; padding: 5px;">
-                            <strong>
-                                <asp:HyperLink ID="HeadiingLabel" CssClass="link" runat="server" Font-Underline="False"
-                                    NavigateUrl='<%# "~/Views/NoticeBoard/NoticeDetail.aspx?nId="+Eval("Id") %>'
-                                    Text='<%# Eval("Title")  %>'>
-                                </asp:HyperLink>
-                            </strong>
-                        </div>--%>
                     </ItemTemplate>
                 </asp:DataList>
 

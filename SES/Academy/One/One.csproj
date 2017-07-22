@@ -1408,7 +1408,9 @@
     <Content Include="Content\Icons\Watch\Watch_10px.png" />
     <Content Include="Content\Images\background-repeater.png" />
     <Content Include="Content\Images\background-repeater1.png" />
+    <Content Include="Content\Images\banner-1.jpg" />
     <Content Include="Content\Images\company-logo.jpg" />
+    <Content Include="Content\Images\library-shelves.jpg" />
     <Content Include="Content\Images\NewsImage\Document-Add-icon.png" />
     <Content Include="Content\Images\NewsImage\image3.png" />
     <Content Include="Content\Images\NewsImage\image1.png" />
@@ -1497,6 +1499,7 @@
     <Content Include="DatePickerJquery\jquery-ui-1.9.2.custom.css" />
     <Content Include="FileTasks\Browse.aspx" />
     <Content Include="FileTasks\Upload.aspx" />
+    <Content Include="Home.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -1616,6 +1619,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="SiteMaster_Earlier.txt" />
     <Content Include="TestingOnly\AutoCompleteTest.aspx" />
     <Content Include="TestingOnly\Dialog\WebForm1.aspx" />
     <Content Include="TestingOnly\JqueryModalDialog.aspx" />
@@ -1700,7 +1704,6 @@
     <Content Include="Views\ActivityResource\Choice\ChoiceOptionsCreate.ascx" />
     <Content Include="Views\ActivityResource\Choice\ChoiceResponseView.ascx" />
     <Content Include="Views\ActivityResource\Choice\ChoiceView.aspx" />
-    <Content Include="Views\ActivityResource\Choice\Default.aspx" />
     <Content Include="Views\ActivityResource\Class\ClassesInActivityChoose.ascx" />
     <Content Include="Views\ActivityResource\Class\EachClass.ascx" />
     <Content Include="Views\ActivityResource\Class\Earlier codes.txt" />
@@ -1742,6 +1745,7 @@
     <Content Include="Views\Class\CourseClassDetail.aspx" />
     <Content Include="Views\Class\CourseSessionCreate.aspx" />
     <Content Include="Views\Class\CourseSessionCreateUC.ascx" />
+    <Content Include="Views\Class\DueClasses.aspx" />
     <Content Include="Views\Class\Enrollment\Enrollment.aspx" />
     <Content Include="Views\Class\Enrollment\testForm.aspx" />
     <Content Include="Views\Class\Enrollment\testOfSelectInListView.aspx" />
@@ -1749,6 +1753,7 @@
     <Content Include="Views\Class\Enrollment\UserEnrollUC_ListDisplay.ascx" />
     <Content Include="Views\Class\MyClasses.aspx" />
     <Content Include="Views\Class\SelfEnrolment.aspx" />
+    <Content Include="Views\Class\TeacherNotAssignedClasses.aspx" />
     <Content Include="Views\Courses\Default.aspx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChoose.aspx" />
     <Content Include="Views\Course\ActivityAndResource\ActResChoose\ActResChooseUc.ascx" />
@@ -1798,6 +1803,7 @@
     <Content Include="Views\Grade\GradeListing.aspx" />
     <Content Include="Views\Grade\GradeTypeUc.ascx" />
     <Content Include="Views\Grade\GradeValuesUC.ascx" />
+    <Content Include="Views\Message\Default.aspx" />
     <Content Include="Views\News\NewsCreate.aspx" />
     <Content Include="Views\NoticeBoard\NoticeCreate.aspx" />
     <Content Include="Views\NoticeBoard\NoticeDetail.aspx" />
@@ -2017,6 +2023,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -2637,13 +2650,6 @@
     <Compile Include="Views\ActivityResource\Choice\ChoiceView.aspx.designer.cs">
       <DependentUpon>ChoiceView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ActivityResource\Choice\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\ActivityResource\Choice\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\ActivityResource\Class\ClassesInActivityChoose.ascx.cs">
       <DependentUpon>ClassesInActivityChoose.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2917,6 +2923,13 @@
     <Compile Include="Views\Class\CourseSessionCreateUC.ascx.designer.cs">
       <DependentUpon>CourseSessionCreateUC.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Class\DueClasses.aspx.cs">
+      <DependentUpon>DueClasses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\DueClasses.aspx.designer.cs">
+      <DependentUpon>DueClasses.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Class\Enrollment\Enrollment.aspx.cs">
       <DependentUpon>Enrollment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2965,6 +2978,13 @@
     </Compile>
     <Compile Include="Views\Class\SelfEnrolment.aspx.designer.cs">
       <DependentUpon>SelfEnrolment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Class\TeacherNotAssignedClasses.aspx.cs">
+      <DependentUpon>TeacherNotAssignedClasses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Class\TeacherNotAssignedClasses.aspx.designer.cs">
+      <DependentUpon>TeacherNotAssignedClasses.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Courses\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -3266,6 +3286,13 @@
     </Compile>
     <Compile Include="Views\Grade\GradeValuesUC.ascx.designer.cs">
       <DependentUpon>GradeValuesUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Message\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Message\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\News\NewsCreate.aspx.cs">
       <DependentUpon>NewsCreate.aspx</DependentUpon>
@@ -3997,7 +4024,6 @@
     <Folder Include="Views\ActivityResource\Availability\" />
     <Folder Include="Views\All_Resusable_Codes\Paging\" />
     <Folder Include="Views\Exam\Exam\Create\" />
-    <Folder Include="Views\Message\" />
     <Folder Include="Views\Settings\" />
     <Folder Include="Views\UserControls\Structure\" />
   </ItemGroup>

@@ -311,6 +311,7 @@ namespace One.Views.ActivityResource.FileResource.FileResourceItems
 
                 lnkAddFile.Visible = value;
                 lnkAddFolder.Visible = value;
+                MultiView1.Visible = value;
             }
             get { return lnkAddFile.Visible; }
         }

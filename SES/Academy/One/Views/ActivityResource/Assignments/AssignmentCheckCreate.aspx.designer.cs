@@ -94,15 +94,6 @@ namespace One.Views.ActivityResource.Assignments {
         protected global::One.Views.ActivityResource.FileResource.FileResourceItems.FilesDisplay FilesDisplay1;
         
         /// <summary>
-        /// pnlFilesDisplay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFilesDisplay;
-        
-        /// <summary>
         /// pnlText control.
         /// </summary>
         /// <remarks>
@@ -191,6 +182,15 @@ namespace One.Views.ActivityResource.Assignments {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
+        /// btnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
         /// lblError control.

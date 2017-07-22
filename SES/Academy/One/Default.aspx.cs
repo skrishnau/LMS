@@ -35,6 +35,11 @@ namespace One
                 OpenClassesUc.UserId = user.Id;
                 OpenClassesUc.SchoolId = user.SchoolId;
 
+                LstUc.ShowHeading = true;
+                LstUc.UserId = user.Id;//Values.Session.GetUser(Session);
+                LstUc.AcademicYearId = user.AcademicYearId;//Values.Session.GetAcademicYear(Session);
+                LstUc.SessionId = user.SessionId;//Values.Session.GetSession(Session);
+                LstUc.UserType = "student";
 
                 //var eventsUc = (ModulesUc.EventsUc)
                 //    Page.LoadControl("~/ViewsSite/User/ModulesUc/EventsUc.ascx");

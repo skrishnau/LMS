@@ -100,11 +100,22 @@ namespace One.Views.Course.Section
             }
             else
             {
+                //divOptionSpan.Visible = false;
                 pnlHeading.CssClass = "course-act-res-whole";
             }
 
             ActOrRes = actOrRes;
-            Title = title;
+            if (enable)
+            {
+                
+                Title = title;
+            }
+            else
+            {
+                lblTitle.Visible = false;
+                lblNoLinkTitle.Visible = true;
+                lblNoLinkTitle.Text = title;
+            }
             Description = description;
             ActResId = actOrResId;
             ActResType = actResType.ToString();
@@ -114,10 +125,10 @@ namespace One.Views.Course.Section
             imgIcon.ImageUrl = imageUrl;
             imgIcon.ToolTip = typeName;
 
-            if (typeName == Academic.DbHelper.Enums.Resources.Url.ToString())
-            {
-                lblTitle.Font.Underline = true;
-            }
+            //if (typeName == Academic.DbHelper.Enums.Resources.Url.ToString())
+            //{
+            //    lblTitle.Font.Underline = true;
+            //}
 
             lblTitle.Enabled = enable;
             imgIcon.Visible = enable;
@@ -128,6 +139,7 @@ namespace One.Views.Course.Section
             if (string.IsNullOrEmpty(description))
             {
                 pnlDescription.Visible = false;
+                lblDescription.Visible = false;
             }
         }
 

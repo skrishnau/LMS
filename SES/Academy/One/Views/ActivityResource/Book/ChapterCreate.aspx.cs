@@ -16,8 +16,10 @@ namespace One.Views.ActivityResource.Book
             {
                 var bookId = Request.QueryString["bId"];
                 var parentChapterId = Request.QueryString["pcId"];
-                var edit = Request.QueryString["edit"];
-
+                //we need to pass 'edit=1' in queryString because when not passed the form inserts new chapter rather than edit
+                var edit =  Request.QueryString["edit"];
+                hidSubjectId.Value = Request.QueryString["SubId"];
+                hidSectionId.Value = Request.QueryString["secId"];
                 //var secId = Request.QueryString["SecId"];
                 try
                 {
@@ -128,8 +130,9 @@ namespace One.Views.ActivityResource.Book
             {
                 if (saved != null)
                 {
+                    
                     helper.UpdateBelowChapters(saved.BookId, saved.Id, saved.ParentChapterId ?? 0, saved.Position);
-                    Response.Redirect("~/Views/ActivityResource/Book/BookView.aspx?arId=" + BookId);
+                    Response.Redirect("~/Views/ActivityResource/Book/BookView.aspx?arId=" + BookId+"&SubId="+hidSubjectId.Value+"&secId="+hidSectionId.Value);
                 }
             }
         }

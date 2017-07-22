@@ -25,6 +25,9 @@
 </style>
 
 <div>
+    <div>
+        <asp:Label ID="lblHeading" runat="server" Text="Current Courses" Visible="False" Font-Bold="True"></asp:Label>
+    </div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <%-- <asp:Panel ID="pnlOptions" runat="server">

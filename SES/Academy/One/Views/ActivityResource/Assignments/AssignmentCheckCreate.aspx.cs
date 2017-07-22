@@ -23,6 +23,7 @@ namespace One.Views.ActivityResource.Assignments
                     if (!IsPostBack)
                         try
                         {
+                       
                             FilesDisplay1.Enabled = false;
                             var actResId = Request.QueryString["actResId"];
                             var aId = Request.QueryString["actId"];
@@ -319,8 +320,7 @@ namespace One.Views.ActivityResource.Assignments
                         Response.Redirect("~/Views/ActivityResource/Assignments/AssignmentView.aspx" +
                                           "?SubId=" + SubjectId +
                                           "&arId=" + ActivityId +
-                                          "&secId=" + SectionId +
-                                          "&edit=0");
+                                          "&secId=" + SectionId);
                     }
                     else
                     {
@@ -329,6 +329,14 @@ namespace One.Views.ActivityResource.Assignments
 
                 }
 
+        }
+
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/ActivityResource/Assignments/AssignmentView.aspx" +
+                                          "?SubId=" + SubjectId +
+                                          "&arId=" + ActivityId +
+                                          "&secId=" + SectionId );
         }
     }
 }

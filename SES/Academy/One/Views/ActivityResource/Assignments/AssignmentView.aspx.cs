@@ -166,8 +166,8 @@ namespace One.Views.ActivityResource.Assignments
                                         classUc.Enable = false;
                                     }
                                     pnlGradeList.Controls.Add(classUc);
-                                    pnlGradeList.Controls.Add(new Literal() {Text = "<br />"});
-                                    pnlGradeList.Controls.Add(new Literal() {Text = "<br />"});
+                                   // pnlGradeList.Controls.Add(new Literal() {Text = "<br />"});
+                                    //pnlGradeList.Controls.Add(new Literal() {Text = "<br />"});
 
                                     #endregion
 

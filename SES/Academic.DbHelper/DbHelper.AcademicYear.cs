@@ -599,10 +599,40 @@ namespace Academic.DbHelper
                 try
                 {
                     var academic = Context.AcademicYear.Find(acaId);
-                    if (academic != null)
+                    if (academic != null && !(academic.Completed??false))
                     {
+                        
                         academic.Void = true;
+                        academic.IsActive = false;
+
+                        foreach (var batch in academic.Batches)
+                        {
+                            batch.Void = true;
+                        }
+
+                        foreach (var session in academic.Sessions)
+                        {
+                            session.Void = true;
+                            session.IsActive = false;
+                            foreach (var runningClass in session.RunningClasses)
+                            {
+                                runningClass.Void = true;
+                                runningClass.IsActive = false;
+                                foreach (var subjectClass in runningClass.SubjectClasses)
+                                {
+                                    subjectClass.Void = true;
+                                    subjectClass.SessionComplete = false;
+                                    foreach (var classUser in subjectClass.ClassUsers)
+                                    {
+                                        classUser.Void = true;
+                                        classUser.Suspended = true;
+                                    }
+                                }
+                            }
+                        }
                         Context.SaveChanges();
+
+
                         return true;
                     }
                     return false;
@@ -848,6 +878,20 @@ namespace Academic.DbHelper
                             currActiveSession.IsActive = false;
                             currActiveSession.Completed = true;
                             Context.SaveChanges();
+                            //
+                            var earlierRunningClasses = currActiveSession.RunningClasses.AsEnumerable();
+                                //.Where(x => (x.IsActive ?? false) && !(x.Completed ?? false));
+                            foreach (var rc in earlierRunningClasses)
+                            {
+                                rc.Completed = true;
+                                rc.IsActive = false;
+
+                                foreach (var subjectClass in rc.SubjectClasses)
+                                {
+                                    subjectClass.SessionComplete = true;
+                                }
+                            }
+                            Context.SaveChanges();
                         }
 
                         int sessionPosition = 1;
@@ -880,13 +924,7 @@ namespace Academic.DbHelper
                                 Context.SaveChanges();
                             }
 
-                            var earlierRunningClasses = Context.RunningClass.Where(x => (x.IsActive ?? false) && !(x.Completed ?? false));
-                            foreach (var rc in earlierRunningClasses)
-                            {
-                                rc.Completed = true;
-                                rc.IsActive = false;
-                            }
-                            Context.SaveChanges();
+
 
                             //get running-classes for the upcoming session
                             var runClses = ListClassesForNextSession(schoolId, sessionPosition,
@@ -969,6 +1007,11 @@ namespace Academic.DbHelper
             #endregion
 
 
+
+            public DbEntities.AcademicYear GetEarlierAcademicYear(int schoolId)
+            {
+                return Context.AcademicYear.Where(x => !(x.Void ?? false)).OrderByDescending(x => x.Position).FirstOrDefault();
+            }
         }
     }
 }

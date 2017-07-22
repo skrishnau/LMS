@@ -37,12 +37,33 @@
         </div>
     </div>
     <%-- ------------END of Menu --%>
+    
+   <%-- <div>
+        <asp:DataPager ID="DataPager1" runat="server" >
+            <Fields>
+                <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
+            </Fields>
+        </asp:DataPager>
+    </div>--%>
+    
+    <div>
+        <div style="float: left;">
+            Previous
+        </div>
+        <div style="float: right;">
+            Next
+        </div>
+        <div style="clear: both;"></div>
+    </div>
 
     <div style="margin-top: 10px;">
         <asp:Panel ID="pnlAcademicYearListing" runat="server"></asp:Panel>
     </div>
+    
+   
 
     <asp:HiddenField ID="hidEdit" runat="server" Value="False" />
+
 </asp:Content>
 
 <asp:Content runat="server" ID="contnettitle" ContentPlaceHolderID="title">

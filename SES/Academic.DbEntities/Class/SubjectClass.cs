@@ -23,7 +23,7 @@ namespace Academic.DbEntities.Class
                 if (RunningClass != null)
                     if (RunningClass.ProgramBatchId != null)
                     {
-                        return RunningClass.ProgramBatch.NameFromBatch + ":" + RunningClass.Year.Name  +
+                        return RunningClass.ProgramBatch.NameFromBatch + " : " + RunningClass.Year.Name  +
                                (RunningClass.SubYear == null
                                    ? ""
                                    : "-"+RunningClass.SubYear.Name);

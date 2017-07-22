@@ -62,6 +62,7 @@
     <Compile Include="DbHelper.Classes.cs" />
     <Compile Include="DbHelper.ComboLoader.cs" />
     <Compile Include="DbHelper.CustomAccount.cs" />
+    <Compile Include="DbHelper.MessageHelper.cs" />
     <Compile Include="DbHelper.News.cs" />
     <Compile Include="DbHelper.Notifications.cs" />
     <Compile Include="DbHelper.Search.cs" />

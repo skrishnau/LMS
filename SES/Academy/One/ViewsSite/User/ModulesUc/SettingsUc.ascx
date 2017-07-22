@@ -16,6 +16,11 @@
         <%--</div>--%>
         <%--<br />--%>
         <%--<div class="auto-st2">--%>
+        <asp:HyperLink ID="lnkAcademicSession" runat="server"
+            NavigateUrl="~/Views/Academy/">Academic</asp:HyperLink>
+        <%--</div>--%>
+
+        <%--<div class="auto-st2">--%>
         <asp:HyperLink ID="lnkCourse" runat="server"
             NavigateUrl="~/Views/Course/">Courses</asp:HyperLink>
         <%--</div>--%>
@@ -26,10 +31,7 @@
         
         <%--</div>--%>
 
-        <%--<div class="auto-st2">--%>
-        <asp:HyperLink ID="lnkAcademicSession" runat="server"
-            NavigateUrl="~/Views/Academy/">Academic</asp:HyperLink>
-        <%--</div>--%>
+        
         <asp:HyperLink ID="lnkUsers" runat="server"
             NavigateUrl="~/Views/User/List.aspx">Users</asp:HyperLink>
         <%--<hr />--%>

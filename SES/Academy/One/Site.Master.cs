@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using One.Values.MemberShip;
 
 namespace One
 {
@@ -67,7 +68,40 @@ namespace One
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                var user = Page.User as CustomPrincipal;
+                if (user == null)
+                {
+                    user = new CustomPrincipal("guest");
 
+                }
+                else
+                {
+                    loginDiv.Visible = false;
+                }
+
+               
+                //LoadNotice(user);
+            }
+        }
+
+        private void LoadNotice(CustomPrincipal user)
+        {
+            var noticeBoardUc = (ViewsSite.User.ModulesUc.NoticeBoardUc)
+                  Page.LoadControl("~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx");
+            noticeBoardUc.UserId = user.Id;
+            noticeBoardUc.SchoolId = user.SchoolId;
+            pnlRight.Controls.Add(noticeBoardUc);
+
+            pnlRight.Controls.Add(new Literal() { Text = "<br/>" });
+
+        }
+
+         protected void lnkLoginName_OnClick(object sender, EventArgs e)
+        {
+            //redirect to profile
+            Response.Redirect("~/Views/Profile.aspx");
         }
     }
 }

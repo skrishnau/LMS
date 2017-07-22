@@ -63,7 +63,7 @@
     <asp:HiddenField ID="hidBookId" runat="server" Value="0" />
     <asp:HiddenField ID="hidParentChapterId" runat="server" Value="0" />
     <asp:HiddenField ID="hidChapterId" runat="server" Value="0" />
-   <%-- <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
-    <asp:HiddenField ID="hidSectionId" runat="server" Value="0" />--%>
+    <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidSectionId" runat="server" Value="0" />
 
 </asp:Content>

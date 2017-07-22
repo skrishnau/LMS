@@ -35,7 +35,7 @@
 /*link-button*/
 .link-button {
     margin: 6px 4px;
-    padding: 5px;
+    padding: 7px 20px;
     height: auto;
     color: #393939;
     font-family: Arial Tahoma;
@@ -228,3 +228,17 @@
     font-size: 0.9em;
 }
 /*Used above*/
+
+
+
+
+
+
+/*Heading*/
+h3.heading-of-create-edit {
+    text-align: left;
+    margin-top: 3px;
+    font-size: 2em;
+    font-weight: 400;
+    color: darkslategray;
+}

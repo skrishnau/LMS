@@ -55,6 +55,13 @@ namespace One.Views.ActivityResource.Class
         {
             ViewState["SelectedClasses"] = classes;
         }
+
+        public bool IsManager
+        {
+            get { return Convert.ToBoolean(hidIsManager.Value); }
+            set { hidIsManager.Value = value.ToString(); }
+        }
+
         private void PopulateClassList(List<IdAndName> selectedList = null)
         {
             using (var helper = new DbHelper.Classes())
@@ -62,8 +69,9 @@ namespace One.Views.ActivityResource.Class
 
                 if (selectedList != null)
                 {
-                    var roles = ViewState["Roles"] as List<string>;
-                    var list = helper.ListCurrentClassesOfTeacher(SubjectId, UserId, roles, selectedList);
+                    //var roles = ViewState["Roles"] as List<string>;
+                   
+                    var list = helper.ListCurrentClassesOfTeacher(SubjectId, UserId, IsManager, selectedList);
                     //list.ForEach(x =>
                     //{
                     //    if (x.HasGrouping)
@@ -78,8 +86,8 @@ namespace One.Views.ActivityResource.Class
                 else
                 {
                     var selected = ViewState["SelectedClasses"] as List<IdAndName>;
-                    var roles = ViewState["Roles"] as List<string>;
-                    var list = helper.ListCurrentClassesOfTeacher(SubjectId, UserId, roles, selected);
+                    //var roles = ViewState["Roles"] as List<string>;
+                    var list = helper.ListCurrentClassesOfTeacher(SubjectId, UserId, IsManager, selected);
                     list.Insert(0, new SubjectClass() { Name = "", Id = 0 });
                     ddlClass.DataSource = list;
                     ddlClass.DataBind();

@@ -25,6 +25,10 @@
         <hr />
     </div>--%>
     <div>
+        <uc1:LstUc runat="server" ID="LstUc" />
+    </div>
+    <br />
+    <div>
         <uc1:OpenClassesUc runat="server" ID="OpenClassesUc" />
     </div>
     <asp:Panel ID="pnlBody" runat="server"></asp:Panel>
@@ -33,7 +37,6 @@
 
 <asp:Content runat="server" ID="content2" ContentPlaceHolderID="right">
     <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
-
 </asp:Content>
 
 

@@ -83,7 +83,7 @@ namespace One.Views.ActivityResource.Label
             var label = new Academic.DbEntities.ActivityAndResource.LabelResource()
             {
                 Id = LabelId,
-                Text = txtLabelText.Text
+                Text = txtLabelText.Text.Trim()
             };
 
             if (SectionId > 0)

@@ -22,45 +22,29 @@ namespace One.Views.Course.Section
                 var user = Page.User as CustomPrincipal;
                 if (user != null && id != null)
                 {
-                    var isManager = user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor)
-                                    || user.IsInRole(DbHelper.StaticValues.Roles.Manager);
-                    var isTeacher = user.IsInRole(DbHelper.StaticValues.Roles.Teacher);
+                    
+                    //var isTeacher = user.IsInRole(DbHelper.StaticValues.Roles.Teacher);
 
                     ListOfSectionsInCourseUC1.UserId = user.Id;
 
-                    if (isManager)
+                    using (var helper = new DbHelper.Classes())
                     {
                         var edit = Session["editMode"] as string;//Request.QueryString["edit"];
-                        _path = Request.Url.AbsolutePath + "?SubId=" + id;
-                        //if (edit != null)
-                        //{
+                        var isManager = user.IsInRole(DbHelper.StaticValues.Roles.CourseEditor)
+                                    || user.IsInRole(DbHelper.StaticValues.Roles.Manager);
+                        var teacher = helper.IsTheUserTeacher(user.Id, Convert.ToInt32(id));
+                        var isTeacher = isManager || teacher;
 
-                        if (edit == "1")
+                        if (edit == "1" && isTeacher)
                         {
-                            //edit on all sections;;;link on edit 
                             Edit = "1";
                             ListOfSectionsInCourseUC1.EditEnabled = true;
-
+                            _path = Request.Url.AbsolutePath + "?SubId=" + id;
                         }
                         else
                         {
                             Edit = "0";
                         }
-                        //}
-                    }
-                    else if (isTeacher)
-                    {
-                        //if this teacher teaches the subject or has taught the subject then give to edit
-                        using (var helper = new DbHelper.Classes())
-                        {
-                            var teacher = helper.IsTheUserTeacher(user.Id, Convert.ToInt32(id));
-                            if (teacher)
-                            {
-                                Edit = "1";
-                                ListOfSectionsInCourseUC1.EditEnabled = true;
-                            }
-                        }
-
                     }
                 }
 

@@ -1,9 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TocItemsUc.ascx.cs" Inherits="One.Views.ActivityResource.Book.BookItems.TocItemsUc" %>
 
-<span runat="server" id="main_span">
-    <asp:LinkButton ID="lnkChapter" runat="server" OnClick="lnkChapter_Click">LinkButton</asp:LinkButton>
-    &nbsp;
-    <span runat="server" id="edit_panel" Visible="False">
+<asp:Panel ID="pnlMain" runat="server">
+    <span runat="server" id="main_span" class="link">
+        <asp:LinkButton ID="lnkChapter" runat="server"
+            CssClass="link"
+            OnClick="lnkChapter_Click">LinkButton</asp:LinkButton>
+        &nbsp;
+    <span runat="server" id="edit_panel" visible="False">
         <asp:HyperLink ID="lnkAddChapter" runat="server">
             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/ActivityResource/Book/Add.png" />
         </asp:HyperLink>
@@ -21,7 +24,7 @@
         </asp:LinkButton>
     </span>
 
-    <asp:HiddenField ID="hidBookId" runat="server" Value="0" />
-    <asp:HiddenField ID="hidChapterId" runat="server" Value="0" />
-</span>
-<br />
+        <asp:HiddenField ID="hidBookId" runat="server" Value="0" />
+        <asp:HiddenField ID="hidChapterId" runat="server" Value="0" />
+    </span>
+</asp:Panel>

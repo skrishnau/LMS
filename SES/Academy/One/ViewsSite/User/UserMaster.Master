@@ -2,7 +2,7 @@
 
 <%--<%@ Register Src="~/ViewsSite/User/ModulesUc/CoursesUc.ascx" TagPrefix="uc1" TagName="CoursesUc" %>--%>
 
-<%@ Register Src="~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx" TagPrefix="uc1" TagName="NoticeBoardUc" %>
+<%--<%@ Register Src="~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx" TagPrefix="uc1" TagName="NoticeBoardUc" %>--%>
 <%--<%@ Register Src="~/ViewsSite/User/ModulesUc/NewsUc.ascx" TagPrefix="uc1" TagName="NewsUc" %>
 <%@ Register Src="~/ViewsSite/User/ModulesUc/EventsUc.ascx" TagPrefix="uc1" TagName="EventsUc" %>
 <%@ Register Src="~/ViewsSite/User/ModulesUc/OnlineUsersUc.ascx" TagPrefix="uc1" TagName="OnlineUsersUc" %>--%>
@@ -86,7 +86,7 @@
                  <asp:HyperLink runat="server" ID="lnkSchoolName" NavigateUrl="~/Views/Office/School/View.aspx"
                      ForeColor="lightgoldenrodyellow"
                      Font-Underline="False">
-                     <asp:Label ID="lblSchoolName" runat="server" Text="" Font-Size="1.2em" Font-Bold="True"></asp:Label>
+                     <asp:Label ID="lblSchoolName" runat="server" Text="Nepal Engineering College" Font-Size="1.2em"></asp:Label>
 
 
                  </asp:HyperLink>
@@ -99,11 +99,10 @@
 
                 <div style="float: left;">
                     <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Icons/School/school-logo.png" Width="30" Height="30" />
-
                 </div>
 
                 <%-- position: fixed; right: 0; top: 0; margin-right: 10px; margin-top: 5px; --%>
-                <div style="float: right; padding-right: 20px;" class="clearfix">
+                <div style="float: right; padding-right: 20px;" class="clearfix" runat="server" ID="menubar_right_text_all">
                     <%-- <span style="margin: 0 auto; padding: 0 20px;">
                         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/">
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Home/home_2.png" />
@@ -111,7 +110,7 @@
                     </span>--%>
                     <%--<input type="text" name="search" placeholder="Search.." id="txtSearch" onkey>--%>
                     <%--<asp:TextBox ID="txtSearch" runat="server"  ClientIDMode="Static"></asp:TextBox>--%>
-                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Search courses.." ></asp:TextBox>
+                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Search courses.."></asp:TextBox>
                     <script type="text/javascript">
                         //document.getElementById("txtSearch")
                         //    .addEventListener("keyup", function (event) {
@@ -136,7 +135,7 @@
                         <span class="dropbtn">
                             <asp:Image ID="imgMessageIcon" runat="server"
                                 ToolTip="Messages"
-                                 ImageUrl="~/Content/Icons/Message/message-filled-light-26px.png" />
+                                ImageUrl="~/Content/Icons/Message/message-filled-light-26px.png" />
                             <sup>
                                 <%--<asp:Image ID="imgNoticeIndicator" runat="server" ImageUrl="~/Content/Icons/Exclamation/exclamation_icon.png" />--%>
                                 <%--<asp:Label ID="lblNoticeIndication" runat="server" Text="" ForeColor="white" BackColor="red" ></asp:Label>--%>
@@ -151,8 +150,8 @@
                     &nbsp;
                       <div class="dropdown">
                           <%-- Height="20" Width="20" --%>
-                          <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn" 
-                                ToolTip="Notifications"
+                          <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn"
+                              ToolTip="Notifications"
                               ImageUrl="~/Content/Icons/Notice/Info-light-26px.png" />
                           <div class="dropdown-content">
                               <asp:Label ID="lblEmptyNotice" runat="server" Text="No new notifications"></asp:Label>
@@ -162,8 +161,8 @@
                     &nbsp;
                     <div class="dropdown">
                         <%--<button class="dropbtn">Dropdown</button>--%>
-                        <asp:Image ID="Image1" runat="server" CssClass="dropbtn" 
-                                ToolTip="Settings"
+                        <asp:Image ID="Image1" runat="server" CssClass="dropbtn"
+                            ToolTip="Settings"
                             ImageUrl="~/Content/Icons/Settings/setting-light-26px.png" />
                         <div class="dropdown-content" style="width: 130px; min-width: 130px;">
                             <%-- <a href="#">Link 1</a>
@@ -236,7 +235,7 @@
                     <tr style="vertical-align: top;">
 
                         <%--  =================== Left sidebar ========================= --%>
-                        <td class="left-width">
+                        <td class="left-width" runat="server" ID="left_panel">
                             <%-- ----------------------START------------------------ --%>
                             <%-- class="leftsidebar" --%>
                             <div style="width: 100%;">
@@ -339,8 +338,21 @@
 
         <%-- Clear Both --%>
         <div style="clear: both;">
+
             <hr style="color: darkgray; background-color: darkgray; height: 1px; display: block;" />
-            <table style="margin: 0 auto;">
+
+            <div>
+                <aside>
+                    <ul class="bottom-links">
+                        <li><a id="A1" runat="server" href="~/">Home</a></li>
+                        <li><a id="A2" runat="server" href="~/About.aspx">About</a></li>
+                        <li><a id="A3" runat="server" href="~/Contact.aspx">Contact</a></li>
+                    </ul>
+                </aside>
+            </div>
+            <div style="height: 30px;">
+            </div>
+            <%--<table style="margin: 0 auto;">
                 <tr>
                     <td>
                         <span class="sitemap-items">
@@ -351,7 +363,6 @@
                             &nbsp;
                         </span>
                     </td>
-                    <%--<td>Profile &nbsp; </td>--%>
                     <td>
                         <span class="sitemap-items">
 
@@ -373,9 +384,8 @@
                             &nbsp;
                         </span>
                     </td>
-                    <%--<td>Contact &nbsp; </td>--%>
                 </tr>
-            </table>
+            </table>--%>
         </div>
     </form>
 </body>

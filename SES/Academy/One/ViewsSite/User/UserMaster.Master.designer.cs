@@ -94,6 +94,15 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.Image imgSchool;
         
         /// <summary>
+        /// menubar_right_text_all control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menubar_right_text_all;
+        
+        /// <summary>
         /// txtSearch control.
         /// </summary>
         /// <remarks>
@@ -238,6 +247,15 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.Label lblEditMode;
         
         /// <summary>
+        /// left_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell left_panel;
+        
+        /// <summary>
         /// CoursesMenuUc1 control.
         /// </summary>
         /// <remarks>
@@ -373,30 +391,30 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.Panel pnlRight;
         
         /// <summary>
-        /// HyperLink1 control.
+        /// A1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
         
         /// <summary>
-        /// HyperLink2 control.
+        /// A2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
         
         /// <summary>
-        /// HyperLink3 control.
+        /// A3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A3;
     }
 }

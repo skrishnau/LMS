@@ -277,5 +277,13 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
             set { hidLoadType.Value = value ?? ""; }
         }
 
+
+        public bool ShowHeading
+        {
+            set
+            {
+                    lblHeading.Visible = value;
+            }
+        }
     }
 }

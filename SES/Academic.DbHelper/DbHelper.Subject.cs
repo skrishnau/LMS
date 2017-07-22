@@ -703,7 +703,8 @@ namespace Academic.DbHelper
                 return new List<DbEntities.Class.SubjectClass>();
             }
 
-            //used--shree krishna
+
+            //used--shree krishna v2.0
             /// <summary>
             /// For manager and teacher to display in sidebar.
             /// Returns: Dict[0]=current ... Dict[1]=earlier
@@ -714,6 +715,7 @@ namespace Academic.DbHelper
             public Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>[]
                 GetEarlierAndCurrentCourseAndClassesForManagerAndTeacher(int userId, bool? getOnlyCurrent = null)
             {
+                var now = DateTime.Now.Date;
                 var currentSubjectClassDictionary = new Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>();
                 var earlierSubjectClassDictionary = new Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>();
 
@@ -733,7 +735,7 @@ namespace Academic.DbHelper
                     // if getonly current is true then take current only.
                     foreach (var sc in subClasses)
                     {
-                        var sessionComplete = (sc.SessionComplete ?? false);
+                        var sessionComplete = (sc.SessionComplete ?? false) ||( sc.EndDate??DateTime.MaxValue)<now;
                         var subject = sc.Subject ?? sc.SubjectStructure.Subject;
                         if (sessionComplete)
                         {

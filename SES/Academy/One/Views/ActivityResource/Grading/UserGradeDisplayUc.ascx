@@ -16,7 +16,7 @@
         <asp:Label ID="lblEmail" runat="server" Text=""></asp:Label>
     </td>
     <td>
-        <asp:HyperLink ID="lnkSubmission" runat="server" Text="">
+        <asp:HyperLink ID="lnkSubmission" runat="server" Text="" CssClass="link">
             <asp:CheckBox ID="chkSubmitted" runat="server" Enabled="False" Visible="False" />
             <asp:Label ID="lblSubmissionStatus" runat="server" Text="Label"></asp:Label>
         </asp:HyperLink>

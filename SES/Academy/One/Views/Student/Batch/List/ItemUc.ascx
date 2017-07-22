@@ -2,9 +2,9 @@
 
 
 <%-- class="auto-st2" --%>
-<div class="list-item-body">
-    <%--class="list-item-heading" style="padding: 5px; font-size: 1.2em; font-weight: 600;" --%>
-    <asp:HyperLink ID="lnkBody" runat="server" CssClass="list-item-heading">
+<div class="list-item">
+    <%--class="list-item-heading" style="padding: 5px; font-size: 1.2em; font-weight: 600;" CssClass="list-item"--%>
+    <asp:HyperLink ID="lnkBody" runat="server" class="list-item-heading">
         <asp:Label ID="lblName" runat="server"></asp:Label>
     </asp:HyperLink>
     

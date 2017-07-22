@@ -22,33 +22,6 @@ namespace One.Views.ActivityResource.Book {
         protected global::System.Web.UI.WebControls.Label lblBookName;
         
         /// <summary>
-        /// lnkEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkEdit;
-        
-        /// <summary>
-        /// ImageButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageButton1;
-        
-        /// <summary>
-        /// lblEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblEdit;
-        
-        /// <summary>
         /// lblBookDescription control.
         /// </summary>
         /// <remarks>
@@ -211,6 +184,15 @@ namespace One.Views.ActivityResource.Book {
         protected global::System.Web.UI.WebControls.HiddenField hidPageKey;
         
         /// <summary>
+        /// hidSubjectId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidSubjectId;
+        
+        /// <summary>
         /// hidSectionId control.
         /// </summary>
         /// <remarks>
@@ -227,5 +209,14 @@ namespace One.Views.ActivityResource.Book {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidEdit;
+        
+        /// <summary>
+        /// lblPageTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblPageTitle;
     }
 }

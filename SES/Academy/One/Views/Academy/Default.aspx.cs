@@ -95,9 +95,9 @@ namespace One.Views.Academy
                         var uc =
                             (UserControls.AcademicYearListUC)
                                 Page.LoadControl("~/Views/Academy/UserControls/AcademicYearListUC.ascx");
-                        uc.LoadAcademicYear(
-                            ay.Id, ay.Name, ay.StartDate, ay.EndDate
-                            , ay.IsActive, ay.Sessions.ToList(), ay.Completed ?? false, edit);
+                        uc.LoadAcademicYear(ay,edit);
+                            //ay.Id, ay.Name, ay.StartDate, ay.EndDate
+                            //, ay.IsActive, ay.Sessions.ToList(), ay.Completed ?? false, edit);
                         pnlAcademicYearListing.Controls.Add(uc);
                     }
                 }

@@ -3,7 +3,7 @@
 
 <%-- style="margin-top: 10px;" --%>
 <div>
-    <div class="auto-st2-white" style="padding: 10px;">
+    <div class="auto-st2-white" style="padding: 5px;">
         <%--&nbsp;&nbsp;--%>
         <div class="tooltip">
             <asp:Image ID="imgMessage" runat="server" Width="16" Height="16" ImageUrl="~/Content/Icons/astreeview-node.gif" />

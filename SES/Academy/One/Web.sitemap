@@ -18,17 +18,35 @@
 
     <!--Courses-->
     <siteMapNode url="~/Views/Course/Default.aspx" title="Courses" description="course list">
+      
       <siteMapNode url="~/Views/Course/CategoryCreate.aspx" title="Category edit" description="category edit"/>
+      <!--course detail-->
       <siteMapNode url="~/Views/Course/CourseDetail.aspx" title="Course name" description="course detail">
-
         <siteMapNode url="~/Views/Class/MyClasses.aspx" title="My Classes" description="my classes"/>
-
         <siteMapNode url="~/Views/Class/CourseClassDetail.aspx" title="Class" description="class view">
           <siteMapNode url="~/Views/Class/Enrollment/Enrollment.aspx" title="Users enroll" description="users enroll"/>
         </siteMapNode>
         <siteMapNode url="~/Views/Class/CourseSessionCreate.aspx" title="Class edit" description="class edit"/>
       </siteMapNode>
-      <siteMapNode url="~/Views/Course/Section/Default.aspx" title="Course content view" description="course content view"/>
+      <!--end of course detail-->
+
+      <!--Course view, Sections, Activity Resource-->
+      <siteMapNode url="~/Views/Course/Section/Default.aspx" title="Course content view" description="course content view">
+
+        <!--Book-->
+        <!--<siteMapNode url="~/Views/ActivityResource/Book/BookView.aspx" title="Book View" description="book view"/>-->
+
+        <!--Forum-->
+        <!--<siteMapNode url="~/Views/ActivityResource/Forum/ForumView.aspx" title="Forum View" description="forum view">
+          <siteMapNode url="~/Views/ActivityResource/Forum/DiscussionView.aspx" title="Discussion View" description="discussion view"/>
+          <siteMapNode url="~/Views/ActivityResource/Forum/DiscussionCreate.aspx" title="Discussion Create" description="discussion create"/>
+          <siteMapNode url="~/Views/ActivityResource/Forum/ForumCreate.aspx" title="Forum Create" description="forum create"/>
+        </siteMapNode>-->
+
+
+
+
+      </siteMapNode>
       <siteMapNode url="~/Views/Course/CourseCreate.aspx" title="Course edit" description="course edit"/>
     </siteMapNode>
 

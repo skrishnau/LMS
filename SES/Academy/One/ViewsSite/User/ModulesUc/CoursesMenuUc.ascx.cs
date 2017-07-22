@@ -67,23 +67,30 @@ namespace One.ViewsSite.User.ModulesUc
                             pHolderCurrent.Controls.Add(hyperLink);
 
                             #endregion
+
                             if (elligibleForManagement)
-                                foreach (var scls in current[subject])
+                            {
+                                try
                                 {
-                                    var clsLink = new HyperLink()
+                                    foreach (var scls in current[subject])
                                     {
-                                        Text = "▫" + scls.GetName
-                                        ,
-                                        NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + scls.Id
-                                        ,
-                                        CssClass = "course-menu-subjct-class padding-left-40px"
-                                        ,
-                                        Font = { Italic = true, Size = new FontUnit(10) }
-                                        ,
-                                        ToolTip = "class in '" + subject.FullName + "'"
-                                    };
-                                    pHolderCurrent.Controls.Add(clsLink);
+                                        var clsLink = new HyperLink()
+                                        {
+                                            Text = "▫" + scls.GetName
+                                            ,
+                                            NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + scls.Id
+                                            ,
+                                            CssClass = "course-menu-subjct-class padding-left-40px"
+                                            ,
+                                            Font = { Italic = true, Size = new FontUnit(10) }
+                                            ,
+                                            ToolTip = "class in '" + subject.FullName + "'"
+                                        };
+                                        pHolderCurrent.Controls.Add(clsLink);
+                                    }
                                 }
+                                catch { }
+                            }
                         }
 
                         #endregion
@@ -113,22 +120,29 @@ namespace One.ViewsSite.User.ModulesUc
                             #endregion
 
                             if (elligibleForManagement)
-                                foreach (var scls in current[subject])
+                            {
+                                try
                                 {
-                                    var clsLink = new HyperLink()
+                                    foreach (var scls in current[subject])
                                     {
-                                        Text = "▫" + scls.GetName
-                                        ,
-                                        NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + scls.Id
-                                        ,
-                                        CssClass = "course-menu-subjct-class padding-left-40px"
-                                        ,
-                                        Font = { Italic = true, Size = new FontUnit(10) }
-                                        ,
-                                        ToolTip = "class in '" + subject.FullName + "'"
-                                    };
-                                    pHolderEarlier.Controls.Add(clsLink);
+                                        var clsLink = new HyperLink()
+                                        {
+                                            Text = "▫" + scls.GetName
+                                            ,
+                                            NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + scls.Id
+                                            ,
+                                            CssClass = "course-menu-subjct-class padding-left-40px"
+                                            ,
+                                            Font = { Italic = true, Size = new FontUnit(10) }
+                                            ,
+                                            ToolTip = "class in '" + subject.FullName + "'"
+                                        };
+                                        pHolderEarlier.Controls.Add(clsLink);
+                                    }
                                 }
+                                catch { }
+                            }
+
                         }
 
                         #endregion

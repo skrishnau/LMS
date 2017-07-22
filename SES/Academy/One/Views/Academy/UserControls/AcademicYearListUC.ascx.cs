@@ -93,5 +93,56 @@ namespace One.Views.Academy.UserControls
             #endregion
 
         }
+
+
+        public void LoadAcademicYear(Academic.DbEntities.AcademicYear ay,bool edit)
+        {
+            lnkAcademicYearName.Text = " " + ay.Name + " ";
+            lnkAcademicYearName.NavigateUrl = "~/Views/Academy/Detail.aspx?aId=" + ay.Id
+                                              + "&edit=" + (edit ? "1" : "0");
+            if (edit)
+            {
+                lnkEdit.NavigateUrl = "~/Views/Academy/Create.aspx?aId=" + ay.Id;
+                if (ay.IsActive || (ay.Completed??false))
+                    lnkDelete.Visible = false;
+                else
+                    lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx?task=" +
+                                            DbHelper.StaticValues.Encode("academicYear") + "&acaId=" + ay.Id;
+            }
+            lnkEdit.Visible = edit;
+            lnkDelete.Visible = edit;
+
+            lblEndDate.Text = ay.EndDate.ToString("D");
+            lblStartDate.Text = ay.StartDate.ToString("D");
+            if (ay.Completed??false)
+            {
+                //divBody.Style.Add("border-left", "10px solid lightgrey");
+                imgActive.ImageUrl = "~/Content/Icons/Stop/Stop_10px.png";
+                imgActive.Visible = true;
+            }
+            else if (ay.Sessions.Any(x => !(x.Void ?? false) && !(x.Completed ?? false) && x.IsActive)) //active ||
+            {
+
+                //divBody.Style.Add("border-left", "10px solid green");
+                imgActive.ImageUrl = "~/Content/Icons/Start/active_icon_10px.png";
+                imgActive.Visible = true;
+
+            }
+            var batch = ay.Batches.FirstOrDefault();
+            if (batch != null)
+            {
+                lnkBatch.Text = batch.Name + " (click to view programs)";
+                lnkBatch.NavigateUrl = "~/Views/Student/Batch/?Id=" + batch.Id;
+            }
+            foreach (var sess in ay.Sessions.Where(x => !(x.Void ?? false)).ToList())
+            {
+                var sessUc = (Academy.UserControls.SessionsListingInAYDetailUC)
+                    Page.LoadControl("~/Views/Academy/UserControls/SessionsListingInAYDetailUC.ascx");
+                sessUc.LoadSessionData(ay.Id, sess.Id, sess.Name
+                    , sess.StartDate, sess.EndDate
+                    , sess.IsActive, sess.Completed ?? false, edit, false);
+                pnlSessions.Controls.Add(sessUc);
+            }
+        }
     }
 }

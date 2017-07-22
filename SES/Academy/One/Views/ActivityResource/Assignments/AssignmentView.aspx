@@ -5,15 +5,12 @@
 
 
 <asp:Content runat="server" ID="bodyid" ContentPlaceHolderID="Body">
-    <div>
-        <h3 class="heading-of-display">
-            <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
-        </h3>
-    </div>
+    <h3 class="heading-of-create-edit">
+        <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
+    </h3>
     <div class="data-entry-section-body">
-        <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblDescription" runat="server" Text="" Visible="False"></asp:Label>
     </div>
-    <br />
     <br />
     <div class="data-entry-section-body">
         <div class="data-entry-section-heading">
@@ -21,10 +18,7 @@
             <hr />
         </div>
         <div class="data-entry-section-body">
-
             <table>
-               
-
                 <tr>
                     <td class="data-type">Due Date</td>
                     <td class="data-value">
@@ -38,16 +32,10 @@
                         <asp:Label ID="lblTimeRemaining" runat="server" Text="Label"></asp:Label>
                     </td>
                 </tr>
-                
             </table>
-
-
-
-
         </div>
-
-        <br />
-        <div class="data-entry-section-heading" >
+        <br/>
+        <div class="data-entry-section-heading">
             Grades
          <hr />
         </div>
@@ -63,4 +51,8 @@
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="title">
     <asp:Literal ID="lblPageTitle" runat="server" Text="Assignment view"></asp:Literal>
+</asp:Content>
+
+<asp:Content runat="server" ID="Content2" ContentPlaceHolderID="head">
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>

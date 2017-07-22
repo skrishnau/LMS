@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 using One.ViewsSite.User.ModulesUc;
 
@@ -17,9 +18,12 @@ namespace One.ViewsSite.User
         {
             {
                 var user = Page.User as CustomPrincipal;
-                var loginUrl = "ViewsSite/Account/Login.aspx";
+                var loginUrl = "Home.aspx";//"ViewsSite/Account/Login.aspx";
+
+
                 if (user != null)
                 {
+                    LoadActivityResourceSitemap();
                     //EarlierUc.EmptyData += EarlierUc_EmptyData;
                     //check for school
                     UserId = user.Id;
@@ -125,8 +129,8 @@ namespace One.ViewsSite.User
                                     middlePanel.Style.Add("border-right", "1px solid darkgrey");
                                     middlePanel.Style.Add("border-left", "1px solid darkgrey");
 
-                                   
-                                    
+
+
 
                                     right_panel.Visible = true;
                                 }
@@ -179,73 +183,36 @@ namespace One.ViewsSite.User
 
                     using (var helper = new DbHelper.Notifications())
                     {
-                        var due = helper.GetDueClassesNotification(user.SchoolId);
-
-                        if (due.Any())
+                        if (user.IsInRole(DbHelper.StaticValues.Roles.Manager))
                         {
-                            lblEmptyNotice.Visible = false;
-                            imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
-                            var hlink = new HyperLink()
+                            var due = helper.GetDueClassesNotification(user.SchoolId);
+                            if (due.Any())
                             {
-                                Text = "Due classes, Mark completion ("+due.Count+")",
-                                NavigateUrl = "#"
-                            };
-                            plHolderNotice.Controls.Add(hlink);
+                                lblEmptyNotice.Visible = false;
+                                imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
+                                var hlink = new HyperLink()
+                                {
+                                    Text = "Due classes, Mark completion (" + due.Count + ")",
+                                    NavigateUrl = "~/Views/Class/DueClasses.aspx"
+                                };
+                                plHolderNotice.Controls.Add(hlink);
+                            }
 
-                            //var image = new Label()
-                            //{
-                            //    Text = due.Count.ToString(),
-                            //    BackColor = Color.Red,
-                            //    ForeColor = Color.White,
-                            //};
-                            //var text = new Label()
-                            //{
-                            //    Text = "Teacher not assigned to class",
-                            //};
-                            //hlink.Controls.Add(text);
-                            //hlink.Controls.Add(image);
-                        }
-
-                        var noTeacher = helper.GetNoTeacherInClassNotification(user.SchoolId);
-                        if (noTeacher.Any())
-                        {
-                            lblEmptyNotice.Visible = false;
-                            imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
-
-                            var hlink = new HyperLink()
+                            var noTeacher = helper.GetNoTeacherInClassNotification(user.SchoolId);
+                            if (noTeacher.Any())
                             {
-                                //<span style='background-color:red;color:white;padding:-2px;'></span>"
-                                Text = "Teacher not assigned to class ("+noTeacher.Count+")",
-                                NavigateUrl = "#"
-                            };
-                            plHolderNotice.Controls.Add(hlink);
+                                lblEmptyNotice.Visible = false;
+                                imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
 
-
-                            //var image = new Label()
-                            //{
-                            //    Text = "<sup style='line-height:12px; height:12px;'>" + noTeacher.Count.ToString()+"</sup>",
-                            //    BackColor = Color.Red,
-                            //    ForeColor = Color.White,
-                            //    Style = { }
-                            //};
-                            //var text = new Label()
-                            //{
-                            //    Text = "Teacher not assigned to class",
-                            //    Font = { Size = 10}
-                            //};
-                            //hlink.Controls.Add(text);
-                            //hlink.Controls.Add(image);
+                                var hlink = new HyperLink()
+                                {
+                                    //<span style='background-color:red;color:white;padding:-2px;'></span>"
+                                    Text = "Teacher not assigned to class (" + noTeacher.Count + ")",
+                                    NavigateUrl = "~/Views/Class/TeacherNotAssignedClasses.aspx"
+                                };
+                                plHolderNotice.Controls.Add(hlink);
+                            }
                         }
-
-                        //foreach (var sc in due)
-                        //{
-                        //    var hlink  = new HyperLink()
-                        //    {
-                        //        Text = sc.GetCourseFullName,
-                        //        NavigateUrl = "#"
-                        //    };
-                        //    plHolderNotice.Controls.Add(hlink);
-                        //}
                     }
 
                     //using (var nhelper = new DbHelper.Notice())
@@ -316,12 +283,44 @@ namespace One.ViewsSite.User
                         lnkEditMode.Visible = true;
                     }
                 }
-                else if (!Request.Url.AbsolutePath.Contains(loginUrl))
+                else
                 {
-                    //+"?ReturnUrl="+Page.Request.Url.PathAndQuery   
-                    Response.Redirect("~/" + loginUrl);//+ "?ReturnUrl=" + Page.Request.Url.PathAndQuery
-                }
+                    var path = Request.Url.AbsolutePath;//.Contains(loginUrl);
+                    if (!path.Contains(loginUrl))
+                    {
+                        var home = path.ToLower().Contains("home.aspx");
+                        var about = path.ToLower().Contains("about.aspx");
+                        var contact = path.ToLower().Contains("contact.aspx");
+                        if (!(home || about || contact))
+                        {
 
+                            Response.Redirect("~/" + loginUrl);
+                        }
+                        else
+                        {
+                            left_panel.Visible = false;
+                            right_panel.Visible = true;
+                            menubar_right_text_all.Visible = false;
+                        }
+                        //if (path.Contains("Home.aspx"))
+                        //{
+                        //    Response.Redirect("~/Home.aspx");
+                        //}
+                        //else if (path.Contains("About.aspx"))
+                        //{
+                        //    Response.Redirect("~/About.aspx");
+                        //}
+                        //else if (path.Contains("Contact.aspx"))
+                        //{
+                        //    Response.Redirect("~/Contact.aspx");
+                        //}
+                        //else
+                        //{
+                        //      Response.Redirect("~/" + loginUrl);
+                        //}
+                    }
+                    return;
+                }
             }
         }
 
@@ -401,5 +400,484 @@ namespace One.ViewsSite.User
             //lblEditMode.Text = "Turn on edit mode";
             Response.Redirect(Request.Url.PathAndQuery, false);
         }
+
+        #region Sitemap of Activity Resource
+
+        private void LoadActivityResourceSitemap()
+        {
+            try
+            {
+                var index = Request.Path.IndexOf("ActivityResource", StringComparison.CurrentCultureIgnoreCase);
+                if (index > 0)
+                {
+                    var remainingPath = Request.Path.Substring(index);
+                    var list = GetCourse();
+                    list.AddRange(GetActivityResource(remainingPath));
+
+                    var siteMapUc = (One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc)
+                            Page.LoadControl("~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx");
+                    siteMapUc.SetData(list);
+                    SiteMapPlace.Controls.Add(siteMapUc);
+
+                }
+            }
+            catch { }
+        }
+
+        List<IdAndName> GetActivityResource(string remainingPath)
+        {
+            try
+            {
+                using (var helper = new DbHelper.ActAndRes())
+                {
+                    var split = remainingPath.Split(new[] { '/', '?' });
+                    if (split.Length > 0)
+                    {
+                        //[0] has "ActivityResource"
+                        switch (split[1])
+                        {
+                            case "Assignments":
+                                return GetAssignment(helper, split[2]);
+                                break;
+                            case "Book":
+                                return GetBook(helper, split[2]);
+                                break;
+                            case "Choice":
+                                return GetChoice(helper, split[2]);
+                                break;
+                            case "FileResource":
+                                return GetFileResource(helper, split[2]);
+                                break;
+                            case "Folder":
+                                return GetFolder(helper, split[2]);
+                                break;
+                            case "Forum":
+                                return GetForum(helper, split[2]);
+                                break;
+                            case "Label":
+                                return GetLabel(helper, split[2]);
+                                break;
+                            case "Page":
+                                return GetPage(helper, split[2]);
+                                break;
+                            case "Url":
+                                return GetUrl(helper, split[2]);
+                                break;
+
+                        }
+                    }
+                }
+                return new List<IdAndName>();
+            }
+            catch { return new List<IdAndName>(); }
+        }
+
+
+
+
+        List<IdAndName> GetAssignment(DbHelper.ActAndRes helper, string fileName)
+        {
+            var list = new List<IdAndName>();
+            switch (fileName)
+            {
+                case "AssignmentCheckCreate.aspx":
+                    var actId = Request.QueryString["actId"];
+                    var subId = Request.QueryString["SubId"];
+                    var secId = Request.QueryString["secId"];
+                    var ucId = Request.QueryString["ucId"];
+                    var assignment = helper.GetAssignment(Convert.ToInt32(actId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = assignment.Name,
+                        Value = "~/Views/ActivityResource/Assignments/AssignmentView.aspx?SubId=" + subId +
+                                "&arId=" + actId +
+                                "&secId=" + secId,
+                        Void = true,
+                    });
+                    using (var clsHelper = new DbHelper.Classes())
+                    {
+                        var userClass = clsHelper.GetUserClass(Convert.ToInt32(ucId));
+                        list.Add(new IdAndName()
+                        {
+                            Name = "Submission from '" + userClass.User.FirstName + "'"
+                        });
+                    }
+                    break;
+                case "AssignmentCreate.aspx":
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Assignment edit"
+                    });
+                    break;
+                case "AssignmentView.aspx":
+                    var assId = Request.QueryString["arId"];
+                    var ass = helper.GetAssignment(Convert.ToInt32(assId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = ass.Name,
+                    });
+
+                    break;
+                case "SubmitAssignmentCreate.aspx":
+                    var arId = Request.QueryString["arId"];
+                    var sub = Request.QueryString["SubId"];
+                    var sec = Request.QueryString["secId"];
+                    var assign = helper.GetAssignment(Convert.ToInt32(arId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = assign.Name,
+                        Value = "~/Views/ActivityResource/Assignments/AssignmentView.aspx?SubId=" + sub +
+                                "&arId=" + arId +
+                                "&secId=" + sec,
+                        Void = true,
+                    });
+                    if (fileName == "SubmitAssignmentCreate.aspx")
+                    {
+                        list.Add(new IdAndName()
+                        {
+                            Name = "Submission"
+                        });
+                    }
+                    break;
+            }
+
+            return list;
+
+        }
+
+        List<IdAndName> GetBook(DbHelper.ActAndRes helper, string fileName)
+        {
+            var list = new List<IdAndName>();
+            switch (fileName)
+            {
+                case "BookCreate.aspx":
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Book edit"
+                    });
+                    break;
+                case "BookView.aspx":
+                    var bookId = Request.QueryString["arId"];
+                    var book = helper.GetBook(Convert.ToInt32(bookId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = book.Name,
+                    });
+                    break;
+                case "ChapterCreate.aspx":
+                    var bId = Request.QueryString["bId"];
+                    var subId = Request.QueryString["SubId"];
+                    var secId = Request.QueryString["secId"];
+                    var bk = helper.GetBook(Convert.ToInt32(bId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = bk.Name,
+                        Value = "~/Views/ActivityResource/Book/BookView.aspx" +
+                                "?SubId=" + subId +
+                                "&arId=" + bId +
+                                "&secId=" + secId,
+                        Void = true,
+                    });
+                    list.Add(new IdAndName()
+                       {
+                           Name = "Chapter edit"
+                       });
+                    break;
+            }
+
+            return list;
+
+        }
+
+        List<IdAndName> GetChoice(DbHelper.ActAndRes helper, string fileName)
+        {
+            var list = new List<IdAndName>();
+
+            switch (fileName)
+            {
+                case "ChoiceCreate.aspx":
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Choice edit"
+                    });
+                    break;
+                case "ChoiceView.aspx":
+                    var choiceId = Request.QueryString["arId"];
+                    var choice = helper.GetChoiceActivity(Convert.ToInt32(choiceId));
+                    if (choice != null)
+                    {
+                        list.Add(new IdAndName()
+                        {
+                            Name = choice.Name,
+                        });
+                    }
+                    break;
+            }
+            return list;
+        }
+
+        List<IdAndName> GetFileResource(DbHelper.ActAndRes helper, string fileName)
+        {
+            var list = new List<IdAndName>();
+            switch (fileName)
+            {
+                case "DownloadingPage.aspx":
+                    break;
+                case "FileResourceCreate.aspx":
+                    list.Add(new IdAndName()
+                    {
+                        Name = "File-Resource edit"
+                    });
+                    break;
+                case "FileResourceView.aspx":
+                    var fileId = Request.QueryString["arId"];
+                    var file = helper.GetFileResource(Convert.ToInt32(fileId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = file.Name
+                    });
+                    break;
+            }
+
+            return list;
+
+        }
+
+        List<IdAndName> GetFolder(DbHelper.ActAndRes helper, string fileName)
+        {
+            var list = new List<IdAndName>();
+            switch (fileName)
+            {
+                case "":
+                    break;
+            }
+
+            return list;
+
+        }
+
+        List<IdAndName> GetForum(DbHelper.ActAndRes helper, string fileName)
+        {
+            var list = new List<IdAndName>();
+            switch (fileName)
+            {
+                case "DiscussionCreate.aspx":
+                    var fId = Request.QueryString["fId"];
+                    var subId = Request.QueryString["SubId"];
+                    var secId = Request.QueryString["secId"];
+                    var frum = helper.GetForumActivity(Convert.ToInt32(fId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = frum.Name,
+                        Value = "~/Views/ActivityResource/Forum/ForumView.aspx?SubId=" + subId +
+                                    "&arId=" + fId +
+                                    "&secId=" + secId,
+                        Void = true,
+                    });
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Discussion edit",
+                    });
+                    break;
+                case "DiscussionView.aspx":
+                    var disId = Request.QueryString["disId"];
+                    var discussion = helper.GetForumDiscussion(Convert.ToInt32(disId));
+                    if (discussion != null)
+                    {
+                        var actres = helper.GetActivityResource(true, (byte)Enums.Activities.Forum + 1, discussion.ForumActivityId);
+                        list.Add(new IdAndName()
+                        {
+                            Name = discussion.ForumActivity.Name,
+                            Value = "~/Views/ActivityResource/Forum/ForumView.aspx?SubId=" +
+                                            actres.SubjectSection.SubjectId +
+                                        "&arId=" + discussion.ForumActivityId +
+                                        "&secId=" + actres.SubjectSectionId,
+                            Void = true,
+                        });
+                        list.Add(new IdAndName()
+                        {
+                            Name = discussion.Subject,
+                        });
+                    }
+                    break;
+                case "ForumCreate.aspx":
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Forum edit"
+                    });
+                    break;
+                case "ForumView.aspx":
+                    var forumId = Request.QueryString["arId"];
+                    var forum = helper.GetForumActivity(Convert.ToInt32(forumId));
+                    if (forum != null)
+                    {
+                        list.Add(new IdAndName()
+                        {
+                            Name = forum.Name,
+                        });
+                    }
+                    break;
+            }
+            return list;
+        }
+
+        List<IdAndName> GetLabel(DbHelper.ActAndRes helper, string fileName)
+        {
+            var list = new List<IdAndName>();
+            switch (fileName)
+            {
+                case "LabelCreate.aspx":
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Label edit"
+                    });
+                    break;
+                case "LabelView.aspx":
+                    var labelId = Request.QueryString["arId"];
+                    var label = helper.GetLabelResource(Convert.ToInt32(labelId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Label view"
+                    });
+                    break;
+            }
+
+            return list;
+
+        }
+
+        List<IdAndName> GetPage(DbHelper.ActAndRes helper, string fileName)
+        {
+            var list = new List<IdAndName>();
+            switch (fileName)
+            {
+                case "PageCreate.aspx":
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Page edit"
+                    });
+                    break;
+                case "PageView.aspx":
+                    var pageId = Request.QueryString["arId"];
+                    var page = helper.GetPageResource(Convert.ToInt32(pageId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = page.Name
+                    });
+                    break;
+            }
+
+            return list;
+
+        }
+
+        List<IdAndName> GetUrl(DbHelper.ActAndRes helper, string fileName)
+        {
+            var list = new List<IdAndName>();
+            switch (fileName)
+            {
+                case "UrlCreate.aspx":
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Url edit"
+                    });
+                    break;
+                case "UrlView.aspx":
+                    var urlId = Request.QueryString["arId"];
+                    var url = helper.GetUrlResource(Convert.ToInt32(urlId));
+                    list.Add(new IdAndName()
+                    {
+                        Name = url.Name
+                    });
+                    break;
+            }
+
+            return list;
+
+        }
+
+
+
+        List<IdAndName> GetCourse()
+        {
+            var subId = Request.QueryString["SubId"];
+            var fromCls = Request.QueryString["from"];
+            var yId = Request.QueryString["yId"];
+            var sId = Request.QueryString["sId"];
+            using (var helper = new DbHelper.Subject())
+            {
+                var list = new List<IdAndName>();
+                var sub = helper.Find(Convert.ToInt32(subId));
+
+                // if (SiteMap.CurrentNode != null)
+                // {
+                list.Add(new IdAndName()
+                {
+                    Name = "Home",//SiteMap.RootNode.Title,
+                    Value = "~/",//SiteMap.RootNode.Url,
+                    Void = true
+                });
+                if (sId != null && yId != null)
+                {
+                    //lnkEdit.NavigateUrl += "&yId=" + yId + "&sId=" + sId;
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Manage Programs",
+                        Value = "~/Views/Structure/",
+                        Void = true
+                    });
+                    using (var strHelper = new DbHelper.Structure())
+                    {
+                        list.Add(new IdAndName()
+                        {
+                            Name = strHelper.GetSructureDirectory(Convert.ToInt32(yId), Convert.ToInt32(sId)),
+                            Value = "~/Views/Structure/CourseListing.aspx?yId=" + yId + "&sId=" + sId,
+                            Void = true
+                        });
+                    }
+
+                    list.Add(new IdAndName()
+                    {
+                        Name = sub.FullName
+                    });
+                }
+                else if (fromCls != null)
+                {
+                    //lnkEdit.NavigateUrl += "&frmDetailView=" + fromCls;
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Courses",//SiteMap.CurrentNode.ParentNode.Title,
+                        Value = "~/Views/Course/Default.aspx",//SiteMap.CurrentNode.ParentNode.Url,
+                        Void = true
+                    });
+                    list.Add(new IdAndName()
+                    {
+                        Name = sub.FullName,
+                        Value = "~/Views/Course/CourseDetail.aspx?cId=" + sub.Id,
+                        Void = true
+                    });
+                    list.Add(new IdAndName() { Name = "View" });
+                }
+                else
+                {
+                    list.Add(new IdAndName()
+                    {
+                        Name = sub.FullName,
+                        Value = "~/Views/Course/Section/?SubId=" + subId,
+                        //"~/Views/Course/CourseDetail.aspx?cId=" + sub.Id
+                        Void = true
+                    });
+                }
+
+
+                //}
+                return list;
+            }
+        }
+
+
+        #endregion
+
+
     }
 }

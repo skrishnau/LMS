@@ -17,10 +17,9 @@
     <h3 class="heading-of-listing">
         <asp:Label ID="lblProgramBatchName" runat="server" Text=""></asp:Label>
     </h3>
-    <hr />
     <div class="data-entry-section-body">
-
-        <div runat="server" ID="divYearsSubYears">
+        <div runat="server" id="divYearsSubYears">
+            <br />
             <div>
                 <strong>Sessions</strong>
             </div>
@@ -29,42 +28,22 @@
             </div>
         </div>
 
-
-       <%-- <div>
-            Currently in:
-                   <asp:Label ID="lblCurrentlyIn" runat="server" Text="N/A"></asp:Label>
-        </div>--%>
     </div>
 
     <div class="data-entry-section-body">
-        <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>--%>
-        <%-- <div style="float: left;">
-                <strong>Student List</strong>
-            </div>--%>
 
-
-        <div style="float: right; margin: 0 10px 5px; position: relative; right: 0; font-weight: 400;">
-            <%--  <asp:Label runat="server" ID="lblAddMethod" Text="Add Method"></asp:Label>
-              <asp:DropDownList ID="ddlAddStudent" Width="130px" runat="server"
-                    OnSelectedIndexChanged="ddlAddStudent_SelectedIndexChanged" AutoPostBack="True">
-                    <Items>
-                        <asp:ListItem Text="Choose..." Value="-1"></asp:ListItem>
-                        <asp:ListItem Text="Create Student" Value="0"></asp:ListItem>
-                        <asp:ListItem Text="Improt From System" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="Import From File" Value="2"></asp:ListItem>
-                    </Items>
-                </asp:DropDownList>--%>
+        <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:LinkButton ID="lnkAddStudent" runat="server" CssClass="link-dark" OnClick="lnkAddStudent_OnClick">
-                        <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-                        <asp:Literal ID="lblAddText" runat="server" Text="Add student"></asp:Literal>
-                    </asp:LinkButton>
+                    <div class="option-div" style="text-align: right;">
+                        <asp:LinkButton ID="lnkAddStudent" runat="server" CssClass="link-button" OnClick="lnkAddStudent_OnClick">
+                            <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
+                            <asp:Literal ID="lblAddText" runat="server" Text="Add student"></asp:Literal>
+                        </asp:LinkButton>
+                    </div>
                     <uc1:CustomDialog runat="server" ID="CustomDialog1" />
 
                     <div style="clear: both;"></div>
-                    <%--<hr />--%>
                     <br />
                     <uc2:StudentListUC runat="server" ID="StudentListUC11" />
 

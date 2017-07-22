@@ -191,10 +191,10 @@
         <div>
             <div class="save-div">
                 <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click"
-                    Text="Save" Width="163px" />
+                    Text="Save" />
                 &nbsp;&nbsp;
                 <asp:Button ID="btnCancel" runat="server" ValidationGroup="none"
-                    Text="Cancel" OnClick="btnCancel_OnClick" Width="168px" />
+                    Text="Cancel" OnClick="btnCancel_OnClick"  />
                 &nbsp;
                 <asp:Label ID="lblError" runat="server" Text="Error while saving." ForeColor="red"></asp:Label>
             </div>

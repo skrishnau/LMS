@@ -64,6 +64,7 @@
     <Compile Include="GradeViewModel.cs" />
     <Compile Include="IdAndName.cs" />
     <Compile Include="IFileViewModel.cs" />
+    <Compile Include="MessageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\PhotoViewModel.cs" />
     <Compile Include="Resources\ResourceFileViewModel.cs" />

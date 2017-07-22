@@ -12,27 +12,29 @@
 
                 </td>
                 <td>
-                    <asp:HyperLink ID="lblTitle" CssClass="link-act-res-title" runat="server" Text="Heading">
-                        
-                    </asp:HyperLink>
+                    <div style="float: left;">
+                        <asp:HyperLink ID="lblTitle" CssClass="link-act-res-title" runat="server" Text="">
+                        </asp:HyperLink>
+                        <asp:Literal ID="lblNoLinkTitle" runat="server" Visible="False"></asp:Literal>
+                    </div>
+                    <%-- runat="server" id="divOptionSpan" --%>
+                    <div style="float: left;" >
 
-                    &nbsp;
-                    <span>
-                        <asp:Image ID="imgNew" runat="server" Visible="False" />
-                    </span>
-
-                    &nbsp;
-            
-                    <span class="span-edit-delete">
+                        <span class="span-edit-delete">&nbsp;
+                        <span>
+                            <asp:Image ID="imgNew" runat="server" Visible="False" />
+                        </span>
+                            &nbsp;
                         <asp:HyperLink ID="lnkEdit" runat="server" Visible="False">
                             <asp:Image ID="imgedt" runat="server" ToolTip="Edit"
                                 ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
                         </asp:HyperLink>
-                        <asp:HyperLink ID="lnkDelete" Visible="False" runat="server" >
-                            <asp:Image ID="Image2" runat="server" ToolTip="Delete"
-                                ImageUrl="~/Content/Icons/delete/trash.png" />
-                        </asp:HyperLink>
-                    </span>
+                            <asp:HyperLink ID="lnkDelete" Visible="False" runat="server">
+                                <asp:Image ID="Image2" runat="server" ToolTip="Delete"
+                                    ImageUrl="~/Content/Icons/delete/trash.png" />
+                            </asp:HyperLink>
+                        </span>
+                    </div>
                 </td>
             </tr>
             <tr>

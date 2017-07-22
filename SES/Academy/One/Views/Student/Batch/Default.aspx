@@ -43,7 +43,7 @@
     <%--</div>--%>
     <%--</div>--%>
     <div style="color: darkslategrey; font: 20px bold darkslategray; margin: 3px 3px 8px;">Programs in the Batch</div>
-    <div class="list">
+    <div >
         <asp:PlaceHolder ID="pnlProgramsInTheBatch" runat="server"></asp:PlaceHolder>
     </div>
     <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />

@@ -1,12 +1,6 @@
 ﻿
 
-h3.heading-of-create-edit {
-    text-align: left;
-    margin-top: 3px;
-    font-size: 2em;
-    font-weight: 400;
-    color: darkslategray;
-}
+
 
 td.data-type {
     width: 170px;
@@ -37,7 +31,12 @@ td.data-value-bold {
     margin-left: 174px;
 }
 
-    /*.save-div input {
+    .save-div input {
+        width: 100px;
+        margin-right: 10px;
+    }
+
+/*.save-div input {
         margin: 6px 4px;
         padding: 5px;
         height: auto;

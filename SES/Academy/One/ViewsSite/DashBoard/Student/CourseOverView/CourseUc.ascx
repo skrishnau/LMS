@@ -14,7 +14,7 @@
        <%--</span>--%> 
     </div>
 
-    <div class="item-message">
+    <div class="item-message list-item-description">
         <asp:PlaceHolder ID="pnlMessages" runat="server"></asp:PlaceHolder>
     </div>
 

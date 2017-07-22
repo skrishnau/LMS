@@ -22,18 +22,20 @@ CKEDITOR.editorConfig = function (config) {
 		{ name: 'document', items: ['Source', 'NewPage', 'Preview'] },
 		{ name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
 		{ name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
-		{
-		    name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'
+        { name: 'tools', items: ['Maximize', '-', 'About'] },
+        '/',
+
+        { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+		{name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'
                    , 'Iframe']
 		},
         { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-		{ name: 'tools', items: ['Maximize', '-', 'About'] },
+        { name: 'colors', items: ['TextColor', 'BGColor'] },
+        '/',
 
-                '/',
-		{ name: 'styles', items: ['Styles', 'Format'] },
-		{ name: 'basicstyles', items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] },
-		{ name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-
+		{ name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+		{ name: 'basicstyles', items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] }
+        
 	];
 
     config.toolbar_MyToolbar =

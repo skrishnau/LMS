@@ -1,87 +1,270 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="One.SiteMaster" %>
 
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
-<head runat="server">
+<head id="Head1" runat="server">
     <meta charset="utf-8" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
-    <asp:PlaceHolder runat="server">     
-          <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>  
-    <webopt:BundleReference runat="server" Path="~/Content/css" /> 
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
     <meta name="viewport" content="width=device-width" />
-    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="Content/CSSes/MasterStyles.css" rel="stylesheet" />
+    <link href="Content/CSSes/PanelStyles.css" rel="stylesheet" />
+    <link href="Content/CSSes/ListingStyles.css" rel="stylesheet" />
+
+    <link href="Content/CSSes/FinalCss.css" rel="stylesheet" />
+    <link href="Content/CSSes/DropdownCss.css" rel="stylesheet" />
+
 </head>
 <body>
-    <form runat="server">
-    <asp:ScriptManager runat="server">
-        <Scripts>
-            <%--Framework Scripts--%>
-            <asp:ScriptReference Name="MsAjaxBundle" />
-            <asp:ScriptReference Name="jquery" />
-            <asp:ScriptReference Name="jquery.ui.combined" />
-            <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-            <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-            <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-            <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-            <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-            <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-            <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-            <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-            <asp:ScriptReference Name="WebFormsBundle" />
-            <%--Site Scripts--%>
+    <form id="form1" runat="server">
 
-        </Scripts>
-    </asp:ScriptManager>
-    <header>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p class="site-title">
-                    <a runat="server" href="~/">your logo here</a>
-                </p>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div id="menuDiv" class="menu-div" style="text-align: left; z-index: 10; vertical-align: central; padding: 7px 5px 2px; clear: both; width: 100%;">
+            <div style="margin: auto; vertical-align: central;">
+                &nbsp;
+                 <asp:HyperLink runat="server" ID="lnkSchoolName" NavigateUrl="~/Views/Office/School/View.aspx"
+                     ForeColor="lightgoldenrodyellow"
+                     Font-Underline="False">
+                     <asp:Label ID="lblSchoolName" runat="server" Text="Nepal Engineering College" Font-Size="1.2em" Font-Bold="True"></asp:Label>
+                 </asp:HyperLink>
+                &nbsp;&nbsp;&nbsp;
+                <asp:Label ID="lblUserInfo" runat="server" Text="">
+                </asp:Label>
+
+
+                <div style="float: left;">
+                    <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Icons/School/school-logo.png" Width="30" Height="30" />
+
+                </div>
+
+                <div style="float: right; padding-right: 20px;" class="clearfix">
+                    <%--<asp:TextBox ID="txtSearch" runat="server" placeholder="Search courses.."></asp:TextBox>--%>
+                    <%--<asp:LoginStatus ID="LoginStatus1" runat="server" ForeColor="white"/>--%>
+                    <%--&nbsp;&nbsp;
+                    <asp:LinkButton ID="lnkLoginName" runat="server" OnClick="lnkLoginName_OnClick" CssClass="link"></asp:LinkButton>
+                    &nbsp;&nbsp;--%>
+
+
+                    <%--<div class="dropdown">
+                        <span class="dropbtn">
+                            <asp:Image ID="imgMessageIcon" runat="server"
+                                ToolTip="Messages"
+                                ImageUrl="~/Content/Icons/Message/message-filled-light-26px.png" />
+                            <sup></sup>
+                        </span>
+
+                        <div class="dropdown-content">
+                            <asp:Label ID="lblEmptyMessage" runat="server" Text="No new messages"></asp:Label>
+                            <asp:PlaceHolder ID="plHolderMessage" runat="server"></asp:PlaceHolder>
+                        </div>
+                    </div>--%>
+                    &nbsp;
+                  <%--    <div class="dropdown">
+                          <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn"
+                              ToolTip="Notifications"
+                              ImageUrl="~/Content/Icons/Notice/Info-light-26px.png" />
+                          <div class="dropdown-content">
+                              <asp:Label ID="lblEmptyNotice" runat="server" Text="No new notifications"></asp:Label>
+                              <asp:PlaceHolder ID="plHolderNotice" runat="server"></asp:PlaceHolder>
+                          </div>
+                      </div>--%>
+                    &nbsp;
+                    <%--<div class="dropdown">
+                        <asp:Image ID="Image1" runat="server" CssClass="dropbtn"
+                            ToolTip="Settings"
+                            ImageUrl="~/Content/Icons/Settings/setting-light-26px.png" />
+                        <div class="dropdown-content" style="width: 130px; min-width: 130px;">
+                            <asp:HyperLink ID="lnkSettingMenu" runat="server" Visible="False" NavigateUrl="~/Views/Setting/">
+                                Settings
+                            </asp:HyperLink>
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
+
+                        </div>
+                    </div>--%>
+                </div>
             </div>
-            <div class="float-right">
-                <section id="login">
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul>
-                                <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
-                                <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <p>
-                                Hello, <a runat="server" class="username" href="~/Account/Manage.aspx" title="Manage your account">
-                                    <asp:LoginName runat="server" CssClass="username" /></a>!
-                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
-                            </p>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
-                </section>
-                <nav>
-                    <ul id="menu">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About.aspx">About</a></li>
-                        <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
-                    </ul>
-                </nav>
+
+            <asp:ContentPlaceHolder ID="Menu" runat="server">
+            </asp:ContentPlaceHolder>
+
+        </div>
+
+        <div style="clear: both;"></div>
+
+
+
+        <div class="body-whole">
+            <div style="padding: 5px 0; background-color: #f1f1f1;">
+                <div style="float: left;">
+                    <asp:ContentPlaceHolder ID="SiteMapPlace" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div style="float: right;" class="option-div">
+                    <%-- <asp:LinkButton ID="lnkEditMode" runat="server" OnClick="lnkEditMode_OnClick" Visible="False">
+                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                        <asp:Label ID="lblEditMode" runat="server" Text="Turn on edit mode"></asp:Label>
+                    </asp:LinkButton>--%>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+            <div style="clear: both;"></div>
+
+            <div class="inner-body">
+
+                <table class="table-whole">
+                    <tr style="vertical-align: top;">
+
+                        <%--  =================== Left sidebar ========================= --%>
+                        <td class="left-width" runat="server" id="leftColumn" visible="False">
+
+                            <div style="width: 100%;">
+                                <asp:ContentPlaceHolder runat="server" ID="left"></asp:ContentPlaceHolder>
+
+
+                                <%--<uc1:CoursesMenuUc runat="server" ID="CoursesMenuUc1" />--%>
+                                <%--<asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>--%>
+                                <%--<uc1:FileManagementMenuUc runat="server" ID="FileManagementMenuUc1" />--%>
+                            </div>
+
+
+                        </td>
+                        <%-- ============================= END ========================= --%>
+
+
+
+                        <%-- ======================= Middle ======================= --%>
+                        <td class="mid-width" runat="server" id="middlePanel">
+
+                            <asp:Panel ID="pnlBody" runat="server">
+                                <div id="bodyDiv">
+                                    <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
+                                        <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
+                                    </asp:Panel>
+                                    <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
+                                    </asp:ContentPlaceHolder>
+
+
+
+                                    <div style="margin-left: 70px;">
+                                        <asp:ContentPlaceHolder ID="Body" runat="server">
+                                        </asp:ContentPlaceHolder>
+                                    </div>
+
+                                    <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+                                    <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+
+                                    <asp:ContentPlaceHolder runat="server" ID="JSField">
+                                    </asp:ContentPlaceHolder>
+                                </div>
+                            </asp:Panel>
+
+                        </td>
+                        <%-- ============================= END ========================= --%>
+
+
+
+                        <%-- ======================= Right sidebar ======================= --%>
+                        <td class="right-width" runat="server" id="right_panel" visible="True">
+
+
+
+                            <asp:ContentPlaceHolder runat="server" ID="right">
+                                <div class="box roboto-regular" runat="server" id="loginDiv" visible="True">
+                                    <span style="padding: 0 0 5px; text-align: left; color: darkgray;">You are not logged in. 
+                                    </span>
+                                    <br />
+                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ViewsSite/Account/Login.aspx">Login</asp:HyperLink>
+                                </div>
+                            </asp:ContentPlaceHolder>
+                            <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
+                        </td>
+                        <%-- ============================= END ========================= --%>
+                    </tr>
+                </table>
             </div>
         </div>
-    </header>
-    <div id="body">
-        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
-        <section class="content-wrapper main-content clear-fix">
-            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
-        </section>
-    </div>
-    <footer>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </div>
+
+        <div style="clear: both;"></div>
+
+        <hr style="color: darkgray; background-color: darkgray; height: 1px; display: block;" />
+        <div>
+            <aside>
+                <ul class="bottom-links">
+                    <li><a id="A1" runat="server" href="~/">Home</a></li>
+                    <li><a id="A2" runat="server" href="~/About.aspx">About</a></li>
+                    <li><a id="A3" runat="server" href="~/Contact.aspx">Contact</a></li>
+                </ul>
+            </aside>
         </div>
-    </footer>
+        <div style="height: 30px;">
+        </div>
+        <%-- Clear Both --%>
+        <%--   <div style="clear: both;">
+            <table style="margin: 0 auto;">
+                <tr>
+                    <td>
+                        <span class="sitemap-items">
+
+                            <asp:HyperLink ID="HyperLink1" runat="server"
+                                CssClass="link-white"
+                                NavigateUrl="~/">Home</asp:HyperLink>
+                            &nbsp;
+                        </span>
+                    </td>
+                    <td>
+                        <span class="sitemap-items">
+
+                            <asp:HyperLink ID="HyperLink2" runat="server"
+                                CssClass="link-white"
+                                NavigateUrl="~/Views/NoticeBoard/NoticeListing.aspx">
+                            Notice
+                            </asp:HyperLink>
+
+                            &nbsp;
+                        </span>
+                    </td>
+                    <td>
+                        <span class="sitemap-items">
+
+                            <asp:HyperLink ID="HyperLink3" runat="server"
+                                CssClass="link-white"
+                                NavigateUrl="~/Views/Events/">Events</asp:HyperLink>
+                            &nbsp;
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>--%>
     </form>
 </body>
 </html>

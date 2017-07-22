@@ -21,12 +21,15 @@ namespace One.Views.ActivityResource.Book.BookItems
         }
 
         public void SetData(int marginwidth, int chapterId, string chapterName, int bookId, string edit
-            , bool showup, bool showdown, bool showin, bool showout)
+            , bool showup, bool showdown, bool showin, bool showout, int subjectId, int sectionId)
         {
             lnkChapter.Text = chapterName;
             ChapterId = chapterId;
             BookId = bookId;
-            lnkAddChapter.NavigateUrl = "~/Views/ActivityResource/Book/ChapterCreate.aspx?bId=" + bookId + "&pcId=" + chapterId;
+            lnkAddChapter.NavigateUrl = "~/Views/ActivityResource/Book/ChapterCreate.aspx?bId=" + bookId +
+                                        "&pcId=" + chapterId+
+                                        "&SubId="+subjectId+
+                                        "&secId="+sectionId;
             lnkAddChapter.ToolTip = "Add chapter ";
 
 
@@ -88,12 +91,14 @@ namespace One.Views.ActivityResource.Book.BookItems
 
         public void Deselect()
         {
-            lnkChapter.BackColor = Color.White;
+            pnlMain.BackColor = Color.White;
+            //lnkChapter.BackColor = Color.White;
         }
 
         public void Select()
         {
-            lnkChapter.BackColor = Color.LightBlue;
+            pnlMain.BackColor = Color.FromArgb(241, 241, 241);//.LightGray;
+            //lnkChapter.BackColor = Color.LightBlue;
         }
 
         protected void lnk_Click(object sender, EventArgs e)

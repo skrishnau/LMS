@@ -2,19 +2,20 @@
 
 <style type="text/css">
     .bold-row {
-        font-weight: bold;
-        padding: 10px 0 10px;
+        font-weight: 500;
+        /*padding: 10px 0 10px;*/
+        background-color: #f0f0f0;
     }
 </style>
-<div class="data-entry-section-body" style="border: 1px solid darkgrey; padding: 5px;">
-    <div class="data-entry-section-heading" style="background-color: darkslategray; color: white; padding-left: 5px;">
+<div class="data-entry-section-body" style=" margin-bottom: 10px; ">
+    <%-- class="data-entry-section-heading" style="background-color: darkslategray; color: white; padding-left: 5px;" --%>
+    <div  style=" font-weight: 600; padding: 8px 1px;">
         <asp:Label ID="lblClassName" runat="server" Text="Label"></asp:Label>
-        <hr />
     </div>
-    <div>
-        <table style="width: 98%; border-collapse: collapse;">
+    <div style="border: 1px solid darkgrey;padding-bottom: 8px;">
+        <table style="width: 100%; margin-left: -0px; border-collapse: collapse;">
             <thead>
-                <tr runat="server" id="headingRow">
+                <tr class="data-list-header" runat="server" id="headingRow">
                     <td class="bold-row">
                         <asp:Label ID="Label1" runat="server" Text="Image"></asp:Label>
                     </td>
@@ -44,3 +45,4 @@
 
     </div>
 </div>
+<br/>
