@@ -24,11 +24,15 @@ namespace One.Views.Courses
                     lblHeading.Text = "Earlier courses";
                     lblTitle.Text = "Earlier courses";
                     curNode.Name = "Earlier courses";
+                    lnkGoto.Text = "Go to current courses";
+                    lnkGoto.NavigateUrl = "~/Views/Courses/?type=current";
                 }
                 else
                 {
                     lblHeading.Text = "Current courses";
                     lblTitle.Text = "Current courses";
+                    lnkGoto.Text = "Go to earlier courses";
+                    lnkGoto.NavigateUrl = "~/Views/Courses/?type=earlier";
                 }
                 var user = Page.User as CustomPrincipal;
                 if (user != null)

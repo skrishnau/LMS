@@ -1,5 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="One.Views.Report.Default" %>
 
+
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
+
+
 <asp:Content runat="server" ID="bodycontent" ContentPlaceHolderID="Body">
     <h3 class="heading-of-listing">
         <asp:Label ID="Label1" runat="server" Text="Report"></asp:Label>
@@ -28,7 +36,7 @@
                         <hr />
                     </div>
                     <div style="padding-left: 10px;">
-                        The grade calculation method needs review... range is not functioning well.
+                        <%--The grade calculation method needs review... range is not functioning well.--%>
                         <asp:Panel ID="pnlFilter" runat="server" Visible="True">
                             <div>Attributes to include:</div>
 
@@ -49,15 +57,15 @@
                                 <span class="span-padding"></span>
                             </div>
 
-                            <div style="margin-top: 5px;">
+                            <%--<div style="margin-top: 5px;">
                                 <div>Activities to include:</div>
 
                                 <asp:CheckBoxList ID="chkActivities" runat="server"
                                     Enabled="False"
                                     DataTextField="Name" DataValueField="Id" RepeatDirection="Horizontal">
                                 </asp:CheckBoxList>
+                            </div>--%>
                                 <%--<asp:PlaceHolder ID="pnlActivityCheck" runat="server"></asp:PlaceHolder>--%>
-                            </div>
 
                             <div>
                                 <asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_OnClick" />

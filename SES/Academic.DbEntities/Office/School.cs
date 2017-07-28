@@ -16,6 +16,9 @@ namespace Academic.DbEntities.Office
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public string Description { get; set; }
+
         //public int InstitutionId { get; set; }
        // public int? BranchId { get; set; }
         public bool? IsActive { get; set; }
@@ -23,14 +26,18 @@ namespace Academic.DbEntities.Office
 
         //[Required(ErrorMessage = "please choose one of the types.")]
         public string Code { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string Phone { get; set; }
-        public string RegNo { get; set; }
-        public string Fax { get; set; }
-        public string Email { get; set; }
+
+        public string Address { get; set; }
+
+        public string PhoneMain { get; set; }
+        public string PhoneAfterHours { get; set; }
+
+        public string EmailGeneral { get; set; }
+        public string EmailSupport { get; set; }
+        public string EmailMarketing { get; set; }
+
         public string Website { get; set; }
+
         public DateTime? CreatedDate { get; set; }
 
         public int? UserId { get; set; }

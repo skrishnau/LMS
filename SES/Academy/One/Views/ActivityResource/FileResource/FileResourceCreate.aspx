@@ -84,10 +84,10 @@
                             <td class="data-value">
                                 <asp:DropDownList ID="ddlDisplay" runat="server">
                                     <Items>
-                                        <asp:ListItem Value="0" Text="Automatic" Selected="True"></asp:ListItem>
-                                        <asp:ListItem Value="1" Text="Embed"></asp:ListItem>
+                                        <%--<asp:ListItem Value="0" Text="Automatic" Selected="True"></asp:ListItem>--%>
+                                        <%--<asp:ListItem Value="1" Text="Embed"></asp:ListItem>--%>
                                         <asp:ListItem Value="2" Text="Force download"></asp:ListItem>
-                                        <asp:ListItem Value="3" Text="Open"></asp:ListItem>
+                                        <%--<asp:ListItem Value="3" Text="Open"></asp:ListItem>--%>
                                         <asp:ListItem Value="4" Text="In pop-up"></asp:ListItem>
                                     </Items>
                                 </asp:DropDownList>

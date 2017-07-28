@@ -10,8 +10,9 @@
         <%-- class="hover-background-change-slight" --%>
         <div style="padding: 5px; clear: both;">
             <%--class="item-section"--%>
-            <div style="font-size: 24px; font-weight: normal; font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;">
-                <asp:Label ID="lblTitle" runat="server" Text="Heading"></asp:Label>
+            <%-- font-family: Arial, Helvetica, Verdana, Geneva, sans-serif; --%>
+            <div style="font-size: 1.5em; font-weight: normal; ">
+                <asp:Label ID="lblTitle" runat="server" CssClass="color-blue" Text="Heading"></asp:Label>
                 &nbsp;&nbsp;&nbsp;
             
             <span class="span-edit-delete">
@@ -29,7 +30,7 @@
             <div style="margin-left: 15px;">
                 <%--style="padding: 10px ; " margin-right: 25px; --%>
                 <div style="padding: 5px;">
-                    <asp:Label ID="lblSummary" runat="server" Text="Summary"></asp:Label>
+                    <asp:Label ID="lblSummary" CssClass="link-act-res-description" runat="server" Text="Summary"></asp:Label>
 
                 </div>
                 <%--style="padding:10px; " margin-left: 20px; --%>

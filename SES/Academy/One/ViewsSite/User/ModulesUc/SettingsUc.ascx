@@ -8,7 +8,7 @@
         </strong>
     </div>
     <%--class="modules-body" font-size: 0.9em; --%>
-    <div style="font-weight: 500;" class="list-unmargined">
+    <div style="" class="list-unmargined">
         
         <%--<div class="auto-st2">--%>
        <%-- <asp:HyperLink ID="lnkBatch" runat="server"

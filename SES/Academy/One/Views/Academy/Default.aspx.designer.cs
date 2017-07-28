@@ -85,6 +85,24 @@ namespace One.Views.Academy {
         protected global::System.Web.UI.WebControls.Image Image4;
         
         /// <summary>
+        /// lnkPrevious control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkPrevious;
+        
+        /// <summary>
+        /// lnkNext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkNext;
+        
+        /// <summary>
         /// pnlAcademicYearListing control.
         /// </summary>
         /// <remarks>

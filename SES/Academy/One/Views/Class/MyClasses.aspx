@@ -20,9 +20,10 @@
         My Classes
         <hr />
     </div>
-    <div class="list-item-body">
-        <asp:DataList ID="DataList1" runat="server" Width="100%">
-            <ItemTemplate>
+    <asp:DataList ID="DataList1" runat="server" Width="100%">
+        <ItemTemplate>
+
+            <div class="list-item-datalist">
                 <asp:HyperLink runat="server" ID="hlink1" CssClass="list-item-heading"
                     NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("ClassId")+"&from=myClasses" %>'>
                     <asp:Label ID="Label1" runat="server"
@@ -35,9 +36,9 @@
                     End &nbsp; :
                         <asp:Label ID="Label3" runat="server" Text='<%# Eval("EndDate") %>'></asp:Label>
                 </div>
-            </ItemTemplate>
-        </asp:DataList>
-    </div>
+            </div>
+        </ItemTemplate>
+    </asp:DataList>
 </asp:Content>
 
 

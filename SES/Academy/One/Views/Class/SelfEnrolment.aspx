@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="SelfEnrolment.aspx.cs" Inherits="One.Views.Class.SelfEnrolment" %>
 
+
+<%@ Register Src="~/Views/All_Resusable_Codes/Dialog/CustomDialog.ascx" TagPrefix="uc1" TagName="CustomDialog" %>
+
 <%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
 <%@ Register Src="~/Views/Course/Section/Master/ListOfSectionsInCourseUC.ascx" TagPrefix="uc1" TagName="ListOfSectionsInCourseUC" %>
 
@@ -46,7 +49,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="data-type">Last date to join</td>
+                    <td class="data-type">
+                        <asp:Label ID="lblJoinLstDateTitle" runat="server" Text="Last date to join"></asp:Label></td>
                     <td class="data-value">
                         <asp:Literal ID="lblJoinLastDate" runat="server"></asp:Literal>
                     </td>
@@ -72,13 +76,18 @@
         <br />
         <%-- style="text-align: center; vertical-align: bottom; float: left; padding-top: 8px; padding-left: 20px;" --%>
         <%-- style="text-align: center;"  CssClass="auto-st2 link"  --%>
-
-        <div class="option-div">
-            <%--<asp:HyperLink ID="lnkReport" runat="server">View Report</asp:HyperLink>--%>
-            <asp:HyperLink ID="lnkViewCourse" runat="server" Visible="False">View Course</asp:HyperLink>
-            <asp:HyperLink ID="lnkEnrollNow" runat="server" Visible="False">Enroll Now</asp:HyperLink>
-        </div>
-
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <div class="option-div">
+                    <%--<asp:HyperLink ID="lnkReport" runat="server">View Report</asp:HyperLink>--%>
+                    <asp:HyperLink ID="lnkViewCourse" runat="server" Visible="False">View Course</asp:HyperLink>
+                    <asp:LinkButton ID="btnEnroll" runat="server" 
+                        OnClick="btnEnroll_Click"
+                        Visible="False">Enroll Now</asp:LinkButton>
+                </div>
+                <uc1:CustomDialog runat="server" ID="CustomDialog" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
         <br />
     </div>
 
@@ -139,5 +148,7 @@
 <asp:Content runat="server" ID="content2" ContentPlaceHolderID="head">
     <link href="../../Content/CSSes/TableStyles.css" rel="stylesheet" />
     <link href="../../Content/CSSes/PanelStyles.css" rel="stylesheet" />
-    <%--<link href="../../Content/CSSes/ActResStyles.css" rel="stylesheet" />--%>
+    <link href="../../Views/All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
+
+    <link href="../../Content/CSSes/ActResStyles.css" rel="stylesheet" />
 </asp:Content>

@@ -64,8 +64,8 @@ namespace One.Views.Report
                         if (chkName.Checked)
                             initRow.Cells.Add(new TableCell() { Text = "Name", CssClass = "data-value-bold-dark-back" });
 
-                        chkActivities.DataSource = activityHeading;
-                        chkActivities.DataBind();
+                        //chkActivities.DataSource = activityHeading;
+                        //chkActivities.DataBind();
 
                         foreach (var head in activityHeading)
                         {
@@ -101,8 +101,10 @@ namespace One.Views.Report
                                 var img = new Image()
                                 {
                                     ImageUrl = r.ImageUrl
-                                    ,Height = 20
-                                    ,Width = 20
+                                    ,
+                                    Height = 20
+                                    ,
+                                    Width = 20
                                 };
                                 var cell = new TableCell();
 
@@ -140,6 +142,45 @@ namespace One.Views.Report
             }
         }
 
+        void LoadSitemap(Academic.DbEntities.Class.SubjectClass cls)
+        {
+            var from = Request.QueryString["from"];
+            from = from ?? "";
+            if (SiteMap.CurrentNode != null)
+            {
+                var list = new List<IdAndName>()
+                                {
+                                   new IdAndName(){
+                                                Name=SiteMap.RootNode.Title
+                                                ,Value =  SiteMap.RootNode.Url
+                                                ,Void=true
+                                            },
+                                    new IdAndName(){
+                                        Name = SiteMap.CurrentNode.ParentNode.ParentNode.ParentNode.Title
+                                        ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url
+                                        ,Void=true
+                                    },
+                                    new IdAndName(){
+                                        Name = cls.GetCourseFullName
+                                        ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url+"?cId="+(cls.GetCourseId)
+                                        ,Void=true
+                                    }
+                                    ,
+                                    new IdAndName()
+                                    {
+                                        Name =cls.GetName
+                                        ,Value = "~/Views/Class/CourseClassDetail.aspx?ccId=" +cls.Id+
+                                                 "&from="+from,
+                                                 Void = true
+                                    }
+                                    , new IdAndName()
+                                    {
+                                        Name = "Report"
+                                    }
+                                };
+                SiteMapUc.SetData(list);
+            }
+        }
 
 
 

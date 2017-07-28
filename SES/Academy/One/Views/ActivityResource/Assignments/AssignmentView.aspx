@@ -9,7 +9,7 @@
         <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
     </h3>
     <div class="data-entry-section-body">
-        <asp:Label ID="lblDescription" runat="server" Text="" Visible="False"></asp:Label>
+        <asp:Label ID="lblDescription" runat="server" Text="" Visible="True"></asp:Label>
     </div>
     <br />
     <div class="data-entry-section-body">

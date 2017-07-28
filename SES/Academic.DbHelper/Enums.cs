@@ -14,7 +14,7 @@ namespace Academic.DbHelper
         //Modules enum
         public enum Modules
         {
-            CourseCategory, Course, CourseSection, 
+            CourseCategory, Course, CourseSection,
         }
 
         public static string CourseModule()
@@ -64,7 +64,7 @@ namespace Academic.DbHelper
             return lst;
         }
 
-       
+
 
         public static T ParseEnum<T>(string value)
         {
@@ -213,8 +213,13 @@ namespace Academic.DbHelper
                 var value = ActivityResourceValues.RetriveMethod(suit + "Resource");
                 if (value != null)
                 {
-                    list.Add(value);
+                    if (value.Name != "Folder")
+                    {
+                        list.Add(value);
+                    }
+
                 }
+
                 //var ac = new ActivityResourceClass()
                 //{
                 //    Name = suit

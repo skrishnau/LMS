@@ -16,7 +16,7 @@ namespace One.Views.ActivityResource.Page
             {
                 var subId = Request.QueryString["SubId"];
                 var secId = Request.QueryString["SecId"];
-                var pId = Request.QueryString["pId"];
+                var pId = Request.QueryString["arId"];
                 var edit = Request.QueryString["edit"];
                 try
                 {
@@ -118,5 +118,9 @@ namespace One.Views.ActivityResource.Page
         }
 
 
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+        }
     }
 }

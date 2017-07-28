@@ -8,14 +8,14 @@
         <table>
             <tr>
                 <td>
-                    <asp:Image ID="imgIcon" runat="server" ImageUrl="" AlternateText="" Height="16" Width="16" />
+                    <asp:Image ID="imgIcon" runat="server"  AlternateText="" Height="26" Width="26" />
 
                 </td>
                 <td>
                     <div style="float: left;">
                         <asp:HyperLink ID="lblTitle" CssClass="link-act-res-title" runat="server" Text="">
                         </asp:HyperLink>
-                        <asp:Literal ID="lblNoLinkTitle" runat="server" Visible="False"></asp:Literal>
+                        <asp:Label ID="lblNoLinkTitle" CssClass="link-act-res-description" runat="server" Visible="False"></asp:Label>
                     </div>
                     <%-- runat="server" id="divOptionSpan" --%>
                     <div style="float: left;" >
@@ -41,7 +41,7 @@
                 <td></td>
                 <td>
                     <asp:Panel ID="pnlDescription" runat="server" CssClass="course-act-res-description">
-                        <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblDescription" CssClass="link-act-res-description" runat="server" Text=""></asp:Label>
                     </asp:Panel>
                 </td>
             </tr>

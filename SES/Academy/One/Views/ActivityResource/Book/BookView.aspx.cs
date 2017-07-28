@@ -142,7 +142,7 @@ namespace One.Views.ActivityResource.Book
                              || user.IsInRole(DbHelper.StaticValues.Roles.Teacher)))
                         {
                             Response.Redirect("~/Views/ActivityResource/Book/ChapterCreate.aspx?bId=" + BookId +
-                                              "&pcId=0");
+                                              "&pcId=0&SubId="+SubjectId+"&secId="+SectionId);
 
                         }
                     }
@@ -175,14 +175,14 @@ namespace One.Views.ActivityResource.Book
             var parents = list.Where(x => (x.ParentChapterId ?? 0) == 0).ToList();
 
             var i = 0;
-
+            var pos = 1;
             foreach (var bc in parents)
             {
 
                 var itemuc =
                             (BookItems.TocItemsUc)Page.LoadControl("~/Views/ActivityResource/Book/BookItems/TocItemsUc.ascx");
 
-                itemuc.SetData(marginleft, bc.Id, bc.Position + ". " + bc.Title, bc.BookId, Edit
+                itemuc.SetData(marginleft, bc.Id, (pos) + ". " + bc.Title, bc.BookId, Edit
                     , bc.Position != 1
                     , bc.Position != parents.Max(x => x.Position)
                     , bc.Position != 1
@@ -200,8 +200,9 @@ namespace One.Views.ActivityResource.Book
                 pnlToc.Controls.Add(itemuc);
 
                 //var children = list.Where(x => x.ParentChapterId == bc.Id).ToList();
-                LoadChapters(list, bc.Id, bc.Position + ". ",subjectId, sectionId);
+                LoadChapters(list, bc.Id, pos + ". ",subjectId, sectionId);
                 i++;
+                pos++;
             }
             marginleft -= 15;
 
@@ -215,6 +216,7 @@ namespace One.Views.ActivityResource.Book
             int parentId, string number, int subjectId, int sectionId)
         {
             marginleft += 15;
+            var pos = 1;
             var thisone = list.Where(x => x.ParentChapterId == parentId).ToList();
             foreach (var bc in thisone)
             {
@@ -231,7 +233,8 @@ namespace One.Views.ActivityResource.Book
                 itemuc.ChapterUpdated += itemuc_ChapterUpdated;
                 pnlToc.Controls.Add(itemuc);
                 //var children = list.Where(x => x.ParentChapterId == bc.Id).ToList();
-                LoadChapters(list, bc.Id, number + bc.Position + ". ",subjectId, sectionId);
+                LoadChapters(list, bc.Id, number + pos + ". ",subjectId, sectionId);
+                pos++;
             }
             marginleft -= 15;
         }
@@ -293,6 +296,12 @@ namespace One.Views.ActivityResource.Book
                     lnkChapterEdit.NavigateUrl = "~/Views/ActivityResource/Book/ChapterCreate.aspx?SubId="+SubjectId +
                                                 "&secId="+SectionId+
                                                  "&bId=" + content.BookId + "&pcId=" + content.Id+"&edit=1" ;
+                    lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx" +
+                                            "?task=" + DbHelper.StaticValues.Encode("chapsubjectClass") +
+                                            "&bcId="+content.Id+
+                                            "&bId="+content.BookId+
+                                            "&SubId="+SubjectId+
+                                            "&secId="+SectionId;
                 }
 
             }

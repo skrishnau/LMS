@@ -40,6 +40,7 @@
                                         <asp:HiddenField ID="hidSelectedCategory" Value="0" runat="server" />
                                         <asp:HiddenField ID="hidSelectedCategoryName" Value="" runat="server" />
                                     </div>
+                                    <br />
                                     <div style="text-align: left;" class="option-div">
                                         <asp:LinkButton ID="lnkCatCreate" runat="server" OnClick="lnkCatCreate_Click"
                                             CssClass="link-dark">

@@ -13,6 +13,15 @@ namespace One.Views.Report {
     public partial class Default {
         
         /// <summary>
+        /// SiteMapUc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.SiteMaps.SiteMapUc SiteMapUc;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -110,15 +119,6 @@ namespace One.Views.Report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkTotal;
-        
-        /// <summary>
-        /// chkActivities control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkActivities;
         
         /// <summary>
         /// btnLoad control.

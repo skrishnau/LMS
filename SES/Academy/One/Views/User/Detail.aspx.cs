@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.User
@@ -35,6 +36,8 @@ namespace One.Views.User
                         ReturnToHomePage();
                         return;
                     }
+
+                    LoadSitemap(us);
 
                     lblHeading.Text = us.FullName;
                     lblPageTitle.Text = "User Detail";
@@ -96,5 +99,30 @@ namespace One.Views.User
             Response.Redirect("~/");
         }
 
+        void LoadSitemap(Academic.DbEntities.User.Users user)
+        {
+            if (SiteMap.CurrentNode != null)
+            {
+                var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = SiteMap.CurrentNode.ParentNode.Title
+                                ,Value = SiteMap.CurrentNode.ParentNode.Url
+                                ,Void=true
+                            },
+                            new IdAndName()
+                            {
+                                Name = user.FullName
+                                //Name = SiteMap.CurrentNode.Title
+                            }
+                        };
+                SiteMapUc.SetData(list);
+            }
+        }
     }
 }

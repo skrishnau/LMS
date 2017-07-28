@@ -80,11 +80,11 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div id="menuDiv" class="menu-div" style="text-align: left; z-index: 10; vertical-align: central; padding: 7px 5px 2px; clear: both; width: 100%;">
+        <div id="menuDiv" class="menu-div" style="">
             <div style="margin: auto; vertical-align: central;">
                 &nbsp;
-                 <asp:HyperLink runat="server" ID="lnkSchoolName" NavigateUrl="~/Views/Office/School/View.aspx"
-                     ForeColor="lightgoldenrodyellow"
+                <%-- "~/Views/Office/School/View.aspx" --%>
+                 <asp:HyperLink runat="server" ID="lnkSchoolName" CssClass="white" NavigateUrl="~/About.aspx"
                      Font-Underline="False">
                      <asp:Label ID="lblSchoolName" runat="server" Text="Nepal Engineering College" Font-Size="1.2em"></asp:Label>
 
@@ -127,7 +127,9 @@
                     </script>
                     &nbsp;&nbsp;
                     <%--<asp:LoginName ID="LoginName1" runat="server" Font-Size="1.1em" />--%>
-                    <asp:LinkButton ID="lnkLoginName" runat="server" OnClick="lnkLoginName_OnClick" ForeColor="white" CssClass="link">user</asp:LinkButton>
+                    <asp:LinkButton ID="lnkLoginName" runat="server" OnClick="lnkLoginName_OnClick" 
+                        font-Underline="False"
+                         CssClass="white">user</asp:LinkButton>
                     &nbsp;&nbsp;
                     
                   
@@ -202,8 +204,8 @@
                     </asp:SiteMapPath>
                 </span>
 
-            </div>--%>
-            <div style="padding: 5px 0; background-color: #f1f1f1;">
+            </div> #ccccff--%>
+            <div class="sitemap-panel">
                 <div style="float: left;">
                     <asp:ContentPlaceHolder ID="SiteMapPlace" runat="server">
                     </asp:ContentPlaceHolder>
@@ -219,7 +221,7 @@
             </div>
             <div style="clear: both;"></div>
 
-            <div class="inner-body">
+            <div >
 
                 <table class="table-whole">
                     <%-- SiteMap --%>

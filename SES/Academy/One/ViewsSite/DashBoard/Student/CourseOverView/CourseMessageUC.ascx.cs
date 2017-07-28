@@ -38,8 +38,8 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
         {
             set
             {
-                //linkMessage.ToolTip = value; 
-                lblToolTip.Text = value;
+                linkMessage.ToolTip = value; 
+                //lblToolTip.Text = value;
             }
         }
 

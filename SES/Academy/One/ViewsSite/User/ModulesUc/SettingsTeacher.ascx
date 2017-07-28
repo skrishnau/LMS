@@ -9,20 +9,20 @@
         </strong>
     </div>
     <%--class="modules-body" style="font-size: 0.9em; font-weight: 500;">--%>
-    <div style="font-weight: 500;" class="list-unmargined">
+    <div style="" class="list-unmargined">
        <%-- CssClass="link" --%>
-        <asp:HyperLink ID="HyperLink3" runat="server" 
+        <asp:HyperLink ID="lnkPrograms" runat="server" 
             NavigateUrl="~/Views/Structure/">Programs</asp:HyperLink>
         
-        <asp:HyperLink ID="HyperLink7" runat="server" 
+        <asp:HyperLink ID="lnkBatches" runat="server" 
             NavigateUrl="~/Views/Student/">Batches</asp:HyperLink>
         
-        <asp:HyperLink ID="HyperLink4" runat="server" 
+        <asp:HyperLink ID="lnkCourses" runat="server" 
             NavigateUrl="~/Views/Course/">Courses</asp:HyperLink>
         
         <%--<span style="margin-left: 10px;">--%>
-            <asp:HyperLink ID="HyperLink10" runat="server" 
-                NavigateUrl="/Views/Grade/GradeListing.aspx">Grade</asp:HyperLink>
+           <%-- <asp:HyperLink ID="lnkGradeListing" runat="server" 
+                NavigateUrl="/Views/Grade/GradeListing.aspx">Grade</asp:HyperLink>--%>
         <%--</span>--%>
         
         <%--<asp:HyperLink ID="HyperLink5" runat="server" CssClass="link"

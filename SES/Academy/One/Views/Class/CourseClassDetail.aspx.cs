@@ -14,10 +14,14 @@ namespace One.Views.Class
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CustomDialog.OkClick += CustomDialog_OkClick;
+            CustomDialog.CancelClick += CustomDialog_CancelClick;
             var user = Page.User as CustomPrincipal;
             if (user != null)
                 if (!IsPostBack)
                 {
+
+
                     var isManager = user.IsInRole(DbHelper.StaticValues.Roles.Manager);
                     var isTeacher = user.IsInRole(DbHelper.StaticValues.Roles.Teacher);
 
@@ -26,6 +30,9 @@ namespace One.Views.Class
                         Response.Redirect("~/");
                         return;
                     }
+
+
+                    SetMarkCompletionDialog();
 
                     var edit = (Session["editMode"] as string) == "1";
 
@@ -55,6 +62,25 @@ namespace One.Views.Class
                                 var clsname = cls.GetName;
                                 var coursefullname = cls.GetCourseFullName;
                                 lblTitle.Text = clsname;
+
+                                if (cls.SessionComplete ?? false)
+                                {
+                                    imgIndicate.ToolTip = "Complete";
+                                    imgIndicate.Visible = true;
+                                }
+                                else if (cls.StartDate <= DateTime.Now && cls.EndDate >= DateTime.Now)
+                                {
+                                    imgIndicate.Visible = true;
+                                    imgIndicate.ToolTip = "Active";
+                                    imgIndicate.ImageUrl = "~/Content/Icons/Start/active_icon_10px.png";
+                                }
+                                else
+                                {
+                                    imgIndicate.Visible = true;
+                                    imgIndicate.ToolTip = "Due";
+                                    imgIndicate.ImageUrl = "~/Content/Icons/Watch/alarm_clock_14px.png";
+                                }
+
                                 lblEnrollmentMethod.Text = cls.EnrollmentMethod == 0
                                     ? "Auto"
                                     : (cls.EnrollmentMethod == 1) ? "Manual" : "Self";
@@ -62,10 +88,10 @@ namespace One.Views.Class
                                 var autoEnrollment = cls.EnrollmentMethod == 0;
 
                                 var curTeach = helper.IsTheUserCurrentlyTeacher(user.Id,
-                                    cls.IsRegular ? cls.SubjectStructure.SubjectId : cls.SubjectId??0);
+                                    cls.IsRegular ? cls.SubjectStructure.SubjectId : cls.SubjectId ?? 0);
 
 
-                                if (edit && (isManager || curTeach) && !(cls.SessionComplete??false))
+                                if (edit && (isManager || curTeach) && !(cls.SessionComplete ?? false))
                                 {
                                     lnkMarkCompletion.Visible = true;
                                     lnkEnrollStudents.Visible = (!autoEnrollment || isManager);//&& (isTeacher || isManager);
@@ -80,8 +106,8 @@ namespace One.Views.Class
                                 hidOrderby.Value = autoEnrollment ? "crn" : "name";
 
                                 LoadSitemap(cls);
-
-                                lnkReport.NavigateUrl = "~/Views/Report/?ccId=" + cls.Id;
+                                var from = Request.QueryString["from"];
+                                lnkReport.NavigateUrl = "~/Views/Report/?ccId=" + cls.Id+"&from="+from;
                                 lnkEnrollStudents.NavigateUrl = "~/Views/Class/Enrollment/Enrollment.aspx?ccId=" +
                                                         hidSubjectSessionId.Value + "&type=student";
                                 lnkEnrollTeachers.NavigateUrl = "~/Views/Class/Enrollment/Enrollment.aspx?ccId=" +
@@ -124,6 +150,44 @@ namespace One.Views.Class
                 }
         }
 
+        private void SetMarkCompletionDialog()
+        {
+            CustomDialog.AddControl(new Label()
+            {
+                Text = "Do you really want to mark this class as complete?"
+            });
+
+            CustomDialog.SetValues("Mark Completion?", null
+            , "", "ok", "cancel");
+
+        }
+
+        void CustomDialog_CancelClick(object sender, EventArgs e)
+        {
+            CustomDialog.CloseDialog();
+        }
+
+        void CustomDialog_OkClick(object sender, IdAndNameEventArgs e)
+        {
+            //mark complete
+            var user = Page.User as CustomPrincipal;
+            //&& (user.IsInRole(DbHelper.StaticValues.Roles.Manager) 
+            // || user.IsInRole(DbHelper.StaticValues.Roles.Teacher))
+            if (user != null)
+                using (var helper = new DbHelper.Classes())
+                {
+                    bool saved = helper.MarkComplete(SubjectClassId, user.Id);
+                    if (saved)
+                    {
+                        lnkMarkCompletion.Visible = false;
+                        lnkEnrollStudents.Visible = false;
+                        lnkEnrollTeachers.Visible = false;
+                        CustomDialog.CloseDialog();
+                    }
+                }
+        }
+
+
         void LoadSitemap(Academic.DbEntities.Class.SubjectClass cls)
         {
             if (SiteMap.CurrentNode != null)
@@ -164,6 +228,30 @@ namespace One.Views.Class
         protected void btnEnroll_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Views/Class/Enrollment/Enrollment.aspx?ccId=" + hidSubjectSessionId.Value);
+        }
+
+        protected void GridView1_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.RowIndex % 2 == 0)
+                {
+                    e.Row.CssClass = "highlight-row-even";
+                }
+                else
+                    e.Row.CssClass = "highlight-row-odd";
+            }
+        }
+
+        protected void GridView1_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkMarkCompletion_OnClick(object sender, EventArgs e)
+        {
+            if (!imgIndicate.ImageUrl.Contains("Stop"))
+                CustomDialog.OpenDialog();
         }
 
         //public string GetImageUrl(object imageId)
@@ -239,6 +327,7 @@ namespace One.Views.Class
         //    }
         //    return "Never Online";
         //}
+
 
 
     }

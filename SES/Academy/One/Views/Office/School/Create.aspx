@@ -9,6 +9,7 @@
     <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
 </asp:Content>
 
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 
 <asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">
@@ -38,15 +39,22 @@
                             ControlToValidate="txtName" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr runat="server" id="one1" visible="False">
+
+                <tr>
+                    <td class="data-type">Description</td>
+                    <td class="data-value">
+                        <CKEditor:CKEditorControl ID="CKEditor1" runat="server"></CKEditor:CKEditorControl>
+                    </td>
+                </tr>
+
+
+               <%-- <tr runat="server" id="one1" visible="False">
                     <td class="data-type">College Type*</td>
                     <td class="data-value">
                         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                             <ContentTemplate>
                                 <asp:DropDownList ID="cmbSchoolType" runat="server" Height="22px" Width="145px">
                                 </asp:DropDownList>
-                                <%--  <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" Height="20px"
-                                     ImageUrl="~/Content/Icons/plus.png" OnClick="ImageButton2_Click" Width="20px" Enabled="False" />--%>
                                 &nbsp;&nbsp;
                         <asp:RequiredFieldValidator ID="valiSchType" runat="server"
                             ControlToValidate="cmbSchoolType"
@@ -55,10 +63,10 @@
                         </asp:UpdatePanel>
 
                     </td>
-                </tr>
+                </tr>--%>
 
 
-                <tr runat="server" id="two2" visible="False">
+                <%--<tr runat="server" id="two2" visible="False">
                     <td class="data-type">School location *</td>
                     <td class="data-value">
                         <asp:DropDownList ID="ddlCountry" runat="server"></asp:DropDownList>
@@ -66,16 +74,29 @@
                         <asp:RequiredFieldValidator ID="valiCountry" runat="server"
                             ControlToValidate="cmbSchoolType"
                             ErrorMessage="Required" ForeColor="red"></asp:RequiredFieldValidator>
-                        <%--<asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>--%>
+                    </td>
+                </tr>--%>
+
+                <tr>
+                    <td class="data-type">Phone Main*</td>
+                    <td class="data-value">
+                        <asp:TextBox ID="txtPhoneMain" runat="server" TextMode="Phone"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="valiPhone" runat="server"
+                            ControlToValidate="txtPhoneMain"
+                            ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                        <%-- <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                            ForeColor="red" ControlToValidate="txtPhone"
+                            ValidationExpression="^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$"
+                            ErrorMessage="Not a phone number"></asp:RegularExpressionValidator>--%>
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="data-type">Phone*</td>
+                    <td class="data-type">Phone After Hours*</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtPhone" runat="server" TextMode="Phone"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="valiPhone" runat="server"
-                            ControlToValidate="txtPhone"
+                        <asp:TextBox ID="txtPhoneAfterHours" runat="server" TextMode="Phone"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                            ControlToValidate="txtPhoneAfterHours"
                             ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                         <%-- <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
                             ForeColor="red" ControlToValidate="txtPhone"
@@ -86,18 +107,43 @@
 
 
                 <tr>
-                    <td class="data-type">Email*</td>
+                    <td class="data-type">Email General*</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtEmailGeneral" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
-                            ErrorMessage="Required" ControlToValidate="txtEmail" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                            ErrorMessage="Required" ControlToValidate="txtEmailGeneral" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="regexEmailValid" runat="server" ForeColor="red"
                             ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                            ControlToValidate="txtEmail" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
+                            ControlToValidate="txtEmailGeneral" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
 
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="data-type">Email Support*</td>
+                    <td class="data-value">
+                        <asp:TextBox ID="txtEmailSupport" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                            ErrorMessage="Required" ControlToValidate="txtEmailSupport" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ForeColor="red"
+                            ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                            ControlToValidate="txtEmailSupport" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="data-type">Email Marketing*</td>
+                    <td class="data-value">
+                        <asp:TextBox ID="txtEmailMarketing" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
+                            ErrorMessage="Required" ControlToValidate="txtEmailMarketing" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="red"
+                            ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                            ControlToValidate="txtEmailMarketing" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
+
+                    </td>
+                </tr>
 
             </table>
 
@@ -176,7 +222,7 @@
         <div class="data-entry-section-body">
             <table>
                 <tr>
-                    <td class="data-type">Earlier Website</td>
+                    <td class="data-type">College Website</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtWeb" runat="server"></asp:TextBox>
                     </td>
@@ -184,9 +230,12 @@
 
 
                 <tr>
-                    <td class="data-type">City</td>
+                    <td class="data-type">Address</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
+                            ErrorMessage="Required" ControlToValidate="txtAddress"
+                            ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <%-- <tr>
@@ -195,15 +244,15 @@
                     <asp:TextBox ID="txtStreet" runat="server"></asp:TextBox>
                 </td>
             </tr>--%>
-                <tr>
+                <%-- <tr>
                     <td class="data-type">Code</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtCode" runat="server"></asp:TextBox>
-                        <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                          <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                         ErrorMessage="Required" ControlToValidate="txtCode"
-                        ForeColor="#FF3300"></asp:RequiredFieldValidator>--%>
+                        ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
-                </tr>
+                </tr>--%>
 
                 <tr>
                     <td class="data-type">Registration No.</td>
@@ -250,4 +299,6 @@
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
+    <%--<link href="../../../Content/CSSes/ListingStyles.css" rel="stylesheet" />--%>
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>

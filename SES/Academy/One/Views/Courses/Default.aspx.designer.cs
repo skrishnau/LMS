@@ -31,6 +31,15 @@ namespace One.Views.Courses {
         protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
+        /// lnkGoto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkGoto;
+        
+        /// <summary>
         /// LstUc1 control.
         /// </summary>
         /// <remarks>

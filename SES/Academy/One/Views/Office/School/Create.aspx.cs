@@ -35,17 +35,16 @@ namespace One.Views.Office.School
                 var user = User as CustomPrincipal;
                 if (user != null)
                 {
-                    PopulateCountry();
+                    //PopulateCountry();
                     if (user.SchoolId > 0)
                     {
                         PopulateSchoolInfo(user);
-
                     }
                     else
                     {
                         hidUserId.Value = user.Id.ToString();
                     }
-                    LoadSchoolType();
+                    //LoadSchoolType();
                 }
             }
 
@@ -78,22 +77,21 @@ namespace One.Views.Office.School
 
                 if (sch != null)
                 {
-
+                    CKEditor1.Text = sch.Description;
                     hidSchoolId.Value = sch.Id.ToString();
-                    txtCity.Text = sch.City;
-                    txtCode.Text = sch.Code;
+                    txtAddress.Text = sch.Address;
                     txtName.Text = sch.Name;
-                    ddlCountry.SelectedValue = sch.Country;
-                    // txtCountry.Text = sch.Country;
-                    txtEmail.Text = sch.Email;
-                    txtFax.Text = sch.Fax;
-                    txtPhone.Text = sch.Phone;
-                    txtRegNo.Text = sch.RegNo;
+                    txtEmailGeneral.Text = sch.EmailGeneral;
+                    txtEmailMarketing.Text = sch.EmailMarketing;
+                    txtEmailSupport.Text = sch.EmailSupport;
+                    txtPhoneMain.Text = sch.PhoneMain;
+                    txtPhoneAfterHours.Text = sch.PhoneAfterHours;
                     hidImageId.Value = sch.ImageId.ToString();
+                    
                     //txtStreet.Text = sch.Street;
                     txtWeb.Text = sch.Website;
                     hidUserId.Value = sch.UserId.ToString();
-                    cmbSchoolType.SelectedValue = sch.SchoolTypeId.ToString();
+                    //cmbSchoolType.SelectedValue = sch.SchoolTypeId.ToString();
                     var f = helper.GetSchoolImage(sch.ImageId);
                     if (f != null)
                     {
@@ -146,45 +144,45 @@ namespace One.Views.Office.School
             }
         }
 
-        private void PopulateCountry()
-        {
-            List<string> countries = new List<string>();
-            var getCultureInfo = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
-            foreach (var c in getCultureInfo)
-            {
-                var getRegionInfo =
-                    new RegionInfo(c.LCID);
-                var name = getRegionInfo.EnglishName.Split(new char[] { '(' })[0];
-                if (!countries.Contains(name))
-                {
-                    countries.Add(name);
-                }
-            }
-            countries.Sort();
-            var i = 0;
-            try
-            {
-                i = countries.IndexOf("Nepal");
-            }
-            catch
-            {
-            }
-            if (i != 0)
-                countries.Insert(0, "Select");
-            ddlCountry.DataSource = countries;
-            ddlCountry.DataBind();
-            ddlCountry.SelectedIndex = i;
-        }
+        //private void PopulateCountry()
+        //{
+        //    List<string> countries = new List<string>();
+        //    var getCultureInfo = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+        //    foreach (var c in getCultureInfo)
+        //    {
+        //        var getRegionInfo =
+        //            new RegionInfo(c.LCID);
+        //        var name = getRegionInfo.EnglishName.Split(new char[] { '(' })[0];
+        //        if (!countries.Contains(name))
+        //        {
+        //            countries.Add(name);
+        //        }
+        //    }
+        //    countries.Sort();
+        //    var i = 0;
+        //    try
+        //    {
+        //        i = countries.IndexOf("Nepal");
+        //    }
+        //    catch
+        //    {
+        //    }
+        //    if (i != 0)
+        //        countries.Insert(0, "Select");
+        //    ddlCountry.DataSource = countries;
+        //    ddlCountry.DataBind();
+        //    ddlCountry.SelectedIndex = i;
+        //}
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
-            if (cmbSchoolType.SelectedValue == "" || cmbSchoolType.SelectedValue == "0")
-            {
-                valiSchType.IsValid = false;
-            }
-            if (ddlCountry.SelectedIndex == 0)
-                valiCountry.IsValid = false;
+            //if (cmbSchoolType.SelectedValue == "" || cmbSchoolType.SelectedValue == "0")
+            //{
+            //    valiSchType.IsValid = false;
+            //}
+            //if (ddlCountry.SelectedIndex == 0)
+            //    valiCountry.IsValid = false;
 
             if (IsValid)
             {
@@ -195,34 +193,18 @@ namespace One.Views.Office.School
                 var school = new Academic.DbEntities.Office.School()
                 {
                     Id = user.SchoolId,
-                    Name = txtName.Text
-                    ,
-                    City = txtCity.Text
-                    ,
-                    Code = txtCode.Text
-                    ,
-                    Country = ddlCountry.Text
-                    ,
-                    Email = txtEmail.Text
-                    ,
-                    Fax = txtFax.Text
-                        //,InstitutionId = InitialValues.CustomSession["InstitutionId"]
-                    ,
-                    IsActive = chkActive.Checked
-                    ,
-                    Phone = txtPhone.Text
-                    ,
-                    RegNo = txtRegNo.Text
-                        //next version
-                    ,
-                    SchoolTypeId = Convert.ToInt32(cmbSchoolType.Text)
-                    ,
-                    Street = ""
-                    ,
-                    Website = txtWeb.Text
-                    ,
-                    CreatedDate = DateTime.Now
-                    ,
+                    Name = txtName.Text,
+                    Address = txtAddress.Text,
+                    EmailGeneral = txtEmailGeneral.Text,
+                    EmailMarketing = txtEmailMarketing.Text,
+                    EmailSupport = txtEmailSupport.Text,
+                    IsActive = chkActive.Checked,
+                    PhoneMain = txtPhoneMain.Text,
+                    PhoneAfterHours = txtPhoneAfterHours.Text,
+                    Description = CKEditor1.Text,
+                    //SchoolTypeId = Convert.ToInt32(cmbSchoolType.Text),
+                    Website = txtWeb.Text,
+                    CreatedDate = DateTime.Now,
                     ImageId = Convert.ToInt32(hidImageId.Value)
                 };
                 if (user.SchoolId <= 0)
@@ -295,7 +277,7 @@ namespace One.Views.Office.School
                             //lblMsg.Visible = true;
                             //lblMsg.Text = "Save Successful.";
                         }
-                        else Response.Redirect("~/Views/Office/");
+                        else Response.Redirect("~/About.aspx"); //"//~/Views/Office/");
                     }
 
                     else
@@ -398,10 +380,10 @@ namespace One.Views.Office.School
             }
         }
 
-        void LoadSchoolType(int selectedValue = 0)
-        {
-            DbHelper.ComboLoader.LoadSchoolType(ref  cmbSchoolType,
-                     selectedValue, false);
-        }
+        //void LoadSchoolType(int selectedValue = 0)
+        //{
+        //    DbHelper.ComboLoader.LoadSchoolType(ref  cmbSchoolType,
+        //             selectedValue, false);
+        //}
     }
 }

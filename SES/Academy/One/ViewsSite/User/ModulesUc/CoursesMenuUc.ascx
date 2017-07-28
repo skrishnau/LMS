@@ -9,18 +9,19 @@
         </strong>
     </div>
     <%-- class="list-unmargined" class="course-menu"--%>
-    <div style="font-weight: 500;" >
+    <div style="" class="list-unmargined">
 
-        <%--<div class="auto-st2">--%>
-        <asp:HyperLink ID="lnkCurrent" runat="server" CssClass="course-menu-current-earlier"
+        <%--<div class="auto-st2">  CssClass="course-menu-current-earlier"--%>
+        <asp:HyperLink ID="lnkCurrent" runat="server"  CssClass="roboto-medium"
             NavigateUrl="~/Views/Courses/?type=current">Current</asp:HyperLink>
+        
         <asp:PlaceHolder ID="pHolderCurrent" runat="server"></asp:PlaceHolder>
 
 
-        <asp:HyperLink ID="lnkEarlier" runat="server" CssClass="course-menu-current-earlier"
+        <%--<asp:HyperLink ID="lnkEarlier" runat="server" 
             NavigateUrl="~/Views/Courses/?type=earlier">Earlier</asp:HyperLink>
 
-        <asp:PlaceHolder ID="pHolderEarlier" runat="server"></asp:PlaceHolder>
+        <asp:PlaceHolder ID="pHolderEarlier" runat="server"></asp:PlaceHolder>--%>
 
     </div>
 
@@ -28,20 +29,4 @@
 
 </div>
 
-<style type="text/css">
-    .padding-left-10px {
-        padding-left: 10px;
-    }
 
-    .padding-left-20px {
-        padding-left: 20px;
-    }
-
-    .padding-left-30px {
-        padding-left: 30px;
-    }
-
-    .padding-left-40px {
-        padding-left: 40px;
-    }
-</style>

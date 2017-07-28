@@ -17,14 +17,21 @@
         System
     </div>
 
-    <hgroup class="title roboto-light">
+   <%-- <hgroup class="title roboto-light">
         <h1 class="roboto-light"><%: Title %>.</h1>
 
-    </hgroup>
+    </hgroup>--%>
+    
+    <div style="text-align: right;">
+        <asp:HyperLink ID="lnkEdit" runat="server" 
+            Visible="False"
+            NavigateUrl="~/Views/Office/School/Create.aspx">Edit</asp:HyperLink>
+    </div>
 
     <article>
+            <asp:Label ID="lblDescription" runat="server" Text="Label"></asp:Label>
 
-        <p>
+       <%-- <p>
             <div>
                 Teaching staff use the LMS to:
             </div>
@@ -46,10 +53,10 @@
                 <li>Offer students the opportunity to participate in online communication activities such as blogs, journals and wikis.
                 </li>
             </ul>
-        </p>
+        </p>--%>
     </article>
 
-    <aside>
+   <%-- <aside>
         <h1 class="roboto-light">About Nepal Engineering College</h1>
         <p>
             The vision of nec is to evolve as the center of higher learning, excelling in academics, through continued engagements in education, research and outreach as three integrated functions of the college
@@ -67,7 +74,7 @@
 
         </p>
 
-    </aside>
+    </aside>--%>
 </asp:Content>
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="right">

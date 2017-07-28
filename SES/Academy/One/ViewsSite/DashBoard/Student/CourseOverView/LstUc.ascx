@@ -25,8 +25,10 @@
 </style>
 
 <div>
-    <div>
-        <asp:Label ID="lblHeading" runat="server" Text="Current Courses" Visible="False" Font-Bold="True"></asp:Label>
+    <div class="roboto-normal">
+        <asp:Label ID="lblHeading" 
+            CssClass="roboto-medium"
+            runat="server" Text="Course Notifications" Visible="False" ></asp:Label>
     </div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -46,6 +48,7 @@
             <asp:HiddenField ID="hidSessionId" runat="server" Value="0" />
             <asp:HiddenField ID="hidStudentId" runat="server" Value="0" />
             <asp:HiddenField ID="hidUserType" runat="server" Value="0" />
+            <asp:HiddenField ID="hidFromDashboard" runat="server" Value="False" />
 
             <%-- Used :: final --%>
             <asp:HiddenField ID="hidLoadType" runat="server" />

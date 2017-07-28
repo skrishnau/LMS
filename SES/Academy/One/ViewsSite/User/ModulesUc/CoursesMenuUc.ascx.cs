@@ -24,11 +24,12 @@ namespace One.ViewsSite.User.ModulesUc
                     var query = Request.QueryString["type"];
                     var q = query ?? "current";
                     if (q.Equals("current"))
-                        lnkCurrent.CssClass = "course-menu-selected-item"; //"list-unmargined-selected-item";
-                    else
-                        lnkEarlier.CssClass = "course-menu-selected-item"; //"list-unmargined-selected-item";
+                        //"course-menu-selected-item"; //"list-unmargined-selected-item";
+                        lnkCurrent.CssClass = "list-unmargined-selected-item course-menu-selected-item";
+                    //earlier 
+                    //else
+                    //    lnkEarlier.CssClass = "list-unmargined-selected-item course-menu-selected-item";//"course-menu-selected-item"; //"list-unmargined-selected-item";
                 }
-                //else if (thisUrl.Contains("/Views/Courses/?type=earlier"))
             }
             LoadCourses(UserId);
         }
@@ -56,11 +57,11 @@ namespace One.ViewsSite.User.ModulesUc
 
                             var hyperLink = new HyperLink()
                             {
-                                Text = subject.FullName// "▪" +
+                                Text = "&nbsp;&nbsp;"+subject.FullName// "▪" +
                                 ,
                                 NavigateUrl = "~/Views/Course/Section/?SubId=" + subject.Id
                                 ,
-                                CssClass = "course-menu-subjct-class padding-left-20px"
+                                CssClass = "course-menu-subjct-class padding-left-10px"
                                 ,
                                 ToolTip = "course"
                             };
@@ -68,84 +69,85 @@ namespace One.ViewsSite.User.ModulesUc
 
                             #endregion
 
-                            if (elligibleForManagement)
-                            {
-                                try
-                                {
-                                    foreach (var scls in current[subject])
-                                    {
-                                        var clsLink = new HyperLink()
-                                        {
-                                            Text = "▫" + scls.GetName
-                                            ,
-                                            NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + scls.Id
-                                            ,
-                                            CssClass = "course-menu-subjct-class padding-left-40px"
-                                            ,
-                                            Font = { Italic = true, Size = new FontUnit(10) }
-                                            ,
-                                            ToolTip = "class in '" + subject.FullName + "'"
-                                        };
-                                        pHolderCurrent.Controls.Add(clsLink);
-                                    }
-                                }
-                                catch { }
-                            }
+                            //if (elligibleForManagement)
+                            //{
+                            //    try
+                            //    {
+                            //        foreach (var scls in current[subject])
+                            //        {
+                            //            var clsLink = new HyperLink()
+                            //            {
+                            //                Text = "▫" + scls.GetName
+                            //                ,
+                            //                NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + scls.Id
+                            //                ,
+                            //                CssClass = "course-menu-subjct-class padding-left-40px"
+                            //                ,
+                            //                Font = { Italic = true, Size = new FontUnit(10) }
+                            //                ,
+                            //                ToolTip = "class in '" + subject.FullName + "'"
+                            //            };
+                            //            pHolderCurrent.Controls.Add(clsLink);
+                            //        }
+                            //    }
+                            //    catch { }
+                            //}
                         }
 
                         #endregion
 
 
-                        #region Earlier Subjects and Classes
+                        //#region Earlier Subjects and Classes
 
-                        var earlier = subClasses[1];
-                        foreach (var subject in earlier.Keys)
-                        {
-                            //display subject first
+                        //var earlier = subClasses[1];
+                        //foreach (var subject in earlier.Keys)
+                        //{
+                        //    //display subject first
 
-                            #region Subject Dispaly first
+                        //    #region Subject Dispaly first
 
-                            var hyperLink = new HyperLink()
-                            {
-                                Text = "▪" + subject.FullName
-                                ,
-                                NavigateUrl = "~/Views/Course/Section/?SubId=" + subject.Id
-                                ,
-                                CssClass = "course-menu-subjct-class padding-left-30px"
-                                ,
-                                ToolTip = "course"
-                            };
-                            pHolderEarlier.Controls.Add(hyperLink);
+                        //    var hyperLink = new HyperLink()
+                        //    {
+                        //        Text = "▪" + subject.FullName
+                        //        ,
+                        //        NavigateUrl = "~/Views/Course/Section/?SubId=" + subject.Id
+                        //        ,
+                        //        CssClass = "course-menu-subjct-class padding-left-30px"
+                        //        ,
+                        //        ToolTip = "course"
+                        //    };
 
-                            #endregion
+                        //    pHolderEarlier.Controls.Add(hyperLink);
 
-                            if (elligibleForManagement)
-                            {
-                                try
-                                {
-                                    foreach (var scls in current[subject])
-                                    {
-                                        var clsLink = new HyperLink()
-                                        {
-                                            Text = "▫" + scls.GetName
-                                            ,
-                                            NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + scls.Id
-                                            ,
-                                            CssClass = "course-menu-subjct-class padding-left-40px"
-                                            ,
-                                            Font = { Italic = true, Size = new FontUnit(10) }
-                                            ,
-                                            ToolTip = "class in '" + subject.FullName + "'"
-                                        };
-                                        pHolderEarlier.Controls.Add(clsLink);
-                                    }
-                                }
-                                catch { }
-                            }
+                        //    #endregion
 
-                        }
+                        //    if (elligibleForManagement)
+                        //    {
+                        //        try
+                        //        {
+                        //            foreach (var scls in current[subject])
+                        //            {
+                        //                var clsLink = new HyperLink()
+                        //                {
+                        //                    Text = "▫" + scls.GetName
+                        //                    ,
+                        //                    NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + scls.Id
+                        //                    ,
+                        //                    CssClass = "course-menu-subjct-class padding-left-40px"
+                        //                    ,
+                        //                    Font = { Italic = true, Size = new FontUnit(10) }
+                        //                    ,
+                        //                    ToolTip = "class in '" + subject.FullName + "'"
+                        //                };
+                        //                pHolderEarlier.Controls.Add(clsLink);
+                        //            }
+                        //        }
+                        //        catch { }
+                        //    }
 
-                        #endregion
+                        //}
+
+                        //#endregion
 
                     }
                 }

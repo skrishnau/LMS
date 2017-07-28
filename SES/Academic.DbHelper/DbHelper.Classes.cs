@@ -508,19 +508,18 @@ namespace Academic.DbHelper
                 var teachRole = Context.Role.FirstOrDefault(x => x.RoleName == StaticValues.Roles.Teacher);
 
                 var reg = Context.SubjectClass
-                       .Where(s => s.IsRegular
-                               && !(s.Void ?? false)
+                       .Where(s => //s.IsRegular&& 
+                                    !(s.Void ?? false)
                                    &&( ((s.StartDate ?? min) <= now && (s.EndDate ?? max) >= now) 
                                                     || (s.SessionComplete == false))
                                    && (isManager || s.ClassUsers.Any(x => x.UserId == userId && x.RoleId == teachRole.Id))
                                    && (s.IsRegular
                                         ? (s.SubjectStructure.SubjectId == subjectId)
                                         : s.SubjectId == subjectId))
-                       .OrderByDescending(o => o.CreatedDate)
-                       .ThenByDescending(o=>o.StartDate)
+                       .OrderByDescending(o => o.StartDate)
                        .ThenBy(t => t.IsRegular?t.RunningClass.ProgramBatch.Batch.Name:t.Name)
-                       .ThenBy(t => t.IsRegular?t.RunningClass.ProgramBatch.Program.Name:"")
                      .ToList();
+
                 for (var i = 0; i < reg.Count; i++)
                 {
                     reg[i].Name = reg[i].GetName;
@@ -1137,14 +1136,20 @@ namespace Academic.DbHelper
                 var user = Context.Users.Find(userId);
                 if (user != null)
                 {
-                    var subjClasses = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
-                        //.Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) //&& !(x.SessionComplete ?? false)) -- return all
-                        .Where(x => !(x.SubjectClass.Void ?? false)
-                                &&
-                            ((x.SubjectClass.SubjectId == null) ? (x.SubjectClass.SubjectStructure.SubjectId == subjectId) :
-                            (x.SubjectClass.SubjectId == subjectId))
+                    var subjClasses = user.Classes
+                        .Where(x => !(x.Void ?? false) 
+                            && !(x.Suspended ?? false) 
+                            && !(x.SubjectClass.Void ?? false)
+                            &&((x.SubjectClass.IsRegular) 
+                                    ? (x.SubjectClass.SubjectStructure.SubjectId == subjectId) 
+                                    : (x.SubjectClass.SubjectId == subjectId))
                         ).ToList();
 
+
+                   
+
+                    
+                    
 
                     //var curr = subjClasses.Where(
                     //            x => !(x.SubjectClass.SessionComplete ?? false) &&
@@ -1167,15 +1172,29 @@ namespace Academic.DbHelper
                             role = StaticValues.Roles.Teacher;
                         }
 
+                        
+
                         if (!(subSession.SubjectClass.SessionComplete ?? false) &&
                             (subSession.SubjectClass.EndDate != null &&
                             subSession.SubjectClass.EndDate.Value >= DateTime.Now))
                         {
+                            var clsId = "0";
+                            if (subjClasses.Any())
+                            {
 
-                            return "current," + role;//"You are currently enrolled in this course";
+                                var clses = subjClasses.Select(x => x.SubjectClass)
+                                    .FirstOrDefault(x => !(x.SessionComplete ?? false) //|| (subSession.SubjectClass.EndDate != null && subSession.SubjectClass.EndDate.Value > DateTime.Now)
+                                        && x.EnrollmentMethod == 2 && x.EndDate >= DateTime.Now);
+                                if (clses!=null)
+                                {
+                                    // show the View Enrolment 
+                                    clsId = clses.Id.ToString();
+                                }
+                            }
+                            return "current," + role+","+clsId;//"You are currently enrolled in this course";
                         }
                         return "complete," + role; //"You have already completed this course.";
-
+                        
 
                     }
                     //get classes of the subject
@@ -1394,14 +1413,87 @@ namespace Academic.DbHelper
                 return false;
             }
 
-            public bool HasTheUserAlreadyJoinedThisClass(int userId, int subclsId)
+            public UserClass HasTheUserAlreadyJoinedThisClass(int userId, int subclsId)
             {
-                return Context.UserClass.Any(x => x.UserId == userId && x.SubjectClassId == subclsId && !(x.Void ?? false));
+                return Context.UserClass.FirstOrDefault(x => x.UserId == userId && x.SubjectClassId == subclsId && !(x.Void ?? false));
             }
 
             public Academic.DbEntities.Subjects.Subject GetSubject(int subjectId)
             {
                 return Context.Subject.Find(subjectId);
+            }
+
+            public bool MarkComplete(int subjectClassId, int userId)
+            {
+                var cls = Context.SubjectClass.Find(subjectClassId);
+                if (cls != null)
+                {
+                    cls.SessionComplete = true;
+                    cls.CompletionMarkedDate = DateTime.Now;
+                    cls.CompleteMarkedByUserId = userId;
+                    Context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="subjectClassId"></param>
+            /// <param name="userId"></param>
+            /// <param name="enrolled">what the outcome of this function will be. whether the user is enrolled or removed from enrollement</param>
+            /// <returns></returns>
+            public bool Enroll(int subjectClassId, int userId, ref bool enrolled)
+            {
+                enrolled = true;
+                var cls = Context.SubjectClass.Find(subjectClassId);
+                if (cls != null)
+                {
+                    var stdRole = Context.Role.FirstOrDefault(x => x.RoleName == StaticValues.Roles.Student);
+                    if (stdRole != null)
+                    {
+                        var clsUsr = cls.ClassUsers.FirstOrDefault(x => x.UserId == userId );
+                        if (clsUsr == null)
+                        {
+                            //enroll
+                            var userclass = new UserClass()
+                            {
+                                SubjectClassId = subjectClassId,
+                                CreatedDate = DateTime.Now,
+                                EndDate = cls.EndDate,
+                                RoleId =stdRole.Id,
+                                EnrollmentDuration = 0,
+                                StartDate = DateTime.Now,
+                                Suspended = false,
+                                UserId = userId,
+                                Void = false,
+                            };
+                            Context.UserClass.Add(userclass);
+                            Context.SaveChanges();
+                        }
+                        else
+                        {
+                            if (clsUsr.Void ?? false)
+                            {
+                                //earlier enrolment; so enroll again
+                                clsUsr.Void = false;
+                                clsUsr.RoleId = stdRole.Id;
+                                clsUsr.StartDate = DateTime.Now;
+                                Context.SaveChanges();
+                            }
+                            else
+                            {
+                                //remove enrollment
+                                clsUsr.Void = true;
+                                Context.SaveChanges();
+                                enrolled = false;
+                            }
+                        }
+                        return true;
+                    }
+                }
+                return false;
             }
         }
     }

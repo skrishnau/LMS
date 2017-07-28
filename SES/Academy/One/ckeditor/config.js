@@ -22,13 +22,19 @@ CKEDITOR.editorConfig = function (config) {
 		{ name: 'document', items: ['Source', 'NewPage', 'Preview'] },
 		{ name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
 		{ name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
+
+        {
+            name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'
+                   , 'Iframe']
+        },
+
         { name: 'tools', items: ['Maximize', '-', 'About'] },
+
         '/',
 
-        { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-		{name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'
-                   , 'Iframe']
-		},
+        { name: 'paragraph', items: ['list', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'align'] },
+        //{ name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+		
         { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
         { name: 'colors', items: ['TextColor', 'BGColor'] },
         '/',
@@ -55,9 +61,25 @@ CKEDITOR.editorConfig = function (config) {
        { name: 'tools', items: ['Maximize', '-', 'About'] }
    ];
 
-    config.toolbar_Basicc =
+    config.toolbar_Basic =
     [
 	    ['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', '-', 'About']
+    ];
+
+     //Toolbar configuration.
+    config.toolbar_Group = [
+     { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+     { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Scayt'] },
+     { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+     { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
+     { name: 'tools', items: ['Maximize'] },
+     { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source'] },
+     { name: 'others', items: ['-'] },
+     '/',
+     { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] },
+     { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+     { name: 'styles', items: ['Styles', 'Format'] },
+     { name: 'about', items: ['About'] }
     ];
 
 };
@@ -69,21 +91,7 @@ CKEDITOR.editorConfig = function (config) {
 // { name: 'basicstyles', items: ['Bold', 'Italic'] }
 //];
 
-// Toolbar configuration.
-//config.toolbar = [
-// { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-// { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Scayt'] },
-// { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-// { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
-// { name: 'tools', items: ['Maximize'] },
-// { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source'] },
-// { name: 'others', items: ['-'] },
-// '/',
-// { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] },
-// { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-// { name: 'styles', items: ['Styles', 'Format'] },
-// { name: 'about', items: ['About'] }
-//];
+
 
 
 //CKEDITOR.replace('editor1',

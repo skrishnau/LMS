@@ -108,7 +108,7 @@ namespace One.Views.ActivityResource.Book
                 StyleOfNavigation = (byte)ddlStyleOfNavigation.SelectedIndex
                 ,
                 DisplayDescriptionOnCourePage = chkDisplayDescription.Checked
-
+                ,
             };
 
             var restriction = RestrictionUC.GetRestriction();
@@ -122,7 +122,19 @@ namespace One.Views.ActivityResource.Book
 
                 var saved = helper.AddOrUpdateBook(book, SectionId, restriction);
                 if (saved != null)
-                    Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+                {
+                    if (saved.Chapters.Any())
+                    {
+                        Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Views/ActivityResource/Book/ChapterCreate.aspx?bId=" + saved.Id +
+                                          "&pcId=0&SubId=" + SubjectId
+                                          + "&secId=" + SectionId);
+                    }
+                }
+                //Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
                 //Response.Redirect("~/Views/Course/Section/?SubId="
                 //        + SubjectId + "#section_" + SectionId);//
             }

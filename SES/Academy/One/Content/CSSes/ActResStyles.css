@@ -14,7 +14,7 @@ div.course-act-res-whole-in-edit-mode {
 
     div.course-act-res-whole-in-edit-mode:hover {
         background-color: #fefefe;
-            /*#f3f1fe;*/
+        /*#f3f1fe;*/
     }
 
 .act-res-course-title {
@@ -70,11 +70,17 @@ div.course-act-res-description {
         color: blueviolet;
         text-decoration: underline;
     }*/
+.color-blue {
+    color: #083d7e;
+    font-weight: 300;
+}
 
 .link-act-res-title, .link-act-res-title:visited {
-    font-family: Verdana, Geneva,Tahoma, sans-serif,Helvetica;
+    font-family: Helvetica,Verdana, Geneva,Tahoma, sans-serif;
     vertical-align: central;
-    color: #393939;
+    /*color: #393939;*/
+    font-weight: 100;
+    color: #6569a1;/*0070a8*/
     text-decoration: none;
     display: inline-block;
     font-size: 1em;
@@ -82,8 +88,8 @@ div.course-act-res-description {
 }
 
     .link-act-res-title:hover {
-        color: black;
-        font-weight: 500;
+        color: #003d89;
+        font-weight: 300;
         font-size: 1em;
         text-decoration: underline;
         display: inline-block;
@@ -94,6 +100,10 @@ div.course-act-res-description {
         text-decoration: underline;
         display: inline-block;
     }
+
+.link-act-res-description {
+    color: #5a5a82;
+}
 
 
 .span-edit-delete a {

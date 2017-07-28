@@ -6,6 +6,11 @@
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
+
 <asp:Content runat="server" ID="headContentt1" ContentPlaceHolderID="head">
     <%--<meta http-equiv='cache-control' content='no-cache' />
     <meta http-equiv='expires' content='0' />
@@ -13,6 +18,7 @@
 
     <link href="../../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
     <link href="../../RestrictionAccess/Custom/RestrictionStyles.css" rel="stylesheet" />
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">

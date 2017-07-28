@@ -1210,9 +1210,9 @@
     <Content Include="Content\Icons\ActivityResource\Folder\folder_icon_plain.png" />
     <Content Include="Content\Icons\ActivityResource\Folder\folder_icon_plain2.png" />
     <Content Include="Content\Icons\ActivityResource\Folder\folder_icon_plain1.png" />
-    <Content Include="Content\Icons\ActivityResource\Forum\forum_icon.png" />
+    <Content Include="Content\Icons\ActivityResource\Forum\forum_icon3.png" />
     <Content Include="Content\Icons\ActivityResource\Forum\forum_icon2.png" />
-    <Content Include="Content\Icons\ActivityResource\Forum\forum_icon1.png" />
+    <Content Include="Content\Icons\ActivityResource\Forum\forum_icon.png" />
     <Content Include="Content\Icons\ActivityResource\Label\label_icon2.png" />
     <Content Include="Content\Icons\ActivityResource\Label\label_icon1.png" />
     <Content Include="Content\Icons\ActivityResource\Label\label_icon3.png" />

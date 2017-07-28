@@ -34,13 +34,14 @@ namespace One
 
                 OpenClassesUc.UserId = user.Id;
                 OpenClassesUc.SchoolId = user.SchoolId;
+               
 
-                LstUc.ShowHeading = true;
+                LstUc.HeadingText= "Course Notifications";
                 LstUc.UserId = user.Id;//Values.Session.GetUser(Session);
                 LstUc.AcademicYearId = user.AcademicYearId;//Values.Session.GetAcademicYear(Session);
                 LstUc.SessionId = user.SessionId;//Values.Session.GetSession(Session);
                 LstUc.UserType = "student";
-
+                LstUc.FromDashboard = true;
                 //var eventsUc = (ModulesUc.EventsUc)
                 //    Page.LoadControl("~/ViewsSite/User/ModulesUc/EventsUc.ascx");
                 //eventsUc.UserId = user.Id;

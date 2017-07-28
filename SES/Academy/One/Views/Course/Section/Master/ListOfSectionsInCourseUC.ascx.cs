@@ -48,8 +48,15 @@ namespace One.Views.Course.Section.Master
         /// </summary>
         public int CourseId
         {
-
-            get { return Convert.ToInt32(hidId.Value); }
+            get
+            {
+                var id = hidId.Value.Split(new char[] {','});
+                if (id.Length >= 2)
+                {
+                    return Convert.ToInt32(id[0]);
+                }
+                return Convert.ToInt32(hidId.Value);
+            }
             set
             {
                 //CreateSectionUc1.SubjectId = value;
@@ -65,7 +72,15 @@ namespace One.Views.Course.Section.Master
 
         public bool EditEnabled
         {
-            get { return Convert.ToBoolean(hidEditEnabled.Value); }
+            get
+            {
+                var edit = hidEditEnabled.Value.Split(new char[] {','});
+                if (edit.Length >= 2)
+                {
+                    return Convert.ToBoolean(edit[0].Trim());
+                }
+                return Convert.ToBoolean(hidEditEnabled.Value);
+            }
             set
             {
                 hidEditEnabled.Value = value.ToString();
@@ -75,7 +90,15 @@ namespace One.Views.Course.Section.Master
 
         public int UserId
         {
-            get { return Convert.ToInt32(hidUserId.Value); }
+            get
+            {
+                var user = hidUserId.Value.Split(new char[] {','});
+                if (user.Length >= 2)
+                {
+                    return Convert.ToInt32(user[0].Trim());
+                }
+                return Convert.ToInt32(hidUserId.Value);
+            }
             set { hidUserId.Value = value.ToString(); }
         }
 

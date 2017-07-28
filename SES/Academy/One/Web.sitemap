@@ -24,6 +24,9 @@
       <siteMapNode url="~/Views/Course/CourseDetail.aspx" title="Course name" description="course detail">
         <siteMapNode url="~/Views/Class/MyClasses.aspx" title="My Classes" description="my classes"/>
         <siteMapNode url="~/Views/Class/CourseClassDetail.aspx" title="Class" description="class view">
+          <siteMapNode url="~/Views/Report/Default.aspx" title="report" description="report"/>
+          
+          <siteMapNode url="~/Views/Class/SelfEnrolment.aspx" title="self enroll" description="self enroll"/>
           <siteMapNode url="~/Views/Class/Enrollment/Enrollment.aspx" title="Users enroll" description="users enroll"/>
         </siteMapNode>
         <siteMapNode url="~/Views/Class/CourseSessionCreate.aspx" title="Class edit" description="class edit"/>
@@ -32,6 +35,7 @@
 
       <!--Course view, Sections, Activity Resource-->
       <siteMapNode url="~/Views/Course/Section/Default.aspx" title="Course content view" description="course content view">
+          <siteMapNode url="~/Views/Course/Section/CreateSection.aspx" title="section create" description="section create"/>
 
         <!--Book-->
         <!--<siteMapNode url="~/Views/ActivityResource/Book/BookView.aspx" title="Book View" description="book view"/>-->
@@ -67,6 +71,7 @@
 
     <!--User-->
     <siteMapNode url="~/Views/User/List.aspx" title="Users" description="users">
+      <siteMapNode url="~/Views/User/Detail.aspx" title="User detail" description="user detail"/>
       <siteMapNode url="~/Views/User/Create.aspx" title="User edit" description="user edit"/>
       <siteMapNode url="~/Views/Role/Assign.aspx" title="Role assign" description="role assign"/>
     </siteMapNode>

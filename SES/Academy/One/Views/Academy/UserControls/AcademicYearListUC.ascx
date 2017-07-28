@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AcademicYearListUC.ascx.cs" Inherits="One.Views.Academy.UserControls.AcademicYearListUC" %>
-
-<div class="list-item-body" runat="server" id="divBody">
+<%-- class="list-item-body" --%>
+<div  runat="server" id="divBody">
 
     <%--<asp:Panel ID="pnlBody" runat="server" CssClass="auto-st1">--%>
     <div>
@@ -55,7 +55,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="data-type">Batch admitted in this year</td>
+                <td class="data-type">Batch </td>
                 <td class="data-value">
                     <asp:HyperLink ID="lnkBatch" runat="server"></asp:HyperLink>
                 </td>

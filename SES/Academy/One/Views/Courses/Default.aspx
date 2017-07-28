@@ -11,7 +11,11 @@
     <h3 class="heading-of-display">
         <asp:Label ID="lblHeading" runat="server" Text="Label"></asp:Label>
     </h3>
-    <hr />
+
+    <br />
+    <div style="text-align: right;">
+        <asp:HyperLink ID="lnkGoto" runat="server" NavigateUrl="~/Views/Courses/?type=earlier">Go to earlier courses</asp:HyperLink>
+    </div>
     <uc1:LstUc runat="server" ID="LstUc1" />
 </asp:Content>
 

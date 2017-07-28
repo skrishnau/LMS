@@ -40,6 +40,15 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Label lblClassName;
         
         /// <summary>
+        /// imgIndicate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgIndicate;
+        
+        /// <summary>
         /// lblStartDate control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Literal lblEnrollmentMethod;
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// lnkReport control.
         /// </summary>
         /// <remarks>
@@ -82,7 +100,7 @@ namespace One.Views.Class {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkMarkCompletion;
+        protected global::System.Web.UI.WebControls.LinkButton lnkMarkCompletion;
         
         /// <summary>
         /// lnkEnrollTeachers control.
@@ -101,6 +119,15 @@ namespace One.Views.Class {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkEnrollStudents;
+        
+        /// <summary>
+        /// CustomDialog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.Dialog.CustomDialog CustomDialog;
         
         /// <summary>
         /// lbldNotice control.

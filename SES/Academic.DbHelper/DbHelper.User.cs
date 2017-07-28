@@ -411,14 +411,14 @@ namespace Academic.DbHelper
 
                                 orderby user.FirstName, user.LastName
                                 select user).ToList();
-
+                    var userIds = users.Select(x => x.Id).ToList();
                     if (selectStudents)
                     {
                         var stds = Context.Student.Where(x => !(x.Void ?? false) && !(x.User.IsDeleted??false)
                             && x.User.SchoolId== schoolId
                             && (string.IsNullOrEmpty(filterUsername) || x.User.UserName.ToLower() == filterUsername)
                             && (string.IsNullOrEmpty(filteremail) || x.User.Email.Equals(filteremail, StringComparison.CurrentCultureIgnoreCase))
-
+                            && !userIds.Contains(x.UserId)
                             ).Select(x => x.User);
                         users.AddRange(stds);
                     }

@@ -69,11 +69,11 @@ namespace One.Views.Office
                     lblName.Text = school.Name;
                     //lblSchoolName.Text = school.Name;
                     //lblSchoolType.Text = school.SchoolType == null ? "" : school.SchoolType.Name;
-                    lblCity.Text = string.IsNullOrEmpty(school.City)?"N/A":school.City;
-                    lblCountry.Text = string.IsNullOrEmpty(school.Country)?"N/A":school.Country;
-                    lblEmail.Text = string.IsNullOrEmpty(school.Email)?"N/A":school.Email;
+                    //lblCity.Text = string.IsNullOrEmpty(school.City)?"N/A":school.City;
+                    lblCountry.Text = string.IsNullOrEmpty(school.Address)?"N/A":school.Address;
+                    lblEmail.Text = string.IsNullOrEmpty(school.EmailGeneral)?"N/A":school.EmailGeneral;
                     lblWebsite.Text = string.IsNullOrEmpty(school.Website)?"N/A":school.Website;
-                    lblPhoneNo.Text = string.IsNullOrEmpty(school.Phone)?"N/A":school.Phone;
+                    lblPhoneNo.Text = string.IsNullOrEmpty(school.PhoneMain)?"N/A":school.PhoneMain;
                 }
             }
         }

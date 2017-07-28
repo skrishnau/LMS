@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.ViewModel;
 
 namespace One.Views.Course.Section
 {
@@ -18,17 +19,21 @@ namespace One.Views.Course.Section
             var secId = Request.QueryString["SecId"];
             if (!IsPostBack)
             {
+
                 if (secId != null)
                 {
                     try
                     {
                         var sectionId = Convert.ToInt32(secId);
                         SectionId = sectionId;
+
+                        using (var strhelper = new DbHelper.Structure())
                         using (var helper = new DbHelper.SubjectSection())
                         {
                             var section = helper.GetSection(sectionId);
                             if (section != null)
                             {
+                                LoadSitemap(strhelper, section.Subject);
                                 SubjectId = section.SubjectId;
                                 //btnDelete.Visible = true;
                                 txtName.Text = section.Name;
@@ -41,9 +46,9 @@ namespace One.Views.Course.Section
                     }
                     catch
                     {
-                        Response.Redirect("~/");                        
+                        Response.Redirect("~/");
                     }
-                    
+
                 }
                 else if (subId != null)
                 {
@@ -56,7 +61,7 @@ namespace One.Views.Course.Section
                             var sub = helper.GetCourse(subjectId);
                             if (sub != null)
                             {
-                                lblHeading.Text = "New section in : '"+sub.FullName+"'";
+                                lblHeading.Text = "New section in : '" + sub.FullName + "'";
 
                             }
                             else
@@ -67,10 +72,10 @@ namespace One.Views.Course.Section
                     }
                     catch
                     {
-                    Response.Redirect("~/");
-                        
+                        Response.Redirect("~/");
+
                     }
-                    
+
                 }
                 else
                 {
@@ -78,6 +83,90 @@ namespace One.Views.Course.Section
                 }
             }
         }
+
+        void LoadSitemap(DbHelper.Structure strHelper, Academic.DbEntities.Subjects.Subject sub)
+        {
+            var fromCls = Request.QueryString["from"];
+            var yId = Request.QueryString["yId"];
+            var sId = Request.QueryString["sId"];
+            if (SiteMap.CurrentNode != null)
+            {
+                var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                        };
+                if (sId != null && yId != null)
+                {
+                    //lnkEdit.NavigateUrl += "&yId=" + yId + "&sId=" + sId;
+                    list.Add(new IdAndName()
+                    {
+                        Name = "Manage Programs"
+                        ,
+                        Value = "~/Views/Structure/"
+                        ,
+                        Void = true
+                    });
+                    list.Add(new IdAndName()
+                    {
+                        Name = strHelper.GetSructureDirectory(Convert.ToInt32(yId), Convert.ToInt32(sId))
+                        ,
+                        Value = "~/Views/Structure/CourseListing.aspx?yId=" + yId + "&sId=" + sId
+                        ,
+                        Void = true
+                    });
+                    list.Add(new IdAndName()
+                    {
+                        Name = sub.FullName,
+                         Value = "~/Views/Course/Section/default.aspx?SubId="+sub.Id
+                        ,Void = true,
+                    });
+                }
+                else if (fromCls != null)
+                {
+                    //lnkEdit.NavigateUrl += "&frmDetailView=" + fromCls;
+                    list.Add(new IdAndName()
+                    {
+                        Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
+                        ,
+                        Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url
+                        ,
+                        Void = true
+                    });
+                    list.Add(new IdAndName()
+                    {
+                        Name = sub.FullName
+                        ,
+                        Value = "~/Views/Course/CourseDetail.aspx?cId=" + sub.Id
+                        ,
+                        Void = true
+                    });
+                    list.Add(new IdAndName() { Name = "View" });
+                }
+                else
+                {
+                    list.Add(new IdAndName()
+                    {
+                        Name = sub.FullName
+                        ,
+                        Value = "~/Views/Course/Section/default.aspx?SubId="+sub.Id
+                        ,Void = true,
+                        //Value = "~/Views/Course/CourseDetail.aspx?cId=" + sub.Id
+                        //,
+                        //Void = true
+                    });
+                }
+                list.Add(new IdAndName()
+                {
+                    Name = "Section edit"
+                });
+                SiteMapUc.SetData(list);
+            }
+        }
+
 
         public int SubjectId
         {
@@ -95,7 +184,7 @@ namespace One.Views.Course.Section
             set { hidSectionId.Value = value.ToString(); }
         }
 
-       
+
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -119,12 +208,12 @@ namespace One.Views.Course.Section
                    ,
                     SubjectId = SubjectId
                 };
-                var saved = helper.AddOrUpdateSection(sec,restriction);
+                var saved = helper.AddOrUpdateSection(sec, restriction);
 
 
-                if (saved!=null)
+                if (saved != null)
                 {
-                    Response.Redirect("~/Views/Course/Section/?SubId=" + SubjectId + "&edit=1" + "#section_"+saved.Id);
+                    Response.Redirect("~/Views/Course/Section/?SubId=" + SubjectId + "&edit=1" + "#section_" + saved.Id);
                 }
                 else
                 {
@@ -133,12 +222,12 @@ namespace One.Views.Course.Section
             }
         }
 
-     
+
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Course/Section/?SubId="+SubjectId+"&edit=1"+"#section_"+SectionId);
-           
+            Response.Redirect("~/Views/Course/Section/?SubId=" + SubjectId + "&edit=1" + "#section_" + SectionId);
+
         }
     }
 }

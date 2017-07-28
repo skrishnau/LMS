@@ -59,20 +59,8 @@
                         <asp:Panel ID="pnlListing" runat="server"></asp:Panel>
                     </div>
                 </div>
-
-
-
-
-
-
             </div>
-
-
         </div>
-
-
-
-
 
         <%--<uc1:SessionsListingInAYDetailUC runat="server" ID="SessionsListingInAYDetailUC" />--%>
     </div>

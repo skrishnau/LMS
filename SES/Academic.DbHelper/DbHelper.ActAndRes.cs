@@ -2018,6 +2018,18 @@ namespace Academic.DbHelper
                 }
 
             }
+
+            public bool DeleteChapter(int chapterId)
+            {
+                var chapter = Context.BookChapter.Find(chapterId);
+                if (chapter != null)
+                {
+                    Context.BookChapter.Remove(chapter);
+                    Context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
         }
 
     }

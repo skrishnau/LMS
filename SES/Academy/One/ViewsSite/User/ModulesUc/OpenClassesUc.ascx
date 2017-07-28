@@ -7,17 +7,21 @@
     </div>
 
     <%-- modules-body list-item list-unmargined --%>
-    <div class="list-dark-datalist" >
+    <div class="list-dark-datalist">
         <asp:Panel ID="pnlListOpenClasses" runat="server"></asp:Panel>
 
         <asp:DataList ID="DataList1" Height="100%" runat="server" Width="100%" DataSourceID="objectdatasource1">
+            <FooterTemplate>
+                <asp:label visible="<%#bool.Parse((DataList1.Items.Count==0).ToString())%>" xmlns:asp="#unknown"
+                    runat="server" ID="lblNoRecord" Text="None"></asp:label>
+            </FooterTemplate>
             <ItemTemplate>
                 <div>
                     <%--class="auto-st2" CssClass="link" --%>
                     <%-- style="color: #808080; font-size: 0.9em;" --%>
                     <asp:HyperLink ID="HyperLink1" runat="server"
                         NavigateUrl='<%# "~/Views/Class/SelfEnrolment.aspx?ccId="+Eval("ClassId") %>'>
-                        <asp:Label ID="ClassNameLabel" runat="server"  Text='<%# Eval("ClassName") %>' />
+                        <asp:Label ID="ClassNameLabel" runat="server" Text='<%# Eval("ClassName") %>' />
                         <br />
                         <span class="list-item-description">Starts on:
                             <asp:Label ID="StartDateLabel" runat="server" Text='<%# Eval("StartDate") %>' />

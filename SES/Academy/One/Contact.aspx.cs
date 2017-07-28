@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using Academic.ViewModel;
 using One.Values.MemberShip;
 
@@ -24,8 +25,23 @@ namespace One
                 {
                     SiteMapUc.SetData(new List<IdAndName>()
                     {
-                        new IdAndName(){Name = "About"}
+                        new IdAndName(){Name = "Contact"}
                     });
+                }
+                using (var helper = new DbHelper.Office())
+                {
+                    var school = helper.GetSchoolOfUser(user == null ? 0 : user.SchoolId);
+                    lblAddress.Text = school.Address;
+                    lblPhoneAfterHours.Text = school.PhoneAfterHours;
+                    lblPhoneMain.Text = school.PhoneMain;
+                    lnkEmailGeneral.Text = school.EmailGeneral;
+                    lnkEmailGeneral.NavigateUrl = "mailto:" + school.EmailGeneral;
+
+                    lnkEmailMarketing.Text = school.EmailMarketing;
+                    lnkEmailMarketing.NavigateUrl = "mailto:" + school.EmailMarketing;
+
+                    lnkEmailSupport.Text = school.EmailSupport;
+                    lnkEmailSupport.NavigateUrl = "mailto:" + school.EmailSupport;
                 }
             }
         }

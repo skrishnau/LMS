@@ -67,7 +67,7 @@ h3.heading-of-display {
     margin-top: 3px;
     font-size: 2em;
     font-weight: 400;
-    color: darkslategray;
+    /*color: darkslategray;*/
 }
 
 /*body of sections*/
@@ -101,7 +101,7 @@ div.data-entry-section {
 
 div.data-entry-section-heading {
     font-size: 1.1em;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 20px;
     text-align: left;
     margin-top: 20px;
@@ -126,7 +126,7 @@ div.data-entry-section-no-margin {
 
 div.data-entry-body div.data-entry-section hr {
     border: none;
-    background-color: darkgray;
+    /*background-color: darkgray;*/
     height: 1px;
 }
 
@@ -140,9 +140,9 @@ div.data-entry-body div.data-entry-section hr {
     padding: 5px 3px;
     /*border: 1px solid lightgrey;*/
     -webkit-border-radius: 5px;
-    /*background-color: white;*/
     clear: both;
     text-align: center;
+    color: #002b80;
 }
 
     .sitemap-items:hover {
@@ -154,7 +154,7 @@ div.data-entry-body div.data-entry-section hr {
 
 h1, h2, h3,
 h4, h5, h6 {
-    color: #000;
+    /*color: #000;*/
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -180,7 +180,8 @@ h3 {
     .link:hover {
         /*darkorange*/
         background-color: #f5f5f5;
-        color: black;
+        /*color: black;*/
+        font-weight: 400;
         text-decoration: underline;
     }
 
@@ -191,24 +192,28 @@ h3 {
 
 /*link white*/
 .link-white, .link-white:visited {
-    color: #393939;
+    /*color: #393939;*/
     text-decoration: none;
     display: inline-block;
+    color: #002b80;
 }
 
     .link-white:hover {
-        color: black;
-        font-weight: 500;
+        /*color: black;*/
+        font-weight: 400;
         text-decoration: underline;
         display: inline-block;
     }
 
     .link-white:active {
-        color: blueviolet;
+        /*color: blueviolet;*/
         text-decoration: underline;
         display: inline-block;
     }
 
+.white {
+    color: white;
+}
 /*link grey*/
 .link-grey, .link-grey:visited {
     color: #858575;
@@ -223,11 +228,11 @@ h3 {
         display: inline-block;
     }
 
-    .link-grey:active {
+/*.link-grey:active {
         color: blueviolet;
         text-decoration: underline;
         display: inline-block;
-    }
+    }*/
 
 
 
@@ -249,7 +254,25 @@ ul.bottom-links {
     padding: 0;
     text-align: center;
 }
-ul.bottom-links li {
-    display: inline-block;
-    margin: 0 10px;
+
+    ul.bottom-links li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+
+.padding-left-10px {
+    padding-left: 10px;
+}
+
+.padding-left-20px {
+    padding-left: 20px;
+}
+
+.padding-left-30px {
+    padding-left: 30px;
+}
+
+.padding-left-40px {
+    padding-left: 40px;
 }

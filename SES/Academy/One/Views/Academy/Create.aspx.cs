@@ -357,7 +357,7 @@ namespace One.Views.Academy
                     ,
                     SchoolId = user.SchoolId
                     ,
-                    Position = start.Year + start.Month + start.Day,
+                    Position = start.Year*10000 + start.Month*100 + start.Day,
                 };
                 return entity;
             }

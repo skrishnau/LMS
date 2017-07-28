@@ -143,8 +143,8 @@ namespace One.Views.ActivityResource.FileResource
                     ,
                     Description = CKEditor1.Text
                     ,
-                    Display = (byte)ddlDisplay.SelectedIndex
-                    ,
+                    //Display = (byte)ddlDisplay.SelectedIndex
+                    //,
                     ShowSize = chkShowSize.Checked
                     ,
                     ShowType = chkShowType.Checked
@@ -154,7 +154,14 @@ namespace One.Views.ActivityResource.FileResource
                     ShowDescriptionOnCoursePage = chkDisplayDescription.Checked
                     ,
                 };
-
+                if (ddlDisplay.SelectedIndex == 0)
+                {
+                    file.Display = 2;
+                }
+                else
+                {
+                    file.Display = 4;
+                }
                 //files
                 var list = new List<Academic.DbEntities.Subjects.SubjectFile>();
                 var files = FilesDisplay1.GetFiles();

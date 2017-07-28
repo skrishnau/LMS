@@ -109,15 +109,15 @@ namespace Academic.DbHelper
 
                             ent.ImageId = school.ImageId;
                             ent.Name = school.Name;
-                            ent.Email = school.Email;
-                            ent.Fax = school.Fax;
-                            ent.Phone = school.Phone;
-                            ent.RegNo = school.RegNo;
-                            ent.Street = school.Street;
+                            ent.Description = school.Description;
+                            ent.EmailGeneral = school.EmailGeneral;
+                            ent.EmailMarketing = school.EmailMarketing;
+                            ent.EmailSupport = school.EmailSupport;
+                            ent.PhoneMain = school.PhoneMain;
+                            ent.PhoneAfterHours = school.PhoneAfterHours;
+                            ent.Address = school.Address;
                             ent.Website = school.Website;
-                            ent.City = school.City;
                             ent.Code = school.Code;
-                            ent.Country = school.Country;
 
                             //ent.Image = school.Image;
                             //ent.ImageType = school.ImageType;
@@ -186,7 +186,7 @@ namespace Academic.DbHelper
 
             public School GetSchoolOfUser(int userId)
             {
-                var user = Context.Users.Include(x => x.School).FirstOrDefault(x => x.Id == userId);
+                var user = Context.Users.Include(x => x.School).FirstOrDefault();//(x => x.Id == userId);
                 if (user != null)
                 {
                     //if ((user.SchoolId ?? 0) > 0 )
@@ -197,7 +197,7 @@ namespace Academic.DbHelper
                     //{
                     //    return user.School;
                     //}
-                    return null;
+                    //return null;
                     //else
                     //{
                     //    var sch = Context.School.FirstOrDefault(x => x.UserId == userId);

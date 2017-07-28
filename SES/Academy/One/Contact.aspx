@@ -27,11 +27,15 @@
         </header>
         <p>
             <span class="label">Main:</span>
-            <span>425.555.0100</span>
+            <%--<span>425.555.0100</span>--%>
+            <span>
+                <asp:Label ID="lblPhoneMain" runat="server" Text="M/A"></asp:Label></span>
         </p>
         <p>
             <span class="label">After Hours:</span>
-            <span>425.555.0199</span>
+            <%--<span>425.555.0199</span>--%>
+            <span>
+                <asp:Label ID="lblPhoneAfterHours" runat="server" Text="N/A"></asp:Label></span>
         </p>
     </section>
 
@@ -41,15 +45,21 @@
         </header>
         <p>
             <span class="label">Support:</span>
-            <span><a href="mailto:Support@example.com">Support@example.com</a></span>
+            <span>
+                <asp:HyperLink ID="lnkEmailSupport" runat="server">N/a</asp:HyperLink></span>
+            <%--<span><a href="mailto:Support@example.com">Support@example.com</a></span>--%>
         </p>
         <p>
             <span class="label">Marketing:</span>
-            <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
+              <span>
+                <asp:HyperLink ID="lnkEmailMarketing" runat="server">N/a</asp:HyperLink></span>
+            <%--<span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>--%>
         </p>
         <p>
             <span class="label">General:</span>
-            <span><a href="mailto:General@example.com">General@example.com</a></span>
+              <span>
+                <asp:HyperLink ID="lnkEmailGeneral" runat="server">N/a</asp:HyperLink></span>
+            <%--<span><a href="mailto:General@example.com">General@example.com</a></span>--%>
         </p>
     </section>
 
@@ -58,8 +68,9 @@
             <h3 class="roboto-light">Address:</h3>
         </header>
         <p>
-            One Microsoft Way<br />
-            Redmond, WA 98052-6399
+            <asp:Label ID="lblAddress" runat="server" Text="N/a"></asp:Label>
+           <%-- One Microsoft Way<br />
+            Redmond, WA 98052-6399--%>
         </p>
     </section>
 </asp:Content>

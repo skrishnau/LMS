@@ -131,7 +131,7 @@ namespace One.Views.Academy.UserControls
             var batch = ay.Batches.FirstOrDefault();
             if (batch != null)
             {
-                lnkBatch.Text = batch.Name + " (click to view programs)";
+                lnkBatch.Text = batch.Name ;
                 lnkBatch.NavigateUrl = "~/Views/Student/Batch/?Id=" + batch.Id;
             }
             foreach (var sess in ay.Sessions.Where(x => !(x.Void ?? false)).ToList())

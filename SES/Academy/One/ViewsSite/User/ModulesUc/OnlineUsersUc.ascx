@@ -7,7 +7,7 @@
         <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
     </div>
     <%-- modules-body --%>
-    <div class="dark-background">
+    <div >
         <span >
             <asp:Label ID="lblEmptyOnlineUsers" runat="server" Text=" &nbsp; No users online" ForeColor="darkgray" Font-Size="0.9em"></asp:Label>
         </span>

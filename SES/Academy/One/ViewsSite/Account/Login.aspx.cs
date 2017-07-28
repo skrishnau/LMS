@@ -41,6 +41,7 @@ namespace One.ViewsSite.Account
 
             if (!IsPostBack)
             {
+                Login1.Focus();
                 if (User.Identity.IsAuthenticated)
                 {
                     var user = User as CustomPrincipal;

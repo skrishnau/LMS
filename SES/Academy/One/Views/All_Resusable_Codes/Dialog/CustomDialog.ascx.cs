@@ -72,6 +72,11 @@ namespace One.Views.All_Resusable_Codes.Dialog
             pnlItemsControl.Controls.Add(control);
         }
 
+        public void AddControl(System.Web.UI.WebControls.Label control)
+        {
+            pnlItemsControl.Controls.Add(control);
+        }
+
         public void ClearControls()
         {
             pnlItemsControl.Controls.Clear();

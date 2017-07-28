@@ -2,6 +2,8 @@
 
 
 <%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<%@ Register Src="~/Views/All_Resusable_Codes/Dialog/CustomDialog.ascx" TagPrefix="uc1" TagName="CustomDialog" %>
+
 <asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
     <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
 </asp:Content>
@@ -17,6 +19,9 @@
             <div style="float: left;">
                 <h3 class="heading-of-display">
                     <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
+                    <span style="line-height: 12px; vertical-align: top; ">
+                        <asp:Image ID="imgIndicate" runat="server" ImageUrl="~/Content/Icons/Stop/Stop_10px.png" />
+                    </span>
                 </h3>
             </div>
 
@@ -67,19 +72,27 @@
         <br />
         <%-- style="text-align: center; vertical-align: bottom; float: left; padding-top: 8px; padding-left: 20px;" --%>
         <%-- style="text-align: center;"  CssClass="auto-st2 link"  --%>
+        <%-- class="option-div" --%>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <div class="option-div">
+                    <asp:HyperLink ID="lnkReport" runat="server">View Report</asp:HyperLink>
+                    &nbsp;
+            
+                    <asp:LinkButton ID="lnkMarkCompletion" runat="server"
+                        OnClick="lnkMarkCompletion_OnClick"
+                        Visible="False">Mark Complete</asp:LinkButton>
 
-        <div class="option-div">
-            <asp:HyperLink ID="lnkReport" runat="server" >View Report</asp:HyperLink>
-            &nbsp;
-                <asp:HyperLink ID="lnkMarkCompletion" runat="server"  Visible="False">Mark Complete</asp:HyperLink>
-            &nbsp;
+                    &nbsp;
                 <asp:HyperLink ID="lnkEnrollTeachers" runat="server" Visible="False">Enroll Teachers</asp:HyperLink>
-            &nbsp;
+                    &nbsp;
                 <asp:HyperLink ID="lnkEnrollStudents" runat="server" Visible="False">Enroll Students</asp:HyperLink>
 
-            <%--<asp:Button ID="btnEnroll" runat="server" Text="Enroll Users" OnClick="btnEnroll_Click" CssClass="auto-st2 link"/>--%>
-        </div>
-
+                    <%--<asp:Button ID="btnEnroll" runat="server" Text="Enroll Users" OnClick="btnEnroll_Click" CssClass="auto-st2 link"/>--%>
+                </div>
+                <uc1:CustomDialog runat="server" ID="CustomDialog" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
         <br />
 
 
@@ -91,11 +104,12 @@
                     Visible="False">
                     <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
 
-                    Teacher is not assigned to this class yet. Please assign teacher(s). <br />
+                    Teacher is not assigned to this class yet. Please assign teacher(s).
+                    <br />
                 </asp:Label>
             </div>
 
-           
+
 
             <div class="data-entry-section-heading">
                 Enrolled users
@@ -160,16 +174,20 @@
         <%-- End grid view --%>
     </div>
 
+
+
     <%
         const int count = 1;
     %>
 
     <div style="margin-top: 20px">
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" PageSize="25" CssClass="gridview"
+            OnRowDataBound="GridView1_OnRowDataBound"
+            OnSelectedIndexChanged="GridView1_OnSelectedIndexChanged"
             AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" Width="100%"
             CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No users">
 
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <%--<AlternatingRowStyle BackColor="White" ForeColor="#284775" />--%>
 
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
@@ -207,12 +225,17 @@
                     <ItemStyle Width="70"></ItemStyle>
                 </asp:TemplateField>
 
+
                 <asp:TemplateField HeaderText="Name">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name")  %>'></asp:Label>
+                        <asp:HyperLink ID="Label1" runat="server"
+                            CssClass="link"
+                            NavigateUrl='<%# "~/Views/User/Detail.aspx?uId="+Eval("Id") %>'
+                            Text='<%# Eval("Name")  %>'></asp:HyperLink>
+
                     </ItemTemplate>
                     <ItemStyle Width="150"></ItemStyle>
                 </asp:TemplateField>
@@ -262,13 +285,15 @@
 
             </Columns>
 
+
+
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <%--  BackColor="#557d96" Font-Bold="True" ForeColor="White" --%>
             <HeaderStyle CssClass="data-list-header" />
             <PagerStyle HorizontalAlign="Center" CssClass="data-list-footer" />
             <%--<PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />--%>
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <%--<RowStyle BackColor="#F7F6F3" ForeColor="#333333" />--%>
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
             <SortedAscendingCellStyle BackColor="#E9E7E2" />
             <SortedAscendingHeaderStyle BackColor="#506C8C" />
@@ -299,4 +324,5 @@
 <asp:Content runat="server" ID="content2" ContentPlaceHolderID="head">
     <link href="../../Content/CSSes/TableStyles.css" rel="stylesheet" />
     <link href="../../Content/CSSes/PanelStyles.css" rel="stylesheet" />
+    <link href="../All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
 </asp:Content>

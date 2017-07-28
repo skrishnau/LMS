@@ -52,7 +52,8 @@ namespace One.Views.Structure
                     //lnkEdit.Visible = false;
                     lnkAdd.Visible = false;
 
-                    LoadListMode(user.SchoolId);
+                    LoadCompressMode(user.SchoolId);
+                    //LoadListMode(user.SchoolId);
                 }
                 else if (Edit == "1")
                 {
@@ -65,7 +66,8 @@ namespace One.Views.Structure
                 }
                 else
                 {
-                    LoadListMode(user.SchoolId);                    
+                    LoadCompressMode(user.SchoolId);
+                    //LoadListMode(user.SchoolId);                    
                 }
 
             }

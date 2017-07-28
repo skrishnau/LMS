@@ -105,8 +105,9 @@
             <%-- section end --%>
 
             <div class="save-div">
-                <asp:Button ID="btnSave" runat="server" Text="Save and return to Course"  OnClick="btnSave_Click"  />
+                <asp:Button ID="btnSave" runat="server" Text="Save"  OnClick="btnSave_Click"  />
                 &nbsp;&nbsp;
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel"  OnClick="btnCancel_OnClick"  />
             </div>
         </div>
     </div>

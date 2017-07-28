@@ -45,13 +45,13 @@
             </Fields>
         </asp:DataPager>
     </div>--%>
-    
-    <div>
+    <br />
+    <div style="border-bottom: 1px solid lightgrey; margin-top: 10px;">
         <div style="float: left;">
-            Previous
+            <asp:HyperLink ID="lnkPrevious" runat="server">Previous</asp:HyperLink>
         </div>
         <div style="float: right;">
-            Next
+            <asp:HyperLink ID="lnkNext" runat="server">Next</asp:HyperLink>
         </div>
         <div style="clear: both;"></div>
     </div>
@@ -65,6 +65,12 @@
     <asp:HiddenField ID="hidEdit" runat="server" Value="False" />
 
 </asp:Content>
+
+
+<asp:Content runat="server" ID="Content2" ContentPlaceHolderID="head">
+    <link href="../../Content/CSSes/TableStyles.css" rel="stylesheet" />
+</asp:Content>
+
 
 <asp:Content runat="server" ID="contnettitle" ContentPlaceHolderID="title">
     Academic year list

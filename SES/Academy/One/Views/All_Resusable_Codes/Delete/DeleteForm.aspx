@@ -1,5 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/ViewsSite/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="DeleteForm.aspx.cs" Inherits="One.Views.All_Resusable_Codes.Delete.DeleteForm" %>
 
+
+<%@ Register Src="~/Views/All_Resusable_Codes/SiteMaps/SiteMapUc.ascx" TagPrefix="uc1" TagName="SiteMapUc" %>
+<asp:Content runat="server" ID="content3" ContentPlaceHolderID="SiteMapPlace">
+    <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
+</asp:Content>
+
 <asp:Content runat="server" ID="bodycontent" ContentPlaceHolderID="Body">
     <div style="border: 2px solid lightgray; margin: 20px; padding: 10px;">
         <table>

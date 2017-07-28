@@ -34,10 +34,18 @@ namespace One.Views.ActivityResource.FileResource
                             var fileRes = helper.GetFileResource(FileResourceId);
                             if (fileRes != null)
                             {
+                                lblHeading.Text = fileRes.Name;
+                                lblTitle.Text = fileRes.Name;
                                 var file = helper.GetFileOfFileResource(fileRes.MainFileId ?? 0);
                                 if (file != null)
                                 {
                                     var fullPath = file.SubFile.FileDirectory + file.SubFile.FileName;
+                                    if (fullPath == "")
+                                    {
+                                        pnlError.Visible = true;
+                                    }
+                                    pnlError.Visible = true;
+                                    //ProcessRequest(Context, fullPath);
                                     switch (fileRes.Display)
                                     {
                                         case 0:
@@ -63,6 +71,14 @@ namespace One.Views.ActivityResource.FileResource
                                             break;
                                     }
                                 }
+                                else
+                                {
+                                    pnlError.Visible = true;                                    
+                                }
+                            }
+                            else
+                            {
+                                pnlError.Visible = true;                                
                             }
                         }
 
@@ -88,6 +104,7 @@ namespace One.Views.ActivityResource.FileResource
             r.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
             r.ContentType = "text/plain";
             r.WriteFile(context.Server.MapPath(path));
+            Response.End();
         }
         public bool IsReusable { get { return false; } }
 

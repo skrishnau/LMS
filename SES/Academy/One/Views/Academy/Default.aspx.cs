@@ -86,21 +86,46 @@ namespace One.Views.Academy
         {
             var edit = Edit;
             if (user.IsInRole("manager") || user.IsInRole("teacher"))
+            {
+                var aId = Request.QueryString["aId"];
+                var academicId = 0;
+                try
+                {
+                    academicId = Convert.ToInt32(aId);
+                }
+                catch { }
                 using (var helper = new DbHelper.AcademicYear())
                 {
-                    var aca = helper.ListAcademicYears(
-                        user.SchoolId);
-                    foreach (var ay in aca)
+                    //var aca = helper.ListAcademicYears(user.SchoolId);
+                    var aca = helper.GetCurrentPreviousAndNextAcademicYears(user.SchoolId, academicId);
+                    if (aca[0] != null)
                     {
+                        lnkPrevious.NavigateUrl = "~/Views/Academy/?aId=" + aca[0].Id;
+                    }
+                    else
+                    {
+                        lnkPrevious.Visible = false;
+                    }
+                    if (aca[2] != null)
+                    {
+                        lnkNext.NavigateUrl = "~/Views/Academy/?aId=" + aca[2].Id;
+                    }
+                    else
+                    {
+                        lnkNext.Visible = false;
+                    }
+                    //foreach (var ay in aca)
+                    if(aca[1]!=null)
+                    {
+                        var ay = aca[1];
                         var uc =
                             (UserControls.AcademicYearListUC)
                                 Page.LoadControl("~/Views/Academy/UserControls/AcademicYearListUC.ascx");
-                        uc.LoadAcademicYear(ay,edit);
-                            //ay.Id, ay.Name, ay.StartDate, ay.EndDate
-                            //, ay.IsActive, ay.Sessions.ToList(), ay.Completed ?? false, edit);
+                        uc.LoadAcademicYear(ay, edit);
                         pnlAcademicYearListing.Controls.Add(uc);
                     }
                 }
+            }
         }
 
         public string GetDatePartOnly(object date)

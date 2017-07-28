@@ -14,23 +14,54 @@
     border-left: 2px solid black;
 }
 
-.inner-body {
-    /*clear: both;*/
-}
-
+/*534f60*/
 .right-width {
     width: 250px;
+    background-color: #f5f5f5;
+    color: lightgrey;
 }
 /*width: 180px;*/
 .left-width {
     width: 220px;
+    /*#e6e6ff   #f1f1f1*/
+    /*background-color: #e0dfe3;*/
+    background-color: #f5f5f5;
+    color: lightgrey;
+}
+
+.sitemap-panel {
+    /*#f1f1f1   5a5a5a*/
+    padding: 5px 0;
+    /*background-color: #aaa3be;*/
     background-color: #f1f1f1;
+    color: lightgrey;
 }
 
 .mid-width {
     padding: 0 2px;
+    color: #393939;
     /*background-color: white;*/
     /*width: 64%;#f1f1f1*/
+}
+
+
+.menu-div {
+    color: white;
+    height: 35px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom: white solid 1px;
+    /*-webkit-border-radius: 2px;*/
+    /*background-color: darkslategray;*/
+    background-color: #8a81a3;
+
+    text-align: left;
+    z-index: 10;
+    vertical-align: central;
+    padding: 7px 5px 2px;
+    clear: both;
+    width: 100%;
 }
 
 .module-whole {
@@ -44,12 +75,12 @@
     /*color: white;*/
     color: darkslategray;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 5px;
 }
 
     .modules-title:hover {
-        text-decoration: underline;
+        /*text-decoration: underline;*/
     }
 
 div.modules-heading {
@@ -72,17 +103,6 @@ div.modules-heading {
 }
 
 
-.menu-div {
-    color: white;
-    height: 35px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    border-bottom: white solid 1px;
-    /*-webkit-border-radius: 2px;*/
-    /*background-color: darkslategray;*/
-    background-color: #557d96;
-}
 
 #bodyDiv {
     /*background-color: white;*/
@@ -92,12 +112,12 @@ div.modules-heading {
 .table-whole {
     width: 100%;
     vertical-align: top;
-    border-spacing: 5px;
+    border-spacing: 1px;
     /*margin-top: 20px;*/
 }
 
 .body-whole {
-    margin-top: 50px;
+    margin-top: 48px;
     /*margin-top: 75px;*/
 }
 
@@ -122,7 +142,7 @@ div.modules-heading {
         margin-top: -1px;
         color: #393939;
         text-decoration: none;
-        padding: 6px;
+        padding: 6px 6px 6px 10px;
     }
 
         .list-unmargined a:hover {
@@ -310,7 +330,7 @@ div.modules-heading {
     color: #393939;
     text-decoration: none;
     display: inline-block;
-    font-weight: 500;
+    font-weight: 400;
     /*background-color: #f0fff0;*/
     /*//font-size: 2em;*/
 }
@@ -318,7 +338,7 @@ div.modules-heading {
     .list-item-heading:hover {
         color: black;
         text-decoration: underline;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     .list-item-heading:active {
@@ -533,12 +553,12 @@ div.modules-heading {
     display: inline-block;
     font-size: 16px;
     padding: 0 6px;
-    font-weight: bold;
+    font-weight: 400;
 }
 
     .link-dark-bold:hover {
         color: black;
-        font-weight: bold;
+        font-weight: 400;
         text-decoration: underline;
         display: inline-block;
         background-color: #f1f1f1;
@@ -555,7 +575,7 @@ div.modules-heading {
     display: inline-block;
     font-size: 16px;
     padding: 0 6px;
-    font-weight: bold;
+    font-weight: 400;
 }
 
 /*this is same as link-dark but is used in places where background is dark so we need hover back-color as white
@@ -604,6 +624,7 @@ div.modules-heading {
 .link-dark {
     color: black;
 }
-.link-dark:hover {
-    background-color: lightgray;
-}
+
+    .link-dark:hover {
+        background-color: lightgray;
+    }

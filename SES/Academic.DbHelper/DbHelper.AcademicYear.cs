@@ -413,6 +413,79 @@ namespace Academic.DbHelper
                 return aca.ToList();
             }
 
+            //used v-2
+            /// <summary>
+            /// Returns list of 3 academic years [0]-previous, [1]-current, [2]-next
+            /// </summary>
+            /// <param name="schoolId"></param>
+            /// <param name="academicYearId"></param>
+            /// <returns></returns>
+            public List<DbEntities.AcademicYear> GetCurrentPreviousAndNextAcademicYears(int schoolId, int academicYearId = 0)
+            {
+                var aca = Context.AcademicYear
+                    .Where(x => x.SchoolId == schoolId && !(x.Void ?? false))
+                    .Include(x => x.Sessions)
+                    //.OrderBy(x => x.Position)
+                    .OrderBy(x => x.StartDate)
+                    .ToList();
+                DbEntities.AcademicYear current = null;
+                DbEntities.AcademicYear previous = null;
+                DbEntities.AcademicYear next = null;
+
+                if (academicYearId > 0)
+                {
+                    current = aca.FirstOrDefault(x => x.Id == academicYearId);
+                    if (current != null)
+                    {
+                        var curIndex = aca.FindIndex(x => x.Id == current.Id);
+                        if (curIndex >= 0)
+                        {
+                            try
+                            {
+                                previous = aca[curIndex - 1];
+                            }
+                            catch { }
+                            try
+                            {
+                                next = aca[curIndex + 1];
+                            }
+                            catch { }
+                        }
+                    }
+
+                }
+                else
+                {
+                    var date = DateTime.Now;
+                    current = aca.FirstOrDefault(x => x.IsActive || (x.StartDate <= date && x.EndDate >= date)
+                                        || x.Sessions.Any(y => y.IsActive || (x.StartDate <= date && x.EndDate >= date)));
+                    current = current ?? aca.LastOrDefault();
+                    if (current != null)
+                    {
+                        var curIndex = aca.FindIndex(x => x.Id == current.Id);
+                        try
+                        {
+                            previous = aca[curIndex - 1];
+                        }
+                        catch { }
+                        try
+                        {
+                            next = aca[curIndex + 1];
+                        }
+                        catch { }
+                    }
+
+                }
+                var list = new List<DbEntities.AcademicYear>()
+                {
+                    previous,
+                    current,
+                    next
+                };
+                return list;
+
+            }
+
             //Used v-2
             public List<DbEntities.SessionDefault> ListDefaultSessions(int schoolId)
             {
@@ -599,9 +672,9 @@ namespace Academic.DbHelper
                 try
                 {
                     var academic = Context.AcademicYear.Find(acaId);
-                    if (academic != null && !(academic.Completed??false))
+                    if (academic != null && !(academic.Completed ?? false))
                     {
-                        
+
                         academic.Void = true;
                         academic.IsActive = false;
 
@@ -880,7 +953,7 @@ namespace Academic.DbHelper
                             Context.SaveChanges();
                             //
                             var earlierRunningClasses = currActiveSession.RunningClasses.AsEnumerable();
-                                //.Where(x => (x.IsActive ?? false) && !(x.Completed ?? false));
+                            //.Where(x => (x.IsActive ?? false) && !(x.Completed ?? false));
                             foreach (var rc in earlierRunningClasses)
                             {
                                 rc.Completed = true;

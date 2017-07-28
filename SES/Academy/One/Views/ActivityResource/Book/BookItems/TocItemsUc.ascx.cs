@@ -24,6 +24,7 @@ namespace One.Views.ActivityResource.Book.BookItems
             , bool showup, bool showdown, bool showin, bool showout, int subjectId, int sectionId)
         {
             lnkChapter.Text = chapterName;
+            lnkChapter.ToolTip = chapterName;
             ChapterId = chapterId;
             BookId = bookId;
             lnkAddChapter.NavigateUrl = "~/Views/ActivityResource/Book/ChapterCreate.aspx?bId=" + bookId +
@@ -129,11 +130,17 @@ namespace One.Views.ActivityResource.Book.BookItems
             using (var helper = new DbHelper.ActAndRes())
             {
                 var updated = helper.UpdateChapter(action, ChapterId, BookId);
-                if(updated)
+                if (updated)
+                {
                     if (ChapterUpdated != null)
                     {
-                        ChapterUpdated(this,new IdAndNameEventArgs());
+                        ChapterUpdated(this, new IdAndNameEventArgs());
                     }
+                }
+                else
+                {
+                    this.lnkChapter.BackColor = Color.LightCoral;
+                }
             }
         }
     }

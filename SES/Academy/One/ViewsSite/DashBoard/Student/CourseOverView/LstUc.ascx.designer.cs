@@ -85,6 +85,15 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView {
         protected global::System.Web.UI.WebControls.HiddenField hidUserType;
         
         /// <summary>
+        /// hidFromDashboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidFromDashboard;
+        
+        /// <summary>
         /// hidLoadType control.
         /// </summary>
         /// <remarks>

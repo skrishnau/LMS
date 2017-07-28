@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Academic.DbHelper;
 using Academic.ViewModel;
 using One.Values.MemberShip;
 
@@ -22,11 +23,20 @@ namespace One
                 }
                 else
                 {
+                    lnkEdit.Visible = (Session["editMode"] as string) == "1";
                     SiteMapUc.SetData(new List<IdAndName>()
                     {
                         new IdAndName(){Name = "About"}
                     });
+                    
                 }
+                using (var helper = new DbHelper.Office())
+                {
+                    var school = helper.GetSchoolOfUser(user==null?0:user.SchoolId);
+                    lblDescription.Text = school.Description;
+                }
+
+
             }
         }
     }

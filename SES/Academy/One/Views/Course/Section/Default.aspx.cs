@@ -97,7 +97,7 @@ namespace One.Views.Course.Section
 
                         var stat = courseStatus.Split(new[] { ',' });
 
-                        if (stat.Length == 2)
+                        if (stat.Length >= 2)
                         {
                             var fromCls = Request.QueryString["from"];
                             var from = "";
@@ -118,15 +118,41 @@ namespace One.Views.Course.Section
                         switch (stat[0])
                         {
                             case "current":
+                                if (stat.Length >= 3)
+                                {
+                                    if (!(user.IsInRole("teacher") || user.IsInRole("manager")))
+                                    {
+                                        lnkEnroll.Visible = stat[2] != "0";
+                                        lnkEnroll.NavigateUrl = "~/Views/Class/SelfEnrolment.aspx?ccId=" + stat[2];
+                                        lnkEnroll.Text = "Remove Enrollment";
+                                    }
+                                    else
+                                    {
+                                        lnkEnroll.Visible = false;
+                                    }
+                                   
+                                    //btnEnroll.Visible = stat[2] != "0";
+                                    //btnEnroll.
+                                }
                                 imgJoinInfo.Visible = true;
                                 imgJoinInfo.ImageUrl = "~/Content/Icons/Start/active_icon_10px.png";
                                 break;
                             case "complete":
                                 imgJoinInfo.Visible = true;
-                                imgJoinInfo.ImageUrl = "~/Content/Icons/Diploma/diploma_16px.png";
+                                if (!(user.IsInRole("teacher") || user.IsInRole("manager")))
+                                    imgJoinInfo.ImageUrl = "~/Content/Icons/Diploma/diploma_16px.png";
+                                else
+                                {
+                                    imgJoinInfo.ImageUrl = "~/Content/Icons/Stop/Stop_10px.png";                                    
+                                }
                                 break;
                             case "open":
-                                lnkEnroll.Visible = true;
+                                //if (!(user.IsInRole("teacher") || user.IsInRole("manager")))
+                                //{
+
+                                //    btnEnroll.Visible = true;
+                                //    SetEnrollDialog();
+                                //}
                                 break;
                             case "close":
 
@@ -218,5 +244,62 @@ namespace One.Views.Course.Section
                 SiteMapUc.SetData(list);
             }
         }
+
+        //private void SetEnrollDialog(bool enroll)
+        //{
+        //    if (enroll)
+        //    {
+        //        CustomDialog.AddControl(new Label()
+        //        {
+        //            Text = "Are you sure to enroll in this class?"
+        //        });
+
+        //        CustomDialog.SetValues("Enroll to the class?", null
+        //            , "", "ok", "cancel");
+        //    }
+        //    else
+        //    {
+        //        CustomDialog.AddControl(new Label()
+        //        {
+        //            Text = "Are you sure to remove enrolment from this class?"
+        //        });
+
+        //        CustomDialog.SetValues("Remove Enrolment from the class?", null
+        //            , "", "ok", "cancel");
+        //    }
+        //}
+
+        //void CustomDialog_CancelClick(object sender, EventArgs e)
+        //{
+        //    CustomDialog.CloseDialog();
+        //}
+
+        //void CustomDialog_OkClick(object sender, IdAndNameEventArgs e)
+        //{
+        //    //mark complete
+        //    var user = Page.User as CustomPrincipal;
+        //    //&& (user.IsInRole(DbHelper.StaticValues.Roles.Manager) 
+        //    // || user.IsInRole(DbHelper.StaticValues.Roles.Teacher))
+        //    if (user != null)
+        //        using (var helper = new DbHelper.Classes())
+        //        {
+        //            bool enrolled = false;
+        //            bool saved = helper.Enroll(SubjectClassId, user.Id, ref enrolled);
+        //            if (saved)
+        //            {
+        //                CustomDialog.CloseDialog();
+        //                Response.Redirect(this.Request.Url.PathAndQuery, true);
+        //                return;
+        //            }
+        //        }
+        //}
+
+        //protected void btnEnroll_Click(object sender, EventArgs e)
+        //{
+
+        //    CustomDialog.OpenDialog();
+        //    //Response.Redirect("~/Views/Class/Enrollment/Enrollment.aspx?ccId=" + hidSubjectSessionId.Value);
+        //}
+
     }
 }

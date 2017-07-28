@@ -153,5 +153,9 @@ namespace One.Views.ActivityResource.Book
         //    get { return Convert.ToInt32(hidSubjectId.Value); }
         //    set { hidSubjectId.Value = value.ToString(); }
         //}
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/ActivityResource/Book/BookView.aspx?arId=" + BookId + "&SubId=" + hidSubjectId.Value + "&secId=" + hidSectionId.Value);            
+        }
     }
 }

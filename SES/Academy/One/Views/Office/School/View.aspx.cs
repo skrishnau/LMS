@@ -13,7 +13,7 @@ namespace One.Views.Office.School
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Office/");
+            Response.Redirect("~/About.aspx");
             //var user = User as CustomPrincipal;// Master.UserId;
             ////var schoolId = Master as UserMaster;//
             ////if(schoolId!=null)

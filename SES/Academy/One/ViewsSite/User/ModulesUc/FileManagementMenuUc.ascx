@@ -9,7 +9,7 @@
             <asp:HyperLink ID="HyperLink1" runat="server" CssClass="modules-title">File Management</asp:HyperLink>
         </strong>
     </div>
-    <div style="font-weight: 500;" class="list-unmargined">
+    <div style="" class="list-unmargined">
 
         <%--<div class="auto-st2">--%>
         <asp:HyperLink ID="lnkPrivate" runat="server"

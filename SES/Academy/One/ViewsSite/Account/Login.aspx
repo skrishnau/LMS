@@ -57,7 +57,7 @@
                     </div>
                     
                     <div style="text-align: left;">
-                        <asp:LinkButton ID="Login" CssClass="link-button" runat="server" Text="Login" CommandName="Login" CommandArgument="login" />
+                        <asp:Button ID="Login" CssClass="link-button" runat="server" Text="Login" CommandName="Login" CommandArgument="login" />
                     </div>
                     </LayoutTemplate>
                 </asp:Login>

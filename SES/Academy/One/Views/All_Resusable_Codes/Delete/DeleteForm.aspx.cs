@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 
 namespace One.Views.All_Resusable_Codes.Delete
@@ -39,11 +40,19 @@ namespace One.Views.All_Resusable_Codes.Delete
                     {
                         Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
                     }
-
+                    LoadSiteMap();
 
                 }
             }
             catch { Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx"); }
+        }
+
+        private void LoadSiteMap()
+        {
+            SiteMapUc.SetData(new List<IdAndName>()
+            {
+                new IdAndName(){Name = "Delete"}
+            });
         }
 
         private void LoadCustomText()
@@ -129,6 +138,23 @@ namespace One.Views.All_Resusable_Codes.Delete
 
 
                 #endregion
+
+                #region Book chapter
+
+                var chapterId = Request.QueryString["bcId"];
+                if (chapterId != null)
+                    using (var helper = new DbHelper.ActAndRes())
+                    {
+                        var chapter = helper.GetChapter(Convert.ToInt32(chapterId));
+                        if (chapter != null)
+                        {
+                            lblInfoText.Text = "Are you sure to delete the chapter, " + chapter.Title + "?";
+                        }
+                        return;
+                    }
+
+                #endregion
+
 
                 #region Grade
 
@@ -581,6 +607,29 @@ namespace One.Views.All_Resusable_Codes.Delete
 
         #endregion
 
+        #region chapter delete
+
+        private void ChapterDelete()
+        {
+            using (var helper = new DbHelper.ActAndRes())
+            {
+                var chapterId = Request.QueryString["bcId"];
+                var bookId = Request.QueryString["bId"];
+                var subId = Request.QueryString["SubId"];
+                var secId = Request.QueryString["secId"];
+                var deleted = helper.DeleteChapter(Convert.ToInt32(chapterId));
+                if (deleted)
+                {
+                    Response.Redirect("~/Views/ActivityResource/Book/BookView.aspx?arId=" + bookId +
+                                      "&SubId=" + subId +
+                                      "&secId=" + secId);
+                }
+                else lblError.Visible = true;
+            }
+        }
+
+        #endregion
+
         protected void btnOk_OnClick(object sender, EventArgs e)
         {
             try
@@ -634,6 +683,10 @@ namespace One.Views.All_Resusable_Codes.Delete
                         SubjectClassDelete();
                         return;
                         break;
+                    case "chapsubjectClass":
+                        ChapterDelete();
+                        return;
+                        break;
                 }
             }
             catch
@@ -641,6 +694,8 @@ namespace One.Views.All_Resusable_Codes.Delete
                 Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
             }
         }
+
+
 
         protected void btnCancel_OnClick(object sender, EventArgs e)
         {
@@ -713,6 +768,17 @@ namespace One.Views.All_Resusable_Codes.Delete
                         }
                         return;
                         break;
+                    case "chapsubjectClass":
+                        var chapterId = Request.QueryString["bcId"];
+                        var bookId = Request.QueryString["bId"];
+                        var subId = Request.QueryString["SubId"];
+                        var secId = Request.QueryString["secId"];
+                        Response.Redirect("~/Views/ActivityResource/Book/BookView.aspx?arId=" + bookId +
+                                          "&SubId=" + subId +
+                                          "&secId=" + secId);
+                        return;
+                        break;
+
                 }
             }
             catch (Exception exe)

@@ -136,7 +136,7 @@
                                                     <asp:LinkButton ID="btnDue" runat="server" OnClick="btnFilterCrieteria_Click">
                                                         <%--<span style="background-color: #ff9aaa;" class="class-filter-table-cell"></span>--%>
                                                         <asp:Image ID="Image4" runat="server"
-                                                            Height="10" Width="10"
+                                                            Height="14" Width="14"
                                                             ImageUrl="~/Content/Icons/Watch/alarm_clock_14px.png" />
 
                                                         Due
@@ -147,9 +147,9 @@
                                                     <asp:LinkButton ID="btnNotStartedYet" runat="server" OnClick="btnFilterCrieteria_Click">
                                                         <%--<span style="background-color: #fbfb3f;" class="class-filter-table-cell"></span>--%>
                                                         <asp:Image ID="Image3" runat="server"
-                                                            Height="11" Width="11"
+                                                            Height="14" Width="14"
                                                             ImageUrl="~/Content/Icons/Hourglass/schedule_14px.png" />
-                                                        Not yet Started
+                                                        Upcoming
                                                     </asp:LinkButton>
                                                     &nbsp;
                                                 </td>

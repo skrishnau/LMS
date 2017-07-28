@@ -8,6 +8,9 @@
 </asp:Content>
 
 
+<%--<%@ Register Src="~/Views/All_Resusable_Codes/Dialog/CustomDialog.ascx" TagPrefix="uc1" TagName="CustomDialog" %>--%>
+
+
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -27,28 +30,34 @@
                     <asp:Image ID="imgJoinInfo" runat="server" Width="10" Height="10" Visible="False" />
                 </div>
                 <%-- line-height: 18px; --%>
-                <div style="float: left;margin-top: 10px;">
+                <div style="float: left; margin-top: 5px;">
                     &nbsp;&nbsp;
-                    <asp:LinkButton ID="lnkEnroll" runat="server" CssClass="link-button"
+                   <%-- <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>--%>
+                    <asp:HyperLink ID="lnkEnroll" runat="server" CssClass="link-button"
                         ToolTip="New class has been opened in this course. Click for detail."
-                         Visible="False">
-                        Enroll now
-                    </asp:LinkButton>
+                        Visible="False">Enroll Now</asp:HyperLink>
+                    <%-- OnClick="btnEnroll_Click" --%>
                 </div>
-                
-                <div style="float: right;margin-top: 10px">
-                    <asp:HyperLink ID="lnkMyClasses" runat="server" CssClass="link-button"
-                        
-                        ToolTip="Classes of this course in which you have participated"
-                         Visible="False">
-                        My Classes
-                    </asp:HyperLink>
-                </div>
+                <%--   <uc1:CustomDialog runat="server" ID="CustomDialog" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>--%>
+            </div>
 
-                <div style="clear: both;"></div>
+
+
+            <div style="float: right; margin-top: 10px">
+                <asp:HyperLink ID="lnkMyClasses" runat="server" CssClass="link-button"
+                    ToolTip="Classes of this course in which you have participated"
+                    Visible="False">
+                        My Classes
+                </asp:HyperLink>
+            </div>
+
+            <div style="clear: both;"></div>
             </div>
             <div style="clear: both;"></div>
-           
+
 
             <%--<div style="margin: 5px 10px 5px; padding: 5px; border: 1px solid lightgray;">
 
@@ -94,6 +103,7 @@
     <link href="../../../AjaxAspNetJquery/jquery-ui-1.12.0.custom/jquery-ui.css" rel="stylesheet" type="text/css" />
 
     <link href="../../../Content/CSSes/ActResStyles.css" rel="stylesheet" />
+    <link href="../../../Views/All_Resusable_Codes/Dialog/CustomDialogStyles.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content runat="server" ID="titleContnet" ContentPlaceHolderID="title">

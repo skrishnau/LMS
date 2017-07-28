@@ -98,7 +98,6 @@ namespace One.Views.Course.Section
 
 
                         var editUrl = "~/Views/Course/Section/CreateSection.aspx" + "?SecId=" + SectionId+
-                                         "&ReturnUrl=" + Request.Url.AbsolutePath+
                                          "&SubId=" + this.SubjectId;
                         lnkEdit.NavigateUrl = editUrl;
 

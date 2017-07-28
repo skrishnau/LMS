@@ -55,8 +55,11 @@
             <%-- section end --%>
 
             <div class="save-div">
-                <asp:Button ID="btnSave" runat="server" Text="Save " Width="90px" OnClick="btnSave_Click" />
+                <%--<asp:Button ID="btnSave1" runat="server" Text="Save "OnClick="btnSave_Click" />--%>
+                <asp:Button runat="server" ID="btnSv" Text="Save" OnClick="btnSave_Click"/>
                 &nbsp;&nbsp;
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_OnClick" />
+                &nbsp; &nbsp;
             </div>
         </div>
     </div>
@@ -66,4 +69,13 @@
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSectionId" runat="server" Value="0" />
 
+</asp:Content>
+
+
+
+<asp:Content runat="server" ID="content1" ContentPlaceHolderID="head">
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content runat="server" ID="content2" ContentPlaceHolderID="title">
+    Chapter edit
 </asp:Content>

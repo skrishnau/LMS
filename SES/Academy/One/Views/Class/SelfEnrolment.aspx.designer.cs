@@ -58,6 +58,15 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Literal lblEndDate;
         
         /// <summary>
+        /// lblJoinLstDateTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblJoinLstDateTitle;
+        
+        /// <summary>
         /// lblJoinLastDate control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace One.Views.Class {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lblJoinLastDate;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// lnkViewCourse control.
@@ -76,13 +94,22 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.HyperLink lnkViewCourse;
         
         /// <summary>
-        /// lnkEnrollNow control.
+        /// btnEnroll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkEnrollNow;
+        protected global::System.Web.UI.WebControls.LinkButton btnEnroll;
+        
+        /// <summary>
+        /// CustomDialog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::One.Views.All_Resusable_Codes.Dialog.CustomDialog CustomDialog;
         
         /// <summary>
         /// DataList1 control.
