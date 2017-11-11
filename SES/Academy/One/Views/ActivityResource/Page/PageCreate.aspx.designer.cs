@@ -31,6 +31,15 @@ namespace One.Views.ActivityResource.Page {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
+        /// valiTxtName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiTxtName;
+        
+        /// <summary>
         /// txtDescription control.
         /// </summary>
         /// <remarks>

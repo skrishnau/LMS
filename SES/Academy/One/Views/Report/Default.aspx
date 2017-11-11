@@ -13,34 +13,44 @@
         <asp:Label ID="Label1" runat="server" Text="Report"></asp:Label>
     </h3>
     <hr />
-    <div>
-        <h3 class="heading-of-display">
-            <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
-        </h3>
-        <h3 class="heading-of-display">
-            <asp:Label ID="lblCourseName" runat="server" Text=""></asp:Label>
-        </h3>
-    </div>
+
+    <table>
+        <tr>
+            <td class="data-type">Course</td>
+            <td class="data-value">
+                <asp:HyperLink ID="lnkCourseName" CssClass="link" runat="server" Text=""></asp:HyperLink>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="data-type">Class</td>
+            <td class="data-value">
+                <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
+            </td>
+        </tr>
+    </table>
+
     <br />
 
-    <div class="data-entry-section">
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <div style="border: 1px solid lightgray;  padding: 10px;">
-                    <div class="data-entry-section-heading">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <asp:LinkButton ID="lnkFilter" runat="server" OnClick="lnkFilter_OnClick" Enabled="False">
+                        <asp:Image ID="imgFilter" runat="server" ImageUrl="~/Content/Icons/Sort/sort-down-14px.png" />
+                        Filter
+                    </asp:LinkButton>
+                </div>
+                <div class="panel-body">
+                    <asp:Panel ID="pnlFilter" runat="server" Visible="True">
 
-                        <asp:LinkButton ID="lnkFilter" runat="server" OnClick="lnkFilter_OnClick" Enabled="False">
-                            Filter
-                             <asp:Image ID="imgFilter" runat="server" ImageUrl="~/Content/Icons/Arrow/arrow_right.png" />
-                        </asp:LinkButton>
-                        <hr />
-                    </div>
-                    <div style="padding-left: 10px;">
-                        <%--The grade calculation method needs review... range is not functioning well.--%>
-                        <asp:Panel ID="pnlFilter" runat="server" Visible="True">
-                            <div>Attributes to include:</div>
-
-                            <div>
+                        <%-- style="margin: 10px 0;" --%>
+                        <div class="row">
+                            <div class="col-md-3">
+                                Attributes to include:
+                            </div>
+                            <%-- style="margin: 10px 0;" --%>
+                            <div class="col-md-9">
                                 <span class="span-padding">
                                     <asp:CheckBox ID="chkImage" runat="server" Text="Image" Checked="True" />
                                 </span>
@@ -56,35 +66,59 @@
                                 <span class="span-padding"></span>
                                 <span class="span-padding"></span>
                             </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <%-- style="margin: 10px 0 5px; --%>
+                            <div class="col-md-3">Activities to include:</div>
 
-                            <%--<div style="margin-top: 5px;">
-                                <div>Activities to include:</div>
-
+                            <%--  --%>
+                            <div class="col-md-9">
                                 <asp:CheckBoxList ID="chkActivities" runat="server"
-                                    Enabled="False"
+                                    Enabled="True"
+                                    CssClass="checkbox-horizontal"
                                     DataTextField="Name" DataValueField="Id" RepeatDirection="Horizontal">
                                 </asp:CheckBoxList>
-                            </div>--%>
-                                <%--<asp:PlaceHolder ID="pnlActivityCheck" runat="server"></asp:PlaceHolder>--%>
-
-                            <div>
-                                <asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_OnClick" />
+                                <span class="span-padding">
+                                    <asp:Label ID="lblNoneActRes" runat="server" Text="None" Visible="False">
+                                    </asp:Label>
+                                </span>
                             </div>
-                        </asp:Panel>
-                    </div>
-                </div>
-                <br />
-                <div>
-                    <asp:Table ID="tblStudents" runat="server" Width="99%">
-                    </asp:Table>
-                </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+                        </div>
+                        <%--<asp:PlaceHolder ID="pnlActivityCheck" runat="server"></asp:PlaceHolder>--%>
+                        <br />
+                        <div class="row" style="margin-left: 5px;">
+                            <%-- link-button --%>
+                            <asp:LinkButton ID="btnSave" ToolTip="Save the report setting for future view"
+                                runat="server" CssClass="btn btn-default" Text="Save"
+                                OnClick="btnSave_OnClick">
+                            </asp:LinkButton>
 
-        <br />
+                            &nbsp; &nbsp; &nbsp;
 
-        <asp:HiddenField ID="hidSubjectClassId" runat="server" Value="0" />
-    </div>
+                                <asp:LinkButton ID="btnLoad" runat="server" CssClass="btn btn-default" Text="Load"
+                                    OnClick="btnLoad_OnClick">
+                                </asp:LinkButton>
+
+                        </div>
+                    </asp:Panel>
+                </div>
+            </div>
+            <%-- gridview --%>
+            <div class="panel panel-default">
+                <div class="panel-heading">Report</div>
+                <asp:Table ID="tblStudents"
+                    CssClass="table table-hover table-responsive"
+                    Style="border-collapse: collapse; width: 100%;"
+                    runat="server" Width="100%">
+                </asp:Table>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    <br />
+
+    <asp:HiddenField ID="hidSubjectClassId" runat="server" Value="0" />
 </asp:Content>
 
 
@@ -95,6 +129,7 @@
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="head">
     <link href="../../Content/CSSes/ToolTip.css" rel="stylesheet" />
+    <link href="../../Content/CSSes/TableStyles.css" rel="stylesheet" />
     <style type="text/css">
         .span-padding {
             padding: 0 5px;

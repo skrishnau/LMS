@@ -76,6 +76,24 @@ namespace One.Views.Class {
         protected global::System.Web.UI.WebControls.Literal lblEnrollmentMethod;
         
         /// <summary>
+        /// lbldNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldNotice;
+        
+        /// <summary>
+        /// imgNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgNotice;
+        
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -128,24 +146,6 @@ namespace One.Views.Class {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::One.Views.All_Resusable_Codes.Dialog.CustomDialog CustomDialog;
-        
-        /// <summary>
-        /// lbldNotice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldNotice;
-        
-        /// <summary>
-        /// imgNotice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgNotice;
         
         /// <summary>
         /// GridView1 control.

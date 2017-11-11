@@ -7,8 +7,11 @@
        <em>
            <asp:Literal ID="lblProgramDirectory" runat="server"></asp:Literal></em>
     </h3>
-    <div style=" margin: 10px; text-align: right;">
-        <asp:Button ID="btnManageSubject" runat="server" Text="Manage Subjects" OnClick="btnManageSubject_Click" />
+    <div style="margin: 10px; text-align: right;">
+        <asp:LinkButton ID="btnManageSubject" runat="server" Text="Manage Subjects" 
+            CssClass="link-outer"
+            OnClick="btnManageSubject_Click">
+        </asp:LinkButton>
     </div>
     <%--   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>
@@ -46,7 +49,7 @@
                                     <asp:Label ID="SubjectCategoryIdLabel" runat="server" Text='<%# Eval("CategoryName") %>' />
                                 </td>
                             </tr>
-                          <%--  <tr>
+                            <%--  <tr>
                                 <td style="width: 40px;">
                                     Elective
                                 </td>
@@ -60,7 +63,7 @@
                                 <td style="width: 40px;">Credit</td>
                                 <td>
                                     <asp:Label ID="Label1" runat="server" Text='<%# Eval("Credit") %>' />
-                                    
+
                                 </td>
                             </tr>
                         </table>

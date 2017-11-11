@@ -773,6 +773,116 @@ namespace Academic.DbHelper
             }
 
 
+            //used--shree krishna v3.0
+            /// <summary>
+            /// For manager and teacher to display in sidebar.
+            /// Returns: Dict[0]=current ... Dict[1]=earlier
+            /// </summary>
+            /// <param name="userId"></param>
+            /// <param name="getOnlyCurrent">True: Current only, False: Earlier only, NULL: both</param>
+            /// <returns>Dict[0]=current ... Dict[1]=earlier</returns>
+            public List<DbEntities.Subjects.Subject>[]
+                GetEarlierAndCurrentCourseAndClassesForManagerAndTeacherV3(int userId, bool? getOnlyCurrent = null)
+            {
+                var now = DateTime.Now.Date;
+                var currentSubjectList = new List<DbEntities.Subjects.Subject>();
+                var earlierSubjectList = new List<DbEntities.Subjects.Subject>();
+
+
+                var scDict = new Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>();
+
+
+                var user = Context.Users.Find(userId);
+                if (user != null)
+                {
+                    var subClasses = user.Classes.Where(x => !(x.Void ?? false) && !(x.Suspended ?? false))
+                        .Select(x => x.SubjectClass).Where(x => !(x.Void ?? false) //&& !(x.SessionComplete ?? false)) -- return all
+                        )
+                        .OrderBy(x => (x.IsRegular) ? x.SubjectStructure.Subject.FullName : x.Subject.FullName)
+                        //.GroupBy(x => (x.IsRegular) ? x.SubjectStructure.Subject : x.Subject)
+                        .ToList();
+
+                    var getEarlier = getOnlyCurrent == null || getOnlyCurrent == false;
+                    var getCurrent = getOnlyCurrent == null || getOnlyCurrent == true;
+
+                    //logic. if getonlyCurrent is null then take both, 
+                    // if getonly current is true then take current only.
+                    foreach (var sc in subClasses)
+                    {
+
+                        var subject = sc.Subject ?? sc.SubjectStructure.Subject;
+
+                        //new lines
+                        if (!scDict.ContainsKey(subject))
+                        {
+                            scDict.Add(subject, new List<SubjectClass>());
+                        }
+                        scDict[subject].Add(sc);
+                        // --end of new lines 
+
+                        
+
+                        //var sessionComplete = (sc.SessionComplete ?? false) || (sc.EndDate ?? DateTime.MaxValue) < now;
+                        //if (sessionComplete)
+                        //{
+                        //    //complete--means earlier
+                        //    if ((getEarlier))
+                        //    {
+                        //        if (!earlierSubjectClassDictionary.ContainsKey(subject))
+                        //        {
+                        //            earlierSubjectClassDictionary.Add(subject, new List<SubjectClass>());
+                        //        }
+                        //        earlierSubjectClassDictionary[subject].Add(sc);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    //current
+                        //    if (getCurrent)
+                        //    {
+                        //        if (!currentSubjectClassDictionary.ContainsKey(subject))
+                        //        {
+                        //            currentSubjectClassDictionary.Add(subject, new List<SubjectClass>());
+                        //        }
+                        //        currentSubjectClassDictionary[subject].Add(sc);
+                        //    }
+                        //}
+                    }
+
+                    foreach (var sub in scDict.Keys)
+                    {
+                        var cur =
+                            scDict[sub].Any(
+                                sc => !((sc.SessionComplete ?? false) || (sc.EndDate ?? DateTime.MaxValue) < now));
+
+                        if (cur)
+                        {
+                            //then its current subject
+                            if (getCurrent)
+                            {
+                                currentSubjectList.Add(sub);
+                            }
+                        }
+                        else
+                        {
+                            //else it's earlier... because it already has classes (as we extracted subjects from classes :)...
+                            if (getEarlier)
+                            {
+                                earlierSubjectList.Add(sub);
+                            }
+                        }
+                    }
+
+
+                    return new[]//Dictionary<DbEntities.Subjects.Subject, List<SubjectClass>>[]
+                    {
+                        currentSubjectList,earlierSubjectList
+                    };
+                }
+                return null;
+            }
+
+
             public List<DbEntities.Class.UserClass> ListCurrentUserClasses(int userId)
             {
                 var user = Context.Users.Find(userId);

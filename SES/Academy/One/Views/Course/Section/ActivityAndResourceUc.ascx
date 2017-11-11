@@ -3,22 +3,24 @@
 <%--<div class="course-act-res-whole">--%>
 <asp:Panel ID="pnlHeading" runat="server">
     <%-- class="course-act-res-heading" --%>
-    <div>
+    <div style="padding: 10px 0;">
 
         <table>
             <tr>
                 <td>
-                    <asp:Image ID="imgIcon" runat="server"  AlternateText="" Height="26" Width="26" />
-
+                    <asp:HyperLink ID="lnkImgIcon" CssClass="link-act-res-title" runat="server" Text="">
+                        <asp:Image ID="imgIcon" runat="server" AlternateText="" Height="25" Width="25" />
+                    </asp:HyperLink>
                 </td>
                 <td>
                     <div style="float: left;">
+                        &nbsp;
                         <asp:HyperLink ID="lblTitle" CssClass="link-act-res-title" runat="server" Text="">
                         </asp:HyperLink>
                         <asp:Label ID="lblNoLinkTitle" CssClass="link-act-res-description" runat="server" Visible="False"></asp:Label>
                     </div>
                     <%-- runat="server" id="divOptionSpan" --%>
-                    <div style="float: left;" >
+                    <div style="float: left;">
 
                         <span class="span-edit-delete">&nbsp;
                         <span>
@@ -39,7 +41,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td>
+                <td style="padding-left: 8px;">
                     <asp:Panel ID="pnlDescription" runat="server" CssClass="course-act-res-description">
                         <asp:Label ID="lblDescription" CssClass="link-act-res-description" runat="server" Text=""></asp:Label>
                     </asp:Panel>

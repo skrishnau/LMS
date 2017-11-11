@@ -177,15 +177,15 @@ namespace One.Views.User
 
         protected void GridView1_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                if (e.Row.RowIndex % 2 == 0)
-                {
-                    e.Row.CssClass = "highlight-row-even";
-                }
-                else
-                    e.Row.CssClass = "highlight-row-odd";
-            }
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    if (e.Row.RowIndex % 2 == 0)
+            //    {
+            //        e.Row.CssClass = "highlight-row-even";
+            //    }
+            //    else
+            //        e.Row.CssClass = "highlight-row-odd";
+            //}
         }
     }
 }

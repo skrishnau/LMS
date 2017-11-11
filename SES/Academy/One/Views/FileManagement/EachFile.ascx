@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EachFile.ascx.cs" Inherits="One.Views.FileManagement.EachFile" %>
 
 <%-- border: 1px solid lightgray; --%>
-<div style="float: left; z-index: 0; margin: 6px; text-align: center; vertical-align: top;"
+<div style="float: left; z-index: 0; margin: 10px; padding:  7px 7px 10px; text-align: center; vertical-align: top; box-shadow: 0px 0px 5px #aaaaaa;"
     class="list-item-file-listing">
     <asp:Panel ID="pnlTooltipBody" runat="server">
 
@@ -26,6 +26,7 @@
                         <asp:Image ID="imgFolder" runat="server" Height="26" Width="26" />
                     </td>
                     <td style="vertical-align: central; text-align: left;">
+                        &nbsp;
                         <asp:Label ID="lblDisplayNameFolder" runat="server" Text="" Width="100px"></asp:Label>
                     </td>
                 </tr>

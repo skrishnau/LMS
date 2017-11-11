@@ -118,7 +118,8 @@ namespace One.Views.Student.Batch.Student
                                             //if there are any running classes
                                             var link = new HyperLink()
                                            {
-
+                                               //CssClass = "link",
+                                               CssClass = "list-group-item",
                                                NavigateUrl = "~/Views/Academy/RunningClassForm.aspx?rcId=" + rcls.Id
                                            };
 
@@ -146,7 +147,7 @@ namespace One.Views.Student.Batch.Student
 
                                             pnlYearsSubYears.Controls.Add(link);
 
-
+                                            //pnlYearsSubYears.Controls.Add(new Literal() { Text = "<br/>" });
                                             //var literal = new Literal()
                                             //{
                                             //    Text = "<br />"

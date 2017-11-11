@@ -21,58 +21,80 @@
     <br />
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
+
+
+
             <asp:Panel ID="pnlRoleAsg" runat="server" Visible="False">
-                <div style="text-align: center; font-weight: 700; font-size: 1.1em;">
+                <div style="text-align: center; font-weight: 500; font-size: 1.1em;">
                     <asp:Label ID="lblRoleName" runat="server" Text=""></asp:Label>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Assigned Users</div>
+                            <asp:ListBox ID="lstAsg" runat="server" Width="100%" Height="350px"
+                                DataTextField="Name" DataValueField="Id"></asp:ListBox>
+                        </div>
+                    </div>
 
-                <table width="99%;">
+                    <div class="col-md-2">
+                        <div class="align-middle text-center">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <asp:Button ID="btnAsg" runat="server" Text="← Assign to Role"
+                                OnClick="btnAsg_Click" CausesValidation="False"
+                                CssClass="btn btn-default" />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <asp:Button ID="btnRemove" runat="server" Text="Remove →"
+                                OnClick="btnRemove_Click" CausesValidation="False"
+                                CssClass="btn btn-default" />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <asp:Button ID="btnSave" runat="server" Text="Save" Width="75px"
+                                ToolTip="Save before changing role" CssClass="btn btn-default"
+                                OnClick="btnSave_Click" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Unassigned Users</div>
+                            <asp:ListBox ID="lstUnAsg" runat="server" Width="100%" Height="350px"
+                                DataValueField="Id" DataTextField="Name"></asp:ListBox>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <%--  <table width="99%;">
                     <tr>
-                        <td style="width: 38%;">Assigned users    
-                        </td>
+                        <td style="width: 38%;">Assigned users</td>
                         <td style="width: 22%;"></td>
                         <td style="width: 38%">Unassigned users</td>
                     </tr>
 
                     <tr>
 
-                        <%-- ------------------------------------------ LEFT PANEL -------------------------------- --%>
-                        <td style="vertical-align: top;">
-                            <asp:ListBox ID="lstAsg" runat="server" Width="100%" Height="350px"
-                                DataTextField="Name" DataValueField="Id"></asp:ListBox>
-                        </td>
+                        <td style="vertical-align: top;"></td>
 
 
-                        <%-- ----------------------------------------- CENTER PANEL ----------------------------------- --%>
-                        <td style="text-align: center;">
-                            <br />
-                            <br />
-                            <asp:Button ID="btnAsg" runat="server" Text="← Assign to Role"
-                                OnClick="btnAsg_Click" CausesValidation="False" />
-                            <br />
-                            <br />
-                            <br />
-                            <asp:Button ID="btnRemove" runat="server" Text="Remove from Role →"
-                                OnClick="btnRemove_Click" CausesValidation="False" />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <asp:Button ID="btnSave" runat="server" Text="Save" Width="75px"
-                                ToolTip="Save before changing role"
-                                OnClick="btnSave_Click" />
-
-                        </td>
+                        <td style="text-align: center;"></td>
 
 
-
-                        <%-- -----------------------------------------RIGHT PANEL --------------------------------- --%>
-                        <td style="vertical-align: top;">
-                            <asp:ListBox ID="lstUnAsg" runat="server" Width="100%" Height="350px" DataValueField="Id" DataTextField="Name"></asp:ListBox>
-                        </td>
+                        <td style="vertical-align: top;"></td>
                     </tr>
-                </table>
+                </table>--%>
             </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>

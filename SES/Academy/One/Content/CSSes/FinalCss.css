@@ -10,29 +10,101 @@
         margin: 6px 4px;
         padding: 5px 15px;
         height: auto;
-        color: #393939;
-        font-family: Arial Tahoma;
+        /*color: #393939;*/
+        color: #303882;
+        /*font-family: Arial Tahoma;*/
         font-size: 1.0em;
         text-decoration: none;
         background-color: transparent;
-        border: 1px solid lightgrey;
         -webkit-border-radius: 5px;
         min-width: 80px;
-        border-bottom: 2px solid lightgrey;
-        /*border-right: 2px solid lightgrey;*/
+        /*border: 1px solid lightgrey;*/
+        /*border-bottom: 2px solid lightgrey;*/
     }
 
         .option-div a:hover {
-            /*color: black;*/
+            color: black;
             font-weight: 400;
             text-decoration: underline;
-            background-color: #f5f5f5;
+            background-color: transparent;
+            /*background-color: #f5f5f5;*/
         }
 
         .option-div a:active {
             color: blueviolet;
             text-decoration: underline;
         }
+
+/*LInks*/
+.link, .link:visited {
+    /*blue*/
+    /*color: #393939;*/
+    font-size: 1.0em;
+    height: auto;
+    /*color: #393939;*/
+    color: #303882;
+    /*font-family: Arial Tahoma;*/
+    font-size: 1.0em;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-border-radius: 5px;
+    min-width: 80px;
+}
+
+    .link:hover {
+        color: black;
+        font-weight: 400;
+        text-decoration: underline;
+        background-color: transparent;
+        /*color: black;*/
+        /*background-color: #f5f5f5;
+        font-weight: 400;
+        text-decoration: underline;*/
+    }
+
+    .link:active {
+        color: blueviolet;
+        text-decoration: underline;
+    }
+
+
+
+/*LInks that are outer of content... i.e .they are not in content.. they are menu*/
+.link-outer, .link-outer:visited {
+    font-size: 1.0em;
+    height: auto;
+    color: #3f3f3f;
+/*#303882;*/
+    /*font-family: Arial Tahoma;*/
+    font-size: 1.0em;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 8px 15px;
+
+    background: lightgray; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(white, lightgray); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, lightgray); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, lightgray); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, lightgray); /* Standard syntax */
+
+    min-width: 80px;
+}
+
+    .link-outer:hover {
+        color: black;
+        font-weight: 400;
+        /*text-decoration: underline;*/
+        text-decoration: none;
+        background: lightgray;
+        border: 1px solid lightgray;
+    }
+
+    .link-outer:active {
+        color: blueviolet;
+        text-decoration: underline;
+    }
+
 /*link-button*/
 .link-button {
     margin: 6px 4px;
@@ -46,7 +118,8 @@
     background-color: transparent;
     border: 1px solid lightgrey;
     -webkit-border-radius: 5px;
-    min-width: 80px;
+    width: auto;
+    /*min-width: 80px;*/
     border-bottom: 2px solid lightgrey;
     /*border-right: 2px solid lightgrey;*/
 }
@@ -171,17 +244,19 @@
 .list-item, .list-item:visited {
     display: block;
     margin: -1px 4px 0;
-    padding: 6px;
+    padding: 10px;
     border: 1px solid lightgrey;
+    border-radius: 2px;
     /*margin-top: -1px;*/
-    color: #393939;
+    /*color: #393939;*/
+    color: #303882;
     text-decoration: none;
     /*background-color: lightgray;*/
     /*-webkit-border-radius: 5px;*/
 }
 
     .list-item:hover {
-        background-color: #f5f5f5;
+        background-color: #f7f7f7;
         color: black;
     }
 
@@ -192,7 +267,8 @@
     padding: 6px;
     border: 1px solid lightgrey;
     /*margin-top: -1px;*/
-    color: #393939;
+    color: #303882;
+    /*color: #393939;*/
     text-decoration: none;
     /*background-color: lightgray;*/
     /*-webkit-border-radius: 5px;*/
@@ -228,7 +304,7 @@
     /*margin: 2px 5px;
     color: #5f5f5f;*/
     color: #808080;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 /*Used above*/
 
@@ -238,10 +314,58 @@
 
 
 /*Heading*/
-h3.heading-of-create-edit {
-    text-align: left;
-    margin-top: 3px;
-    font-size: 2em;
+
+
+.list-item-heading, .list-item-heading:visited {
+    font-size: 1em;
+    /*color: #393939;*/
+    /*color: #7a91bd;*/
+    /*color: #3333cc;*/
+    /*color: #374195;*/
+    color: #303882;
+    text-decoration: none;
+    display: inline-block;
     font-weight: 400;
-    color: darkslategray;
+    /*background-color: #f0fff0;*/
+    /*//font-size: 2em;*/
+}
+
+    .list-item-heading:hover {
+        color: black;
+        text-decoration: underline;
+        font-weight: 400;
+    }
+
+    .list-item-heading:active {
+        color: darkblue;
+    }
+
+
+.list-item-heading-option {
+    font-size: 14px;
+    margin-left: 10px;
+    color: #393939;
+}
+
+    .list-item-heading-option a {
+        color: #393939;
+        text-decoration: underline;
+    }
+
+        .list-item-heading-option a:hover {
+            color: black;
+            font-weight: bold;
+            background-color: #f5f5f5;
+            text-decoration: underline;
+        }
+
+
+
+/*check-box horizontal*/
+
+.checkbox-horizontal {
+
+}
+.checkbox-horizontal td {
+    padding-left: 10px;
 }

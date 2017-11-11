@@ -23,8 +23,9 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage
                 if (user.IsInRole("manager") )
                 {
                     var edit = (Session["editMode"] as string) ?? "0";
-
-                    btnManageSubject.Visible = edit=="1";
+                    var showBtn = Request.QueryString["swMgBt"];
+                    var show = showBtn != null && showBtn == "1";
+                    btnManageSubject.Visible = edit=="1" || show;
                 }
                 else
                 {

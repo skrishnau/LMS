@@ -17,18 +17,20 @@
     <h3 class="heading-of-display">
         <asp:Label runat="server" ID="lblBatchName"></asp:Label>
     </h3>
+    <hr/>
+
     <div style="font-size: 1em; margin-left: 25px;">
         <asp:Label runat="server" ID="lblSummary"></asp:Label>
     </div>
-    
-     <div style="color: darkslategrey">
-            <asp:Label ID="lblFromSessionNotice" runat="server" 
-                Visible="False">
-                <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
 
-                 Add students to the respective program of this new batch.
-            </asp:Label>
-        </div>
+    <div style="color: darkslategrey">
+        <asp:Label ID="lblFromSessionNotice" runat="server"
+            Visible="False">
+            <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
+
+            Add students to the respective program of this new batch.
+        </asp:Label>
+    </div>
 
     <br />
     <%--<div style="margin: 5px;">--%>
@@ -42,10 +44,18 @@
          </span>--%>
     <%--</div>--%>
     <%--</div>--%>
-    <div style="color: darkslategrey; font: 20px bold darkslategray; margin: 3px 3px 8px;">Programs in the Batch</div>
-    <div >
-        <asp:PlaceHolder ID="pnlProgramsInTheBatch" runat="server"></asp:PlaceHolder>
+    <div class="panel panel-default">
+        <div class="panel-heading">Programs</div>
+
+        <div class="list-group">
+            <asp:PlaceHolder ID="pnlProgramsInTheBatch" runat="server"></asp:PlaceHolder>
+
+        </div>
+
     </div>
+    <%--<div style="color: darkslategrey; font: 20px bold darkslategray; margin: 3px 3px 8px;">Programs in the Batch</div>
+    <div>
+    </div>--%>
     <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />
 
 </asp:Content>

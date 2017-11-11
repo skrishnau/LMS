@@ -30,98 +30,103 @@
 
             <h3 class="heading-of-create-edit">Class edit
             </h3>
-            <br />
-            <div class="data-entry-section-body">
-                <table>
-                    <tr>
-                        <td class="data-type">Course                    
-                        </td>
-                        <td class="data-value">
-                            <asp:Label ID="lblCourseName" runat="server" Font-Bold="True"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <%-- auto-style1 form-element-row-height --%>
-                        <td class="data-type">Class Name* </td>
-                        <td class="data-value">
-                            <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="valiName" runat="server"
-                                ControlToValidate="txtName" ForeColor="red"
-                                ErrorMessage="Required"></asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="data-type">Grouping of Students </td>
-                        <td class="data-value">
-                            <asp:DropDownList ID="ddlGroupingOfStudents" runat="server" Enabled="False">
-                                <Items>
-                                    <asp:ListItem Value="0" Text="Don't Use any Grouping"></asp:ListItem>
-                                    <asp:ListItem Value="1" Text="Custom Grouping For Only This Class"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="Use Grouping From Course"></asp:ListItem>
-                                    <asp:ListItem Value="3" Text="Use Global Grouping Settings"></asp:ListItem>
-                                </Items>
-                            </asp:DropDownList>
-                        </td>
-                    </tr>
+            <hr />
+            <div class="panel panel-default">
+                <div class="panel-heading">General</div>
 
-                    <tr>
-                        <td class="data-type" style="display: inline-block;">Enrollment Method</td>
-                        <td class="data-value">
-                            <asp:DropDownList ID="ddlEnrollmentMethod" runat="server" Height="22px" Width="155">
-                                <Items>
-                                    <%--<asp:ListItem Value="0" Text="Automatic"></asp:ListItem>--%>
-                                    <asp:ListItem Value="1" Text="Manual Only"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="Self Enrollment" Selected="True"></asp:ListItem>
-                                    <%--<asp:ListItem Value="0" Text="Create "></asp:ListItem>--%>
-                                </Items>
-                            </asp:DropDownList>
-                            <br />
-                            <%-- the selection will be multiple and dynamic
+                <div class="panel-body">
+                    <table>
+                        <tr>
+                            <td class="data-type">Course                    
+                            </td>
+                            <td class="data-value">
+                                <asp:Label ID="lblCourseName" runat="server" Font-Bold="True"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <%-- auto-style1 form-element-row-height --%>
+                            <td class="data-type">Class Name* </td>
+                            <td class="data-value">
+                                <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="valiName" runat="server"
+                                    ControlToValidate="txtName" ForeColor="red"
+                                    ErrorMessage="Required"></asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data-type">Grouping of Students </td>
+                            <td class="data-value">
+                                <asp:DropDownList ID="ddlGroupingOfStudents" runat="server" Enabled="False">
+                                    <Items>
+                                        <asp:ListItem Value="0" Text="Don't Use any Grouping"></asp:ListItem>
+                                        <asp:ListItem Value="1" Text="Custom Grouping For Only This Class"></asp:ListItem>
+                                        <asp:ListItem Value="2" Text="Use Grouping From Course"></asp:ListItem>
+                                        <asp:ListItem Value="3" Text="Use Global Grouping Settings"></asp:ListItem>
+                                    </Items>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="data-type" style="display: inline-block;">Enrollment Method</td>
+                            <td class="data-value">
+                                <asp:DropDownList ID="ddlEnrollmentMethod" runat="server" Height="22px" Width="155">
+                                    <Items>
+                                        <%--<asp:ListItem Value="0" Text="Automatic"></asp:ListItem>--%>
+                                        <asp:ListItem Value="1" Text="Manual Only"></asp:ListItem>
+                                        <asp:ListItem Value="2" Text="Self Enrollment" Selected="True"></asp:ListItem>
+                                        <%--<asp:ListItem Value="0" Text="Create "></asp:ListItem>--%>
+                                    </Items>
+                                </asp:DropDownList>
+                                <br />
+                                <%-- the selection will be multiple and dynamic
                    , when one is selected then give to select another 
                    , the list contains  item "New Enrolment Method for this Class"--%>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="data-type">Start Date *</td>
-                        <td class="data-value">
-                            <asp:TextBox ID="txtStart" ClientIDMode="Static" runat="server" TextMode="Date"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="valiStartDate" runat="server"
-                                ControlToValidate="txtStart"
-                                ErrorMessage="Error" ForeColor="red"></asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="data-type">End Date *</td>
-                        <td class="data-value">
-                            <asp:TextBox ID="txtEnd" ClientIDMode="Static" runat="server" TextMode="Date"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="valiEndDate" runat="server"
-                                ControlToValidate="txtEnd"
-                                ErrorMessage="Error" ForeColor="red"></asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td class="data-type">Last Enroll Date *</td>
-                        <td class="data-value">
-                            <asp:TextBox ID="txtLastEnrollDate" ClientIDMode="Static" runat="server" TextMode="Date"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="valiLastEnrollDate" runat="server"
-                                ControlToValidate="txtLastEnrollDate"
-                                ErrorMessage="Error" ForeColor="red"></asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                </table>
-                <br />
-                <div class="save-div">
-                    <asp:Button ID="btnSaveAndReturn" runat="server" Width="80px" Text="Save" OnClick="btnSave_Click" />
-                    &nbsp;&nbsp;
-                    <asp:Button ID="btnCancel" runat="server" Width="80px" Text="Cancel" OnClick="btnCancel_OnClick" />
-
-                    <asp:Label ID="lblErrorMsg" Visible="False" runat="server" 
-                        ForeColor="red"
-                        Text=" Error while saving "></asp:Label>
-                    <%--<asp:Button ID="btnSaveAndEnrollUsers" runat="server" Text="Save" OnClick="btnSave_Click" />--%>
+                        <tr>
+                            <td class="data-type">Start Date *</td>
+                            <td class="data-value">
+                                <asp:TextBox ID="txtStart" ClientIDMode="Static" runat="server" TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="valiStartDate" runat="server"
+                                    ControlToValidate="txtStart"
+                                    ErrorMessage="Error" ForeColor="red"></asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data-type">End Date *</td>
+                            <td class="data-value">
+                                <asp:TextBox ID="txtEnd" ClientIDMode="Static" runat="server" TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="valiEndDate" runat="server"
+                                    ControlToValidate="txtEnd"
+                                    ErrorMessage="Error" ForeColor="red"></asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data-type">Last Enroll Date *</td>
+                            <td class="data-value">
+                                <asp:TextBox ID="txtLastEnrollDate" ClientIDMode="Static" runat="server" TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="valiLastEnrollDate" runat="server"
+                                    ControlToValidate="txtLastEnrollDate"
+                                    ErrorMessage="Error" ForeColor="red"></asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
+
+            <div class="save-div">
+                <asp:Button ID="btnSaveAndReturn" runat="server" Width="80px" Text="Save" OnClick="btnSave_Click" />
+                &nbsp;&nbsp;
+                    <asp:Button ID="btnCancel" ValidationGroup="cancelgroup" runat="server" Width="80px" Text="Cancel" OnClick="btnCancel_OnClick" />
+
+                <asp:Label ID="lblErrorMsg" Visible="False" runat="server"
+                    ForeColor="red"
+                    Text=" Error while saving "></asp:Label>
+                <%--<asp:Button ID="btnSaveAndEnrollUsers" runat="server" Text="Save" OnClick="btnSave_Click" />--%>
+            </div>
+
 
             <br />
             <div>

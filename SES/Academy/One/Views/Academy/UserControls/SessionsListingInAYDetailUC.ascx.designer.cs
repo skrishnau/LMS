@@ -40,6 +40,15 @@ namespace One.Views.Academy.UserControls {
         protected global::System.Web.UI.WebControls.Image imgActive;
         
         /// <summary>
+        /// lblActiveIndicator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblActiveIndicator;
+        
+        /// <summary>
         /// lnkEdit control.
         /// </summary>
         /// <remarks>
@@ -56,15 +65,6 @@ namespace One.Views.Academy.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Image2;
-        
-        /// <summary>
-        /// lblActiveIndicator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblActiveIndicator;
         
         /// <summary>
         /// lblStartDate control.

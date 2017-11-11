@@ -11,6 +11,7 @@
         padding: 0 5px;
         overflow: auto;
     }
+
     .row-entry {
         vertical-align: top;
     }
@@ -18,55 +19,64 @@
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-        <div style="margin-left: -15px; ">
-             <asp:RadioButtonList ID="rdbtnlistType" AutoPostBack="True"
-                    runat="server" Font-Bold="True" Enabled="True"
-                    OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" CellSpacing="2"
-                    RepeatDirection="Horizontal">
-                    <Items>
-                        <asp:ListItem Value="0" Text="Range" ></asp:ListItem>
-                        <asp:ListItem Value="1" Text="Values" Selected="True"></asp:ListItem>
-                    </Items>
-        </asp:RadioButtonList>
+        <div style="margin-left: -15px;">
+            <asp:RadioButtonList ID="rdbtnlistType" AutoPostBack="True"
+                runat="server" Font-Bold="True" Enabled="True"
+                CellPadding="5" Width="192px" RepeatColumns="2"
+                OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" CellSpacing="2"
+                RepeatDirection="Horizontal">
+                <Items>
+                    <asp:ListItem Value="0" Text="Range"></asp:ListItem>
+                    <asp:ListItem Value="1" Text="Values" Selected="True"></asp:ListItem>
+                </Items>
+            </asp:RadioButtonList>
         </div>
-       
+        <br />
 
-        <asp:Panel runat="server" ID="pnlRange" CssClass="st-1">
-            <div style="border: 1px dashed darkgray;">
-                <table class="table-entry">
-                    <tr class="row-entry">
-                        <td class="data-type">Maximum value
-                        </td>
-                        <td class="data-entry">
-                            <asp:TextBox ID="txtMaxValue" runat="server" Text="0.00"></asp:TextBox>
-                            <asp:Label ID="lblErrorMaxVal" runat="server" Text="Input error" ForeColor="red" Visible="False"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr class="row-entry">
-                        <td class="data-type">Minimum value</td>
-                        <td class="data-entry">
-                            <asp:TextBox ID="txtMinValue" runat="server" Text="0.00"></asp:TextBox>
-                            <asp:Label ID="lblErrorMinVal" runat="server" Text="Input error" ForeColor="red" Visible="False"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr class="row-entry">
-                        <td class="data-type">Minimum value to pass</td>
-                        <td class="data-entry">
-                            <asp:TextBox ID="txtMinValueToPass" runat="server"  Text="0.00"></asp:TextBox>
-                            <asp:Label ID="lblErrorMinValToPass" runat="server" Text="Input error" ForeColor="red" Visible="False"></asp:Label>
-                        </td>
-                    </tr>
+        <%-- CssClass="st-1" --%>
+        <asp:Panel runat="server" ID="pnlRange" CssClass="panel panel-default">
+            <%--<div class="panel-body">--%>
+            <%-- table-entry --%>
+            <table class="table table-hover table-responsive" style="width: 100%;">
+                <%-- row-entry" --%>
+                <tr>
+                    <td>Maximum value
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtMaxValue" runat="server" Text="0.00"></asp:TextBox>
+                        <asp:Label ID="lblErrorMaxVal" runat="server"
+                            Text="Input error" ForeColor="red" Visible="False"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Minimum value</td>
+                    <td>
+                        <asp:TextBox ID="txtMinValue" runat="server" Text="0.00"></asp:TextBox>
+                        <asp:Label ID="lblErrorMinVal" runat="server" Text="Input error"
+                            ForeColor="red" Visible="False"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Minimum value to pass</td>
+                    <td>
+                        <asp:TextBox ID="txtMinValueToPass" runat="server" Text="0.00"></asp:TextBox>
+                        <asp:Label ID="lblErrorMinValToPass" runat="server" Text="Input error"
+                            ForeColor="red" Visible="False"></asp:Label>
+                    </td>
+                </tr>
 
-                </table>
-            </div>
+            </table>
+
+            <%--</div>--%>
         </asp:Panel>
-
-        <asp:Panel runat="server" ID="pnlValues" CssClass="st-2">
+        <%-- CssClass="st-2" --%>
+        <asp:Panel runat="server" ID="pnlValues" CssClass="panel panel-default">
             <%--<em style="background-color: yellow;">--//-- This part doesn't work as expected. It needs some work.</em>--%>
             <%--<br />--%>
-            <div style="padding:10px 10px 10px 20px;border: 1px dashed darkgray;">
+            <%-- style="padding: 10px 10px 10px 20px; border: 1px dashed darkgray;" --%>
+            <div class="panel-heading clearfix">
                 <div style="float: left;">
-                    Equivalent representation in 
+                    Equivalent representation in &nbsp;
                 </div>
                 <div style="float: left;">
                     <asp:RadioButtonList ID="rdbtnlistEquivalentRepresentation" runat="server"
@@ -76,18 +86,22 @@
                         <asp:ListItem Value="1" Text="Position"></asp:ListItem>
                     </asp:RadioButtonList>
                 </div>
-                <div style="clear: both;"></div>
-
-                <div style="margin-left: 20px;">
-                    <div style="min-height: 25px; padding-bottom: 4px; background-color: lightblue;">
-                        <asp:Panel ID="pnlGradeValues" runat="server"></asp:Panel>
-                    </div>
-                    <asp:LinkButton ID="btnAddValue" runat="server"
-                        CausesValidation="False" OnClick="btnAddValue_Click">Add Value</asp:LinkButton>
-                </div>
             </div>
 
-
+            <%--<div style="clear: both;"></div>--%>
+            <%-- style="margin-left: 20px;" --%>
+            <%--<div class="panel-body">--%>
+            <%-- style="min-height: 25px; padding-bottom: 4px; background-color: lightblue;" --%>
+            <div>
+                <asp:Panel ID="pnlGradeValues" runat="server"></asp:Panel>
+            </div>
+            <div class="panel-body text-right">
+                <asp:LinkButton ID="btnAddValue" runat="server" CssClass="btn btn-default"
+                    CausesValidation="False" OnClick="btnAddValue_Click">
+                        Add Value
+                </asp:LinkButton>
+            </div>
+            <%--</div>--%>
         </asp:Panel>
         <asp:HiddenField ID="hidId" runat="server" Value="0" />
     </ContentTemplate>

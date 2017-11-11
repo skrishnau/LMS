@@ -9,12 +9,16 @@
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="Body">
     <h3 class="heading-of-listing">Users
     </h3>
-
-    <div class="option-div" style="margin-bottom: 15px;">
-        <asp:HyperLink runat="server" ID="lnkAddNewUser" NavigateUrl="~/Views/User/Create.aspx" CssClass="link-dark">
+    <%-- option-div --%>
+    <div class="text-right" style="margin-bottom: 15px;">
+        <%-- link-dark --%>
+        <asp:HyperLink runat="server" ID="lnkAddNewUser" NavigateUrl="~/Views/User/Create.aspx"
+            CssClass="btn btn-default">
                 Add New User
         </asp:HyperLink>
-        <asp:HyperLink runat="server" ID="lnkAssignRole" NavigateUrl="~/Views/Role/Assign.aspx" CssClass="link-dark">
+
+        <asp:HyperLink runat="server" ID="lnkAssignRole" NavigateUrl="~/Views/Role/Assign.aspx"
+            CssClass="btn btn-default">
                 Assign Role
         </asp:HyperLink>
     </div>
@@ -22,92 +26,97 @@
 
     <div>
 
-        <div style="border: 1px solid lightgray;">
-
-            <div style="background-color: #f1f1f1; padding: 5px;">
-
-                <asp:LinkButton ID="lnkFilterPanel" runat="server" OnClick="lnkFilterPanel_OnClick"
-                    CssClass="link">
-                    <asp:Image ID="imgFilter" runat="server" ImageUrl="~/Content/Icons/Sort/sort-down-20px.png" />
-                    Filter
-                </asp:LinkButton>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <asp:LinkButton ID="lnkFilterPanel" runat="server" OnClick="lnkFilterPanel_OnClick"
+                        CssClass="link">
+                        <asp:Image ID="imgFilter" runat="server" 
+                            ImageUrl="~/Content/Icons/Sort/sort-right-20px.png" />
+                        Filter
+                    </asp:LinkButton>
+                </div>
             </div>
+            <asp:Panel ID="pnlFilter" runat="server" Visible="False" CssClass="panel-body">
+                <div style="float: left;">
+                    <table class="">
+                        <tr>
+                            <td>Name</td>
+                            <td>
+                                <asp:TextBox ID="txtNameFilter" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Username</td>
+                            <td>
+                                <asp:TextBox ID="txtUsernameFilter" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>
+                                <asp:TextBox ID="txtEmailFilter" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
 
-            <div class="data-entry-section" style="padding: 7px;">
-                <asp:Panel ID="pnlFilter" runat="server" Visible="True">
-                    <div style="float: left;">
-                        <table>
-                            <tr>
-                                <td>Name</td>
-                                <td>
-                                    <asp:TextBox ID="txtNameFilter" runat="server"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Username</td>
-                                <td>
-                                    <asp:TextBox ID="txtUsernameFilter" runat="server"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>
-                                    <asp:TextBox ID="txtEmailFilter" runat="server"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <div style="margin-top: 5px;">
-                                        <asp:LinkButton ID="btnFilter"
-                                            CssClass="link-button"
-                                            runat="server" Text="Filter" OnClick="btnFilter_OnClick" />
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div style="float: left; padding-left: 15px;">
+                <div style="float: left; padding-left: 15px;">
+                    <div>
                         Roles:
                         &nbsp;
                             <asp:CheckBox ID="chkStudents" runat="server" Text="Students" Checked="True" />
                         &nbsp;&nbsp;&nbsp;
                             <asp:CheckBox ID="chkTeachers" runat="server" Text="Teachers" Checked="True" />
-
                     </div>
+                    <br />
+                    <div style="margin-top: -1px;">
+                        <%-- link-button --%>
+                        <asp:LinkButton ID="btnFilter"
+                            CssClass="btn btn-default"
+                            runat="server" Text="Filter" OnClick="btnFilter_OnClick" />
+                    </div>
+                </div>
+
+                <div style="clear: both;"></div>
+
+                <div>
 
                     <div style="clear: both;"></div>
-
-                    <div>
-
-                        <div style="clear: both;"></div>
-                    </div>
-                </asp:Panel>
-            </div>
-            <div style="clear: both;"></div>
+                </div>
+            </asp:Panel>
         </div>
+
         <div style="clear: both;"></div>
     </div>
     <br />
 
-    <div style="margin-top: 10px">
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" PageSize="25" Width="100%" CssClass="gridview"
+    <div style="margin-top: 10px" class="panel panel-default">
+        <%-- CssClass="gridview" --%>
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" PageSize="25" Width="100%" 
+            CssClass="table table-hover table-responsive border"
             AutoGenerateColumns="False" DataSourceID="ObjectDataSource1"
             OnRowDataBound="GridView1_OnRowDataBound"
             OnSelectedIndexChanged="GridView1_OnSelectedIndexChanged"
             CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No users">
 
             <%--<AlternatingRowStyle BackColor="White" ForeColor="#284775" />--%>
+            
 
             <Columns>
+                
                 <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
 
                 <asp:TemplateField HeaderText="Image">
                     <EditItemTemplate>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>'>
+                        <asp:HyperLink ID="HyperLink1" runat="server"
+                            NavigateUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>'>
                             <asp:Image ID="Image1" runat="server"
                                 Height="20" Width="20"
                                 ImageUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>' />
@@ -122,7 +131,7 @@
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:HyperLink ID="Label1" runat="server"
-                            CssClass="link"
+                            
                             NavigateUrl='<%# "~/Views/User/Detail.aspx?uId="+Eval("Id") %>'
                             Text='<%# GetName(Eval("FirstName"),Eval("MiddleName"),Eval("LastName"))  %>'></asp:HyperLink>
                     </ItemTemplate>
@@ -155,7 +164,7 @@
                     <ItemTemplate>
                         <asp:Label ID="Label6" runat="server" Text='<%# Bind("Phone") %>'></asp:Label>
                     </ItemTemplate>
-                    <ItemStyle Width="100"></ItemStyle>
+                    <ItemStyle Width="90"></ItemStyle>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Online" SortExpression="Online">
@@ -163,11 +172,11 @@
                         <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("LastOnline") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <span style="font-size: 0.8em">
+                        <span style="font-size: 0.9em">
                             <asp:Label ID="Label8" runat="server" Text='<%# GetLastOnline(DataBinder.Eval(Container.DataItem,"LastOnline"))  %>'></asp:Label>
                         </span>
                     </ItemTemplate>
-                    <ItemStyle Width="65"></ItemStyle>
+                    <ItemStyle Width="80"></ItemStyle>
                 </asp:TemplateField>
 
             </Columns>
@@ -177,7 +186,10 @@
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <%--  BackColor="#557d96" Font-Bold="True" ForeColor="White" --%>
-            <HeaderStyle CssClass="data-list-header" />
+            <HeaderStyle CssClass="data-list-header thead-default" />
+            <%--<HeaderStyle CssClass="thead-default" />--%>
+            
+
             <PagerStyle HorizontalAlign="Center" CssClass="data-list-footer" />
             <%--<PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />--%>
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />

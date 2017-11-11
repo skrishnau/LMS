@@ -28,7 +28,7 @@ namespace One.Views.Structure.All.UserControls.CourseLinkage {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManageSubject;
+        protected global::System.Web.UI.WebControls.LinkButton btnManageSubject;
         
         /// <summary>
         /// dlistCourses control.

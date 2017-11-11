@@ -1163,6 +1163,10 @@
     <Content Include="ckEditor_Test\ckTestInAspx.aspx" />
     <Content Include="ckEditor_Test\FirstPage.html" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSSes\ActResStyles.css" />
     <Content Include="Content\CSSes\All.css" />
     <Content Include="Content\CSSes\BasicStyles.css" />
@@ -1172,6 +1176,7 @@
     <Content Include="Content\CSSes\FinalCss.css" />
     <Content Include="Content\CSSes\ListingStyles.css" />
     <Content Include="Content\CSSes\MasterStyles.css" />
+    <Content Include="Content\CSSes\MasterStyles_earlier.txt" />
     <Content Include="Content\CSSes\NotUsedNow.css" />
     <Content Include="Content\CSSes\PanelStyles.css" />
     <Content Include="Content\CSSes\ProgramStyles.css" />
@@ -1499,6 +1504,7 @@
     <Content Include="DatePickerJquery\jquery-ui-1.9.2.custom.css" />
     <Content Include="FileTasks\Browse.aspx" />
     <Content Include="FileTasks\Upload.aspx" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Home.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -1575,6 +1581,14 @@
     <Content Include="DatePickerJquery\timepicker\jt.timepicker.jquery.json" />
     <Content Include="DatePickerJquery\timepicker\package.json" />
     <Content Include="DatePickerJquery\timepicker\README.md" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="ResourceFiles\Upload\.jpg" />
     <Content Include="ResourceFiles\Upload\.png" />
@@ -1586,8 +1600,13 @@
     <Content Include="ResourceFiles\Upload\78633816-5122-4679-8b3b-f8026d6a1684.jpg" />
     <Content Include="ResourceFiles\Upload\cc255a82-11c3-4f42-bd52-ed8d94613f45.jpg" />
     <Content Include="ResourceFiles\Upload\d778ad7b-48b4-4daa-ba55-e10ce5692e66.jpg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
@@ -1686,6 +1705,7 @@
     <Content Include="Views\Academy\ProgramSelection\YearCheckBoxAndLabel.ascx" />
     <Content Include="Views\Academy\RunningClassForm.aspx" />
     <Content Include="Views\Academy\Session\EarlierCodes.txt" />
+    <Content Include="Views\Academy\Session\ProgramClassesUc.ascx" />
     <Content Include="Views\Academy\Session\SessionDetail.aspx" />
     <Content Include="Views\Academy\StartSession.aspx" />
     <Content Include="Views\Academy\UserControls\AcademicYearListUC.ascx" />
@@ -1773,11 +1793,13 @@
     <Content Include="Views\Course\Course\CourseListUC.ascx" />
     <Content Include="Views\Course\Course\CreateUC.ascx" />
     <Content Include="Views\Course\Default.aspx" />
+    <Content Include="Views\Course\Default_earlier.txt" />
     <Content Include="Views\Course\EarlierCode.txt" />
     <Content Include="Views\Course\Section\Default.aspx" />
     <Content Include="Views\Course\Section\EarlierCodes.txt" />
     <Content Include="Views\Course\Section\Master\Earlier Code.txt" />
     <Content Include="Views\Course\Section\Master\ListOfSectionsInCourseUC.ascx" />
+    <Content Include="Views\Course\Section\SectionUc_earlier.txt" />
     <Content Include="Views\Default.aspx" />
     <Content Include="Views\Events\Default.aspx" />
     <Content Include="Views\Events\EventCreate.aspx" />
@@ -2523,6 +2545,13 @@
     </Compile>
     <Compile Include="Views\Academy\RunningClassForm.aspx.designer.cs">
       <DependentUpon>RunningClassForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Academy\Session\ProgramClassesUc.ascx.cs">
+      <DependentUpon>ProgramClassesUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Academy\Session\ProgramClassesUc.ascx.designer.cs">
+      <DependentUpon>ProgramClassesUc.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Academy\Session\SessionDetail.aspx.cs">
       <DependentUpon>SessionDetail.aspx</DependentUpon>
@@ -4039,6 +4068,7 @@
     <Content Include="ViewsSite\Teacher\Web.config" />
     <Content Include="ViewsSite\User\UserMaster.Master" />
     <Content Include="TestingOnly\Test.Master" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

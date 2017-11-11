@@ -31,6 +31,15 @@ namespace One.Views.Report {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// lnkCourseName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkCourseName;
+        
+        /// <summary>
         /// lblClassName control.
         /// </summary>
         /// <remarks>
@@ -38,15 +47,6 @@ namespace One.Views.Report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblClassName;
-        
-        /// <summary>
-        /// lblCourseName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourseName;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -121,13 +121,40 @@ namespace One.Views.Report {
         protected global::System.Web.UI.WebControls.CheckBox chkTotal;
         
         /// <summary>
+        /// chkActivities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkActivities;
+        
+        /// <summary>
+        /// lblNoneActRes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoneActRes;
+        
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSave;
+        
+        /// <summary>
         /// btnLoad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLoad;
+        protected global::System.Web.UI.WebControls.LinkButton btnLoad;
         
         /// <summary>
         /// tblStudents control.

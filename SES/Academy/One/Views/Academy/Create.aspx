@@ -9,34 +9,35 @@
 
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
-    <div class="data-entry-section">
-        <h3 class="heading-of-create-edit">
-            <asp:Label ID="lblHeading" runat="server" Text="Academic year edit"></asp:Label>
-        </h3>
-        <hr />
+    <h3 class="heading-of-create-edit">
+        <asp:Label ID="lblHeading" runat="server" Text="Academic year edit"></asp:Label>
+    </h3>
+    <hr />
 
-        <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />
 
-        <div style="color: darkslategrey">
-            <asp:Label ID="lblFromSessionNotice" runat="server" 
-                Visible="False">
-                <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
-
-                 You have to create session before starting it.
-            </asp:Label>
-            <%--ForeColor="darkslategrey"--%>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            General
+            <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />
+            <small class="text-muted">
+                <asp:Label ID="lblFromSessionNotice" runat="server"
+                    Visible="False">
+                    <br />
+                    <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
+                    You have to create session before starting it.
+                </asp:Label>
+            </small>
         </div>
 
-
-        <div class="data-entry-section-body">
+        <div class="panel-body">
             <table>
                 <%-- Academic year Info --%>
                 <tr>
-                    <td class="data-type" style="margin-left: -10px;"><strong>Academic year</strong></td>
+                    <td class="data-type"><strong>Academic year</strong></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="data-type">Academic year Name *</td>
+                    <td class="data-type" style="margin-left: 10px;">Academic year Name *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtName" runat="server" Width="145px" ToolTip="Usually its year. e.g. 2017"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
@@ -45,7 +46,7 @@
 
                 </tr>
                 <tr>
-                    <td class="data-type">&nbsp;&nbsp;&nbsp;&nbsp;Start Date *</td>
+                    <td class="data-type" style="margin-left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;Start Date *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtAcademicStart" runat="server" ClientIDMode="Static"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="valiAcademicStart" runat="server"
@@ -54,7 +55,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="data-type">&nbsp;&nbsp;&nbsp;&nbsp;End Date *</td>
+                    <td class="data-type" style="margin-left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;End Date *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtAcademicEnd" runat="server" ClientIDMode="Static"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="valiAcademicEnd" runat="server"
@@ -66,11 +67,11 @@
 
                 <%-- Session 1 Info --%>
                 <tr>
-                    <td class="data-type" style="margin-left: -10px;"><strong>Session-1</strong></td>
+                    <td class="data-type"><strong>Session-1</strong></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="data-type">Session-1 Name *</td>
+                    <td class="data-type" style="margin-left: 10px;">Session-1 Name *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtSession1Name" runat="server" Width="145px" ToolTip="e.g. FALL, SPRING"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
@@ -79,7 +80,7 @@
 
                 </tr>
                 <tr>
-                    <td class="data-type">&nbsp;&nbsp;&nbsp;&nbsp;Start Date *</td>
+                    <td class="data-type" style="margin-left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;Start Date *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtSession1Start" runat="server" ClientIDMode="Static"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="valiSession1Start" runat="server"
@@ -88,7 +89,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="data-type">&nbsp;&nbsp;&nbsp;&nbsp;End Date *</td>
+                    <td class="data-type" style="margin-left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;End Date *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtSession1End" runat="server" ClientIDMode="Static"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="valiSession1End" runat="server"
@@ -98,11 +99,11 @@
 
                 <%-- Session-2 Info --%>
                 <tr>
-                    <td class="data-type" style="margin-left: -10px;"><strong>Session-2</strong></td>
+                    <td class="data-type"><strong>Session-2</strong></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="data-type">Session-2 Name *</td>
+                    <td class="data-type" style="margin-left: 10px;">Session-2 Name *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtSession2Name" runat="server" Width="145px" ToolTip="e.g. FALL, SPRING"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
@@ -111,7 +112,7 @@
 
                 </tr>
                 <tr>
-                    <td class="data-type">&nbsp;&nbsp;&nbsp;&nbsp;Start Date *</td>
+                    <td class="data-type" style="margin-left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;Start Date *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtSession2Start" runat="server" ClientIDMode="Static"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="valiSession2Start" runat="server"
@@ -120,7 +121,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="data-type">&nbsp;&nbsp;&nbsp;&nbsp;End Date *</td>
+                    <td class="data-type" style="margin-left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;End Date *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtSession2End" runat="server" ClientIDMode="Static"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="valiSession2End" runat="server"
@@ -135,11 +136,11 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="data-type" style="margin-left: -10px;"><strong>New Batch</strong></td>
+                    <td class="data-type"><strong>New Batch</strong></td>
                 </tr>
 
                 <tr>
-                    <td class="data-type">Batch Name *</td>
+                    <td class="data-type" style="margin-left: 10px;">Batch Name *</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtBatchName" runat="server" Width="145px" ToolTip="new batch that will be admitted in this academic year"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
@@ -147,68 +148,49 @@
                     </td>
                 </tr>
 
-                <%--<tr>
-                    <td class="data-type">
-                        <div class="data-entry-section-body data-entry-section-no-margin"><strong>Programs to include in this batch</strong></div>
-                    </td>
-                </tr>--%>
-                <tr><td></td></tr>
+            </table>
+        </div>
+    </div>
 
 
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            Programs to include in this batch
+        </div>
+
+        <div class="panel-body">
+            <table>
                 <tr>
                     <td>
-                        <%--<div class="data-entry-section-heading">--%>
-                        <div class="data-entry-section-no-margin"
-                            style="margin-bottom: 10px; margin-left: -10px;">
-                            <strong>Programs to include in this batch</strong>
-                        </div>
-                        <%--<div class="data-entry-section-body">--%>
-                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                <ContentTemplate>
-                                    <div style="margin-left: -10px;">
-                                        <asp:CheckBox ID="chkSelectAll" runat="server" AutoPostBack="True" Text="Select all" OnCheckedChanged="chkSelectAll_CheckedChanged" />
-                                    </div>
-                                    <asp:CheckBoxList ID="CheckBoxList1" runat="server"></asp:CheckBoxList>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                            <%--<uc1:TreeViewWithCheckBoxInLeft runat="server" ID="TreeViewWithCheckBoxInLeft" />--%>
-                        <%--</div>--%>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <%--<asp:CheckBox ID="chkSelectAll" runat="server"
+                                    AutoPostBack="True" Text="Select all"
+                                    OnCheckedChanged="chkSelectAll_CheckedChanged" />--%>
+                                <div style="margin-left: 10px;">
+                                    <asp:CheckBoxList ID="CheckBoxList1" runat="server" Font-Bold="False"></asp:CheckBoxList>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </td>
                 </tr>
-
-
-
-                <%--  <tr>
-                <td colspan="5">
-                    <asp:CheckBox ID="CheckBox1" runat="server" Text="Make this Current Academic Year." />
-                    <em style="font-size: 12px;">Note: Previous Academic year will be disabled.</em>
-                </td>
-            </tr>--%>
             </table>
-
+            <asp:HiddenField ID="hidAcademicYearId" runat="server" Value="0" />
+            <asp:HiddenField ID="hidSession1Id" runat="server" Value="0" />
+            <asp:HiddenField ID="hidSession2Id" runat="server" Value="0" />
         </div>
-        <br />
-        <div>
-            <div class="save-div">
-                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click"
-                    Text="Save" />
-                &nbsp;&nbsp;
+    </div>
+
+    <div class="save-div">
+        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click"
+            Text="Save" />
+        &nbsp;&nbsp;
                 <asp:Button ID="btnCancel" runat="server" ValidationGroup="none"
-                    Text="Cancel" OnClick="btnCancel_OnClick"  />
-                &nbsp;
+                    Text="Cancel" OnClick="btnCancel_OnClick" />
+        &nbsp;
                 <asp:Label ID="lblError" runat="server" Text="Error while saving." ForeColor="red"></asp:Label>
-            </div>
-
-
-        </div>
-
-        <asp:HiddenField ID="hidAcademicYearId" runat="server" Value="0" />
-        <asp:HiddenField ID="hidSession1Id" runat="server" Value="0" />
-        <asp:HiddenField ID="hidSession2Id" runat="server" Value="0" />
-
-        <p>
-        </p>
-
     </div>
 </asp:Content>
 

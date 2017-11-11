@@ -58,14 +58,23 @@ namespace One.Views.NoticeBoard
                                     //    var tempnode = SiteMap.CurrentNode;
                                     //    tempnode.Title = notice.Title;
                                     //}
-                                    if ((user.IsInRole("manager") || user.IsInRole("notifier")))
+                                    var edit = (Session["editMode"] as string) =="1";
+                                    if ((user.IsInRole("manager") || user.IsInRole("notifier")) )
                                     {
-                                        lnkEdit.NavigateUrl = "~/Views/NoticeBoard/NoticeCreate.aspx?nId=" + noticeId;
-                                        lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx"
-                                                                + "?task=" + DbHelper.StaticValues.Encode("notice")
-                                                                + "&nId=" + notice.Id;
+                                        if (edit)
+                                        {
+                                            lnkEdit.NavigateUrl = "~/Views/NoticeBoard/NoticeCreate.aspx?nId=" +
+                                                                  noticeId;
+                                            lnkDelete.NavigateUrl = "~/Views/All_Resusable_Codes/Delete/DeleteForm.aspx"
+                                                                    + "?task=" + DbHelper.StaticValues.Encode("notice")
+                                                                    + "&nId=" + notice.Id;
+                                            menuEditDelete.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            menuEditDelete.Visible = false;
+                                        }
                                         divPublished.Visible = true;
-                                        menuEditDelete.Visible = true;
                                         //lnkEdit.Visible = true;
                                         //lnkDelete.Visible = true;
                                     }
@@ -80,7 +89,12 @@ namespace One.Views.NoticeBoard
                                     lblNoticeName.Text = notice.Title;
                                     chkPublished.Checked = notice.PublishNoticeToNoticeBoard;
 
-                                    lblNoticeContent.Text = notice.Content;
+                                    if (notice.Content.Length > 0)
+                                    {
+                                        lblNoticeContent.Text = notice.Content;
+                                        divNotice.Visible = true;
+                                    }
+
                                     var text = "";
                                     lblPstdOn.Text = notice.PublishedDate == null
                                         ? ""

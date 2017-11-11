@@ -9,19 +9,21 @@
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
+    <h3 class="heading-of-listing">
+        <asp:Label ID="lblHeading" runat="server" Text="Label"></asp:Label>
+
+        <span style="vertical-align: top; top: 0; line-height: 10px;">
+            <asp:Image ID="imgActive" runat="server"
+                Width="10" Height="10"
+                ImageUrl="~/Content/Icons/Stop/Stop_10px.png"
+                Visible="False" />
+        </span>
+
+    </h3>
+    <hr />
+
     <div>
-        <h3 class="heading-of-listing">
-            <asp:Label ID="lblHeading" runat="server" Text="Label"></asp:Label>
 
-            <span style="vertical-align: top; top: 0; line-height: 10px;">
-                <asp:Image ID="imgActive" runat="server"
-                    Width="10" Height="10"
-                    ImageUrl="~/Content/Icons/Stop/Stop_10px.png"
-                    Visible="False" />
-            </span>
-
-        </h3>
-        <hr />
         <%--<div style="text-align: center;">
             <asp:Button ID="btnActivate" runat="server" Text="Activate this Session" OnClick="btnActivate_Click" />
         </div>
@@ -47,19 +49,15 @@
 
             <br />
 
-            <div class="data-entry-section">
 
-                <div>
-                    <div class="data-entry-section-heading">
-                        Classes
-                        <hr />
-                    </div>
+        </div>
 
-                    <div class="data-entry-section list">
-                        <asp:Panel ID="pnlListing" runat="server"></asp:Panel>
-                    </div>
-                </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Classes
             </div>
+            <%--  --%>
+            <asp:Panel ID="pnlListing" runat="server" CssClass="panel-body"></asp:Panel>
         </div>
 
         <%--<uc1:SessionsListingInAYDetailUC runat="server" ID="SessionsListingInAYDetailUC" />--%>

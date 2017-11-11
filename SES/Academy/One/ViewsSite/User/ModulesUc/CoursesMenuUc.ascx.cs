@@ -25,7 +25,8 @@ namespace One.ViewsSite.User.ModulesUc
                     var q = query ?? "current";
                     if (q.Equals("current"))
                         //"course-menu-selected-item"; //"list-unmargined-selected-item";
-                        lnkCurrent.CssClass = "list-unmargined-selected-item course-menu-selected-item";
+                        lnkCurrent.CssClass = "list-group-item list-group-item-info";
+                    //lnkCurrent.CssClass = "list-unmargined-selected-item course-menu-selected-item";
                     //earlier 
                     //else
                     //    lnkEarlier.CssClass = "list-unmargined-selected-item course-menu-selected-item";//"course-menu-selected-item"; //"list-unmargined-selected-item";
@@ -61,7 +62,7 @@ namespace One.ViewsSite.User.ModulesUc
                                 ,
                                 NavigateUrl = "~/Views/Course/Section/?SubId=" + subject.Id
                                 ,
-                                CssClass = "course-menu-subjct-class padding-left-10px"
+                                CssClass = "list-group-item padding-left-10px"//course-menu-subjct-class
                                 ,
                                 ToolTip = "course"
                             };

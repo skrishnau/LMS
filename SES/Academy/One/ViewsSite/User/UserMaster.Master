@@ -34,7 +34,7 @@
     </asp:PlaceHolder>
     <%-- <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/css" /> 
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <%--  end of newly added --%>
 
     <title>
@@ -53,12 +53,32 @@
     <link href="../../Content/CSSes/PanelStyles.css" rel="stylesheet" />
     <link href="../../Content/CSSes/ListingStyles.css" rel="stylesheet" />
 
-
     <link href="../../Content/CSSes/FinalCss.css" rel="stylesheet" />
-    <link href="../../Content/CSSes/DropdownCss.css" rel="stylesheet" />
+    <%--<link href="../../Content/CSSes/DropdownCss.css" rel="stylesheet" />--%>
 
+    <%--<environment names="Development">--%>
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="../../Scripts/bootstrap.js"></script>
+    <%--<script src="../../Scripts/bootstrap.min.js"></script>--%>
+
+
+    <%--<link rel="stylesheet" href="~/css/site.css" />--%>
+    <%--</environment>--%>
+    <%--<environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>--%>
 </head>
 <body>
+
+
+
+    <%-- ...End of test of navbar... --%>
+
+
     <form id="form1" runat="server">
 
         <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -80,315 +100,310 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div id="menuDiv" class="menu-div" style="">
-            <div style="margin: auto; vertical-align: central;">
-                &nbsp;
-                <%-- "~/Views/Office/School/View.aspx" --%>
-                 <asp:HyperLink runat="server" ID="lnkSchoolName" CssClass="white" NavigateUrl="~/About.aspx"
-                     Font-Underline="False">
-                     <asp:Label ID="lblSchoolName" runat="server" Text="Nepal Engineering College" Font-Size="1.2em"></asp:Label>
+        <div class="container-fluid">
+
+            <div class="container-fluid">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <%-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation hello</span>
+                                <span class="icon-bar">hello</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>--%>
+                            <%-- CssClass="white" Style="color: white;" --%>
 
 
-                 </asp:HyperLink>
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <asp:Image ID="imgSchool" runat="server"
+                                        ImageUrl="~/Content/Icons/School/school-logo.png"
+                                        CssClass="img-responsive img-thumbnail align-middle"
+                                        Width="40" Height="40" />
+                                </li>
+                                <li>
+                                    <asp:HyperLink runat="server" ID="lnkSchoolName"
+                                        CssClass="navbar-brand"
+                                        NavigateUrl="~/About.aspx"
+                                        Font-Underline="False">
+                                        &nbsp;
+                                        <asp:Label ID="lblSchoolName" runat="server" CssClass="align-middle"
+                                            Text="Nepal Engineering College" Font-Size="1.2em"></asp:Label>
+                                    </asp:HyperLink>
+                                </li>
 
-                &nbsp;&nbsp;&nbsp;
-                     
-                     <asp:Label ID="lblUserInfo" runat="server" Text="">
-                     </asp:Label>
+                            </ul>
 
-
-                <div style="float: left;">
-                    <asp:Image ID="imgSchool" runat="server" ImageUrl="~/Content/Icons/School/school-logo.png" Width="30" Height="30" />
-                </div>
-
-                <%-- position: fixed; right: 0; top: 0; margin-right: 10px; margin-top: 5px; --%>
-                <div style="float: right; padding-right: 20px;" class="clearfix" runat="server" ID="menubar_right_text_all">
-                    <%-- <span style="margin: 0 auto; padding: 0 20px;">
-                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/">
-                            <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Home/home_2.png" />
-                        </asp:HyperLink>
-                    </span>--%>
-                    <%--<input type="text" name="search" placeholder="Search.." id="txtSearch" onkey>--%>
-                    <%--<asp:TextBox ID="txtSearch" runat="server"  ClientIDMode="Static"></asp:TextBox>--%>
-                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Search courses.."></asp:TextBox>
-                    <script type="text/javascript">
-                        //document.getElementById("txtSearch")
-                        //    .addEventListener("keyup", function (event) {
-                        //        event.preventDefault();
-                        //        if (event.keyCode == 13) {
-                        //            var txt = document.getElementById("txtSearch").value;
-                        //            __doPostBack('txtSearch', txt);
-                        //            //document.getElementById("id_of_button").click();
-                        //        }
-                        //});
-                        //function KeyPressedInSearch(parameter) {
-                        //    __doPostBack('btnSave', parameter)
-                        //}
-                    </script>
-                    &nbsp;&nbsp;
-                    <%--<asp:LoginName ID="LoginName1" runat="server" Font-Size="1.1em" />--%>
-                    <asp:LinkButton ID="lnkLoginName" runat="server" OnClick="lnkLoginName_OnClick" 
-                        font-Underline="False"
-                         CssClass="white">user</asp:LinkButton>
-                    &nbsp;&nbsp;
-                    
-                  
-                    <div class="dropdown">
-                        <span class="dropbtn">
-                            <asp:Image ID="imgMessageIcon" runat="server"
-                                ToolTip="Messages"
-                                ImageUrl="~/Content/Icons/Message/message-filled-light-26px.png" />
-                            <sup>
-                                <%--<asp:Image ID="imgNoticeIndicator" runat="server" ImageUrl="~/Content/Icons/Exclamation/exclamation_icon.png" />--%>
-                                <%--<asp:Label ID="lblNoticeIndication" runat="server" Text="" ForeColor="white" BackColor="red" ></asp:Label>--%>
-                            </sup>
-                        </span>
-
-                        <div class="dropdown-content">
-                            <asp:Label ID="lblEmptyMessage" runat="server" Text="No new messages"></asp:Label>
-                            <asp:PlaceHolder ID="plHolderMessage" runat="server"></asp:PlaceHolder>
                         </div>
+
+
+
+                        <!-- Collect the nav links, forms, and other content for toggling  id=bs-example-navbar-collapse-1-->
+                        <div class="collapse navbar-collapse" id="menubar_right_text_all"
+                            runat="server">
+
+                            <%--<form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                            </form>--%>
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li>
+                                    <asp:TextBox ID="txtSearch" runat="server"
+                                        CssClass="form-control"
+                                        placeholder="Search courses..">
+                                    </asp:TextBox>
+                                </li>
+
+                                <%-- ================ Message =========== --%>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span class="glyphicon glyphicon-envelope"></span>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <asp:Label ID="lblEmptyMessage" runat="server" Text="&nbsp;&nbsp;No new messages"></asp:Label>
+                                        </li>
+                                        <asp:PlaceHolder ID="plHolderMessage" runat="server"></asp:PlaceHolder>
+                                        <%--<li><a href="#">Another action</a></li>--%>
+                                        <%--<li role="separator" class="divider"></li>--%>
+                                    </ul>
+                                </li>
+
+                                <%-- ==== NEW ==== --%>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span class="glyphicon glyphicon-info-sign">
+
+                                            <%-- <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn"
+                                                ToolTip="Notifications"
+                                                ImageUrl="~/Content/Icons/Notice/Info-light-26px.png" />--%>
+                                        </span>
+                                        <%--<span class="glyphicon glyphicon-info-sign"></span>--%>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <asp:Label ID="lblEmptyNotice" runat="server" Text="No new notifications"></asp:Label>
+                                        </li>
+                                        <asp:PlaceHolder ID="plHolderNotice" runat="server"></asp:PlaceHolder>
+                                        <%--<li><a href="#">Another action</a></li>--%>
+                                        <%--<li role="separator" class="divider"></li>--%>
+                                    </ul>
+                                </li>
+                               <%-- <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <asp:HyperLink ID="lnkSettingMenu" runat="server" Visible="False" NavigateUrl="~/Views/Setting/">
+                                            Settings
+                                            </asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </li>--%>
+
+                                <script>
+                                    $('ul.nav li.dropdown').hover(function () {
+                                        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+                                    }, function () {
+                                        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+                                    });
+                                </script>
+                                <li>
+                                    <asp:Label ID="lblUserInfo" CssClass="text-danger" runat="server" Text=""></asp:Label></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkLoginName" runat="server" OnClick="lnkLoginName_OnClick"
+                                        Font-Underline="False"
+                                        CssClass="text-danger text-right">user</asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LoginStatus ID="LoginStatus1" CssClass="text-primary" runat="server" />
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
                     </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </div>
+
+
+
+            <%-- menu-div --%>
+            <%--  <div id="menuDiv" class="" style="">
+                <div style="margin: auto; vertical-align: central;" class="col-md-12">
                     &nbsp;
-                      <div class="dropdown">
-                          <%-- Height="20" Width="20" --%>
-                          <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn"
-                              ToolTip="Notifications"
-                              ImageUrl="~/Content/Icons/Notice/Info-light-26px.png" />
-                          <div class="dropdown-content">
-                              <asp:Label ID="lblEmptyNotice" runat="server" Text="No new notifications"></asp:Label>
-                              <asp:PlaceHolder ID="plHolderNotice" runat="server"></asp:PlaceHolder>
+
+                    <div style="float: right; padding-right: 20px;" class="clearfix" runat="server" id="menubar_right_text_all">
+                        <div class="dropdown">
+                            <span class="dropbtn">
+                                <asp:Image ID="imgMessageIcon" runat="server"
+                                    ToolTip="Messages"
+                                    ImageUrl="~/Content/Icons/Message/message-filled-light-26px.png" />
+                            </span>
+
+                            <div class="dropdown-content">
+                                
+                            </div>
+                        </div>
+                        &nbsp;
+                          <div class="dropdown">
+                              <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn"
+                                  ToolTip="Notifications"
+                                  ImageUrl="~/Content/Icons/Notice/Info-light-26px.png" />
+                              <div class="dropdown-content">
+                                  
+                              </div>
                           </div>
-                      </div>
-                    &nbsp;
-                    <div class="dropdown">
-                        <%--<button class="dropbtn">Dropdown</button>--%>
-                        <asp:Image ID="Image1" runat="server" CssClass="dropbtn"
-                            ToolTip="Settings"
-                            ImageUrl="~/Content/Icons/Settings/setting-light-26px.png" />
-                        <div class="dropdown-content" style="width: 130px; min-width: 130px;">
-                            <%-- <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>--%>
-                            <%--<a href="#">Settings</a>--%>
-                            <asp:HyperLink ID="lnkSettingMenu" runat="server" Visible="False" NavigateUrl="~/Views/Setting/">
-                                Settings
-                            </asp:HyperLink>
-                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
-
+                        &nbsp;
+                        <div class="dropdown">
+                            <asp:Image ID="Image1" runat="server" CssClass="dropbtn"
+                                ToolTip="Settings"
+                                ImageUrl="~/Content/Icons/Settings/setting-light-26px.png" />
+                            <div class="dropdown-content" style="width: 130px; min-width: 130px;">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <asp:ContentPlaceHolder ID="Menu" runat="server">
-            </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="Menu" runat="server">
+                </asp:ContentPlaceHolder>
 
-        </div>
+            </div>--%>
 
-        <div style="clear: both;"></div>
-
-
-
-        <div class="body-whole">
-            <%-- style="left: 0; top: 50px; position: fixed;" --%>
-
-            <%--  --%>
-
-            <%--  style="padding: 5px;" --%>
-            <%--<div style="clear: both; margin: 2px;"></div>--%>
-            <%-- <div style="">
-                <span>
-                    <asp:SiteMapPath ID="SiteMapPath1" runat="server" Height="100%" CssClass="breadcrumb">
-                        <NodeStyle CssClass="sitemap-items"></NodeStyle>
-                        <PathSeparatorStyle ForeColor="white"></PathSeparatorStyle>
-                    </asp:SiteMapPath>
-                </span>
-
-            </div> #ccccff--%>
-            <div class="sitemap-panel">
-                <div style="float: left;">
-                    <asp:ContentPlaceHolder ID="SiteMapPlace" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
-                <div style="float: right;" class="option-div">
-                    <%-- CssClass="link-white" CssClass="auto-st2 link" --%>
-                    <asp:LinkButton ID="lnkEditMode" runat="server" OnClick="lnkEditMode_OnClick" Visible="False">
-                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-                        <asp:Label ID="lblEditMode" runat="server" Text="Turn on edit mode"></asp:Label>
-                    </asp:LinkButton>
-                </div>
-                <div style="clear: both;"></div>
-            </div>
             <div style="clear: both;"></div>
+            <%-- body-whole --%>
 
-            <div >
+            <div class="container">
 
-                <table class="table-whole">
-                    <%-- SiteMap --%>
-                    <%-- <tr>
-                    <td>
-                        <span class="breadcrumb">
-                            <asp:SiteMapPath ID="SiteMapPath2" runat="server">
-                            </asp:SiteMapPath>
-                        </span>
-                    </td>
-                </tr>--%>
 
-                    <tr style="vertical-align: top;">
 
-                        <%--  =================== Left sidebar ========================= --%>
-                        <td class="left-width" runat="server" ID="left_panel">
-                            <%-- ----------------------START------------------------ --%>
-                            <%-- class="leftsidebar" --%>
-                            <div style="width: 100%;">
 
-                                <%-- Subjects --%>
-                                <uc1:CoursesMenuUc runat="server" ID="CoursesMenuUc1" />
-                                <%--<uc1:CoursesUc runat="server" ID="CoursesUc" />
-                                <uc1:EarlierUc runat="server" ID="EarlierUc" />--%>
+                <div class="panel panel-default">
+                    <%-- sitemap-panel style="padding: -5px 0 -20px -15px;"--%>
+                    <div class=" panel-heading">
+                        <%-- margin-bottom: -22px; margin-left: -25px; margin-right: -25px; --%>
+                        <div class="row clearfix" style="margin: 0 -25px -22px;">
 
-                                <%--<uc1:EventsUc runat="server" ID="EventsUc1" />--%>
-                                <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
-                                <%--  --%>
-
-                                <uc1:FileManagementMenuUc runat="server" ID="FileManagementMenuUc1" />
+                            <div class="col-md-10">
+                                <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
+                                </asp:ContentPlaceHolder>
+                                <asp:ContentPlaceHolder ID="SiteMapPlace" runat="server">
+                                </asp:ContentPlaceHolder>
                             </div>
-                            <%-- -------------------------END------------------------ --%>
-                        </td>
-                        <%-- ============================= END ========================= --%>
+                            <div class="col-md-2 align-center">
+                                <asp:LinkButton ID="lnkEditMode" runat="server" OnClick="lnkEditMode_OnClick" Visible="False"
+                                    CssClass="btn btn-default">
+                                    <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
+                                    <%--<span class="glyphicon glyphicon-pencil"></span>--%>
+                                    <asp:Label ID="lblEditMode" runat="server" Text="Turn on edit mode" CssClass="text-right"></asp:Label>
+                                </asp:LinkButton>
+                            </div>
+                        </div>
+
+                        <%--<div style="clear: both;"></div>--%>
+                    </div>
+
+                    <div class="panel-body">
 
 
 
-                        <%-- ======================= Middle ======================= --%>
-                        <td class="mid-width" runat="server" id="middlePanel">
-                            <%-- ------------------------- START -------------------- --%>
-                            <%-- style="float: left; width: 60%; overflow: hidden; margin: 15px 5px 20px;" --%>
-                            <asp:Panel ID="pnlBody" runat="server">
-                                <div id="bodyDiv">
-                                    <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
-                                        <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
-                                    </asp:Panel>
-                                    <asp:ContentPlaceHolder runat="server" ID="BodyTitle">
-                                    </asp:ContentPlaceHolder>
-                                    <asp:ContentPlaceHolder ID="Body" runat="server">
-                                    </asp:ContentPlaceHolder>
-                                    <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
-                                    <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+                        <div class="row">
+                            <div class="col-md-2 px-0" runat="server" id="left_panel">
 
-                                    <asp:ContentPlaceHolder runat="server" ID="JSField">
-                                    </asp:ContentPlaceHolder>
+                                <div class="panel-group" style="margin: -10px;">
+
+                                    <%-- Subjects --%>
+                                    <uc1:CoursesMenuUc runat="server" ID="CoursesMenuUc1" />
+                                    <%--<uc1:CoursesUc runat="server" ID="CoursesUc" />
+                                            <uc1:EarlierUc runat="server" ID="EarlierUc" />--%>
+
+                                    <%--<uc1:EventsUc runat="server" ID="EventsUc1" />--%>
+                                    <asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>
+
+                                    <uc1:FileManagementMenuUc runat="server" ID="FileManagementMenuUc1" />
                                 </div>
-                            </asp:Panel>
 
-                            <%-- --------------------------- END --------------------- --%>
-                        </td>
-                        <%-- ============================= END ========================= --%>
-
-
-
-                        <%-- ======================= Right sidebar ======================= --%>
-
-                        <td class="right-width" runat="server" id="right_panel" visible="False">
-                            <%-- ------------------------- START -------------------- --%>
-                            <asp:ContentPlaceHolder runat="server" ID="right">
-                            </asp:ContentPlaceHolder>
-
-
-                            <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
-                            <%-- class="right-sidebar" --%>
-                            <div>
-
-                                <%--  style="overflow: auto; margin-top: 5px; height:180px;" --%>
-                                <%-- class="dashboard-modules" --%>
-                                <%-- <div>
-                                <uc1:NoticeBoardUc runat="server" ID="NoticeBoardUc" />
-                            </div>--%>
-                                <%--   <div>
-                               <uc1:NewsUc runat="server" ID="NewsUc" />
-                            </div>--%>
-                                <%-- <div>
-                                <uc1:EventsUc runat="server" ID="EventsUc" />
                             </div>
-                            <div>
-                                <uc1:OnlineUsersUc runat="server" ID="OnlineUsersUc" />
-                            </div>--%>
+
+                            <div class="col-md-8" id="middlePanel" runat="server">
+                                <asp:Panel ID="pnlBody" runat="server">
+                                    <div id="bodyDiv">
+                                        <asp:Panel ID="pnlBodyMessage" runat="server" BackColor="#CC99FF">
+                                            <asp:Label ID="lblBodyMessage" runat="server" Text="___" Visible="False"></asp:Label>
+                                        </asp:Panel>
+
+                                        <asp:ContentPlaceHolder ID="Body" runat="server">
+                                        </asp:ContentPlaceHolder>
+                                        <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+                                        <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+
+                                        <asp:ContentPlaceHolder runat="server" ID="JSField">
+                                        </asp:ContentPlaceHolder>
+                                    </div>
+                                </asp:Panel>
+
                             </div>
-                            <%-- --------------------------- END --------------------- --%>
-                        </td>
-                        <%-- ============================= END ========================= --%>
-                    </tr>
+
+                            <div class="col-md-2" id="right_panel" runat="server" visible="False">
+                                <div class="panel-group" style="margin: -10px;">
+                                    <asp:ContentPlaceHolder runat="server" ID="right">
+                                    </asp:ContentPlaceHolder>
+
+                                    <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%--<table class="table-whole">
+                            <tr style="vertical-align: top;">
+
+                                <td class="left-width" runat="server" id="left_panel">
+                                    <div style="width: 100%;">
+                                    </div>
+                                </td>
+
+                                <td class="mid-width" runat="server" id="middlePanel"></td>
+
+                                <td class="right-width" runat="server" id="right_panel" visible="False"></td>
+                            </tr>
+                        </table>--%>
+                    </div>
 
 
+                    <div class="panel-footer">
 
-                </table>
+                        <%--<hr style="color: darkgray; background-color: darkgray; height: 1px; display: block;" />--%>
+                        <div>
+                            <aside>
+                                <ul class="bottom-links">
+                                    <li><a id="A1" runat="server" href="~/">Home</a></li>
+                                    <li><a id="A2" runat="server" href="~/About.aspx">About</a></li>
+                                    <li><a id="A3" runat="server" href="~/Contact.aspx">Contact</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-        </div>
 
-        <div style="clear: both;"></div>
-
-        <%--  Here was left sidebar --%>
-        <%-- Body   --%>
-
-        <%-- Here was body  --%>
-
-        <%-- Right --%>
-
-        <%--  Here waas right sidebar --%>
-
-
-
-
-        <%-- Clear Both --%>
-        <div style="clear: both;">
-
-            <hr style="color: darkgray; background-color: darkgray; height: 1px; display: block;" />
-
-            <div>
-                <aside>
-                    <ul class="bottom-links">
-                        <li><a id="A1" runat="server" href="~/">Home</a></li>
-                        <li><a id="A2" runat="server" href="~/About.aspx">About</a></li>
-                        <li><a id="A3" runat="server" href="~/Contact.aspx">Contact</a></li>
-                    </ul>
-                </aside>
-            </div>
             <div style="height: 30px;">
             </div>
-            <%--<table style="margin: 0 auto;">
-                <tr>
-                    <td>
-                        <span class="sitemap-items">
-
-                            <asp:HyperLink ID="HyperLink1" runat="server"
-                                CssClass="link-white"
-                                NavigateUrl="~/">Home</asp:HyperLink>
-                            &nbsp;
-                        </span>
-                    </td>
-                    <td>
-                        <span class="sitemap-items">
-
-                            <asp:HyperLink ID="HyperLink2" runat="server"
-                                CssClass="link-white"
-                                NavigateUrl="~/Views/NoticeBoard/NoticeListing.aspx">
-                            Notice
-                            </asp:HyperLink>
-
-                            &nbsp;
-                        </span>
-                    </td>
-                    <td>
-                        <span class="sitemap-items">
-
-                            <asp:HyperLink ID="HyperLink3" runat="server"
-                                CssClass="link-white"
-                                NavigateUrl="~/Views/Events/">Events</asp:HyperLink>
-                            &nbsp;
-                        </span>
-                    </td>
-                </tr>
-            </table>--%>
+            <%-- Clear Both --%>
         </div>
+
     </form>
 </body>
 </html>

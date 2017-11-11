@@ -12,10 +12,14 @@
         <asp:Label ID="lblHeading" runat="server" Text="Label"></asp:Label>
     </h3>
 
-    <br />
-    <div style="text-align: right;">
-        <asp:HyperLink ID="lnkGoto" runat="server" NavigateUrl="~/Views/Courses/?type=earlier">Go to earlier courses</asp:HyperLink>
+    <hr />
+    <%-- style="text-align: right;" --%>
+    <div class="text-right">
+        <asp:HyperLink ID="lnkGoto" runat="server" 
+            CssClass="btn btn-default"
+            NavigateUrl="~/Views/Courses/?type=earlier">Go to earlier courses</asp:HyperLink>
     </div>
+    <br />
     <uc1:LstUc runat="server" ID="LstUc1" />
 </asp:Content>
 

@@ -98,6 +98,7 @@
     <Compile Include="SessionDefault.cs" />
     <Compile Include="Subjects\EnrolmentMethods.cs" />
     <Compile Include="Class\SubjectClass.cs" />
+    <Compile Include="Subjects\Report.cs" />
     <Compile Include="Subjects\SubjectFile.cs" />
     <Compile Include="Subjects\SubjectGrouping.cs" />
     <Compile Include="Subjects\SubjectStructure.cs" />

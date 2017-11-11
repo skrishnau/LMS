@@ -10,22 +10,26 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
     <h3 class="heading-of-display">
-        <asp:Label ID="lblCourseName" runat="server" Text="" ></asp:Label>
+        <asp:Label ID="lblCourseName" runat="server" Text=""></asp:Label>
     </h3>
+    <hr />
+    
+    <table>
+        <tr>
+            <td class="data-type">Class name : </td>
+            <td class="data-value">
+                <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <div class="panel panel-default">
 
-    <div class="data-entry-section">
-        <h3 class="heading-of-display">
-            <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
-        </h3>
-        <br />
-
-        <br />
-        <div class="data-entry-section-heading">
+        <div class="panel-heading">
             <asp:Label ID="lblEnrollHeading" runat="server" Text=""></asp:Label>
-            <hr />
         </div>
-        
-        <div>
+
+        <div class="panel-body">
 
             <%--<uc1:UserEnrollUC runat="server" ID="UserEnrollUC" />--%>
             <uc1:UserEnrollUC_ListDisplay runat="server" ID="UserEnrollUC_ListDisplay1" />
@@ -54,6 +58,8 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="content4" ContentPlaceHolderID="head">
-    
+
     <link href="../../../Content/CSSes/PanelStyles.css" rel="stylesheet" />
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
+
 </asp:Content>

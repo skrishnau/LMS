@@ -12,7 +12,8 @@
             <%--class="item-section"--%>
             <%-- font-family: Arial, Helvetica, Verdana, Geneva, sans-serif; --%>
             <div style="font-size: 1.5em; font-weight: normal; ">
-                <asp:Label ID="lblTitle" runat="server" CssClass="color-blue" Text="Heading"></asp:Label>
+                <%-- CssClass="color-blue" --%>
+                <asp:Label ID="lblTitle" runat="server"  Text="Heading"></asp:Label>
                 &nbsp;&nbsp;&nbsp;
             
             <span class="span-edit-delete">
@@ -43,8 +44,10 @@
                         <%-- OnClick="lnkAddActOrRes_Click" 
                     CssClass="
                         --%>
-                        <asp:LinkButton ID="lnkAddActOrRes" ClientIDMode="Static" ToolTip="Add activity or resource in this section"
-                            CssClass="link_act_res link-button"
+                            <%--CssClass="link_act_res link-button"--%>
+                        <asp:LinkButton ID="lnkAddActOrRes" ClientIDMode="Static" 
+                            ToolTip="Add activity or resource in this section"
+                            CssClass="link_act_res"
                             Visible="False" runat="server">
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon-14px.png" />
                             Add an Activity or Resource

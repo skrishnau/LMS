@@ -9,7 +9,8 @@
     <%--<div style="margin: 0 auto; width: 80%; background-image: url('Content/Images/banner-1.jpg');  background-clip: content-box; background-repeat: no-repeat; background-position: left center; background-attachment: local; height: 200px;">--%>
 
     <%--</div>--%>
-    <div class="roboto-light"
+    
+    <div class="roboto-light well"
         style="padding: 10px 0 10px; text-align: center; font-size: 3em; vertical-align: central;">
         Learning Management
         <br />

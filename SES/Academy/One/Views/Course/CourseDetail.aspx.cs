@@ -270,7 +270,12 @@ namespace One.Views.Course
         protected void btnFilterCrieteria_Click(object sender, EventArgs e)
         {
             var button = (LinkButton)sender;
-
+            btnAll.CssClass = "btn btn-default";
+            btnCompleted.CssClass = "btn btn-default";
+            btnCurrentlyRunning.CssClass = "btn btn-default";
+            btnDue.CssClass = "btn btn-default";
+            btnNotStartedYet.CssClass = "btn btn-default";
+            button.CssClass = "btn btn-default active";
             ApplyFilterAndLoadData(button.ID);
         }
 

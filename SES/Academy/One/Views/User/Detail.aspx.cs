@@ -41,15 +41,15 @@ namespace One.Views.User
 
                     lblHeading.Text = us.FullName;
                     lblPageTitle.Text = "User Detail";
-                    lblCity.Text = us.City;
-                    lblCountry.Text = us.Country;
-                    lblDOB.Text = us.DOB.HasValue ? us.DOB.ToString() : "";
-                    lblEmail.Text = us.Email;
+                    lblCity.Text = string.IsNullOrEmpty(us.City)?"-":us.City;
+                    lblCountry.Text = string.IsNullOrEmpty(us.Country)?"-":us.Country;
+                    lblDOB.Text = us.DOB.HasValue ? us.DOB.ToString() : "-";
+                    lblEmail.Text = string.IsNullOrEmpty(us.Email)?"-":us.Email;
                     lblFirstName.Text = us.FirstName;
-                    lblGender.Text = us.Gender != null ? us.Gender.Name : "";
-                    lblLastName.Text = us.LastName;
-                    lblMidName.Text = us.MiddleName;
-                    lblPhone.Text = us.Phone;
+                    lblGender.Text = us.Gender != null ? us.Gender.Name : "-";
+                    lblLastName.Text = string.IsNullOrEmpty(us.LastName)?"-":us.LastName;
+                    lblMidName.Text = string.IsNullOrEmpty(us.MiddleName)?"-":us.MiddleName;
+                    lblPhone.Text = string.IsNullOrEmpty(us.Phone)?"-":us.Phone;
                     lblUserName.Text = us.UserName;
                     //lblStreet.Text = us.;
                     var role = us.UserRoles.Select(x => x.Role.DisplayName).ToList();

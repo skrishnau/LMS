@@ -6,49 +6,41 @@
 
 
 <asp:Content runat="server" ID="contnet1" ContentPlaceHolderID="Body">
-    <div class="create-edit-whole">
-        <h3 class="heading-of-create-edit">
-            <asp:Label ID="lblHeading" runat="server" Text="Add New Label"></asp:Label>
-        </h3>
-        <hr/>
-        <div class="data-entry-body">
-            <div class="data-entry-section">
-                <div class="data-entry-section-heading">
-                    General
-                    <hr />
-                </div>
-                <div class="data-entry-section-body">
-                    <table>
-                        <tr>
-                            <td class="data-type">Label text</td>
-                            <td class="data-value">
-                                <CKEditor:CKEditorControl ID="txtLabelText" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
-                            </td>
-                        </tr>
+    <h3 class="heading-of-create-edit">
+        <asp:Label ID="lblHeading" runat="server" Text="Add New Label"></asp:Label>
+    </h3>
+    <hr />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            General
+        </div>
+        <div class="panel-body">
+            <table>
+                <tr>
+                    <td class="data-type">Label text</td>
+                    <td class="data-value">
+                        <CKEditor:CKEditorControl ID="txtLabelText" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
+                       <asp:Label runat="server" ID="lblTextError" ForeColor="red" Visible="False" Text="Required"></asp:Label>
+                    </td>
+                </tr>
 
-                    </table>
-                </div>
-            </div>
-            <%-- section end --%>
-
-
-            <div class="data-entry-section">
-                <div class="data-entry-section-heading">
-                    Restriction
-                    <hr />
-                </div>
-                <div class="data-entry-section-body">
-                    <uc1:RestrictionUC runat="server" ID="RestrictionUC" />
-                </div>
-            </div>
-            <%-- section end --%>
-
-            <div class="save-div">
-                <asp:Button ID="btnSave" runat="server" Text="Save and return to Course" OnClick="btnSave_Click" />
-                &nbsp;&nbsp;
-            </div>
+            </table>
         </div>
     </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Restriction
+        </div>
+        <div class="panel-body">
+            <uc1:RestrictionUC runat="server" ID="RestrictionUC" />
+        </div>
+    </div>
+    <div class="save-div">
+        <asp:Button ID="btnSave" runat="server" Text="Save and return to Course" OnClick="btnSave_Click" />
+        &nbsp;&nbsp;
+        <asp:Button ID="btnCancel" runat="server" ValidationGroup="cancelgrp" Text="Cancel" OnClick="btnCancel_OnClick" />
+    </div>
+
     <asp:HiddenField ID="hidLabelId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSectionId" runat="server" Value="0" />

@@ -115,6 +115,12 @@ namespace One.Views.NoticeBoard
 
         protected void btnAddSave_Click(object sender, EventArgs e)
         {
+            if (CKEditor1.Text.Length == 0)
+            {
+                lblErrorMsg.Text = "Required field is/are empty";
+                lblErrorMsg.Visible = true;
+                return;
+            }
             var user = Page.User as CustomPrincipal;
             if (user != null)
             {
@@ -266,7 +272,9 @@ namespace One.Views.NoticeBoard
                 }*/
 
 
-
-
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/NoticeBoard/NoticeListing.aspx");
+        }
     }
 }

@@ -199,7 +199,8 @@ namespace One.Views.Academy
                                         txtAcademicEnd.Enabled = false;
                                         txtAcademicStart.Enabled = false;
                                         CheckBoxList1.Enabled = false;
-                                        chkSelectAll.Enabled = false;
+                                        //earlier working
+                                        //chkSelectAll.Enabled = false;
 
 
                                         txtName.Enabled = false;
@@ -207,7 +208,8 @@ namespace One.Views.Academy
                                         btnSave.Enabled = false;
 
                                         CheckBoxList1.Enabled = false;
-                                        chkSelectAll.Enabled = false;
+                                        //earlier working
+                                        //chkSelectAll.Enabled = false;
                                     }
                                 }
                             }
@@ -316,9 +318,9 @@ namespace One.Views.Academy
                 start = Convert.ToDateTime(txtAcademicStart.Text);
                 var earlierAca = helper.GetEarlierAcademicYear(user.SchoolId);
 
-                if (end.Date <= earlierAca.EndDate.Date)
+                if (start.Date <= earlierAca.EndDate.Date)
                 {
-                    valiAcademicStart.ErrorMessage = "Must be greater tha end-date of earlier academic year (" + earlierAca.EndDate.ToShortDateString() + ")";
+                    valiAcademicStart.ErrorMessage = "Must be greater than end-date of earlier academic year (" + earlierAca.EndDate.ToShortDateString() + ")";
                     valiAcademicStart.IsValid = false;
                 }
             }
@@ -511,10 +513,10 @@ namespace One.Views.Academy
 
         protected void chkSelectAll_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (ListItem li in CheckBoxList1.Items)
-            {
-                li.Selected = chkSelectAll.Checked;
-            }
+            //foreach (ListItem li in CheckBoxList1.Items)
+            //{
+            //    li.Selected = chkSelectAll.Checked;
+            //}
         }
 
 

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Academic.DbHelper;
+using Academic.ViewModel;
 using One.Values.MemberShip;
 using One.Views.RestrictionAccess.Custom;
 
@@ -31,6 +32,10 @@ namespace One.Views.FileManagement
                         && user.IsInRole("manager"));
                     IsServerFile = isServerFile;
 
+
+                    SetSitemap(isServerFile);
+
+
                     FilePickerDialog1.SetValues("File upload", null, "", "");
                     FilePickerDialog1.OnlyUploadAvailable = true;
                     var guid = Guid.NewGuid().ToString();
@@ -55,6 +60,27 @@ namespace One.Views.FileManagement
             file_upload.Style.Add("visibility", " hidden");
             SetFolderAddDialog();
             FolderAddDialogUc1.FolderSavedEvent += FolderAddDialogUc1_FolderSavedEvent;
+        }
+
+        private void SetSitemap(bool isServerFile)
+        {
+            if (SiteMap.CurrentNode != null)
+            {
+                var list = new List<IdAndName>()
+                        {
+                           new IdAndName(){
+                                        Name=SiteMap.RootNode.Title
+                                        ,Value =  SiteMap.RootNode.Url
+                                        ,Void=true
+                                    },
+                            new IdAndName(){
+                                Name = isServerFile?"Server Files" : "Private Files" //SiteMap.CurrentNode.Title
+                                //,Value = SiteMap.CurrentNode.ParentNode.Url
+                                //,Void=true
+                            }
+                        };
+                SiteMapUc.SetData(list);
+            }
         }
 
         public bool IsServerFile
@@ -185,6 +211,7 @@ namespace One.Views.FileManagement
             if (e.SaveSuccess)
             {
                 //reload the list
+                Response.Redirect(Request.Url.ToString());
                 FileListingUc1.ResetView();
             }
         }

@@ -54,13 +54,19 @@ namespace One.Views.Structure.All.UserControls
             else
             {
                 if (noOfCourses > 0)
+                {
                     lblNoOfCourses.Text = "No. of courses : " + noOfCourses.ToString();
+                }
                 else
                 {
-                    var link = "<a href='"+courseListUrl+"'>"+"There are no courses. Please add courses"+
-                        "</a>";
-                    lblNoOfCourses.Text = link;
-                    lblNoOfCourses.ForeColor = Color.Red;
+                    lnkNoOfCourses.NavigateUrl = firstPart+courseListUrl+"&swMgBt=1";
+                    lnkNoOfCourses.Text = "There are no courses. Add courses...";
+                    lnkNoOfCourses.Visible = true;
+                    lblNoOfCourses.Visible = false;
+                    //var link = "<a href='"+courseListUrl+"'>"+"There are no courses. Please add courses"+
+                    //    "</a>";
+                    //lblNoOfCourses.Text = link;
+                    //lblNoOfCourses.ForeColor = Color.Red;
                 }
             }
             //lnkEdit.Visible = edit;

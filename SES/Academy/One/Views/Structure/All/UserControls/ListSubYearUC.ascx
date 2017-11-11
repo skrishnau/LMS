@@ -3,7 +3,8 @@
 <%-- style="margin: 3px; padding: 8px " --%>
 <div runat="server" id="panel" style="padding: 3px;" class="list-item">
     <asp:Panel ID="pnlBody" runat="server">
-        <asp:HyperLink ID="lnkName" runat="server" CssClass="link-dark-bold">
+        <%-- link-dark-bold --%>
+        <asp:HyperLink ID="lnkName" runat="server" CssClass="list-item-heading">
         </asp:HyperLink>
         <%--<span class="list-item-option">
             <asp:HyperLink ID="lnkEdit" runat="server" CssClass="edit-button">
@@ -29,14 +30,18 @@
                         <em>
                             <asp:Label ID="lblNoOfCourses" runat="server" Text="0"></asp:Label>
                         </em>
+                        <span>
+                            <asp:HyperLink ID="lnkNoOfCourses" runat="server" CssClass="link" Visible="False">
+                            </asp:HyperLink>
+                        </span>
                     </td>
                 </tr>
             </table>
         </div>
 
         <asp:HiddenField ID="hidStructureType" Value="0" runat="server" />
-        <asp:HiddenField ID="hidYearId" runat="server"  Value="0"/>
-        <asp:HiddenField ID="hidSubYearId" runat="server"  Value="0"/>
+        <asp:HiddenField ID="hidYearId" runat="server" Value="0" />
+        <asp:HiddenField ID="hidSubYearId" runat="server" Value="0" />
 
     </asp:Panel>
 </div>

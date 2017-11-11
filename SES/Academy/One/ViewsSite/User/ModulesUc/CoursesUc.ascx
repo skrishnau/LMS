@@ -1,12 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CoursesUc.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.CoursesUc" %>
-<style type="text/css">
-    .dashboard-modules {
-        background-color: lightgoldenrodyellow;
-        /*margin: 10px 5px;*/
-        /*padding: 0 5px 5px 5px;*/
-        /*border: 2px solid darkgray;*/
-    }
-</style>
+
 <div class="module-whole">
     <div class="modules-heading">
         <asp:HyperLink ID="lbltitle"

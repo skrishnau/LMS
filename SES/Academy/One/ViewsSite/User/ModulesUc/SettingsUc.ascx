@@ -1,46 +1,52 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsUc.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.SettingsUc" %>
 
-<div class="module-whole">
-    <%--<strong>Settings</strong>--%>
-    <div class="modules-heading">
-       <strong style="padding: -4px;">
-            <asp:HyperLink ID="HyperLink1" runat="server" CssClass="modules-title">Administration</asp:HyperLink>
+<%-- module-whole --%>
+<div class="panel panel-default">
+    <%--<strong>Settings</strong>  "modules-heading--%>
+    <div class="panel-heading">
+        <strong style="padding: -4px;">
+            <asp:Label ID="label1" runat="server" CssClass="modules-title">Administration</asp:Label>
         </strong>
     </div>
     <%--class="modules-body" font-size: 0.9em; --%>
-    <div style="" class="list-unmargined">
-        
+    <%-- list-unmargined --%>
+
+    <div class="list-group">
+
         <%--<div class="auto-st2">--%>
-       <%-- <asp:HyperLink ID="lnkBatch" runat="server"
+        <%-- <asp:HyperLink ID="lnkBatch" runat="server"
             NavigateUrl="~/Views/Student/">Batches</asp:HyperLink>--%>
         <%--</div>--%>
         <%--<br />--%>
         <%--<div class="auto-st2">--%>
-        <asp:HyperLink ID="lnkAcademicSession" runat="server"
+        <asp:HyperLink ID="lnkAcademicSession" runat="server" CssClass="list-group-item"
             NavigateUrl="~/Views/Academy/">Academic</asp:HyperLink>
         <%--</div>--%>
 
         <%--<div class="auto-st2">--%>
-        <asp:HyperLink ID="lnkCourse" runat="server"
+        <asp:HyperLink ID="lnkCourse" runat="server" CssClass="list-group-item"
             NavigateUrl="~/Views/Course/">Courses</asp:HyperLink>
         <%--</div>--%>
         <%--<br />--%>
-        <asp:HyperLink ID="lnkPrograms" runat="server"
+        <asp:HyperLink ID="lnkPrograms" runat="server" CssClass="list-group-item"
             NavigateUrl="~/Views/Structure/">Programs</asp:HyperLink>
         <%--<div class="auto-st2">--%>
-        
+
         <%--</div>--%>
 
-        
-        <asp:HyperLink ID="lnkUsers" runat="server"
+
+        <asp:HyperLink ID="lnkUsers" runat="server" CssClass="list-group-item"
             NavigateUrl="~/Views/User/List.aspx">Users</asp:HyperLink>
         <%--<hr />--%>
         <%--<strong>Settings</strong>--%>
-
+        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="list-group-item"
+            NavigateUrl="~/Views/Grade/GradeListing.aspx">
+                    Grade types
+        </asp:HyperLink>
 
 
         <%--<div class="auto-st2">--%>
-        
+
         <%--</div>--%>
 
         <%--<span style="margin-left: 10px;">--%>
@@ -63,8 +69,6 @@
                 NavigateUrl="~/Views/Exam/ExamType/ExamTypeList.aspx">Exam Types</asp:HyperLink>
         </span>
         <br />--%>
+        <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
     </div>
-
-
-    <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
 </div>

@@ -14,12 +14,13 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <h3 class="heading-of-create-edit">Start new session
     </h3>
-    <br />
+    <hr />
 
-    <div class="data-entry-section">
+    <div class="">
+
         <table>
-            
-             <tr>
+
+            <tr>
                 <td class="data-type">Current Session
                 </td>
                 <td class="data-value">
@@ -31,11 +32,11 @@
                         ImageUrl="~/Content/Icons/Start/active_icon_10px.png"
                         Visible="False" />
 
-                  <%--  <asp:RequiredFieldValidator ID="reqValiSem1" runat="server" ErrorMessage="Required"
+                    <%--  <asp:RequiredFieldValidator ID="reqValiSem1" runat="server" ErrorMessage="Required"
                         ControlToValidate="txtSemester1" ValidationGroup="save"></asp:RequiredFieldValidator>--%>
                 </td>
             </tr>
-            
+
             <tr>
                 <td><strong>Next Session</strong></td>
             </tr>
@@ -45,7 +46,7 @@
                 </td>
                 <td class="data-value">
                     <asp:Label ID="lblAcademicYear" runat="server" Text=""></asp:Label>
-                   <%-- <asp:TextBox ID="txtAcademicyear" runat="server" Width="160"></asp:TextBox>
+                    <%-- <asp:TextBox ID="txtAcademicyear" runat="server" Width="160"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="reqValiAcademicyear" runat="server" ErrorMessage="Required"
                         ControlToValidate="txtAcademicyear" ValidationGroup="save"></asp:RequiredFieldValidator>--%>
                 </td>
@@ -62,7 +63,7 @@
                         ImageUrl="~/Content/Icons/Tick/Double Tick_16px.png"
                         Visible="False" />
 
-                  <%--  <asp:RequiredFieldValidator ID="reqValiSem1" runat="server" ErrorMessage="Required"
+                    <%--  <asp:RequiredFieldValidator ID="reqValiSem1" runat="server" ErrorMessage="Required"
                         ControlToValidate="txtSemester1" ValidationGroup="save"></asp:RequiredFieldValidator>--%>
                 </td>
             </tr>
@@ -78,43 +79,40 @@
                         ImageUrl="~/Content/Icons/Tick/Double Tick_16px.png"
                         Visible="False" />
 
-                   <%-- <asp:RequiredFieldValidator ID="reqValiSem2" runat="server" ErrorMessage="Required"
+                    <%-- <asp:RequiredFieldValidator ID="reqValiSem2" runat="server" ErrorMessage="Required"
                         ControlToValidate="txtSemester2" ValidationGroup="save"></asp:RequiredFieldValidator>--%>
                 </td>
             </tr>
 
 
         </table>
+
     </div>
-    <br />
     <div>
         <%--<uc1:CreateUc runat="server" id="CreateUc" />--%>
     </div>
     <br />
-    <div class="data-entry-section">
+    <div class="panel panel-default">
 
-        <div>
-            <strong style="font-size: 16px;">Upcoming Classes</strong>
+        <div class="panel-heading">
+            Upcoming Classes
             &nbsp;&nbsp;
-            
             <asp:Label ID="lblUpcomingSessionName" runat="server" Text=""></asp:Label>
 
         </div>
-        <br />
-        <div class="data-entry-section">
 
+        <div class="panel-body">
             <asp:Panel ID="pnlListing" runat="server"></asp:Panel>
-
         </div>
+
     </div>
-    <br/>
     <div class="save-div">
         <asp:Button ID="btnSave" runat="server" OnClick="btnSave_OnClick"
             ValidationGroup="save"
-            Text="Save and Start session" Width="163px" />
+            Text="Save and Start session" />
         &nbsp;&nbsp;
         <asp:Button ID="btnCancel" runat="server"
-            Text="Cancel" OnClick="btnCancel_OnClick" Width="168px" />
+            Text="Cancel" OnClick="btnCancel_OnClick" />
         &nbsp;
         <asp:Label ID="lblError" runat="server" Text="Error while saving." ForeColor="red"></asp:Label>
 
@@ -134,7 +132,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="content2" ContentPlaceHolderID="head">
-    
+
 
     <link href="../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 

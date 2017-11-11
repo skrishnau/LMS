@@ -12,11 +12,14 @@
     <h3 class="heading-of-create-edit">
         <asp:Label ID="lblHeading" runat="server" Text=""></asp:Label>
     </h3>
-    <div class="option-div" style="margin-top: 10px; margin-bottom: 10px;">
-        <asp:HyperLink ID="lnkEdit" runat="server">Edit</asp:HyperLink>
-        <asp:HyperLink ID="lnkDeelete" runat="server">Delete</asp:HyperLink>
+    <hr/>
+    <%-- style="margin-top: 10px; margin-bottom: 10px;" --%>
+    <div class="text-center">
+        <asp:HyperLink ID="lnkEdit" runat="server" CssClass="btn btn-default">Edit</asp:HyperLink>
+        &nbsp;
+        <asp:HyperLink ID="lnkDeelete" runat="server" CssClass="btn btn-default">Delete</asp:HyperLink>
     </div>
-
+    <br/>
     <div class="data-entry-section-body" style="float: left;">
         <table>
             <tr>

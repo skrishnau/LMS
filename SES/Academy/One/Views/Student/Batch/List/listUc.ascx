@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="listUc.ascx.cs" Inherits="One.Views.Student.Batch.List.listUc" %>
 <%-- class="list" --%>
-<div >
+<div class="list-group">
     <asp:PlaceHolder ID="pnlItems" runat="server"></asp:PlaceHolder>
 
     <%-- <div class="pager">

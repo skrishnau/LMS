@@ -31,6 +31,15 @@ namespace One.Views.ActivityResource.Url {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
+        /// valiName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiName;
+        
+        /// <summary>
         /// txtExternalUrl control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace One.Views.ActivityResource.Url {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExternalUrl;
+        
+        /// <summary>
+        /// valiExtUrl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valiExtUrl;
         
         /// <summary>
         /// CKEditor1 control.
@@ -110,6 +128,15 @@ namespace One.Views.ActivityResource.Url {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
+        /// btnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
         /// hidUrlId control.

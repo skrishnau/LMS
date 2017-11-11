@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Academic.DbEntities.ActivityAndResource.ChoiceItems;
+using Academic.DbHelper;
 using Academic.ViewModel;
 
 
@@ -444,5 +445,10 @@ namespace One.Views.ActivityResource.Choice
         }
 
         #endregion
+
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));            
+        }
     }
 }

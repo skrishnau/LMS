@@ -15,54 +15,51 @@
     <hr />
     <br />
     <%-- class="data-entry-body" --%>
-    <div class="data">
 
-        <div class="data-entry-section">
-            <div class="data-entry-section-heading">
-                General
-            <hr />
+    <div class="panel panel-default">
 
-            </div>
-            <div class="data-entry-section-body">
+        <div class="panel-heading">
+            General
+        </div>
+        <div class="panel-body">
 
-                <table>
-                    <tr>
-                        <td class="data-type">Name</td>
-                        <td class="data-value">
-                            <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                                ForeColor="red" ControlToValidate="txtName" ValidationGroup="gradevaligroup"
-                                ErrorMessage="Required"></asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="data-type">Description</td>
-                        <td class="data-value">
-                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="77px" Width="237px"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="data-type">Type
-                        </td>
-                        <td class="data-value">
-                            <uc1:GradeTypeUc runat="server" ID="GradeTypeUc1" />
-                        </td>
-                    </tr>
-                </table>
-                <div class="save-div">
-                    <asp:Button ID="btnSave" runat="server" Text="Save" Width="75px" ValidationGroup="gradevaligroup" OnClick="btnSave_OnClick" />
-                    &nbsp; &nbsp;
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="75px"
-                    ValidationGroup="cancelgroup" OnClick="btnCancel_OnClick" />
-
-                    <asp:Label ID="lblError" runat="server" Text="Error while saving." Visible="False" ForeColor="red"></asp:Label>
-                </div>
-            </div>
+            <table>
+                <tr>
+                    <td class="data-type">Name</td>
+                    <td class="data-value">
+                        <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                            ForeColor="red" ControlToValidate="txtName" ValidationGroup="gradevaligroup"
+                            ErrorMessage="Required"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="data-type">Description</td>
+                    <td class="data-value">
+                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="77px" Width="237px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="data-type">Type
+                    </td>
+                    <td class="data-value">
+                        <uc1:GradeTypeUc runat="server" ID="GradeTypeUc1" />
+                    </td>
+                </tr>
+            </table>
 
         </div>
 
-
     </div>
+    <div class="save-div">
+        <asp:Button ID="btnSave" runat="server" Text="Save" Width="75px" ValidationGroup="gradevaligroup" OnClick="btnSave_OnClick" />
+        &nbsp; &nbsp;
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="75px"
+                    ValidationGroup="cancelgroup" OnClick="btnCancel_OnClick" />
+
+        <asp:Label ID="lblError" runat="server" Text="Error while saving." Visible="False" ForeColor="red"></asp:Label>
+    </div>
+
     <%--<asp:HiddenField ID="hidPageKey" runat="server" Value="0" />--%>
     <asp:HiddenField ID="hidId" runat="server" Value="0" />
 </asp:Content>

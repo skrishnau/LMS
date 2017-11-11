@@ -92,19 +92,32 @@ namespace One.Views.Academy
                     {
                         var teacherPresent = sub.ClassUsers.Any(x => x.RoleId == teacherRoleId && !(x.Void ?? false));
 
-                        var lbl = new HyperLink()
+                        var link = new HyperLink()
+                        {
+                            
+                            NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + sub.Id,
+                            CssClass = "list-group-item"
+                        };
+
+                        var lbl = new Label()
                         {
                             Text = sub.GetCourseFullName + "<br />",
-                            NavigateUrl = "~/Views/Class/CourseClassDetail.aspx?ccId=" + sub.Id,
-                            CssClass = "list-item"
+                            //CssClass = "link"
                         };
+                        link.Controls.Add(lbl);
+
 
                         if (!teacherPresent)
                         {
                             var noticeText =
                                    "&nbsp;&nbsp;&nbsp;&nbsp;<img src = '/Content/Icons/Notice/Warning_Shield_16px.png'/> " +
                                    "Teacher is not assigned to this class yet. Please assign teacher(s).<br/>";
-                            lbl.Text += noticeText;
+                            var literal = new Literal()
+                            {
+                                Text = noticeText,
+                            };
+                            link.Controls.Add(literal);
+                            //link.Text += noticeText;
                         }
 
 
@@ -119,7 +132,7 @@ namespace One.Views.Academy
 
                         //Teacher is not assigned to this class yet. Please assign teacher(s).
 
-                        pnlSubjects.Controls.Add(lbl);
+                        pnlSubjects.Controls.Add(link);
                         //pnlSubjects.Controls.Add(notice);
                         //pnlSubjects.Controls.Add(new Literal()
                         //{

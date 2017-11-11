@@ -3,7 +3,7 @@
 <%--<span class="">--%>
 <%-- CssClass="pnlcls" --%>
 
-<asp:Panel ID="pnlName" runat="server" EnableViewState="True"  >
+<asp:Panel ID="pnlName" runat="server" EnableViewState="True"  CssClass="list-group-item">
     <%--<asp:Label ID="lblName" runat="server" Text="CategoryName"></asp:Label>--%>
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
     <%-- CssClass="list-item-heading-normal" --%>

@@ -14,22 +14,25 @@
 
     <%-- class="menu" style="clear: both; margin: 20px 5px; padding: 10px;" --------------Menu------------- --%>
     <div>
-        <%-- style="float: right;" --%>
-        <div class="option-div">
+        <%-- style="float: right;"  class="option-div"  --%>
+        <div class="text-right">
             <span runat="server" id="pnlOtherEdits" visible="False">
-                <asp:HyperLink ID="lnkAdd" runat="server" CssClass="link-dark"
+                <%--  CssClass="link-dark" --%>
+                <asp:HyperLink ID="lnkAdd" runat="server" CssClass="btn btn-default"
                     NavigateUrl="~/Views/Academy/Create.aspx">
                     <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                     New Academic Year
                 </asp:HyperLink>
-                <asp:HyperLink ID="lnkStartSession" runat="server" CssClass="link-dark"
+                &nbsp;
+                <asp:HyperLink ID="lnkStartSession" runat="server" CssClass="btn btn-default"
                     NavigateUrl="~/Views/Academy/StartSession.aspx">
                     <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Sort/sort-right-14px.png" Width="14" Height="14" />
                     Start Session
                 </asp:HyperLink>
                 <%-- "~/Content/Icons/Start/Start_16px.png" --%>
             </span>
-            <asp:HyperLink ID="lnkBatchList" runat="server" CssClass="link-dark"
+            &nbsp;
+            <asp:HyperLink ID="lnkBatchList" runat="server" CssClass="btn btn-default"
                 NavigateUrl="~/Views/Student/Batch/Default.aspx">
                 <asp:Image ID="Image4" runat="server" ImageUrl="~/Content/Icons/List/transaction-list-16px.png" Width="14" Height="14" />
                 Batch List
@@ -37,8 +40,8 @@
         </div>
     </div>
     <%-- ------------END of Menu --%>
-    
-   <%-- <div>
+
+    <%-- <div>
         <asp:DataPager ID="DataPager1" runat="server" >
             <Fields>
                 <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
@@ -46,21 +49,31 @@
         </asp:DataPager>
     </div>--%>
     <br />
-    <div style="border-bottom: 1px solid lightgrey; margin-top: 10px;">
+    <%-- style="border-bottom: 1px solid lightgrey; border-top: 1px solid lightgrey; margin-top: 10px;" --%>
+    <div class="well-sm well">
         <div style="float: left;">
-            <asp:HyperLink ID="lnkPrevious" runat="server">Previous</asp:HyperLink>
+            <asp:HyperLink ID="lnkPrevious" runat="server" CssClass="list-item-heading">
+                <asp:Image ID="Image1" Height="10" Width="10"
+                    ImageUrl="~/Content/Icons/Arrow/arrow_left.png"
+                    runat="server" />
+                Previous
+            </asp:HyperLink>
         </div>
         <div style="float: right;">
-            <asp:HyperLink ID="lnkNext" runat="server">Next</asp:HyperLink>
+            <asp:HyperLink ID="lnkNext" runat="server" CssClass="list-item-heading">
+                Next
+             <asp:Image ID="Image5" Height="10" Width="10"
+                 ImageUrl="~/Content/Icons/Arrow/arrow_right.png"
+                 runat="server" />
+            </asp:HyperLink>
         </div>
         <div style="clear: both;"></div>
     </div>
-
     <div style="margin-top: 10px;">
         <asp:Panel ID="pnlAcademicYearListing" runat="server"></asp:Panel>
     </div>
-    
-   
+
+
 
     <asp:HiddenField ID="hidEdit" runat="server" Value="False" />
 

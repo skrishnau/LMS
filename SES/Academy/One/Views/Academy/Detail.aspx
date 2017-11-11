@@ -50,7 +50,7 @@
         </table>
 
 
-        <div class="data-entry-section">
+        <%--<div class="data-entry-section">
             <div class="data-entry-section-heading">
                 Sessions
                 <hr />
@@ -59,7 +59,18 @@
             <div class="data-entry-section-body">
                 <asp:Panel ID="pnlSessions" runat="server"></asp:Panel>
             </div>
+        </div>--%>
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Sessions
+            </div>
+
+            <div class="list-group">
+                <asp:Panel ID="pnlSessions" runat="server"></asp:Panel>
+            </div>
         </div>
+
     </div>
 
 

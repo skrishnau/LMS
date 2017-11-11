@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DetailItemUc.ascx.cs" Inherits="One.Views.Student.Batch.BatchDetail.DetailItemUc" %>
 
 
-<div class="list-item">
+<div class="list-group-item">
     <asp:Panel ID="pnlBody" runat="server">
         <div >
             <asp:HyperLink ID="lnkProgrameName" runat="server" Text=""  CssClass="list-item-heading"

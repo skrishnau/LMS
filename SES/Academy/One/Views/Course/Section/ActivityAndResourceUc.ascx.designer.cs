@@ -22,6 +22,15 @@ namespace One.Views.Course.Section {
         protected global::System.Web.UI.WebControls.Panel pnlHeading;
         
         /// <summary>
+        /// lnkImgIcon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkImgIcon;
+        
+        /// <summary>
         /// imgIcon control.
         /// </summary>
         /// <remarks>

@@ -94,6 +94,15 @@ namespace One.Views.NoticeBoard {
         protected global::System.Web.UI.WebControls.Label lblViewers;
         
         /// <summary>
+        /// divNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNotice;
+        
+        /// <summary>
         /// lblNoticeContent control.
         /// </summary>
         /// <remarks>

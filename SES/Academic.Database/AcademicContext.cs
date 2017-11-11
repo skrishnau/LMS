@@ -215,7 +215,7 @@ namespace Academic.Database
         public DbSet<DbEntities.Subjects.SubjectFile> SubjectFile { get; set; }
         public DbSet<DbEntities.Subjects.SubjectGrouping> SubjectGrouping { get; set; }
 
-        //public DbSet<DbEntities.Subjects.SubjectGroup> SubjectGroup { get; set; }
+        public DbSet<DbEntities.Subjects.Report> Report { get; set; }
         public DbSet<DbEntities.Subjects.SubjectCategory> SubjectCategory { get; set; }
         //public DbSet<DbEntities.Subjects.SubjectGroupSubject> SubjectGroupSubject { get; set; }
         //public DbSet<DbEntities.Subjects.RegularSubject> RegularSubjectsGrouping { get; set; }

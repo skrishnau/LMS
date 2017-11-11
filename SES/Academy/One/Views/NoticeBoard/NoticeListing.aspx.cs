@@ -38,10 +38,13 @@ namespace One.Views.NoticeBoard
                     }
                     lnkAddNotice.NavigateUrl = "~/Views/NoticeBoard/NoticeCreate.aspx";
                     hidSchoolId.Value = user.SchoolId.ToString();
+
+                    var edit = (Session["editMode"] as string) == "1";
+
                     if (user.IsInRole("manager") || user.IsInRole("notifier"))
                     {
                         hidDisplayAll.Value = "True";
-                        lnkAddNotice.Visible = true;
+                        lnkAddNotice.Visible = edit;
                     }
                     else
                     {

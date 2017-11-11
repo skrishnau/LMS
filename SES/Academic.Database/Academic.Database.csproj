@@ -58,6 +58,14 @@
     <Compile Include="Migrations\201707241154551_schoolInfoUpdated.Designer.cs">
       <DependentUpon>201707241154551_schoolInfoUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709131115524_report_table_added.cs" />
+    <Compile Include="Migrations\201709131115524_report_table_added.Designer.cs">
+      <DependentUpon>201709131115524_report_table_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709131124356_report_table_updated.cs" />
+    <Compile Include="Migrations\201709131124356_report_table_updated.Designer.cs">
+      <DependentUpon>201709131124356_report_table_updated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +88,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707241154551_schoolInfoUpdated.resx">
       <DependentUpon>201707241154551_schoolInfoUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709131115524_report_table_added.resx">
+      <DependentUpon>201709131115524_report_table_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709131124356_report_table_updated.resx">
+      <DependentUpon>201709131124356_report_table_updated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

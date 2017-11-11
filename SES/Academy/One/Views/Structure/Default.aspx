@@ -25,12 +25,13 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div id="listStructureDiv" style="width: 98%;">
+            <div id="listStructureDiv" >
 
                 <asp:PlaceHolder ID="pnlListing" runat="server"></asp:PlaceHolder>
 
+                <br/>
                 <div>
-                    <asp:HyperLink ID="lnkAdd" runat="server" Visible="False" CssClass="link-button">
+                    <asp:HyperLink ID="lnkAdd" runat="server" Visible="False" CssClass="link-outer">
                         <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
                         <asp:Literal ID="lblAddText" runat="server" Text="Add Program"></asp:Literal>
                     </asp:HyperLink>

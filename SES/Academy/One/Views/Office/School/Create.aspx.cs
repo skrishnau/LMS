@@ -385,5 +385,9 @@ namespace One.Views.Office.School
         //    DbHelper.ComboLoader.LoadSchoolType(ref  cmbSchoolType,
         //             selectedValue, false);
         //}
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/About.aspx");
+        }
     }
 }

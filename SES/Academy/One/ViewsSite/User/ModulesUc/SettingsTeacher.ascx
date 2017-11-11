@@ -1,23 +1,23 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsTeacher.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.SettingsTeacher" %>
 
 
-<div class="modules-whole">
+<div class="panel panel-default">
     <%--<strong>Settings</strong>--%>
-    <div class="modules-heading">
+    <div class="panel-heading">
         <strong>
-            <asp:HyperLink ID="HyperLink1" runat="server" CssClass="modules-title">Settings</asp:HyperLink>
+            <asp:Label ID="label1" runat="server" CssClass="modules-title">Settings</asp:Label>
         </strong>
     </div>
     <%--class="modules-body" style="font-size: 0.9em; font-weight: 500;">--%>
-    <div style="" class="list-unmargined">
+    <div style="" class="list-group">
        <%-- CssClass="link" --%>
-        <asp:HyperLink ID="lnkPrograms" runat="server" 
+        <asp:HyperLink ID="lnkPrograms" runat="server"  CssClass="list-group-item"
             NavigateUrl="~/Views/Structure/">Programs</asp:HyperLink>
         
-        <asp:HyperLink ID="lnkBatches" runat="server" 
+        <asp:HyperLink ID="lnkBatches" runat="server"  CssClass="list-group-item"
             NavigateUrl="~/Views/Student/">Batches</asp:HyperLink>
         
-        <asp:HyperLink ID="lnkCourses" runat="server" 
+        <asp:HyperLink ID="lnkCourses" runat="server" CssClass="list-group-item"
             NavigateUrl="~/Views/Course/">Courses</asp:HyperLink>
         
         <%--<span style="margin-left: 10px;">--%>

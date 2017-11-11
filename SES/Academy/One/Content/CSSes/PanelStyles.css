@@ -1,9 +1,9 @@
-﻿body {
-    /*background-color: #557d96;*/
+﻿/*body is implemented in MasterStyles.css*/
+/*body {
     background-color: #f5f5f5;
     margin: 0 auto;
     width: 90%;
-}
+}*/
 
 .body-white {
     background-color: white;
@@ -17,22 +17,18 @@
 /*534f60*/
 .right-width {
     width: 250px;
-    background-color: #f5f5f5;
+    /*background-color: #f7f7f7;*/
     color: lightgrey;
 }
 /*width: 180px;*/
 .left-width {
     width: 220px;
-    /*#e6e6ff   #f1f1f1*/
-    /*background-color: #e0dfe3;*/
     background-color: #f5f5f5;
     color: lightgrey;
 }
 
 .sitemap-panel {
-    /*#f1f1f1   5a5a5a*/
     padding: 5px 0;
-    /*background-color: #aaa3be;*/
     background-color: #f1f1f1;
     color: lightgrey;
 }
@@ -48,14 +44,13 @@
 .menu-div {
     color: white;
     height: 35px;
-    position: fixed;
+    /*position: fixed;*/
     top: 0;
     left: 0;
     border-bottom: white solid 1px;
     /*-webkit-border-radius: 2px;*/
     /*background-color: darkslategray;*/
     background-color: #8a81a3;
-
     text-align: left;
     z-index: 10;
     vertical-align: central;
@@ -66,14 +61,13 @@
 
 .module-whole {
     margin-bottom: 15px;
-    /*background-color: lightgoldenrodyellow;*/
     padding: 3px;
-    /*-webkit-border-radius: 5px;*/
 }
 
 .modules-title {
     /*color: white;*/
-    color: darkslategray;
+    /*color: darkslategray;*/
+    color: #595959;
     text-decoration: none;
     font-weight: 400;
     margin-bottom: 5px;
@@ -84,14 +78,9 @@
     }
 
 div.modules-heading {
-    /*width: 100%;*/
-    /*border-bottom: 1px solid black;*/
     text-align: left;
-    /*background-color: darkslategray;
-    color: white;*/
     padding: 5px;
     -webkit-border-radius: 5px;
-    /*margin-bottom: 5px;*/
 }
 
 .modules-body {
@@ -117,7 +106,7 @@ div.modules-heading {
 }
 
 .body-whole {
-    margin-top: 48px;
+    /*margin-top: 48px;*/
     /*margin-top: 75px;*/
 }
 
@@ -140,17 +129,20 @@ div.modules-heading {
         display: block;
         border: 1px solid lightgrey;
         margin-top: -1px;
-        color: #393939;
+        /*color: #393939;*/
+        color: #303882;
         text-decoration: none;
         padding: 6px 6px 6px 10px;
     }
 
         .list-unmargined a:hover {
             background-color: white;
+            text-decoration: underline;
             color: black;
         }
 
         .list-unmargined a:active {
+            color: blue;
             text-decoration: underline;
         }
 
@@ -325,43 +317,7 @@ div.modules-heading {
     }
 
 
-.list-item-heading, .list-item-heading:visited {
-    font-size: 1.1em;
-    color: #393939;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: 400;
-    /*background-color: #f0fff0;*/
-    /*//font-size: 2em;*/
-}
 
-    .list-item-heading:hover {
-        color: black;
-        text-decoration: underline;
-        font-weight: 400;
-    }
-
-    .list-item-heading:active {
-        color: darkblue;
-    }
-
-.list-item-heading-option {
-    font-size: 14px;
-    margin-left: 10px;
-    color: #393939;
-}
-
-    .list-item-heading-option a {
-        color: #393939;
-        text-decoration: underline;
-    }
-
-        .list-item-heading-option a:hover {
-            color: black;
-            font-weight: bold;
-            background-color: #f5f5f5;
-            text-decoration: underline;
-        }
 
 
 .span-edit-delete a {
@@ -447,7 +403,7 @@ div.modules-heading {
 /*<HeaderStyle BackColor="#557d96" Font-Bold="True" ForeColor="White"#f5f5f5; />*/
 .data-list-header {
     background-color: #f1f1f1;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 1.1em;
     color: #393939;
     border: 1px solid lightgrey;
@@ -455,6 +411,7 @@ div.modules-heading {
     text-align: left;
     line-height: 25px;
     margin-bottom: 3px;
+    padding: 20px 0;
 }
 
 .data-list-footer {
@@ -464,6 +421,18 @@ div.modules-heading {
     border: 1px solid lightgrey;
     border-top: 2px solid darkgray;
 }
+
+    .data-list-footer a {
+        border: 1px solid gray;
+        margin: 0 5px;
+        padding: 2px 7px;
+        background-color: #fffaf0;
+    }
+
+        .data-list-footer a:hover {
+            background-color: lightgray;
+            text-decoration: none;
+        }
 
 .background-overall {
     background-color: #f1f1f1;

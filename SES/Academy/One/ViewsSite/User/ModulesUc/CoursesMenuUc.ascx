@@ -1,20 +1,21 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CoursesMenuUc.ascx.cs" Inherits="One.ViewsSite.User.ModulesUc.CoursesMenuUc" %>
 
-
-<div class="module-whole">
+<%-- module-whole --%>
+<div class="panel panel-default">
     <%--<strong>Settings</strong>--%>
-    <div class="modules-heading">
-        <strong style="padding: -4px;">
-            <asp:HyperLink ID="HyperLink1" runat="server" CssClass="modules-title">Courses</asp:HyperLink>
-        </strong>
+    <%-- modules-heading --%>
+    <div class="panel-heading">
+        <%--<strong style="padding: -4px;">--%>
+            <asp:Label ID="label1" runat="server" CssClass="">Courses</asp:Label>
+        <%--</strong>--%>
     </div>
-    <%-- class="list-unmargined" class="course-menu"--%>
-    <div style="" class="list-unmargined">
+    <%-- list-unmargined --%>
+    <div style="" class="list-group">
 
         <%--<div class="auto-st2">  CssClass="course-menu-current-earlier"--%>
-        <asp:HyperLink ID="lnkCurrent" runat="server"  CssClass="roboto-medium"
+        <%-- CssClass="roboto-medium" --%>
+        <asp:HyperLink ID="lnkCurrent" runat="server"  CssClass="list-group-item"
             NavigateUrl="~/Views/Courses/?type=current">Current</asp:HyperLink>
-        
         <asp:PlaceHolder ID="pHolderCurrent" runat="server"></asp:PlaceHolder>
 
 

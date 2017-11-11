@@ -194,5 +194,10 @@ namespace One.Views.ActivityResource.Forum
 
             }
         }
+
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+        }
     }
 }

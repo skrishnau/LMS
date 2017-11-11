@@ -126,8 +126,10 @@ namespace One.ViewsSite.User
                                 {
                                     //noticeboarduc,eventsuc, onlineusersuc
                                     //pnlBody.CssClass = "body-grey";
-                                    middlePanel.Style.Add("border-right", "1px solid darkgrey");
-                                    middlePanel.Style.Add("border-left", "1px solid darkgrey");
+
+                                    //earlier--not used now
+                                    //middlePanel.Style.Add("border-right", "1px solid darkgrey");
+                                    //middlePanel.Style.Add("border-left", "1px solid darkgrey");
 
 
 
@@ -138,6 +140,7 @@ namespace One.ViewsSite.User
                                 {
                                     //pnlBody.CssClass = "body-white";
                                     middlePanel.Style.Add("background-color", "white");
+                                    middlePanel.Attributes.Add("class","col-md-10");
                                 }
                             }
                         }
@@ -189,28 +192,45 @@ namespace One.ViewsSite.User
                             if (due.Any())
                             {
                                 lblEmptyNotice.Visible = false;
-                                imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
-                                var hlink = new HyperLink()
-                                {
-                                    Text = "Due classes, Mark completion (" + due.Count + ")",
-                                    NavigateUrl = "~/Views/Class/DueClasses.aspx"
-                                };
-                                plHolderNotice.Controls.Add(hlink);
+                                //earlier
+                                //imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
+
+
+                                //var hlink = new HyperLink()
+                                //{
+                                //    Text = "Due classes, Mark completion (" + due.Count + ")",
+                                //    NavigateUrl = "~/Views/Class/DueClasses.aspx"
+                                //};
+
+                                var text = "Due classes, Mark completion (" + due.Count + ")";
+                                var url = "/Views/Class/DueClasses.aspx";
+                                var li = "<li><a href = '"+url+"'>"
+                                        +text
+                                         + "</a></li>";
+                                
+                                plHolderNotice.Controls.Add(new Literal(){Text = li});
                             }
 
                             var noTeacher = helper.GetNoTeacherInClassNotification(user.SchoolId);
                             if (noTeacher.Any())
                             {
                                 lblEmptyNotice.Visible = false;
-                                imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
+                                //earlier 
+                                //imgNotificationIcon.ImageUrl = "~/Content/Icons/Notice/Info-urgent-light-26px.png";
 
-                                var hlink = new HyperLink()
-                                {
-                                    //<span style='background-color:red;color:white;padding:-2px;'></span>"
-                                    Text = "Teacher not assigned to class (" + noTeacher.Count + ")",
-                                    NavigateUrl = "~/Views/Class/TeacherNotAssignedClasses.aspx"
-                                };
-                                plHolderNotice.Controls.Add(hlink);
+                                //var hlink = new HyperLink()
+                                //{
+                                //    //<span style='background-color:red;color:white;padding:-2px;'></span>"
+                                //    Text = "Teacher not assigned to class (" + noTeacher.Count + ")",
+                                //    NavigateUrl = "~/Views/Class/TeacherNotAssignedClasses.aspx"
+                                //};
+                                //Teacher not assigned to class
+                                var url = "/Views/Class/TeacherNotAssignedClasses.aspx";
+                                var text = "Classes without teachers (" + noTeacher.Count + ")";
+                                var li = "<li><a href = '"+url+"'>"
+                                       + text
+                                        + "</a></li>";
+                                plHolderNotice.Controls.Add(new Literal() { Text = li });
                             }
                         }
                     }
@@ -270,7 +290,9 @@ namespace One.ViewsSite.User
                         //settings.UserId = user.Id;
                         pnlSettings.Controls.Add(settings);
                         lnkEditMode.Visible = true;
-                        lnkSettingMenu.Visible = true;
+
+                        //earlier settings
+                        //lnkSettingMenu.Visible = true;
 
                         FileManagementMenuUc1.ShowServerMenu();
                     }

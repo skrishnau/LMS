@@ -15,54 +15,47 @@
     <h3 class="heading-of-display">
         <asp:Label ID="lblCourseName" runat="server" Text=""></asp:Label>
     </h3>
+    <hr />
+    <%--<h3 class="heading-of-display">
+        <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
+    </h3>--%>
 
-    <div class="data-entry-section">
-        <div>
-            <div style="float: left;">
-                <h3 class="heading-of-display">
-                    <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
-                </h3>
-            </div>
+    <div>
+        <table class="table-detail">
+            <tr class="row-detail">
+                <td class="data-type">Class Name</td>
+                <td class="data-value">
+                    <asp:Label ID="lblClassName" runat="server"></asp:Label>
+                </td>
+            </tr>
 
-            <div style="clear: both;"></div>
-        </div>
-        <%--  class="data-entry-section" --%>
-        <div>
-
-            <table class="table-detail">
-                <%-- <tr class="row-detail">
-                    <td class="data-detail">Class Name</td>
-                    <td>
-                        <asp:Literal ID="lblFullName" runat="server"></asp:Literal>
-                    </td>
-                </tr>--%>
-                <tr>
-                    <td class="data-type">Start Date</td>
-                    <td class="data-value">
-                        <asp:Literal ID="lblStartDate" runat="server"></asp:Literal>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="data-type">End Date</td>
-                    <td class="data-value">
-                        <asp:Literal ID="lblEndDate" runat="server"></asp:Literal>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="data-type">
-                        <asp:Label ID="lblJoinLstDateTitle" runat="server" Text="Last date to join"></asp:Label></td>
-                    <td class="data-value">
-                        <asp:Literal ID="lblJoinLastDate" runat="server"></asp:Literal>
-                    </td>
-                </tr>
-                <%-- <tr>
+            <tr>
+                <td class="data-type">Start Date</td>
+                <td class="data-value">
+                    <asp:Literal ID="lblStartDate" runat="server"></asp:Literal>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-type">End Date</td>
+                <td class="data-value">
+                    <asp:Literal ID="lblEndDate" runat="server"></asp:Literal>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-type">
+                    <asp:Label ID="lblJoinLstDateTitle" runat="server" Text="Last date to join"></asp:Label></td>
+                <td class="data-value">
+                    <asp:Literal ID="lblJoinLastDate" runat="server"></asp:Literal>
+                </td>
+            </tr>
+            <%-- <tr>
                     <td class="data-type">Enrollment Method</td>
                     <td class="data-value">
                         <asp:Literal ID="lblEnrollmentMethod" runat="server"></asp:Literal>
                     </td>
                 </tr>--%>
 
-                <%--<tr>
+            <%--<tr>
                     <td class="data-type">Student Grouping
                     </td>
                     <td class="data-value">
@@ -71,17 +64,29 @@
                         </div>
                     </td>
                 </tr>--%>
-            </table>
-        </div>
+        </table>
+    </div>
+
+
+    <div>
+        <%--<div>
+            <div style="float: left;">
+            </div>
+
+            <div style="clear: both;"></div>
+        </div>--%>
+        <%--  class="data-entry-section" --%>
+
         <br />
         <%-- style="text-align: center; vertical-align: bottom; float: left; padding-top: 8px; padding-left: 20px;" --%>
         <%-- style="text-align: center;"  CssClass="auto-st2 link"  --%>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <div class="option-div">
+                <%-- class="option-div" --%>
+                <div class="text-center">
                     <%--<asp:HyperLink ID="lnkReport" runat="server">View Report</asp:HyperLink>--%>
-                    <asp:HyperLink ID="lnkViewCourse" runat="server" Visible="False">View Course</asp:HyperLink>
-                    <asp:LinkButton ID="btnEnroll" runat="server" 
+                    <asp:HyperLink ID="lnkViewCourse" runat="server" CssClass="btn btn-default" Visible="False">View Course</asp:HyperLink>
+                    <asp:LinkButton ID="btnEnroll" runat="server"
                         OnClick="btnEnroll_Click"
                         Visible="False">Enroll Now</asp:LinkButton>
                 </div>
@@ -91,40 +96,44 @@
         <br />
     </div>
 
-    <div class="data-entry-section-heading">
-        Teachers
-        <hr />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Teachers
+        </div>
+
+        <asp:DataList ID="DataList1" runat="server" DataSourceID="ObjectDataSource1" Width="100%">
+            <ItemTemplate>
+                <div class="list-item-datalist">
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#  Bind("ImageUrl") %>'>
+                        <asp:Image ID="Image1" runat="server" Height="40" Width="40" ImageUrl='<%#  Bind("ImageUrl") %>' />
+                        <span style="line-height: 20px;">
+                            <asp:Label ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                        </span>
+                    </asp:HyperLink>
+                </div>
+            </ItemTemplate>
+        </asp:DataList>
+        <div class="panel-body">
+            <asp:Label ID="lbldNotice" runat="server"
+                Visible="False">
+                <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
+                Teacher is not assigned to this class yet.
+            </asp:Label>
+        </div>
     </div>
 
-    <asp:DataList ID="DataList1" runat="server" DataSourceID="ObjectDataSource1" Width="100%">
-        <ItemTemplate>
-            <div class="list-item-datalist">
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#  Bind("ImageUrl") %>'>
-                    <asp:Image ID="Image1" runat="server" Height="40" Width="40" ImageUrl='<%#  Bind("ImageUrl") %>' />
-                    <span style="line-height: 20px;">
-                        <asp:Label ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
-                    </span>
-                </asp:HyperLink>
-            </div>
-        </ItemTemplate>
-    </asp:DataList>
 
-
-    <div>
-        <asp:Label ID="lbldNotice" runat="server"
-            Visible="False">
-            <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
-            Teacher is not assigned to this class yet.
-        </asp:Label>
-    </div>
     <br />
-    <div class="data-entry-section-heading">
-        Course View
-        <hr />
-    </div>
-    <div style="background-color: #f1f1f1; padding: 3px;">
-        <div style="border: 1px solid lightgrey; background-color: white;">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Course Overview
+        </div>
+        <%-- style="background-color: #f1f1f1; padding: 3px;" --%>
+        <div class="panel-body">
+            <%--<div style="border: 1px solid lightgrey; background-color: white;">--%>
             <uc1:ListOfSectionsInCourseUC runat="server" ID="ListOfSectionsInCourseUC" />
+            <%--</div>--%>
         </div>
     </div>
 

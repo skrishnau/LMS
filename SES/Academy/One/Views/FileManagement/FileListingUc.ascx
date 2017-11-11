@@ -5,27 +5,31 @@
 
 <div style="margin: 0;">
     <%-- directory --%>
-    <div style="background-color: #f1f1f1; padding: 5px;">
+    <%-- style="background-color: #f1f1f1; padding: 5px;" --%>
+    <div style="margin-left:  -10px;" >
         <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
     </div>
-    <br />
     <%-- Folders --%>
-    <asp:Panel runat="server" ID="pnlFoldersPanel">
-        <div class="data-entry-section-heading">
+    <asp:Panel runat="server" ID="pnlFoldersPanel" CssClass="panel panel-default">
+        <%-- data-entry-section-heading --%>
+        <div class="panel-heading">
             Folders
-            <hr />
         </div>
-        <asp:Panel ID="pnlFolderListing" runat="server"></asp:Panel>
+        <div class="panel-body">
+            <asp:Panel ID="pnlFolderListing" runat="server"></asp:Panel>
+        </div>
         <div style="clear: both;"></div>
+        <br />
     </asp:Panel>
     <br />
     <%-- Files --%>
-    <asp:Panel runat="server" ID="pnlFilesPanel">
-        <div class="data-entry-section-heading">
+    <asp:Panel runat="server" ID="pnlFilesPanel" CssClass="panel panel-default">
+        <div class="panel-heading">
             Files
-            <hr />
         </div>
-        <asp:Panel ID="pnlFilesListing" runat="server"></asp:Panel>
+        <div class="panel-body">
+            <asp:Panel ID="pnlFilesListing" runat="server"></asp:Panel>
+        </div>
         <div style="clear: both;"></div>
     </asp:Panel>
     <div style="clear: both;"></div>
@@ -36,3 +40,4 @@
     <%-- Postback or Redirect --%>
     <asp:HiddenField ID="hidFolderSelectionType" runat="server" Value="True" />
 </div>
+

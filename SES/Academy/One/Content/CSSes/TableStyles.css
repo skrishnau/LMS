@@ -12,7 +12,7 @@ td.data-type-bold {
     width: 170px;
     padding: 10px 0;
     display: inline-block;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 
@@ -28,14 +28,44 @@ td.data-value-bold {
 
 .save-div {
     padding: 10px 0;
-    margin-left: 184px;
+    margin-left: 3px;
+    /*margin-left: 184px;*/
 }
 
-    .save-div input {
-        width: 100px;
+    .save-div input, .save-div input:active {
+        /*width: 100px;*/
         margin-right: 10px;
+        font-size: 1.0em;
+        height: auto;
+        color: #3f3f3f;
+        /*#303882;*/
+        /*font-family: Arial Tahoma;*/
+        font-size: 1.0em;
+        text-decoration: none;
+        -webkit-border-radius: 5px;
+        border: 1px solid lightgray;
+        padding: 8px 15px;
+        background: lightgray; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(white, lightgray); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(white, lightgray); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(white, lightgray); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(white, lightgray); /* Standard syntax */
+        /*padding: 3px 6px;*/
     }
 
+        .save-div input:hover {
+            color: black;
+            font-weight: 400;
+            /*text-decoration: underline;*/
+            text-decoration: none;
+            background: lightgray;
+            border: 1px solid lightgray;
+        }
+
+        .save-div input:active {
+            color: blueviolet;
+            text-decoration: underline;
+        }
 /*.save-div input {
         margin: 6px 4px;
         padding: 5px;

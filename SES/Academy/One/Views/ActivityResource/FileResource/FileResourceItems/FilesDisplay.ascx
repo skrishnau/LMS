@@ -70,16 +70,17 @@
 
                 <asp:View ID="View4" runat="server">
                     <div>
-                        <asp:Button ID="LinkButton1"
-                            CssClass="link"
+                        <%-- BorderStyle="None" --%>
+                        <asp:LinkButton ID="LinkButton1"
+                            CssClass="link-button"
                             CausesValidation="False" Font-Underline="False"
-                            BorderStyle="None"
+                            
                             runat="server" OnClick="lnkAddFile_Click" Text="Choose file ...">
                             <%--  <asp:Image ID="Image4" runat="server" Width="22" Height="22"
                                     ImageUrl="~/Content/Icons/File/file_replace.png"
                                     ToolTip="File add" />--%>
                                 
-                        </asp:Button>
+                        </asp:LinkButton>
                         <asp:Label ID="lblFileName" runat="server" Text=""></asp:Label>
                     </div>
                 </asp:View>

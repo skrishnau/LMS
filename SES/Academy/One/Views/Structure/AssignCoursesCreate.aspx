@@ -40,9 +40,9 @@
                                         <hr />--%>
                                         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                             <ContentTemplate>
-
+                                                <%-- 253px --%>
                                                 <asp:ListBox ID="lstAssignedCourses" runat="server"
-                                                    Width="253px" Height="326px" 
+                                                    Width="100%" Height="326px" 
                                                     DataValueField="Id" DataTextField="FullName"></asp:ListBox>
 
                                                 <%-- <asp:Panel ID="pnlSelectedCourses" runat="server">
@@ -72,11 +72,15 @@
                                 <br/>
                                 <br/>
                                 <br/>
-                                <asp:Button ID="btnAssign" runat="server" Text="← Assign" OnClick="btnAssign_OnClick" />
+                                <asp:Button ID="btnAssign" runat="server" Text="← Assign" 
+                                     style="padding: 4px 8px;"
+                                    OnClick="btnAssign_OnClick" />
                                 <br/>
                                 <br/>                                
                                 <br/>
-                                <asp:Button ID="btnRemove" runat="server" Text="Remove →" OnClick="btnRemove_OnClick"/>
+                                <asp:Button ID="btnRemove" runat="server" Text="Remove →" 
+                                     style="padding: 4px 8px;"
+                                    OnClick="btnRemove_OnClick"/>
 
                             </td>
 
@@ -110,9 +114,9 @@
                                             <ContentTemplate>
                                                 <asp:HiddenField ID="hidSelectedCategoryId" Value="0" runat="server" />
                                                 <asp:HiddenField ID="hidSelectedCategoryName" Value="" runat="server" />
-
+                                                <%-- 256px --%>
                                                 <asp:ListBox ID="lstUnAssignedCourses" runat="server" AutoPostBack="True"
-                                                    Width="256px" Height="250px" OnSelectedIndexChanged="lstUnAssignedCourses_OnSelectedIndexChanged"
+                                                    Width="100%" Height="250px" OnSelectedIndexChanged="lstUnAssignedCourses_OnSelectedIndexChanged"
                                                     DataValueField="Id" DataTextField="FullName"></asp:ListBox>
 
 
@@ -129,16 +133,22 @@
                 </div>
                 <div style="clear: both;"></div>
                 <br />
-                <div style="text-align: left;">
-                    <asp:Button runat="server" ID="btnSaveAndContinueAdding" Text="Save and Continue adding" Width="215px"
+                <div style="text-align: center;">
+                    <%-- Width="215px" --%>
+                    <asp:Button runat="server" ID="btnSaveAndContinueAdding" Text="Save and Continue adding" 
+                            style="padding: 4px 8px;"
                         CausesValidation="False"
                         OnClick="btnSaveAndContinueAdding_Click" />
                     &nbsp;&nbsp;&nbsp;
-                <asp:Button runat="server" ID="btnSaveAndReturn" Text="Save and return" Width="176px"
+                    <%--  Width="176px" --%>
+                <asp:Button runat="server" ID="btnSaveAndReturn" Text="Save and return"
+                    style="padding: 4px 8px;" 
                     CausesValidation="False"
                     OnClick="btnSaveAndReturn_Click" />
                     &nbsp;&nbsp;&nbsp;
-                <asp:Button runat="server" ID="btnCancel" Text="Cancel" Width="142px"
+                    <%-- Width="142px" --%>
+                <asp:Button runat="server" ID="btnCancel" Text="Cancel" 
+                    style="padding: 4px 8px;"
                     CausesValidation="False"
                     OnClick="btnCancel_Click" />
                     <br />

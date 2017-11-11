@@ -27,7 +27,6 @@
     <div>
         <uc1:LstUc runat="server" ID="LstUc" />
     </div>
-    <br />
     <div>
         <uc1:OpenClassesUc runat="server" ID="OpenClassesUc" />
     </div>

@@ -14,23 +14,29 @@
 
 
     <div class="data-entry-section-body">
-        <asp:DataList ID="DataList1" Width="100%" runat="server">
+        <asp:DataList ID="DataList1" Width="100%" runat="server" CssClass="list-group">
             <ItemTemplate>
-                <div class="list-item-datalist">
-                    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="list-item-heading"
-                        Text='<%#  Eval("SubjectName")+" &nbsp; "+Eval("ClassName") %>'
-                        NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("ClassId") %>'>
-                    </asp:HyperLink>
+                <%--<div class="list-item-datalist">--%>
+                <%-- CssClass="list-item-heading" --%>
+                <asp:HyperLink ID="HyperLink1" runat="server"
+                    CssClass="list-group-item"
+                    NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("ClassId") %>'>
+
+                    <asp:Label runat="server" ID="label111"
+                        Text='<%#  Eval("SubjectName")+" &nbsp; "+Eval("ClassName") %>'></asp:Label>
 
                     <div class="list-item-description">
                         Start Date : 
-                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("StartDate") %>'></asp:Label>
-                            &nbsp;&nbsp;|&nbsp;&nbsp;
-                        End Date &nbsp; :
-                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("EndDate") %>'></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("StartDate") %>'></asp:Label>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                            End Date &nbsp; :
+                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("EndDate") %>'></asp:Label>
 
                     </div>
-                </div>
+
+                </asp:HyperLink>
+
+                <%--</div>--%>
             </ItemTemplate>
         </asp:DataList>
     </div>

@@ -58,6 +58,15 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// imgSchool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgSchool;
+        
+        /// <summary>
         /// lnkSchoolName control.
         /// </summary>
         /// <remarks>
@@ -74,24 +83,6 @@ namespace One.ViewsSite.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSchoolName;
-        
-        /// <summary>
-        /// lblUserInfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserInfo;
-        
-        /// <summary>
-        /// imgSchool control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgSchool;
         
         /// <summary>
         /// menubar_right_text_all control.
@@ -112,24 +103,6 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
         
         /// <summary>
-        /// lnkLoginName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkLoginName;
-        
-        /// <summary>
-        /// imgMessageIcon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgMessageIcon;
-        
-        /// <summary>
         /// lblEmptyMessage control.
         /// </summary>
         /// <remarks>
@@ -146,15 +119,6 @@ namespace One.ViewsSite.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder plHolderMessage;
-        
-        /// <summary>
-        /// imgNotificationIcon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgNotificationIcon;
         
         /// <summary>
         /// lblEmptyNotice control.
@@ -175,22 +139,22 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.PlaceHolder plHolderNotice;
         
         /// <summary>
-        /// Image1 control.
+        /// lblUserInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Label lblUserInfo;
         
         /// <summary>
-        /// lnkSettingMenu control.
+        /// lnkLoginName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkSettingMenu;
+        protected global::System.Web.UI.WebControls.LinkButton lnkLoginName;
         
         /// <summary>
         /// LoginStatus1 control.
@@ -202,13 +166,13 @@ namespace One.ViewsSite.User {
         protected global::System.Web.UI.WebControls.LoginStatus LoginStatus1;
         
         /// <summary>
-        /// Menu control.
+        /// BodyTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Menu;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyTitle;
         
         /// <summary>
         /// SiteMapPlace control.
@@ -253,7 +217,7 @@ namespace One.ViewsSite.User {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell left_panel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl left_panel;
         
         /// <summary>
         /// CoursesMenuUc1 control.
@@ -289,7 +253,7 @@ namespace One.ViewsSite.User {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell middlePanel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl middlePanel;
         
         /// <summary>
         /// pnlBody control.
@@ -317,15 +281,6 @@ namespace One.ViewsSite.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblBodyMessage;
-        
-        /// <summary>
-        /// BodyTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyTitle;
         
         /// <summary>
         /// Body control.
@@ -370,7 +325,7 @@ namespace One.ViewsSite.User {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell right_panel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl right_panel;
         
         /// <summary>
         /// right control.

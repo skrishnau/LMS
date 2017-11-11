@@ -38,37 +38,25 @@ namespace One.Views.Grade
                         };
                         SiteMapUc.SetData(list);
                     }
-                    var edit = Request.QueryString["edit"];
+                    var edit = Session["editMode"] ?? "0";//Request.QueryString["edit"];
                     if (user.IsInRole("manager") || user.IsInRole("grader") || user.IsInRole("course-editor"))
                     {
-                        if (edit != null)
+                        if (edit == "1")
                         {
-                            if (edit == "1")
-                            {
-                                Edit = true;
-                                hidTask.Value = DbHelper.StaticValues.Encode("grade");
-                                lnkEdit.NavigateUrl = "~/Views/Grade/GradeListing.aspx?edit=0";
-                                lblEdit.Text = "Exit edit";
-                                lnkAddGrade.Visible = true;
-                            }
-                            else
-                            {
-                                lnkEdit.NavigateUrl = "~/Views/Grade/GradeListing.aspx?edit=1";
-                                lblEdit.Text = "Edit";
-                                Edit = false;
-                                lnkAddGrade.Visible = false;                        
-                            }
+                            Edit = true;
+                            hidTask.Value = DbHelper.StaticValues.Encode("grade");
+                            //lnkEdit.NavigateUrl = "~/Views/Grade/GradeListing.aspx?edit=0";
+                            //lblEdit.Text = "Exit edit";
+                            lnkAddGrade.Visible = true;
                         }
                         else
                         {
-                            lnkEdit.NavigateUrl = "~/Views/Grade/GradeListing.aspx?edit=1";
-                            lblEdit.Text = "Edit";
+                            //lnkEdit.NavigateUrl = "~/Views/Grade/GradeListing.aspx?edit=1";
+                            //lblEdit.Text = "Edit";
                             Edit = false;
+                            lnkAddGrade.Visible = false;
                         }
-                    }
-                    else
-                    {
-                        lnkEdit.Visible = false;
+
                     }
 
                     using (var helper = new DbHelper.Grade())
@@ -95,7 +83,7 @@ namespace One.Views.Grade
             }
             return true;
         }
-        
+
 
     }
 }

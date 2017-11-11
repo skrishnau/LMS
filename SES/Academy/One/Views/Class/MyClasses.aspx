@@ -8,6 +8,10 @@
 
 
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="Body">
+    <%-- data-entry-section-heading --%>
+    <h3 class="heading-of-create-edit">My Classes
+        <hr />
+    </h3>
 
     <h3 class="heading-of-create-edit">
 
@@ -16,27 +20,27 @@
 
     <br />
 
-    <div class="data-entry-section-heading">
-        My Classes
-        <hr />
-    </div>
-    <asp:DataList ID="DataList1" runat="server" Width="100%">
+
+    <asp:DataList ID="DataList1" runat="server" Width="100%" CssClass="list-group">
         <ItemTemplate>
 
-            <div class="list-item-datalist">
-                <asp:HyperLink runat="server" ID="hlink1" CssClass="list-item-heading"
-                    NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("ClassId")+"&from=myClasses" %>'>
-                    <asp:Label ID="Label1" runat="server"
-                        Text='<%# Eval("ClassName") %>'></asp:Label>
-                </asp:HyperLink>
-                <div class="list-item-description" style="margin: 1px 5px 2px 20px;">
-                    Start :
+            <%--<div class="list-item-datalist">--%>
+            <asp:HyperLink runat="server" ID="hlink1" CssClass="list-group-item"
+                NavigateUrl='<%# "~/Views/Class/CourseClassDetail.aspx?ccId="+Eval("ClassId")+"&from=myClasses" %>'>
+                <asp:Label ID="Label1" runat="server"
+                    Text='<%# Eval("ClassName") %>'></asp:Label>
+                <%-- style="margin: 1px 5px 2px 20px;" --%>
+                <div class="list-item-description" >
+                    Start Date:
                         <asp:Label ID="Label2" runat="server" Text='<%# Eval("StartDate") %>'></asp:Label>
-                    <br />
-                    End &nbsp; :
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    End Date :
                         <asp:Label ID="Label3" runat="server" Text='<%# Eval("EndDate") %>'></asp:Label>
                 </div>
-            </div>
+
+            </asp:HyperLink>
+
+            <%--</div>--%>
         </ItemTemplate>
     </asp:DataList>
 </asp:Content>

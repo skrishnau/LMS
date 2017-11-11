@@ -31,6 +31,15 @@ namespace One.Views.ActivityResource.Label {
         protected global::CKEditor.NET.CKEditorControl txtLabelText;
         
         /// <summary>
+        /// lblTextError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTextError;
+        
+        /// <summary>
         /// RestrictionUC control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace One.Views.ActivityResource.Label {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
+        /// btnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
         /// hidLabelId control.

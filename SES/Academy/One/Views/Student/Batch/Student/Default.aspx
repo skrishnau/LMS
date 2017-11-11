@@ -17,44 +17,49 @@
     <h3 class="heading-of-listing">
         <asp:Label ID="lblProgramBatchName" runat="server" Text=""></asp:Label>
     </h3>
+
+    <hr />
+
     <div class="data-entry-section-body">
-        <div runat="server" id="divYearsSubYears">
-            <br />
-            <div>
-                <strong>Sessions</strong>
+        <div runat="server" id="divYearsSubYears" class="panel panel-default">
+            <div class="panel-heading">
+                Sessions
             </div>
-            <div class="data-entry-section-link-listing">
-                <asp:Panel ID="pnlYearsSubYears" runat="server"></asp:Panel>
-            </div>
+            <%--<div class="panel-body">--%>
+                <asp:Panel ID="pnlYearsSubYears" runat="server" CssClass="list-group"></asp:Panel>
+            <%--</div>--%>
         </div>
 
     </div>
 
-    <div class="data-entry-section-body">
-
-        <div>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                    <div class="option-div" style="text-align: right;">
-                        <asp:LinkButton ID="lnkAddStudent" runat="server" CssClass="link-button" OnClick="lnkAddStudent_OnClick">
-                            <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-                            <asp:Literal ID="lblAddText" runat="server" Text="Add student"></asp:Literal>
-                        </asp:LinkButton>
-                    </div>
-                    <uc1:CustomDialog runat="server" ID="CustomDialog1" />
-
-                    <div style="clear: both;"></div>
-                    <br />
-                    <uc2:StudentListUC runat="server" ID="StudentListUC11" />
 
 
-                </ContentTemplate>
-            </asp:UpdatePanel>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    Students
+            
+            <div style="text-align: right; float: right;">
+                <asp:LinkButton ID="lnkAddStudent" runat="server" CssClass="link-outer" OnClick="lnkAddStudent_OnClick">
+                    <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
+                    <asp:Literal ID="lblAddText" runat="server" Text="Add student"></asp:Literal>
+                </asp:LinkButton>
+            </div>
+                    <div style="clear: both"></div>
+                </div>
+                <div style="clear: both;"></div>
 
-        </div>
+                <uc1:CustomDialog runat="server" ID="CustomDialog1" />
+                <br/>
+                <uc2:StudentListUC runat="server" ID="StudentListUC11" />
+
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 
 
-        <%--
+    <%--
                 Student create
                 <div>
                 <div>
@@ -76,12 +81,11 @@
                 </div>
                 <br />
             </div>--%>
-        <%--    </ContentTemplate>
+    <%--    </ContentTemplate>
             </asp:UpdatePanel>--%>
 
-        <%--<hr />--%>
-        <%--<uc1:studentlistuc runat="server" ID="StudentListUc1" />--%>
-    </div>
+    <%--<hr />--%>
+    <%--<uc1:studentlistuc runat="server" ID="StudentListUc1" />--%>
 
     <asp:HiddenField ID="hidBatchId" runat="server" Value="0" />
     <asp:HiddenField ID="hidProgramBatchId" runat="server" Value="0" />

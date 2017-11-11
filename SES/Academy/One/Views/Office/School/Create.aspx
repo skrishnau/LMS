@@ -17,17 +17,17 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="Body" ID="content">
-    <div style="text-align: center">
-        <strong style="font-size: 1.5em;">College Edit</strong>
-
-    </div>
+    <%-- style="text-align: center" --%>
+    <h3 class="heading-of-create-edit">College Edit
+    </h3>
+    <hr />
     <%-- style="margin: 10px 20px 0; padding: 10px; border: 2px solid lightgray;" --%>
-    <div class="data-entry-body">
-        <div class="data-entry-section-heading">
+    <div class="panel panel-default">
+        <div class="panel-heading">
             General
         </div>
-        <hr />
-        <div class="data-entry-section-body">
+
+        <div class="panel-body">
 
             <table>
                 <tr>
@@ -48,7 +48,7 @@
                 </tr>
 
 
-               <%-- <tr runat="server" id="one1" visible="False">
+                <%-- <tr runat="server" id="one1" visible="False">
                     <td class="data-type">College Type*</td>
                     <td class="data-value">
                         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
@@ -165,15 +165,16 @@
                 </asp:UpdatePanel>
             </div>--%>
         </div>
-        <br />
+    </div>
 
 
+    <div class="panel panel-default">
 
-        <div class="data-entry-section-heading">
+        <div class="panel-heading">
             Logo
         </div>
-        <hr />
-        <div class="data-entry-section-body">
+
+        <div class="panel-body">
 
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
@@ -212,14 +213,16 @@
             </asp:UpdatePanel>
 
         </div>
-        <br />
 
-        <div class="data-entry-section-heading">
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
             Other
         </div>
-        <hr />
 
-        <div class="data-entry-section-body">
+        <div class="panel-body">
             <table>
                 <tr>
                     <td class="data-type">College Website</td>
@@ -269,31 +272,25 @@
 
             </table>
         </div>
-        <br />
-
-        <div class="save-div">
-            &nbsp;
-            <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" Width="73px" />
-            &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMsg" runat="server" ForeColor="#3333FF" Text="Label" Visible="False"></asp:Label>
-        </div>
 
     </div>
+
+    <div class="save-div">
+        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+        &nbsp; &nbsp;
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_OnClick" />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMsg" runat="server" ForeColor="#3333FF" Text="Label" Visible="False"></asp:Label>
+    </div>
+
     <%-- style="float: left;" --%>
-    <div>
 
-
-
-        <asp:HiddenField ID="hidImageId" runat="server" Value="0" />
-        <asp:HiddenField ID="hidPageKey" runat="server" Value="0" />
-        <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
-        <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
-        <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
-        <asp:CheckBox ID="chkActive" runat="server" Text="Active" Checked="True" Visible="False" />
-
-    </div>
-
-
-
+    <asp:HiddenField ID="hidImageId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidPageKey" runat="server" Value="0" />
+    <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
+    <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+    <asp:HiddenField ID="hidUserId" runat="server" Value="0" />
+    <asp:CheckBox ID="chkActive" runat="server" Text="Active" Checked="True" Visible="False" />
 
 </asp:Content>
 

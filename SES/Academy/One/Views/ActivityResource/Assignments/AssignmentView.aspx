@@ -8,16 +8,16 @@
     <h3 class="heading-of-create-edit">
         <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
     </h3>
+    <hr />
     <div class="data-entry-section-body">
         <asp:Label ID="lblDescription" runat="server" Text="" Visible="True"></asp:Label>
     </div>
     <br />
-    <div class="data-entry-section-body">
-        <div class="data-entry-section-heading">
+    <div class="panel panel-default">
+        <div class="panel-heading">
             Submission
-            <hr />
         </div>
-        <div class="data-entry-section-body">
+        <div class="panel-body">
             <table>
                 <tr>
                     <td class="data-type">Due Date</td>
@@ -35,11 +35,14 @@
             </table>
         </div>
         <br/>
-        <div class="data-entry-section-heading">
+       
+    </div>
+    
+    <div class="panel panel-default">
+         <div class="panel-heading">
             Grades
-         <hr />
         </div>
-
+        <%--  CssClass="panel-body" --%>
         <asp:Panel ID="pnlGradeList" runat="server"></asp:Panel>
     </div>
 

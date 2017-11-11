@@ -122,7 +122,7 @@
 
 .tooltip-folderlisting .tooltiptext-folderlisting {
     width: 140px;
-    bottom: 80%;
+    bottom: 95%;
     left: 50%;
     margin-left: -70px; /* Use half of the width (120/2 = 60), to center the tooltip */
 }

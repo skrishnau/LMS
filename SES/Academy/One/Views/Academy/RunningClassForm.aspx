@@ -11,6 +11,7 @@
     <h3 class="heading-of-create-edit">
         <asp:Label ID="lblProgramBatchName" runat="server" Text=""></asp:Label>
     </h3>
+    <hr />
     <div>
         <strong>
             <asp:Label ID="lblYearSubYearName" runat="server" Text=""></asp:Label>
@@ -20,15 +21,14 @@
     </div>
 
     <br />
-    <div class="data-entry-section">
-        <div class="data-entry-section-heading">
+    <div class="panel panel-default">
+        <div class="panel-heading">
             Subjects
-            <hr />
         </div>
         <%-- data-entry-section-link-listing --%>
-        <div class="list">
-            <asp:Panel ID="pnlSubjects" runat="server"></asp:Panel>
-        </div>
+        <%--<div class="list">--%>
+            <asp:Panel ID="pnlSubjects" runat="server" CssClass="list-group"></asp:Panel>
+        <%--</div>--%>
     </div>
 
 </asp:Content>

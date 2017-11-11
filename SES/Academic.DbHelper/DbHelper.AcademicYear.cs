@@ -780,8 +780,11 @@ namespace Academic.DbHelper
             /// <returns></returns>
             private Session[] GetLatestActiveAndInactiveSession(int schoolId)
             {
-                var aYears = Context.AcademicYear.Where(x => !(x.Void ?? false) && x.SchoolId == schoolId)
-                    .OrderByDescending(x => x.Position).ToList();
+                var aYears = Context.AcademicYear
+                    .Where(x => !(x.Void ?? false) && x.SchoolId == schoolId)
+                    //.OrderByDescending(x => x.Position)
+                    .OrderByDescending(x=>x.StartDate)
+                    .ToList();
 
                 var latestAca = aYears.FirstOrDefault();
 
@@ -1083,7 +1086,7 @@ namespace Academic.DbHelper
 
             public DbEntities.AcademicYear GetEarlierAcademicYear(int schoolId)
             {
-                return Context.AcademicYear.Where(x => !(x.Void ?? false)).OrderByDescending(x => x.Position).FirstOrDefault();
+                return Context.AcademicYear.Where(x => !(x.Void ?? false)).OrderByDescending(x => x.StartDate).FirstOrDefault();
             }
         }
     }

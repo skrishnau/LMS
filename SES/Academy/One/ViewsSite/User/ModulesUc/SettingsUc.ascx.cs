@@ -14,18 +14,26 @@ namespace One.ViewsSite.User.ModulesUc
             if (!IsPostBack)
             {
                 var thisUrl = Request.Url.AbsolutePath;
-                //if (thisUrl.Contains("/Views/Student/"))
-                //    lnkBatch.CssClass = "list-unmargined-selected-item";
+                ////if (thisUrl.Contains("/Views/Student/"))
+                ////    lnkBatch.CssClass = "list-unmargined-selected-item";
+                //if (thisUrl.Contains("/Views/Academy/"))
+                //    lnkAcademicSession.CssClass = "list-unmargined-selected-item course-menu-selected-item";
+                //else if (thisUrl.Contains("/Views/Course/"))
+                //    lnkCourse.CssClass = "list-unmargined-selected-item course-menu-selected-item";
+                //else if (thisUrl.Contains("/Views/Structure"))
+                //    lnkPrograms.CssClass = "list-unmargined-selected-item course-menu-selected-item";
+                //else if (thisUrl.Contains("/Views/User/") || thisUrl.Contains("/Views/Role"))
+                //    lnkUsers.CssClass = "list-unmargined-selected-item course-menu-selected-item";
+
+
                 if (thisUrl.Contains("/Views/Academy/"))
-                    lnkAcademicSession.CssClass = "list-unmargined-selected-item course-menu-selected-item";
+                    lnkAcademicSession.CssClass = "list-group-item list-group-item-info";
                 else if (thisUrl.Contains("/Views/Course/"))
-                    lnkCourse.CssClass = "list-unmargined-selected-item course-menu-selected-item";
+                    lnkCourse.CssClass = "list-group-item list-group-item-info";
                 else if (thisUrl.Contains("/Views/Structure"))
-                    lnkPrograms.CssClass = "list-unmargined-selected-item course-menu-selected-item";
+                    lnkPrograms.CssClass = "list-group-item list-group-item-info";
                 else if (thisUrl.Contains("/Views/User/") || thisUrl.Contains("/Views/Role"))
-                    lnkUsers.CssClass = "list-unmargined-selected-item course-menu-selected-item";
-
-
+                    lnkUsers.CssClass = "list-group-item list-group-item-info";
             }
         }
         public int UserId

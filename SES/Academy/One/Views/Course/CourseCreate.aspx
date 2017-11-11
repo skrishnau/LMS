@@ -23,12 +23,11 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <div class="data-entry-section">
-                    <div class="data-entry-section-heading">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                         General
-                        <hr />
                     </div>
-                    <div class="data-entry-section-body">
+                    <div class="panel-body">
                         <table>
                             <tr>
                                 <td class="data-type">Name*</td>
@@ -80,12 +79,12 @@
                 </div>
 
                 <div style="text-align: left" class="save-div">
-                    &nbsp;&nbsp;
-                    <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click"
-                        ValidationGroup="courseCreateGroup"
-                        Height="30px" Width="85px" />
+                    <asp:Button ID="btnSave" runat="server" Text="Save" 
+                        OnClick="btnSave_Click"
+                        ValidationGroup="courseCreateGroup"/>
                     &nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" Height="30px" Width="85px" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" 
+                        OnClick="btnCancel_Click" />
                     &nbsp;
                     <asp:Label ID="lblError" runat="server" Text="Error while saving." Visible="False" ForeColor="red"></asp:Label>
                 </div>

@@ -22,9 +22,11 @@
             <%-- heading-of-listing --%>
             <div>
                 <div style="float: left;">
-                    <h3 class="act-res-course-title">
+                    <%-- act-res-course-title --%>
+                    <h3 class="heading-of-listing">
                         <asp:Literal ID="txtSubjectName" runat="server"></asp:Literal>
                     </h3>
+
                 </div>
                 <div style="float: left; padding-left: 8px;">
                     <asp:Image ID="imgJoinInfo" runat="server" Width="10" Height="10" Visible="False" />
@@ -34,7 +36,8 @@
                     &nbsp;&nbsp;
                    <%-- <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>--%>
-                    <asp:HyperLink ID="lnkEnroll" runat="server" CssClass="link-button"
+                    <%-- link-button --%>
+                    <asp:HyperLink ID="lnkEnroll" runat="server" CssClass="btn btn-default"
                         ToolTip="New class has been opened in this course. Click for detail."
                         Visible="False">Enroll Now</asp:HyperLink>
                     <%-- OnClick="btnEnroll_Click" --%>
@@ -42,20 +45,21 @@
                 <%--   <uc1:CustomDialog runat="server" ID="CustomDialog" />
                         </ContentTemplate>
                     </asp:UpdatePanel>--%>
-            </div>
 
 
 
-            <div style="float: right; margin-top: 10px">
-                <asp:HyperLink ID="lnkMyClasses" runat="server" CssClass="link-button"
-                    ToolTip="Classes of this course in which you have participated"
-                    Visible="False">
+                <div style="float: right; margin-top: 10px">
+                    <%-- link-button --%>
+                    <asp:HyperLink ID="lnkMyClasses" runat="server" CssClass="btn btn-default"
+                        ToolTip="Classes of this course in which you have participated"
+                        Visible="False">
                         My Classes
-                </asp:HyperLink>
+                    </asp:HyperLink>
+                </div>
+                
+                <div style="clear: both;"></div>
             </div>
 
-            <div style="clear: both;"></div>
-            </div>
             <div style="clear: both;"></div>
 
 

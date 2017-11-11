@@ -14,49 +14,36 @@
         </h3>
         <hr />
 
-        <div>
-            <table style="width: 99%;">
-                <tr>
-                    <td></td>
-                    <td>
-                        <%--  <div style="text-align: right;">
-                            <asp:HyperLink ID="lnkEdit" runat="server">
-                                <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-                                <asp:Label ID="lblEdit" runat="server" Text="Edit"></asp:Label>
-                            </asp:HyperLink>
-                        </div>--%>
-                        <div style="text-align: right; margin: 5px;">
-                            <asp:HyperLink ID="lnkAddNotice" runat="server" CssClass="link"
-                                Visible="False">
-                                <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
-                                New notice
-                            </asp:HyperLink>
-                        </div>
-                    </td>
-                </tr>
-
-            </table>
-
-
+        <div class="text-right">
+            <asp:HyperLink ID="lnkAddNotice" runat="server" CssClass="btn btn-default"
+                Visible="False">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Add/Add-icon.png" />
+                New notice
+            </asp:HyperLink>
+        </div>
+        <br/>
+        <div class="panel panel-default">
 
             <%--  class="detail-view" --%>
 
-            <asp:DataList ID="DataList1" runat="server" DataSourceID="NotificationListDS" Width="98%">
+            <asp:DataList ID="DataList1" runat="server" DataSourceID="NotificationListDS" Width="100%" CssClass="list-group">
                 <ItemTemplate>
-                    <div class="auto-st2" style="padding: 10px;">
+                    <%-- auto-st2 --%>
+                    <%-- list-item-body style="padding: 10px;" --%>
+                    <div class="list-group-item"  >
                         <asp:HiddenField ID="IdLabel" runat="server" Value='<%# Eval("Id") %>' />
                         <strong>
                             <asp:HyperLink ID="HeadiingLabel" runat="server"
-                                CssClass="link"
-                                Text='<%# Eval("Title") %>'
+                                CssClass="list-item-heading"
                                 NavigateUrl='<%# "~/Views/NoticeBoard/NoticeDetail.aspx?nId="+Eval("Id") %>'>
+                                <asp:Label ID="Label1" CssClass="list-item-heading" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
+
                             </asp:HyperLink>
                         </strong>
-
-                        <em style="font-size: 0.8em">Last Update:
-                                <asp:Label ID="UpdatedDateLabel" runat="server" Text='<%# GetPublishDate(Eval("PublishedDate")) %>' />
-                        </em>
-
+                        <br />
+                        <span style="" class="list-item-description">Posted on:
+                            <asp:Label ID="UpdatedDateLabel" runat="server" Text='<%# GetPublishDate(Eval("PublishedDate")) %>' />
+                        </span>
                     </div>
                 </ItemTemplate>
             </asp:DataList>

@@ -11,8 +11,8 @@
     .item-heading {
         font: 2em bold;
         color: #0000b3;*/
-        /*background-color: #f0fff0;*/
-        /*//font-size: 2em;*/
+    /*background-color: #f0fff0;*/
+    /*//font-size: 2em;*/
     /*}
 
     .item-message {
@@ -24,34 +24,35 @@
         }*/
 </style>
 
-<div>
-    <div class="roboto-normal">
-        <asp:Label ID="lblHeading" 
-            CssClass="roboto-medium"
-            runat="server" Text="Course Notifications" Visible="False" ></asp:Label>
-    </div>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <%-- <asp:Panel ID="pnlOptions" runat="server">
+<%--<div class="panel panel-default">--%>
+<div class="roboto-normal">
+    <asp:Label ID="lblHeading"
+        CssClass="roboto-medium"
+        runat="server" Text="Course Notifications" Visible="False"></asp:Label>
+</div>
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+        <%-- <asp:Panel ID="pnlOptions" runat="server">
                 <div style="text-align: right;">
                     <div>
                         <asp:LinkButton ID="lnkJoin" runat="server" OnClick="lnkJoin_Click">Other Courses</asp:LinkButton>
                     </div>
                 </div>
             </asp:Panel>--%>
-
+        <div class="list-group">
             <asp:PlaceHolder ID="pnlCourseList" runat="server"></asp:PlaceHolder>
-            <%--<asp:PlaceHolder ID="pnlUnJoinedCourseList" runat="server" Visible="false"></asp:PlaceHolder>--%>
+        </div>
+        <%--<asp:PlaceHolder ID="pnlUnJoinedCourseList" runat="server" Visible="false"></asp:PlaceHolder>--%>
 
-            <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
-            <asp:HiddenField ID="hidAcademicYear" runat="server" Value="0" />
-            <asp:HiddenField ID="hidSessionId" runat="server" Value="0" />
-            <asp:HiddenField ID="hidStudentId" runat="server" Value="0" />
-            <asp:HiddenField ID="hidUserType" runat="server" Value="0" />
-            <asp:HiddenField ID="hidFromDashboard" runat="server" Value="False" />
+        <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
+        <asp:HiddenField ID="hidAcademicYear" runat="server" Value="0" />
+        <asp:HiddenField ID="hidSessionId" runat="server" Value="0" />
+        <asp:HiddenField ID="hidStudentId" runat="server" Value="0" />
+        <asp:HiddenField ID="hidUserType" runat="server" Value="0" />
+        <asp:HiddenField ID="hidFromDashboard" runat="server" Value="False" />
 
-            <%-- Used :: final --%>
-            <asp:HiddenField ID="hidLoadType" runat="server" />
-        </ContentTemplate>
-    </asp:UpdatePanel>
-</div>
+        <%-- Used :: final --%>
+        <asp:HiddenField ID="hidLoadType" runat="server" />
+    </ContentTemplate>
+</asp:UpdatePanel>
+<%--</div>--%>

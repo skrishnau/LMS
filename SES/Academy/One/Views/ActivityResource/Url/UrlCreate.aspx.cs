@@ -16,7 +16,7 @@ namespace One.Views.ActivityResource.Url
             {
                 var subId = Request.QueryString["SubId"];
                 var secId = Request.QueryString["SecId"];
-                var uId = Request.QueryString["uId"];
+                var uId = Request.QueryString["arId"];
                 var edit = Request.QueryString["edit"];
                 try
                 {
@@ -25,10 +25,11 @@ namespace One.Views.ActivityResource.Url
                         SectionId = Convert.ToInt32(secId);
                         SubjectId = Convert.ToInt32(subId);
                     }
-                    if (uId != null && edit != null)
+
+                    if (uId != null)//&& edit != null
                     {
-                        if(edit=="1")
-                            SetFileValues(Convert.ToInt32(uId));
+                        //if (edit == "1")
+                        SetFileValues(Convert.ToInt32(uId));
                     }
                 }
                 catch
@@ -38,7 +39,7 @@ namespace One.Views.ActivityResource.Url
 
                 var guid = Guid.NewGuid();
                 hidPageKey.Value = guid.ToString();
-                
+
                 //FilesDisplay1.PageKey = guid.ToString();
             }
         }
@@ -95,14 +96,18 @@ namespace One.Views.ActivityResource.Url
             {
                 Id = UrlResourceId,
                 Name = txtName.Text
-                ,Description = CKEditor1.Text
-                ,DisplayDescriptionOnPage =  chkDisplayDescription.Checked
-                ,Display = (byte) ddlDisplay.SelectedIndex
-                ,Url = txtExternalUrl.Text
+                ,
+                Description = CKEditor1.Text
+                ,
+                DisplayDescriptionOnPage = chkDisplayDescription.Checked
+                ,
+                Display = (byte)ddlDisplay.SelectedIndex
+                ,
+                Url = txtExternalUrl.Text
             };
-            if (!string.IsNullOrEmpty(txtPopupHeightInPixel.Text) 
-                &&!string.IsNullOrEmpty(txtPopupWidthInPixel.Text)
-                &&ddlDisplay.SelectedIndex==3)
+            if (!string.IsNullOrEmpty(txtPopupHeightInPixel.Text)
+                && !string.IsNullOrEmpty(txtPopupWidthInPixel.Text)
+                && ddlDisplay.SelectedIndex == 3)
             {
                 url.PopupHeightInPixel = Convert.ToInt32(txtPopupHeightInPixel.Text);
                 url.PopupWidthInPixel = Convert.ToInt32(txtPopupWidthInPixel.Text);
@@ -113,7 +118,7 @@ namespace One.Views.ActivityResource.Url
             };
             using (var helper = new DbHelper.ActAndRes())
             {
-                var saved = helper.AddOrUpdateUrlResource(url,SectionId,restriction);
+                var saved = helper.AddOrUpdateUrlResource(url, SectionId, restriction);
                 if (saved != null)
                 {
                     Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
@@ -130,5 +135,10 @@ namespace One.Views.ActivityResource.Url
         }
 
 
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+
+        }
     }
 }

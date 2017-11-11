@@ -19,21 +19,27 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
     <h3 class="heading-of-listing">File Management
     </h3>
-
+    <hr />
     <div>
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <%-- class="list-item-option" --%>
-                <div class="option-div">
+                <%-- option-div --%>
+                <div class="text-right">
                     <asp:LinkButton ID="lnkAddFile" runat="server"
+                        CssClass="btn btn-default"
                         OnClick="lnkAddFile_OnClick">
-                        <asp:Image ID="Image1" runat="server" Height="14" Width="14" ImageUrl="~/Content/Icons/Add/add-file-20px.png" />
+                        <asp:Image ID="Image1" runat="server" Height="14" Width="14" 
+                            ImageUrl="~/Content/Icons/Add/add-file-20px.png" />
                         Add File
                     </asp:LinkButton>
+                    &nbsp;
                     <asp:LinkButton ID="lnkAddFolder" runat="server"
+                        CssClass="btn btn-default"
                         OnClick="lnkAddFolder_OnClick">
-                        <asp:Image ID="Image2" runat="server" Height="14" Width=14 ImageUrl="~/Content/Icons/Add/add-folder-20px.png" />
+                        <asp:Image ID="Image2" runat="server" Height="14" Width=14 
+                            ImageUrl="~/Content/Icons/Add/add-folder-20px.png" />
                         Add Folder
                     </asp:LinkButton>
                 </div>

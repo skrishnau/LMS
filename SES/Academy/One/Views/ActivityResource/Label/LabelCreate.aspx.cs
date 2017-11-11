@@ -12,6 +12,7 @@ namespace One.Views.ActivityResource.Label
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblTextError.Visible = false;
             if (!IsPostBack)
             {
                 var subId = Request.QueryString["SubId"];
@@ -80,6 +81,12 @@ namespace One.Views.ActivityResource.Label
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtLabelText.Text))
+            {
+                lblTextError.Visible = true;
+                return;
+
+            }
             var label = new Academic.DbEntities.ActivityAndResource.LabelResource()
             {
                 Id = LabelId,
@@ -94,7 +101,7 @@ namespace One.Views.ActivityResource.Label
                 };
                 using (var helper = new DbHelper.ActAndRes())
                 {
-                    var saved = helper.AddOrUpdateLabelResource(label, SectionId,restriction);
+                    var saved = helper.AddOrUpdateLabelResource(label, SectionId, restriction);
                     if (saved != null)
                     {
                         Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
@@ -105,5 +112,9 @@ namespace One.Views.ActivityResource.Label
         }
 
 
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(DbHelper.StaticValues.WebPagePath.CourseDetailPage(SubjectId, SectionId));
+        }
     }
 }

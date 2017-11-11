@@ -17,12 +17,12 @@
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
 
-            <div class="data-entry-section">
-                <div style="float: none;">
-                    <div class="data-entry-section-heading">
-                        General
-                        <hr />
-                    </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    General
+                </div>
+                <div class="panel-body">
+
 
                     <table>
                         <tr>
@@ -116,95 +116,81 @@
                     </table>
                     <br />
                 </div>
-                <div>
-                    <strong>Image</strong>
-                    <hr />
+            </div>
 
-                    <%-- <a href="#">--%>
-                    <%--<img src="~/Images/user.png" style="width: 57px" />--%><br />
-                    <%--<asp:FileUpload ID="FileUpload1" runat="server" />--%>
-
-                    <uc1:FilesDisplay runat="server" ID="FilesDisplay" />
-                    <%--</a>--%>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Image
                 </div>
-                <br />
-                <%--<div class="user-optional">
-                    <strong>Interest</strong>
-                    <hr />
-                    <div style="margin: 0 5px 0 20px;">
-                        <div>
-                            <div style="float: left">
-                                List of Interest
-                            </div>
-                            <div style="float: left">
-                                <asp:Panel ID="pnlInterest" runat="server"></asp:Panel>
-                            </div>
-                            <div style="clear: both"></div>
-                        </div>
-                        <asp:TextBox ID="txtInterest" runat="server" OnTextChanged="txtInterest_TextChanged"></asp:TextBox>
-                    </div>
-                </div>--%>
-                <br />
+                <%-- <a href="#">--%>
+                <%--<img src="~/Images/user.png" style="width: 57px" />--%><br />
+                <%--<asp:FileUpload ID="FileUpload1" runat="server" />--%>
+                <div class="panel-body">
+                    <uc1:FilesDisplay runat="server" ID="FilesDisplay" />
+                </div>
+                <%--</a>--%>
+            </div>
+            <br />
 
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-                        <div class="data-entry-section-heading">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <div class="panel panel-default">
+                        <%-- data-entry-section-heading --%>
+                        <div class="panel-heading">
                             <asp:LinkButton ID="lnkShowOptional" runat="server"
                                 CssClass="link"
-                                 OnClick="lnkShowOptional_Click"
+                                OnClick="lnkShowOptional_Click"
                                 CausesValidation="False" Font-Underline="False">►</asp:LinkButton>
                             Optional
-                    <hr />
                         </div>
-                        <div class="data-entry-section-body">
 
-                            <table runat="server" id="tableOpt" visible="False">
 
-                                <tr>
-                                    <td>Gender</td>
-                                    <td>
-                                        <asp:DropDownList ID="cmbGender" runat="server" Height="20px" Width="120px"></asp:DropDownList>
+                        <table runat="server" id="tableOpt" visible="False" class="table table-hover table-responsive">
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>DOB</td>
-                                    <td>
-                                        <asp:TextBox ID="txtDOB" ClientIDMode="Static" runat="server"></asp:TextBox>
-                                        <script type="text/javascript">
-                                            function pageLoad() {
-                                                $('#txtDOB').unbind();
-                                                $("#txtDOB").datepicker();
-                                            }
-                                        </script>
-                                        <%--<uc2:DateChooser ID="DateChooser1" runat="server" />--%>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Country</td>
-                                    <td>
-                                        <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>City</td>
-                                    <td>
-                                        <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <%--<tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>
+                                    <asp:DropDownList ID="cmbGender" runat="server" Height="20px" Width="120px"></asp:DropDownList>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DOB</td>
+                                <td>
+                                    <asp:TextBox ID="txtDOB" ClientIDMode="Static" runat="server"></asp:TextBox>
+                                    <script type="text/javascript">
+                                        function pageLoad() {
+                                            $('#txtDOB').unbind();
+                                            $("#txtDOB").datepicker();
+                                        }
+                                    </script>
+                                    <%--<uc2:DateChooser ID="DateChooser1" runat="server" />--%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Country</td>
+                                <td>
+                                    <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>City</td>
+                                <td>
+                                    <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <%--<tr>
                                     <td>Street</td>
                                     <td>
                                         <asp:TextBox ID="txtStreet" runat="server"></asp:TextBox>
                                     </td>
                                 </tr>--%>
-                            </table>
+                        </table>
 
-                        </div>
+                    </div>
 
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
             <br />
 
 
@@ -212,8 +198,8 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <div class="save-div">
-        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="required" />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_OnClick" ValidationGroup="none" />
-        
+        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-default" Text="Save" OnClick="btnSave_Click" ValidationGroup="required" />
+        <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-default"  Text="Cancel" OnClick="btnCancel_OnClick" ValidationGroup="none" />
+
     </div>
 </div>

@@ -6,40 +6,36 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
-    
-    <div>
-        <h3 class="heading-of-listing">
-            Settings
-        </h3>
-        <hr/>
-        
-        <div class="data-entry-section-body">
-            <div class="auto-st2">
+
+    <h3 class="heading-of-listing">Settings
+    </h3>
+    <hr />
+
+    <div class="panel panel-default">
+
+
+        <%--<div class="panel-body">--%>
+        <%--<div class="auto-st2">
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Views/Structure/All/Master/List.aspx?edit=1" CssClass="link">
                     Programs
                 </asp:HyperLink>
-            </div>
-            <div class="auto-st2">
-                <asp:HyperLink ID="HyperLink2" runat="server" CssClass="link"
-                     NavigateUrl="~/Views/Grade/GradeListing.aspx">
-                    Grade types
-                </asp:HyperLink>
-            </div>
-             <div class="auto-st2">
-                <asp:HyperLink ID="HyperLink3" runat="server" CssClass="link"
-                     NavigateUrl="~/Views/Office/">
+            </div>--%>
+        <div class="list-group">
+            
+            <%-- link --%>
+            <asp:HyperLink ID="HyperLink3" runat="server" CssClass="list-group-item"
+                NavigateUrl="~/Views/Office/">
                    College
-                </asp:HyperLink>
-            </div>
+            </asp:HyperLink>
         </div>
 
+        <%--</div>--%>
     </div>
 
 </asp:Content>
 
 
 <asp:Content runat="server" ID="content2" ContentPlaceHolderID="head">
-    
 </asp:Content>
 
 <asp:Content runat="server" ID="content4" ContentPlaceHolderID="title">

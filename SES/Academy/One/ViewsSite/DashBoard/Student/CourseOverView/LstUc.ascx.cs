@@ -91,18 +91,18 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                         if (hidLoadType.Value == "earlier")
                         {
                             earlier = true;
-                            var subArray = helper.GetEarlierAndCurrentCourseAndClassesForManagerAndTeacher(user.Id,
+                            var subArray = helper.GetEarlierAndCurrentCourseAndClassesForManagerAndTeacherV3(user.Id,
                                 false);
-                            subjectsArray = subArray[1].Keys.ToList();
+                            subjectsArray = subArray[1];//.Keys.ToList();
 
                             //subjectsArray = helper.ListEarlierSubjectClasses(user.Id)
                             //    .Select(x => (x.IsRegular) ? x.SubjectStructure.Subject : x.Subject).ToList();
                         }
                         else
                         {
-                            var subArray = helper.GetEarlierAndCurrentCourseAndClassesForManagerAndTeacher(user.Id,
+                            var subArray = helper.GetEarlierAndCurrentCourseAndClassesForManagerAndTeacherV3(user.Id,
                               true);
-                            subjectsArray = subArray[0].Keys.ToList();
+                            subjectsArray = subArray[0];//.Keys.ToList();
                             //subjectsArray = helper.ListCurrentSubjectClasses(user.Id)
                             //    .Select(x => (x.IsRegular) ? x.SubjectStructure.Subject : x.Subject).ToList();
                         }

@@ -8,30 +8,34 @@
     <uc1:SiteMapUc runat="server" ID="SiteMapUc" />
 </asp:Content>
 
+<asp:Content runat="server" ID="Content4" ContentPlaceHolderID="BodyTitle">
+    <%--font-size: 3em; style="padding: 10px 0 10px; text-align: center;  vertical-align: central;"--%>
+</asp:Content>
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="Body">
 
-    <div class="roboto-light"
-        style="padding: 10px 0 10px; text-align: center; font-size: 3em; vertical-align: central;">
-        Learning Management
-        <br />
-        System
-    </div>
 
-   <%-- <hgroup class="title roboto-light">
+
+    <%-- <hgroup class="title roboto-light">
         <h1 class="roboto-light"><%: Title %>.</h1>
 
     </hgroup>--%>
-    
-    <div style="text-align: right;">
-        <asp:HyperLink ID="lnkEdit" runat="server" 
-            Visible="False"
+    <%-- font-size: 1.2em; --%>
+    <h3 class="roboto-light" style=" margin: 10px 0 0 5px; color: darkgrey;">
+        Learning Management System
+    </h3>
+    <hr/>
+    <%-- style="text-align: right;" --%>
+    <div class="text-right">
+        <asp:HyperLink ID="lnkEdit" runat="server"
+            Visible="False" CssClass="btn btn-default"
             NavigateUrl="~/Views/Office/School/Create.aspx">Edit</asp:HyperLink>
     </div>
 
     <article>
-            <asp:Label ID="lblDescription" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblDescription" runat="server" Text="Label"></asp:Label>
 
-       <%-- <p>
+        <%-- <p>
             <div>
                 Teaching staff use the LMS to:
             </div>
@@ -56,7 +60,7 @@
         </p>--%>
     </article>
 
-   <%-- <aside>
+    <%-- <aside>
         <h1 class="roboto-light">About Nepal Engineering College</h1>
         <p>
             The vision of nec is to evolve as the center of higher learning, excelling in academics, through continued engagements in education, research and outreach as three integrated functions of the college
@@ -78,11 +82,15 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="right">
-    <div class="box roboto-regular" runat="server" id="loginDiv" visible="True">
-        <span style="padding: 0 0 5px; text-align: left; color: darkgray;">You are not logged in. 
-        </span>
-        <br />
-        <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ViewsSite/Account/Login.aspx">Login</asp:HyperLink>
+    <div class="row">
+        <div>
+            <div class="box roboto-regular" runat="server" id="loginDiv" visible="True">
+                <span style="padding: 0 0 5px; text-align: left; color: darkgray;">You are not logged in. 
+                </span>
+                <br />
+                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ViewsSite/Account/Login.aspx">Login</asp:HyperLink>
+            </div>
+        </div>
     </div>
 </asp:Content>
 

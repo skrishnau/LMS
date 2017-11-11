@@ -12,7 +12,8 @@
 <%--<asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">--%>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-        <div style="margin: 10px 20px 0; ">
+        <%-- style="margin: 10px 20px 0; " --%>
+        <div >
 
             <%--<uc1:RestrictionFifth runat="server" ID="RestrictionFifth1" />--%>
             <uc1:EachRestriction runat="server" ID="EachRestriction1" />

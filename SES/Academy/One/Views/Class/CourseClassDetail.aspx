@@ -13,175 +13,87 @@
     <h3 class="heading-of-display">
         <asp:Label ID="lblCourseName" runat="server" Text=""></asp:Label>
     </h3>
+    <h3 class="heading-of-display">
+        <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
+        <span style="line-height: 12px; vertical-align: top;">
+            <asp:Image ID="imgIndicate" runat="server" ImageUrl="~/Content/Icons/Stop/Stop_10px.png" />
+        </span>
+    </h3>
+    <hr />
 
-    <div class="data-entry-section">
-        <div>
-            <div style="float: left;">
-                <h3 class="heading-of-display">
-                    <asp:Label ID="lblClassName" runat="server" Text=""></asp:Label>
-                    <span style="line-height: 12px; vertical-align: top; ">
-                        <asp:Image ID="imgIndicate" runat="server" ImageUrl="~/Content/Icons/Stop/Stop_10px.png" />
-                    </span>
-                </h3>
-            </div>
+    <div>
 
-
-
-
-            <div style="clear: both;"></div>
-        </div>
-        <%--  class="data-entry-section" --%>
-        <div>
-
-            <table class="table-detail">
-                <%-- <tr class="row-detail">
+        <table class="table-detail">
+            <%-- <tr class="row-detail">
                     <td class="data-detail">Class Name</td>
                     <td>
                         <asp:Literal ID="lblFullName" runat="server"></asp:Literal>
                     </td>
                 </tr>--%>
-                <tr>
-                    <td class="data-type">Start Date</td>
-                    <td class="data-value">
-                        <asp:Literal ID="lblStartDate" runat="server"></asp:Literal>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="data-type">End Date</td>
-                    <td class="data-value">
-                        <asp:Literal ID="lblEndDate" runat="server"></asp:Literal>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="data-type">Enrollment Method</td>
-                    <td class="data-value">
-                        <asp:Literal ID="lblEnrollmentMethod" runat="server"></asp:Literal>
-                    </td>
-                </tr>
-                <%--<tr>
-                    <td class="data-type">Student Grouping
-                    </td>
-                    <td class="data-value">
-                        <asp:Literal ID="lblGrouping" runat="server"></asp:Literal>
-                        <div>
-                        </div>
-                    </td>
-                </tr>--%>
-            </table>
-        </div>
-        <br />
-        <%-- style="text-align: center; vertical-align: bottom; float: left; padding-top: 8px; padding-left: 20px;" --%>
-        <%-- style="text-align: center;"  CssClass="auto-st2 link"  --%>
-        <%-- class="option-div" --%>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <div class="option-div">
-                    <asp:HyperLink ID="lnkReport" runat="server">View Report</asp:HyperLink>
-                    &nbsp;
-            
-                    <asp:LinkButton ID="lnkMarkCompletion" runat="server"
-                        OnClick="lnkMarkCompletion_OnClick"
-                        Visible="False">Mark Complete</asp:LinkButton>
-
-                    &nbsp;
-                <asp:HyperLink ID="lnkEnrollTeachers" runat="server" Visible="False">Enroll Teachers</asp:HyperLink>
-                    &nbsp;
-                <asp:HyperLink ID="lnkEnrollStudents" runat="server" Visible="False">Enroll Students</asp:HyperLink>
-
-                    <%--<asp:Button ID="btnEnroll" runat="server" Text="Enroll Users" OnClick="btnEnroll_Click" CssClass="auto-st2 link"/>--%>
-                </div>
-                <uc1:CustomDialog runat="server" ID="CustomDialog" />
-            </ContentTemplate>
-        </asp:UpdatePanel>
-        <br />
-
-
-        <%--  class="data-entry-section-body" --%>
-        <div>
-
-            <div style="color: darkslategrey">
-                <asp:Label ID="lbldNotice" runat="server"
-                    Visible="False">
-                    <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
-
-                    Teacher is not assigned to this class yet. Please assign teacher(s).
-                    <br />
-                </asp:Label>
-            </div>
-
-
-
-            <div class="data-entry-section-heading">
-                Enrolled users
-
-              
-                <hr />
-            </div>
-            <%--  ===================Listing of Enrolled Users ========================= --%>
-            <%--<asp:ListView ID="ListView1" runat="server">
-                <LayoutTemplate>
-                    <table id="Table1" runat="server" style="width: 99%;">
-                        <thead>
-                            <tr style="background-color: darkslategray; color: white;">
-                                <td></td>
-                                <td>Name</td>
-                                <td>Email</td>
-                                <td>Last Access to Course</td>
-                                <td>Roles</td>
-                                <td>Groups</td>
-                            </tr>
-                        </thead>
-                        <tr runat="server" id="itemPlaceholder">
-                        </tr>
-                    </table>
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <td>
-                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>'>
-                                <asp:Image ID="Image1" runat="server"
-                                    Height="20" Width="20"
-                                    ImageUrl='<%#  GetImageUrl(DataBinder.Eval(Container.DataItem,"UserImageId")) %>' />
-                            </asp:HyperLink>
-                        </td>
-                        <td>
-                            <asp:Label ID="Label1" runat="server" Text='<%# GetName(DataBinder.Eval(Container.DataItem,"FirstName"),Eval("MiddleName"),Eval("LastName"))  %>'></asp:Label>
-                        </td>
-                        <td>
-                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
-                        </td>
-                        <td>
-                            <span style="font-size: 0.8em">
-                                <asp:Label ID="Label8" runat="server" Text='<%# GetLastOnline(DataBinder.Eval(Container.DataItem,"LastOnline"))  %>'></asp:Label>
-                            </span>
-                        </td>
-                        <td>
-                            <tr></tr>
-                        </td>
-                        <td>
-                            <asp:Label ID="lblGroup" runat="server" Text=""></asp:Label>
-                        </td>
-                    </tr>
-                </ItemTemplate>
-            </asp:ListView>--%>
-        </div>
-
-
-        <%-- GridView --%>
-
-
-
-        <%-- End grid view --%>
+            <tr>
+                <td class="data-type">Start Date</td>
+                <td class="data-value">
+                    <asp:Literal ID="lblStartDate" runat="server"></asp:Literal>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-type">End Date</td>
+                <td class="data-value">
+                    <asp:Literal ID="lblEndDate" runat="server"></asp:Literal>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-type">Enrollment Method</td>
+                <td class="data-value">
+                    <asp:Literal ID="lblEnrollmentMethod" runat="server"></asp:Literal>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-type"></td>
+                <td class="data-value">
+                    <div style="color: darkslategrey">
+                        <asp:Label ID="lbldNotice" runat="server"
+                            Visible="False">
+                            <asp:Image ID="imgNotice" runat="server" ImageUrl="~/Content/Icons/Notice/Warning_Shield_16px.png" />
+                            Teacher is not assigned to this class yet. Please assign teacher(s).
+                        </asp:Label>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
 
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <%-- option-div --%>
+            <div class="text-right" style="padding: 15px;">
+                <asp:HyperLink ID="lnkReport" runat="server" CssClass="btn btn-default">View Report</asp:HyperLink>
+                &nbsp;
+                <asp:LinkButton ID="lnkMarkCompletion" runat="server" CssClass="btn btn-default"
+                    OnClick="lnkMarkCompletion_OnClick"
+                    Visible="False">Mark Complete</asp:LinkButton>
+                &nbsp;
+                <asp:HyperLink ID="lnkEnrollTeachers" runat="server" Visible="False" CssClass="btn btn-default">
+                    Enroll Teachers
+                </asp:HyperLink>
+                &nbsp;
+                <asp:HyperLink ID="lnkEnrollStudents" runat="server" Visible="False" CssClass="btn btn-default">
+                    Enroll Students
+                </asp:HyperLink>
 
-    <%
-        const int count = 1;
-    %>
+                <%--<asp:Button ID="btnEnroll" runat="server" Text="Enroll Users" OnClick="btnEnroll_Click" CssClass="auto-st2 link"/>--%>
+            </div>
+            <uc1:CustomDialog runat="server" ID="CustomDialog" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
 
-    <div style="margin-top: 20px">
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" PageSize="25" CssClass="gridview"
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Enrolled users</div>
+        <br />
+        <%-- CssClass="gridview" --%>
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" PageSize="25" CssClass="table table-responsive table-hover"
             OnRowDataBound="GridView1_OnRowDataBound"
             OnSelectedIndexChanged="GridView1_OnSelectedIndexChanged"
             AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" Width="100%"
@@ -308,8 +220,8 @@
                 <asp:ControlParameter ControlID="hidOrderby" DefaultValue="name" Name="orderBy" PropertyName="Value" Type="String" />
             </SelectParameters>
         </asp:ObjectDataSource>
-
     </div>
+
 
 
     <asp:HiddenField ID="hidSubjectSessionId" runat="server" Value="0" />

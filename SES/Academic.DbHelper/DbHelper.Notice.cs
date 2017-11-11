@@ -76,7 +76,7 @@ namespace Academic.DbHelper
                     .OrderByDescending(x => x.PublishedDate)
                     .ThenByDescending(x => x.UpdatedDate)
                     .ThenByDescending(x => x.CreatedDate)
-                    .Take(20)
+                    .Take(15)
                     .ToList();
                 if (displayAll)
                 {

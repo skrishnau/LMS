@@ -7,35 +7,42 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="bodycontent" ContentPlaceHolderID="Body">
-    <div style="border: 2px solid lightgray; margin: 20px; padding: 10px;">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="heading-of-create-edit" style="margin-top: 0px;">
+                <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Exclamation/warning.png" />
+                <asp:Label ID="lblHeading1" runat="server" Text="Delete"></asp:Label>
+            </h4>
+        </div>
+
+        <div class="panel-body">
+            <div class="data-entry-section-body">
+                <%--<asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Exclamation/warning.png" />--%>
+                <asp:Label ID="lblInfoText" runat="server" Text="Are you sure to delete"></asp:Label>
+                <br />
+                This can't be undone.
+            </div>
+            <br />
+            <div class="save-div">
+                <asp:Button ID="btnOk" runat="server" Text="Ok" Width="80" OnClick="btnOk_OnClick" />
+                &nbsp; &nbsp;
+                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80" OnClick="btnCancel_OnClick" />
+            </div>
+            <div>
+                <asp:Label ID="lblError" runat="server" Text="Sorry, couldn't delete." ForeColor="red" Visible="False"></asp:Label>
+            </div>
+        </div>
+    </div>
+
+   <%-- <div style="border: 2px solid lightgray; margin: 20px; padding: 10px;">
         <table>
             <tr>
-                <td style="vertical-align: top;">
-                    <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Exclamation/warning.png" />
-                </td>
-                <td>
-                    <h3 class="heading-of-create-edit" style="margin-top: 0px;">
-                        <asp:Label ID="lblHeading1" runat="server" Text="Delete"></asp:Label>
-                    </h3>
-                    <div class="data-entry-section-body">
-                        <%--<asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Icons/Exclamation/warning.png" />--%>
-                        <asp:Label ID="lblInfoText" runat="server" Text="Are you sure to delete"></asp:Label>
-                        <br />
-                        This can't be undone.
-                    </div>
-                    <br />
-                    <div class="save-div">
-                        <asp:Button ID="btnOk" runat="server" Text="Ok" Width="80" OnClick="btnOk_OnClick" />
-                        &nbsp; &nbsp;
-                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80" OnClick="btnCancel_OnClick" />
-                    </div>
-                    <div>
-                        <asp:Label ID="lblError" runat="server" Text="Sorry, couldn't delete." ForeColor="red" Visible="False"></asp:Label>
-                    </div>
-                </td>
+                <td style="vertical-align: top;"></td>
+                <td></td>
             </tr>
         </table>
-    </div>
+    </div>--%>
 
 
     <%-- hidden fields --%>
@@ -52,6 +59,7 @@
 
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
+    <link href="../../../Content/CSSes/TableStyles.css" rel="stylesheet" />
 </asp:Content>
 
 

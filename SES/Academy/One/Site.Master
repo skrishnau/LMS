@@ -25,7 +25,7 @@
 
     <link href="Content/CSSes/FinalCss.css" rel="stylesheet" />
     <link href="Content/CSSes/DropdownCss.css" rel="stylesheet" />
-
+    <link href="Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -49,7 +49,57 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div id="menuDiv" class="menu-div" style="text-align: left; z-index: 10; vertical-align: central; padding: 7px 5px 2px; clear: both; width: 100%;">
+
+        <div class="container-fluid">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <%-- <asp:HyperLink runat="server" ID="HyperLink5"
+                                    NavigateUrl="~/About.aspx">--%>
+                                <asp:Image ID="Image1" runat="server"
+                                    ImageUrl="~/Content/Icons/School/school-logo.png"
+                                    CssClass="img-responsive img-thumbnail align-middle"
+                                    Width="40" Height="40" />
+                                <%--  </asp:HyperLink>--%>
+                            </li>
+                            <li>
+                                <asp:HyperLink runat="server" ID="HyperLink1"
+                                    CssClass="navbar-brand"
+                                    NavigateUrl="~/About.aspx"
+                                    Font-Underline="False">
+                                    &nbsp;
+                                    <asp:Label ID="Label1" runat="server" CssClass="align-middle"
+                                        Text="Nepal Engineering College" Font-Size="1.2em"></asp:Label>
+
+                                </asp:HyperLink>
+                            </li>
+                        </ul>
+
+
+                        <%-- CssClass="white" Style="color: white;" --%>
+                    </div>
+
+                    <%-- <div class="collapse navbar-collapse ">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/ViewsSite/Account/Login.aspx">Login</asp:HyperLink>
+                            </li>
+                        </ul>
+                    </div>--%>
+
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+        </div>
+
+
+
+        <%--  <div id="menuDiv" class="menu-div" style="text-align: left; z-index: 10; vertical-align: central; padding: 7px 5px 2px; clear: both; width: 100%;">
             <div style="margin: auto; vertical-align: central;">
                 &nbsp;
                  <asp:HyperLink runat="server" ID="lnkSchoolName" NavigateUrl="~/Views/Office/School/View.aspx"
@@ -67,51 +117,6 @@
 
                 </div>
 
-                <div style="float: right; padding-right: 20px;" class="clearfix">
-                    <%--<asp:TextBox ID="txtSearch" runat="server" placeholder="Search courses.."></asp:TextBox>--%>
-                    <%--<asp:LoginStatus ID="LoginStatus1" runat="server" ForeColor="white"/>--%>
-                    <%--&nbsp;&nbsp;
-                    <asp:LinkButton ID="lnkLoginName" runat="server" OnClick="lnkLoginName_OnClick" CssClass="link"></asp:LinkButton>
-                    &nbsp;&nbsp;--%>
-
-
-                    <%--<div class="dropdown">
-                        <span class="dropbtn">
-                            <asp:Image ID="imgMessageIcon" runat="server"
-                                ToolTip="Messages"
-                                ImageUrl="~/Content/Icons/Message/message-filled-light-26px.png" />
-                            <sup></sup>
-                        </span>
-
-                        <div class="dropdown-content">
-                            <asp:Label ID="lblEmptyMessage" runat="server" Text="No new messages"></asp:Label>
-                            <asp:PlaceHolder ID="plHolderMessage" runat="server"></asp:PlaceHolder>
-                        </div>
-                    </div>--%>
-                    &nbsp;
-                  <%--    <div class="dropdown">
-                          <asp:Image ID="imgNotificationIcon" runat="server" CssClass="dropbtn"
-                              ToolTip="Notifications"
-                              ImageUrl="~/Content/Icons/Notice/Info-light-26px.png" />
-                          <div class="dropdown-content">
-                              <asp:Label ID="lblEmptyNotice" runat="server" Text="No new notifications"></asp:Label>
-                              <asp:PlaceHolder ID="plHolderNotice" runat="server"></asp:PlaceHolder>
-                          </div>
-                      </div>--%>
-                    &nbsp;
-                    <%--<div class="dropdown">
-                        <asp:Image ID="Image1" runat="server" CssClass="dropbtn"
-                            ToolTip="Settings"
-                            ImageUrl="~/Content/Icons/Settings/setting-light-26px.png" />
-                        <div class="dropdown-content" style="width: 130px; min-width: 130px;">
-                            <asp:HyperLink ID="lnkSettingMenu" runat="server" Visible="False" NavigateUrl="~/Views/Setting/">
-                                Settings
-                            </asp:HyperLink>
-                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
-
-                        </div>
-                    </div>--%>
-                </div>
             </div>
 
             <asp:ContentPlaceHolder ID="Menu" runat="server">
@@ -119,27 +124,26 @@
 
         </div>
 
-        <div style="clear: both;"></div>
+        <div style="clear: both;"></div>--%>
 
 
-
-        <div class="body-whole">
-            <div style="padding: 5px 0; background-color: #f1f1f1;">
+        <%-- body-whole --%>
+        <div class=" container">
+            <%-- <div style="padding: 5px 0; background-color: #f1f1f1;">
                 <div style="float: left;">
                     <asp:ContentPlaceHolder ID="SiteMapPlace" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
                 <div style="float: right;" class="option-div">
-                    <%-- <asp:LinkButton ID="lnkEditMode" runat="server" OnClick="lnkEditMode_OnClick" Visible="False">
-                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
-                        <asp:Label ID="lblEditMode" runat="server" Text="Turn on edit mode"></asp:Label>
-                    </asp:LinkButton>--%>
+                    
                 </div>
                 <div style="clear: both;"></div>
             </div>
-            <div style="clear: both;"></div>
+            <div style="clear: both;"></div>--%>
 
-            <div class="inner-body">
+            <%--  --%>
+            <div >
+
 
                 <table class="table-whole">
                     <tr style="vertical-align: top;">
@@ -149,18 +153,10 @@
 
                             <div style="width: 100%;">
                                 <asp:ContentPlaceHolder runat="server" ID="left"></asp:ContentPlaceHolder>
-
-
-                                <%--<uc1:CoursesMenuUc runat="server" ID="CoursesMenuUc1" />--%>
-                                <%--<asp:PlaceHolder ID="pnlSettings" runat="server"></asp:PlaceHolder>--%>
-                                <%--<uc1:FileManagementMenuUc runat="server" ID="FileManagementMenuUc1" />--%>
                             </div>
 
 
                         </td>
-                        <%-- ============================= END ========================= --%>
-
-
 
                         <%-- ======================= Middle ======================= --%>
                         <td class="mid-width" runat="server" id="middlePanel">
@@ -195,18 +191,19 @@
 
                         <%-- ======================= Right sidebar ======================= --%>
                         <td class="right-width" runat="server" id="right_panel" visible="True">
-
-
-
                             <asp:ContentPlaceHolder runat="server" ID="right">
-                                <div class="box roboto-regular" runat="server" id="loginDiv" visible="True">
-                                    <span style="padding: 0 0 5px; text-align: left; color: darkgray;">You are not logged in. 
-                                    </span>
-                                    <br />
-                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ViewsSite/Account/Login.aspx">Login</asp:HyperLink>
+
+                                <div class="text-center align-middle">
+                                    <div class="box roboto-regular text-center "
+                                        style="margin: 20px auto;" runat="server" id="loginDiv" visible="True">
+                                        <span style="padding: 0 0 5px; text-align: center; color: darkgray;">You are not logged in. 
+                                        </span>
+                                        <br />
+                                        <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ViewsSite/Account/Login.aspx">Login</asp:HyperLink>
+                                    </div>
+                                    <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
                                 </div>
                             </asp:ContentPlaceHolder>
-                            <asp:Panel ID="pnlRight" runat="server"></asp:Panel>
                         </td>
                         <%-- ============================= END ========================= --%>
                     </tr>

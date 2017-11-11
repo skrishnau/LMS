@@ -8,7 +8,7 @@
 .category-list-header {
     /*background-color: #f2f2f2;*/
     font-weight: 400;
-    font-size: 1.1em;
+    font-size: 1.0em;
     /*color: #393939;*/
     border: 1px solid lightgrey;
     border-bottom: 2px Solid lightgrey;
@@ -25,7 +25,8 @@
     border-left: none;
     border-right: none;
     /*margin-top: -1px;*/
-    color: #393939;
+    color: #303882;
+    /*color: #393939;*/
     text-decoration: none;
     /*background-color: lightgray;*/
     /*-webkit-border-radius: 5px;*/
@@ -36,6 +37,11 @@
         color: black;
     }
 
+    .category-list-editModeOff a:active {
+        color: blueviolet;
+        text-decoration: underline;
+    }
+
 /*  ON  */
 .category-list-editModeOn {
     /*display: block;*/
@@ -44,7 +50,8 @@
     border: 1px solid lightgrey;
     border-left: none;
     border-right: none;
-    color: #393939;
+    color: #303882;
+    /*color: #393939;*/
     text-decoration: none;
 }
 
@@ -57,7 +64,8 @@
         padding: 6px;
         line-height: 21px;
         text-decoration: none;
-        color: #393939;
+        color: #303882;
+        /*color: #393939;*/
     }
 
         .category-list-editModeOn a:hover {
@@ -65,9 +73,14 @@
             color: black;
         }
 
+        .category-list-editModeOn a:active {
+            color: blueviolet;
+            text-decoration: underline;
+        }
+
+
 .category-body-outer {
     overflow-y: auto;
-    
     border: 1px solid lightgrey;
 }
 
@@ -77,7 +90,8 @@
     padding: 6px;
     border: 1px solid lightgrey;
     /*margin-top: -1px;*/
-    color: #393939;
+    color: #303882;
+    /*color: #393939;*/
     text-decoration: none;
     /*background-color: lightgray;*/
     /*-webkit-border-radius: 5px;*/
@@ -86,4 +100,10 @@
     .course-list-item-datalist:hover {
         background-color: #f5f5f5;
         color: black;
+        text-decoration: underline;
+    }
+
+    .course-list-item-datalist:active {
+        color: blueviolet;
+        text-decoration: underline;
     }

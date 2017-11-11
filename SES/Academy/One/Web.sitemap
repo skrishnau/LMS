@@ -7,6 +7,11 @@
 
     </siteMapNode>
 
+    
+     <!--File Mangement-->
+    <siteMapNode url="~/Views/FileManagement/Default.aspx" title="File Management" description="file management" />
+
+    
     <!--Search-->
     <siteMapNode url="~/Views/Search/Default.aspx" title="Search" description="search"/>
 

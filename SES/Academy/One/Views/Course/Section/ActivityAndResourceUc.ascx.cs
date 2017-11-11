@@ -122,6 +122,7 @@ namespace One.Views.Course.Section
 
             
             lblTitle.NavigateUrl = navigateUrl + "?SubId=" + subjectId + "&arId=" + actOrResId + "&secId=" + sectionId + "&edit=" + (edit ? 1 : 0);
+            lnkImgIcon.NavigateUrl = lblTitle.NavigateUrl;
             imgIcon.ImageUrl = imageUrl;
             imgIcon.ToolTip = typeName;
 

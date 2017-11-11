@@ -21,7 +21,7 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
     <div class="data-entry-body">
-        <h3 class="heading-of-create-edit"> Assignment edit
+        <h3 class="heading-of-create-edit">Assignment edit
         </h3>
         <hr />
         <br />
@@ -29,188 +29,191 @@
 
         <%-- style="margin: 0 25px 0;" --%>
 
-        <div class="data-entry-section">
-            <div class="data-entry-section-heading">
-                General
-            </div>
-            <hr />
-            <div class="data-entry-section-body">
+        <div class="">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    General
+                </div>
+                <div class="panel-body">
 
-                <table>
-                    <tr>
-                        <td class="data-type">Name</td>
-                        <td class="data-value">
-                            <asp:TextBox ID="txtName" runat="server" Width="210px" ValidationGroup="grpAss"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtName" ValidationGroup="grpAss" runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="data-type">Description</td>
-                        <td class="data-value">
+                    <table>
+                        <tr>
+                            <td class="data-type">Name</td>
+                            <td class="data-value">
+                                <asp:TextBox ID="txtName" runat="server" Width="210px" ValidationGroup="grpAss"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtName" ValidationGroup="grpAss" runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data-type">Description</td>
+                            <td class="data-value">
 
-                            <%--  BasePath="/ckeditor/" --%>
-                            <CKEditor:CKEditorControl ID="CKEditor1" runat="server"></CKEditor:CKEditorControl>
+                                <%--  BasePath="/ckeditor/" --%>
+                                <CKEditor:CKEditorControl ID="CKEditor1" runat="server"></CKEditor:CKEditorControl>
 
 
-                            <%--<asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine" Height="74px" Width="210px"></asp:TextBox>--%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="data-type">Display Description</td>
-                        <td class="data-value">
-                            <asp:CheckBox ID="chkDisplayDesc" runat="server" />
-                        </td>
-                    </tr>
+                                <%--<asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine" Height="74px" Width="210px"></asp:TextBox>--%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data-type">Display Description</td>
+                            <td class="data-value">
+                                <asp:CheckBox ID="chkDisplayDesc" runat="server" />
+                            </td>
+                        </tr>
 
-                </table>
-            </div>
+                    </table>
+                </div>
 
-            <div>
-                <uc1:ClassesInActivityChoose runat="server" ID="ClassesInActivityChoose1" />
             </div>
 
 
-            <br />
-            <div class="data-entry-section-heading">
-                Submission Date
-            </div>
-            <hr />
-            <div class="data-entry-section-body">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-                        <table style="margin: 0 20px 0;">
-                            <tr>
-                                <td class="data-type">Submission From</td>
-                                <td class="data-value">
-                                    <asp:TextBox ID="txtFrom" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
-                                    <asp:CheckBox ID="chkFrom" ClientIDMode="Static" runat="server"
-                                        AutoPostBack="True" Checked="True"
-                                        CausesValidation="False" OnCheckedChanged="chk_CheckedChanged" />
-                                     <asp:Label ID="valiFrom" runat="server" Text="Required"
-                                        Visible="False"
-                                        ForeColor="red"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="data-type">Due Date</td>
-                                <td class="data-value">
-                                    <asp:TextBox ID="txtDue" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
-                                    <asp:CheckBox ID="chkDue" ClientIDMode="Static" runat="server"
-                                        AutoPostBack="True" Checked="True"
-                                        OnCheckedChanged="chk_CheckedChanged" CausesValidation="False" />
-                                     <asp:Label ID="valiDue" runat="server" Text="Required"
-                                        Visible="False"
-                                        ForeColor="red"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="data-type">Cut off Date</td>
-                                <td class="data-value">
-                                    <asp:TextBox ID="txtCutOff" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
-                                    <asp:CheckBox ID="chkCutOff" ClientIDMode="Static" runat="server"
-                                        AutoPostBack="True" Checked="True"
-                                        OnCheckedChanged="chk_CheckedChanged" CausesValidation="False" />
-                                     <asp:Label ID="valiCutOff" runat="server" Text="Required"
-                                        Visible="False"
-                                        ForeColor="red"></asp:Label>
-                                </td>
-                            </tr>
+            <uc1:ClassesInActivityChoose runat="server" ID="ClassesInActivityChoose1" />
 
-                        </table>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </div>
-            <br />
 
-            <div class="data-entry-section-heading">
-                Type
-            </div>
-            <hr />
-            <div class="data-entry-section-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Submission Date
+                </div>
 
-                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                    <ContentTemplate>
-                        <table style="margin: 0 20px 0;">
-                            <tr>
-                                <td class="data-type">Submission Type</td>
-                                <td class="data-value">
-                                    <asp:CheckBox ID="chkOnlineSubmission" runat="server"
-                                        OnCheckedChanged="chk_CheckedChanged" Text="Online"
-                                        AutoPostBack="True" CausesValidation="False" />
-                                    <%--Online--%>
+                <div class="panel-body">
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <table style="margin: 0 20px 0;">
+                                <tr>
+                                    <td class="data-type">Submission From</td>
+                                    <td class="data-value">
+                                        <asp:TextBox ID="txtFrom" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
+                                        <asp:CheckBox ID="chkFrom" ClientIDMode="Static" runat="server"
+                                            AutoPostBack="True" Checked="True"
+                                            CausesValidation="False" OnCheckedChanged="chk_CheckedChanged" />
+                                        <asp:Label ID="valiFrom" runat="server" Text="Required"
+                                            Visible="False"
+                                            ForeColor="red"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="data-type">Due Date</td>
+                                    <td class="data-value">
+                                        <asp:TextBox ID="txtDue" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
+                                        <asp:CheckBox ID="chkDue" ClientIDMode="Static" runat="server"
+                                            AutoPostBack="True" Checked="True"
+                                            OnCheckedChanged="chk_CheckedChanged" CausesValidation="False" />
+                                        <asp:Label ID="valiDue" runat="server" Text="Required"
+                                            Visible="False"
+                                            ForeColor="red"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="data-type">Cut off Date</td>
+                                    <td class="data-value">
+                                        <asp:TextBox ID="txtCutOff" ClientIDMode="Static" runat="server" Width="210px"></asp:TextBox>
+                                        <asp:CheckBox ID="chkCutOff" ClientIDMode="Static" runat="server"
+                                            AutoPostBack="True" Checked="True"
+                                            OnCheckedChanged="chk_CheckedChanged" CausesValidation="False" />
+                                        <asp:Label ID="valiCutOff" runat="server" Text="Required"
+                                            Visible="False"
+                                            ForeColor="red"></asp:Label>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Type
+                </div>
+
+                <div class="panel-body">
+
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <table style="margin: 0 20px 0;">
+                                <tr>
+                                    <td class="data-type">Submission Type</td>
+                                    <td class="data-value">
+                                        <asp:CheckBox ID="chkOnlineSubmission" runat="server"
+                                            OnCheckedChanged="chk_CheckedChanged" Text="Online"
+                                            AutoPostBack="True" CausesValidation="False" />
+                                        <%--Online--%>
                             &nbsp;&nbsp; &nbsp;
                             <asp:CheckBox ID="chkFileSubmission" runat="server" Text="Files"
                                 OnCheckedChanged="chk_CheckedChanged" Checked="True"
                                 AutoPostBack="True" CausesValidation="False" />
-                                    <%--Files--%>
-                                    <%--<asp:DropDownList ID="ddlSubmissionType" runat="server" Height="21px" Width="210px"></asp:DropDownList>--%>
-                                    <%--<asp:RequiredFieldValidator ID="submissionListVali"
+                                        <%--Files--%>
+                                        <%--<asp:DropDownList ID="ddlSubmissionType" runat="server" Height="21px" Width="210px"></asp:DropDownList>--%>
+                                        <%--<asp:RequiredFieldValidator ID="submissionListVali"
                                 ControlToValidate="ddlSubmissionType"
                                 runat="server" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>--%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="data-type">Word Limit</td>
-                                <td class="data-value" >
-                                    <asp:TextBox ID="txtWordLimit" Enabled="False" runat="server"
-                                        TextMode="Number"
-                                        Width="210px"></asp:TextBox>
-                                    <asp:Label ID="lblValiWordLimit" runat="server" Text="Required"
-                                        Visible="False"
-                                        ForeColor="red"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="data-type">Maximum Number of Submitted Files</td>
-                                <td class="data-value">
-                                    <asp:TextBox ID="txtMaxFiles" runat="server" Width="210px"
-                                        TextMode="Number"></asp:TextBox>
-                                    <asp:Label ID="lblValiMaxFile" runat="server" Text="Required"
-                                        Visible="False"
-                                        ForeColor="red"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="data-type">Maximum Submission Size (in KB)</td>
-                                <td class="data-value">
-                                    <asp:TextBox ID="txtMaxSize" runat="server" Width="210px"
-                                        TextMode="Number"></asp:TextBox>
-                                    <asp:Label ID="lblValiSubmissionSize" runat="server" Text="Required"
-                                        Visible="False"
-                                        ForeColor="red"></asp:Label>
-                                </td>
-                            </tr>
-                        </table>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </div>
-            <br />
-            <div class="data-entry-section-heading">
-                Grade
-            </div>
-            <hr />
-            
-            <%-- Grade selection  --%>
-            <uc1:GradeInActivityUc runat="server" id="GradeInActivityUc1" />
-            <br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="data-type">Word Limit</td>
+                                    <td class="data-value">
+                                        <asp:TextBox ID="txtWordLimit" Enabled="False" runat="server"
+                                            TextMode="Number"
+                                            Width="210px"></asp:TextBox>
+                                        <asp:Label ID="lblValiWordLimit" runat="server" Text="Required"
+                                            Visible="False"
+                                            ForeColor="red"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="data-type">Maximum Number of Submitted Files</td>
+                                    <td class="data-value">
+                                        <asp:TextBox ID="txtMaxFiles" runat="server" Width="210px"
+                                            TextMode="Number"></asp:TextBox>
+                                        <asp:Label ID="lblValiMaxFile" runat="server" Text="Required"
+                                            Visible="False"
+                                            ForeColor="red"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="data-type">Maximum Submission Size (in KB)</td>
+                                    <td class="data-value">
+                                        <asp:TextBox ID="txtMaxSize" runat="server" Width="210px"
+                                            TextMode="Number"></asp:TextBox>
+                                        <asp:Label ID="lblValiSubmissionSize" runat="server" Text="Required"
+                                            Visible="False"
+                                            ForeColor="red"></asp:Label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
 
-            <div class="data-entry-section-heading">
-                Restriction
-            <hr />
             </div>
 
-            <div class="data-entry-section-body">
-                <uc1:RestrictionUC runat="server" ID="RestrictionUC" />
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Grade
+                </div>
+
+                <uc1:GradeInActivityUc runat="server" ID="GradeInActivityUc1" />
             </div>
-            <%--<uc1:RestrictionMainUC runat="server" id="RestrictionMainUC" />--%>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Restriction
+                </div>
+
+                <div class="panel-body">
+                    <uc1:RestrictionUC runat="server" ID="RestrictionUC" />
+                </div>
+            </div>
 
 
-
-            <br />
             <div class="save-div">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <ContentTemplate>
-                        &nbsp;&nbsp;
+
                         <asp:Button ID="btnAssignmentSave" ValidationGroup="grpAss" runat="server" Text="Save" Width="100" OnClick="btnSave_Click" />
                         &nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btnAssignmentCancel" ValidationGroup="cancelAss" runat="server" Text="Cancel" Width="100" OnClick="btnCancel_Click" CausesValidation="False" />

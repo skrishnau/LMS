@@ -24,7 +24,16 @@ namespace One.Views.Report
 
                         var classId = Convert.ToInt32(clsId);
                         ClassId = classId;
+
+
+
+
+
                         LoadClass();
+
+
+
+
                     }
                     else Response.Redirect("~/Views/All_Resusable_Codes/Error/ErrorPage.aspx");
                 }
@@ -38,15 +47,26 @@ namespace One.Views.Report
             var classId = ClassId;
             using (var helper = new DbHelper.Classes())
             {
+
+
+
                 List<StudentReportViewModel> reports;
                 List<IdAndName> activityHeading;
                 var cls = helper.GetSubjectClassReport(classId, out reports, out activityHeading);
                 if (cls != null)
                 {
+                    LoadSitemap(cls);
+
+                    LoadOptions(classId, activityHeading);
+
+
                     lblClassName.Text = cls.IsRegular ? cls.GetName : cls.Name;
-                    lblCourseName.Text = cls.IsRegular
+                    var from = Request.QueryString["from"] ?? "";
+
+                    lnkCourseName.Text = cls.IsRegular
                         ? cls.SubjectStructure.Subject.FullName
                         : cls.Subject.FullName;
+                    lnkCourseName.NavigateUrl = "~/Views/Course/Section/?SubId=" + cls.GetCourseId + "&from=" + from;
 
 
                     if (reports != null && reports.Any())
@@ -57,19 +77,31 @@ namespace One.Views.Report
                         var initRow = new TableRow();
                         if (chkImage.Checked)
                         {
-                            initRow.Cells.Add(new TableCell() { Text = "Image", CssClass = "data-value-bold-dark-back" });
+                            initRow.Cells.Add(new TableCell() { Text = "Image", CssClass = "data-list-header" });
                         }
                         if (chkRoll.Checked)
-                            initRow.Cells.Add(new TableCell() { Text = "Roll", CssClass = "data-value-bold-dark-back" });
+                            initRow.Cells.Add(new TableCell() { Text = "Roll", CssClass = "data-list-header" });
                         if (chkName.Checked)
-                            initRow.Cells.Add(new TableCell() { Text = "Name", CssClass = "data-value-bold-dark-back" });
+                            initRow.Cells.Add(new TableCell() { Text = "Name", CssClass = "data-list-header" , Width = 100});
 
                         //chkActivities.DataSource = activityHeading;
                         //chkActivities.DataBind();
 
+
                         foreach (var head in activityHeading)
                         {
-                            initRow.Cells.Add(new TableCell() { Text = head.Name + " (Wt.: " + head.Value + ")", CssClass = "data-value-bold-dark-back" });
+
+
+                            var actResSelected = chkActivities.Items.FindByValue(head.Id.ToString());
+                            if (actResSelected != null && actResSelected.Selected)
+                            {
+                                initRow.Cells.Add(new TableCell()
+                                {
+                                    Text = head.Name + " (Wt.: " + head.Value + ")",
+                                    CssClass = "data-list-header"
+                                });
+                            }
+
 
                             //pnlActivityCheck.Controls.Add(new CheckBox()
                             //{
@@ -83,7 +115,7 @@ namespace One.Views.Report
                             //});
                         }
                         if (chkTotal.Checked)
-                            initRow.Cells.Add(new TableCell() { Text = "Total", CssClass = "data-value-bold-dark-back" });
+                            initRow.Cells.Add(new TableCell() { Text = "Total", CssClass = "data-list-header" });
                         tblStudents.Rows.Add(initRow);
 
                         #endregion
@@ -116,7 +148,7 @@ namespace One.Views.Report
                                 newRow.Cells.Add(new TableCell() { Text = r.CRN });
                             if (chkName.Checked)
                                 newRow.Cells.Add(new TableCell() { Text = r.StudentName });
-                            foreach (var actvitiy in r.ActivityViewModels)
+                            foreach (var activity in r.ActivityViewModels)
                             {
                                 ////var chkbox = (CheckBox)pnlActivityCheck.FindControl("chk_" + head.Id + "_" + head.Name);
                                 //var checkedValue = true;
@@ -125,7 +157,22 @@ namespace One.Views.Report
                                 //    //checkedValue = chkbox.Checked;
                                 //}
                                 //if (checkedValue)
-                                newRow.Cells.Add(new TableCell() { Text = actvitiy.ObtainedMarks });
+                                var actResSelected = chkActivities.Items.FindByValue(activity.Id.ToString());
+                                if (actResSelected != null && actResSelected.Selected)
+                                {
+                                    if (string.IsNullOrEmpty(activity.ObtainedMarks))
+                                    {
+                                        //give link to assign grade 
+
+                                    }
+                                    else
+                                    {
+                                        newRow.Cells.Add(new TableCell() { Text = activity.ObtainedMarks });
+                                    }
+                                }
+
+
+
                             }
                             if (chkTotal.Checked)
                                 newRow.Cells.Add(new TableCell() { Text = r.TotalMarks });
@@ -136,8 +183,65 @@ namespace One.Views.Report
                         #endregion
                     }
 
+
+
+
+
                     //ListView1.DataSource = helper.ListSubjectSessionEnrolledUsers(classId);
                     //ListView1.DataBind();
+                }
+            }
+        }
+
+        private void LoadOptions(int classId, List<IdAndName> activityHeading)
+        {
+            if (!IsPostBack)
+            {
+                var actListFromReport = new List<string>();
+
+                if (!activityHeading.Any())
+                {
+                    lblNoneActRes.Visible = true;
+                }
+                else
+                {
+
+                    var selectAll = false;
+                    using (var repHelper = new DbHelper.Report())
+                    {
+                        var report = repHelper.GetReport(classId);
+
+                        if (report != null)
+                        {
+                            chkImage.Checked = report.ShowImage;
+                            chkName.Checked = report.ShowName;
+                            chkRoll.Checked = report.ShowCRN;
+                            chkTotal.Checked = report.ShowTotal;
+
+
+                            actListFromReport = report.ShowActivityResourceIds.Split(new char[] { ',' }).ToList();
+                            actListFromReport.Remove("");
+                        }
+                        else
+                        {
+                            selectAll = true;
+                        }
+                    }
+
+                    // var selectAll = report == null;//!actListFromReport.Any();
+
+
+                    //activity check boxes
+                    foreach (var ach in activityHeading)
+                    {
+                        //var show = actListFromReport.Contains();
+                        chkActivities.Items.Add(new ListItem()
+                        {
+                            Text = ach.Name,
+                            Value = ach.Id.ToString(),
+                            Selected = selectAll || actListFromReport.Contains(ach.Id.ToString()),
+                        });
+                    }
                 }
             }
         }
@@ -250,6 +354,30 @@ namespace One.Views.Report
             else imgFilter.ImageUrl = "~/Content/Icons/Arrow/arrow_right.png";
             pnlFilter.Visible = !pnlFilter.Visible;
 
+        }
+
+        protected void btnSave_OnClick(object sender, EventArgs e)
+        {
+            //save to report
+            using (var helper = new DbHelper.Report())
+            {
+                var report = new Academic.DbEntities.Subjects.Report()
+                {
+                    SubjectClassId = ClassId,
+                    ShowActivityResourceIds = "",
+                    ShowCRN = chkRoll.Checked,
+                    ShowImage = chkImage.Checked,
+                    ShowName = chkName.Checked,
+                    ShowTotal = chkTotal.Checked,
+                };
+                foreach (ListItem item in chkActivities.Items)
+                {
+                    if (item.Selected)
+                        report.ShowActivityResourceIds += item.Value + ",";// + "-" + item.Selected.ToString() + ",";
+                }
+                helper.SaveReport(report);
+                btnLoad_OnClick(sender, e);
+            }
         }
     }
 }

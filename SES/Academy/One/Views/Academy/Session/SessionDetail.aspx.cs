@@ -81,7 +81,7 @@ namespace One.Views.Academy.Session
                                     new IdAndName()
                                     {
                                         Name = academic.Name
-                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?aId=1&edit="+edit
+                                        ,Value = SiteMap.CurrentNode.ParentNode.Url+"?aId="+AcademicYearId+"&edit="+edit
                                         ,Void = true
                                     },
                                     new IdAndName()
@@ -166,42 +166,16 @@ namespace One.Views.Academy.Session
 
                 var rcs = session.RunningClasses.Where(x => !(x.Void ?? false));
                 var dict = rcs.GroupBy(x => x.ProgramBatch.Program);
+
+
                 foreach (var program in dict)
                 {
-                    var pLabel = new Literal()
-                    {
-                        //Font = { Bold = true },
-                        Text = "<div style='margin-top:8px;'>" +
-                        "<strong>● " + program.Key.Name + "</strong></div>",
-                    };
-                    //pLabel.Style.Add("margin-top","5px");
-                    pnlListing.Controls.Add(pLabel);
 
-
-                    foreach (var rc in program)
-                    {
-                        var teacherPresent = true;
-                        foreach (var sub in rc.SubjectClasses)
-                        {
-                            teacherPresent = sub.ClassUsers.Any(x => x.RoleId == teacherRoleId && !(x.Void ?? false));
-                            if (teacherPresent == false)
-                                break;
-                        }
-                        if (!teacherPresent)
-                        {
-
-                        }
-
-                        var rcLabel = new HyperLink()
-                        {
-                            Text = " &nbsp;&nbsp;▪ " + rc.ProgramBatch.Batch.Name + " -- " +
-                                   rc.Year.Name + " " + (rc.SubYear == null ? "" : rc.SubYear.Name) +
-                                   (teacherPresent ? "" : noticeText) +
-                                   "<br/>",
-                            NavigateUrl = "~/Views/Academy/RunningClassForm.aspx?rcId=" + rc.Id,
-                        };
-                        pnlListing.Controls.Add(rcLabel);
-                    }
+                    var uc = (ProgramClassesUc) 
+                        Page.LoadControl("~/Views/Academy/Session/ProgramClassesUc.ascx");
+                    uc.LoadData(program, teacherRoleId,noticeText);
+                    pnlListing.Controls.Add(uc);
+                    
                 }
             }
         }

@@ -55,11 +55,11 @@ namespace One.Views.Class
                                     if (!(cls.SessionComplete ?? false)
                                         && cls.EnrollmentMethod == 2)
                                     {
-                                        if (joinedClass!=null)
+                                        if (joinedClass != null)
                                         {
                                             lblJoinLastDate.Text = joinedClass.StartDate.HasValue
-                                                  ? joinedClass.StartDate.Value.ToString("D")
-                                                  : "";
+                                                ? joinedClass.StartDate.Value.ToString("D")
+                                                : "-";
                                             lblJoinLstDateTitle.Text = "Joined on";
 
                                             SetEnrollDialog(false);
@@ -69,8 +69,8 @@ namespace One.Views.Class
                                         else if ((cls.JoinLastDate ?? DateTime.MaxValue.Date) >= DateTime.Now.Date)
                                         {
                                             lblJoinLastDate.Text = cls.JoinLastDate.HasValue
-                                                  ? cls.JoinLastDate.Value.ToString("D")
-                                                  : "";
+                                                ? cls.JoinLastDate.Value.ToString("D")
+                                                : "-";
 
                                             SetEnrollDialog(true);
                                             btnEnroll.Visible = true;
@@ -81,6 +81,10 @@ namespace One.Views.Class
                                     //{
 
                                     //}
+                                }
+                                else
+                                {
+                                    lblJoinLastDate.Text = cls.JoinLastDate == null ? " - " : cls.JoinLastDate.Value.ToString("D");
                                 }
 
                                 lnkViewCourse.Visible = true;
