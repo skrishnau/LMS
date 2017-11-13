@@ -71,7 +71,7 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
         public void LoadCourses()
         {
             var date = DateTime.Now;
-
+            var count = 0;
             using (var aHelper = new DbHelper.ActAndRes())
             using (var helper = new DbHelper.Subject())
             using (var clsHelper = new DbHelper.Classes())
@@ -289,14 +289,17 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                             if (!fromDashboard)
                             {
                                 this.pnlCourseList.Controls.Add(uc);
+                                count++;
                             }
                             else
                             {
                                 if (enterSubject)
                                 {
+
                                     if (!lblHeading.Visible)
                                         lblHeading.Visible = fromDashboard;
                                     this.pnlCourseList.Controls.Add(uc);
+                                    count++;
                                 }
                             }
                         }
@@ -306,7 +309,7 @@ namespace One.ViewsSite.DashBoard.Student.CourseOverView
                 catch (Exception e) { }
             }
 
-
+            this.Visible = count != 0;
 
         }
 

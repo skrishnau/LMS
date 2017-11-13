@@ -1,3 +1,25 @@
+--delete for only academic session related
+--select * from runningclass
+delete from ActivityResourceView
+
+delete from AssignmentSubmissions
+
+delete from ActivityGrading
+delete from AssignmentSubmissionFiles
+delete from ActivityClass
+delete from Report
+delete from userclass 
+
+delete from subjectclass where isregular=1
+delete from runningclass
+delete from StudentBatch
+delete from ProgramBatch
+delete from batch
+delete from Session
+delete from academicyear
+
+
+--delete of all
 select * from school
 
 delete from userclass

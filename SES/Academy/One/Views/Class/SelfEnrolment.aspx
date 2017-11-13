@@ -86,8 +86,9 @@
                 <div class="text-center">
                     <%--<asp:HyperLink ID="lnkReport" runat="server">View Report</asp:HyperLink>--%>
                     <asp:HyperLink ID="lnkViewCourse" runat="server" CssClass="btn btn-default" Visible="False">View Course</asp:HyperLink>
+                    &nbsp;&nbsp;
                     <asp:LinkButton ID="btnEnroll" runat="server"
-                        OnClick="btnEnroll_Click"
+                        OnClick="btnEnroll_Click" CssClass="btn btn-default"
                         Visible="False">Enroll Now</asp:LinkButton>
                 </div>
                 <uc1:CustomDialog runat="server" ID="CustomDialog" />
@@ -121,9 +122,24 @@
             </asp:Label>
         </div>
     </div>
-
-
     <br />
+    
+   <%-- <asp:Panel runat="server" ID="pnlStudents" CssClass="panel panel-default" Visible="False">
+        <asp:DataList ID="dlistStudents" runat="server" DataSourceID="ObjectDataSource1" Width="100%">
+            <ItemTemplate>
+                <div class="list-item-datalist">
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#  Bind("ImageUrl") %>'>
+                        <asp:Image ID="Image1" runat="server" Height="40" Width="40" ImageUrl='<%#  Bind("ImageUrl") %>' />
+                        <span style="line-height: 20px;">
+                            <asp:Label ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                        </span>
+                    </asp:HyperLink>
+                </div>
+            </ItemTemplate>
+        </asp:DataList>
+    </asp:Panel>
+
+    <br />--%>
 
     <div class="panel panel-default">
         <div class="panel-heading">

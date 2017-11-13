@@ -78,9 +78,13 @@ namespace One
                 }
                 else
                 {
-                    loginDiv.Visible = false;
+                    //loginDiv.Visible = false;
                 }
 
+                if (Request.Url.AbsolutePath.ToLower().Contains("login"))
+                {
+                    lnkLogin.Visible = false;
+                }
                
                 //LoadNotice(user);
             }
@@ -92,9 +96,9 @@ namespace One
                   Page.LoadControl("~/ViewsSite/User/ModulesUc/NoticeBoardUc.ascx");
             noticeBoardUc.UserId = user.Id;
             noticeBoardUc.SchoolId = user.SchoolId;
-            pnlRight.Controls.Add(noticeBoardUc);
+            //pnlRight.Controls.Add(noticeBoardUc);
 
-            pnlRight.Controls.Add(new Literal() { Text = "<br/>" });
+            //pnlRight.Controls.Add(new Literal() { Text = "<br/>" });
 
         }
 

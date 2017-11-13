@@ -79,34 +79,34 @@ namespace One.ViewsSite.User
                             var usr = usrHelper.GetUser(user.Id);
                             var student = usr.Student;
 
-                            if (student.Any())
-                            {
-                                var std = student.FirstOrDefault();
-                                if (std != null)
-                                {
-                                    var stdBatch = std.StudentBatch.FirstOrDefault();
-                                    if (stdBatch != null)
-                                    {
-                                        lblUserInfo.Text = "(" + stdBatch.ProgramBatch.NameFromBatch;
-                                        try
-                                        {
-                                            //if (user.AcademicYearId > 0)
-                                            {
-                                                var rc = usr.Classes.Select(x => x.SubjectClass)
-                                                    .Where(x => x.RunningClassId != null && !(x.Void ?? false))
-                                                    .Select(x => x.RunningClass)
-                                                    .FirstOrDefault(x => (x.IsActive ?? false) && !(x.Void ?? false));
-                                                if (rc != null)
-                                                {
-                                                    lblUserInfo.Text += "&nbsp;&nbsp;" + rc.GetYearAndSubYearName;
-                                                }
-                                            }
-                                        }
-                                        catch { }
-                                        lblUserInfo.Text += ")";
-                                    }
-                                }
-                            }
+                            //if (student.Any())
+                            //{
+                            //    var std = student.FirstOrDefault();
+                            //    if (std != null)
+                            //    {
+                            //        var stdBatch = std.StudentBatch.FirstOrDefault();
+                            //        if (stdBatch != null)
+                            //        {
+                            //            lblUserInfo.Text = "(" + stdBatch.ProgramBatch.NameFromBatch;
+                            //            try
+                            //            {
+                            //                //if (user.AcademicYearId > 0)
+                            //                {
+                            //                    var rc = usr.Classes.Select(x => x.SubjectClass)
+                            //                        .Where(x => x.RunningClassId != null && !(x.Void ?? false))
+                            //                        .Select(x => x.RunningClass)
+                            //                        .FirstOrDefault(x => (x.IsActive ?? false) && !(x.Void ?? false));
+                            //                    if (rc != null)
+                            //                    {
+                            //                        lblUserInfo.Text += "&nbsp;&nbsp;" + rc.GetYearAndSubYearName;
+                            //                    }
+                            //                }
+                            //            }
+                            //            catch { }
+                            //            lblUserInfo.Text += ")";
+                            //        }
+                            //    }
+                            //}
 
                             #endregion
 

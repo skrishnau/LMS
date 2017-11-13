@@ -21,9 +21,9 @@ namespace One.Views
                 lblPasswordError.Visible = false;
                 lblQuestionSaveError.Visible = false;
                 lblQuestionError.Visible = false;
-
                 if (!IsPostBack)
                 {
+                    txtearlierPswrd1.Text = "";
                     using (var helper = new DbHelper.User())
                     using (var file = new DbHelper.WorkingWithFiles())
                     {
@@ -48,12 +48,34 @@ namespace One.Views
                                 SiteMapUc.SetData(list);
                             }
                             lblName.Text = usr.FullName;
-                            lblEmail.Text = usr.Email;
+                            lblEmail.Text = string.IsNullOrEmpty(usr.Email)? "  -  ":usr.Email;
                             lblUsername.Text = usr.UserName;
 
                             img.ImageUrl = file.GetImageUrl(usr.UserImageId ?? 0);
                             ddlQuestion.DataSource = DbHelper.StaticValues.SecurityQuestion();
                             ddlQuestion.DataBind();
+
+
+                            try
+                            {
+                                var progBatch = usr.Student.FirstOrDefault().StudentBatch.FirstOrDefault().ProgramBatch;
+                                //batch.ProgramBatch.NameFromBatch;
+                                phProfileInfo.Controls.Add(new Literal()
+                                {
+                                    Text = "<tr><td class='data-type'>"
+                                        +"Batch"+"</td><td class='data-value'>"+progBatch.Batch.Name
+                                        +"</td></tr>"
+                                });
+                                phProfileInfo.Controls.Add(new Literal()
+                                {
+                                    Text = "<tr><td class='data-type'>"
+                                        + "Program" + "</td><td  class='data-value'>" + progBatch.Program.Name
+                                        + "</td></tr>"
+                                });
+                                phProfileInfo.Visible = true;
+                            }
+                            catch{}
+
                         }
                     }
                     SetView();
@@ -98,7 +120,7 @@ namespace One.Views
                 {
                     using (var helper = new Academic.DbHelper.DbHelper.User())
                     {
-                        var changed = helper.ChangePassword(user.Id, txtearlierPswrd.Text, txtConfirmPswrd.Text);
+                        var changed = helper.ChangePassword(user.Id, txtearlierPswrd1.Text, txtConfirmPswrd.Text);
                         if (changed)
                         {
                             Response.Redirect("~/Views/Profile.aspx");

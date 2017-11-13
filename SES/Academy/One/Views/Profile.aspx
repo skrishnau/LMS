@@ -7,14 +7,16 @@
 
 <asp:Content runat="server" ID="contnet1" ContentPlaceHolderID="Body">
 
-    <div class="data-entry-section">
+    <h3 class="heading-of-listing">Profile
+    </h3>
+    <hr />
+    <%-- data-entry-section --%>
+    <div class="">
         <div>
             <asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">
                 <%-- ---------------------view 0 ------------------------- --%>
                 <asp:View ID="View1" runat="server">
-                    <h3 class="heading-of-listing">Profile
-                    </h3>
-                    <hr />
+
                     <table>
                         <tr>
                             <td>
@@ -32,6 +34,13 @@
                                             <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
                                         </td>
                                     </tr>
+                                     <tr>
+                                        <td class="data-type">Email</td>
+                                        <td class="data-value">
+                                            <asp:Label ID="lblEmail" runat="server" Text=""></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <asp:PlaceHolder runat="server" ID="phProfileInfo" Visible="False"></asp:PlaceHolder>
                                     <tr>
                                         <td class="data-type">Password</td>
                                         <td class="data-value">
@@ -40,12 +49,7 @@
                                             <%--<asp:LinkButton ID="lnkPassword" runat="server" OnClick="lnkPassword_OnClick">Change password</asp:LinkButton>--%>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="data-type">Email</td>
-                                        <td class="data-value">
-                                            <asp:Label ID="lblEmail" runat="server" Text=""></asp:Label>
-                                        </td>
-                                    </tr>
+                                   
                                     <tr>
                                         <td class="data-type">Security question</td>
                                         <td class="data-value">
@@ -77,9 +81,9 @@
                         <tr>
                             <td class="data-type">Earlier password</td>
                             <td class="data-value">
-                                <asp:TextBox ID="txtearlierPswrd" runat="server" TextMode="Password" ></asp:TextBox>
+                                <asp:TextBox ID="txtearlierPswrd1" runat="server" TextMode="Password"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                                    ControlToValidate="txtearlierPswrd" ValidationGroup="password"
+                                    ControlToValidate="txtearlierPswrd1" ValidationGroup="password"
                                     ErrorMessage="Required" ForeColor="red"></asp:RequiredFieldValidator>
                             </td>
                         </tr>

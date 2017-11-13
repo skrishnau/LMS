@@ -318,11 +318,12 @@ namespace One.Views.Academy
                 start = Convert.ToDateTime(txtAcademicStart.Text);
                 var earlierAca = helper.GetEarlierAcademicYear(user.SchoolId);
 
-                if (start.Date <= earlierAca.EndDate.Date)
-                {
-                    valiAcademicStart.ErrorMessage = "Must be greater than end-date of earlier academic year (" + earlierAca.EndDate.ToShortDateString() + ")";
-                    valiAcademicStart.IsValid = false;
-                }
+                if (earlierAca != null)
+                    if (start.Date <= earlierAca.EndDate.Date)
+                    {
+                        valiAcademicStart.ErrorMessage = "Must be greater than end-date of earlier academic year (" + earlierAca.EndDate.ToShortDateString() + ")";
+                        valiAcademicStart.IsValid = false;
+                    }
             }
             catch
             {
@@ -359,7 +360,7 @@ namespace One.Views.Academy
                     ,
                     SchoolId = user.SchoolId
                     ,
-                    Position = start.Year*10000 + start.Month*100 + start.Day,
+                    Position = start.Year * 10000 + start.Month * 100 + start.Day,
                 };
                 return entity;
             }

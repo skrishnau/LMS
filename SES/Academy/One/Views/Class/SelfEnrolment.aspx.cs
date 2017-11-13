@@ -159,11 +159,11 @@ namespace One.Views.Class
                                                 ,Value =  SiteMap.RootNode.Url
                                                 ,Void=true
                                             },
-                                    new IdAndName(){
-                                        Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
-                                        ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url
-                                        ,Void=true
-                                    },
+                                    //new IdAndName(){
+                                    //    Name = SiteMap.CurrentNode.ParentNode.ParentNode.Title
+                                    //    ,Value = SiteMap.CurrentNode.ParentNode.ParentNode.Url
+                                    //    ,Void=true
+                                    //},
                                     new IdAndName(){
                                         Name = cls.GetCourseFullName
                                         ,Value = "~/Views/Course/Section/?SubId="+cls.GetCourseId+"&from=detail"
