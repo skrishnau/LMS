@@ -1,2 +1,7 @@
 # SES_1
-yuiot remnan rediwqa tinaq mina iore plaximore timre gint qoer cofre xenao manreq qreiti popo
+Learning Management System.
+College Project.
+An Attempt to Make a LMS. Contributions are Welcomed. Its open to all. 
+:)
+
+Yuiot remnan rediwqa tinaq mina iore. Plaximore timre gint qoer cofre xenao manreq qreiti popo. Hikzz. Jiur mo exceti.
