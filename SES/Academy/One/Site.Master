@@ -89,7 +89,7 @@
                     <div class="collapse navbar-collapse ">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <asp:HyperLink ID="lnkLogin" runat="server" 
+                                <asp:HyperLink ID="lnkLogin" runat="server"
                                     NavigateUrl="~/ViewsSite/Account/Login.aspx">Login</asp:HyperLink>
                                 <%--<asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/ViewsSite/Account/Login.aspx">Login</asp:HyperLink>--%>
                             </li>
@@ -154,7 +154,7 @@
                     <tr style="vertical-align: top;">
 
                         <%--  =================== Left sidebar ========================= --%>
-                       <%-- <td class="left-width" runat="server" id="leftColumn" visible="False">
+                        <%-- <td class="left-width" runat="server" id="leftColumn" visible="False">
 
                             <div style="width: 100%;">
                                 <asp:ContentPlaceHolder runat="server" ID="left"></asp:ContentPlaceHolder>
@@ -208,7 +208,6 @@
                                 </div>
                             </asp:ContentPlaceHolder>
                         </td>--%>
-                       
                     </tr>
                 </table>
             </div>
@@ -217,7 +216,7 @@
         <div style="clear: both;"></div>
 
         <hr style="color: darkgray; background-color: darkgray; height: 1px; display: block;" />
-        <div>
+        <%-- <div>
             <aside>
                 <ul class="bottom-links">
                     <li><a id="A1" runat="server" href="~/">Home</a></li>
@@ -225,7 +224,21 @@
                     <li><a id="A3" runat="server" href="~/Contact.aspx">Contact</a></li>
                 </ul>
             </aside>
+        </div>--%>
+        <div class="text-center">
+            <aside>
+                <small class="text-muted text-center">Developed by Shree Krishna Upadhyaya as final year project for completion of Bachelor of Computer Enginerring, July 2017, Nepal Engineering College, Pokhara University, Nepal.
+                </small>
+                <br />
+                <small class="text-muted text-center">Designed as per the structure applied in Nepal Engineering College for Academic Year, Semesters, Programs and Batches.
+                </small>
+                <%--<br />
+                                <small class="text-muted text-center">
+                                    Similar in concpet to <a href="https://moodle.org/">moodle</a>, <a href="https://school.moodledemo.net/">moodle demo</a>.
+                                </small>--%>
+            </aside>
         </div>
+
         <div style="height: 30px;">
         </div>
         <%-- Clear Both --%>

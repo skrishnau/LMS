@@ -24,7 +24,7 @@ namespace Academic.Database.Seeders
                 new DbEntities.Grades.Grade{Name = "Letter Grading", Description = "", GradeValueIsInPercentOrPostition = false,TotalMaxValue = 100, TotalMinValue = 0, MinimumPassValue = 40, SchoolId = null, RangeOrValue = true, Void = null,
                 GradeValues = new List<DbEntities.Grades.GradeValue>{
                     new DbEntities.Grades.GradeValue{Value = "F", IsFailGrade = false, EquivalentPercentOrPostition = 0, Void = null, },
-                    new DbEntities.Grades.GradeValue{Value = "C-", IsFailGrade = false, EquivalentPercentOrPostition = 2.7f, Void = null, },
+                    new DbEntities.Grades.GradeValue{Value = "C-", IsFailGrade = false, EquivalentPercentOrPostition = 1.7f, Void = null, },
                     new DbEntities.Grades.GradeValue{Value = "C", IsFailGrade = false, EquivalentPercentOrPostition = 2f, Void = null, },
                     new DbEntities.Grades.GradeValue{Value = "C+", IsFailGrade = false, EquivalentPercentOrPostition = 2.3f, Void = null, },
                     new DbEntities.Grades.GradeValue{Value = "B-", IsFailGrade = false, EquivalentPercentOrPostition = 2.7f, Void = null, },
