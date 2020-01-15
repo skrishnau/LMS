@@ -2,8 +2,6 @@
 
 
 
-
-
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="Body">
 
     <%--<div style="margin: 0 auto; width: 80%; background-image: url('Content/Images/banner-1.jpg');  background-clip: content-box; background-repeat: no-repeat; background-position: left center; background-attachment: local; height: 200px;">--%>
@@ -17,7 +15,18 @@
         System
     </div>--%>
     <%-- roboto-light well --%>
+   <div class="row" style="position:absolute; margin-top:20px;">
+            <div>
+                <div class="box roboto-regular" runat="server" id="loginDiv" visible="True">
+                    <span style="padding: 0 0 5px; text-align: left; color: darkgray;">You are not logged in. 
+                    </span>
+                    <br />
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ViewsSite/Account/Login.aspx">Login</asp:HyperLink>
+                </div>
+            </div>
+        </div>
     <div class=" text-center">
+
         <asp:Image runat="server" ImageUrl="~/Content/Images/LMS-Title-For-Text.png" Height="120" Width="280" />
     </div>
     <br />
@@ -80,7 +89,7 @@
             <br />
         </div>
 
-       <%-- <div class="row" style="line-height: 32px;">
+        <%-- <div class="row" style="line-height: 32px;">
             <div class="col-md-4" style="padding-top: 15px;">
                 <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Images/aboutLMS.png" Height="150" Width="250" />
                 <div>

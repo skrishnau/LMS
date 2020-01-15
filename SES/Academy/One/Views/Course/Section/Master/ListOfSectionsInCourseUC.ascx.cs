@@ -144,7 +144,7 @@ namespace One.Views.Course.Section.Master
                                 //    elligible = (chelper.IsUserElligibleToViewSubjectSection(SubjectId, UserId));
                                 //}
 
-                                var unVoidedSections = sections.Where(x => !(x.Void ?? false));
+                                var unVoidedSections = sections.Where(x => !(x.Void ?? false)).OrderBy(x=>x.Position);
 
                                 using (var ahelper = new DbHelper.ActAndRes())
                                     foreach (var subjectSection in unVoidedSections)

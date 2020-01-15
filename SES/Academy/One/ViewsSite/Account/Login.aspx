@@ -103,7 +103,15 @@
                         </LayoutTemplate>
                     </asp:Login>
                 </div>
-
+                <br />
+                <div class="text-muted">
+                    For Devlopment version credentials, 
+                    <div style="margin-left:20px;">
+                        <strong>Manager </strong>username: <code>manager</code>, Password: <code>password</code>
+                       <br /><strong>Teacher </strong>username: <code>teacher</code>, Password: <code>password</code>
+                       <br /><strong>Student </strong>username: <code>student</code>, Password: <code>password</code>
+                    </div>
+                </div>
 
             </div>
         </div>

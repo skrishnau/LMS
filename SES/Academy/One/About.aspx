@@ -21,10 +21,9 @@
 
     </hgroup>--%>
     <%-- font-size: 1.2em; --%>
-    <h3 class="roboto-light" style=" margin: 10px 0 0 5px; color: darkgrey;">
-        Learning Management System
+    <h3 class="roboto-light" style="margin: 10px 0 0 5px; color: darkgrey;">Learning Management System
     </h3>
-    <hr/>
+    <hr />
     <%-- style="text-align: right;" --%>
     <div class="text-right">
         <asp:HyperLink ID="lnkEdit" runat="server"
@@ -33,8 +32,44 @@
     </div>
 
     <article>
-        <asp:Label ID="lblDescription" runat="server" Text="Label"></asp:Label>
-
+        <asp:Label ID="lblDescription" runat="server" Text="" Visible="false"></asp:Label>
+        <small class="text-muted">source:  
+            <a href="https://en.wikipedia.org/wiki/Learning_management_system">Wikipedia</a>
+        </small>
+        <br />
+        A learning management system (LMS) is a software application for the administration,
+        documentation, tracking, reporting, and delivery of educational courses, training 
+        programs, or learning and development programs. The learning management system 
+        concept emerged directly from e-Learning. 
+        <br />
+        Learning management systems were designed to identify training and learning gaps,
+        utilizing analytical data and reporting. LMSs are focused on online learning delivery
+        but support a range of uses, acting as a platform for online content, including 
+        courses, both asynchronous based and synchronous based. An LMS may offer classroom 
+        management for instructor-led training or a flipped classroom, used in higher 
+        education, but not in the corporate space.
+        <br />
+        An LMS delivers and manages all types of content, including video, courses, and 
+        documents. In the education and higher education markets, an LMS will include a 
+        variety of functionality that is similar to corporate but will have features such 
+        as rubrics, teacher and instructor-facilitated learning, a discussion board, 
+        and often the use of a syllabus. A syllabus is rarely a feature in the corporate LMS, 
+        although courses may start with heading-level index to give learners an overview
+        of topics covered.
+        <br />
+        <strong>Features of LMS</strong>
+        <ul>
+            <li>Managing courses, users and roles</li>
+            <li>Online assessment and tracking students' attendance</li>
+            <li>User feedback</li>
+        </ul>
+        <strong>Advantages of LMS</strong>
+        There are six major advantages of LMS: interoperability, accessibility, reusability, 
+        durability, maintenance ability and adaptability, which in themselves 
+        constitute the concept of LMS.
+        <br />
+        <br />
+        <code>- <a href="https://en.wikipedia.org/wiki/Learning_management_system">Wikipedia</a></code>
         <%-- <p>
             <div>
                 Teaching staff use the LMS to:

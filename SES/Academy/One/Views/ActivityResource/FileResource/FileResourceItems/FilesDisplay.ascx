@@ -52,9 +52,9 @@
                                 BorderStyle="None"
                                 runat="server" OnClick="lnkAddFile_Click">
                                 <asp:Image ID="Image3" runat="server" Width="22" Height="22"
-                                    ImageUrl="~/Content/Icons/File/file_replace.png"
+                                    ImageUrl="~/Content/Icons/Add/Add-icon.png"
                                     ToolTip="File add" />
-                                Choose
+                                Choose...
                             </asp:LinkButton>
                         </asp:View>
                     </asp:MultiView>

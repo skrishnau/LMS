@@ -146,7 +146,7 @@ namespace One.Views.Academy.Session
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Academy/AcademicYear/AcademicYearDetail.aspx?aId=" + AcademicYearId+"&edit=1");
+            Response.Redirect("~/Views/Academy/Detail.aspx?aId=" + AcademicYearId+"&edit=1");
         }
 
         protected void btnSave_Click(object sender, EventArgs e)

@@ -5,7 +5,7 @@
     <%--<strong>Settings</strong>  "modules-heading--%>
     <div class="panel-heading">
         <strong style="padding: -4px;">
-            <asp:Label ID="label1" runat="server" CssClass="modules-title">Administration</asp:Label>
+            <asp:Label ID="label1" runat="server" CssClass="modules-title">Setup</asp:Label>
         </strong>
     </div>
     <%--class="modules-body" font-size: 0.9em; --%>

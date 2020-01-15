@@ -50,7 +50,8 @@
         </asp:ScriptManager>
 
 
-        <div class="container-fluid">
+        <div class="">
+            <%-- container-fluid --%>
             <%-- navbar-inverse bg-inverse  --%>
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -70,13 +71,14 @@
                             <li>
                                 <asp:HyperLink runat="server" ID="HyperLink1"
                                     CssClass="navbar-brand"
-                                    NavigateUrl="~/About.aspx"
+                                    NavigateUrl="~/Home.aspx"
                                     Font-Underline="False">
                                     &nbsp;
                                     <asp:Label ID="Label1" runat="server" CssClass="align-middle"
                                         Text="Nepal Engineering College" Font-Size="1.2em"></asp:Label>
 
                                 </asp:HyperLink>
+                                <%-- ~/About.aspx --%>
                             </li>
                         </ul>
 

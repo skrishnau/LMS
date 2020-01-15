@@ -73,7 +73,7 @@
                 <tr>
                     <td class="data-type" style="margin-left: 10px;">Session-1 Name *</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtSession1Name" runat="server" Width="145px" ToolTip="e.g. FALL, SPRING"></asp:TextBox>
+                        <asp:TextBox ID="txtSession1Name" runat="server" Width="145px" Text="Fall" ToolTip="e.g. FALL, SPRING"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                             ControlToValidate="txtSession1Name" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
@@ -82,7 +82,7 @@
                 <tr>
                     <td class="data-type" style="margin-left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;Start Date *</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtSession1Start" runat="server" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="txtSession1Start" runat="server" ClientIDMode="Static" ></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="valiSession1Start" runat="server"
                             ControlToValidate="txtSession1Start" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
 
@@ -105,7 +105,7 @@
                 <tr>
                     <td class="data-type" style="margin-left: 10px;">Session-2 Name *</td>
                     <td class="data-value">
-                        <asp:TextBox ID="txtSession2Name" runat="server" Width="145px" ToolTip="e.g. FALL, SPRING"></asp:TextBox>
+                        <asp:TextBox ID="txtSession2Name" runat="server" Width="145px" ToolTip="e.g. FALL, SPRING" Text="Spring"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
                             ControlToValidate="txtSession2Name" ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
                     </td>
@@ -161,6 +161,9 @@
         </div>
 
         <div class="panel-body">
+            <div class="text-danger">
+                <asp:Label runat="server" ID="tbEmptyProgramListMsg" Visible="false">Please add programs first!</asp:Label>
+            </div>
             <table>
                 <tr>
                     <td>

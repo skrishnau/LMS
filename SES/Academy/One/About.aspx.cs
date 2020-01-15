@@ -30,11 +30,11 @@ namespace One
                     });
                     
                 }
-                using (var helper = new DbHelper.Office())
-                {
-                    var school = helper.GetSchoolOfUser(user==null?0:user.SchoolId);
-                    lblDescription.Text = school.Description;
-                }
+                //using (var helper = new DbHelper.Office())
+                //{
+                //    var school = helper.GetSchoolOfUser(user==null?0:user.SchoolId);
+                //    lblDescription.Text = school.Description;
+                //}
 
 
             }

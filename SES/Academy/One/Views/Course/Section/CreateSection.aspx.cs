@@ -56,11 +56,13 @@ namespace One.Views.Course.Section
                     {
                         var subjectId = Convert.ToInt32(subId);
                         SubjectId = subjectId;
+                        using (var strhelper = new DbHelper.Structure())
                         using (var helper = new DbHelper.Subject())
                         {
                             var sub = helper.GetCourse(subjectId);
                             if (sub != null)
                             {
+                                LoadSitemap(strhelper, sub);
                                 lblHeading.Text = "New section in : '" + sub.FullName + "'";
 
                             }

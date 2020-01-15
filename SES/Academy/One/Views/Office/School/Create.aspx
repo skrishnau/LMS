@@ -78,7 +78,7 @@
                 </tr>--%>
 
                 <tr>
-                    <td class="data-type">Phone Main*</td>
+                    <td class="data-type">Phone*</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtPhoneMain" runat="server" TextMode="Phone"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="valiPhone" runat="server"
@@ -91,23 +91,24 @@
                     </td>
                 </tr>
 
-                <tr>
+               <%-- <tr>
                     <td class="data-type">Phone After Hours*</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtPhoneAfterHours" runat="server" TextMode="Phone"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                             ControlToValidate="txtPhoneAfterHours"
                             ErrorMessage="Required" ForeColor="#FF3300"></asp:RequiredFieldValidator>
-                        <%-- <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                      
+                    </td>
+                </tr>--%>
+                  <%-- <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
                             ForeColor="red" ControlToValidate="txtPhone"
                             ValidationExpression="^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$"
                             ErrorMessage="Not a phone number"></asp:RegularExpressionValidator>--%>
-                    </td>
-                </tr>
 
 
                 <tr>
-                    <td class="data-type">Email General*</td>
+                    <td class="data-type">Email*</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtEmailGeneral" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
@@ -119,7 +120,7 @@
                     </td>
                 </tr>
 
-                <tr>
+               <%-- <tr>
                     <td class="data-type">Email Support*</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtEmailSupport" runat="server"></asp:TextBox>
@@ -143,7 +144,7 @@
                             ControlToValidate="txtEmailMarketing" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
 
                     </td>
-                </tr>
+                </tr>--%>
 
             </table>
 
@@ -225,7 +226,7 @@
         <div class="panel-body">
             <table>
                 <tr>
-                    <td class="data-type">College Website</td>
+                    <td class="data-type">Website</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtWeb" runat="server"></asp:TextBox>
                     </td>
@@ -257,12 +258,12 @@
                     </td>
                 </tr>--%>
 
-                <tr>
+               <%-- <tr>
                     <td class="data-type">Registration No.</td>
                     <td class="data-value">
                         <asp:TextBox ID="txtRegNo" runat="server"></asp:TextBox>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td class="data-type">Fax</td>
                     <td class="data-value">

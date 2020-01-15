@@ -34,7 +34,10 @@ GO
 INSERT [dbo].[Grade] ([Id], [Name], [Description], [GradeValueIsInPercentOrPostition], [TotalMaxValue], [TotalMinValue], [MinimumPassValue], [SchoolId]
 	, [RangeOrValue], [Void]) VALUES (2, N'Letter Grading', N'', 0, 100, 0, 40, NULL, 1, NULL)
 GO
-
+SET IDENTITY_INSERT [dbo].[Grade] OFF
+GO
+SET IDENTITY_INSERT [dbo].[GradeValue] ON 
+go
 INSERT [dbo].[GradeValue] ([Id], [Value], [IsFailGrade], [EquivalentPercentOrPostition], [GradeId], [Void]) VALUES (6, N'F', 0, 0, 2, NULL)
 GO
 INSERT [dbo].[GradeValue] ([Id], [Value], [IsFailGrade], [EquivalentPercentOrPostition], [GradeId], [Void]) VALUES (7, N'C-', 0, 4, 2, NULL)
@@ -56,7 +59,7 @@ GO
 INSERT [dbo].[GradeValue] ([Id], [Value], [IsFailGrade], [EquivalentPercentOrPostition], [GradeId], [Void]) VALUES (15, N'A+', 0, 12, 2, NULL)
 GO
 
-SET IDENTITY_INSERT [dbo].[Grade] OFF
+SET IDENTITY_INSERT [dbo].[GradeValue] OFF
 GO
 
 

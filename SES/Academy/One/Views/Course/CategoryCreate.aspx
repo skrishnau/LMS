@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content runat="server" ID="bodyocntent" ContentPlaceHolderID="Body">
     <h3 class="heading-of-create-edit">
-        <asp:Label ID="lblCategoryName" runat="server" Text="Category edit"></asp:Label>
+        <asp:Label ID="lblCategoryName" runat="server" Text="Course Category edit"></asp:Label>
     </h3>
     <hr />
     <uc1:Create runat="server" ID="Create1" />

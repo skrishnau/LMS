@@ -3,9 +3,9 @@
 <div class="panel panel-default">
 
 
-    <div class="panel-heading">
+   <%-- <div class="panel-heading">
         General
-    </div>
+    </div>--%>
 
     <div class="panel-body">
         <asp:HiddenField ID="hidSchoolId" runat="server" Value="0" />
@@ -18,12 +18,12 @@
             <tr>
                 <td class="data-type">Parent</td>
                 <td class="data-value">
-                    <asp:DropDownList ID="cmbCategory" runat="server" Height="21px" Width="125px" Enabled="False"></asp:DropDownList>
+                    <asp:DropDownList ID="cmbCategory"  runat="server" Height="21px" Width="125px" Enabled="False"></asp:DropDownList>
                 </td>
             </tr>
             <tr>
                 <td class="data-type">Name</td>
-                <td class="data-value">
+                <td class="data-value ">
                     <asp:TextBox ID="txtName" runat="server" Width="115px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                         ControlToValidate="txtName" ValidationGroup="categoryCreateGroup"
@@ -34,7 +34,7 @@
             <tr>
                 <td class="data-type">Description</td>
                 <td class="data-value">
-                    <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="111px" Width="240px"></asp:TextBox>
+                    <asp:TextBox ID="txtDescription"   runat="server" TextMode="MultiLine" Height="111px" Width="240px"></asp:TextBox>
                 </td>
             </tr>
         </table>

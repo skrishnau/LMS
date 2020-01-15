@@ -36,7 +36,7 @@ namespace One.Views.Course
                             },
                             new IdAndName()
                             {
-                                Name = "Category edit"
+                                Name = "Course Category edit"
                             }
                         };
                         SiteMapUc.SetData(list);

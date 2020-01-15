@@ -68,6 +68,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seeders\AcademicYearSeeder.cs" />
+    <Compile Include="Seeders\CourseSeeder.cs" />
+    <Compile Include="Seeders\Enums.cs" />
+    <Compile Include="Seeders\GenderSeeder.cs" />
+    <Compile Include="Seeders\GradeSeeder.cs" />
+    <Compile Include="Seeders\ProgramSeeder.cs" />
+    <Compile Include="Seeders\RoleSeeder.cs" />
+    <Compile Include="Seeders\SchoolSeeder.cs" />
+    <Compile Include="Seeders\UserFileSeeder.cs" />
+    <Compile Include="Seeders\UserSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

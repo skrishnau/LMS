@@ -82,10 +82,10 @@ namespace One.Views.Office.School
                     txtAddress.Text = sch.Address;
                     txtName.Text = sch.Name;
                     txtEmailGeneral.Text = sch.EmailGeneral;
-                    txtEmailMarketing.Text = sch.EmailMarketing;
-                    txtEmailSupport.Text = sch.EmailSupport;
+                    //txtEmailMarketing.Text = sch.EmailMarketing;
+                    //txtEmailSupport.Text = sch.EmailSupport;
                     txtPhoneMain.Text = sch.PhoneMain;
-                    txtPhoneAfterHours.Text = sch.PhoneAfterHours;
+                    //txtPhoneAfterHours.Text = sch.PhoneAfterHours;
                     hidImageId.Value = sch.ImageId.ToString();
                     
                     //txtStreet.Text = sch.Street;
@@ -196,11 +196,11 @@ namespace One.Views.Office.School
                     Name = txtName.Text,
                     Address = txtAddress.Text,
                     EmailGeneral = txtEmailGeneral.Text,
-                    EmailMarketing = txtEmailMarketing.Text,
-                    EmailSupport = txtEmailSupport.Text,
+                    EmailMarketing = "", //txtEmailMarketing.Text,
+                    EmailSupport = "", //txtEmailSupport.Text,
                     IsActive = chkActive.Checked,
                     PhoneMain = txtPhoneMain.Text,
-                    PhoneAfterHours = txtPhoneAfterHours.Text,
+                    PhoneAfterHours = "", //txtPhoneAfterHours.Text,
                     Description = CKEditor1.Text,
                     //SchoolTypeId = Convert.ToInt32(cmbSchoolType.Text),
                     Website = txtWeb.Text,

@@ -40,6 +40,7 @@
                     <td class="data-value">
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+                            ValidationGroup="sectionCreateGroup"
                             ForeColor="red" ControlToValidate="txtName"
                             runat="server" ErrorMessage="Required"></asp:RequiredFieldValidator>
                     </td>
@@ -61,28 +62,29 @@
 
             </table>
             <br />
-            
-            <div class="data-entry-section-heading">
-                Restriction
-                <hr />
-            </div>
-            <div class="data-entry-section-body">
-                <uc1:RestrictionUC runat="server" ID="RestrictionUC1" />
-            </div>
-            <br />
-
-            <div class="save-div">
-                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save Section" />
-                &nbsp;&nbsp;
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" Width="71px" />
-                &nbsp; &nbsp;
-            <asp:Label ID="lblError" runat="server" Text="Error while saving." ForeColor="red" Visible="False"></asp:Label>
-                <%-- &nbsp;&nbsp;
-                    <asp:Button ID="btnDelete" runat="server" Text="Delete this Section" OnClick="btnDelete_Click" Visible="false" />--%>
-            </div>
         </div>
-
-
+    </div>
+    <br />
+    <div class="data-entry-section">
+        <div class="data-entry-section-heading">
+            Restriction
+                <hr />
+        </div>
+        <div class="data-entry-section-body">
+            <uc1:RestrictionUC runat="server" ID="RestrictionUC1" />
+        </div>
+    </div>
+    <br />
+    <div class="save-div">
+        <asp:Button ID="btnSave" runat="server" 
+             ValidationGroup="sectionCreateGroup"
+            OnClick="btnSave_Click" Text="Save Section" />
+        &nbsp;&nbsp;
+       <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" Width="71px" />
+        &nbsp; &nbsp;
+            <asp:Label ID="lblError" runat="server" Text="Error while saving." ForeColor="red" Visible="False"></asp:Label>
+        <%-- &nbsp;&nbsp;
+                    <asp:Button ID="btnDelete" runat="server" Text="Delete this Section" OnClick="btnDelete_Click" Visible="false" />--%>
     </div>
     <asp:HiddenField ID="hidSubjectId" runat="server" Value="0" />
     <asp:HiddenField ID="hidSectionId" runat="server" Value="0" />

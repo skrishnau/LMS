@@ -102,9 +102,13 @@ namespace One.Views.Academy
         private void SetStructure(DbHelper.Structure sHelper, CustomPrincipal user)
         {
             var programs = sHelper.ListPrograms(user.SchoolId);
+            if (!programs.Any())
+            {
+                tbEmptyProgramListMsg.Visible = true;
+            }
             programs.ForEach(p =>
             {
-                var litem = new ListItem() { Text = " " + p.Name, Value = p.Id.ToString() };
+                var litem = new ListItem() { Text = " &nbsp; &nbsp; " + p.Name, Value = p.Id.ToString() };
                 var pbs = p.ProgramBatches.FirstOrDefault(x => x.BatchId == BatchId);
                 if (pbs != null)
                 {
@@ -317,8 +321,8 @@ namespace One.Views.Academy
             {
                 start = Convert.ToDateTime(txtAcademicStart.Text);
                 var earlierAca = helper.GetEarlierAcademicYear(user.SchoolId);
-
-                if (earlierAca != null)
+                
+                if (earlierAca != null && earlierAca?.Id != AcademicYearId)
                     if (start.Date <= earlierAca.EndDate.Date)
                     {
                         valiAcademicStart.ErrorMessage = "Must be greater than end-date of earlier academic year (" + earlierAca.EndDate.ToShortDateString() + ")";

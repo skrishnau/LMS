@@ -1,5 +1,6 @@
 namespace Academic.Database.Migrations
 {
+    using Academic.Database.Seeders;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,42 @@ namespace Academic.Database.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            //SeedSchoolType(context);
+            //SeedSchool(context);
+            //context.SaveChanges();
+            new GenderSeeder(context).Seed();
+            new GradeSeeder(context).Seed();
+            new RoleSeeder(context).Seed();
+            new SchoolSeeder(context).Seed();
+            new UserFileSeeder(context).Seed();
+            new UserSeeder(context).Seed();
+
+            new CourseSeeder(context).Seed();
+            new ProgramSeeder(context).Seed();
+            new AcademicYearSeeder(context).Seed();
+
         }
+
+
+        //private void SeedSchoolType(Academic.Database.AcademicContext context)
+        //{
+        //    if (!context.SchoolType.Any())
+        //    {
+        //        // insert all
+        //        foreach (var t in StaticValues.SchoolType)
+        //        {
+        //            context.SchoolType.Add(new SchoolType() { Name = t });
+        //        }
+        //    }
+        //}
+
+        //private void SeedSchool(Academic.Database.AcademicContext context)
+        //{
+        //    if (!context.SchoolType.Any())
+        //    {
+        //        // insert all
+        //    }
+        //}
+
     }
 }

@@ -100,9 +100,9 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="container-fluid">
+        <div class="">
 
-            <div class="container-fluid">
+            <div class="">
                 <%-- navbar-inverse bg-inverse --%>
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
@@ -127,7 +127,7 @@
                                 <li>
                                     <asp:HyperLink runat="server" ID="lnkSchoolName"
                                         CssClass="navbar-brand"
-                                        NavigateUrl="~/About.aspx"
+                                        NavigateUrl="~/Home.aspx"
                                         Font-Underline="False">
                                         &nbsp;
                                         <asp:Label ID="lblSchoolName" runat="server" CssClass="align-middle"
@@ -198,7 +198,7 @@
                                         <%--<li role="separator" class="divider"></li>--%>
                                     </ul>
                                 </li>
-                               <%-- <li class="dropdown">
+                                <%-- <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-cog"></span>
                                         <span class="caret"></span>
@@ -285,10 +285,7 @@
             <div style="clear: both;"></div>
             <%-- body-whole --%>
 
-            <div class="container">
-
-
-
+            <div class="container-fluid">
 
                 <div class="panel panel-default">
                     <%-- sitemap-panel style="padding: -5px 0 -20px -15px;"--%>
@@ -307,6 +304,7 @@
                                     CssClass="btn btn-default">
                                     <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/Icons/Edit/edit_orange.png" />
                                     <%--<span class="glyphicon glyphicon-pencil"></span>--%>
+                                    &nbsp;
                                     <asp:Label ID="lblEditMode" runat="server" Text="Turn on edit mode" CssClass="text-right"></asp:Label>
                                 </asp:LinkButton>
                             </div>
@@ -385,13 +383,28 @@
                     <div class="panel-footer">
 
                         <%--<hr style="color: darkgray; background-color: darkgray; height: 1px; display: block;" />--%>
-                        <div>
+                       <%-- <div>
                             <aside>
                                 <ul class="bottom-links">
                                     <li><a id="A1" runat="server" href="~/">Home</a></li>
                                     <li><a id="A2" runat="server" href="~/About.aspx">About</a></li>
                                     <li><a id="A3" runat="server" href="~/Contact.aspx">Contact</a></li>
                                 </ul>
+                            </aside>
+                        </div>--%>
+                        <div class="text-center">
+                            <aside>
+                                <small class="text-muted text-center">
+                                    Developed by Shree Krishna Upadhyaya as final year project for completion of Bachelor of Computer Enginerring, July 2017, Nepal Engineering College, Pokhara University, Nepal.
+                                </small>
+                                <br />
+                                <small class="text-muted text-center">
+                                    Designed as per the structure applied in Nepal Engineering College for Academic Year, Semesters, Programs and Batches.
+                                </small>
+                                <%--<br />
+                                <small class="text-muted text-center">
+                                    Similar in concpet to <a href="https://moodle.org/">moodle</a>, <a href="https://school.moodledemo.net/">moodle demo</a>.
+                                </small>--%>
                             </aside>
                         </div>
 
